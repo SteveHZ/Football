@@ -88,7 +88,6 @@ sub create_hash {
 	my $teams = {};
 	
 	for my $home (@$all_teams) {
-#		print "\nWriting $home";
 		for my $away (@$all_teams) {
 			for my $season (@{ $seasons->{h2h_seasons} }) {
 				@{ $teams->{$home}->{$away} } = qw(X X X X X X) unless $home eq $away;
@@ -130,7 +129,7 @@ sub get_result {
 	
 	return 'H' if $home > $away;
 	return 'A' if $home < $away;
-	return 'D';		#	if $home > 0;#	return 'N';
+	return 'D';
 }
 
 1;

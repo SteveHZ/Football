@@ -14,6 +14,7 @@ use Football::AwayTable;
 use Football::Head2Head;
 use Football::Reports::LeaguePlaces;
 use Football::Reports::GoalDifference;
+use Football::Reports::Recent_GoalDifference;
 
 my $path = 'C:/Mine/perl/Football/data/';
 my $premdata = $path.'E0.csv';
@@ -113,8 +114,7 @@ sub get_result {
 	my ($home, $away) = @_;
 	return ('W','L') if $home > $away;
 	return ('L','W') if $home < $away;
-	return ('D','D') if $home > 0;
-	return ('N','N');
+	return ('D','D');
 }
 
 sub update_home {
@@ -331,6 +331,23 @@ sub do_goal_difference {
 		$away_diff = $self->{table}->goal_diff ($away);
 		$game->{goal_difference} = $home_diff - $away_diff;
 		$game->{results} = $goal_diff->fetch_array ($game->{goal_difference});
+	}
+	return $fixtures;
+}
+
+sub do_recent_goal_difference {
+	my ($self, $fixtures, $teams) = @_;
+	my ($home, $away, $home_diff, $away_diff);
+	
+	my $goal_diff = Football::Reports::Recent_GoalDifference->new ();
+	for my $game (@$fixtures) {
+		$home = $game->{home};
+		$away = $game->{away};
+
+		$home_diff = $self->{table}->recent_goal_diff ($home);
+		$away_diff = $self->{table}->recent_goal_diff ($away);
+		$game->{recent_goal_difference} = $home_diff - $away_diff;
+		$game->{results} = $goal_diff->fetch_array ($game->{recent_goal_difference});
 	}
 	return $fixtures;
 }

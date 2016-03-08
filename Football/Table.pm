@@ -29,6 +29,7 @@ sub set_up_team {
 		for => 0,
 		against => 0,
 		points => 0,
+		recent_goal_diff => [0,0,0,0,0,0],
 	};
 }
 
@@ -44,6 +45,7 @@ sub update {
 		$self->do_draw ($game);
 	}
 	$self->do_goals ($game);
+	$self->do_recent_goal_diff ($game);
 }
 
 sub do_played {
@@ -82,6 +84,15 @@ sub do_goals {
 	$self->{table}->{ $game->{away_team} }->{against} += $game->{home_score};
 }
 
+sub do_recent_goal_diff {
+	my ($self, $game) = @_;
+	
+	shift  @{ $self->{table}->{ $game->{home_team} }->{recent_goal_diff} };
+	shift  @{ $self->{table}->{ $game->{away_team} }->{recent_goal_diff} };
+	push ( @{ $self->{table}->{ $game->{home_team} }->{recent_goal_diff} }, $game->{home_score} - $game->{away_score} );
+	push ( @{ $self->{table}->{ $game->{away_team} }->{recent_goal_diff} }, $game->{away_score} - $game->{home_score} );
+}
+
 sub sort_table {
 	my $self = shift;
 	my $table = $self->{table};
@@ -106,6 +117,14 @@ sub _goal_diff {
 sub goal_diff {
 	my ($self, $team) = @_;
 	return $self->{table}->{$team}->{for} - $self->{table}->{$team}->{against};
+}
+
+sub recent_goal_diff {
+	my ($self, $team) = @_;
+
+	my $total = 0;
+	$total += $_ for (@ {$self->{table}->{$team}->{recent_goal_diff} } );
+	return $total;
 }
 
 sub sorted 	{ my $self = shift; return \@ {$self->{sorted}} };

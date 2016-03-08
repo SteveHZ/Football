@@ -10,6 +10,7 @@ use Football::Model;
 use Football::Table;
 use Football::Reports::LeaguePlaces;
 use Football::Reports::GoalDifference;
+use Football::Reports::Recent_GoalDifference;
 
 my $historical_path = 'C:/Mine/perl/Football/data/historical/';
 
@@ -19,6 +20,7 @@ sub new {
 	my $self = {
 		league_places => Football::Reports::LeaguePlaces->new ($seasons),
 		goal_diff => Football::Reports::GoalDifference->new ($seasons),
+		recent_goal_diff => Football::Reports::Recent_GoalDifference->new ($seasons),
 	};
 
 	bless $self, $class;
@@ -50,6 +52,7 @@ sub run {
 					my $name = $team->{team};
 					$teams->{$name}->{position} = $idx ++;
 					$teams->{$name}->{goal_diff} = $table->goal_diff ($name);
+					$teams->{$name}->{recent_goal_diff} = $table->recent_goal_diff ($name);
 				}
 			}
 #if ($week > 6) {

@@ -210,6 +210,23 @@ sub do_goal_difference {
 	$self->{xlsx_predictions}->do_goal_difference ($fixtures);
 }
 
+sub do_recent_goal_difference {
+	my ($self, $fixtures) = @_;
+	
+	print "\n\nWriting recent goal difference predictions...\n";
+	for my $game (@$fixtures) {
+		print "\n";
+		printf "%-15s v %-15s", $game->{home}, $game->{away};
+		printf "  Goal Difference : %3d - Home Win : %3d Away Win : %3d Draw : %3d",
+			$game->{recent_goal_difference},
+			$game->{results}[0],
+			$game->{results}[1],
+			$game->{results}[2];
+	}
+	print "\n";
+	$self->{xlsx_predictions}->do_recent_goal_difference ($fixtures);
+}
+
 =head2
 
 sub menu {

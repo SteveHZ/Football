@@ -35,4 +35,5 @@ sub main {
 	$view->do_head2head ( $model->do_head2head ($fixtures));
 	$view->do_league_places ( $model->do_league_places ($fixtures, $teams));
 	$view->do_goal_difference ( $model->do_goal_difference ($fixtures, $teams));
+	$view->do_recent_goal_difference ( $model->do_recent_goal_difference ($fixtures, $teams));
 }
