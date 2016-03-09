@@ -12,7 +12,7 @@ sub new {
 	my $self = {};
 
 	$self->{workbook} = Excel::Writer::XLSX->new ($xlsx_file)
-		or die "Problems creating new Excel file xxx: $!";
+		or die "Problems creating new Excel file : $!";
 
 	$self->{format} = $self->{workbook}->add_format (
 		bg_color => '#FFC7CE',
