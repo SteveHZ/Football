@@ -30,7 +30,7 @@ sub get_result {
 	
 	return 'H' if $home > $away;
 	return 'A' if $home < $away;
-	return 'D';		#	if $home > 0;#	return 'N';
+	return 'D';
 }
 
 sub write {
