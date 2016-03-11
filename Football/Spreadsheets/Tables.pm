@@ -55,7 +55,7 @@ sub do_homes {
 	my ($self, $list, $title) = @_;
 	$title //= "Table";
 	my $worksheet = $self->{workbook}->add_worksheet ($title);
-	do_form_headers ($worksheet, $self->{bold_format});
+	do_form_headers ($worksheet, $title, $self->{bold_format});
 
 	my @sorted = sort {$b->{points} <=> $a->{points} or $a->{team} cmp $b->{team} } @$list;
 	
@@ -64,6 +64,26 @@ sub do_homes {
 		$worksheet->write ($row, 0, $team->{team}, $self->{format});
 		my $col = 3;
 		for my $game (@{ $team->{homes} }) {
+			$worksheet->write ($row, $col ++, $game, $self->{format});
+		}
+		$worksheet->write ($row, ++$col, $team->{points}, $self->{format});
+		$row ++;
+	}
+}
+
+sub do_aways {
+	my ($self, $list, $title) = @_;
+	$title //= "Table";
+	my $worksheet = $self->{workbook}->add_worksheet ($title);
+	do_form_headers ($worksheet, $title, $self->{bold_format});
+
+	my @sorted = sort {$b->{points} <=> $a->{points} or $a->{team} cmp $b->{team} } @$list;
+	
+	my $row = 3;
+	for my $team (@sorted) {
+		$worksheet->write ($row, 0, $team->{team}, $self->{format});
+		my $col = 3;
+		for my $game (@{ $team->{aways} }) {
 			$worksheet->write ($row, $col ++, $game, $self->{format});
 		}
 		$worksheet->write ($row, ++$col, $team->{points}, $self->{format});
@@ -89,13 +109,13 @@ sub do_table_headers {
 }
 
 sub do_form_headers {
-	my ($worksheet, $format) = @_;
+	my ($worksheet, $title, $format) = @_;
 
 	$worksheet->set_column ('A:A', 20);
 	$worksheet->set_column ('B:I', 5);
 
 	$worksheet->write ('A2', "Team", $format);
-	$worksheet->merge_range ('D2:I2', "Last Six Homes", $format);
+	$worksheet->merge_range ('D2:I2', $title, $format);
 	$worksheet->write ('K2', "Points", $format);
 }
 

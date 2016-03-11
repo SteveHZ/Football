@@ -161,6 +161,7 @@ sub aways {
 		my $stats = {};
 		$stats->{team} = $team;
 		$stats->{aways} = $teams->{$team}->get_aways ();
+		$stats->{points} = get_points ($stats->{aways});
 		push (@list, $stats);
 	}
 	return \@list;

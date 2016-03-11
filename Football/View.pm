@@ -49,7 +49,7 @@ sub homes {
 		printf "\n%-15s :", $team->{team};
 		print " $_"  for (@{ $team->{homes}} );
 	}
-	$self->{xlsx_tables}->do_homes ($list, "Homes");
+	$self->{xlsx_tables}->do_homes ($list, "Last Six Homes");
 }
 
 sub aways {
@@ -60,6 +60,7 @@ sub aways {
 		printf "\n%-15s :", $team->{team};
 		print " $_"  for (@{ $team->{aways}} );
 	}
+	$self->{xlsx_tables}->do_aways ($list, "Last Six Aways");
 }
 
 sub full_homes {
