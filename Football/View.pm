@@ -63,6 +63,17 @@ sub aways {
 	$self->{xlsx_tables}->do_aways ($list, "Last Six Aways");
 }
 
+sub last_six {
+	my ($self, $list) = @_;
+	
+	print "\n\nLast Six Games :\n";
+	for my $team (@$list) {
+		printf "\n%-15s :", $team->{team};
+		print " $_"  for (@{ $team->{last_six}} );
+	}
+	$self->{xlsx_tables}->do_last_six ($list, "Last Six Games");
+}
+
 sub full_homes {
 	my ($self, $list) = @_;
 	

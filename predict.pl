@@ -27,6 +27,7 @@ sub main {
 
 	$view->homes ( $model->homes ($teams) );
 	$view->aways ( $model->aways ($teams) );
+	$view->last_six ( $model->last_six ($teams) );
 	$view->full_homes ( $model->full_homes ($teams) );
 	$view->full_aways ( $model->full_aways ($teams) );
 

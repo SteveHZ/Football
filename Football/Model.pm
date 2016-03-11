@@ -167,6 +167,20 @@ sub aways {
 	return \@list;
 }
 
+sub last_six {
+	my ($self, $teams) = @_;
+	
+	my @list = ();
+	for my $team (@ { $self->{all_teams} }) {
+		my $stats = {};
+		$stats->{team} = $team;
+		$stats->{last_six} = $teams->{$team}->most_recent ();
+		$stats->{points} = get_points ($stats->{last_six});
+		push (@list, $stats);
+	}
+	return \@list;
+}
+
 sub get_points {
 	my $stats = shift;
 	my $points = { W => 3,D => 1,N => 1,L => 0,X => 0, };

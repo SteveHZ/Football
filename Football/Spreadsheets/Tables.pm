@@ -51,9 +51,8 @@ sub do_away_table {
 	$self->do_table ($table, "Away Table");
 }
 
-sub do_homes {
-	my ($self, $list, $title) = @_;
-	$title //= "Table";
+sub do_home_aways {
+	my ($self, $list, $title, $home_away) = @_;
 	my $worksheet = $self->{workbook}->add_worksheet ($title);
 	do_form_headers ($worksheet, $title, $self->{bold_format});
 
@@ -63,7 +62,7 @@ sub do_homes {
 	for my $team (@sorted) {
 		$worksheet->write ($row, 0, $team->{team}, $self->{format});
 		my $col = 3;
-		for my $game (@{ $team->{homes} }) {
+		for my $game (@{ $team->{$home_away} }) {
 			$worksheet->write ($row, $col ++, $game, $self->{format});
 		}
 		$worksheet->write ($row, ++$col, $team->{points}, $self->{format});
@@ -71,24 +70,19 @@ sub do_homes {
 	}
 }
 
+sub do_homes {
+	my ($self, $list, $title) = @_;
+	$self->do_home_aways ($list, $title, "homes");
+}
+
 sub do_aways {
 	my ($self, $list, $title) = @_;
-	$title //= "Table";
-	my $worksheet = $self->{workbook}->add_worksheet ($title);
-	do_form_headers ($worksheet, $title, $self->{bold_format});
+	$self->do_home_aways ($list, $title, "aways");
+}
 
-	my @sorted = sort {$b->{points} <=> $a->{points} or $a->{team} cmp $b->{team} } @$list;
-	
-	my $row = 3;
-	for my $team (@sorted) {
-		$worksheet->write ($row, 0, $team->{team}, $self->{format});
-		my $col = 3;
-		for my $game (@{ $team->{aways} }) {
-			$worksheet->write ($row, $col ++, $game, $self->{format});
-		}
-		$worksheet->write ($row, ++$col, $team->{points}, $self->{format});
-		$row ++;
-	}
+sub do_last_six {
+	my ($self, $list, $title) = @_;
+	$self->do_home_aways ($list, $title, "last_six");
 }
 
 sub do_table_headers {
@@ -118,42 +112,5 @@ sub do_form_headers {
 	$worksheet->merge_range ('D2:I2', $title, $format);
 	$worksheet->write ('K2', "Points", $format);
 }
-
-=head2
-sub do_teams {
-	my ($self, $teams, $sorted) = @_;
-	
-	for my $team (@$sorted) {
-		print "\nWriting data for $team...";
-		my $worksheet = $self->{workbook}->add_worksheet ($team);
-		do_teams_headers ($worksheet, $self->{bold_format});
-		
-		my $row = 1;
-		my $next = $teams->{$team}->iterator ();
-		while (my $list = $next->()) {
-			$worksheet->write ($row, 0, $list->{date}, $self->{format});
-			$worksheet->write ($row, 1, $list->{opponent}, $self->{format});
-			$worksheet->write ($row, 2, $list->{home_away}, $self->{format});
-			$worksheet->write ($row, 3, $list->{result}, $self->{format});
-			$worksheet->write ($row, 4, $list->{score}, $self->{format});
-			$row++;
-		}
-		print "Done";
-	}
-}
-
-sub do_teams_headers {
-	my ($worksheet, $format) = @_;
-
-	$worksheet->set_column ('A:B', 20);
-	$worksheet->set_column ('B:C', 10);
-
-	$worksheet->write ('A1', "DATE", $format);
-	$worksheet->write ('B1', "OPPONENT", $format);
-	$worksheet->write ('C1', "H/A", $format);
-	$worksheet->write ('D1', "RESULT", $format);
-	$worksheet->write ('E1', "SCORE", $format);
-}
-=cut
 
 1;
