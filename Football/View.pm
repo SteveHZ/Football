@@ -41,6 +41,7 @@ sub print_all_games {
 sub homes {
 	my ($self, $list) = @_;
 	
+	print "\n\nHomes :\n";
 	for my $team (@$list) {
 		printf "\n%-15s :", $team->{team};
 		print " $_"  for (@{ $team->{homes}} );
@@ -50,6 +51,7 @@ sub homes {
 sub aways {
 	my ($self, $list) = @_;
 	
+	print "\n\nAways :\n";
 	for my $team (@$list) {
 		printf "\n%-15s :", $team->{team};
 		print " $_"  for (@{ $team->{aways}} );
