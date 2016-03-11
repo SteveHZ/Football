@@ -22,13 +22,13 @@ sub main {
 	$view->do_teams ($teams);
 	$view->do_table ($table);
 
+	$view->do_home_table ( $model->do_home_table ($games));
+	$view->do_away_table ( $model->do_away_table ($games));
+
 	$view->homes ( $model->homes ($teams) );
 	$view->aways ( $model->aways ($teams) );
 	$view->full_homes ( $model->full_homes ($teams) );
 	$view->full_aways ( $model->full_aways ($teams) );
-
-	$view->do_home_table ( $model->do_home_table ($games));
-	$view->do_away_table ( $model->do_away_table ($games));
 
 	my $fixtures = $model->get_fixtures ();
 	$view->do_fixtures ( $model->do_fixtures ($teams, $fixtures) );

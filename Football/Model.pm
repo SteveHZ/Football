@@ -147,6 +147,7 @@ sub homes {
 		my $stats = {};
 		$stats->{team} = $team;
 		$stats->{homes} = $teams->{$team}->get_homes ();
+		$stats->{points} = get_points ($stats->{homes});
 		push (@list, $stats);
 	}
 	return \@list;

@@ -7,12 +7,14 @@ use warnings;
 use v5.22; # for state
 
 use Football::Spreadsheets::Teams;
+use Football::Spreadsheets::Tables;
 use Football::Spreadsheets::Predictions;
 
 sub new {
 	my $class = shift;
 	my $self = {
 		xlsx_teams => Football::Spreadsheets::Teams->new (),
+		xlsx_tables => Football::Spreadsheets::Tables->new (),
 		xlsx_predictions => Football::Spreadsheets::Predictions->new (),
 	};
 
@@ -22,8 +24,9 @@ sub new {
 
 sub DESTROY {
 	my $self = shift;
-	$self->{xlsx_predictions}->{workbook}->close ();
 	$self->{xlsx_teams}->{workbook}->close ();	
+	$self->{xlsx_tables}->{workbook}->close ();	
+	$self->{xlsx_predictions}->{workbook}->close ();
 }
 
 sub print_all_games {
@@ -46,6 +49,7 @@ sub homes {
 		printf "\n%-15s :", $team->{team};
 		print " $_"  for (@{ $team->{homes}} );
 	}
+	$self->{xlsx_tables}->do_homes ($list, "Homes");
 }
 
 sub aways {
@@ -140,7 +144,7 @@ sub do_table {
 			$team->{points};
 	}
 	print "\n";
-	$self->{xlsx_teams}->do_table ($table);
+	$self->{xlsx_tables}->do_table ($table);
 }
 
 sub do_home_table {
@@ -157,7 +161,7 @@ sub do_home_table {
 			$team->{points};
 	}
 	print "\n";
-	$self->{xlsx_teams}->do_home_table ($table);
+	$self->{xlsx_tables}->do_home_table ($table);
 }
 
 sub do_away_table {
@@ -174,7 +178,7 @@ sub do_away_table {
 			$team->{points};
 	}
 	print "\n";
-	$self->{xlsx_teams}->do_away_table ($table);
+	$self->{xlsx_tables}->do_away_table ($table);
 }
 
 sub do_league_places {
