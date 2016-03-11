@@ -54,16 +54,22 @@ sub get_homes {
 	return $self->get_stats ('H', $num_games);
 }
 
-sub get_full_homes {
-	my ($self, $num_games) = @_;
-	$num_games //= $default_stats_size;
-	return $self->get_full_stats ('H', $num_games);
-}
-
 sub get_aways {
 	my ($self, $num_games) = @_;
 	$num_games //= $default_stats_size;
 	return $self->get_stats ('A', $num_games);
+}
+
+sub most_recent {
+	my ($self, $num_games) = @_;
+	$num_games //= $default_stats_size;
+	return $self->get_most_recent ($num_games);
+}
+
+sub get_full_homes {
+	my ($self, $num_games) = @_;
+	$num_games //= $default_stats_size;
+	return $self->get_full_stats ('H', $num_games);
 }
 
 sub get_full_aways {
@@ -86,17 +92,7 @@ sub get_full_stats {
 	my ($start, $end);
 
 	my @list = grep {$_->{home_away} eq $home_away} @{ $self->{games} };
-	$end = scalar @list - 1;
-	$start = $end - ($num_games - 1);
-
-	my @spliced = splice (@list, $start, $end);
-	return \@spliced;
-}
-
-sub most_recent {
-	my ($self, $num_games) = @_;
-	$num_games //= $default_stats_size;
-	return $self->get_most_recent ($num_games);
+	return splice_array (\@list, $num_games);
 }
 
 sub get_most_recent {
@@ -104,13 +100,22 @@ sub get_most_recent {
 	my ($start, $end);
 	
 	my @list = @ {$self->{games} };
-	$end = scalar @list - 1;
-	$start = $end - ($num_games - 1);
+	my $spliced = splice_array (\@list, $num_games);
 	
 	my @results = ();
-	my @spliced = splice (@list, $start, $end);
-	push @results, $_->{result} for @spliced;
+	push @results, $_->{result} for @$spliced;
 	return \@results;
+}
+
+sub splice_array {
+	my ($arrayref, $num_games) = @_;
+	my ($start, $end);
+	
+	$end = scalar ( @$arrayref ) - 1;
+	$start = $end - ($num_games - 1);
+
+	my @spliced = splice (@$arrayref, $start, $end);
+	return \@spliced;
 }
 
 1;

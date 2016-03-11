@@ -61,7 +61,7 @@ sub do_home_aways {
 	my $row = 3;
 	for my $team (@sorted) {
 		$worksheet->write ($row, 0, $team->{team}, $self->{format});
-		my $col = 3;
+		my $col = 2;
 		for my $game (@{ $team->{$home_away} }) {
 			$worksheet->write ($row, $col ++, $game, $self->{format});
 		}
@@ -105,12 +105,15 @@ sub do_table_headers {
 sub do_form_headers {
 	my ($worksheet, $title, $format) = @_;
 
+	my @size5 = ('C:H', 'J:J');
+	my @size8 = ('B:B', 'I:I');
 	$worksheet->set_column ('A:A', 20);
-	$worksheet->set_column ('B:I', 5);
+	$worksheet->set_column ($_, 5) for (@size5);
+	$worksheet->set_column ($_, 8) for (@size8);
 
 	$worksheet->write ('A2', "Team", $format);
-	$worksheet->merge_range ('D2:I2', $title, $format);
-	$worksheet->write ('K2', "Points", $format);
+	$worksheet->merge_range ('C2:H2', $title, $format);
+	$worksheet->write ('J2', "Points", $format);
 }
 
 1;
