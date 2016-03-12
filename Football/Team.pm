@@ -4,6 +4,7 @@ package Football::Team;
 
 use strict;
 use warnings;
+use Data::Dumper;
 
 my $default_stats_size = 6;
 

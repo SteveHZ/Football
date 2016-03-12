@@ -85,6 +85,40 @@ sub do_last_six {
 	$self->do_home_aways ($list, $title, "last_six");
 }
 
+sub do_extended {
+	my ($self, $fixtures) = @_;
+	
+	my $row = 0;
+	my $worksheet = $self->{workbook}->add_worksheet ("Extended");
+	do_extended_headers ($worksheet, $self->{format});
+	
+	for my $game (@$fixtures) {
+		$worksheet->merge_range ($row, 0, $row, 3, uc ($game->{home_team}). " ". $game->{home_points}, $self->{bold_format});
+		$worksheet->merge_range ($row, 5, $row, 8, uc ($game->{away_team}). " ". $game->{away_points}, $self->{bold_format});
+
+		my $start_row = ++$row;
+		my @temp = reverse ($game->{full_homes});
+		for my $previous ($game->{full_homes}) {
+			for my $match ( reverse @$previous) {
+				$worksheet->write ($row, 0, $match->{date}, $self->{format});
+				$worksheet->write ($row, 1, $match->{opponent}, $self->{format});
+				$worksheet->write ($row, 2, $match->{result}, $self->{format});
+				$worksheet->write ($row ++, 3, $match->{score}, $self->{format});
+			}
+		}
+		$row = $start_row;
+		for my $previous ($game->{full_aways}) {
+			for my $match (reverse @$previous) {
+				$worksheet->write ($row, 5, $match->{date}, $self->{format});
+				$worksheet->write ($row, 6, $match->{opponent}, $self->{format});
+				$worksheet->write ($row, 7, $match->{result}, $self->{format});
+				$worksheet->write ($row ++, 8, $match->{score}, $self->{format});
+			}
+		}
+		$row ++;
+	}
+}
+
 sub do_table_headers {
 	my ($worksheet, $format) = @_;
 
@@ -114,6 +148,17 @@ sub do_form_headers {
 	$worksheet->write ('A2', "Team", $format);
 	$worksheet->merge_range ('C2:H2', $title, $format);
 	$worksheet->write ('J2', "Points", $format);
+}
+
+sub do_extended_headers {
+	my ($worksheet, $format) = @_;
+	
+	my @size20 = ('B:B', 'G:G');
+	my @size10 = ('A:A', 'F:F');
+	my @size5 = ('C:D', 'H:I');
+	$worksheet->set_column ($_,20) for @size20;
+	$worksheet->set_column ($_,10) for @size10;
+	$worksheet->set_column ($_,5) for @size5;
 }
 
 1;

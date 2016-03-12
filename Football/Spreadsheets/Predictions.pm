@@ -64,6 +64,7 @@ sub do_head2head {
 		$row ++;
 	}
 }
+
 sub do_league_places {
 	my ($self, $fixtures) = @_;
 

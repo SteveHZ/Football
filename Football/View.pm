@@ -126,6 +126,7 @@ sub do_fixtures {
 	}
 	print "\n";
 	$self->{xlsx_predictions}->do_fixtures ($fixtures);
+	$self->{xlsx_tables}->do_extended ($fixtures);
 }
 
 sub do_head2head {

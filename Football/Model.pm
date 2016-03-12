@@ -246,11 +246,15 @@ sub do_fixtures {
 		my $stats = {};
 		my $home = $game->{home};
 		my $away = $game->{away};
+		
 		$stats->{home_team} = $home;
 		$stats->{homes} = $teams->{$home}->get_homes ();
+		$stats->{full_homes} = $teams->{$home}->get_full_homes ();
 		$stats->{home_points} = get_points ($stats->{homes});
+		
 		$stats->{away_team} = $away;
 		$stats->{aways} = $teams->{$away}->get_aways ();
+		$stats->{full_aways} = $teams->{$away}->get_full_aways ();
 		$stats->{away_points} = get_points ($stats->{aways});
 		push (@list, $stats);
 	}
