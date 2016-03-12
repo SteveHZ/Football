@@ -25,11 +25,17 @@ sub main {
 	$view->do_home_table ( $model->do_home_table ($games));
 	$view->do_away_table ( $model->do_away_table ($games));
 
+#<STDIN>;	
 	$view->homes ( $model->homes ($teams) );
+#<STDIN>;	
 	$view->aways ( $model->aways ($teams) );
+#<STDIN>;	
 	$view->last_six ( $model->last_six ($teams) );
-	$view->full_homes ( $model->full_homes ($teams) );
-	$view->full_aways ( $model->full_aways ($teams) );
+#<STDIN>;	
+	$view->full_homes ( $model->homes ($teams) );
+#<STDIN>;
+	$view->full_aways ( $model->aways ($teams) );
+#<STDIN>;	
 
 	my $fixtures = $model->get_fixtures ();
 	$view->do_fixtures ( $model->do_fixtures ($teams, $fixtures) );

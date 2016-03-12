@@ -79,7 +79,7 @@ sub full_homes {
 	
 	for my $team (@$list) {
 		print "\n\n$team->{team} :";
-		for my $game (@{ $team->{homes}} ) {
+		for my $game (@{ $team->{full_homes}} ) {
 			printf "\n%s : %-15s H %s  %s", $game->{date}, $game->{opponent},
 											$game->{result}, $game->{score};
 		}
@@ -91,7 +91,7 @@ sub full_aways {
 	
 	for my $team (@$list) {
 		print "\n\n$team->{team} :";
-		for my $game (@{ $team->{aways}} ) {
+		for my $game (@{ $team->{full_aways}} ) {
 			printf "\n%s : %-15s A %s  %s",	$game->{date}, $game->{opponent},
 											$game->{result}, $game->{score};
 		}

@@ -4,7 +4,6 @@ package Football::Team;
 
 use strict;
 use warnings;
-use Data::Dumper;
 
 my $default_stats_size = 6;
 
@@ -67,33 +66,15 @@ sub most_recent {
 	return $self->get_most_recent ($num_games);
 }
 
-sub get_full_homes {
-	my ($self, $num_games) = @_;
-	$num_games //= $default_stats_size;
-	return $self->get_full_stats ('H', $num_games);
-}
-
-sub get_full_aways {
-	my ($self, $num_games) = @_;
-	$num_games //= $default_stats_size;
-	return $self->get_full_stats ('A', $num_games);
-}
-
 sub get_stats {
 	my ($self, $home_away, $num_games) = @_;
-
 	my @results = ();
-	my $temp = $self->get_full_stats ($home_away, $num_games);
-	push @results, $_->{result} for @$temp;
-	return \@results;
-}
-
-sub get_full_stats {
-	my ($self, $home_away, $num_games) = @_;
-	my ($start, $end);
 
 	my @list = grep {$_->{home_away} eq $home_away} @{ $self->{games} };
-	return splice_array (\@list, $num_games);
+	my $full_stats = splice_array (\@list, $num_games);
+
+	push @results, $_->{result} for @$full_stats;
+	return (\@results, $full_stats);
 }
 
 sub get_most_recent {
@@ -103,7 +84,7 @@ sub get_most_recent {
 	my @list = @ {$self->{games} };
 	my $spliced = splice_array (\@list, $num_games);
 	
-	my @results = ();
+	my @results = ();		
 	push @results, $_->{result} for @$spliced;
 	return \@results;
 }
@@ -118,5 +99,16 @@ sub splice_array {
 	my @spliced = splice (@$arrayref, $start, $end);
 	return \@spliced;
 }
+
+#sub get_full_homes {
+#	my ($self, $num_games) = @_;
+#	$num_games //= $default_stats_size;
+#	return $self->get_full_stats ('H', $num_games);
+#}
+#sub get_full_aways {
+#	my ($self, $num_games) = @_;
+#	$num_games //= $default_stats_size;
+#	return $self->get_full_stats ('A', $num_games);
+#}
 
 1;

@@ -141,12 +141,13 @@ sub update_away {
 
 sub homes {
 	my ($self, $teams) = @_;
-	
 	my @list = ();
+
 	for my $team (@ { $self->{all_teams} }) {
 		my $stats = {};
 		$stats->{team} = $team;
-		$stats->{homes} = $teams->{$team}->get_homes ();
+		( $stats->{homes}, $stats->{full_homes} ) = $teams->{$team}->get_homes ();
+
 		$stats->{points} = get_points ($stats->{homes});
 		push (@list, $stats);
 	}
@@ -155,12 +156,12 @@ sub homes {
 
 sub aways {
 	my ($self, $teams) = @_;
-	
 	my @list = ();
+
 	for my $team (@ { $self->{all_teams} }) {
 		my $stats = {};
 		$stats->{team} = $team;
-		$stats->{aways} = $teams->{$team}->get_aways ();
+		( $stats->{aways}, $stats->{full_aways} ) = $teams->{$team}->get_aways ();
 		$stats->{points} = get_points ($stats->{aways});
 		push (@list, $stats);
 	}
@@ -190,32 +191,6 @@ sub get_points {
 		$total += $points->{$game};
 	}
 	return $total;
-}
-
-sub full_homes {
-	my ($self, $teams) = @_;
-
-	my @list = ();
-	for my $team (@ { $self->{all_teams} }) {
-		my $stats = {};
-		$stats->{team} = $team;
-		$stats->{homes} = $teams->{$team}->get_full_homes ();
-		push (@list, $stats);
-	}
-	return \@list;
-}
-	
-sub full_aways {
-	my ($self, $teams) = @_;
-
-	my @list = ();
-	for my $team (@ { $self->{all_teams} }) {
-		my $stats = {};
-		$stats->{team} = $team;
-		$stats->{aways} = $teams->{$team}->get_full_aways ();
-		push (@list, $stats);
-	}
-	return \@list;
 }
 
 sub get_fixtures {
@@ -248,13 +223,16 @@ sub do_fixtures {
 		my $away = $game->{away};
 		
 		$stats->{home_team} = $home;
-		$stats->{homes} = $teams->{$home}->get_homes ();
-		$stats->{full_homes} = $teams->{$home}->get_full_homes ();
+		( $stats->{homes}, $stats->{full_homes} ) = $teams->{$home}->get_homes ();
+#		$stats->{homes} = $teams->{$home}->get_homes ();
+#		$stats->{full_homes} = $teams->{$home}->get_full_homes ();
 		$stats->{home_points} = get_points ($stats->{homes});
 		
 		$stats->{away_team} = $away;
-		$stats->{aways} = $teams->{$away}->get_aways ();
-		$stats->{full_aways} = $teams->{$away}->get_full_aways ();
+		( $stats->{aways}, $stats->{full_aways} ) = $teams->{$away}->get_aways ();
+	
+#		$stats->{aways} = $teams->{$away}->get_aways ();
+#		$stats->{full_aways} = $teams->{$away}->get_full_aways ();
 		$stats->{away_points} = get_points ($stats->{aways});
 		push (@list, $stats);
 	}
