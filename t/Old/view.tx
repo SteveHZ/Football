@@ -1,0 +1,20 @@
+
+#	View.t 01/05/16
+#	using $view in this test file will clear existing spreadsheets !!!
+#	fails on v2
+
+use strict;
+use warnings;
+use Test::More;
+use Test::Deep;
+#use Data::Dumper;
+
+use lib "C://Mine/perl/Football";
+BEGIN { use_ok ("Football::View") };
+
+my $view = Football::View->new ();
+
+ok (defined $view, 'created ...');
+ok ($view->isa ('Football::View'), 'a new Football::View class');
+
+done_testing ();

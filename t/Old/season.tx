@@ -1,0 +1,65 @@
+
+#	Season.t 01/05/16
+
+use strict;
+use warnings;
+use Test::More;
+use Test::Deep;
+use syntax 'junction' ; # Syntax::Keyword::Junction
+#use Data::Dumper;
+
+use lib "C://Mine/perl/Football";
+BEGIN { use_ok ("Football::Season") };
+
+my $path = 'C:/Mine/perl/Football/data/historical/Premier League/';
+my $csv_file = $path.'2014.csv';
+my $league_size = 20;
+
+my $week = 0;
+my ($date, $home, $away, $h, $a);
+my ($week_counter, $old_week, $junk, @junk);
+my @list = (13,14,15,18,19,20,27,28,29,33); # stop iteration at these weeks
+
+open (my $fh, '<', $csv_file) or die ("Can't find $csv_file");
+my $line = <$fh>; # read and ignore the first line
+
+my $weeks = read_csv ();
+ok ($weeks == 42, 'number of weeks is 42');
+
+sub read_csv {
+	while ($line = <$fh>) {
+		($junk, $date, $home, $away, $h, $a, @junk) = split (',', $line);
+		last if $junk eq ""; # don't remove !!!
+		if ($week > 0) {
+			$old_week = $week;
+			if (( $week = $week_counter->check ($date)) > $old_week) {
+#				print_dates ($week_counter);
+#				<STDIN>;
+#				<STDIN> if ($week == any (@list));
+			}
+		} else {
+			$week = 1;
+			$week_counter = Football::Season->new (
+				start_date => $date,
+				league_size => $league_size
+			);
+			ok (defined $week_counter, 'created ...');
+			ok ($week_counter->isa ('Football::Season'), 'a new Football::Season class');
+#			<STDIN>;
+#			print_dates ($week_counter);
+		}
+#		print "\n$home - $away";
+	}
+	close $fh;
+	return $week;
+}
+
+sub print_dates {
+	my $week_counter = shift;
+	my ($start, $end) = $week_counter->get_dates ();
+	printf ("\n\nWeek number %2d = ", $week);
+#	print $start->format ("%d %b %Y")." - ".$end->format ("%d %b %Y");
+	print $start->format ("%d/%m/%y")." - ".$end->format ("%d/%m/%y");
+}
+
+done_testing ();

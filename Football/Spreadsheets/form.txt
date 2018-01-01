@@ -1,0 +1,7 @@
+league, format
+team, format
+all.points, bold_format
+home.points, currency_format
+away.points, float_format
+last_six.points, format
+

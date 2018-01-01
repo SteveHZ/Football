@@ -1,0 +1,18 @@
+#!	C:/Strawberry/perl/bin
+
+#	Poisson.t 15/10/16
+
+use strict;
+use warnings;
+use v5.22;
+use Test::More tests => 1;
+
+use lib "C://Mine/perl/Football";
+use Football::Poisson;
+
+my $p = Football::Poisson->new ();
+my $answer = sprintf "%.3f",$p->calc (0,0,2.02,0.53);
+ok ($answer == 7.808, "result correct");
+
+$p->calc_all (2.02,0.53);
+$p->print_all;

@@ -1,0 +1,5248 @@
+{
+    "League One" : [
+        {
+            "away_score" : "76",
+            "home_team" : "London Skolars",
+            "date" : "04/03/17",
+            "away_team" : "Toronto Wolfpack",
+            "home_score" : "0"
+        },
+        {
+            "home_score" : "28",
+            "away_team" : "York City Knights",
+            "home_team" : "Barrow Raiders",
+            "date" : "04/03/17",
+            "away_score" : "0"
+        },
+        {
+            "date" : "05/03/17",
+            "home_team" : "Oxford",
+            "away_score" : "12",
+            "home_score" : "40",
+            "away_team" : "Hemel Stags"
+        },
+        {
+            "home_team" : "Doncaster",
+            "date" : "05/03/17",
+            "away_score" : "4",
+            "home_score" : "26",
+            "away_team" : "Coventry Bears"
+        },
+        {
+            "away_score" : "6",
+            "date" : "05/03/17",
+            "home_team" : "Hunslet Hawks",
+            "home_score" : "10",
+            "away_team" : "Gloucestershire All Golds"
+        },
+        {
+            "away_team" : "North Wales Crusaders",
+            "home_score" : "50",
+            "away_score" : "8",
+            "home_team" : "Keighley Cougars",
+            "date" : "05/03/17"
+        },
+        {
+            "away_team" : "Whitehaven",
+            "home_score" : "10",
+            "home_team" : "South Wales Ironmen",
+            "date" : "05/03/17",
+            "away_score" : "27"
+        },
+        {
+            "home_score" : "20",
+            "away_team" : "Newcastle Thunder",
+            "date" : "05/03/17",
+            "home_team" : "Workington Town",
+            "away_score" : "24"
+        },
+        {
+            "home_team" : "Hemel Stags",
+            "date" : "12/03/17",
+            "away_score" : "58",
+            "home_score" : "10",
+            "away_team" : "Hunslet Hawks"
+        },
+        {
+            "away_score" : "20",
+            "home_team" : "Oxford",
+            "date" : "12/03/17",
+            "away_team" : "Workington Town",
+            "home_score" : "6"
+        },
+        {
+            "away_score" : "24",
+            "date" : "12/03/17",
+            "home_team" : "Whitehaven",
+            "away_team" : "Toronto Wolfpack",
+            "home_score" : "10"
+        },
+        {
+            "away_score" : "50",
+            "date" : "12/03/17",
+            "home_team" : "Coventry Bears",
+            "home_score" : "14",
+            "away_team" : "Barrow Raiders"
+        },
+        {
+            "away_team" : "Keighley Cougars",
+            "home_score" : "46",
+            "home_team" : "Gloucestershire All Golds",
+            "date" : "12/03/17",
+            "away_score" : "22"
+        },
+        {
+            "away_score" : "22",
+            "date" : "12/03/17",
+            "home_team" : "Newcastle Thunder",
+            "home_score" : "24",
+            "away_team" : "London Skolars"
+        },
+        {
+            "away_score" : "44",
+            "home_team" : "North Wales Crusaders",
+            "date" : "12/03/17",
+            "home_score" : "8",
+            "away_team" : "Doncaster"
+        },
+        {
+            "away_team" : "South Wales Ironmen",
+            "home_score" : "26",
+            "away_score" : "24",
+            "home_team" : "York City Knights",
+            "date" : "12/03/17"
+        },
+        {
+            "away_score" : "16",
+            "home_team" : "London Skolars",
+            "date" : "25/03/17",
+            "home_score" : "42",
+            "away_team" : "Coventry Bears"
+        },
+        {
+            "home_team" : "Barrow Raiders",
+            "date" : "25/03/17",
+            "away_score" : "0",
+            "home_score" : "82",
+            "away_team" : "Hemel Stags"
+        },
+        {
+            "away_team" : "Toronto Wolfpack",
+            "home_score" : "21",
+            "date" : "26/03/17",
+            "home_team" : "Keighley Cougars",
+            "away_score" : "48"
+        },
+        {
+            "home_team" : "South Wales Ironmen",
+            "date" : "26/03/17",
+            "away_score" : "26",
+            "home_score" : "20",
+            "away_team" : "Newcastle Thunder"
+        },
+        {
+            "away_team" : "Gloucestershire All Golds",
+            "home_score" : "54",
+            "home_team" : "Workington Town",
+            "date" : "26/03/17",
+            "away_score" : "22"
+        },
+        {
+            "away_team" : "North Wales Crusaders",
+            "home_score" : "22",
+            "date" : "26/03/17",
+            "home_team" : "York City Knights",
+            "away_score" : "26"
+        },
+        {
+            "away_team" : "Hunslet Hawks",
+            "home_score" : "29",
+            "date" : "02/04/17",
+            "home_team" : "Doncaster",
+            "away_score" : "24"
+        },
+        {
+            "away_team" : "Workington Town",
+            "home_score" : "26",
+            "away_score" : "10",
+            "date" : "08/04/17",
+            "home_team" : "Barrow Raiders"
+        },
+        {
+            "home_team" : "Hemel Stags",
+            "date" : "09/04/17",
+            "away_score" : "84",
+            "home_score" : "6",
+            "away_team" : "Keighley Cougars"
+        },
+        {
+            "away_score" : "28",
+            "date" : "09/04/17",
+            "home_team" : "Oxford",
+            "home_score" : "35",
+            "away_team" : "York City Knights"
+        },
+        {
+            "away_score" : "12",
+            "date" : "09/04/17",
+            "home_team" : "Whitehaven",
+            "away_team" : "Coventry Bears",
+            "home_score" : "44"
+        },
+        {
+            "date" : "09/04/17",
+            "home_team" : "Doncaster",
+            "away_score" : "82",
+            "away_team" : "Toronto Wolfpack",
+            "home_score" : "6"
+        },
+        {
+            "home_score" : "22",
+            "away_team" : "London Skolars",
+            "date" : "09/04/17",
+            "home_team" : "Gloucestershire All Golds",
+            "away_score" : "24"
+        },
+        {
+            "home_team" : "Hunslet Hawks",
+            "date" : "09/04/17",
+            "away_score" : "6",
+            "home_score" : "58",
+            "away_team" : "South Wales Ironmen"
+        },
+        {
+            "away_team" : "Newcastle Thunder",
+            "home_score" : "30",
+            "away_score" : "14",
+            "home_team" : "North Wales Crusaders",
+            "date" : "09/04/17"
+        },
+        {
+            "home_score" : "0",
+            "away_team" : "Toronto Wolfpack",
+            "date" : "14/04/17",
+            "home_team" : "North Wales Crusaders",
+            "away_score" : "80"
+        },
+        {
+            "home_team" : "Coventry Bears",
+            "date" : "14/04/17",
+            "away_score" : "28",
+            "home_score" : "40",
+            "away_team" : "Oxford"
+        },
+        {
+            "away_score" : "12",
+            "date" : "14/04/17",
+            "home_team" : "Keighley Cougars",
+            "home_score" : "20",
+            "away_team" : "Hunslet Hawks"
+        },
+        {
+            "home_score" : "60",
+            "away_team" : "Hemel Stags",
+            "home_team" : "London Skolars",
+            "date" : "14/04/17",
+            "away_score" : "12"
+        },
+        {
+            "away_team" : "Barrow Raiders",
+            "home_score" : "6",
+            "date" : "14/04/17",
+            "home_team" : "Newcastle Thunder",
+            "away_score" : "50"
+        },
+        {
+            "away_score" : "36",
+            "date" : "14/04/17",
+            "home_team" : "South Wales Ironmen",
+            "home_score" : "30",
+            "away_team" : "Gloucestershire All Golds"
+        },
+        {
+            "away_team" : "Whitehaven",
+            "home_score" : "20",
+            "date" : "14/04/17",
+            "home_team" : "Workington Town",
+            "away_score" : "24"
+        },
+        {
+            "away_score" : "8",
+            "date" : "14/04/17",
+            "home_team" : "York City Knights",
+            "away_team" : "Doncaster",
+            "home_score" : "16"
+        },
+        {
+            "away_team" : "Whitehaven",
+            "home_score" : "18",
+            "away_score" : "19",
+            "home_team" : "Hunslet Hawks",
+            "date" : "30/04/17"
+        },
+        {
+            "away_team" : "Oxford",
+            "home_score" : "62",
+            "away_score" : "12",
+            "home_team" : "Toronto Wolfpack",
+            "date" : "06/05/17"
+        },
+        {
+            "home_score" : "58",
+            "away_team" : "South Wales Ironmen",
+            "date" : "06/05/17",
+            "home_team" : "Barrow Raiders",
+            "away_score" : "16"
+        },
+        {
+            "away_team" : "Workington Town",
+            "home_score" : "18",
+            "away_score" : "66",
+            "date" : "07/05/17",
+            "home_team" : "Hemel Stags"
+        },
+        {
+            "away_team" : "Newcastle Thunder",
+            "home_score" : "34",
+            "away_score" : "20",
+            "home_team" : "Whitehaven",
+            "date" : "07/05/17"
+        },
+        {
+            "away_score" : "44",
+            "date" : "07/05/17",
+            "home_team" : "Coventry Bears",
+            "away_team" : "Keighley Cougars",
+            "home_score" : "24"
+        },
+        {
+            "away_score" : "28",
+            "date" : "07/05/17",
+            "home_team" : "Doncaster",
+            "home_score" : "28",
+            "away_team" : "London Skolars"
+        },
+        {
+            "home_score" : "10",
+            "away_team" : "York City Knights",
+            "away_score" : "56",
+            "home_team" : "Gloucestershire All Golds",
+            "date" : "07/05/17"
+        },
+        {
+            "home_score" : "36",
+            "away_team" : "North Wales Crusaders",
+            "away_score" : "26",
+            "date" : "07/05/17",
+            "home_team" : "Hunslet Hawks"
+        },
+        {
+            "away_score" : "58",
+            "home_team" : "Keighley Cougars",
+            "date" : "10/05/17",
+            "away_team" : "Barrow Raiders",
+            "home_score" : "42"
+        },
+        {
+            "home_score" : "22",
+            "away_team" : "Toronto Wolfpack",
+            "away_score" : "40",
+            "date" : "12/05/17",
+            "home_team" : "Newcastle Thunder"
+        },
+        {
+            "date" : "13/05/17",
+            "home_team" : "London Skolars",
+            "away_score" : "30",
+            "away_team" : "Whitehaven",
+            "home_score" : "14"
+        },
+        {
+            "away_team" : "North Wales Crusaders",
+            "home_score" : "36",
+            "date" : "13/05/17",
+            "home_team" : "Gloucestershire All Golds",
+            "away_score" : "28"
+        },
+        {
+            "date" : "14/05/17",
+            "home_team" : "Hemel Stags",
+            "away_score" : "50",
+            "away_team" : "Doncaster",
+            "home_score" : "24"
+        },
+        {
+            "away_team" : "Hunslet Hawks",
+            "home_score" : "14",
+            "away_score" : "0",
+            "home_team" : "Oxford",
+            "date" : "14/05/17"
+        },
+        {
+            "away_team" : "South Wales Ironmen",
+            "home_score" : "56",
+            "date" : "14/05/17",
+            "home_team" : "Workington Town",
+            "away_score" : "0"
+        },
+        {
+            "date" : "14/05/17",
+            "home_team" : "York City Knights",
+            "away_score" : "12",
+            "home_score" : "64",
+            "away_team" : "Coventry Bears"
+        },
+        {
+            "away_team" : "York City Knights",
+            "home_score" : "18",
+            "away_score" : "22",
+            "date" : "19/05/17",
+            "home_team" : "Newcastle Thunder"
+        },
+        {
+            "home_score" : "18",
+            "away_team" : "Oxford",
+            "away_score" : "38",
+            "home_team" : "South Wales Ironmen",
+            "date" : "20/05/17"
+        },
+        {
+            "home_score" : "70",
+            "away_team" : "Barrow Raiders",
+            "away_score" : "2",
+            "date" : "20/05/17",
+            "home_team" : "Toronto Wolfpack"
+        },
+        {
+            "away_score" : "24",
+            "home_team" : "Whitehaven",
+            "date" : "21/05/17",
+            "home_score" : "58",
+            "away_team" : "Hemel Stags"
+        },
+        {
+            "date" : "21/05/17",
+            "home_team" : "North Wales Crusaders",
+            "away_score" : "10",
+            "away_team" : "London Skolars",
+            "home_score" : "50"
+        },
+        {
+            "date" : "21/05/17",
+            "home_team" : "Coventry Bears",
+            "away_score" : "26",
+            "away_team" : "Gloucestershire All Golds",
+            "home_score" : "18"
+        },
+        {
+            "away_team" : "Keighley Cougars",
+            "home_score" : "28",
+            "date" : "21/05/17",
+            "home_team" : "Doncaster",
+            "away_score" : "14"
+        },
+        {
+            "away_team" : "Workington Town",
+            "home_score" : "30",
+            "home_team" : "Hunslet Hawks",
+            "date" : "21/05/17",
+            "away_score" : "22"
+        },
+        {
+            "away_team" : "Hunslet Hawks",
+            "home_score" : "28",
+            "away_score" : "20",
+            "home_team" : "Barrow Raiders",
+            "date" : "03/06/17"
+        },
+        {
+            "away_score" : "6",
+            "date" : "03/06/17",
+            "home_team" : "Keighley Cougars",
+            "home_score" : "74",
+            "away_team" : "South Wales Ironmen"
+        },
+        {
+            "home_team" : "Toronto Wolfpack",
+            "date" : "03/06/17",
+            "away_score" : "12",
+            "home_score" : "56",
+            "away_team" : "Coventry Bears"
+        },
+        {
+            "date" : "04/06/17",
+            "home_team" : "Hemel Stags",
+            "away_score" : "26",
+            "away_team" : "North Wales Crusaders",
+            "home_score" : "20"
+        },
+        {
+            "date" : "04/06/17",
+            "home_team" : "Oxford",
+            "away_score" : "48",
+            "home_score" : "12",
+            "away_team" : "Whitehaven"
+        },
+        {
+            "date" : "04/06/17",
+            "home_team" : "Gloucestershire All Golds",
+            "away_score" : "56",
+            "home_score" : "10",
+            "away_team" : "Newcastle Thunder"
+        },
+        {
+            "date" : "04/06/17",
+            "home_team" : "Workington Town",
+            "away_score" : "30",
+            "away_team" : "Doncaster",
+            "home_score" : "26"
+        },
+        {
+            "away_team" : "London Skolars",
+            "home_score" : "36",
+            "date" : "04/06/17",
+            "home_team" : "York City Knights",
+            "away_score" : "18"
+        },
+        {
+            "date" : "10/06/17",
+            "home_team" : "London Skolars",
+            "away_score" : "18",
+            "home_score" : "31",
+            "away_team" : "Oxford"
+        },
+        {
+            "away_score" : "66",
+            "home_team" : "South Wales Ironmen",
+            "date" : "10/06/17",
+            "away_team" : "Toronto Wolfpack",
+            "home_score" : "0"
+        },
+        {
+            "away_team" : "Gloucestershire All Golds",
+            "home_score" : "62",
+            "away_score" : "6",
+            "date" : "11/06/17",
+            "home_team" : "Whitehaven"
+        },
+        {
+            "away_team" : "Workington Town",
+            "home_score" : "24",
+            "away_score" : "25",
+            "date" : "11/06/17",
+            "home_team" : "North Wales Crusaders"
+        },
+        {
+            "home_score" : "28",
+            "away_team" : "Hemel Stags",
+            "home_team" : "Coventry Bears",
+            "date" : "11/06/17",
+            "away_score" : "24"
+        },
+        {
+            "away_score" : "24",
+            "date" : "11/06/17",
+            "home_team" : "Doncaster",
+            "away_team" : "Barrow Raiders",
+            "home_score" : "24"
+        },
+        {
+            "date" : "11/06/17",
+            "home_team" : "Hunslet Hawks",
+            "away_score" : "52",
+            "home_score" : "20",
+            "away_team" : "York City Knights"
+        },
+        {
+            "date" : "11/06/17",
+            "home_team" : "Newcastle Thunder",
+            "away_score" : "12",
+            "away_team" : "Keighley Cougars",
+            "home_score" : "36"
+        },
+        {
+            "away_team" : "North Wales Crusaders",
+            "home_score" : "28",
+            "away_score" : "4",
+            "date" : "17/06/17",
+            "home_team" : "Barrow Raiders"
+        },
+        {
+            "away_score" : "32",
+            "date" : "18/06/17",
+            "home_team" : "Hemel Stags",
+            "away_team" : "Gloucestershire All Golds",
+            "home_score" : "20"
+        },
+        {
+            "away_team" : "Newcastle Thunder",
+            "home_score" : "0",
+            "home_team" : "Oxford",
+            "date" : "18/06/17",
+            "away_score" : "52"
+        },
+        {
+            "date" : "18/06/17",
+            "home_team" : "Keighley Cougars",
+            "away_score" : "26",
+            "home_score" : "45",
+            "away_team" : "London Skolars"
+        },
+        {
+            "away_team" : "Coventry Bears",
+            "home_score" : "24",
+            "home_team" : "South Wales Ironmen",
+            "date" : "18/06/17",
+            "away_score" : "22"
+        },
+        {
+            "home_score" : "12",
+            "away_team" : "Toronto Wolfpack",
+            "away_score" : "58",
+            "date" : "18/06/17",
+            "home_team" : "Workington Town"
+        },
+        {
+            "date" : "18/06/17",
+            "home_team" : "York City Knights",
+            "away_score" : "18",
+            "home_score" : "16",
+            "away_team" : "Whitehaven"
+        },
+        {
+            "home_score" : "10",
+            "away_team" : "Barrow Raiders",
+            "away_score" : "20",
+            "date" : "24/06/17",
+            "home_team" : "London Skolars"
+        },
+        {
+            "home_score" : "56",
+            "away_team" : "Hunslet Hawks",
+            "away_score" : "12",
+            "date" : "24/06/17",
+            "home_team" : "Toronto Wolfpack"
+        },
+        {
+            "away_score" : "12",
+            "home_team" : "North Wales Crusaders",
+            "date" : "25/06/17",
+            "home_score" : "36",
+            "away_team" : "South Wales Ironmen"
+        },
+        {
+            "home_score" : "28",
+            "away_team" : "Workington Town",
+            "away_score" : "29",
+            "date" : "25/06/17",
+            "home_team" : "Coventry Bears"
+        },
+        {
+            "away_score" : "10",
+            "home_team" : "Gloucestershire All Golds",
+            "date" : "25/06/17",
+            "home_score" : "38",
+            "away_team" : "Oxford"
+        },
+        {
+            "away_score" : "25",
+            "home_team" : "Keighley Cougars",
+            "date" : "25/06/17",
+            "home_score" : "18",
+            "away_team" : "York City Knights"
+        },
+        {
+            "away_score" : "12",
+            "home_team" : "Newcastle Thunder",
+            "date" : "25/06/17",
+            "away_team" : "Hemel Stags",
+            "home_score" : "48"
+        },
+        {
+            "away_score" : "20",
+            "home_team" : "Whitehaven",
+            "date" : "25/06/17",
+            "away_team" : "Doncaster",
+            "home_score" : "25"
+        },
+        {
+            "home_score" : "36",
+            "away_team" : "Gloucestershire All Golds",
+            "home_team" : "Barrow Raiders",
+            "date" : "01/07/17",
+            "away_score" : "6"
+        },
+        {
+            "home_score" : "64",
+            "away_team" : "York City Knights",
+            "date" : "02/07/17",
+            "home_team" : "Toronto Wolfpack",
+            "away_score" : "22"
+        },
+        {
+            "date" : "02/07/17",
+            "home_team" : "Hemel Stags",
+            "away_score" : "18",
+            "away_team" : "South Wales Ironmen",
+            "home_score" : "0"
+        },
+        {
+            "away_team" : "North Wales Crusaders",
+            "home_score" : "20",
+            "away_score" : "52",
+            "date" : "02/07/17",
+            "home_team" : "Oxford"
+        },
+        {
+            "home_team" : "Whitehaven",
+            "date" : "02/07/17",
+            "away_score" : "22",
+            "home_score" : "28",
+            "away_team" : "Keighley Cougars"
+        },
+        {
+            "away_score" : "20",
+            "date" : "02/07/17",
+            "home_team" : "Doncaster",
+            "away_team" : "Newcastle Thunder",
+            "home_score" : "10"
+        },
+        {
+            "date" : "02/07/17",
+            "home_team" : "Hunslet Hawks",
+            "away_score" : "24",
+            "away_team" : "Coventry Bears",
+            "home_score" : "56"
+        },
+        {
+            "away_score" : "16",
+            "date" : "02/07/17",
+            "home_team" : "Workington Town",
+            "away_team" : "London Skolars",
+            "home_score" : "46"
+        },
+        {
+            "away_team" : "Oxford",
+            "home_score" : "34",
+            "away_score" : "16",
+            "home_team" : "Doncaster",
+            "date" : "05/07/17"
+        },
+        {
+            "away_score" : "16",
+            "home_team" : "London Skolars",
+            "date" : "08/07/17",
+            "away_team" : "Hunslet Hawks",
+            "home_score" : "30"
+        },
+        {
+            "home_score" : "80",
+            "away_team" : "Oxford",
+            "home_team" : "Barrow Raiders",
+            "date" : "08/07/17",
+            "away_score" : "10"
+        },
+        {
+            "home_team" : "Toronto Wolfpack",
+            "date" : "09/07/17",
+            "away_score" : "10",
+            "home_score" : "62",
+            "away_team" : "Gloucestershire All Golds"
+        },
+        {
+            "away_team" : "Whitehaven",
+            "home_score" : "12",
+            "date" : "09/07/17",
+            "home_team" : "North Wales Crusaders",
+            "away_score" : "12"
+        },
+        {
+            "date" : "09/07/17",
+            "home_team" : "Newcastle Thunder",
+            "away_score" : "20",
+            "away_team" : "Coventry Bears",
+            "home_score" : "68"
+        },
+        {
+            "home_score" : "12",
+            "away_team" : "Doncaster",
+            "date" : "09/07/17",
+            "home_team" : "South Wales Ironmen",
+            "away_score" : "70"
+        },
+        {
+            "home_score" : "30",
+            "away_team" : "Keighley Cougars",
+            "away_score" : "30",
+            "date" : "09/07/17",
+            "home_team" : "Workington Town"
+        },
+        {
+            "away_score" : "6",
+            "home_team" : "York City Knights",
+            "date" : "09/07/17",
+            "home_score" : "68",
+            "away_team" : "Hemel Stags"
+        },
+        {
+            "home_score" : "74",
+            "away_team" : "Hemel Stags",
+            "away_score" : "16",
+            "home_team" : "Toronto Wolfpack",
+            "date" : "16/07/17"
+        },
+        {
+            "home_score" : "13",
+            "away_team" : "North Wales Crusaders",
+            "home_team" : "Coventry Bears",
+            "date" : "16/07/17",
+            "away_score" : "36"
+        },
+        {
+            "home_score" : "4",
+            "away_team" : "Doncaster",
+            "date" : "16/07/17",
+            "home_team" : "Gloucestershire All Golds",
+            "away_score" : "42"
+        },
+        {
+            "away_score" : "25",
+            "date" : "16/07/17",
+            "home_team" : "Hunslet Hawks",
+            "home_score" : "26",
+            "away_team" : "Newcastle Thunder"
+        },
+        {
+            "away_score" : "6",
+            "date" : "16/07/17",
+            "home_team" : "Keighley Cougars",
+            "away_team" : "Oxford",
+            "home_score" : "92"
+        },
+        {
+            "away_score" : "16",
+            "date" : "16/07/17",
+            "home_team" : "London Skolars",
+            "home_score" : "36",
+            "away_team" : "South Wales Ironmen"
+        },
+        {
+            "away_score" : "6",
+            "date" : "16/07/17",
+            "home_team" : "Whitehaven",
+            "home_score" : "32",
+            "away_team" : "Barrow Raiders"
+        },
+        {
+            "home_score" : "34",
+            "away_team" : "Workington Town",
+            "home_team" : "York City Knights",
+            "date" : "16/07/17",
+            "away_score" : "0"
+        },
+        {
+            "away_team" : "Gloucestershire All Golds",
+            "home_score" : "28",
+            "home_team" : "South Wales Ironmen",
+            "date" : "29/07/17",
+            "away_score" : "20"
+        },
+        {
+            "away_score" : "32",
+            "date" : "30/07/17",
+            "home_team" : "Doncaster",
+            "away_team" : "Keighley Cougars",
+            "home_score" : "24"
+        },
+        {
+            "away_team" : "Workington Town",
+            "home_score" : "14",
+            "date" : "30/07/17",
+            "home_team" : "Newcastle Thunder",
+            "away_score" : "30"
+        },
+        {
+            "home_team" : "Whitehaven",
+            "date" : "30/07/17",
+            "away_score" : "15",
+            "away_team" : "Barrow Raiders",
+            "home_score" : "2"
+        },
+        {
+            "home_score" : "26",
+            "away_team" : "Toronto Wolfpack",
+            "away_score" : "16",
+            "home_team" : "York City Knights",
+            "date" : "30/07/17"
+        },
+        {
+            "away_score" : "26",
+            "home_team" : "Hemel Stags",
+            "date" : "30/07/17",
+            "away_team" : "Oxford",
+            "home_score" : "32"
+        },
+        {
+            "home_score" : "12",
+            "away_team" : "London Skolars",
+            "date" : "30/07/17",
+            "home_team" : "North Wales Crusaders",
+            "away_score" : "40"
+        },
+        {
+            "home_score" : "56",
+            "away_team" : "Coventry Bears",
+            "home_team" : "Hunslet Hawks",
+            "date" : "30/07/17",
+            "away_score" : "10"
+        },
+        {
+            "date" : "05/08/17",
+            "home_team" : "Gloucestershire All Golds",
+            "away_score" : "22",
+            "away_team" : "North Wales Crusaders",
+            "home_score" : "40"
+        },
+        {
+            "home_team" : "Barrow Raiders",
+            "date" : "06/08/17",
+            "away_score" : "10",
+            "home_score" : "14",
+            "away_team" : "Doncaster"
+        },
+        {
+            "away_team" : "York City Knights",
+            "home_score" : "22",
+            "away_score" : "20",
+            "date" : "06/08/17",
+            "home_team" : "Keighley Cougars"
+        },
+        {
+            "away_score" : "6",
+            "date" : "06/08/17",
+            "home_team" : "Whitehaven",
+            "home_score" : "27",
+            "away_team" : "Newcastle Thunder"
+        },
+        {
+            "away_team" : "Toronto Wolfpack",
+            "home_score" : "0",
+            "away_score" : "68",
+            "home_team" : "Workington Town",
+            "date" : "06/08/17"
+        },
+        {
+            "away_team" : "Hunslet Hawks",
+            "home_score" : "10",
+            "home_team" : "Oxford",
+            "date" : "06/08/17",
+            "away_score" : "36"
+        },
+        {
+            "home_score" : "29",
+            "away_team" : "Hemel Stags",
+            "date" : "06/08/17",
+            "home_team" : "Coventry Bears",
+            "away_score" : "26"
+        },
+        {
+            "away_team" : "Barrow Raiders",
+            "home_score" : "28",
+            "away_score" : "30",
+            "date" : "12/08/17",
+            "home_team" : "Newcastle Thunder"
+        },
+        {
+            "away_team" : "Coventry Bears",
+            "home_score" : "30",
+            "date" : "12/08/17",
+            "home_team" : "Gloucestershire All Golds",
+            "away_score" : "28"
+        },
+        {
+            "home_team" : "London Skolars",
+            "date" : "12/08/17",
+            "away_score" : "0",
+            "home_score" : "66",
+            "away_team" : "Oxford"
+        },
+        {
+            "date" : "13/08/17",
+            "home_team" : "Doncaster",
+            "away_score" : "22",
+            "home_score" : "30",
+            "away_team" : "Whitehaven"
+        },
+        {
+            "away_score" : "26",
+            "home_team" : "Keighley Cougars",
+            "date" : "13/08/17",
+            "home_score" : "26",
+            "away_team" : "Toronto Wolfpack"
+        },
+        {
+            "home_team" : "York City Knights",
+            "date" : "13/08/17",
+            "away_score" : "18",
+            "home_score" : "28",
+            "away_team" : "Workington Town"
+        },
+        {
+            "home_score" : "20",
+            "away_team" : "Hunslet Hawks",
+            "away_score" : "12",
+            "home_team" : "North Wales Crusaders",
+            "date" : "13/08/17"
+        },
+        {
+            "away_score" : "22",
+            "home_team" : "South Wales Ironmen",
+            "date" : "13/08/17",
+            "home_score" : "4",
+            "away_team" : "Hemel Stags"
+        },
+        {
+            "away_team" : "Newcastle Thunder",
+            "home_score" : "50",
+            "away_score" : "0",
+            "date" : "19/08/17",
+            "home_team" : "Toronto Wolfpack"
+        },
+        {
+            "away_team" : "Gloucestershire All Golds",
+            "home_score" : "32",
+            "away_score" : "18",
+            "home_team" : "Hunslet Hawks",
+            "date" : "19/08/17"
+        },
+        {
+            "away_team" : "York City Knights",
+            "home_score" : "26",
+            "away_score" : "19",
+            "date" : "20/08/17",
+            "home_team" : "Barrow Raiders"
+        },
+        {
+            "away_score" : "4",
+            "home_team" : "Whitehaven",
+            "date" : "20/08/17",
+            "home_score" : "36",
+            "away_team" : "Keighley Cougars"
+        },
+        {
+            "away_team" : "Doncaster",
+            "home_score" : "22",
+            "date" : "20/08/17",
+            "home_team" : "Workington Town",
+            "away_score" : "21"
+        },
+        {
+            "home_team" : "Hemel Stags",
+            "date" : "20/08/17",
+            "away_score" : "38",
+            "away_team" : "North Wales Crusaders",
+            "home_score" : "18"
+        },
+        {
+            "away_team" : "South Wales Ironmen",
+            "home_score" : "22",
+            "home_team" : "Oxford",
+            "date" : "20/08/17",
+            "away_score" : "22"
+        },
+        {
+            "away_score" : "50",
+            "date" : "20/08/17",
+            "home_team" : "Coventry Bears",
+            "home_score" : "14",
+            "away_team" : "London Skolars"
+        },
+        {
+            "home_score" : "32",
+            "away_team" : "South Wales Ironmen",
+            "away_score" : "4",
+            "date" : "25/08/17",
+            "home_team" : "London Skolars"
+        },
+        {
+            "home_score" : "36",
+            "away_team" : "Whitehaven",
+            "date" : "02/09/17",
+            "home_team" : "Toronto Wolfpack",
+            "away_score" : "18"
+        },
+        {
+            "away_team" : "Workington Town",
+            "home_score" : "36",
+            "away_score" : "14",
+            "home_team" : "Barrow Raiders",
+            "date" : "03/09/17"
+        },
+        {
+            "away_score" : "8",
+            "home_team" : "Newcastle Thunder",
+            "date" : "03/09/17",
+            "home_score" : "34",
+            "away_team" : "Keighley Cougars"
+        },
+        {
+            "home_score" : "21",
+            "away_team" : "Doncaster",
+            "away_score" : "21",
+            "date" : "03/09/17",
+            "home_team" : "York City Knights"
+        },
+        {
+            "away_score" : "22",
+            "date" : "03/09/17",
+            "home_team" : "North Wales Crusaders",
+            "home_score" : "16",
+            "away_team" : "Coventry Bears"
+        },
+        {
+            "away_score" : "18",
+            "date" : "03/09/17",
+            "home_team" : "Gloucestershire All Golds",
+            "away_team" : "Oxford",
+            "home_score" : "12"
+        },
+        {
+            "away_team" : "South Wales Ironmen",
+            "home_score" : "20",
+            "date" : "03/09/17",
+            "home_team" : "Hunslet Hawks",
+            "away_score" : "7"
+        },
+        {
+            "date" : "03/09/17",
+            "home_team" : "London Skolars",
+            "away_score" : "22",
+            "away_team" : "Hemel Stags",
+            "home_score" : "42"
+        },
+        {
+            "home_team" : "Toronto Wolfpack",
+            "date" : "09/09/17",
+            "away_score" : "2",
+            "away_team" : "Barrow Raiders",
+            "home_score" : "26"
+        },
+        {
+            "home_score" : "28",
+            "away_team" : "Coventry Bears",
+            "date" : "09/09/17",
+            "home_team" : "Oxford",
+            "away_score" : "24"
+        },
+        {
+            "home_score" : "16",
+            "away_team" : "Gloucestershire All Golds",
+            "home_team" : "London Skolars",
+            "date" : "09/09/17",
+            "away_score" : "6"
+        },
+        {
+            "away_team" : "North Wales Crusaders",
+            "home_score" : "6",
+            "away_score" : "54",
+            "date" : "09/09/17",
+            "home_team" : "South Wales Ironmen"
+        },
+        {
+            "away_score" : "28",
+            "date" : "10/09/17",
+            "home_team" : "Doncaster",
+            "away_team" : "Newcastle Thunder",
+            "home_score" : "24"
+        },
+        {
+            "home_score" : "28",
+            "away_team" : "Workington Town",
+            "date" : "10/09/17",
+            "home_team" : "Keighley Cougars",
+            "away_score" : "6"
+        },
+        {
+            "away_score" : "16",
+            "home_team" : "Whitehaven",
+            "date" : "10/09/17",
+            "away_team" : "York City Knights",
+            "home_score" : "26"
+        },
+        {
+            "away_team" : "Hunslet Hawks",
+            "home_score" : "16",
+            "away_score" : "60",
+            "date" : "10/09/17",
+            "home_team" : "Hemel Stags"
+        },
+        {
+            "away_team" : "Doncaster",
+            "home_score" : "26",
+            "date" : "16/09/17",
+            "home_team" : "Toronto Wolfpack",
+            "away_score" : "14"
+        },
+        {
+            "home_team" : "Coventry Bears",
+            "date" : "16/09/17",
+            "away_score" : "16",
+            "home_score" : "58",
+            "away_team" : "South Wales Ironmen"
+        },
+        {
+            "date" : "17/09/17",
+            "home_team" : "Barrow Raiders",
+            "away_score" : "18",
+            "away_team" : "Keighley Cougars",
+            "home_score" : "32"
+        },
+        {
+            "away_team" : "Whitehaven",
+            "home_score" : "6",
+            "date" : "17/09/17",
+            "home_team" : "Workington Town",
+            "away_score" : "56"
+        },
+        {
+            "away_team" : "Newcastle Thunder",
+            "home_score" : "24",
+            "home_team" : "York City Knights",
+            "date" : "17/09/17",
+            "away_score" : "26"
+        },
+        {
+            "away_score" : "14",
+            "date" : "17/09/17",
+            "home_team" : "North Wales Crusaders",
+            "home_score" : "28",
+            "away_team" : "Oxford"
+        },
+        {
+            "home_score" : "42",
+            "away_team" : "Hemel Stags",
+            "away_score" : "28",
+            "date" : "17/09/17",
+            "home_team" : "Gloucestershire All Golds"
+        },
+        {
+            "away_score" : "12",
+            "date" : "17/09/17",
+            "home_team" : "Hunslet Hawks",
+            "away_team" : "London Skolars",
+            "home_score" : "18"
+        },
+        {
+            "date" : "24/09/17",
+            "home_team" : "Barrow Raiders",
+            "away_score" : "0",
+            "away_team" : "Newcastle Thunder",
+            "home_score" : "60"
+        },
+        {
+            "away_score" : "20",
+            "home_team" : "Whitehaven",
+            "date" : "24/09/17",
+            "away_team" : "York City Knights",
+            "home_score" : "21"
+        },
+        {
+            "away_score" : "12",
+            "home_team" : "Hunslet Hawks",
+            "date" : "24/09/17",
+            "home_score" : "32",
+            "away_team" : "London Skolars"
+        },
+        {
+            "away_score" : "6",
+            "date" : "01/10/17",
+            "home_team" : "Barrow Raiders",
+            "away_team" : "Whitehaven",
+            "home_score" : "10"
+        }
+    ],
+    "Middle 8s" : [
+        {
+            "away_team" : "Warrington Wolves",
+            "home_score" : "14",
+            "home_team" : "Widnes Vikings",
+            "date" : "04/08/17",
+            "away_score" : "28"
+        },
+        {
+            "away_score" : "38",
+            "date" : "05/08/17",
+            "home_team" : "Featherstone Rovers",
+            "away_team" : "Leigh Centurions",
+            "home_score" : "12"
+        },
+        {
+            "home_score" : "20",
+            "away_team" : "London Broncos",
+            "date" : "05/08/17",
+            "home_team" : "Catalans Dragons",
+            "away_score" : "18"
+        },
+        {
+            "away_team" : "Halifax",
+            "home_score" : "26",
+            "away_score" : "22",
+            "date" : "06/08/17",
+            "home_team" : "Hull KR"
+        },
+        {
+            "away_score" : "24",
+            "date" : "12/08/17",
+            "home_team" : "Warrington Wolves",
+            "away_team" : "Catalans Dragons",
+            "home_score" : "52"
+        },
+        {
+            "away_team" : "Hull KR",
+            "home_score" : "16",
+            "date" : "12/08/17",
+            "home_team" : "Leigh Centurions",
+            "away_score" : "20"
+        },
+        {
+            "away_team" : "Widnes Vikings",
+            "home_score" : "12",
+            "away_score" : "36",
+            "home_team" : "Halifax",
+            "date" : "13/08/17"
+        },
+        {
+            "away_score" : "32",
+            "date" : "13/08/17",
+            "home_team" : "London Broncos",
+            "away_team" : "Featherstone Rovers",
+            "home_score" : "32"
+        },
+        {
+            "home_team" : "Warrington Wolves",
+            "date" : "19/08/17",
+            "away_score" : "8",
+            "home_score" : "22",
+            "away_team" : "Halifax"
+        },
+        {
+            "away_team" : "Leigh Centurions",
+            "home_score" : "6",
+            "date" : "19/08/17",
+            "home_team" : "Catalans Dragons",
+            "away_score" : "30"
+        },
+        {
+            "away_team" : "London Broncos",
+            "home_score" : "35",
+            "home_team" : "Hull KR",
+            "date" : "20/08/17",
+            "away_score" : "30"
+        },
+        {
+            "home_team" : "Widnes Vikings",
+            "date" : "20/08/17",
+            "away_score" : "10",
+            "home_score" : "58",
+            "away_team" : "Featherstone Rovers"
+        },
+        {
+            "date" : "02/09/17",
+            "home_team" : "London Broncos",
+            "away_score" : "40",
+            "home_score" : "38",
+            "away_team" : "Warrington Wolves"
+        },
+        {
+            "away_score" : "30",
+            "home_team" : "Featherstone Rovers",
+            "date" : "03/09/17",
+            "home_score" : "18",
+            "away_team" : "Hull KR"
+        },
+        {
+            "away_team" : "Catalans Dragons",
+            "home_score" : "0",
+            "home_team" : "Halifax",
+            "date" : "03/09/17",
+            "away_score" : "24"
+        },
+        {
+            "home_team" : "Leigh Centurions",
+            "date" : "03/09/17",
+            "away_score" : "24",
+            "away_team" : "Widnes Vikings",
+            "home_score" : "8"
+        },
+        {
+            "home_score" : "32",
+            "away_team" : "Leigh Centurions",
+            "date" : "09/09/17",
+            "home_team" : "Warrington Wolves",
+            "away_score" : "30"
+        },
+        {
+            "date" : "09/09/17",
+            "home_team" : "Hull KR",
+            "away_score" : "6",
+            "home_score" : "12",
+            "away_team" : "Widnes Vikings"
+        },
+        {
+            "home_team" : "Catalans Dragons",
+            "date" : "09/09/17",
+            "away_score" : "12",
+            "away_team" : "Featherstone Rovers",
+            "home_score" : "26"
+        },
+        {
+            "home_score" : "36",
+            "away_team" : "Halifax",
+            "away_score" : "14",
+            "home_team" : "London Broncos",
+            "date" : "10/09/17"
+        },
+        {
+            "away_team" : "Catalans Dragons",
+            "home_score" : "19",
+            "away_score" : "20",
+            "date" : "15/09/17",
+            "home_team" : "Hull KR"
+        },
+        {
+            "away_score" : "6",
+            "home_team" : "Leigh Centurions",
+            "date" : "15/09/17",
+            "home_score" : "40",
+            "away_team" : "Halifax"
+        },
+        {
+            "away_team" : "London Broncos",
+            "home_score" : "38",
+            "away_score" : "16",
+            "home_team" : "Widnes Vikings",
+            "date" : "16/09/17"
+        },
+        {
+            "away_score" : "68",
+            "date" : "17/09/17",
+            "home_team" : "Featherstone Rovers",
+            "away_team" : "Warrington Wolves",
+            "home_score" : "0"
+        },
+        {
+            "away_team" : "Leigh Centurions",
+            "home_score" : "4",
+            "away_score" : "41",
+            "date" : "22/09/17",
+            "home_team" : "London Broncos"
+        },
+        {
+            "away_score" : "24",
+            "date" : "23/09/17",
+            "home_team" : "Warrington Wolves",
+            "home_score" : "46",
+            "away_team" : "Hull KR"
+        },
+        {
+            "home_team" : "Catalans Dragons",
+            "date" : "23/09/17",
+            "away_score" : "12",
+            "home_score" : "10",
+            "away_team" : "Widnes Vikings"
+        },
+        {
+            "away_score" : "26",
+            "date" : "24/09/17",
+            "home_team" : "Halifax",
+            "home_score" : "20",
+            "away_team" : "Featherstone Rovers"
+        },
+        {
+            "away_team" : "Catalans Dragons",
+            "home_score" : "10",
+            "home_team" : "Leigh Centurions",
+            "date" : "30/09/17",
+            "away_score" : "26"
+        }
+    ],
+    "NRL" : [
+        {
+            "away_team" : "Brisbane Broncos",
+            "home_score" : "18",
+            "away_score" : "26",
+            "home_team" : "Cronulla Sharks",
+            "date" : "02/03/17"
+        },
+        {
+            "date" : "03/03/17",
+            "home_team" : "Canterbury Bulldogs",
+            "away_score" : "12",
+            "away_team" : "Melbourne Storm",
+            "home_score" : "6"
+        },
+        {
+            "away_score" : "34",
+            "home_team" : "South Sydney Rabbitohs",
+            "date" : "03/03/17",
+            "away_team" : "Wests Tigers",
+            "home_score" : "18"
+        },
+        {
+            "home_score" : "42",
+            "away_team" : "Penrith Panthers",
+            "home_team" : "St.George Illawarra",
+            "date" : "04/03/17",
+            "away_score" : "10"
+        },
+        {
+            "away_team" : "Canberra Raiders",
+            "home_score" : "20",
+            "away_score" : "16",
+            "home_team" : "North Queensland Cowboys",
+            "date" : "04/03/17"
+        },
+        {
+            "away_team" : "Sydney Roosters",
+            "home_score" : "18",
+            "home_team" : "Gold Coast Titans",
+            "date" : "04/03/17",
+            "away_score" : "32"
+        },
+        {
+            "home_team" : "New Zealand Warriors",
+            "date" : "05/03/17",
+            "away_score" : "22",
+            "home_score" : "26",
+            "away_team" : "Newcastle Knights"
+        },
+        {
+            "home_team" : "Manly Sea Eagles",
+            "date" : "05/03/17",
+            "away_score" : "20",
+            "away_team" : "Parramatta Eels",
+            "home_score" : "12"
+        },
+        {
+            "away_team" : "Canterbury Bulldogs",
+            "home_score" : "28",
+            "away_score" : "34",
+            "date" : "09/03/17",
+            "home_team" : "Sydney Roosters"
+        },
+        {
+            "date" : "10/03/17",
+            "home_team" : "New Zealand Warriors",
+            "away_score" : "26",
+            "home_score" : "10",
+            "away_team" : "Melbourne Storm"
+        },
+        {
+            "away_score" : "21",
+            "home_team" : "Brisbane Broncos",
+            "date" : "10/03/17",
+            "away_team" : "North Queensland Cowboys",
+            "home_score" : "20"
+        },
+        {
+            "away_team" : "Gold Coast Titans",
+            "home_score" : "34",
+            "home_team" : "Newcastle Knights",
+            "date" : "11/03/17",
+            "away_score" : "26"
+        },
+        {
+            "date" : "11/03/17",
+            "home_team" : "Manly Sea Eagles",
+            "away_score" : "38",
+            "away_team" : "South Sydney Rabbitohs",
+            "home_score" : "18"
+        },
+        {
+            "away_team" : "Cronulla Sharks",
+            "home_score" : "16",
+            "away_score" : "42",
+            "home_team" : "Canberra Raiders",
+            "date" : "11/03/17"
+        },
+        {
+            "home_score" : "2",
+            "away_team" : "Penrith Panthers",
+            "away_score" : "36",
+            "date" : "12/03/17",
+            "home_team" : "Wests Tigers"
+        },
+        {
+            "home_score" : "16",
+            "away_team" : "Parramatta Eels",
+            "away_score" : "34",
+            "date" : "12/03/17",
+            "home_team" : "St.George Illawarra"
+        },
+        {
+            "away_score" : "12",
+            "date" : "16/03/17",
+            "home_team" : "Melbourne Storm",
+            "away_team" : "Brisbane Broncos",
+            "home_score" : "14"
+        },
+        {
+            "home_team" : "Canterbury Bulldogs",
+            "date" : "17/03/17",
+            "away_score" : "12",
+            "away_team" : "New Zealand Warriors",
+            "home_score" : "24"
+        },
+        {
+            "away_score" : "14",
+            "home_team" : "Gold Coast Titans",
+            "date" : "17/03/17",
+            "away_team" : "Parramatta Eels",
+            "home_score" : "26"
+        },
+        {
+            "home_score" : "18",
+            "away_team" : "South Sydney Rabbitohs",
+            "home_team" : "Newcastle Knights",
+            "date" : "18/03/17",
+            "away_score" : "24"
+        },
+        {
+            "home_team" : "Penrith Panthers",
+            "date" : "18/03/17",
+            "away_score" : "14",
+            "home_score" : "12",
+            "away_team" : "Sydney Roosters"
+        },
+        {
+            "away_team" : "Manly Sea Eagles",
+            "home_score" : "8",
+            "home_team" : "North Queensland Cowboys",
+            "date" : "18/03/17",
+            "away_score" : "30"
+        },
+        {
+            "home_team" : "Canberra Raiders",
+            "date" : "19/03/17",
+            "away_score" : "6",
+            "home_score" : "46",
+            "away_team" : "Wests Tigers"
+        },
+        {
+            "away_team" : "St.George Illawarra",
+            "home_score" : "10",
+            "away_score" : "16",
+            "date" : "19/03/17",
+            "home_team" : "Cronulla Sharks"
+        },
+        {
+            "away_team" : "Sydney Roosters",
+            "home_score" : "6",
+            "away_score" : "20",
+            "date" : "23/03/17",
+            "home_team" : "South Sydney Rabbitohs"
+        },
+        {
+            "away_score" : "0",
+            "date" : "24/03/17",
+            "home_team" : "Penrith Panthers",
+            "away_team" : "Newcastle Knights",
+            "home_score" : "40"
+        },
+        {
+            "away_team" : "Canberra Raiders",
+            "home_score" : "13",
+            "away_score" : "12",
+            "date" : "24/03/17",
+            "home_team" : "Brisbane Broncos"
+        },
+        {
+            "home_score" : "36",
+            "away_team" : "Canterbury Bulldogs",
+            "home_team" : "Manly Sea Eagles",
+            "date" : "25/03/17",
+            "away_score" : "0"
+        },
+        {
+            "away_team" : "Cronulla Sharks",
+            "home_score" : "6",
+            "away_score" : "20",
+            "home_team" : "Parramatta Eels",
+            "date" : "25/03/17"
+        },
+        {
+            "away_team" : "North Queensland Cowboys",
+            "home_score" : "26",
+            "home_team" : "Gold Coast Titans",
+            "date" : "25/03/17",
+            "away_score" : "32"
+        },
+        {
+            "away_team" : "Melbourne Storm",
+            "home_score" : "14",
+            "home_team" : "Wests Tigers",
+            "date" : "26/03/17",
+            "away_score" : "22"
+        },
+        {
+            "away_team" : "New Zealand Warriors",
+            "home_score" : "26",
+            "away_score" : "12",
+            "date" : "26/03/17",
+            "home_team" : "St.George Illawarra"
+        },
+        {
+            "home_team" : "Canterbury Bulldogs",
+            "date" : "30/03/17",
+            "away_score" : "7",
+            "away_team" : "Brisbane Broncos",
+            "home_score" : "10"
+        },
+        {
+            "away_team" : "Manly Sea Eagles",
+            "home_score" : "12",
+            "date" : "31/03/17",
+            "home_team" : "Sydney Roosters",
+            "away_score" : "18"
+        },
+        {
+            "home_score" : "20",
+            "away_team" : "South Sydney Rabbitohs",
+            "home_team" : "North Queensland Cowboys",
+            "date" : "31/03/17",
+            "away_score" : "6"
+        },
+        {
+            "away_score" : "18",
+            "date" : "01/04/17",
+            "home_team" : "Cronulla Sharks",
+            "home_score" : "19",
+            "away_team" : "Newcastle Knights"
+        },
+        {
+            "home_team" : "Canberra Raiders",
+            "date" : "01/04/17",
+            "away_score" : "18",
+            "away_team" : "Parramatta Eels",
+            "home_score" : "30"
+        },
+        {
+            "away_score" : "6",
+            "home_team" : "Melbourne Storm",
+            "date" : "01/04/17",
+            "away_team" : "Penrith Panthers",
+            "home_score" : "28"
+        },
+        {
+            "date" : "02/04/17",
+            "home_team" : "New Zealand Warriors",
+            "away_score" : "22",
+            "home_score" : "28",
+            "away_team" : "Gold Coast Titans"
+        },
+        {
+            "home_score" : "6",
+            "away_team" : "St.George Illawarra",
+            "home_team" : "Wests Tigers",
+            "date" : "02/04/17",
+            "away_score" : "28"
+        },
+        {
+            "away_team" : "Sydney Roosters",
+            "home_score" : "32",
+            "home_team" : "Brisbane Broncos",
+            "date" : "06/04/17",
+            "away_score" : "8"
+        },
+        {
+            "away_score" : "22",
+            "home_team" : "Newcastle Knights",
+            "date" : "07/04/17",
+            "away_team" : "Canterbury Bulldogs",
+            "home_score" : "12"
+        },
+        {
+            "away_team" : "South Sydney Rabbitohs",
+            "home_score" : "20",
+            "away_score" : "21",
+            "home_team" : "Penrith Panthers",
+            "date" : "07/04/17"
+        },
+        {
+            "date" : "08/04/17",
+            "home_team" : "Manly Sea Eagles",
+            "away_score" : "35",
+            "home_score" : "10",
+            "away_team" : "St.George Illawarra"
+        },
+        {
+            "away_team" : "Canberra Raiders",
+            "home_score" : "16",
+            "date" : "08/04/17",
+            "home_team" : "Gold Coast Titans",
+            "away_score" : "42"
+        },
+        {
+            "away_score" : "26",
+            "date" : "08/04/17",
+            "home_team" : "North Queensland Cowboys",
+            "home_score" : "16",
+            "away_team" : "Wests Tigers"
+        },
+        {
+            "away_score" : "10",
+            "home_team" : "New Zealand Warriors",
+            "date" : "09/04/17",
+            "home_score" : "22",
+            "away_team" : "Parramatta Eels"
+        },
+        {
+            "away_team" : "Cronulla Sharks",
+            "home_score" : "2",
+            "date" : "09/04/17",
+            "home_team" : "Melbourne Storm",
+            "away_score" : "11"
+        },
+        {
+            "home_score" : "24",
+            "away_team" : "South Sydney Rabbitohs",
+            "away_score" : "9",
+            "home_team" : "Canterbury Bulldogs",
+            "date" : "14/04/17"
+        },
+        {
+            "away_score" : "24",
+            "date" : "14/04/17",
+            "home_team" : "Newcastle Knights",
+            "home_score" : "6",
+            "away_team" : "Sydney Roosters"
+        },
+        {
+            "away_team" : "Gold Coast Titans",
+            "home_score" : "24",
+            "away_score" : "22",
+            "date" : "14/04/17",
+            "home_team" : "Brisbane Broncos"
+        },
+        {
+            "home_score" : "26",
+            "away_team" : "Melbourne Storm",
+            "away_score" : "30",
+            "date" : "15/04/17",
+            "home_team" : "Manly Sea Eagles"
+        },
+        {
+            "away_score" : "8",
+            "date" : "15/04/17",
+            "home_team" : "Canberra Raiders",
+            "away_team" : "New Zealand Warriors",
+            "home_score" : "20"
+        },
+        {
+            "away_score" : "22",
+            "date" : "15/04/17",
+            "home_team" : "St.George Illawarra",
+            "away_team" : "North Queensland Cowboys",
+            "home_score" : "28"
+        },
+        {
+            "date" : "16/04/17",
+            "home_team" : "Penrith Panthers",
+            "away_score" : "28",
+            "away_team" : "Cronulla Sharks",
+            "home_score" : "2"
+        },
+        {
+            "home_score" : "26",
+            "away_team" : "Wests Tigers",
+            "away_score" : "22",
+            "home_team" : "Parramatta Eels",
+            "date" : "17/04/17"
+        },
+        {
+            "away_score" : "20",
+            "home_team" : "Canberra Raiders",
+            "date" : "21/04/17",
+            "home_score" : "18",
+            "away_team" : "Manly Sea Eagles"
+        },
+        {
+            "home_team" : "South Sydney Rabbitohs",
+            "date" : "21/04/17",
+            "away_score" : "25",
+            "home_score" : "24",
+            "away_team" : "Brisbane Broncos"
+        },
+        {
+            "away_score" : "12",
+            "home_team" : "Parramatta Eels",
+            "date" : "22/04/17",
+            "home_score" : "18",
+            "away_team" : "Penrith Panthers"
+        },
+        {
+            "away_team" : "Newcastle Knights",
+            "home_score" : "24",
+            "home_team" : "North Queensland Cowboys",
+            "date" : "22/04/17",
+            "away_score" : "12"
+        },
+        {
+            "home_score" : "12",
+            "away_team" : "Gold Coast Titans",
+            "date" : "22/04/17",
+            "home_team" : "Cronulla Sharks",
+            "away_score" : "16"
+        },
+        {
+            "home_score" : "18",
+            "away_team" : "Canterbury Bulldogs",
+            "away_score" : "12",
+            "date" : "23/04/17",
+            "home_team" : "Wests Tigers"
+        },
+        {
+            "home_team" : "Sydney Roosters",
+            "date" : "25/04/17",
+            "away_score" : "12",
+            "home_score" : "13",
+            "away_team" : "St.George Illawarra"
+        },
+        {
+            "home_team" : "Melbourne Storm",
+            "date" : "25/04/17",
+            "away_score" : "14",
+            "home_score" : "20",
+            "away_team" : "New Zealand Warriors"
+        },
+        {
+            "away_score" : "18",
+            "date" : "27/04/17",
+            "home_team" : "Brisbane Broncos",
+            "home_score" : "32",
+            "away_team" : "Penrith Panthers"
+        },
+        {
+            "home_score" : "8",
+            "away_team" : "Manly Sea Eagles",
+            "away_score" : "46",
+            "home_team" : "South Sydney Rabbitohs",
+            "date" : "28/04/17"
+        },
+        {
+            "away_team" : "Parramatta Eels",
+            "home_score" : "6",
+            "away_score" : "26",
+            "date" : "28/04/17",
+            "home_team" : "North Queensland Cowboys"
+        },
+        {
+            "home_score" : "38",
+            "away_team" : "Newcastle Knights",
+            "away_score" : "8",
+            "home_team" : "Gold Coast Titans",
+            "date" : "29/04/17"
+        },
+        {
+            "date" : "29/04/17",
+            "home_team" : "Canterbury Bulldogs",
+            "away_score" : "10",
+            "home_score" : "16",
+            "away_team" : "Canberra Raiders"
+        },
+        {
+            "away_score" : "22",
+            "date" : "29/04/17",
+            "home_team" : "Wests Tigers",
+            "away_team" : "Cronulla Sharks",
+            "home_score" : "16"
+        },
+        {
+            "away_score" : "13",
+            "home_team" : "New Zealand Warriors",
+            "date" : "30/04/17",
+            "home_score" : "14",
+            "away_team" : "Sydney Roosters"
+        },
+        {
+            "home_score" : "22",
+            "away_team" : "Melbourne Storm",
+            "away_score" : "34",
+            "date" : "30/04/17",
+            "home_team" : "St.George Illawarra"
+        },
+        {
+            "away_team" : "North Queensland Cowboys",
+            "home_score" : "14",
+            "away_score" : "30",
+            "date" : "11/05/17",
+            "home_team" : "Canterbury Bulldogs"
+        },
+        {
+            "away_score" : "18",
+            "home_team" : "St.George Illawarra",
+            "date" : "12/05/17",
+            "away_team" : "Cronulla Sharks",
+            "home_score" : "14"
+        },
+        {
+            "away_team" : "South Sydney Rabbitohs",
+            "home_score" : "8",
+            "home_team" : "Wests Tigers",
+            "date" : "12/05/17",
+            "away_score" : "28"
+        },
+        {
+            "away_score" : "28",
+            "home_team" : "Penrith Panthers",
+            "date" : "13/05/17",
+            "away_team" : "New Zealand Warriors",
+            "home_score" : "36"
+        },
+        {
+            "home_score" : "36",
+            "away_team" : "Gold Coast Titans",
+            "home_team" : "Melbourne Storm",
+            "date" : "13/05/17",
+            "away_score" : "38"
+        },
+        {
+            "home_team" : "Manly Sea Eagles",
+            "date" : "13/05/17",
+            "away_score" : "24",
+            "away_team" : "Brisbane Broncos",
+            "home_score" : "14"
+        },
+        {
+            "date" : "14/05/17",
+            "home_team" : "Newcastle Knights",
+            "away_score" : "20",
+            "home_score" : "34",
+            "away_team" : "Canberra Raiders"
+        },
+        {
+            "date" : "14/05/17",
+            "home_team" : "Sydney Roosters",
+            "away_score" : "10",
+            "home_score" : "48",
+            "away_team" : "Parramatta Eels"
+        },
+        {
+            "home_team" : "Cronulla Sharks",
+            "date" : "18/05/17",
+            "away_score" : "14",
+            "home_score" : "18",
+            "away_team" : "North Queensland Cowboys"
+        },
+        {
+            "home_team" : "New Zealand Warriors",
+            "date" : "19/05/17",
+            "away_score" : "30",
+            "home_score" : "14",
+            "away_team" : "St.George Illawarra"
+        },
+        {
+            "away_score" : "0",
+            "home_team" : "Brisbane Broncos",
+            "date" : "19/05/17",
+            "home_score" : "36",
+            "away_team" : "Wests Tigers"
+        },
+        {
+            "date" : "20/05/17",
+            "home_team" : "Gold Coast Titans",
+            "away_score" : "30",
+            "home_score" : "10",
+            "away_team" : "Manly Sea Eagles"
+        },
+        {
+            "away_score" : "22",
+            "home_team" : "Parramatta Eels",
+            "date" : "20/05/17",
+            "home_score" : "16",
+            "away_team" : "Canberra Raiders"
+        },
+        {
+            "home_score" : "20",
+            "away_team" : "Penrith Panthers",
+            "away_score" : "30",
+            "date" : "21/05/17",
+            "home_team" : "Newcastle Knights"
+        },
+        {
+            "home_score" : "18",
+            "away_team" : "Sydney Roosters",
+            "home_team" : "Canterbury Bulldogs",
+            "date" : "21/05/17",
+            "away_score" : "24"
+        },
+        {
+            "away_team" : "Melbourne Storm",
+            "home_score" : "6",
+            "home_team" : "South Sydney Rabbitohs",
+            "date" : "21/05/17",
+            "away_score" : "14"
+        },
+        {
+            "date" : "26/05/17",
+            "home_team" : "South Sydney Rabbitohs",
+            "away_score" : "22",
+            "away_team" : "Parramatta Eels",
+            "home_score" : "16"
+        },
+        {
+            "home_score" : "28",
+            "away_team" : "Brisbane Broncos",
+            "away_score" : "10",
+            "home_team" : "New Zealand Warriors",
+            "date" : "27/05/17"
+        },
+        {
+            "away_score" : "8",
+            "date" : "27/05/17",
+            "home_team" : "Cronulla Sharks",
+            "away_team" : "Canterbury Bulldogs",
+            "home_score" : "9"
+        },
+        {
+            "home_score" : "24",
+            "away_team" : "Sydney Roosters",
+            "date" : "28/05/17",
+            "home_team" : "Canberra Raiders",
+            "away_score" : "16"
+        },
+        {
+            "home_score" : "40",
+            "away_team" : "Newcastle Knights",
+            "date" : "02/06/17",
+            "home_team" : "Melbourne Storm",
+            "away_score" : "12"
+        },
+        {
+            "away_score" : "24",
+            "date" : "02/06/17",
+            "home_team" : "Parramatta Eels",
+            "away_team" : "New Zealand Warriors",
+            "home_score" : "32"
+        },
+        {
+            "away_score" : "12",
+            "date" : "03/06/17",
+            "home_team" : "St.George Illawarra",
+            "home_score" : "16",
+            "away_team" : "Wests Tigers"
+        },
+        {
+            "home_score" : "18",
+            "away_team" : "Brisbane Broncos",
+            "away_score" : "16",
+            "date" : "03/06/17",
+            "home_team" : "Sydney Roosters"
+        },
+        {
+            "home_team" : "North Queensland Cowboys",
+            "date" : "03/06/17",
+            "away_score" : "8",
+            "away_team" : "Gold Coast Titans",
+            "home_score" : "20"
+        },
+        {
+            "date" : "04/06/17",
+            "home_team" : "Manly Sea Eagles",
+            "away_score" : "20",
+            "away_team" : "Canberra Raiders",
+            "home_score" : "21"
+        },
+        {
+            "away_score" : "38",
+            "home_team" : "Canterbury Bulldogs",
+            "date" : "04/06/17",
+            "home_score" : "0",
+            "away_team" : "Penrith Panthers"
+        },
+        {
+            "home_score" : "13",
+            "away_team" : "Melbourne Storm",
+            "away_score" : "18",
+            "home_team" : "Cronulla Sharks",
+            "date" : "08/06/17"
+        },
+        {
+            "away_team" : "Newcastle Knights",
+            "home_score" : "18",
+            "away_score" : "14",
+            "home_team" : "Manly Sea Eagles",
+            "date" : "09/06/17"
+        },
+        {
+            "away_team" : "South Sydney Rabbitohs",
+            "home_score" : "24",
+            "away_score" : "18",
+            "date" : "09/06/17",
+            "home_team" : "Brisbane Broncos"
+        },
+        {
+            "away_score" : "34",
+            "date" : "10/06/17",
+            "home_team" : "Gold Coast Titans",
+            "away_team" : "New Zealand Warriors",
+            "home_score" : "12"
+        },
+        {
+            "away_team" : "Canberra Raiders",
+            "home_score" : "24",
+            "away_score" : "20",
+            "date" : "10/06/17",
+            "home_team" : "Penrith Panthers"
+        },
+        {
+            "away_team" : "North Queensland Cowboys",
+            "home_score" : "6",
+            "away_score" : "32",
+            "home_team" : "Parramatta Eels",
+            "date" : "10/06/17"
+        },
+        {
+            "home_team" : "Wests Tigers",
+            "date" : "11/06/17",
+            "away_score" : "40",
+            "away_team" : "Sydney Roosters",
+            "home_score" : "18"
+        },
+        {
+            "away_score" : "2",
+            "home_team" : "Canterbury Bulldogs",
+            "date" : "12/06/17",
+            "away_team" : "St.George Illawarra",
+            "home_score" : "16"
+        },
+        {
+            "home_score" : "36",
+            "away_team" : "Gold Coast Titans",
+            "away_score" : "20",
+            "date" : "16/06/17",
+            "home_team" : "South Sydney Rabbitohs"
+        },
+        {
+            "away_team" : "North Queensland Cowboys",
+            "home_score" : "23",
+            "away_score" : "22",
+            "home_team" : "Melbourne Storm",
+            "date" : "17/06/17"
+        },
+        {
+            "away_team" : "Wests Tigers",
+            "home_score" : "24",
+            "home_team" : "Cronulla Sharks",
+            "date" : "17/06/17",
+            "away_score" : "22"
+        },
+        {
+            "home_score" : "24",
+            "away_team" : "St.George Illawarra",
+            "home_team" : "Parramatta Eels",
+            "date" : "18/06/17",
+            "away_score" : "10"
+        },
+        {
+            "home_score" : "21",
+            "away_team" : "Canterbury Bulldogs",
+            "away_score" : "14",
+            "home_team" : "New Zealand Warriors",
+            "date" : "23/06/17"
+        },
+        {
+            "away_score" : "26",
+            "date" : "23/06/17",
+            "home_team" : "Wests Tigers",
+            "away_team" : "Gold Coast Titans",
+            "home_score" : "14"
+        },
+        {
+            "away_score" : "12",
+            "date" : "24/06/17",
+            "home_team" : "North Queensland Cowboys",
+            "away_team" : "Penrith Panthers",
+            "home_score" : "14"
+        },
+        {
+            "home_score" : "20",
+            "away_team" : "Brisbane Broncos",
+            "away_score" : "30",
+            "home_team" : "Canberra Raiders",
+            "date" : "24/06/17"
+        },
+        {
+            "home_team" : "Sydney Roosters",
+            "date" : "24/06/17",
+            "away_score" : "24",
+            "home_score" : "25",
+            "away_team" : "Melbourne Storm"
+        },
+        {
+            "away_team" : "Newcastle Knights",
+            "home_score" : "32",
+            "home_team" : "St.George Illawarra",
+            "date" : "25/06/17",
+            "away_score" : "28"
+        },
+        {
+            "away_team" : "Manly Sea Eagles",
+            "home_score" : "18",
+            "date" : "25/06/17",
+            "home_team" : "Cronulla Sharks",
+            "away_score" : "35"
+        },
+        {
+            "home_score" : "13",
+            "away_team" : "Canterbury Bulldogs",
+            "away_score" : "12",
+            "home_team" : "Parramatta Eels",
+            "date" : "29/06/17"
+        },
+        {
+            "date" : "30/06/17",
+            "home_team" : "Gold Coast Titans",
+            "away_score" : "10",
+            "home_score" : "20",
+            "away_team" : "St.George Illawarra"
+        },
+        {
+            "date" : "30/06/17",
+            "home_team" : "Brisbane Broncos",
+            "away_score" : "42",
+            "away_team" : "Melbourne Storm",
+            "home_score" : "12"
+        },
+        {
+            "away_team" : "Cronulla Sharks",
+            "home_score" : "12",
+            "date" : "01/07/17",
+            "home_team" : "Sydney Roosters",
+            "away_score" : "44"
+        },
+        {
+            "date" : "01/07/17",
+            "home_team" : "Manly Sea Eagles",
+            "away_score" : "22",
+            "home_score" : "26",
+            "away_team" : "New Zealand Warriors"
+        },
+        {
+            "home_score" : "18",
+            "away_team" : "North Queensland Cowboys",
+            "home_team" : "Canberra Raiders",
+            "date" : "01/07/17",
+            "away_score" : "31"
+        },
+        {
+            "away_team" : "Wests Tigers",
+            "home_score" : "12",
+            "away_score" : "33",
+            "date" : "02/07/17",
+            "home_team" : "Newcastle Knights"
+        },
+        {
+            "away_score" : "14",
+            "home_team" : "South Sydney Rabbitohs",
+            "date" : "02/07/17",
+            "home_score" : "42",
+            "away_team" : "Penrith Panthers"
+        },
+        {
+            "away_team" : "South Sydney Rabbitohs",
+            "home_score" : "14",
+            "date" : "07/07/17",
+            "home_team" : "Sydney Roosters",
+            "away_score" : "12"
+        },
+        {
+            "home_score" : "16",
+            "away_team" : "Manly Sea Eagles",
+            "away_score" : "8",
+            "home_team" : "Penrith Panthers",
+            "date" : "08/07/17"
+        },
+        {
+            "home_score" : "6",
+            "away_team" : "Parramatta Eels",
+            "home_team" : "Melbourne Storm",
+            "date" : "08/07/17",
+            "away_score" : "22"
+        },
+        {
+            "home_score" : "20",
+            "away_team" : "Newcastle Knights",
+            "away_score" : "18",
+            "date" : "09/07/17",
+            "home_team" : "Canterbury Bulldogs"
+        },
+        {
+            "away_team" : "Penrith Panthers",
+            "home_score" : "22",
+            "away_score" : "34",
+            "date" : "14/07/17",
+            "home_team" : "New Zealand Warriors"
+        },
+        {
+            "away_score" : "14",
+            "home_team" : "Canberra Raiders",
+            "date" : "14/07/17",
+            "home_score" : "18",
+            "away_team" : "St.George Illawarra"
+        },
+        {
+            "home_score" : "22",
+            "away_team" : "Brisbane Broncos",
+            "home_team" : "Newcastle Knights",
+            "date" : "15/07/17",
+            "away_score" : "34"
+        },
+        {
+            "away_score" : "10",
+            "date" : "15/07/17",
+            "home_team" : "Gold Coast Titans",
+            "home_score" : "30",
+            "away_team" : "Cronulla Sharks"
+        },
+        {
+            "home_score" : "28",
+            "away_team" : "Wests Tigers",
+            "home_team" : "Manly Sea Eagles",
+            "date" : "16/07/17",
+            "away_score" : "16"
+        },
+        {
+            "home_team" : "South Sydney Rabbitohs",
+            "date" : "16/07/17",
+            "away_score" : "23",
+            "home_score" : "10",
+            "away_team" : "North Queensland Cowboys"
+        },
+        {
+            "date" : "20/07/17",
+            "home_team" : "Brisbane Broncos",
+            "away_score" : "12",
+            "home_score" : "42",
+            "away_team" : "Canterbury Bulldogs"
+        },
+        {
+            "away_score" : "4",
+            "home_team" : "Sydney Roosters",
+            "date" : "21/07/17",
+            "away_team" : "Newcastle Knights",
+            "home_score" : "28"
+        },
+        {
+            "date" : "21/07/17",
+            "home_team" : "Cronulla Sharks",
+            "away_score" : "12",
+            "away_team" : "South Sydney Rabbitohs",
+            "home_score" : "26"
+        },
+        {
+            "home_team" : "Penrith Panthers",
+            "date" : "22/07/17",
+            "away_score" : "16",
+            "away_team" : "Gold Coast Titans",
+            "home_score" : "24"
+        },
+        {
+            "away_team" : "Melbourne Storm",
+            "home_score" : "14",
+            "date" : "22/07/17",
+            "home_team" : "Canberra Raiders",
+            "away_score" : "20"
+        },
+        {
+            "away_score" : "12",
+            "home_team" : "North Queensland Cowboys",
+            "date" : "22/07/17",
+            "home_score" : "24",
+            "away_team" : "New Zealand Warriors"
+        },
+        {
+            "away_score" : "22",
+            "date" : "23/07/17",
+            "home_team" : "St.George Illawarra",
+            "home_score" : "52",
+            "away_team" : "Manly Sea Eagles"
+        },
+        {
+            "home_score" : "16",
+            "away_team" : "Parramatta Eels",
+            "date" : "23/07/17",
+            "home_team" : "Wests Tigers",
+            "away_score" : "17"
+        },
+        {
+            "away_score" : "8",
+            "home_team" : "Penrith Panthers",
+            "date" : "27/07/17",
+            "away_team" : "Canterbury Bulldogs",
+            "home_score" : "16"
+        },
+        {
+            "away_score" : "26",
+            "date" : "28/07/17",
+            "home_team" : "New Zealand Warriors",
+            "away_team" : "Cronulla Sharks",
+            "home_score" : "12"
+        },
+        {
+            "away_team" : "Brisbane Broncos",
+            "home_score" : "28",
+            "away_score" : "14",
+            "date" : "28/07/17",
+            "home_team" : "Parramatta Eels"
+        },
+        {
+            "away_team" : "St.George Illawarra",
+            "home_score" : "21",
+            "away_score" : "14",
+            "home_team" : "Newcastle Knights",
+            "date" : "29/07/17"
+        },
+        {
+            "home_score" : "18",
+            "away_team" : "Canberra Raiders",
+            "away_score" : "32",
+            "date" : "29/07/17",
+            "home_team" : "South Sydney Rabbitohs"
+        },
+        {
+            "date" : "29/07/17",
+            "home_team" : "Sydney Roosters",
+            "away_score" : "16",
+            "away_team" : "North Queensland Cowboys",
+            "home_score" : "22"
+        },
+        {
+            "home_score" : "40",
+            "away_team" : "Manly Sea Eagles",
+            "date" : "30/07/17",
+            "home_team" : "Melbourne Storm",
+            "away_score" : "6"
+        },
+        {
+            "date" : "30/07/17",
+            "home_team" : "Gold Coast Titans",
+            "away_score" : "26",
+            "home_score" : "4",
+            "away_team" : "Wests Tigers"
+        },
+        {
+            "away_score" : "20",
+            "home_team" : "Canterbury Bulldogs",
+            "date" : "03/08/17",
+            "away_team" : "Parramatta Eels",
+            "home_score" : "4"
+        },
+        {
+            "date" : "04/08/17",
+            "home_team" : "St.George Illawarra",
+            "away_score" : "26",
+            "home_score" : "24",
+            "away_team" : "South Sydney Rabbitohs"
+        },
+        {
+            "away_team" : "Melbourne Storm",
+            "home_score" : "8",
+            "away_score" : "26",
+            "home_team" : "North Queensland Cowboys",
+            "date" : "04/08/17"
+        },
+        {
+            "home_score" : "26",
+            "away_team" : "New Zealand Warriors",
+            "date" : "05/08/17",
+            "home_team" : "Newcastle Knights",
+            "away_score" : "10"
+        },
+        {
+            "away_team" : "Brisbane Broncos",
+            "home_score" : "0",
+            "date" : "05/08/17",
+            "home_team" : "Gold Coast Titans",
+            "away_score" : "54"
+        },
+        {
+            "home_score" : "12",
+            "away_team" : "Canberra Raiders",
+            "home_team" : "Cronulla Sharks",
+            "date" : "05/08/17",
+            "away_score" : "30"
+        },
+        {
+            "home_team" : "Manly Sea Eagles",
+            "date" : "06/08/17",
+            "away_score" : "18",
+            "home_score" : "36",
+            "away_team" : "Sydney Roosters"
+        },
+        {
+            "date" : "06/08/17",
+            "home_team" : "Penrith Panthers",
+            "away_score" : "14",
+            "away_team" : "Wests Tigers",
+            "home_score" : "28"
+        },
+        {
+            "home_score" : "28",
+            "away_team" : "Canterbury Bulldogs",
+            "away_score" : "14",
+            "home_team" : "South Sydney Rabbitohs",
+            "date" : "10/08/17"
+        },
+        {
+            "home_score" : "10",
+            "away_team" : "Newcastle Knights",
+            "away_score" : "29",
+            "home_team" : "Parramatta Eels",
+            "date" : "11/08/17"
+        },
+        {
+            "away_score" : "10",
+            "date" : "11/08/17",
+            "home_team" : "Brisbane Broncos",
+            "away_team" : "Cronulla Sharks",
+            "home_score" : "32"
+        },
+        {
+            "away_score" : "16",
+            "date" : "12/08/17",
+            "home_team" : "St.George Illawarra",
+            "away_team" : "Gold Coast Titans",
+            "home_score" : "42"
+        },
+        {
+            "away_score" : "13",
+            "date" : "12/08/17",
+            "home_team" : "Melbourne Storm",
+            "home_score" : "16",
+            "away_team" : "Sydney Roosters"
+        },
+        {
+            "away_score" : "16",
+            "home_team" : "Penrith Panthers",
+            "date" : "12/08/17",
+            "away_team" : "North Queensland Cowboys",
+            "home_score" : "24"
+        },
+        {
+            "home_score" : "16",
+            "away_team" : "Canberra Raiders",
+            "away_score" : "36",
+            "home_team" : "New Zealand Warriors",
+            "date" : "13/08/17"
+        },
+        {
+            "home_team" : "Wests Tigers",
+            "date" : "13/08/17",
+            "away_score" : "26",
+            "away_team" : "Manly Sea Eagles",
+            "home_score" : "30"
+        },
+        {
+            "home_team" : "Parramatta Eels",
+            "date" : "17/08/17",
+            "away_score" : "8",
+            "home_score" : "30",
+            "away_team" : "Gold Coast Titans"
+        },
+        {
+            "away_team" : "New Zealand Warriors",
+            "home_score" : "36",
+            "date" : "18/08/17",
+            "home_team" : "South Sydney Rabbitohs",
+            "away_score" : "18"
+        },
+        {
+            "date" : "18/08/17",
+            "home_team" : "Brisbane Broncos",
+            "away_score" : "12",
+            "away_team" : "St.George Illawarra",
+            "home_score" : "24"
+        },
+        {
+            "date" : "19/08/17",
+            "home_team" : "Newcastle Knights",
+            "away_score" : "44",
+            "away_team" : "Melbourne Storm",
+            "home_score" : "12"
+        },
+        {
+            "away_score" : "18",
+            "home_team" : "Sydney Roosters",
+            "date" : "19/08/17",
+            "away_team" : "Wests Tigers",
+            "home_score" : "22"
+        },
+        {
+            "home_score" : "16",
+            "away_team" : "Cronulla Sharks",
+            "away_score" : "26",
+            "date" : "19/08/17",
+            "home_team" : "North Queensland Cowboys"
+        },
+        {
+            "away_score" : "26",
+            "home_team" : "Canberra Raiders",
+            "date" : "20/08/17",
+            "away_team" : "Penrith Panthers",
+            "home_score" : "22"
+        },
+        {
+            "date" : "20/08/17",
+            "home_team" : "Canterbury Bulldogs",
+            "away_score" : "16",
+            "home_score" : "30",
+            "away_team" : "Manly Sea Eagles"
+        },
+        {
+            "home_score" : "34",
+            "away_team" : "Parramatta Eels",
+            "away_score" : "52",
+            "home_team" : "Brisbane Broncos",
+            "date" : "24/08/17"
+        },
+        {
+            "date" : "25/08/17",
+            "home_team" : "Canberra Raiders",
+            "away_score" : "28",
+            "away_team" : "Newcastle Knights",
+            "home_score" : "46"
+        },
+        {
+            "away_team" : "North Queensland Cowboys",
+            "home_score" : "14",
+            "away_score" : "22",
+            "date" : "25/08/17",
+            "home_team" : "Wests Tigers"
+        },
+        {
+            "away_team" : "Canterbury Bulldogs",
+            "home_score" : "14",
+            "date" : "26/08/17",
+            "home_team" : "Gold Coast Titans",
+            "away_score" : "26"
+        },
+        {
+            "home_score" : "64",
+            "away_team" : "South Sydney Rabbitohs",
+            "home_team" : "Melbourne Storm",
+            "date" : "26/08/17",
+            "away_score" : "6"
+        },
+        {
+            "away_score" : "16",
+            "date" : "26/08/17",
+            "home_team" : "Cronulla Sharks",
+            "away_team" : "Sydney Roosters",
+            "home_score" : "14"
+        },
+        {
+            "away_score" : "22",
+            "home_team" : "New Zealand Warriors",
+            "date" : "27/08/17",
+            "home_score" : "21",
+            "away_team" : "Manly Sea Eagles"
+        },
+        {
+            "away_team" : "St.George Illawarra",
+            "home_score" : "14",
+            "home_team" : "Penrith Panthers",
+            "date" : "27/08/17",
+            "away_score" : "16"
+        },
+        {
+            "date" : "31/08/17",
+            "home_team" : "North Queensland Cowboys",
+            "away_score" : "20",
+            "home_score" : "10",
+            "away_team" : "Brisbane Broncos"
+        },
+        {
+            "date" : "01/09/17",
+            "home_team" : "Parramatta Eels",
+            "away_score" : "16",
+            "home_score" : "22",
+            "away_team" : "South Sydney Rabbitohs"
+        },
+        {
+            "home_score" : "20",
+            "away_team" : "Gold Coast Titans",
+            "away_score" : "16",
+            "home_team" : "Sydney Roosters",
+            "date" : "02/09/17"
+        },
+        {
+            "away_score" : "12",
+            "date" : "02/09/17",
+            "home_team" : "Manly Sea Eagles",
+            "away_team" : "Penrith Panthers",
+            "home_score" : "28"
+        },
+        {
+            "away_score" : "6",
+            "date" : "02/09/17",
+            "home_team" : "Melbourne Storm",
+            "away_team" : "Canberra Raiders",
+            "home_score" : "32"
+        },
+        {
+            "home_team" : "Newcastle Knights",
+            "date" : "03/09/17",
+            "away_score" : "26",
+            "home_score" : "18",
+            "away_team" : "Cronulla Sharks"
+        },
+        {
+            "away_score" : "26",
+            "home_team" : "St.George Illawarra",
+            "date" : "03/09/17",
+            "away_team" : "Canterbury Bulldogs",
+            "home_score" : "20"
+        },
+        {
+            "away_team" : "New Zealand Warriors",
+            "home_score" : "28",
+            "away_score" : "16",
+            "home_team" : "Wests Tigers",
+            "date" : "03/09/17"
+        },
+        {
+            "home_score" : "24",
+            "away_team" : "Brisbane Broncos",
+            "date" : "08/09/17",
+            "home_team" : "Sydney Roosters",
+            "away_score" : "22"
+        },
+        {
+            "away_score" : "16",
+            "home_team" : "Melbourne Storm",
+            "date" : "09/09/17",
+            "away_team" : "Parramatta Eels",
+            "home_score" : "18"
+        },
+        {
+            "home_team" : "Manly Sea Eagles",
+            "date" : "09/09/17",
+            "away_score" : "22",
+            "away_team" : "Penrith Panthers",
+            "home_score" : "10"
+        },
+        {
+            "home_score" : "14",
+            "away_team" : "North Queensland Cowboys",
+            "date" : "10/09/17",
+            "home_team" : "Cronulla Sharks",
+            "away_score" : "15"
+        },
+        {
+            "away_score" : "6",
+            "home_team" : "Brisbane Broncos",
+            "date" : "15/09/17",
+            "home_score" : "13",
+            "away_team" : "Penrith Panthers"
+        },
+        {
+            "away_score" : "24",
+            "home_team" : "Parramatta Eels",
+            "date" : "16/09/17",
+            "away_team" : "North Queensland Cowboys",
+            "home_score" : "16"
+        },
+        {
+            "home_score" : "30",
+            "away_team" : "Brisbane Broncos",
+            "away_score" : "0",
+            "home_team" : "Melbourne Storm",
+            "date" : "22/09/17"
+        },
+        {
+            "home_team" : "Sydney Roosters",
+            "date" : "23/09/17",
+            "away_score" : "29",
+            "home_score" : "16",
+            "away_team" : "North Queensland Cowboys"
+        },
+        {
+            "home_team" : "Melbourne Storm",
+            "date" : "01/10/17",
+            "away_score" : "6",
+            "home_score" : "34",
+            "away_team" : "North Queensland Cowboys"
+        }
+    ],
+    "Super League" : [
+        {
+            "home_team" : "St Helens",
+            "date" : "09/02/17",
+            "away_score" : "4",
+            "home_score" : "6",
+            "away_team" : "Leeds Rhinos"
+        },
+        {
+            "home_team" : "Castleford Tigers",
+            "date" : "10/02/17",
+            "away_score" : "16",
+            "home_score" : "44",
+            "away_team" : "Leigh Centurions"
+        },
+        {
+            "away_team" : "Huddersfield",
+            "home_score" : "16",
+            "away_score" : "28",
+            "date" : "10/02/17",
+            "home_team" : "Widnes Vikings"
+        },
+        {
+            "home_score" : "16",
+            "away_team" : "Wigan Warriors",
+            "away_score" : "26",
+            "date" : "11/02/17",
+            "home_team" : "Salford Red Devils"
+        },
+        {
+            "away_score" : "12",
+            "home_team" : "Catalans Dragons",
+            "date" : "11/02/17",
+            "home_score" : "20",
+            "away_team" : "Warrington Wolves"
+        },
+        {
+            "home_team" : "Wakefield Trinity",
+            "date" : "12/02/17",
+            "away_score" : "12",
+            "away_team" : "Hull FC",
+            "home_score" : "8"
+        },
+        {
+            "away_score" : "30",
+            "date" : "16/02/17",
+            "home_team" : "Huddersfield",
+            "home_score" : "20",
+            "away_team" : "Salford Red Devils"
+        },
+        {
+            "away_team" : "Leeds Rhinos",
+            "home_score" : "14",
+            "home_team" : "Leigh Centurions",
+            "date" : "17/02/17",
+            "away_score" : "17"
+        },
+        {
+            "away_team" : "Catalans Dragons",
+            "home_score" : "14",
+            "away_score" : "16",
+            "date" : "23/02/17",
+            "home_team" : "Hull FC"
+        },
+        {
+            "away_team" : "Wakefield Trinity",
+            "home_score" : "24",
+            "home_team" : "Huddersfield",
+            "date" : "24/02/17",
+            "away_score" : "16"
+        },
+        {
+            "away_score" : "14",
+            "home_team" : "Leeds Rhinos",
+            "date" : "24/02/17",
+            "away_team" : "Salford Red Devils",
+            "home_score" : "20"
+        },
+        {
+            "home_score" : "24",
+            "away_team" : "St Helens",
+            "date" : "24/02/17",
+            "home_team" : "Leigh Centurions",
+            "away_score" : "16"
+        },
+        {
+            "home_score" : "22",
+            "away_team" : "Castleford Tigers",
+            "date" : "24/02/17",
+            "home_team" : "Warrington Wolves",
+            "away_score" : "30"
+        },
+        {
+            "home_score" : "26",
+            "away_team" : "Wigan Warriors",
+            "home_team" : "Widnes Vikings",
+            "date" : "24/02/17",
+            "away_score" : "28"
+        },
+        {
+            "away_team" : "Leeds Rhinos",
+            "home_score" : "66",
+            "date" : "02/03/17",
+            "home_team" : "Castleford Tigers",
+            "away_score" : "10"
+        },
+        {
+            "home_score" : "8",
+            "away_team" : "Hull FC",
+            "home_team" : "Huddersfield",
+            "date" : "02/03/17",
+            "away_score" : "48"
+        },
+        {
+            "home_team" : "St Helens",
+            "date" : "03/03/17",
+            "away_score" : "16",
+            "away_team" : "Wakefield Trinity",
+            "home_score" : "12"
+        },
+        {
+            "home_score" : "20",
+            "away_team" : "Leigh Centurions",
+            "away_score" : "0",
+            "home_team" : "Wigan Warriors",
+            "date" : "03/03/17"
+        },
+        {
+            "away_score" : "14",
+            "date" : "04/03/17",
+            "home_team" : "Salford Red Devils",
+            "home_score" : "24",
+            "away_team" : "Warrington Wolves"
+        },
+        {
+            "home_team" : "Catalans Dragons",
+            "date" : "04/03/17",
+            "away_score" : "14",
+            "home_score" : "14",
+            "away_team" : "Widnes Vikings"
+        },
+        {
+            "away_team" : "Wigan Warriors",
+            "home_score" : "16",
+            "away_score" : "38",
+            "home_team" : "Warrington Wolves",
+            "date" : "09/03/17"
+        },
+        {
+            "away_team" : "St Helens",
+            "home_score" : "24",
+            "date" : "10/03/17",
+            "home_team" : "Hull FC",
+            "away_score" : "14"
+        },
+        {
+            "date" : "10/03/17",
+            "home_team" : "Leeds Rhinos",
+            "away_score" : "10",
+            "home_score" : "46",
+            "away_team" : "Catalans Dragons"
+        },
+        {
+            "home_team" : "Leigh Centurions",
+            "date" : "10/03/17",
+            "away_score" : "0",
+            "away_team" : "Huddersfield",
+            "home_score" : "30"
+        },
+        {
+            "away_team" : "Salford Red Devils",
+            "home_score" : "24",
+            "away_score" : "22",
+            "home_team" : "Wakefield Trinity",
+            "date" : "12/03/17"
+        },
+        {
+            "home_score" : "0",
+            "away_team" : "Castleford Tigers",
+            "away_score" : "34",
+            "date" : "12/03/17",
+            "home_team" : "Widnes Vikings"
+        },
+        {
+            "away_team" : "Warrington Wolves",
+            "home_score" : "22",
+            "away_score" : "8",
+            "date" : "16/03/17",
+            "home_team" : "Leigh Centurions"
+        },
+        {
+            "home_score" : "32",
+            "away_team" : "Widnes Vikings",
+            "away_score" : "12",
+            "date" : "17/03/17",
+            "home_team" : "Hull FC"
+        },
+        {
+            "date" : "17/03/17",
+            "home_team" : "Leeds Rhinos",
+            "away_score" : "14",
+            "away_team" : "Wakefield Trinity",
+            "home_score" : "38"
+        },
+        {
+            "away_team" : "St Helens",
+            "home_score" : "24",
+            "away_score" : "28",
+            "date" : "18/03/17",
+            "home_team" : "Catalans Dragons"
+        },
+        {
+            "home_team" : "Salford Red Devils",
+            "date" : "19/03/17",
+            "away_score" : "12",
+            "home_score" : "13",
+            "away_team" : "Castleford Tigers"
+        },
+        {
+            "away_team" : "Huddersfield",
+            "home_score" : "16",
+            "home_team" : "Wigan Warriors",
+            "date" : "19/03/17",
+            "away_score" : "16"
+        },
+        {
+            "away_team" : "Leigh Centurions",
+            "home_score" : "28",
+            "away_score" : "24",
+            "date" : "23/03/17",
+            "home_team" : "Wakefield Trinity"
+        },
+        {
+            "away_score" : "28",
+            "date" : "24/03/17",
+            "home_team" : "Huddersfield",
+            "away_team" : "Leeds Rhinos",
+            "home_score" : "12"
+        },
+        {
+            "home_score" : "31",
+            "away_team" : "Warrington Wolves",
+            "away_score" : "6",
+            "home_team" : "St Helens",
+            "date" : "24/03/17"
+        },
+        {
+            "date" : "24/03/17",
+            "home_team" : "Widnes Vikings",
+            "away_score" : "46",
+            "home_score" : "10",
+            "away_team" : "Salford Red Devils"
+        },
+        {
+            "home_score" : "20",
+            "away_team" : "Hull FC",
+            "home_team" : "Wigan Warriors",
+            "date" : "24/03/17",
+            "away_score" : "22"
+        },
+        {
+            "home_score" : "43",
+            "away_team" : "Catalans Dragons",
+            "date" : "26/03/17",
+            "home_team" : "Castleford Tigers",
+            "away_score" : "26"
+        },
+        {
+            "date" : "30/03/17",
+            "home_team" : "Salford Red Devils",
+            "away_score" : "14",
+            "away_team" : "St Helens",
+            "home_score" : "22"
+        },
+        {
+            "home_score" : "52",
+            "away_team" : "Huddersfield",
+            "date" : "31/03/17",
+            "home_team" : "Castleford Tigers",
+            "away_score" : "16"
+        },
+        {
+            "home_score" : "26",
+            "away_team" : "Wigan Warriors",
+            "away_score" : "18",
+            "date" : "31/03/17",
+            "home_team" : "Leeds Rhinos"
+        },
+        {
+            "home_team" : "Warrington Wolves",
+            "date" : "01/04/17",
+            "away_score" : "22",
+            "away_team" : "Hull FC",
+            "home_score" : "22"
+        },
+        {
+            "home_score" : "24",
+            "away_team" : "Widnes Vikings",
+            "home_team" : "Leigh Centurions",
+            "date" : "01/04/17",
+            "away_score" : "37"
+        },
+        {
+            "home_score" : "18",
+            "away_team" : "Wakefield Trinity",
+            "away_score" : "38",
+            "date" : "01/04/17",
+            "home_team" : "Catalans Dragons"
+        },
+        {
+            "away_score" : "27",
+            "home_team" : "Wigan Warriors",
+            "date" : "06/04/17",
+            "home_score" : "10",
+            "away_team" : "Castleford Tigers"
+        },
+        {
+            "date" : "07/04/17",
+            "home_team" : "Hull FC",
+            "away_score" : "54",
+            "home_score" : "18",
+            "away_team" : "Salford Red Devils"
+        },
+        {
+            "date" : "07/04/17",
+            "home_team" : "Leigh Centurions",
+            "away_score" : "37",
+            "away_team" : "Catalans Dragons",
+            "home_score" : "26"
+        },
+        {
+            "away_score" : "14",
+            "home_team" : "St Helens",
+            "date" : "07/04/17",
+            "away_team" : "Huddersfield",
+            "home_score" : "14"
+        },
+        {
+            "home_score" : "30",
+            "away_team" : "Widnes Vikings",
+            "away_score" : "4",
+            "date" : "07/04/17",
+            "home_team" : "Wakefield Trinity"
+        },
+        {
+            "away_team" : "Leeds Rhinos",
+            "home_score" : "25",
+            "away_score" : "14",
+            "home_team" : "Warrington Wolves",
+            "date" : "07/04/17"
+        },
+        {
+            "date" : "12/04/17",
+            "home_team" : "Huddersfield",
+            "away_score" : "29",
+            "home_score" : "22",
+            "away_team" : "Catalans Dragons"
+        },
+        {
+            "away_team" : "Warrington Wolves",
+            "home_score" : "10",
+            "away_score" : "19",
+            "date" : "13/04/17",
+            "home_team" : "Widnes Vikings"
+        },
+        {
+            "away_score" : "18",
+            "date" : "14/04/17",
+            "home_team" : "Wigan Warriors",
+            "home_score" : "29",
+            "away_team" : "St Helens"
+        },
+        {
+            "away_score" : "24",
+            "date" : "14/04/17",
+            "home_team" : "Castleford Tigers",
+            "home_score" : "42",
+            "away_team" : "Wakefield Trinity"
+        },
+        {
+            "home_score" : "24",
+            "away_team" : "Leeds Rhinos",
+            "away_score" : "52",
+            "home_team" : "Hull FC",
+            "date" : "14/04/17"
+        },
+        {
+            "home_team" : "Salford Red Devils",
+            "date" : "14/04/17",
+            "away_score" : "6",
+            "home_score" : "12",
+            "away_team" : "Leigh Centurions"
+        },
+        {
+            "date" : "17/04/17",
+            "home_team" : "Wakefield Trinity",
+            "away_score" : "16",
+            "away_team" : "Wigan Warriors",
+            "home_score" : "10"
+        },
+        {
+            "away_team" : "Widnes Vikings",
+            "home_score" : "42",
+            "home_team" : "Leeds Rhinos",
+            "date" : "17/04/17",
+            "away_score" : "22"
+        },
+        {
+            "home_score" : "10",
+            "away_team" : "Hull FC",
+            "date" : "17/04/17",
+            "home_team" : "Leigh Centurions",
+            "away_score" : "24"
+        },
+        {
+            "away_team" : "Castleford Tigers",
+            "home_score" : "26",
+            "away_score" : "22",
+            "home_team" : "St Helens",
+            "date" : "17/04/17"
+        },
+        {
+            "home_score" : "26",
+            "away_team" : "Huddersfield",
+            "date" : "17/04/17",
+            "home_team" : "Warrington Wolves",
+            "away_score" : "24"
+        },
+        {
+            "home_team" : "Catalans Dragons",
+            "date" : "17/04/17",
+            "away_score" : "6",
+            "home_score" : "38",
+            "away_team" : "Salford Red Devils"
+        },
+        {
+            "home_score" : "16",
+            "away_team" : "St Helens",
+            "home_team" : "Widnes Vikings",
+            "date" : "21/04/17",
+            "away_score" : "14"
+        },
+        {
+            "away_team" : "Wakefield Trinity",
+            "home_score" : "22",
+            "date" : "22/04/17",
+            "home_team" : "Warrington Wolves",
+            "away_score" : "20"
+        },
+        {
+            "home_score" : "26",
+            "away_team" : "Castleford Tigers",
+            "away_score" : "24",
+            "home_team" : "Hull FC",
+            "date" : "23/04/17"
+        },
+        {
+            "away_score" : "22",
+            "home_team" : "Wigan Warriors",
+            "date" : "23/04/17",
+            "away_team" : "Catalans Dragons",
+            "home_score" : "42"
+        },
+        {
+            "home_score" : "12",
+            "away_team" : "Huddersfield",
+            "home_team" : "Leeds Rhinos",
+            "date" : "27/04/17",
+            "away_score" : "31"
+        },
+        {
+            "away_score" : "10",
+            "home_team" : "Hull FC",
+            "date" : "28/04/17",
+            "away_team" : "Warrington Wolves",
+            "home_score" : "34"
+        },
+        {
+            "away_score" : "6",
+            "home_team" : "St Helens",
+            "date" : "28/04/17",
+            "home_score" : "28",
+            "away_team" : "Leigh Centurions"
+        },
+        {
+            "home_score" : "54",
+            "away_team" : "Wigan Warriors",
+            "home_team" : "Castleford Tigers",
+            "date" : "29/04/17",
+            "away_score" : "4"
+        },
+        {
+            "away_score" : "10",
+            "date" : "30/04/17",
+            "home_team" : "Salford Red Devils",
+            "home_score" : "30",
+            "away_team" : "Widnes Vikings"
+        },
+        {
+            "away_team" : "Catalans Dragons",
+            "home_score" : "30",
+            "home_team" : "Wakefield Trinity",
+            "date" : "30/04/17",
+            "away_score" : "10"
+        },
+        {
+            "home_score" : "21",
+            "away_team" : "Castleford Tigers",
+            "home_team" : "Huddersfield",
+            "date" : "04/05/17",
+            "away_score" : "26"
+        },
+        {
+            "away_team" : "St Helens",
+            "home_score" : "40",
+            "away_score" : "18",
+            "date" : "05/05/17",
+            "home_team" : "Warrington Wolves"
+        },
+        {
+            "date" : "05/05/17",
+            "home_team" : "Wigan Warriors",
+            "away_score" : "31",
+            "home_score" : "16",
+            "away_team" : "Salford Red Devils"
+        },
+        {
+            "date" : "06/05/17",
+            "home_team" : "Catalans Dragons",
+            "away_score" : "30",
+            "away_team" : "Leeds Rhinos",
+            "home_score" : "24"
+        },
+        {
+            "away_score" : "40",
+            "date" : "06/05/17",
+            "home_team" : "Leigh Centurions",
+            "home_score" : "26",
+            "away_team" : "Wakefield Trinity"
+        },
+        {
+            "away_team" : "Hull FC",
+            "home_score" : "22",
+            "away_score" : "33",
+            "home_team" : "Widnes Vikings",
+            "date" : "07/05/17"
+        },
+        {
+            "home_score" : "12",
+            "away_team" : "Wakefield Trinity",
+            "away_score" : "34",
+            "date" : "20/05/17",
+            "home_team" : "Widnes Vikings"
+        },
+        {
+            "home_score" : "0",
+            "away_team" : "St Helens",
+            "home_team" : "Hull FC",
+            "date" : "20/05/17",
+            "away_score" : "45"
+        },
+        {
+            "home_score" : "24",
+            "away_team" : "Warrington Wolves",
+            "away_score" : "24",
+            "date" : "20/05/17",
+            "home_team" : "Wigan Warriors"
+        },
+        {
+            "away_team" : "Huddersfield",
+            "home_score" : "10",
+            "away_score" : "18",
+            "home_team" : "Catalans Dragons",
+            "date" : "21/05/17"
+        },
+        {
+            "away_score" : "36",
+            "home_team" : "Leigh Centurions",
+            "date" : "21/05/17",
+            "away_team" : "Salford Red Devils",
+            "home_score" : "22"
+        },
+        {
+            "home_score" : "29",
+            "away_team" : "Leeds Rhinos",
+            "away_score" : "18",
+            "home_team" : "Castleford Tigers",
+            "date" : "21/05/17"
+        },
+        {
+            "home_team" : "St Helens",
+            "date" : "25/05/17",
+            "away_score" : "19",
+            "away_team" : "Wigan Warriors",
+            "home_score" : "22"
+        },
+        {
+            "away_team" : "Widnes Vikings",
+            "home_score" : "32",
+            "away_score" : "22",
+            "date" : "26/05/17",
+            "home_team" : "Castleford Tigers"
+        },
+        {
+            "away_team" : "Leigh Centurions",
+            "home_score" : "22",
+            "away_score" : "26",
+            "home_team" : "Hull FC",
+            "date" : "26/05/17"
+        },
+        {
+            "home_score" : "40",
+            "away_team" : "Warrington Wolves",
+            "date" : "26/05/17",
+            "home_team" : "Leeds Rhinos",
+            "away_score" : "0"
+        },
+        {
+            "away_score" : "12",
+            "date" : "26/05/17",
+            "home_team" : "Salford Red Devils",
+            "home_score" : "50",
+            "away_team" : "Catalans Dragons"
+        },
+        {
+            "date" : "26/05/17",
+            "home_team" : "Wakefield Trinity",
+            "away_score" : "26",
+            "home_score" : "28",
+            "away_team" : "Huddersfield"
+        },
+        {
+            "home_score" : "12",
+            "away_team" : "Salford Red Devils",
+            "date" : "29/05/17",
+            "home_team" : "Warrington Wolves",
+            "away_score" : "38"
+        },
+        {
+            "away_team" : "Leeds Rhinos",
+            "home_score" : "28",
+            "home_team" : "Widnes Vikings",
+            "date" : "29/05/17",
+            "away_score" : "20"
+        },
+        {
+            "home_team" : "Wigan Warriors",
+            "date" : "29/05/17",
+            "away_score" : "42",
+            "away_team" : "Wakefield Trinity",
+            "home_score" : "30"
+        },
+        {
+            "away_team" : "Castleford Tigers",
+            "home_score" : "0",
+            "home_team" : "Leigh Centurions",
+            "date" : "29/05/17",
+            "away_score" : "38"
+        },
+        {
+            "away_team" : "Hull FC",
+            "home_score" : "23",
+            "date" : "29/05/17",
+            "home_team" : "Catalans Dragons",
+            "away_score" : "18"
+        },
+        {
+            "home_score" : "22",
+            "away_team" : "Leigh Centurions",
+            "home_team" : "Leeds Rhinos",
+            "date" : "02/06/17",
+            "away_score" : "14"
+        },
+        {
+            "home_score" : "39",
+            "away_team" : "Wigan Warriors",
+            "away_score" : "26",
+            "date" : "03/06/17",
+            "home_team" : "Hull FC"
+        },
+        {
+            "home_score" : "44",
+            "away_team" : "Warrington Wolves",
+            "away_score" : "4",
+            "home_team" : "Huddersfield",
+            "date" : "04/06/17"
+        },
+        {
+            "away_team" : "Wakefield Trinity",
+            "home_score" : "24",
+            "home_team" : "Salford Red Devils",
+            "date" : "04/06/17",
+            "away_score" : "34"
+        },
+        {
+            "home_score" : "26",
+            "away_team" : "Catalans Dragons",
+            "date" : "04/06/17",
+            "home_team" : "Widnes Vikings",
+            "away_score" : "6"
+        },
+        {
+            "home_score" : "16",
+            "away_team" : "St Helens",
+            "date" : "04/06/17",
+            "home_team" : "Castleford Tigers",
+            "away_score" : "12"
+        },
+        {
+            "home_score" : "50",
+            "away_team" : "Wigan Warriors",
+            "away_score" : "34",
+            "date" : "08/06/17",
+            "home_team" : "Leigh Centurions"
+        },
+        {
+            "home_score" : "10",
+            "away_team" : "Hull FC",
+            "date" : "09/06/17",
+            "home_team" : "Salford Red Devils",
+            "away_score" : "34"
+        },
+        {
+            "date" : "09/06/17",
+            "home_team" : "St Helens",
+            "away_score" : "10",
+            "home_score" : "26",
+            "away_team" : "Widnes Vikings"
+        },
+        {
+            "away_score" : "56",
+            "home_team" : "Catalans Dragons",
+            "date" : "10/06/17",
+            "home_score" : "12",
+            "away_team" : "Huddersfield"
+        },
+        {
+            "date" : "10/06/17",
+            "home_team" : "Wakefield Trinity",
+            "away_score" : "18",
+            "home_score" : "16",
+            "away_team" : "Leeds Rhinos"
+        },
+        {
+            "home_score" : "36",
+            "away_team" : "Warrington Wolves",
+            "away_score" : "16",
+            "date" : "11/06/17",
+            "home_team" : "Castleford Tigers"
+        },
+        {
+            "home_team" : "Huddersfield",
+            "date" : "16/06/17",
+            "away_score" : "16",
+            "away_team" : "St Helens",
+            "home_score" : "24"
+        },
+        {
+            "home_team" : "Widnes Vikings",
+            "date" : "22/06/17",
+            "away_score" : "10",
+            "home_score" : "36",
+            "away_team" : "Leigh Centurions"
+        },
+        {
+            "date" : "23/06/17",
+            "home_team" : "Huddersfield",
+            "away_score" : "19",
+            "home_score" : "19",
+            "away_team" : "Wigan Warriors"
+        },
+        {
+            "home_score" : "40",
+            "away_team" : "Wakefield Trinity",
+            "away_score" : "18",
+            "date" : "23/06/17",
+            "home_team" : "Hull FC"
+        },
+        {
+            "home_score" : "12",
+            "away_team" : "Castleford Tigers",
+            "away_score" : "23",
+            "date" : "23/06/17",
+            "home_team" : "Leeds Rhinos"
+        },
+        {
+            "home_team" : "St Helens",
+            "date" : "23/06/17",
+            "away_score" : "24",
+            "home_score" : "25",
+            "away_team" : "Salford Red Devils"
+        },
+        {
+            "home_score" : "24",
+            "away_team" : "Catalans Dragons",
+            "away_score" : "16",
+            "home_team" : "Warrington Wolves",
+            "date" : "24/06/17"
+        },
+        {
+            "away_score" : "22",
+            "date" : "29/06/17",
+            "home_team" : "Leeds Rhinos",
+            "home_score" : "24",
+            "away_team" : "St Helens"
+        },
+        {
+            "away_score" : "22",
+            "home_team" : "Castleford Tigers",
+            "date" : "30/06/17",
+            "home_score" : "24",
+            "away_team" : "Hull FC"
+        },
+        {
+            "away_score" : "36",
+            "home_team" : "Catalans Dragons",
+            "date" : "01/07/17",
+            "away_team" : "Leigh Centurions",
+            "home_score" : "40"
+        },
+        {
+            "home_score" : "26",
+            "away_team" : "Warrington Wolves",
+            "away_score" : "12",
+            "home_team" : "Wakefield Trinity",
+            "date" : "01/07/17"
+        },
+        {
+            "home_team" : "Salford Red Devils",
+            "date" : "02/07/17",
+            "away_score" : "20",
+            "away_team" : "Huddersfield",
+            "home_score" : "36"
+        },
+        {
+            "home_team" : "Wigan Warriors",
+            "date" : "02/07/17",
+            "away_score" : "12",
+            "home_score" : "28",
+            "away_team" : "Widnes Vikings"
+        },
+        {
+            "away_score" : "25",
+            "date" : "06/07/17",
+            "home_team" : "Wakefield Trinity",
+            "home_score" : "24",
+            "away_team" : "Castleford Tigers"
+        },
+        {
+            "home_team" : "Huddersfield",
+            "date" : "07/07/17",
+            "away_score" : "0",
+            "away_team" : "Widnes Vikings",
+            "home_score" : "40"
+        },
+        {
+            "home_team" : "St Helens",
+            "date" : "07/07/17",
+            "away_score" : "12",
+            "away_team" : "Hull FC",
+            "home_score" : "19"
+        },
+        {
+            "away_team" : "Leigh Centurions",
+            "home_score" : "50",
+            "home_team" : "Warrington Wolves",
+            "date" : "07/07/17",
+            "away_score" : "10"
+        },
+        {
+            "away_team" : "Wigan Warriors",
+            "home_score" : "10",
+            "away_score" : "32",
+            "date" : "08/07/17",
+            "home_team" : "Catalans Dragons"
+        },
+        {
+            "home_team" : "Salford Red Devils",
+            "date" : "09/07/17",
+            "away_score" : "50",
+            "home_score" : "24",
+            "away_team" : "Leeds Rhinos"
+        },
+        {
+            "away_score" : "16",
+            "date" : "13/07/17",
+            "home_team" : "Wigan Warriors",
+            "away_team" : "Warrington Wolves",
+            "home_score" : "10"
+        },
+        {
+            "home_score" : "38",
+            "away_team" : "Salford Red Devils",
+            "home_team" : "Castleford Tigers",
+            "date" : "14/07/17",
+            "away_score" : "14"
+        },
+        {
+            "away_team" : "Leigh Centurions",
+            "home_score" : "26",
+            "home_team" : "Huddersfield",
+            "date" : "14/07/17",
+            "away_score" : "4"
+        },
+        {
+            "away_score" : "7",
+            "date" : "14/07/17",
+            "home_team" : "Leeds Rhinos",
+            "away_team" : "Hull FC",
+            "home_score" : "10"
+        },
+        {
+            "home_score" : "8",
+            "away_team" : "Wakefield Trinity",
+            "home_team" : "Widnes Vikings",
+            "date" : "14/07/17",
+            "away_score" : "36"
+        },
+        {
+            "home_team" : "St Helens",
+            "date" : "16/07/17",
+            "away_score" : "28",
+            "home_score" : "46",
+            "away_team" : "Catalans Dragons"
+        },
+        {
+            "away_team" : "Widnes Vikings",
+            "home_score" : "22",
+            "away_score" : "6",
+            "date" : "20/07/17",
+            "home_team" : "Warrington Wolves"
+        },
+        {
+            "away_score" : "10",
+            "home_team" : "Hull FC",
+            "date" : "21/07/17",
+            "home_score" : "14",
+            "away_team" : "Huddersfield"
+        },
+        {
+            "away_score" : "0",
+            "home_team" : "Leigh Centurions",
+            "date" : "21/07/17",
+            "away_team" : "Salford Red Devils",
+            "home_score" : "25"
+        },
+        {
+            "date" : "21/07/17",
+            "home_team" : "Wigan Warriors",
+            "away_score" : "0",
+            "away_team" : "Leeds Rhinos",
+            "home_score" : "34"
+        },
+        {
+            "home_score" : "24",
+            "away_team" : "Castleford Tigers",
+            "away_score" : "32",
+            "home_team" : "Catalans Dragons",
+            "date" : "22/07/17"
+        },
+        {
+            "away_score" : "41",
+            "home_team" : "Wakefield Trinity",
+            "date" : "23/07/17",
+            "home_score" : "16",
+            "away_team" : "St Helens"
+        },
+        {
+            "home_team" : "Castleford Tigers",
+            "date" : "03/08/17",
+            "away_score" : "26",
+            "home_score" : "12",
+            "away_team" : "St Helens"
+        },
+        {
+            "home_score" : "36",
+            "away_team" : "Wakefield Trinity",
+            "home_team" : "Huddersfield",
+            "date" : "04/08/17",
+            "away_score" : "6"
+        },
+        {
+            "date" : "04/08/17",
+            "home_team" : "Hull FC",
+            "away_score" : "18",
+            "home_score" : "32",
+            "away_team" : "Salford Red Devils"
+        },
+        {
+            "away_team" : "Wigan Warriors",
+            "home_score" : "32",
+            "home_team" : "Leeds Rhinos",
+            "date" : "04/08/17",
+            "away_score" : "16"
+        },
+        {
+            "away_team" : "Leeds Rhinos",
+            "home_score" : "38",
+            "home_team" : "Wakefield Trinity",
+            "date" : "10/08/17",
+            "away_score" : "6"
+        },
+        {
+            "away_team" : "Castleford Tigers",
+            "home_score" : "4",
+            "away_score" : "23",
+            "home_team" : "Salford Red Devils",
+            "date" : "11/08/17"
+        },
+        {
+            "away_team" : "Hull FC",
+            "home_score" : "6",
+            "home_team" : "St Helens",
+            "date" : "11/08/17",
+            "away_score" : "8"
+        },
+        {
+            "away_score" : "4",
+            "home_team" : "Wigan Warriors",
+            "date" : "11/08/17",
+            "home_score" : "18",
+            "away_team" : "Huddersfield"
+        },
+        {
+            "date" : "17/08/17",
+            "home_team" : "Castleford Tigers",
+            "away_score" : "20",
+            "home_score" : "45",
+            "away_team" : "Wakefield Trinity"
+        },
+        {
+            "home_score" : "18",
+            "away_team" : "Huddersfield",
+            "away_score" : "46",
+            "date" : "18/08/17",
+            "home_team" : "Hull FC"
+        },
+        {
+            "away_score" : "14",
+            "date" : "18/08/17",
+            "home_team" : "Leeds Rhinos",
+            "home_score" : "16",
+            "away_team" : "St Helens"
+        },
+        {
+            "away_team" : "Salford Red Devils",
+            "home_score" : "42",
+            "home_team" : "Wigan Warriors",
+            "date" : "18/08/17",
+            "away_score" : "6"
+        },
+        {
+            "home_score" : "38",
+            "away_team" : "Hull FC",
+            "home_team" : "Leeds Rhinos",
+            "date" : "31/08/17",
+            "away_score" : "26"
+        },
+        {
+            "away_score" : "24",
+            "home_team" : "Huddersfield",
+            "date" : "01/09/17",
+            "home_score" : "16",
+            "away_team" : "Castleford Tigers"
+        },
+        {
+            "home_score" : "18",
+            "away_team" : "Wakefield Trinity",
+            "date" : "01/09/17",
+            "home_team" : "Salford Red Devils",
+            "away_score" : "43"
+        },
+        {
+            "home_score" : "16",
+            "away_team" : "Wigan Warriors",
+            "date" : "01/09/17",
+            "home_team" : "St Helens",
+            "away_score" : "26"
+        },
+        {
+            "home_score" : "16",
+            "away_team" : "St Helens",
+            "home_team" : "Wakefield Trinity",
+            "date" : "07/09/17",
+            "away_score" : "18"
+        },
+        {
+            "home_score" : "38",
+            "away_team" : "Leeds Rhinos",
+            "home_team" : "Castleford Tigers",
+            "date" : "08/09/17",
+            "away_score" : "24"
+        },
+        {
+            "home_score" : "22",
+            "away_team" : "Wigan Warriors",
+            "away_score" : "30",
+            "home_team" : "Hull FC",
+            "date" : "08/09/17"
+        },
+        {
+            "date" : "09/09/17",
+            "home_team" : "Salford Red Devils",
+            "away_score" : "14",
+            "home_score" : "52",
+            "away_team" : "Huddersfield"
+        },
+        {
+            "away_team" : "Wakefield Trinity",
+            "home_score" : "19",
+            "home_team" : "Hull FC",
+            "date" : "14/09/17",
+            "away_score" : "18"
+        },
+        {
+            "away_score" : "2",
+            "home_team" : "Leeds Rhinos",
+            "date" : "15/09/17",
+            "away_team" : "Salford Red Devils",
+            "home_score" : "44"
+        },
+        {
+            "away_team" : "Huddersfield",
+            "home_score" : "40",
+            "home_team" : "St Helens",
+            "date" : "15/09/17",
+            "away_score" : "16"
+        },
+        {
+            "home_score" : "20",
+            "away_team" : "Castleford Tigers",
+            "away_score" : "38",
+            "home_team" : "Wigan Warriors",
+            "date" : "17/09/17"
+        },
+        {
+            "away_score" : "30",
+            "date" : "21/09/17",
+            "home_team" : "Salford Red Devils",
+            "home_score" : "4",
+            "away_team" : "St Helens"
+        },
+        {
+            "home_score" : "16",
+            "away_team" : "Hull FC",
+            "home_team" : "Castleford Tigers",
+            "date" : "22/09/17",
+            "away_score" : "48"
+        },
+        {
+            "home_score" : "12",
+            "away_team" : "Leeds Rhinos",
+            "away_score" : "36",
+            "home_team" : "Huddersfield",
+            "date" : "22/09/17"
+        },
+        {
+            "home_team" : "Wakefield Trinity",
+            "date" : "23/09/17",
+            "away_score" : "0",
+            "away_team" : "Wigan Warriors",
+            "home_score" : "32"
+        },
+        {
+            "home_score" : "23",
+            "away_team" : "St Helens",
+            "away_score" : "22",
+            "date" : "28/09/17",
+            "home_team" : "Castleford Tigers"
+        },
+        {
+            "away_team" : "Hull FC",
+            "home_score" : "18",
+            "away_score" : "16",
+            "date" : "29/09/17",
+            "home_team" : "Leeds Rhinos"
+        },
+        {
+            "date" : "07/10/17",
+            "home_team" : "Castleford Tigers",
+            "away_score" : "24",
+            "away_team" : "Leeds Rhinos",
+            "home_score" : "6"
+        }
+    ],
+    "Championship" : [
+        {
+            "date" : "04/02/17",
+            "home_team" : "Toulouse Olympique",
+            "away_score" : "6",
+            "home_score" : "44",
+            "away_team" : "Batley"
+        },
+        {
+            "home_score" : "26",
+            "away_team" : "Featherstone Rovers",
+            "date" : "05/02/17",
+            "home_team" : "Halifax",
+            "away_score" : "32"
+        },
+        {
+            "away_team" : "Bradford Bulls",
+            "home_score" : "54",
+            "home_team" : "Hull KR",
+            "date" : "05/02/17",
+            "away_score" : "24"
+        },
+        {
+            "date" : "05/02/17",
+            "home_team" : "Oldham",
+            "away_score" : "10",
+            "away_team" : "Sheffield",
+            "home_score" : "26"
+        },
+        {
+            "home_team" : "Rochdale Hornets",
+            "date" : "05/02/17",
+            "away_score" : "0",
+            "away_team" : "Dewsbury Rams",
+            "home_score" : "46"
+        },
+        {
+            "date" : "05/02/17",
+            "home_team" : "Swinton",
+            "away_score" : "26",
+            "away_team" : "London Broncos",
+            "home_score" : "23"
+        },
+        {
+            "away_score" : "6",
+            "home_team" : "Batley",
+            "date" : "12/02/17",
+            "home_score" : "24",
+            "away_team" : "Halifax"
+        },
+        {
+            "away_team" : "Rochdale Hornets",
+            "home_score" : "14",
+            "date" : "12/02/17",
+            "home_team" : "Bradford Bulls",
+            "away_score" : "22"
+        },
+        {
+            "home_team" : "Dewsbury Rams",
+            "date" : "12/02/17",
+            "away_score" : "8",
+            "away_team" : "Swinton",
+            "home_score" : "6"
+        },
+        {
+            "away_score" : "6",
+            "home_team" : "Featherstone Rovers",
+            "date" : "12/02/17",
+            "away_team" : "Oldham",
+            "home_score" : "8"
+        },
+        {
+            "date" : "12/02/17",
+            "home_team" : "London Broncos",
+            "away_score" : "28",
+            "away_team" : "Hull KR",
+            "home_score" : "22"
+        },
+        {
+            "date" : "12/02/17",
+            "home_team" : "Sheffield",
+            "away_score" : "14",
+            "away_team" : "Toulouse Olympique",
+            "home_score" : "32"
+        },
+        {
+            "away_team" : "Dewsbury Rams",
+            "home_score" : "56",
+            "away_score" : "2",
+            "date" : "18/02/17",
+            "home_team" : "Toulouse Olympique"
+        },
+        {
+            "home_score" : "6",
+            "away_team" : "Featherstone Rovers",
+            "away_score" : "32",
+            "home_team" : "Batley",
+            "date" : "19/02/17"
+        },
+        {
+            "home_score" : "42",
+            "away_team" : "Sheffield",
+            "away_score" : "16",
+            "date" : "19/02/17",
+            "home_team" : "Halifax"
+        },
+        {
+            "away_score" : "20",
+            "home_team" : "Oldham",
+            "date" : "19/02/17",
+            "home_score" : "18",
+            "away_team" : "London Broncos"
+        },
+        {
+            "away_score" : "28",
+            "home_team" : "Rochdale Hornets",
+            "date" : "19/02/17",
+            "away_team" : "Hull KR",
+            "home_score" : "18"
+        },
+        {
+            "home_score" : "28",
+            "away_team" : "Bradford Bulls",
+            "away_score" : "35",
+            "home_team" : "Swinton",
+            "date" : "19/02/17"
+        },
+        {
+            "home_score" : "29",
+            "away_team" : "Toulouse Olympique",
+            "date" : "26/02/17",
+            "home_team" : "Bradford Bulls",
+            "away_score" : "22"
+        },
+        {
+            "away_score" : "20",
+            "date" : "26/02/17",
+            "home_team" : "Dewsbury Rams",
+            "home_score" : "6",
+            "away_team" : "London Broncos"
+        },
+        {
+            "away_score" : "0",
+            "home_team" : "Hull KR",
+            "date" : "26/02/17",
+            "home_score" : "48",
+            "away_team" : "Oldham"
+        },
+        {
+            "home_team" : "Rochdale Hornets",
+            "date" : "26/02/17",
+            "away_score" : "20",
+            "away_team" : "Halifax",
+            "home_score" : "6"
+        },
+        {
+            "away_team" : "Batley",
+            "home_score" : "10",
+            "away_score" : "54",
+            "home_team" : "Sheffield",
+            "date" : "26/02/17"
+        },
+        {
+            "home_team" : "Swinton",
+            "date" : "26/02/17",
+            "away_score" : "30",
+            "away_team" : "Featherstone Rovers",
+            "home_score" : "13"
+        },
+        {
+            "home_team" : "Batley",
+            "date" : "05/03/17",
+            "away_score" : "18",
+            "away_team" : "Swinton",
+            "home_score" : "22"
+        },
+        {
+            "date" : "05/03/17",
+            "home_team" : "Featherstone Rovers",
+            "away_score" : "10",
+            "home_score" : "9",
+            "away_team" : "Rochdale Hornets"
+        },
+        {
+            "away_score" : "12",
+            "home_team" : "Halifax",
+            "date" : "05/03/17",
+            "away_team" : "Toulouse Olympique",
+            "home_score" : "10"
+        },
+        {
+            "away_score" : "10",
+            "date" : "05/03/17",
+            "home_team" : "Hull KR",
+            "away_team" : "Sheffield",
+            "home_score" : "50"
+        },
+        {
+            "home_score" : "42",
+            "away_team" : "Bradford Bulls",
+            "away_score" : "12",
+            "date" : "05/03/17",
+            "home_team" : "London Broncos"
+        },
+        {
+            "home_team" : "Toulouse Olympique",
+            "date" : "11/03/17",
+            "away_score" : "28",
+            "away_team" : "Swinton",
+            "home_score" : "36"
+        },
+        {
+            "date" : "12/03/17",
+            "home_team" : "Bradford Bulls",
+            "away_score" : "22",
+            "home_score" : "44",
+            "away_team" : "Batley"
+        },
+        {
+            "home_score" : "6",
+            "away_team" : "Hull KR",
+            "away_score" : "48",
+            "date" : "12/03/17",
+            "home_team" : "Dewsbury Rams"
+        },
+        {
+            "away_score" : "6",
+            "home_team" : "Halifax",
+            "date" : "12/03/17",
+            "away_team" : "London Broncos",
+            "home_score" : "19"
+        },
+        {
+            "away_score" : "26",
+            "date" : "12/03/17",
+            "home_team" : "Rochdale Hornets",
+            "home_score" : "26",
+            "away_team" : "Oldham"
+        },
+        {
+            "away_score" : "47",
+            "date" : "12/03/17",
+            "home_team" : "Sheffield",
+            "home_score" : "22",
+            "away_team" : "Featherstone Rovers"
+        },
+        {
+            "date" : "26/03/17",
+            "home_team" : "Batley",
+            "away_score" : "10",
+            "home_score" : "50",
+            "away_team" : "Oldham"
+        },
+        {
+            "away_team" : "Dewsbury Rams",
+            "home_score" : "56",
+            "away_score" : "18",
+            "home_team" : "Bradford Bulls",
+            "date" : "26/03/17"
+        },
+        {
+            "date" : "26/03/17",
+            "home_team" : "Featherstone Rovers",
+            "away_score" : "34",
+            "away_team" : "Toulouse Olympique",
+            "home_score" : "26"
+        },
+        {
+            "away_score" : "14",
+            "date" : "26/03/17",
+            "home_team" : "Hull KR",
+            "away_team" : "Halifax",
+            "home_score" : "28"
+        },
+        {
+            "home_score" : "28",
+            "away_team" : "Rochdale Hornets",
+            "away_score" : "8",
+            "date" : "26/03/17",
+            "home_team" : "London Broncos"
+        },
+        {
+            "date" : "26/03/17",
+            "home_team" : "Swinton",
+            "away_score" : "28",
+            "away_team" : "Sheffield",
+            "home_score" : "24"
+        },
+        {
+            "away_score" : "38",
+            "home_team" : "Dewsbury Rams",
+            "date" : "02/04/17",
+            "home_score" : "6",
+            "away_team" : "Featherstone Rovers"
+        },
+        {
+            "home_score" : "38",
+            "away_team" : "Swinton",
+            "date" : "02/04/17",
+            "home_team" : "Halifax",
+            "away_score" : "28"
+        },
+        {
+            "date" : "02/04/17",
+            "home_team" : "Hull KR",
+            "away_score" : "16",
+            "away_team" : "Batley",
+            "home_score" : "50"
+        },
+        {
+            "date" : "02/04/17",
+            "home_team" : "Oldham",
+            "away_score" : "22",
+            "home_score" : "26",
+            "away_team" : "Bradford Bulls"
+        },
+        {
+            "away_score" : "52",
+            "home_team" : "Rochdale Hornets",
+            "date" : "02/04/17",
+            "away_team" : "Toulouse Olympique",
+            "home_score" : "14"
+        },
+        {
+            "home_score" : "32",
+            "away_team" : "London Broncos",
+            "away_score" : "20",
+            "home_team" : "Sheffield",
+            "date" : "02/04/17"
+        },
+        {
+            "home_score" : "58",
+            "away_team" : "Oldham",
+            "home_team" : "Toulouse Olympique",
+            "date" : "08/04/17",
+            "away_score" : "18"
+        },
+        {
+            "away_score" : "36",
+            "date" : "09/04/17",
+            "home_team" : "Batley",
+            "home_score" : "38",
+            "away_team" : "Rochdale Hornets"
+        },
+        {
+            "home_score" : "48",
+            "away_team" : "Sheffield",
+            "away_score" : "16",
+            "home_team" : "Bradford Bulls",
+            "date" : "09/04/17"
+        },
+        {
+            "home_score" : "38",
+            "away_team" : "London Broncos",
+            "away_score" : "18",
+            "date" : "09/04/17",
+            "home_team" : "Featherstone Rovers"
+        },
+        {
+            "away_team" : "Dewsbury Rams",
+            "home_score" : "34",
+            "date" : "09/04/17",
+            "home_team" : "Halifax",
+            "away_score" : "6"
+        },
+        {
+            "away_team" : "Hull KR",
+            "home_score" : "18",
+            "away_score" : "52",
+            "home_team" : "Swinton",
+            "date" : "09/04/17"
+        },
+        {
+            "away_team" : "Toulouse Olympique",
+            "home_score" : "30",
+            "away_score" : "16",
+            "home_team" : "London Broncos",
+            "date" : "14/04/17"
+        },
+        {
+            "home_team" : "Dewsbury Rams",
+            "date" : "14/04/17",
+            "away_score" : "4",
+            "home_score" : "20",
+            "away_team" : "Batley"
+        },
+        {
+            "home_team" : "Hull KR",
+            "date" : "14/04/17",
+            "away_score" : "22",
+            "home_score" : "30",
+            "away_team" : "Featherstone Rovers"
+        },
+        {
+            "away_score" : "18",
+            "date" : "14/04/17",
+            "home_team" : "Oldham",
+            "away_team" : "Swinton",
+            "home_score" : "22"
+        },
+        {
+            "home_score" : "18",
+            "away_team" : "Sheffield",
+            "away_score" : "42",
+            "date" : "14/04/17",
+            "home_team" : "Rochdale Hornets"
+        },
+        {
+            "home_score" : "12",
+            "away_team" : "Halifax",
+            "home_team" : "Bradford Bulls",
+            "date" : "14/04/17",
+            "away_score" : "22"
+        },
+        {
+            "away_score" : "42",
+            "date" : "17/04/17",
+            "home_team" : "Batley",
+            "home_score" : "4",
+            "away_team" : "London Broncos"
+        },
+        {
+            "home_team" : "Featherstone Rovers",
+            "date" : "17/04/17",
+            "away_score" : "18",
+            "away_team" : "Bradford Bulls",
+            "home_score" : "44"
+        },
+        {
+            "away_team" : "Rochdale Hornets",
+            "home_score" : "23",
+            "away_score" : "22",
+            "home_team" : "Swinton",
+            "date" : "17/04/17"
+        },
+        {
+            "away_team" : "Hull KR",
+            "home_score" : "14",
+            "away_score" : "6",
+            "date" : "17/04/17",
+            "home_team" : "Toulouse Olympique"
+        },
+        {
+            "home_score" : "16",
+            "away_team" : "Oldham",
+            "home_team" : "Halifax",
+            "date" : "17/04/17",
+            "away_score" : "14"
+        },
+        {
+            "home_team" : "Sheffield",
+            "date" : "17/04/17",
+            "away_score" : "12",
+            "home_score" : "48",
+            "away_team" : "Dewsbury Rams"
+        },
+        {
+            "away_score" : "4",
+            "date" : "29/04/17",
+            "home_team" : "Toulouse Olympique",
+            "away_team" : "Bradford Bulls",
+            "home_score" : "80"
+        },
+        {
+            "away_score" : "28",
+            "date" : "30/04/17",
+            "home_team" : "Dewsbury Rams",
+            "home_score" : "24",
+            "away_team" : "Oldham"
+        },
+        {
+            "away_team" : "Sheffield",
+            "home_score" : "25",
+            "away_score" : "14",
+            "home_team" : "Featherstone Rovers",
+            "date" : "30/04/17"
+        },
+        {
+            "home_score" : "24",
+            "away_team" : "Rochdale Hornets",
+            "away_score" : "16",
+            "home_team" : "Hull KR",
+            "date" : "30/04/17"
+        },
+        {
+            "away_team" : "Swinton",
+            "home_score" : "38",
+            "away_score" : "28",
+            "date" : "30/04/17",
+            "home_team" : "London Broncos"
+        },
+        {
+            "away_team" : "Batley",
+            "home_score" : "40",
+            "away_score" : "22",
+            "home_team" : "Halifax",
+            "date" : "30/04/17"
+        },
+        {
+            "home_score" : "4",
+            "away_team" : "Hull KR",
+            "date" : "07/05/17",
+            "home_team" : "Batley",
+            "away_score" : "68"
+        },
+        {
+            "away_score" : "36",
+            "date" : "07/05/17",
+            "home_team" : "Dewsbury Rams",
+            "away_team" : "Halifax",
+            "home_score" : "18"
+        },
+        {
+            "home_score" : "74",
+            "away_team" : "Oldham",
+            "away_score" : "12",
+            "date" : "07/05/17",
+            "home_team" : "London Broncos"
+        },
+        {
+            "home_team" : "Rochdale Hornets",
+            "date" : "07/05/17",
+            "away_score" : "38",
+            "home_score" : "8",
+            "away_team" : "Featherstone Rovers"
+        },
+        {
+            "date" : "07/05/17",
+            "home_team" : "Sheffield",
+            "away_score" : "16",
+            "away_team" : "Bradford Bulls",
+            "home_score" : "52"
+        },
+        {
+            "away_team" : "Toulouse Olympique",
+            "home_score" : "27",
+            "home_team" : "Swinton",
+            "date" : "07/05/17",
+            "away_score" : "20"
+        },
+        {
+            "home_team" : "Featherstone Rovers",
+            "date" : "20/05/17",
+            "away_score" : "10",
+            "home_score" : "52",
+            "away_team" : "Dewsbury Rams"
+        },
+        {
+            "away_score" : "20",
+            "home_team" : "Toulouse Olympique",
+            "date" : "20/05/17",
+            "away_team" : "Sheffield",
+            "home_score" : "45"
+        },
+        {
+            "home_score" : "12",
+            "away_team" : "London Broncos",
+            "away_score" : "56",
+            "home_team" : "Bradford Bulls",
+            "date" : "21/05/17"
+        },
+        {
+            "home_score" : "28",
+            "away_team" : "Rochdale Hornets",
+            "date" : "21/05/17",
+            "home_team" : "Halifax",
+            "away_score" : "2"
+        },
+        {
+            "away_team" : "Swinton",
+            "home_score" : "42",
+            "date" : "21/05/17",
+            "home_team" : "Hull KR",
+            "away_score" : "18"
+        },
+        {
+            "away_team" : "Batley",
+            "home_score" : "28",
+            "date" : "21/05/17",
+            "home_team" : "Oldham",
+            "away_score" : "48"
+        },
+        {
+            "home_team" : "Oldham",
+            "date" : "27/05/17",
+            "away_score" : "38",
+            "away_team" : "Rochdale Hornets",
+            "home_score" : "28"
+        },
+        {
+            "away_team" : "Featherstone Rovers",
+            "home_score" : "42",
+            "away_score" : "16",
+            "date" : "27/05/17",
+            "home_team" : "London Broncos"
+        },
+        {
+            "date" : "27/05/17",
+            "home_team" : "Hull KR",
+            "away_score" : "19",
+            "away_team" : "Bradford Bulls",
+            "home_score" : "20"
+        },
+        {
+            "home_team" : "Sheffield",
+            "date" : "28/05/17",
+            "away_score" : "24",
+            "home_score" : "30",
+            "away_team" : "Swinton"
+        },
+        {
+            "date" : "28/05/17",
+            "home_team" : "Halifax",
+            "away_score" : "32",
+            "away_team" : "Toulouse Olympique",
+            "home_score" : "22"
+        },
+        {
+            "away_team" : "Dewsbury Rams",
+            "home_score" : "12",
+            "away_score" : "13",
+            "home_team" : "Batley",
+            "date" : "28/05/17"
+        },
+        {
+            "away_score" : "28",
+            "date" : "04/06/17",
+            "home_team" : "Batley",
+            "away_team" : "Toulouse Olympique",
+            "home_score" : "20"
+        },
+        {
+            "away_score" : "12",
+            "date" : "04/06/17",
+            "home_team" : "Dewsbury Rams",
+            "home_score" : "38",
+            "away_team" : "Bradford Bulls"
+        },
+        {
+            "away_team" : "Hull KR",
+            "home_score" : "20",
+            "home_team" : "Featherstone Rovers",
+            "date" : "04/06/17",
+            "away_score" : "20"
+        },
+        {
+            "away_score" : "6",
+            "date" : "04/06/17",
+            "home_team" : "London Broncos",
+            "away_team" : "Halifax",
+            "home_score" : "34"
+        },
+        {
+            "away_score" : "14",
+            "home_team" : "Sheffield",
+            "date" : "04/06/17",
+            "away_team" : "Rochdale Hornets",
+            "home_score" : "38"
+        },
+        {
+            "away_score" : "4",
+            "home_team" : "Swinton",
+            "date" : "04/06/17",
+            "home_score" : "26",
+            "away_team" : "Oldham"
+        },
+        {
+            "away_score" : "16",
+            "date" : "10/06/17",
+            "home_team" : "Toulouse Olympique",
+            "away_team" : "Rochdale Hornets",
+            "home_score" : "56"
+        },
+        {
+            "away_score" : "36",
+            "date" : "11/06/17",
+            "home_team" : "Bradford Bulls",
+            "away_team" : "Featherstone Rovers",
+            "home_score" : "12"
+        },
+        {
+            "home_team" : "London Broncos",
+            "date" : "11/06/17",
+            "away_score" : "8",
+            "home_score" : "52",
+            "away_team" : "Dewsbury Rams"
+        },
+        {
+            "home_team" : "Oldham",
+            "date" : "11/06/17",
+            "away_score" : "32",
+            "away_team" : "Hull KR",
+            "home_score" : "24"
+        },
+        {
+            "away_team" : "Halifax",
+            "home_score" : "0",
+            "away_score" : "54",
+            "date" : "11/06/17",
+            "home_team" : "Sheffield"
+        },
+        {
+            "away_score" : "26",
+            "home_team" : "Swinton",
+            "date" : "11/06/17",
+            "away_team" : "Batley",
+            "home_score" : "12"
+        },
+        {
+            "home_score" : "16",
+            "away_team" : "London Broncos",
+            "date" : "17/06/17",
+            "home_team" : "Toulouse Olympique",
+            "away_score" : "36"
+        },
+        {
+            "home_team" : "Batley",
+            "date" : "18/06/17",
+            "away_score" : "12",
+            "home_score" : "70",
+            "away_team" : "Sheffield"
+        },
+        {
+            "home_score" : "64",
+            "away_team" : "Dewsbury Rams",
+            "home_team" : "Hull KR",
+            "date" : "18/06/17",
+            "away_score" : "11"
+        },
+        {
+            "home_score" : "12",
+            "away_team" : "Halifax",
+            "date" : "18/06/17",
+            "home_team" : "Oldham",
+            "away_score" : "30"
+        },
+        {
+            "away_team" : "Bradford Bulls",
+            "home_score" : "28",
+            "date" : "18/06/17",
+            "home_team" : "Rochdale Hornets",
+            "away_score" : "14"
+        },
+        {
+            "date" : "21/06/17",
+            "home_team" : "Featherstone Rovers",
+            "away_score" : "2",
+            "home_score" : "24",
+            "away_team" : "Swinton"
+        },
+        {
+            "home_score" : "12",
+            "away_team" : "Dewsbury Rams",
+            "date" : "21/06/17",
+            "home_team" : "Oldham",
+            "away_score" : "6"
+        },
+        {
+            "away_score" : "12",
+            "date" : "25/06/17",
+            "home_team" : "Bradford Bulls",
+            "home_score" : "47",
+            "away_team" : "Oldham"
+        },
+        {
+            "home_score" : "34",
+            "away_team" : "Toulouse Olympique",
+            "away_score" : "22",
+            "date" : "25/06/17",
+            "home_team" : "Dewsbury Rams"
+        },
+        {
+            "away_score" : "30",
+            "home_team" : "London Broncos",
+            "date" : "25/06/17",
+            "home_score" : "36",
+            "away_team" : "Featherstone Rovers"
+        },
+        {
+            "date" : "25/06/17",
+            "home_team" : "Rochdale Hornets",
+            "away_score" : "24",
+            "away_team" : "Batley",
+            "home_score" : "14"
+        },
+        {
+            "date" : "25/06/17",
+            "home_team" : "Sheffield",
+            "away_score" : "40",
+            "home_score" : "18",
+            "away_team" : "Hull KR"
+        },
+        {
+            "home_team" : "Swinton",
+            "date" : "25/06/17",
+            "away_score" : "12",
+            "home_score" : "13",
+            "away_team" : "Halifax"
+        },
+        {
+            "away_team" : "Rochdale Hornets",
+            "home_score" : "40",
+            "away_score" : "10",
+            "home_team" : "Dewsbury Rams",
+            "date" : "02/07/17"
+        },
+        {
+            "away_score" : "14",
+            "date" : "02/07/17",
+            "home_team" : "Featherstone Rovers",
+            "home_score" : "42",
+            "away_team" : "Batley"
+        },
+        {
+            "away_team" : "Bradford Bulls",
+            "home_score" : "20",
+            "away_score" : "18",
+            "date" : "02/07/17",
+            "home_team" : "Halifax"
+        },
+        {
+            "home_score" : "40",
+            "away_team" : "London Broncos",
+            "away_score" : "22",
+            "date" : "02/07/17",
+            "home_team" : "Hull KR"
+        },
+        {
+            "away_score" : "12",
+            "date" : "02/07/17",
+            "home_team" : "Oldham",
+            "home_score" : "14",
+            "away_team" : "Toulouse Olympique"
+        },
+        {
+            "away_team" : "Swinton",
+            "home_score" : "42",
+            "date" : "02/07/17",
+            "home_team" : "Sheffield",
+            "away_score" : "34"
+        },
+        {
+            "away_score" : "16",
+            "home_team" : "Toulouse Olympique",
+            "date" : "08/07/17",
+            "home_score" : "8",
+            "away_team" : "Halifax"
+        },
+        {
+            "home_score" : "36",
+            "away_team" : "Dewsbury Rams",
+            "away_score" : "20",
+            "date" : "09/07/17",
+            "home_team" : "Batley"
+        },
+        {
+            "home_team" : "Bradford Bulls",
+            "date" : "09/07/17",
+            "away_score" : "42",
+            "away_team" : "Hull KR",
+            "home_score" : "10"
+        },
+        {
+            "home_score" : "52",
+            "away_team" : "Sheffield",
+            "home_team" : "London Broncos",
+            "date" : "09/07/17",
+            "away_score" : "16"
+        },
+        {
+            "date" : "09/07/17",
+            "home_team" : "Oldham",
+            "away_score" : "32",
+            "away_team" : "Featherstone Rovers",
+            "home_score" : "14"
+        },
+        {
+            "away_score" : "28",
+            "date" : "09/07/17",
+            "home_team" : "Rochdale Hornets",
+            "home_score" : "33",
+            "away_team" : "Swinton"
+        },
+        {
+            "date" : "16/07/17",
+            "home_team" : "Batley",
+            "away_score" : "16",
+            "home_score" : "23",
+            "away_team" : "Bradford Bulls"
+        },
+        {
+            "away_score" : "28",
+            "home_team" : "Featherstone Rovers",
+            "date" : "16/07/17",
+            "home_score" : "8",
+            "away_team" : "Halifax"
+        },
+        {
+            "home_team" : "Hull KR",
+            "date" : "16/07/17",
+            "away_score" : "31",
+            "home_score" : "30",
+            "away_team" : "Toulouse Olympique"
+        },
+        {
+            "home_score" : "18",
+            "away_team" : "London Broncos",
+            "away_score" : "58",
+            "date" : "16/07/17",
+            "home_team" : "Rochdale Hornets"
+        },
+        {
+            "date" : "16/07/17",
+            "home_team" : "Sheffield",
+            "away_score" : "28",
+            "home_score" : "42",
+            "away_team" : "Oldham"
+        },
+        {
+            "away_team" : "Dewsbury Rams",
+            "home_score" : "20",
+            "home_team" : "Swinton",
+            "date" : "16/07/17",
+            "away_score" : "42"
+        },
+        {
+            "date" : "22/07/17",
+            "home_team" : "Toulouse Olympique",
+            "away_score" : "26",
+            "away_team" : "Featherstone Rovers",
+            "home_score" : "32"
+        },
+        {
+            "away_team" : "Swinton",
+            "home_score" : "6",
+            "away_score" : "16",
+            "home_team" : "Bradford Bulls",
+            "date" : "23/07/17"
+        },
+        {
+            "home_team" : "Dewsbury Rams",
+            "date" : "23/07/17",
+            "away_score" : "18",
+            "home_score" : "28",
+            "away_team" : "Sheffield"
+        },
+        {
+            "home_score" : "28",
+            "away_team" : "Hull KR",
+            "away_score" : "6",
+            "home_team" : "Halifax",
+            "date" : "23/07/17"
+        },
+        {
+            "home_score" : "58",
+            "away_team" : "Batley",
+            "home_team" : "London Broncos",
+            "date" : "23/07/17",
+            "away_score" : "4"
+        },
+        {
+            "away_score" : "34",
+            "date" : "23/07/17",
+            "home_team" : "Oldham",
+            "home_score" : "24",
+            "away_team" : "Rochdale Hornets"
+        },
+        {
+            "away_score" : "10",
+            "home_team" : "Batley",
+            "date" : "06/08/17",
+            "home_score" : "62",
+            "away_team" : "Swinton"
+        },
+        {
+            "away_score" : "26",
+            "date" : "06/08/17",
+            "home_team" : "Bradford Bulls",
+            "away_team" : "Toulouse Olympique",
+            "home_score" : "10"
+        },
+        {
+            "home_score" : "56",
+            "away_team" : "Rochdale Hornets",
+            "home_team" : "Dewsbury Rams",
+            "date" : "06/08/17",
+            "away_score" : "8"
+        },
+        {
+            "home_score" : "56",
+            "away_team" : "Oldham",
+            "date" : "06/08/17",
+            "home_team" : "Sheffield",
+            "away_score" : "16"
+        },
+        {
+            "home_score" : "36",
+            "away_team" : "Toulouse Olympique",
+            "away_score" : "34",
+            "home_team" : "Dewsbury Rams",
+            "date" : "13/08/17"
+        },
+        {
+            "date" : "13/08/17",
+            "home_team" : "Oldham",
+            "away_score" : "20",
+            "away_team" : "Bradford Bulls",
+            "home_score" : "16"
+        },
+        {
+            "date" : "13/08/17",
+            "home_team" : "Rochdale Hornets",
+            "away_score" : "34",
+            "away_team" : "Batley",
+            "home_score" : "14"
+        },
+        {
+            "away_score" : "32",
+            "home_team" : "Swinton",
+            "date" : "13/08/17",
+            "away_team" : "Sheffield",
+            "home_score" : "30"
+        },
+        {
+            "home_score" : "50",
+            "away_team" : "Rochdale Hornets",
+            "away_score" : "12",
+            "date" : "19/08/17",
+            "home_team" : "Toulouse Olympique"
+        },
+        {
+            "away_team" : "Oldham",
+            "home_score" : "22",
+            "date" : "20/08/17",
+            "home_team" : "Batley",
+            "away_score" : "22"
+        },
+        {
+            "away_team" : "Dewsbury Rams",
+            "home_score" : "28",
+            "away_score" : "35",
+            "home_team" : "Sheffield",
+            "date" : "20/08/17"
+        },
+        {
+            "away_team" : "Bradford Bulls",
+            "home_score" : "16",
+            "home_team" : "Swinton",
+            "date" : "20/08/17",
+            "away_score" : "30"
+        },
+        {
+            "away_score" : "44",
+            "date" : "28/08/17",
+            "home_team" : "Bradford Bulls",
+            "home_score" : "18",
+            "away_team" : "Batley"
+        },
+        {
+            "away_team" : "Swinton",
+            "home_score" : "28",
+            "away_score" : "35",
+            "date" : "28/08/17",
+            "home_team" : "Dewsbury Rams"
+        },
+        {
+            "away_score" : "30",
+            "home_team" : "Rochdale Hornets",
+            "date" : "28/08/17",
+            "home_score" : "24",
+            "away_team" : "Oldham"
+        },
+        {
+            "date" : "28/08/17",
+            "home_team" : "Toulouse Olympique",
+            "away_score" : "16",
+            "away_team" : "Sheffield",
+            "home_score" : "32"
+        },
+        {
+            "date" : "03/09/17",
+            "home_team" : "Batley",
+            "away_score" : "0",
+            "away_team" : "Dewsbury Rams",
+            "home_score" : "38"
+        },
+        {
+            "home_score" : "18",
+            "away_team" : "Toulouse Olympique",
+            "home_team" : "Oldham",
+            "date" : "03/09/17",
+            "away_score" : "24"
+        },
+        {
+            "home_score" : "16",
+            "away_team" : "Swinton",
+            "away_score" : "8",
+            "home_team" : "Rochdale Hornets",
+            "date" : "03/09/17"
+        },
+        {
+            "away_score" : "32",
+            "home_team" : "Sheffield",
+            "date" : "03/09/17",
+            "home_score" : "18",
+            "away_team" : "Bradford Bulls"
+        },
+        {
+            "home_score" : "56",
+            "away_team" : "Batley",
+            "home_team" : "Toulouse Olympique",
+            "date" : "09/09/17",
+            "away_score" : "14"
+        },
+        {
+            "home_score" : "12",
+            "away_team" : "Bradford Bulls",
+            "date" : "10/09/17",
+            "home_team" : "Dewsbury Rams",
+            "away_score" : "16"
+        },
+        {
+            "away_team" : "Rochdale Hornets",
+            "home_score" : "26",
+            "date" : "10/09/17",
+            "home_team" : "Sheffield",
+            "away_score" : "22"
+        },
+        {
+            "away_team" : "Oldham",
+            "home_score" : "29",
+            "date" : "10/09/17",
+            "home_team" : "Swinton",
+            "away_score" : "6"
+        },
+        {
+            "away_team" : "Swinton",
+            "home_score" : "38",
+            "home_team" : "Toulouse Olympique",
+            "date" : "16/09/17",
+            "away_score" : "34"
+        },
+        {
+            "away_score" : "18",
+            "date" : "17/09/17",
+            "home_team" : "Batley",
+            "home_score" : "34",
+            "away_team" : "Sheffield"
+        },
+        {
+            "home_score" : "72",
+            "away_team" : "Rochdale Hornets",
+            "home_team" : "Bradford Bulls",
+            "date" : "17/09/17",
+            "away_score" : "16"
+        },
+        {
+            "home_score" : "22",
+            "away_team" : "Dewsbury Rams",
+            "date" : "17/09/17",
+            "home_team" : "Oldham",
+            "away_score" : "29"
+        },
+        {
+            "home_team" : "Toulouse Olympique",
+            "date" : "23/09/17",
+            "away_score" : "22",
+            "away_team" : "Dewsbury Rams",
+            "home_score" : "36"
+        },
+        {
+            "date" : "24/09/17",
+            "home_team" : "Batley",
+            "away_score" : "28",
+            "away_team" : "Sheffield",
+            "home_score" : "26"
+        },
+        {
+            "away_score" : "14",
+            "home_team" : "Toulouse Olympique",
+            "date" : "30/09/17",
+            "home_score" : "44",
+            "away_team" : "Sheffield"
+        }
+    ]
+}
