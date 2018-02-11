@@ -117,17 +117,23 @@ sub do_fixtures {
 sub _get_unique_leagues {
 	my $fixtures = shift;
 
-	my %mapped = map {$_->{league_idx} => $_->{league} } @$fixtures;
-	my @array = sort { $a <=> $b } keys %mapped;
-	my @sorted;
+#	map unique values of league_idx
+	my %mapped = map { $_->{league_idx} => $_->{league} } @$fixtures;
 
-	for my $idx (@array) {
-		push (@sorted, {
-			league_idx => $idx,
-			league => $mapped{$idx},
-		});
-	}
-	return \@sorted;
+#	map to sorted array of hashrefs
+	return [ 
+		map { {
+			'league_idx' => $_,
+			'league' => $mapped{$_},
+		} } 
+		sort { $a <=> $b } keys %mapped
+	];
+}
+
+#	wrapper for testing
+sub get_unique_leagues {
+	my ($self, $fixtures) = @_;
+	return _get_unique_leagues ($fixtures);
 }
 
 sub do_predict_models {

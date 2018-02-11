@@ -28,7 +28,7 @@ sub do_home_aways {
 	do_form_header ($worksheet, $title, $self->{bold_format});
 	my @sorted = sort { $list->{$b}->{points} <=> $list->{$a}->{points} 
 						or $list->{$b}->{goal_difference} <=> $list->{$a}->{goal_difference}
-						or $a cmp $b } keys %{$list};
+						or $a cmp $b } keys %$list;
 	
 	my $row = 3;
 	my $place = 1;

@@ -7,13 +7,14 @@ use warnings;
 
 use MyLib qw(unique);
 use List::Util qw(any);
+use List::MoreUtils qw(firstidx);
 
 use Exporter 'import';
 use vars qw ($VERSION @EXPORT_OK %EXPORT_TAGS);
 
 $VERSION	 = 1.00;
-@EXPORT_OK	 = qw (_show_signed _get_all_teams);  # symbols to export on request
-%EXPORT_TAGS = ( All => [qw (&_show_signed &_get_all_teams)]);
+@EXPORT_OK	 = qw (_show_signed _get_all_teams get_odds_cols get_euro_odds_cols);  # symbols to export on request
+%EXPORT_TAGS = ( All => [qw (&_show_signed &_get_all_teams &get_odds_cols &get_euro_odds_cols)]);
 
 sub _show_signed {
 	my $worksheet = shift;
@@ -35,6 +36,23 @@ sub _get_all_teams {
 	);
 	return \@array;
 }	
+
+sub get_odds_cols {
+	my ($data, $search_for) = @_;
+	$search_for //= "B365H";
+
+	my $odds_col = firstidx { $_ eq $search_for }
+		( ref ($data) eq "ARRAY" )
+			? @{ $data->[0] }		#	xlsx
+			: split (',', $data);	#	csv
+
+	return ($odds_col...$odds_col + 2);
+}
+
+sub get_euro_odds_cols {
+	my $data = shift;
+	return get_odds_cols ($data, "AvgH");
+}
 
 =pod
 

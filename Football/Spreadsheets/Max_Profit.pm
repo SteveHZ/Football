@@ -7,11 +7,13 @@ has 'filename' => ( is => 'ro' );
 with 'Roles::Spreadsheet';
 
 my $path = 'C:/Mine/perl/Football/reports/';
-my $filename = $path."max_profit.xlsx";
+my $default_filename = $path."max_profit.xlsx";
 
 sub BUILD {
-	my $self = shift;
-	$self->{filename} = $filename;
+	my ($self, $args) = @_;
+	$self->{filename} = ( exists $args->{filename} )
+		? $args->{filename}
+		: $default_filename;
 }
 
 sub show {

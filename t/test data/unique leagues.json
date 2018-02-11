@@ -1,0 +1,38 @@
+[
+	{
+		"league" : "Premier League",
+        "league_idx" : "0"
+    },
+    {
+		"league" : "Championship",
+        "league_idx" : "1"
+    },
+    {
+        "league" : "League One",
+        "league_idx" : "2"
+    },
+    {
+        "league_idx" : "3",
+        "league" : "League Two"
+    },
+    {
+        "league" : "Conference",
+        "league_idx" : "4"
+    },
+    {
+        "league_idx" : "5",
+        "league" : "Scots Premier"
+    },
+    {
+        "league_idx" : "6",
+        "league" : "Scots Championship"
+    },
+    {
+        "league" : "Scots League One",
+        "league_idx" : "7"
+    },
+    {
+        "league_idx" : "8",
+        "league" : "Scots League Two"
+    }
+]

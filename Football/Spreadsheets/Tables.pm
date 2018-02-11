@@ -69,7 +69,7 @@ sub do_home_aways {
 		$list->{$b}->{points} <=> $list->{$a}->{points} 
 		or $list->{$b}->{goal_difference} <=> $list->{$a}->{goal_difference}
 		or $a cmp $b
-	} keys %{$list};
+	} keys %$list;
 	
 	my $row = 3;
 	my $place = 1;
@@ -117,7 +117,7 @@ sub do_draws {
 	my @sorted = sort {
 		$list->{$b}->{draws} <=> $list->{$a}->{draws}
 		or $a cmp $b
-	} keys %{ $list };
+	} keys %$list;
 	for my $team (@sorted) {
 		$worksheet->write ($row, $col, $list->{$team}->{name}, $self->{format});
 		$worksheet->write ($row ++, $col + 1, $list->{$team}->{draws}, $self->{format});

@@ -17,7 +17,7 @@ our @EXPORT = qw(
 sub new { return bless {}; shift; }
 
 my $regular_season = 1;
-$regular_season = 0; # unquote for later season
+#$regular_season = 0; # unquote for later season
 
 our $season = 2017;
 our $reports_start = 2016;
@@ -27,19 +27,19 @@ if ($regular_season) {
 		"Super League",
 		"Championship",
 		"League One",
-		"NRL",
+#		"NRL",
 	);
 
 	our @fixtures_leagues = (
 		"Super League",
 		"Championship",
-		"NRL",
+#		"NRL",
 		"League One",
 	);
 
-	our @csv_leagues = qw(SL CH L1 NRL);
-	our @fixtures_csv_leagues = qw(SL CH NRL L1);
-	our @league_size = qw( 12 12 16 16 ); # clubs in each league
+	our @csv_leagues = qw(SL CH L1);
+	our @fixtures_csv_leagues = qw(SL CH L1);
+	our @league_size = qw( 12 12 14 ); # clubs in each league
 
 } else {
 
@@ -48,20 +48,20 @@ if ($regular_season) {
 		"Middle 8s",
 		"Championship",
 		"League One",
-		"NRL",
+#		"NRL",
 	);
 
 	our @fixtures_leagues = (
 		"Super League",
 		"Middle 8s",
 		"Championship",
-		"NRL",
+#		"NRL",
 		"League One",
 	);
 
-	our @csv_leagues = qw(SL M8 CH L1 NRL);
-	our @fixtures_csv_leagues = qw(SL M8 CH NRL L1);
-	our @league_size = qw( 12 8 12 16 16 ); # clubs in each league
+	our @csv_leagues = qw(SL M8 CH L1);
+	our @fixtures_csv_leagues = qw(SL M8 CH L1);
+	our @league_size = qw( 12 8 12 14 ); # clubs in each league
 }
 
 1;

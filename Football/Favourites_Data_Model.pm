@@ -3,7 +3,8 @@ package Football::Favourites_Data_Model;
 use Moo;
 use namespace::clean;
 
-use List::MoreUtils qw(any);
+use List::MoreUtils qw(any firstidx);
+use Football::Utils qw(get_odds_cols get_euro_odds_cols);
 
 sub update {
 	my ($self, $file) = @_;
@@ -28,18 +29,13 @@ sub update {
 }
 
 sub update_current {
-	my ($self, $file, $csv_league) = @_;
+	my ($self, $file) = @_;
 	my $league_games = [];
-	my @odds_cols = (23..25);
-	
-	if (any { $csv_league eq $_ } qw(SC1 SC2 SC3) ) {
-		@odds_cols = (10..12);
-	} elsif ($csv_league eq "EC") {
-		@odds_cols = (15..17);
-	}
 
 	open (my $fh, '<', $file) or die ("Can't find $file");
-	my $line = <$fh>;	# skip first line
+	my $line = <$fh>;
+	my @odds_cols = get_odds_cols ($line);
+
 	while ($line = <$fh>) {
 		my @data = split (',', $line);
 		last if $data [0] eq ""; # don't remove !!!
@@ -61,6 +57,70 @@ sub update_current {
 	return $league_games;
 }
 
+sub update_euro {
+	my ($self, $file) = @_;
+	my $league_games = [];
+
+	open (my $fh, '<', $file) or die ("Can't find $file");
+	my $line = <$fh>;
+	my @odds_cols = get_euro_odds_cols ($line);
+
+	while ($line = <$fh>) {
+		chomp $line;
+		my @data = split (',', $line);
+		last if $data [0] eq ""; # don't remove !!!
+		
+		if ($data [2] eq "2017") {
+			push ( @$league_games, {
+				league => $data [0],
+				year => $data [2],
+				date => $data [3],
+				home_team => $data [5],
+				away_team => $data [6],
+				home_score => $data [7],
+				away_score => $data [8],
+				result => $data [9],
+				home_odds => $data [ $odds_cols[0] ],
+				draw_odds => $data [ $odds_cols[1] ],
+				away_odds => $data [ $odds_cols[2] ],
+			});
+		}
+	}
+	close $fh;
+	return $league_games;
+}
+
+sub read_euro {
+	my ($self, $file) = @_;
+	my $league_games = [];
+
+	open (my $fh, '<', $file) or die ("Can't find $file");
+	my $line = <$fh>;
+	my @odds_cols = get_euro_odds_cols ($line);
+
+	while ($line = <$fh>) {
+		chomp $line;
+		my @data = split (',', $line);
+		last if $data [0] eq ""; # don't remove !!!
+		
+		push ( @$league_games, {
+			league => $data [0],
+			year => $data [2],
+			date => $data [3],
+			home_team => $data [5],
+			away_team => $data [6],
+			home_score => $data [7],
+			away_score => $data [8],
+			result => $data [9],
+			home_odds => $data [ $odds_cols[0] ],
+			draw_odds => $data [ $odds_cols[1] ],
+			away_odds => $data [ $odds_cols[2] ],
+		});
+	}
+	close $fh;
+	return $league_games;
+}
+
 sub write_current {
 	my ($self, $file, $data) = @_;
 	open (my $fh, '>', $file) or die ("Unable to open $file");
@@ -68,6 +128,20 @@ sub write_current {
 	print $fh "Div ,Date ,Home Team, Away Team, FTHG, ATHG, FTR, B365H, B365D, B365A";
 	for my $line (@$data) {
 		print $fh "\n". $line->{league} .",". $line->{date} .",".
+						$line->{home_team} .",". $line->{away_team} .",".
+						$line->{home_score}.",". $line->{away_score}.",". $line->{result}.",".
+						$line->{home_odds} .",". $line->{draw_odds} .",". $line->{away_odds};
+	}
+	close $fh;
+}
+
+sub write_euro {
+	my ($self, $file, $data) = @_;
+	open (my $fh, '>', $file) or die ("Unable to open $file");
+
+	print $fh "Date ,Home Team, Away Team, FTHG, ATHG, FTR, AvgH, AvgD, AvgA";
+	for my $line (@$data) {
+		print $fh "\n". $line->{date} .",".
 						$line->{home_team} .",". $line->{away_team} .",".
 						$line->{home_score}.",". $line->{away_score}.",". $line->{result}.",".
 						$line->{home_odds} .",". $line->{draw_odds} .",". $line->{away_odds};

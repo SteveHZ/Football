@@ -8,7 +8,8 @@ use Moo::Role;
 requires qw(
 	read_json write_json
 	league_names csv_leagues
-	path fixtures_file season_data test_season_data
+	path fixtures_file season_data 
+	test_season_data test_fixtures_file
 );
 
 sub read_games {
@@ -50,9 +51,13 @@ sub update {
 
 sub get_fixtures {
 	my $self = shift;
+	my $args = { @_ };
+	
+	my $testing = exists $args->{testing} ? $args->{testing} : 0;
+	my $fixtures_file = ($testing) ? $self->{test_fixtures_file} : $self->{fixtures_file};
 	my @fixtures = ();
 
-	open (my $fh, '<', $self->{fixtures_file}) or die ("\n\nCan't find $self->{fixtures_file}");
+	open (my $fh, '<', $fixtures_file) or die ("\n\nCan't find $fixtures_file");
 	while (my $line = <$fh>) {
 		chomp ($line);
 		my ($league, $home, $away) = split (',', $line);

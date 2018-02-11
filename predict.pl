@@ -35,8 +35,8 @@ sub main {
 	$view->do_teams ($leagues);
 	$view->do_table ($leagues);
 
-	$view->do_home_table ( $model->do_home_table ($games));
-	$view->do_away_table ( $model->do_away_table ($games));
+	$view->do_home_table ( $model->do_home_table ($games) );
+	$view->do_away_table ( $model->do_away_table ($games) );
 
 	$view->homes (
 		my $homes = $model->homes ($leagues)

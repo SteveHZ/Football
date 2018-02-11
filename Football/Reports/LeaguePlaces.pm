@@ -77,7 +77,7 @@ sub fetch_array {
 
 sub fetch_hash {
 	my ($self, $league, $home, $away) = @_;
-	return $self->{hash}->{$league}->{$home}->{$away};
+	return \%{ $self->{hash}->{$league}->{$home}->{$away} };
 }
 
 1;

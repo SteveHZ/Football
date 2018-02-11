@@ -1,5 +1,5 @@
 #!	C:/Strawberry/perl/bin
-#	euro.pl 27-29/12/16
+#	euro.pl 27-29/12/16, 27/01/18
 
 #	Need to clear previous year data before a new season
 
@@ -11,7 +11,8 @@ use Spreadsheet::Read qw(rows);
 use lib 'C:/Mine/perl/Football';
 use Football::Favourites_Model;
 use Football::Spreadsheets::Favourites;
-use Football::Globals qw( @euro_leagues %euro_odds_cols $season );
+use Football::Globals qw( @euro_leagues $season );
+use Football::Utils qw(get_odds_cols);
 
 my $year = $season;
 my $path = "C:/Mine/perl/Football/data/";
@@ -36,10 +37,9 @@ sub update {
 	for my $sheet (1..scalar @sheetnames) {
 		my $league = $euro_leagues[$sheet - 1];
 		my $csv_sheetname = $sheetnames[$sheet - 1];
-		my $odds_col_start = $euro_odds_cols {$csv_sheetname};
 		
 		my @rows = rows ($book->[$sheet]);
-		my $results = get_data (\@rows, $odds_col_start);
+		my $results = get_data (\@rows);
 		$fav_model->update ($league, $year, $results);
 	}
 	view ($fav_model, \@euro_leagues, $year);
@@ -53,9 +53,10 @@ sub update {
 }
 
 sub get_data {
-	my ($rows, $odds_col_start) = @_;
+	my $rows = shift;
+
+	my @odds_cols = get_odds_cols ($rows);
 	my @league_games = ();
-	my @odds_cols = ($odds_col_start...$odds_col_start + 2);
 
 	for my $match (@$rows[1..scalar(@$rows)-1]) {
 		next if @$match[$odds_cols[0]] eq ""; # Some Greek games have no odds

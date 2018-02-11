@@ -16,14 +16,15 @@ main ();
 sub main {
     my $q;
     my $sites = {
+		"Welsh" 	=>"http://www.oddsportal.com/soccer/wales/premier-league/results/",
 #		"Welsh August" 	=>"http://www.bbc.co.uk/sport/football/welsh-premier-league/scores-fixtures/2017-08",
 #		"Welsh Sept" 	=> "http://www.bbc.co.uk/sport/football/welsh-premier-league/scores-fixtures/2017-09",
 #		"NI August"		=> "http://www.bbc.co.uk/sport/football/irish-premiership/scores-fixtures/2017-08",
 #		"NI Sept" 		=> "http://www.bbc.co.uk/sport/football/irish-premiership/scores-fixtures/2017-09",
-		"HL July"		=> "http://www.bbc.co.uk/sport/football/highland-league/scores-fixtures/2017-07",
-		"HL August"		=> "http://www.bbc.co.uk/sport/football/highland-league/scores-fixtures/2017-08",
-		"HL Sept"		=> "http://www.bbc.co.uk/sport/football/highland-league/scores-fixtures/2017-09",
-		"HL Oct"		=> "http://www.bbc.co.uk/sport/football/highland-league/scores-fixtures/2017-10",
+#		"HL July"		=> "http://www.bbc.co.uk/sport/football/highland-league/scores-fixtures/2017-07",
+#		"HL August"		=> "http://www.bbc.co.uk/sport/football/highland-league/scores-fixtures/2017-08",
+#		"HL Sept"		=> "http://www.bbc.co.uk/sport/football/highland-league/scores-fixtures/2017-09",
+#		"HL Oct"		=> "http://www.bbc.co.uk/sport/football/highland-league/scores-fixtures/2017-10",
 #		"Rugby" 		=> "https://en.wikipedia.org/wiki/2014_Championship_1_season_results",
 #		"USA March" 	=> "http://www.bbc.co.uk/sport/football/us-major-league/scores-fixtures/2017-03",
 #		"USA April"		=> "http://www.bbc.co.uk/sport/football/us-major-league/scores-fixtures/2017-04",

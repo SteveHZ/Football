@@ -6,6 +6,9 @@ use warnings;
 use Exporter 'import';
 our @EXPORT = qw(
 	$season
+	$euro_season
+	$season_years
+	$full_season_years
 	$last_season
 	$reports_season
 	$default_stats_size
@@ -15,7 +18,6 @@ our @EXPORT = qw(
 	@fixtures_csv_leagues
 	@league_size
 	@euro_leagues
-	%euro_odds_cols
 	@euro_csv_leagues
 	@summer_leagues
 	@summer_csv_leagues
@@ -24,17 +26,13 @@ our @EXPORT = qw(
 	$max_skellam
 	$min_skellam
 );
-#	$bollox
-
-#sub bollox { my ($self,$name) = @_; return "\nFuck off $name !!";};
-#our $bollox = sub { my $name = shift; return "\nFuck off $name !!";};
-
-#our $bolloxy = sub { my ($self,$name) = @_; return "\nFuck off $name !!";};
-#sub bolloxxx { my ($self,$name) = @_; return $bolloxy;};
 
 sub new { return bless {}, shift; }
 
 our $season = 2017;
+our $euro_season = 2017;
+our $season_years = 1718;
+our $full_season_years = '2017-2018';
 our $last_season = $season - 1;
 our $reports_season = 2016;
 our $default_stats_size = 6;
@@ -74,14 +72,6 @@ our @euro_leagues = (
 	"Italian League One", "Italian League Two", "French League One", "French League Two",
 	"Dutch League One", "Belgian League One", "Portuguese League One", "Turkish League One",
 	"Greek League One",
-);
-
-our %euro_odds_cols = (
-	E0  => 23, E1  => 23, E2  => 23, E3  => 23, EC => 15,
-	SC0 => 23, SC1 => 10, SC2 => 10, SC3 => 10,
-	D1  => 22, D2  => 10, SP1 => 22, SP2 => 10,
-	I1  => 22, I2  => 10, F1  => 22, F2  => 10,
-	N1  => 10, B1  => 10, P1  => 10, T1  => 10, G1 => 10,
 );
 
 our @euro_csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 D1 D2 SP1 SP2 I1 I2 F1 F2 N1 B1 P1 T1 G1 );
@@ -127,6 +117,16 @@ our $short_month_names = {
 	"Nov" => 11,
 	"Dec" => 12,
 };
+
+#	%euro_odds_cols
+#our %euro_odds_cols = (
+#	E0  => 23, E1  => 23, E2  => 23, E3  => 23, EC => 15,
+#	SC0 => 23, SC1 => 23, SC2 => 23, SC3 => 23,
+#	D1  => 22, D2  => 22, SP1 => 22, SP2 => 22,
+#	I1  => 22, I2  => 22, F1  => 22, F2  => 22,
+#	N1  => 22, B1  => 22, P1  => 22, T1  => 22, G1 => 22,
+#);
+
 
 =pod
 

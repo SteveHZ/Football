@@ -10,7 +10,7 @@ use Test::Deep;
 use lib "C:/Mine/perl/Football";
 use Rugby::Rugby_Data_Model;
 
-my $file = 'C:/Mine/perl/Football/t/test_data/Super League results.csv';
+my $file = 'C:/Mine/perl/Football/t/test data/Super League results.csv';
 my $games = {};
 my $data_model = Rugby::Rugby_Data_Model->new ();
 

@@ -35,6 +35,7 @@ has 'path' => ( is => 'ro' );
 has 'fixtures_file' => ( is => 'rw' );
 has 'season_data' => ( is => 'ro' );
 has 'test_season_data' => ( is => 'ro' );
+has 'test_fixtures_file' => ( is => 'ro' );
 
 with 'Roles::MyJSON',
 'Football::Roles::Shared_Model',
@@ -51,7 +52,10 @@ sub BUILD {
 	$self->{fixtures_file} = $self->{path}.'fixtures.csv';
 	$self->{season_data} = $self->{path}.'season.json';
 	$self->{teams_file} = $self->{path}.'teams.json';
-	$self->{test_season_data} = 'C:/Mine/perl/Football/t/test_data/season.json';
+	
+	$self->{test_path} = 'C:/Mine/perl/Football/t/test data/';
+	$self->{test_season_data} = $self->{test_path}.'season.json';
+	$self->{test_fixtures_file} = $self->{test_path}.'football fixtures.csv';
 }
 
 sub build_leagues {
@@ -193,7 +197,7 @@ sub do_favourites {
 		my $file_from = $self->{path}.$csv_league.'.csv';
 		my $file_to = $fav_path.$league.'/'.$year.".csv";
 
-		my $data = $data_model->update_current ($file_from, $csv_league);
+		my $data = $data_model->update_current ($file_from);
 		$data_model->write_current ($file_to, $data);
 		$fav_model->update ($league, $year, $data);
 	}

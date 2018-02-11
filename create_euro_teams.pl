@@ -1,6 +1,7 @@
 #!	C:/Strawberry/perl/bin
 
 #	create_euro_teams.pl 26/06/16
+#	Irish, Swedish and Norway done 05/01/18
 
 use strict;
 use warnings;
@@ -13,21 +14,18 @@ my $json_file = $path.'teams.json';
 
 my $leagues = {
 	"Irish League" => [
-		"Finn Harps",
 		"Dundalk",
 		"St Patrick's Athletic",
 		"Limerick FC",
-		"Galway United FC",
 		"Bohemians",
 		"Cork City",
 		"Shamrock Rovers",
 		"Bray Wanderers",
 		"Sligo Rovers",
-		"Drogheda United",
 		"Derry City",
+		"Waterford",
 	],
 	"Swedish League" => [
-		"Halmstads BK",
 		"IFK Goteborg",
 		"IFK Norrkoping",
 		"GIF Sundsvall",
@@ -38,11 +36,12 @@ my $leagues = {
 		"Ostersunds FK",
 		"Malmo FF",
 		"Hammarby IF",
-		"AFC Eskilstuna",
 		"BK Hacken",
-		"Jonkopings Sodra IF",
 		"IF Elfsborg",
 		"IK Sirius",
+		"Dalkurd FF",
+		"IF Brommapojkarna",
+		"Trellborgs FF",
 	],
 	"Norwegian League" => [
 		"Kristiansund BK",
@@ -57,10 +56,10 @@ my $leagues = {
 		"Odd",
 		"Brann",
 		"FK Haugesund",
-		"Aalesund",
-		"Sogndal IL",
 		"Sandefjord",
-		"Viking FK",
+		"Bodo Glimt",
+		"IK Start",
+		"Ranheim",
 	],
 	"USA League" => [
 		"Portland Timbers",

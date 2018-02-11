@@ -4,15 +4,17 @@
 
 use strict;
 use warnings;
-use Test::More tests => 5;
+use Test::More tests => 6;
+use Test::Deep;
 
 use lib "C:/Mine/perl/Football";
 use Football::Model;
+use MyJSON qw(read_json);
 
 my $model = Football::Model->new ();
 my ($games, $leagues, $fixture_list);
 
-my $test_path = "C:/Mine/perl/Football/t/test_data/";
+my $test_path = "C:/Mine/perl/Football/t/test data/";
 
 subtest 'constructor' => sub {
 	plan tests => 1;
@@ -22,14 +24,14 @@ subtest 'constructor' => sub {
 subtest 'Football_IO_Role routines' => sub {
 	plan tests => 4;
 
-	$model->{fixtures_file} = $test_path."Football fixtures.csv";
+	$model->{fixtures_file} = $test_path."football fixtures.csv";
 	$games = $model->read_games (testing => 1); # no update, read test data file
 	$fixture_list = $model->get_fixtures ();
 
 	isa_ok ($games, 'HASH','$games');
 	isa_ok ($fixture_list, 'ARRAY', '$fixture_list');
-	is (@$fixture_list[0]->{home_team}, "Stoke", "fixture list home team ok");
-	is (@$fixture_list[1]->{away_team}, "Rotherham", "fixture list away team ok");
+	is (@$fixture_list[0]->{home_team}, "West Ham", "fixture list home team ok");
+	is (@$fixture_list[1]->{away_team}, "Stoke", "fixture list away team ok");
 };
 
 subtest 'build_leagues' => sub {
@@ -78,9 +80,17 @@ subtest 'Goal Expect Model' => sub {
 	is ($teams->{Stoke}->{av_home_against}, 1.83, "Stoke - Average home against 1.83");
 	is ($teams->{Stoke}->{av_away_for}, 1.17, "Stoke - Average away for 1.17");
 	is ($teams->{Stoke}->{av_away_against}, 2.17, "Stoke - Average away against 2.17");
+};
 
-#	use Data::Dumper;
-#	print Dumper $teams->{Stoke};
+subtest 'get_unique_leagues' => sub {
+	plan tests => 1;
+	
+	my $unique_file = "test data/unique leagues.json";
+	my $expect = read_json ($unique_file);
+	
+	my $fixtures = $model->get_fixtures ( testing => 1 );
+	my $leagues = $model->get_unique_leagues ($fixtures);
+	cmp_deeply ($leagues, $expect, 'got unique leagues');
 };
 
 =head

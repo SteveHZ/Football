@@ -77,7 +77,7 @@ sub fetch_array {
 
 sub fetch_hash {
 	my ($self, $league, $goal_diff) = @_;
-	return $self->{hash}->{$league}->{$goal_diff};
+	return \%{ $self->{hash}->{$league}->{$goal_diff} };
 }
 
 1;
