@@ -1,17 +1,17 @@
 #!	C:/Strawberry/perl/bin
 
 # 	max_profit.pl 11-12/03/17
-# 	euro_profit.pl 04/02/18
+# 	euro_profit.pl 04/02/18, 11/02/18
 
 use strict;
 use warnings;
 
-use Football::Favourites_Data_Model;
+use Football::Euro_Data_Model;
 use Football::Team_Profit;
 use Football::Team_Hash;
 use Football::Spreadsheets::Max_Profit;
-#use Football::Globals qw( @csv_leagues );
-my @euro_leagues = qw(SWE NOR IRL);
+
+my @euro_leagues = qw(Swedish Norwegian Irish);
 
 my $in_path = 'C:/Mine/perl/Football/data/Euro/';
 my $out_file = 'C:/Mine/perl/Football/reports/euro/euro_profit.xlsx';
@@ -19,16 +19,16 @@ my $out_file = 'C:/Mine/perl/Football/reports/euro/euro_profit.xlsx';
 main ();
 
 sub main {
-	my $model = Football::Favourites_Data_Model->new ();
+	my $model = Football::Euro_Data_Model->new ();
 	my $team_hash = Football::Team_Hash->new ();
 	
-	for my $csv_league (@euro_leagues) {
-		my $file = $in_path.$csv_league.".csv";
-		my $results = $model->update_euro ($file, $csv_league);
+	for my $league (@euro_leagues) {
+		my $file = $in_path.$league.".csv";
+		my $results = $model->read_csv ($file, $league);
 		$team_hash->add_teams ($results);
 
 		for my $game (@$results) {
-			$team_hash->place_stakes ( $game->{home_team}, $game->{away_team} );
+		$team_hash->place_stakes ( $game->{home_team}, $game->{away_team} );
 			if ($game->{result} eq 'H') {
 				$team_hash->home_win ( $game->{home_team}, $game->{home_odds} );
 			} elsif ($game->{result} eq 'A') {
@@ -50,11 +50,11 @@ sub main {
 
 =head1 NAME
 
-max_profit.pl
+euro_profit.pl
 
 =head1 SYNOPSIS
 
-perl max_profit.pl
+perl euro_profit.pl
 
 =head1 DESCRIPTION
 

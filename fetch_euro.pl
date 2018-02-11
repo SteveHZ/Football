@@ -35,7 +35,7 @@ while (my ($league, $file) = $iterator->()) {
 	my @data = grep { $_->{year} == $euro_season } @$games;
 
 	print "\nWriting $out_file...";
-	$data_model->write_euro ($out_file, \@data);
+	$data_model->write_csv ($out_file, \@data);
 	unlink $in_file unless $test == 1;
 }
 

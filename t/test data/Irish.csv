@@ -1,0 +1,199 @@
+Date ,Home Team, Away Team, FTHG, ATHG, FTR, AvgH, AvgD, AvgA
+24/02/17,Bohemians,Derry City,1,4,A,3.69,3.12,2.08
+24/02/17,Galway,Drogheda,0,1,A,2.09,3.19,3.57
+24/02/17,Limerick,Sligo Rovers,5,1,H,1.95,3.31,3.89
+24/02/17,St. Patricks,Bray,1,2,A,2.35,3.1,3.08
+24/02/17,Dundalk,Shamrock Rovers,2,1,H,1.93,3.26,4.03
+24/02/17,Finn Harps,Cork City,0,1,A,8.85,4.26,1.38
+03/03/17,Shamrock Rovers,Bohemians,2,1,H,1.51,3.82,6.64
+03/03/17,Bray,Finn Harps,5,3,H,1.48,3.82,7.33
+03/03/17,Cork City,Galway,4,0,H,1.32,4.89,9.27
+03/03/17,Drogheda,St. Patricks,2,0,H,3.36,3.14,2.18
+04/03/17,Sligo Rovers,Dundalk,0,4,A,5.84,3.83,1.55
+10/03/17,Bohemians,Bray,3,2,H,4.09,3.3,1.9
+10/03/17,Dundalk,Limerick,1,0,H,1.31,5.44,8.12
+10/03/17,Sligo Rovers,St. Patricks,1,1,D,2.7,3.06,2.65
+10/03/17,Drogheda,Cork City,1,4,A,7.39,4.17,1.43
+10/03/17,Finn Harps,Galway,1,1,D,2.82,3.11,2.52
+10/03/17,Shamrock Rovers,Derry City,0,1,A,1.98,3.25,3.83
+13/03/17,Galway,Shamrock Rovers,1,2,A,4.62,3.33,1.8
+13/03/17,Bray,Drogheda,2,1,H,1.58,3.83,5.69
+13/03/17,Cork City,Sligo Rovers,2,1,H,1.2,6.1,13.54
+13/03/17,Derry City,Dundalk,3,1,H,4.23,3.39,1.86
+13/03/17,Limerick,Bohemians,0,1,A,1.54,4.17,5.5
+13/03/17,St. Patricks,Finn Harps,1,2,A,1.52,3.84,6.49
+17/03/17,Shamrock Rovers,Cork City,1,2,A,3.61,3.18,2.08
+17/03/17,Bohemians,Galway,1,1,D,2.28,3.2,3.1
+18/03/17,Limerick,Finn Harps,1,1,D,1.45,4.41,6.38
+18/03/17,Derry City,Drogheda,4,0,H,1.47,4.02,6.97
+18/03/17,Dundalk,St. Patricks,3,0,H,1.33,4.71,9.2
+18/03/17,Sligo Rovers,Bray,3,2,H,3.11,3.29,2.24
+25/03/17,Cork City,Dundalk,2,1,H,2.26,3.17,3.17
+25/03/17,St. Patricks,Shamrock Rovers,2,1,H,3.69,3.19,2.05
+25/03/17,Drogheda,Bohemians,0,1,A,2.7,3.07,2.65
+25/03/17,Bray,Limerick,0,1,A,2.07,3.49,3.3
+25/03/17,Finn Harps,Sligo Rovers,2,1,H,2.9,3.05,2.5
+31/03/17,Dundalk,Drogheda,3,1,H,1.2,6.22,12.61
+31/03/17,Bohemians,St. Patricks,0,4,A,2.93,3.11,2.41
+31/03/17,Derry City,Bray,2,3,A,1.69,3.71,4.7
+31/03/17,Limerick,Cork City,0,3,A,4.85,3.81,1.65
+31/03/17,Shamrock Rovers,Finn Harps,3,2,H,1.46,4.07,7.06
+03/04/17,Galway,Sligo Rovers,1,1,D,2.27,3.14,3.18
+07/04/17,Cork City,Derry City,3,0,H,1.48,4.06,6.61
+07/04/17,Bray,Galway,1,0,H,1.69,3.8,4.61
+07/04/17,Drogheda,Shamrock Rovers,2,1,H,5.41,3.78,1.6
+07/04/17,St. Patricks,Limerick,0,2,A,2.23,3.31,3.09
+07/04/17,Finn Harps,Dundalk,0,2,A,8.58,4.53,1.36
+08/04/17,Sligo Rovers,Bohemians,2,0,H,1.91,3.38,3.95
+14/04/17,Bohemians,Cork City,0,2,A,8.45,4.61,1.36
+14/04/17,Derry City,Finn Harps,0,2,A,1.52,4.02,5.94
+14/04/17,Dundalk,Bray,1,3,A,1.41,4.55,7.03
+14/04/17,Galway,St. Patricks,1,1,D,2.86,3.15,2.46
+14/04/17,Shamrock Rovers,Sligo Rovers,1,0,H,1.6,3.72,5.58
+15/04/17,Limerick,Drogheda,3,0,H,1.46,4.35,6.33
+21/04/17,Bray,Shamrock Rovers,4,2,H,2.71,3.27,2.51
+21/04/17,Dundalk,Bohemians,2,0,H,1.26,5.39,10.64
+21/04/17,Limerick,Galway,1,1,D,1.59,4.05,5.11
+21/04/17,St. Patricks,Cork City,0,3,A,6.46,3.97,1.5
+21/04/17,Finn Harps,Drogheda,0,2,A,2.23,3.14,3.28
+22/04/17,Sligo Rovers,Derry City,1,1,D,3.26,3.23,2.19
+25/04/17,Derry City,Limerick,1,1,D,2.4,3.28,2.82
+28/04/17,Bohemians,Finn Harps,2,0,H,2.18,3.08,3.43
+28/04/17,Cork City,Bray,2,1,H,1.43,4.39,6.99
+28/04/17,Derry City,St. Patricks,2,2,D,2,3.36,3.64
+28/04/17,Drogheda,Sligo Rovers,1,1,D,2.87,3.14,2.46
+28/04/17,Galway,Dundalk,2,1,H,5.82,3.82,1.56
+28/04/17,Shamrock Rovers,Limerick,1,1,D,2.12,3.42,3.24
+05/05/17,Bray,St. Patricks,1,1,D,1.85,3.61,3.9
+05/05/17,Cork City,Finn Harps,5,0,H,1.16,6.6,17.15
+05/05/17,Derry City,Bohemians,2,0,H,1.58,3.92,5.49
+05/05/17,Drogheda,Galway,2,2,D,2.78,3.1,2.55
+05/05/17,Shamrock Rovers,Dundalk,2,1,H,3.91,3.36,1.93
+06/05/17,Sligo Rovers,Limerick,3,0,H,3.46,3.41,2.03
+08/05/17,Galway,Derry City,0,0,D,3.32,3.3,2.13
+12/05/17,Bohemians,Shamrock Rovers,0,2,A,4.42,3.41,1.81
+12/05/17,Dundalk,Sligo Rovers,4,0,H,1.37,4.81,7.36
+12/05/17,Galway,Cork City,1,1,D,7.34,4.39,1.41
+12/05/17,St. Patricks,Drogheda,2,0,H,1.64,3.72,5.16
+12/05/17,Finn Harps,Bray,0,3,A,3.94,3.52,1.87
+13/05/17,Limerick,Derry City,1,1,D,2.42,3.27,2.82
+19/05/17,Bray,Bohemians,1,2,A,1.63,3.77,5.13
+19/05/17,Cork City,Drogheda,5,0,H,1.15,7.19,16.64
+19/05/17,Derry City,Shamrock Rovers,3,1,H,2.47,3.22,2.81
+19/05/17,Galway,Finn Harps,2,1,H,1.78,3.46,4.5
+19/05/17,Limerick,Dundalk,0,3,A,5.44,3.95,1.57
+19/05/17,St. Patricks,Sligo Rovers,1,1,D,1.63,3.69,5.31
+22/05/17,Sligo Rovers,Cork City,1,2,A,7.67,4.75,1.37
+22/05/17,Finn Harps,St. Patricks,3,1,H,4.53,3.57,1.75
+22/05/17,Shamrock Rovers,Galway,2,0,H,1.56,3.94,5.58
+23/05/17,Bohemians,Limerick,1,2,A,2.59,3.16,2.7
+23/05/17,Drogheda,Bray,0,0,D,5.09,4.06,1.59
+23/05/17,Dundalk,Derry City,0,0,D,1.56,4.09,5.4
+26/05/17,Bray,Sligo Rovers,2,2,D,1.66,3.83,4.82
+26/05/17,Cork City,Shamrock Rovers,4,1,H,1.42,4.41,7.07
+26/05/17,Drogheda,Derry City,0,0,D,5.46,3.6,1.63
+26/05/17,Galway,Bohemians,1,2,A,2.1,3.19,3.52
+26/05/17,St. Patricks,Dundalk,0,2,A,5.54,4.11,1.54
+26/05/17,Finn Harps,Limerick,3,2,H,3.37,3.2,2.16
+30/05/17,Shamrock Rovers,Bray,2,0,H,1.89,3.61,3.74
+02/06/17,Dundalk,Cork City,0,3,A,2.37,3.26,2.9
+02/06/17,Bohemians,Drogheda,0,0,D,1.83,3.32,4.45
+02/06/17,Derry City,Galway,2,1,H,1.64,3.75,4.99
+02/06/17,Limerick,Bray,5,3,H,2.21,3.46,3.02
+02/06/17,Sligo Rovers,Finn Harps,0,0,D,1.8,3.56,4.23
+02/06/17,Shamrock Rovers,St. Patricks,1,1,D,1.77,3.52,4.43
+16/06/17,Bray,Derry City,3,2,H,2.88,3.34,2.34
+16/06/17,Drogheda,Dundalk,0,6,A,9.76,5.28,1.28
+16/06/17,St. Patricks,Bohemians,1,3,A,1.95,3.36,3.79
+16/06/17,Cork City,Limerick,4,1,H,1.17,7.14,14.02
+16/06/17,Finn Harps,Shamrock Rovers,0,1,A,3.99,3.36,1.91
+17/06/17,Sligo Rovers,Galway,1,1,D,2.32,3.25,2.98
+23/06/17,Bohemians,Sligo Rovers,2,0,H,2.39,3.16,2.92
+23/06/17,Derry City,Cork City,1,2,A,4.8,3.82,1.66
+23/06/17,Galway,Bray,1,2,A,2.92,3.43,2.29
+23/06/17,Dundalk,Finn Harps,4,0,H,1.14,7.48,17.8
+23/06/17,Shamrock Rovers,Drogheda,4,1,H,1.32,4.96,8.83
+24/06/17,Limerick,St. Patricks,2,2,D,2.08,3.49,3.25
+26/06/17,Dundalk,Galway,2,0,H,1.19,6.27,13.91
+30/06/17,Bray,Dundalk,0,3,A,5.18,4.13,1.57
+30/06/17,Drogheda,Limerick,0,2,A,4.46,3.8,1.7
+30/06/17,St. Patricks,Galway,1,1,D,1.86,3.57,3.94
+02/07/17,Sligo Rovers,Shamrock Rovers,1,0,H,3.63,3.37,2
+05/07/17,Bohemians,Dundalk,0,1,A,9.55,5.04,1.3
+07/07/17,Drogheda,Finn Harps,0,2,A,3.04,3.14,2.33
+07/07/17,Galway,Limerick,3,1,H,2.48,3.29,2.71
+09/07/17,Cork City,St. Patricks,1,0,H,1.25,5.69,10.52
+09/07/17,Derry City,Sligo Rovers,4,0,H,1.77,3.63,4.29
+14/07/17,St. Patricks,Derry City,2,1,H,3.07,3.45,2.19
+14/07/17,Finn Harps,Bohemians,2,1,H,2.71,3.02,2.67
+15/07/17,Sligo Rovers,Drogheda,1,1,D,1.54,3.97,5.96
+16/07/17,Bray,Cork City,0,2,A,5.66,4.33,1.5
+21/07/17,Bohemians,Derry City,0,1,A,4.15,3.46,1.84
+21/07/17,Galway,Drogheda,4,1,H,1.57,3.88,5.67
+21/07/17,St. Patricks,Bray,3,1,H,2.09,3.47,3.26
+22/07/17,Limerick,Sligo Rovers,0,0,D,1.86,3.58,3.9
+23/07/17,Dundalk,Shamrock Rovers,0,1,A,1.51,4.08,6.01
+24/07/17,Finn Harps,Derry City,0,2,A,4.52,3.39,1.8
+28/07/17,Bray,Finn Harps,2,3,A,2.02,3.43,3.49
+28/07/17,Cork City,Galway,2,1,H,1.27,5.35,10.37
+28/07/17,Drogheda,St. Patricks,0,1,A,5.41,3.93,1.58
+28/07/17,Shamrock Rovers,Bohemians,1,2,A,1.55,3.87,5.87
+29/07/17,Sligo Rovers,Dundalk,1,1,D,7.07,4.28,1.43
+30/07/17,Derry City,Limerick,3,0,H,1.66,3.9,4.7
+31/07/17,Cork City,Bohemians,0,1,A,1.23,5.75,12.19
+04/08/17,Bohemians,Bray,0,0,D,1.93,3.41,3.79
+04/08/17,Drogheda,Cork City,0,1,A,13.74,6.52,1.18
+04/08/17,Dundalk,Limerick,3,0,H,1.27,5.54,10.09
+04/08/17,Finn Harps,Galway,1,3,A,2.34,3.13,3.06
+04/08/17,Shamrock Rovers,Derry City,0,2,A,2.23,3.23,3.18
+05/08/17,Sligo Rovers,St. Patricks,1,1,D,2.99,3.18,2.36
+15/08/17,Limerick,Shamrock Rovers,0,2,A,4.21,3.62,1.79
+15/08/17,Sligo Rovers,Bray,0,0,D,2.46,3.3,2.76
+18/08/17,Cork City,Sligo Rovers,0,1,A,1.27,5.31,10.59
+18/08/17,Bray,Drogheda,2,1,H,1.56,3.88,5.77
+18/08/17,Galway,Shamrock Rovers,1,2,A,3.7,3.39,1.97
+18/08/17,St. Patricks,Finn Harps,4,0,H,1.65,3.73,5.08
+19/08/17,Limerick,Bohemians,1,0,H,2.35,3.25,2.96
+20/08/17,Derry City,Dundalk,0,4,A,3.96,3.4,1.9
+21/08/17,Finn Harps,Cork City,0,1,A,7.23,4.05,1.46
+01/09/17,Bohemians,Galway,1,1,D,2.52,3.16,2.77
+01/09/17,Dundalk,St. Patricks,6,0,H,1.42,4.48,6.95
+01/09/17,Limerick,Finn Harps,0,2,A,1.9,3.36,4
+01/09/17,Shamrock Rovers,Cork City,3,1,H,3.22,3.14,2.24
+15/09/17,Bray,Limerick,1,1,D,2.71,3.37,2.46
+15/09/17,Drogheda,Bohemians,1,4,A,4.19,3.33,1.87
+15/09/17,Galway,Derry City,2,1,H,3.31,3.44,2.09
+16/09/17,Finn Harps,Sligo Rovers,1,2,A,2.79,2.98,2.63
+22/09/17,Bohemians,St. Patricks,3,2,H,3.02,3.2,2.34
+22/09/17,Derry City,Bray,0,5,A,1.5,4.32,5.83
+22/09/17,Dundalk,Drogheda,3,0,H,1.06,12.21,30.06
+22/09/17,Galway,Sligo Rovers,3,1,H,2.1,3.35,3.36
+22/09/17,Limerick,Cork City,2,1,H,5.58,4.29,1.51
+22/09/17,Shamrock Rovers,Finn Harps,4,1,H,1.46,4.28,6.41
+25/09/17,Cork City,Dundalk,1,1,D,3.21,3.38,2.15
+25/09/17,St. Patricks,Shamrock Rovers,2,0,H,3.22,3.51,2.09
+29/09/17,Derry City,Drogheda,2,1,H,1.15,7.25,15.19
+07/10/17,Bray,Galway,3,3,D,2.79,3.48,2.35
+07/10/17,Drogheda,Shamrock Rovers,0,2,A,9.21,5.23,1.3
+07/10/17,Finn Harps,Dundalk,0,2,A,5.54,4.27,1.53
+07/10/17,Sligo Rovers,Bohemians,1,0,H,2.18,3.24,3.3
+07/10/17,St. Patricks,Limerick,2,2,D,2.01,3.61,3.35
+13/10/17,Bohemians,Cork City,0,0,D,6.19,3.99,1.51
+13/10/17,Derry City,Finn Harps,3,0,H,1.65,3.76,4.96
+13/10/17,Dundalk,Bray,1,0,H,1.36,4.95,7.46
+13/10/17,Galway,St. Patricks,1,1,D,2.59,3.51,2.48
+13/10/17,Shamrock Rovers,Sligo Rovers,1,1,D,1.78,3.55,4.34
+14/10/17,Limerick,Drogheda,1,0,H,1.34,5.09,7.78
+17/10/17,Cork City,Derry City,0,0,D,1.61,3.52,5.87
+20/10/17,Bray,Shamrock Rovers,1,0,H,3.9,3.67,1.83
+20/10/17,Dundalk,Bohemians,0,1,A,1.26,5.36,10.68
+20/10/17,Limerick,Galway,2,2,D,2.84,3.47,2.32
+20/10/17,St. Patricks,Cork City,4,2,H,1.62,3.93,4.85
+21/10/17,Sligo Rovers,Derry City,3,0,H,2.18,3.35,3.14
+23/10/17,Finn Harps,Drogheda,2,3,A,1.8,3.53,4.18
+27/10/17,Bohemians,Finn Harps,3,1,H,1.57,4.02,5.39
+27/10/17,Cork City,Bray,1,0,H,1.29,5.46,8.79
+27/10/17,Derry City,St. Patricks,1,1,D,2.79,3.28,2.45
+27/10/17,Drogheda,Sligo Rovers,0,0,D,6.68,4.4,1.44
+27/10/17,Galway,Dundalk,3,4,A,2.86,3.6,2.25
+27/10/17,Shamrock Rovers,Limerick,2,1,H,1.37,4.92,7.1
