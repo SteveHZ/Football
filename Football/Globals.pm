@@ -19,6 +19,8 @@ our @EXPORT = qw(
 	@league_size
 	@euro_leagues
 	@euro_csv_leagues
+	@euro_lgs
+	@euro_csv_lgs
 	@summer_leagues
 	@summer_csv_leagues
 	$month_names
@@ -75,6 +77,9 @@ our @euro_leagues = (
 );
 
 our @euro_csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 D1 D2 SP1 SP2 I1 I2 F1 F2 N1 B1 P1 T1 G1 );
+
+our @euro_lgs = ("German 1", "Spanish 1", "Italian 1", "Belgian 1");
+our @euro_csv_lgs = qw( D1 SP1 I1 B1);
 
 our @summer_leagues = (
 	"Welsh League",

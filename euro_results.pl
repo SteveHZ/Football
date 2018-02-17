@@ -11,7 +11,7 @@ use strict;
 use warnings;
 
 use lib 'C:/Mine/perl/Football';
-use Football::Globals qw( $month_names );
+use Football::Globals qw( $month_names $euro_season );
 use Euro::Rename qw( $euro_teams );
 
 my $date_parser = qr/
@@ -29,7 +29,7 @@ my $game_parser = qr/
 /x;
 
 my $date;
-my $year = 17;
+my $year = $euro_season - 2000;
 my $in_path = "C:/Mine/perl/Football/data/Euro/scraped/";
 my $out_path = "C:/Mine/perl/Football/data/Euro/cleaned/";
 

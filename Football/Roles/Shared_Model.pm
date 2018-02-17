@@ -118,15 +118,15 @@ sub _get_unique_leagues {
 	my $fixtures = shift;
 
 #	map unique values of league_idx
-	my %mapped = map { $_->{league_idx} => $_->{league} } @$fixtures;
+	my %leagues = map { $_->{league_idx} => $_->{league} } @$fixtures;
 
 #	map to sorted array of hashrefs
 	return [ 
 		map { {
 			'league_idx' => $_,
-			'league' => $mapped{$_},
+			'league' => $leagues{$_},
 		} } 
-		sort { $a <=> $b } keys %mapped
+		sort { $a <=> $b } keys %leagues
 	];
 }
 

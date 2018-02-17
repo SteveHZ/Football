@@ -4,18 +4,26 @@ use strict;
 use warnings;
 
 use lib 'C:/Mine/perl/Football';
-use Football::Globals qw(@csv_leagues $season_years $full_season_years);
+use Football::Globals qw(@csv_leagues @euro_csv_lgs $season_years $full_season_years);
 
 use File::Fetch;
 use Archive::Extract;
 
 my $id = 'mmz4281';
 my $dir = 'C:/Mine/perl/Football/data';
+my $euro_dir = 'C:/Mine/perl/Football/data/Euro';
 
 for my $league (@csv_leagues) {
 	my $url = "http://www.football-data.co.uk/$id/$season_years/$league.csv";
 	my $ff = File::Fetch->new (uri => $url);
 	my $file = $ff->fetch (to => $dir) or die $ff->error;
+	print "\nDownloading $file...";
+}
+
+for my $league (@euro_csv_lgs) {
+	my $url = "http://www.football-data.co.uk/$id/$season_years/$league.csv";
+	my $ff = File::Fetch->new (uri => $url);
+	my $file = $ff->fetch (to => $euro_dir) or die $ff->error;
 	print "\nDownloading $file...";
 }
 

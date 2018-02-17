@@ -15,11 +15,12 @@ sub team {
 }
 
 sub add_teams {
-	my ($self, $results) = @_;
+	my ($self, $results, $lg_idx) = @_;
 	
 	my $teams = _get_all_teams ($results, 'home_team');
 	for my $team (@$teams) {
 		$self->{hash}->{$team} = Football::Team_Profit->new (team => $team);
+		$self->{hash}->{$team}->{lg_idx} = $lg_idx;
 		push (@{ $self->{teams} }, $team);
 	}
 }

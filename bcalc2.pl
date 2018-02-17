@@ -10,10 +10,12 @@ use ComboGen;
 my $formula = {};
 my $filename = "C:/Mine/perl/Spreadsheets/bcalc2.txt";
 
+my $ptrixie = do_perms (3);
 my $ppatent = do_perms (3);
 my $pyankee = do_perms (4);
 
 my $dispatch = {
+	"permed trixie from 4" => $ptrixie->(4,1), # flag for trixie
 	"permed patent from 4" => $ppatent->(4),
 	"permed patent from 5" => $ppatent->(5),
 	"permed patent from 6" => $ppatent->(6),
@@ -48,18 +50,20 @@ sub do_perms {
 	my $sels = shift;
 
 	return sub {
-		my $from = shift;
+		my ($from, $trixie) = @_;
+		$trixie //= 0;
 		my @formulas = ();
 		
 		print "\n\nCalculating $sels from $from";
 		my $gen = ComboGen->new ($sels, $from);
 		my $coderef = sub {
 			my $obj = shift;
-*			my $genref = $obj->get_array (deep_copy => 0);
+			my $genref = $obj->get_array (deep_copy => 0);
 
 			my $str = "=";
-			$str .= build_singles ($genref) if $sels == 3; # permed patent
-
+			if (! $trixie) {
+				$str .= build_singles ($genref) if $sels == 3; # permed patent
+			}
 			my $multiples = build_multiples->($sels, $genref);
 			for my $multis (2..$sels) {
 				$str .= $multiples->($multis);
@@ -82,7 +86,7 @@ sub build_singles {
 	my $genref = shift;
 	my $start = 3;
 
-	my @temp = map { "H".( $start + $_ ) } @$genref;
+	my @temp = map { "I".( $start + $_ ) } @$genref;
 	return "(". join ('+', @temp). ")+";
 }
 
@@ -104,7 +108,7 @@ sub build_multiples {
 			my $obj = shift;
 			my $objref = $obj->get_array (deep_copy => 0);				# get current state of this generator
 
-			my @temp = map { "H".( $start + @$genref [$_] ) } @$objref;	# index into other generator passed into build_multiples
+			my @temp = map { "I".( $start + @$genref [$_] ) } @$objref;	# index into other generator passed into build_multiples
 			$str .= "(". join ('*', @temp). ")+";
 		};
 
