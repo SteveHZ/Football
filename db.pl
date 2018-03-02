@@ -5,70 +5,38 @@
 use strict;
 use warnings;
 
-use DBI;
+#use DBI;
+use Football::DBModel;
 use Football::Globals qw( @csv_leagues );
 
 my $query_dispatch = {
-	'h' => \&get_homes,
-	'a' => \&get_aways,
+	'h' => \&Football::DBModel::get_homes,
+	'a' => \&Football::DBModel::get_aways,
 };
 my $output_dispatch = {
-	'h' => \&print_homes,
-	'a' => \&print_aways,
+	'h' => \&Football::DBModel::print_homes,
+	'a' => \&Football::DBModel::print_aways,
 };
 
-my $dbh = DBI->connect ("DBI:CSV:", undef, undef, {
-	f_dir => "data",
-	f_ext => ".csv",
-	csv_eol => "\n",
-	RaiseError => 1,
-})	or die "Couldn't connect to database : ".DBI->errstr;
+my $dbmodel = Football::DBModel->new;
+my $dbh = $dbmodel->connect;
 	
-my $leagues = build_leagues ($dbh, \@csv_leagues);
+my $leagues = $dbmodel->build_leagues ($dbh, \@csv_leagues);
 
 while (my ($team, $ha) = get_cmdline ()) {
 	last if $team eq 'x';
 	die "Usage : (team name) [-h|-a]" unless $ha =~ /[h|a]/;
 
-	my $league = find_league ($team, $leagues, \@csv_leagues);
+	my $league = $dbmodel->find_league ($team, $leagues, \@csv_leagues);
 	get_results ($dbh, $league, $team, $ha);
 }
 $dbh->disconnect;
-
-sub build_leagues {
-	my ($dbh, $csv_leagues) = @_;
-	my %leagues = ();
-
-	for my $league (@$csv_leagues) {
-		print "\nBuilding $league..";
-		my $query = "select distinct HomeTeam from $league";
-		my $sth = $dbh->prepare ($query)
-			or die "Couldn't prepare statement : ".$dbh->errstr;
-		$sth->execute;
-		
-		my @temp = ();
-		while (my $row = $sth->fetchrow_hashref) {
-			push (@temp, $row->{HomeTeam} );
-		}
-		$leagues{$league} =  \@temp;
-	}
-	print "\n";
-	return \%leagues;
-}
 
 sub get_cmdline {
 	print "\nDB > ";
 	chomp (my $in = <STDIN>);
 	my ($team, $ha) = split (' -', $in);
 	return ($team, $ha);
-}
-
-sub find_league {
-	my ($team, $leagues, $csv_leagues) = @_;
-	for my $league (@$csv_leagues) {
-		return $league if grep { $_ eq $team} @{ $leagues->{$league} };
-	}
-	return 0;
 }
 
 sub get_results {
@@ -85,6 +53,7 @@ sub get_results {
 	print "\n";
 }
 
+=head1
 #	called by $query_dispatch
 
 sub get_homes {
@@ -116,3 +85,4 @@ sub print_aways {
 	printf "%-20s", $row->{HomeTeam};
 	print "$row->{FTAG}-$row->{FTHG}  $row->{B365A}";
 }
+=cut
