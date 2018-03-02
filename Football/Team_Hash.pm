@@ -9,6 +9,17 @@ use Football::Utils qw(_get_all_teams);
 has 'hash' => ( is => 'ro', default => sub { {} } );
 has 'teams' => ( is => 'ro', default => sub { [] } );
 
+sub BUILD {
+	my $self = shift;
+
+	$self->{sheetnames} = [ qw(totals homes aways) ];
+	$self->{dispatch} = {
+		'totals'	=> \&Football::Team_Hash::sort_totals,
+		'homes'		=> \&Football::Team_Hash::sort_homes,
+		'aways'		=> \&Football::Team_Hash::sort_aways,
+	};
+}
+
 sub team {
 	my ($self, $team) = @_;
 	return $self->{hash}->{$team};
@@ -27,8 +38,8 @@ sub add_teams {
 
 sub place_stakes {
 	my ($self, $home_team, $away_team) = @_;
-	$self->{hash}->{$home_team}->staked ();
-	$self->{hash}->{$away_team}->staked ();
+	$self->{hash}->{$home_team}->home_staked ();
+	$self->{hash}->{$away_team}->away_staked ();
 }
 
 sub home_win {
@@ -49,12 +60,56 @@ sub percent {
 	return sprintf "%.2f", $teamref->{total} / $teamref->{stake};
 }
 
+sub home {
+	my ($self, $team) = @_;
+	return $self->{hash}->{$team}->home_percent ();
+}
+
+sub away {
+	my ($self, $team) = @_;
+	return $self->{hash}->{$team}->away_percent ();
+}
+
 sub sort {
 	my $self = shift;
-	return sort {
-		$self->percent ($b) <=> $self->percent ($a) 
-		or $a cmp $b
-	} @{ $self->{teams} };
+	my %hash = ();
+	
+	for my $sheetname ( @{ $self->{sheetnames} } ) {
+		$hash{$sheetname} = $self->{dispatch}->{ $sheetname }->($self);
+	}
+	return \%hash;
+}
+
+#	called as arguments to $self->{dispatch}
+
+sub sort_totals {
+	my $self = shift;
+	return [
+		sort {
+			$self->percent ($b) <=> $self->percent ($a) 
+			or $a cmp $b
+		} @{ $self->{teams} }
+	];
+}
+
+sub sort_homes {
+	my $self = shift;
+	return [
+		sort {
+			$self->home ($b) <=> $self->home ($a) 
+			or $a cmp $b
+		} @{ $self->{teams} }
+	];
+}
+
+sub sort_aways {
+	my $self = shift;
+	return [
+		sort {
+			$self->away ($b) <=> $self->away ($a) 
+			or $a cmp $b
+		} @{ $self->{teams} }
+	];
 }
 
 =pod

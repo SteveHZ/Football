@@ -8,10 +8,19 @@ has 'stake' => ( is => 'ro', default => 0 );
 has 'home'  => ( is => 'ro', default => 0 );
 has 'away'  => ( is => 'ro', default => 0 );
 has 'total' => ( is => 'ro', default => 0 );
+has 'home_stake' => ( is => 'ro', default => 0 );
+has 'away_stake' => ( is => 'ro', default => 0 );
 
-sub staked {
+sub home_staked {
 	my $self = shift;
 	$self->{stake} ++;
+	$self->{home_stake} ++;
+}
+
+sub away_staked {
+	my $self = shift;
+	$self->{stake} ++;
+	$self->{away_stake} ++;
 }
 
 sub home_add {
@@ -29,6 +38,16 @@ sub away_add {
 sub percent {
 	my $self = shift;
 	return sprintf "%.2f", $self->{total} / $self->{stake};
+}
+
+sub home_percent {
+	my $self = shift;
+	return sprintf "%.2f", $self->{home} / $self->{home_stake};
+}
+
+sub away_percent {
+	my $self = shift;
+	return sprintf "%.2f", $self->{away} / $self->{away_stake};
 }
 
 =pod

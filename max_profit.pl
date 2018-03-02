@@ -1,6 +1,6 @@
 #!	C:/Strawberry/perl/bin
 
-# 	max_profit.pl 11-12/03/17, 17/02/18
+# 	max_profit.pl 11-12/03/17, 17-18/02/18
 
 use strict;
 use warnings;
@@ -10,19 +10,20 @@ use Football::Favourites_Data_Model;
 use Football::Team_Profit;
 use Football::Team_Hash;
 use Football::Spreadsheets::Max_Profit;
-use Football::Globals qw( @csv_leagues @euro_csv_lgs);
+use Football::Globals qw( @csv_leagues @euro_csv_lgs );
 
 my $euro = 0;
 if (defined $ARGV [0]) {
 	$euro = 1 if $ARGV[0] eq "-e"; 
 }
 
-my $in_path = (! $euro) ? 'C:/Mine/perl/Football/data/' : 'C:/Mine/perl/Football/data/Euro/';
-my $out_file = (! $euro) ? 'C:/Mine/perl/Football/reports/max_profit.xlsx':
-  'C:/Mine/perl/Football/reports/max_euro_profit.xlsx';
-my $leagues = (! $euro) ? \@csv_leagues : \@euro_csv_lgs;
+my $in_path = (! $euro)	? 'C:/Mine/perl/Football/data/'
+						: 'C:/Mine/perl/Football/data/Euro/';
+my $out_file= (! $euro)	? 'C:/Mine/perl/Football/reports/max_profit.xlsx'
+						: 'C:/Mine/perl/Football/reports/max_euro_profit.xlsx';
+my $leagues = (! $euro) ? \@csv_leagues 
+						: \@euro_csv_lgs;
 my $index = [ 0...$#$leagues ];
-#my $index = [ 0...scalar (@$leagues) - 1 ];
 
 main ();
 
@@ -45,14 +46,15 @@ sub main {
 			}
 		}
 	}
-	my @sorted = $team_hash->sort ();
-	for my $team (@sorted) {
+
+	my $sorted = $team_hash->sort ();
+	for my $team (@{ $sorted->{totals} }) {
 		print "\n$team : ". $team_hash->team($team)->stake." ".
 							$team_hash->team($team)->home." ". $team_hash->team($team)->away." ".
 							$team_hash->team($team)->total." = ".$team_hash->team($team)->percent ."%";
 	}
 	my $writer = Football::Spreadsheets::Max_Profit->new ( filename => $out_file, euro => $euro );
-	$writer->show ($team_hash, \@sorted);
+	$writer->show ($team_hash, $sorted);
 }
 
 =pod

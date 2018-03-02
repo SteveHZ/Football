@@ -67,6 +67,8 @@ our @csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 );
 our @fixtures_csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 );
 our @league_size = qw( 20 24 24 24 24 12 10 10 10 ); # clubs in each league
 
+# for euro.pl
+
 our @euro_leagues = (
 	"English Premier League", "English Championship", "English League One", "English League Two", "English Conference",
 	"Scots Premier League", "Scots Championship", "Scots League One", "Scots League Two",
@@ -77,6 +79,8 @@ our @euro_leagues = (
 );
 
 our @euro_csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 D1 D2 SP1 SP2 I1 I2 F1 F2 N1 B1 P1 T1 G1 );
+
+# for max_profit.pl
 
 our @euro_lgs = ("German 1", "Spanish 1", "Italian 1", "Belgian 1");
 our @euro_csv_lgs = qw( D1 SP1 I1 B1);
