@@ -40,7 +40,7 @@ my %filenames = (
 #	"Swedish"	=> [ "Sweden April", "Sweden May" ],
 #	"USA"		=> [ "USA March", "USA April", "USA May" ],
 #	"Welsh"		=> [ "Welsh August", "Welsh Sept" ],
-#	"N Irish" 	=> [ "NI August", "NI Sept" ],
+	"N Irish" 	=> [ "NI August", "NI Sept" ],
 	"Highland" 	=> [ "HL July", "HL August", "HL Sept", "HL Oct" ],
 );
 
