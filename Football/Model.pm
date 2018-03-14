@@ -17,10 +17,10 @@ use Football::Favourites_Data_Model;
 use Football::Favourites_Model;
 use Football::Favourites_View;
 
-use Football::Reports::Head2Head;
-use Football::Reports::LeaguePlaces;
-use Football::Reports::GoalDifference;
-use Football::Reports::Recent_GoalDifference;
+#use Football::Reports::Head2Head;
+#use Football::Reports::LeaguePlaces;
+#use Football::Reports::GoalDifference;
+#use Football::Reports::Recent_GoalDifference;
 use Football::Globals qw( @league_names @csv_leagues $default_stats_size );
 
 use Moo;
@@ -73,6 +73,7 @@ sub build_leagues {
 	return $self->{leagues};
 }
 
+=head
 sub do_league_places {
 	my ($self, $fixtures, $teams) = @_;
 	my ($home, $away, $home_points, $away_points);
@@ -184,6 +185,7 @@ sub do_recent_draws {
 		} @temp
 	];
 }
+=cut
 
 sub do_favourites {
 	my ($self, $year, $update) = @_;

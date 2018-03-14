@@ -4,7 +4,7 @@ package Football::Roles::Shared_Model;
 #	v1.2 02/04/17
 
 use List::MoreUtils qw(firstidx);
-use Football::Game_Prediction_Models;
+#use Football::Game_Prediction_Models;
 use Football::Globals qw($default_stats_size );
 
 use Moo::Role;
@@ -63,6 +63,7 @@ sub last_six {
 	return $league_array;
 }
 
+=head
 sub do_fixtures {
 	my ($self, $fixture_list, $homes, $aways, $last_six) = @_;
 	my $stat_size = $default_stats_size * 2;
@@ -147,5 +148,6 @@ sub do_predict_models {
 	
 	return ($teams, $sorted);
 }
+=cut
 
 1;

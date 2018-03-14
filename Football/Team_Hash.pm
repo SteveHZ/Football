@@ -56,8 +56,7 @@ sub away_win {
 
 sub percent {
 	my ($self, $team) = @_;
-	my $teamref = $self->{hash}->{$team};
-	return sprintf "%.2f", $teamref->{total} / $teamref->{stake};
+	return $self->{hash}->{$team}->percent ();
 }
 
 sub home {

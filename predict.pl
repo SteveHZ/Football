@@ -5,31 +5,29 @@
 # 	v2.08 02/04/17 v2.10 08/05/17 v2.12 27/06/17
 #	v2.13 26/07/17 v2.14 07/10/17 v2.15 29/11/17
 #	v2.20 30/11/17 - 02/12/17
+#	v3.0 12/03/18
 
 use strict;
 use warnings;
 use Getopt::Long qw(GetOptions);
 
 use lib 'C:/Mine/perl/Football';
-use Football::Model;
-use Football::View;
 use Football::Globals qw( $season );
 
-use Rugby::Model;
-use Rugby::View;
-
+use Football::Model;
+use Football::View;
 use Euro::Model;
 use Euro::View;
+use Summer::Model;
+use Summer::View;
 
 main ();
 
 sub main {
-	my ($sport, $update, $update_favs) = get_cmdline ();
+	my $options = get_cmdline ();
+	my ($model, $view) = get_model_and_view ($options);
 
-	my $model = ($sport."::Model")->new ();
-	my $view = ($sport."::View")->new ();
-
-	my $games = $model->read_games (update => $update);
+	my $games = $model->read_games (update => $options->{update});
 	my $leagues = $model->build_leagues ($games);
 
 	$view->do_teams ($leagues);
@@ -50,46 +48,59 @@ sub main {
 	$view->last_six ( 
 		my $last_six = $model->last_six ($leagues)
 	);
+	$view->do_favourites ( $model->do_favourites ($season, $options->{update_favs}) );
 
-	$view->fixtures (
-		my $fixture_list = $model->get_fixtures ()
-	);
-	$view->do_fixtures (
-		my $fixtures = $model->do_fixtures ($fixture_list, $homes, $aways, $last_six)
-	);
+#	$view->fixtures (
+#		my $fixture_list = $model->get_fixtures ()
+#	);
+#	$view->do_fixtures (
+#		my $fixtures = $model->do_fixtures ($fixture_list, $homes, $aways, $last_six)
+#	);
 
-	$view->do_recent_goal_difference ( $model->do_recent_goal_difference ($fixtures, $leagues) );
-	$view->do_goal_difference ( $model->do_goal_difference ($fixtures, $leagues) );
-	$view->do_league_places ( $model->do_league_places ($fixtures, $leagues) );
-	$view->do_head2head ( $model->do_head2head ($fixtures) );
+#	$view->do_recent_goal_difference ( $model->do_recent_goal_difference ($fixtures, $leagues) );
+#	$view->do_goal_difference ( $model->do_goal_difference ($fixtures, $leagues) );
+#	$view->do_league_places ( $model->do_league_places ($fixtures, $leagues) );
+#	$view->do_head2head ( $model->do_head2head ($fixtures) );
 	
-	$view->do_recent_draws ( $model->do_recent_draws ($fixtures) );
-	$view->do_favourites ( $model->do_favourites ($season, $update_favs) );
+#	$view->do_recent_draws ( $model->do_recent_draws ($fixtures) );
+#	$view->do_favourites ( $model->do_favourites ($season, $update_favs) );
 
-	my ($teams, $sorted) = $model->do_predict_models ($leagues, $fixture_list, $fixtures, $sport);
+#	my ($teams, $sorted) = $model->do_predict_models ($leagues, $fixture_list, $fixtures, $sport);
 
-	$view->do_goal_expect ($leagues, $teams, $sorted, $fixture_list);
-	$view->do_match_odds ($sorted);
-	$view->do_over_under ($sorted);
+#	$view->do_goal_expect ($leagues, $teams, $sorted, $fixture_list);
+#	$view->do_match_odds ($sorted);
+#	$view->do_over_under ($sorted);
 }
 
 sub get_cmdline {
-	my ($rugby, $euro, $update, $favs, $update_favs);
+	my ($uk, $euro, $summer, $update, $favs, $update_favs) = (0,0,0,0,0,0);
 	
 	Getopt::Long::Configure ("bundling");
 	GetOptions (
-		'rugby|r' => \$rugby,
 		'euro|e' => \$euro,
+		'summer|s' => \$summer,
 		'update|u' => \$update,
 		'update_favs|f' => \$favs,
 	) or die "Usage perl predict.pl -u -uf -r -ru -e -eu";
 
-	my $sport_name = "Football";
-	$sport_name = "Rugby" if $rugby;
-	$sport_name = "Euro" if $euro;
 	$update_favs = ($update && (! $favs)) ? 1 : 0; # do NOT update favourites if set
+	$uk = 1 unless ($euro or $summer);
 
-	return ($sport_name, $update, $update_favs);
+	return {
+		uk => $uk,
+		euro => $euro,
+		summer => $summer,
+		update => $update,
+		update_favs => $update_favs,
+	};
+}
+
+sub get_model_and_view {
+	my $options = shift;
+	return (Football::Model->new (), Football::View->new ()) if $options->{uk};
+	return (Euro::Model->new (), Euro::View->new ()) if $options->{euro};
+	return (Summer::Model->new (), Summer::View->new ()) if $options->{summer};
+	die "Unknown error in get_model_and_view";
 }
 
 =pod
@@ -103,8 +114,8 @@ predict.pl
  cd football
  perl predict.pl 
  perl predict.pl -u
- perl predict.pl -e
- perl predict.pl -eu
+ perl predict.pl -e OR -eu
+ perl predict.pl -s OR -su
  update_rugby
 
 =head1 DESCRIPTION
@@ -113,7 +124,7 @@ Football predictions
 
 =head1 AUTHOR
 
-Steve Hope 2016 2017
+Steve Hope 2016 2017 2018
 
 =head1 LICENSE
 

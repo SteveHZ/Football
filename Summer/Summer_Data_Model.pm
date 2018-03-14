@@ -1,4 +1,4 @@
-package Football::Euro_Data_Model;
+package Summer::Summer_Data_Model;
 
 use Moo;
 use namespace::clean;
@@ -8,7 +8,7 @@ use Football::Utils qw(get_euro_odds_cols);
 
 # Read Football Data csv files
 
-sub read_euro {
+sub read_data {
 	my ($self, $file) = @_;
 	my $league_games = [];
 
@@ -128,7 +128,7 @@ Euro_Data_Model.pm
 
 =head1 SYNOPSIS
 
-Used by euro_profit.pl
+Used by fetch_euro.pl and euro_profit.pl
 
 =head1 DESCRIPTION
 

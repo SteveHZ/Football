@@ -3,6 +3,7 @@
 #	euro_results.pl 16-20/07/17
 #	without Regexp::Grammars 28-30/07/17
 #	added split_team_names 30/09/17
+#	use check_rename 13/01/18
 
 #	Run euro_scrape.pl to retrieve results data from BBC website,
 #	run this script to write to csv files then run update_euro.pl to create season.json.
@@ -12,7 +13,7 @@ use warnings;
 
 use lib 'C:/Mine/perl/Football';
 use Football::Globals qw( $month_names $euro_season );
-use Euro::Rename qw( $euro_teams );
+use Euro::Rename qw( check_rename );
 
 my $date_parser = qr/
 	\w+\s				# day
@@ -96,10 +97,8 @@ sub do_games {
 	my ($home, $away) = split_team_names ($hash);
 	
 #	Check for and rename teams with Unicode characters
-	$home = defined $euro_teams->{ $home }
-		? $euro_teams->{ $home } : $home;
-	$away = defined $euro_teams->{ $away }
-		? $euro_teams->{ $away } : $away;
+	$home = check_rename ($home);
+	$away = check_rename ($away);
 	
 	push @$games, {
 		date => $date,
@@ -135,24 +134,6 @@ sub write_csv {
 	}
 	close $fh;
 }
-
-#sub old_do_games {
-#	my ($hash, $games) = @_;
-	
-##	Check for and rename teams with Unicode characters
-#	my $home = defined $euro_teams->{ $hash->{home} }
-#		? $euro_teams->{ $hash->{home} } : $hash->{home};
-#	my $away = defined $euro_teams->{ $hash->{away} }
-#		? $euro_teams->{ $hash->{away} } : $hash->{away};
-	
-#	push @$games, {
-#		date => $date,
-#		home_team => $home,
-#		away_team => $away,
-#		home_score => $hash->{home_score},
-#		away_score => $hash->{away_score},
-#	};
-#}
 
 =pod
 

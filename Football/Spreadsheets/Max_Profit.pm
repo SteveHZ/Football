@@ -3,7 +3,7 @@ package Football::Spreadsheets::Max_Profit;
 use Moo;
 use namespace::clean;
 
-use Football::Globals qw(@league_names @euro_lgs);
+use Football::Globals qw(@league_names @euro_lgs @summer_leagues);
 
 has 'filename' => ( is => 'ro' );
 has 'euro' => ( is => 'ro' );
@@ -11,13 +11,14 @@ with 'Roles::Spreadsheet';
 
 my $path = 'C:/Mine/perl/Football/reports/';
 my $default_filename = $path."max_profit.xlsx";
+my @all_leagues = ( \@league_names, \@euro_lgs, \@summer_leagues );
 
 sub BUILD {
 	my ($self, $args) = @_;
 	$self->{filename} = ( exists $args->{filename} )
 		? $args->{filename}
 		: $default_filename;
-	$self->{leagues} = (! $self->{euro} ) ? \@league_names : \@euro_lgs;
+	$self->{leagues} = $all_leagues[$self->{euro}];
 	$self->{sheetnames} = [ qw(totals homes aways) ];
 	$self->{dispatch} = {
 		'totals'	=> \&Football::Spreadsheets::Max_Profit::get_totals,
@@ -71,7 +72,7 @@ sub get_totals {
 		{ $hash->team($team)->home, $self->{currency_format} },
 		{ $hash->team($team)->away,	$self->{currency_format} },
 		{ $hash->team($team)->total, $self->{currency_format} },
-		{ $hash->team($team)->percent / 100, $self->{percent_format} },
+		{ $hash->team($team)->percent, $self->{percent_format} },
 	];
 }
 
@@ -84,7 +85,7 @@ sub get_homes {
 		{ $hash->team($team)->home, $self->{currency_format} },
 		{ $hash->team($team)->away,	$self->{currency_format} },
 		{ $hash->team($team)->total, $self->{currency_format} },
-		{ $hash->team($team)->home_percent / 100, $self->{percent_format} },
+		{ $hash->team($team)->home_percent, $self->{percent_format} },
 	];
 }
 
@@ -97,7 +98,7 @@ sub get_aways {
 		{ $hash->team($team)->home, $self->{currency_format} },
 		{ $hash->team($team)->away,	$self->{currency_format} },
 		{ $hash->team($team)->total, $self->{currency_format} },
-		{ $hash->team($team)->away_percent / 100, $self->{percent_format} },
+		{ $hash->team($team)->away_percent, $self->{percent_format} },
 	];
 }
 

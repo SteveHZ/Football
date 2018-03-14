@@ -1,4 +1,5 @@
 #	fetch_euro.pl 07/02/18
+#	fetch_summer.pl 12/03/18
 
 use strict;
 use warnings;
@@ -7,29 +8,29 @@ use File::Fetch;
 use List::MoreUtils qw(each_array);
 
 use lib 'C:/Mine/perl/Football';
-use Football::Euro_Data_Model;
+use Summer::Summer_Data_Model;
 use Football::Globals qw( $euro_season );
 
-my $euro_dir = 'C:/Mine/perl/Football/data/Euro';
-my @euro_leagues = qw(SWE NOR IRL USA);
+my $summer_dir = 'C:/Mine/perl/Football/data/Summer';
+my @leagues = qw(SWE NOR IRL USA);
 my @out_files = qw(Swedish Norwegian Irish American);
 
-my $data_model = Football::Euro_Data_Model->new ();
+my $data_model = Summer::Summer_Data_Model->new ();
 
-for my $league (@euro_leagues) {
+for my $league (@leagues) {
 	my $url = "http://www.football-data.co.uk/new/$league.csv";
 	my $ff = File::Fetch->new (uri => $url);
-	my $file = $ff->fetch (to => $euro_dir) or die $ff->error;
+	my $file = $ff->fetch (to => $summer_dir) or die $ff->error;
 	print "\nDownloading $file...";
 }
 print "\n";
 
-my $iterator = each_array (@euro_leagues, @out_files);
+my $iterator = each_array (@leagues, @out_files);
 while (my ($league, $file) = $iterator->()) {
-	my $in_file = "$euro_dir/$league.csv";
-	my $out_file = "$euro_dir/$file.csv";
+	my $in_file = "$summer_dir/$league.csv";
+	my $out_file = "$summer_dir/$file.csv";
 	
-	my $games = $data_model->read_euro ($in_file);
+	my $games = $data_model->read_data ($in_file);
 	my @data = grep { $_->{year} == $euro_season } @$games;
 
 	print "\nWriting $out_file...";
@@ -41,16 +42,15 @@ while (my ($league, $file) = $iterator->()) {
 
 =head1 NAME
 
-Football/fetch.pl
+Football/fetch_summer.pl
 
 =head1 SYNOPSIS
 
-perl fetch.pl
+perl fetch_summer.pl
 
 =head1 DESCRIPTION
 
-Stand-alone script to download csv files from wwww.football-data.co.uk
-then download and extract Euro zip files.
+Stand-alone script to download csv files for summer leagues from wwww.football-data.co.uk
 
 =head1 AUTHOR
 

@@ -1,8 +1,5 @@
 package Euro::Spreadsheets::Skellam_Dist_View;
 
-use Moo;
-use namespace::clean;
-
 use parent 'Football::Spreadsheets::Skellam_Dist_View';
 
 sub create_sheet {

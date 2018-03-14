@@ -49,6 +49,7 @@ sub update {
 	return $games;
 }
 
+=head
 sub get_fixtures {
 	my $self = shift;
 	my $args = { @_ };
@@ -73,5 +74,6 @@ sub get_fixtures {
 	close $fh;
 	return \@fixtures;
 }
+=cut
 
 1;

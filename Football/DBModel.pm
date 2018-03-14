@@ -1,30 +1,37 @@
 package Football::DBModel;
 
 use DBI;
-#use Football::Globals qw( @csv_leagues );
 
 use Moo;
 use namespace::clean;
 
-sub connect {
-	my $db = DBI->connect ("DBI:CSV:", undef, undef, {
-		f_dir => "data",
+has 'dbh' => ( is => 'ro' );
+has 'data' => (is => 'ro' );
+
+sub BUILD {
+	my $self = shift;
+	$self->{dbh} = DBI->connect ("DBI:CSV:", undef, undef, {
+		f_dir => $self->{data}->{path},
 		f_ext => ".csv",
 		csv_eol => "\n",
 		RaiseError => 1,
 	})	or die "Couldn't connect to database : ".DBI->errstr;
-	return $db;
+}
+
+sub DESTROY {
+	my $self = shift;
+	$self->{dbh}->disconnect;
 }
 
 sub build_leagues {
-	my ($self, $dbh, $csv_leagues) = @_;
+	my ($self, $csv_leagues) = @_;
 	my %leagues = ();
 
 	for my $league (@$csv_leagues) {
 		print "\nBuilding $league..";
 		my $query = "select distinct HomeTeam from $league";
-		my $sth = $dbh->prepare ($query)
-			or die "Couldn't prepare statement : ".$dbh->errstr;
+		my $sth = $self->{dbh}->prepare ($query)
+			or die "Couldn't prepare statement : ".$self->{dbh}->errstr;
 		$sth->execute;
 		
 		my @temp = ();
@@ -33,7 +40,6 @@ sub build_leagues {
 		}
 		$leagues{$league} =  \@temp;
 	}
-	print "\n";
 	return \%leagues;
 }
 
@@ -45,36 +51,54 @@ sub find_league {
 	return 0;
 }
 
-#	called by $query_dispatch
+sub query {
+	my ($self, $query) = @_;
+	my @result = ();
+	
+	my $sth = $self->{dbh}->prepare ($query)
+		or die "Couldn't prepare statement : ".$self->{dbh}->errstr;
+	$sth->execute;
+	while (my $row = $sth->fetchrow_hashref) {
+		push @result, $row;
+	}
+	return \@result;
+}
+
+# 	SQL functions called by dispatch tables
 
 sub get_homes {
-	my $league = shift;
-	return "select Date, AwayTeam, FTHG, FTAG, B365H from $league
+	my ($self, $league) = @_;
+	return "select Date, AwayTeam, FTHG, FTAG, $self->{data}->{column}H from $league
 			where (HomeTeam = ? and FTHG > FTAG)";
 }
 
 sub get_aways {
-	my $league = shift;
-	return "select Date, HomeTeam, FTAG, FTHG, B365A from $league
+	my ($self, $league) = @_;
+	return "select Date, HomeTeam, FTAG, FTHG, $self->{data}->{column}A from $league
 			where (AwayTeam = ? and FTAG > FTHG)";
 }
 
-#	called by $output_dispatch
+=pod
 
-sub print_homes {
-	my $row = shift;
+=head1 NAME
 
-	print "\n$row->{Date} ";
-	printf "%-20s", $row->{AwayTeam};
-	print "$row->{FTHG}-$row->{FTAG}  $row->{B365H}";
-}
+DBModel.pm
 
-sub print_aways {
-	my $row = shift;
+=head1 SYNOPSIS
 
-	print "\n$row->{Date} ";
-	printf "%-20s", $row->{HomeTeam};
-	print "$row->{FTAG}-$row->{FTHG}  $row->{B365A}";
-}
+Used by db.pl
+
+=head1 DESCRIPTION
+
+=head1 AUTHOR
+
+Steve Hope 2018
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
 
 1;

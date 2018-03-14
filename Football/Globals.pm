@@ -32,7 +32,7 @@ our @EXPORT = qw(
 sub new { return bless {}, shift; }
 
 our $season = 2017;
-our $euro_season = 2017;
+our $euro_season = 2018;
 our $season_years = 1718;
 our $full_season_years = '2017-2018';
 our $last_season = $season - 1;
@@ -82,20 +82,12 @@ our @euro_csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 D1 D2 SP1 SP2 I1 I2 F
 
 # for max_profit.pl
 
-our @euro_lgs = ("German 1", "Spanish 1", "Italian 1", "Belgian 1");
-our @euro_csv_lgs = qw( D1 SP1 I1 B1);
+our @euro_lgs = ("German 1", "Spanish 1", "Italian 1", "Belgian 1", "Welsh", "N Irish");
+our @euro_csv_lgs = qw( D1 SP1 I1 B1 WL NI);
 
-our @summer_leagues = (
-	"Welsh League",
-	"Northern Irish League",
-#	"Swedish League",
-#	"Norwegian League",
-#	"Irish League",
-#	"USA League",
-);
+our @summer_leagues = qw(Swedish Norwegian Irish American);
 
-our @summer_csv_leagues = qw( WL NIL );
-#our @summer_csv_leagues = qw( WL IL NIL SL NL AL );
+# months
 
 our $month_names = { 
 	"January" => "01",
@@ -135,7 +127,18 @@ our $short_month_names = {
 #	I1  => 22, I2  => 22, F1  => 22, F2  => 22,
 #	N1  => 22, B1  => 22, P1  => 22, T1  => 22, G1 => 22,
 #);
+#our @summer_leagues = (
+#	"Welsh League",
+#	"Northern Irish League",
+#	"Swedish League",
+#	"Norwegian League",
+#	"Irish League",
+#	"USA League",
+#);
 
+#our @summer_csv_leagues = qw( WL NIL );
+#our @summer_csv_leagues = qw( WL IL NIL SL NL AL );
+#my leagues = [ qw(Swedish Norwegian Irish American) ];
 
 =pod
 

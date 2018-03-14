@@ -1,15 +1,39 @@
 package Euro::Rename;
 
-#	Euro::Rename.pm 20/07/17
+#	Euro::Rename.pm 20/07/17, 13/03/18
 
 use strict;
 use warnings;
 use utf8;
 
 use Exporter 'import';
-our @EXPORT = qw( $euro_teams $rugby_teams );
+use vars qw ($VERSION @EXPORT_OK %EXPORT_TAGS);
+
+our @EXPORT = qw( $euro_teams );
+@EXPORT_OK = qw ( check_rename );
+%EXPORT_TAGS = ( All => [qw (&check_rename) ] );
 
 our $euro_teams = {
+#	Welsh
+	"Druids" => "Cefn Druids",
+	"Connahs Q." => "Connahs Quay",
+	"Cardiff Metropolitan" => "Cardiff MU",
+	"Barry" => "Barry Town",
+	"Bala" => "Bala Town",
+
+#	Northern Irish
+	"C. Rangers" => "Carrick Rangers",
+};
+
+sub check_rename {
+	my $name = shift;
+	return unless defined $name;
+	return defined $euro_teams->{ $name }
+		? $euro_teams->{ $name } : $name;
+}
+
+=head
+our $old_euro_teams = {
 #	Norwegian
 	"Lillestrøm" => "Lillestrom",
 	"Stabæk" => "Stabak",
@@ -47,5 +71,6 @@ our $rugby_teams = {
 	"Hunslet RLFC" => "Hunslet Hawks",
 	"Gloucestershire" => "Gloucestershire All Golds",
 };
+=cut
 
 1;
