@@ -262,12 +262,18 @@ sub do_recent_draws {
 
 sub build_formulae {
 	my $row = shift;
-	state $zero_qt = "\"0\""; # "0"
+#	state $zero_qt = qq("0"); # "0"
+#	state $zero_qt = "\"0\""; # "0"
 	return [
-		"=IF(SUM(H$row:L$row),(H$row/SUM(H$row:L$row))*100, $zero_qt)",
-		"=IF(SUM(H$row:L$row),(J$row/SUM(H$row:L$row))*100, $zero_qt)",
-		"=IF(SUM(H$row:L$row),(L$row/SUM(H$row:L$row))*100, $zero_qt)",
+		qq(=IF(SUM(H$row:L$row),(H$row/SUM(H$row:L$row))*100, "")),
+		qq(=IF(SUM(H$row:L$row),(J$row/SUM(H$row:L$row))*100, "")),
+		qq(=IF(SUM(H$row:L$row),(L$row/SUM(H$row:L$row))*100, "")),
 	];
+#	return [
+#		"=IF(SUM(H$row:L$row),(H$row/SUM(H$row:L$row))*100, $zero_qt)",
+#		"=IF(SUM(H$row:L$row),(J$row/SUM(H$row:L$row))*100, $zero_qt)",
+#		"=IF(SUM(H$row:L$row),(L$row/SUM(H$row:L$row))*100, $zero_qt)",
+#	];
 }
 
 sub signed_goal_diff {

@@ -82,6 +82,7 @@ sub ou_home_away_rule {
 		if $game->{home_away} >= 0.75;
 	return "";
 }
+
 sub ou_last_six_rule {
 	my ($self, $game) = @_;
 	return sprintf "%0.2f", $game->{last_six}

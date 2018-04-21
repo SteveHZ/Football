@@ -5,6 +5,7 @@ use namespace::clean;
 
 use lib "C:/Mine/perl/Football";
 use Football::Utils qw(get_euro_odds_cols);
+use Euro::Rename qw( check_rename );
 
 # Read Football Data csv files
 
@@ -34,12 +35,13 @@ sub read_data {
 			draw_odds => $data [ $odds_cols[1] ],
 			away_odds => $data [ $odds_cols[2] ],
 		});
+		
 	}
 	close $fh;
 	return $league_games;
 }
 
-# Write my csv files using data from read_euro method
+# Write my csv files using data from read_data method
 
 sub write_csv {
 	my ($self, $file, $data) = @_;
@@ -47,6 +49,9 @@ sub write_csv {
 
 	print $fh "Date ,Home Team, Away Team, FTHG, ATHG, FTR, AvgH, AvgD, AvgA";
 	for my $line (@$data) {
+		$line->{home_team} = check_rename ( $line->{home_team} );
+		$line->{away_team} = check_rename ( $line->{away_team} );
+	
 		print $fh "\n". $line->{date} .",".
 						$line->{home_team} .",". $line->{away_team} .",".
 						$line->{home_score}.",". $line->{away_score}.",". $line->{result}.",".

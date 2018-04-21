@@ -1,22 +1,24 @@
 package Football::Team_Hash;
 
-use Moo;
-use namespace::clean;
-
 use Football::Team_Profit;
 use Football::Utils qw(_get_all_teams);
 
-has 'hash' => ( is => 'ro', default => sub { {} } );
+use Keyword::DEVELOPMENT;
+use Moo;
+use namespace::clean;
+
+has 'hash' 	=> ( is => 'ro', default => sub { {} } );
 has 'teams' => ( is => 'ro', default => sub { [] } );
+has 'func'	=> ( is => 'ro', default => sub {} );
 
 sub BUILD {
 	my $self = shift;
 
 	$self->{sheetnames} = [ qw(totals homes aways) ];
 	$self->{dispatch} = {
-		'totals'	=> \&Football::Team_Hash::sort_totals,
-		'homes'		=> \&Football::Team_Hash::sort_homes,
-		'aways'		=> \&Football::Team_Hash::sort_aways,
+		totals	=> \&Football::Team_Hash::sort_totals,
+		homes	=> \&Football::Team_Hash::sort_homes,
+		aways	=> \&Football::Team_Hash::sort_aways,
 	};
 }
 
@@ -44,12 +46,14 @@ sub place_stakes {
 
 sub home_win {
 	my ($self, $team, $amount) = @_;
+	DEVELOPMENT { print "\nHome : $team - $amount"; }
 	$self->{hash}->{$team}->{home} += $amount;
 	$self->{hash}->{$team}->{total} += $amount;
 }
 
 sub away_win {
 	my ($self, $team, $amount) = @_;
+	DEVELOPMENT { print "\nAway : $team - $amount"; }
 	$self->{hash}->{$team}->{away} += $amount;
 	$self->{hash}->{$team}->{total} += $amount;
 }

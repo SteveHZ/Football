@@ -23,7 +23,7 @@ sub calc {
 	my $results = {};
 
 	unless ( $home_expect == 0 or $away_expect == 0) {	
-		my $constant = exp (-1 * ($home_expect + $away_expect));
+		my $constant = exp ( -1 * ($home_expect + $away_expect) );
 		my $root_ratio = sqrt ($home_expect / $away_expect);
 		my $harmonic_mean = sqrt ($home_expect * $away_expect);
 

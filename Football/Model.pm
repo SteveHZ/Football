@@ -7,6 +7,7 @@ package Football::Model;
 	
 use List::MoreUtils qw(firstidx each_array);
 
+use lib 'C:/Mine/perl/Football';
 use Football::League;
 use Football::Team;
 use Football::Table;
@@ -17,11 +18,12 @@ use Football::Favourites_Data_Model;
 use Football::Favourites_Model;
 use Football::Favourites_View;
 
-#use Football::Reports::Head2Head;
-#use Football::Reports::LeaguePlaces;
-#use Football::Reports::GoalDifference;
-#use Football::Reports::Recent_GoalDifference;
+use Football::Reports::Head2Head;
+use Football::Reports::LeaguePlaces;
+use Football::Reports::GoalDifference;
+use Football::Reports::Recent_GoalDifference;
 use Football::Globals qw( @league_names @csv_leagues $default_stats_size );
+use Data::Dumper;
 
 use Moo;
 use namespace::clean;
@@ -73,7 +75,7 @@ sub build_leagues {
 	return $self->{leagues};
 }
 
-=head
+#=head
 sub do_league_places {
 	my ($self, $fixtures, $teams) = @_;
 	my ($home, $away, $home_points, $away_points);
@@ -185,7 +187,7 @@ sub do_recent_draws {
 		} @temp
 	];
 }
-=cut
+#=cut
 
 sub do_favourites {
 	my ($self, $year, $update) = @_;
@@ -197,7 +199,7 @@ sub do_favourites {
 	my $iterator = each_array ( @league_names, @csv_leagues );
 	while ( my ($league, $csv_league) = $iterator->() ) {
 		my $file_from = $self->{path}.$csv_league.'.csv';
-		my $file_to = $fav_path.$league.'/'.$year.".csv";
+		my $file_to = $fav_path.$league.'/'.$year.'.csv';
 
 		my $data = $data_model->update_current ($file_from);
 		$data_model->write_current ($file_to, $data);

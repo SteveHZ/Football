@@ -4,6 +4,9 @@ use strict;
 use warnings;
 
 use Exporter 'import';
+
+use vars qw (@EXPORT_OK %EXPORT_TAGS);
+
 our @EXPORT = qw(
 	$season
 	$euro_season
@@ -21,13 +24,14 @@ our @EXPORT = qw(
 	@euro_csv_leagues
 	@euro_lgs
 	@euro_csv_lgs
+	@euro_fetch_lgs
 	@summer_leagues
 	@summer_csv_leagues
-	$month_names
-	$short_month_names
 	$max_skellam
 	$min_skellam
 );
+
+%EXPORT_TAGS = (all => \@EXPORT);
 
 sub new { return bless {}, shift; }
 
@@ -82,42 +86,15 @@ our @euro_csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 D1 D2 SP1 SP2 I1 I2 F
 
 # for max_profit.pl
 
-our @euro_lgs = ("German 1", "Spanish 1", "Italian 1", "Belgian 1", "Welsh", "N Irish");
-our @euro_csv_lgs = qw( D1 SP1 I1 B1 WL NI);
+our @euro_lgs = ("German 1", "German 2", "Spanish 1", "Italian 1", "Welsh", "N Irish");
+our @euro_csv_lgs = qw( D1 D2 SP1 I1 WL NI);
 
-our @summer_leagues = qw(Swedish Norwegian Irish American);
+our @summer_leagues = ("Irish League", "Norwegian League");
+#our @summer_leagues = ("Irish League", "Norwegian League", "Swedish League", "USA League");
 
-# months
+# for fetch.pl
 
-our $month_names = { 
-	"January" => "01",
-	"February" => "02",
-	"March" => "03",
-	"April" => "04",
-	"May" => "05",
-	"June" => "06",
-	"July" => "07",
-	"August" => "08",
-	"September" => "09",
-	"October" => 10,
-	"November" => 11,
-	"December" => 12,
-};
-
-our $short_month_names = { 
-	"Jan" => "01",
-	"Feb" => "02",
-	"Mar" => "03",
-	"Apr" => "04",
-	"May" => "05",
-	"Jun" => "06",
-	"Jul" => "07",
-	"Aug" => "08",
-	"Sep" => "09",
-	"Oct" => 10,
-	"Nov" => 11,
-	"Dec" => 12,
-};
+our @euro_fetch_lgs = qw( D1 D2 SP1 I1);
 
 #	%euro_odds_cols
 #our %euro_odds_cols = (

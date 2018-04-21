@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use lib 'C:/Mine/perl/Football';
-use Football::Globals qw(@csv_leagues @euro_csv_lgs $season_years $full_season_years);
+use Football::Globals qw(@csv_leagues @euro_fetch_lgs $season_years $full_season_years);
 
 use File::Fetch;
 use Archive::Extract;
@@ -20,7 +20,7 @@ for my $league (@csv_leagues) {
 	print "\nDownloading $file...";
 }
 
-for my $league (@euro_csv_lgs) {
+for my $league (@euro_fetch_lgs) {
 	my $url = "http://www.football-data.co.uk/$id/$season_years/$league.csv";
 	my $ff = File::Fetch->new (uri => $url);
 	my $file = $ff->fetch (to => $euro_dir) or die $ff->error;

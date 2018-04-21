@@ -22,4 +22,3 @@ subtest 'constructor' => sub {
 	isa_ok ($games, 'HASH','$games');
 	isa_ok (@$leagues [0], 'Football::League', '@$leagues[0]');
 };
-

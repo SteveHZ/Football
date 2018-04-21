@@ -45,4 +45,3 @@ subtest 'splice_array' => sub {
 		cmp_deeply ($stats, $expect, "splice array $games");
 	}
 };
-

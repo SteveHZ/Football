@@ -6,16 +6,17 @@
 use strict;
 use warnings;
 
+use lib 'C:/Mine/perl/Football';
 use Football::Football_Data_Model;
 use Football::Scores_Iterator;
 use Football::Spreadsheets::HalfTime_FullTime;
-use Football::Globals qw( @league_names );
+use Football::Globals qw( @league_names $last_season);
 use MyJSON qw(write_json);
 
 my $path = 'C:/Mine/perl/Football/data/historical/';
 my $json_path = 'c:/Mine/perl/Football/data/';
 my $json_file = $json_path.'half_full.json';
-my $years = [ 2010..2015 ];
+my $years = [ 2010..$last_season ];
 
 main ();
 
@@ -100,3 +101,28 @@ sub sort_results {
 		keys (%$hash)
 	];
 }
+
+=pod
+
+=head1 NAME
+
+half_full.pl
+
+=head1 SYNOPSIS
+
+perl half_full.pl
+
+=head1 DESCRIPTION
+
+ Half and full time scores
+
+=head1 AUTHOR
+
+Steve Hope 2016
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut

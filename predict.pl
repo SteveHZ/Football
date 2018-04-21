@@ -7,13 +7,16 @@
 #	v2.20 30/11/17 - 02/12/17
 #	v3.0 12/03/18
 
+BEGIN { $ENV{PERL_KEYWORD_DEVELOPMENT} = 0; }
+#BEGIN { $ENV{PERL_KEYWORD_DEVELOPMENT} = 1; }
+
 use strict;
 use warnings;
+use Keyword::DEVELOPMENT;
 use Getopt::Long qw(GetOptions);
 
 use lib 'C:/Mine/perl/Football';
 use Football::Globals qw( $season );
-
 use Football::Model;
 use Football::View;
 use Euro::Model;
@@ -61,12 +64,9 @@ sub main {
 #	$view->do_goal_difference ( $model->do_goal_difference ($fixtures, $leagues) );
 #	$view->do_league_places ( $model->do_league_places ($fixtures, $leagues) );
 #	$view->do_head2head ( $model->do_head2head ($fixtures) );
-	
 #	$view->do_recent_draws ( $model->do_recent_draws ($fixtures) );
-#	$view->do_favourites ( $model->do_favourites ($season, $update_favs) );
 
-#	my ($teams, $sorted) = $model->do_predict_models ($leagues, $fixture_list, $fixtures, $sport);
-
+#	my ($teams, $sorted) = $model->do_predict_models ($leagues, $fixture_list, $fixtures, undef);
 #	$view->do_goal_expect ($leagues, $teams, $sorted, $fixture_list);
 #	$view->do_match_odds ($sorted);
 #	$view->do_over_under ($sorted);
@@ -116,6 +116,7 @@ predict.pl
  perl predict.pl -u
  perl predict.pl -e OR -eu
  perl predict.pl -s OR -su
+ Also add -f to NOT update the favourites spreadsheets
  update_rugby
 
 =head1 DESCRIPTION

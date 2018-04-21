@@ -33,7 +33,7 @@ sub run {
 
 =head1 NAME
 
-scores_iterator.pm
+Scores_Iterator.pm
 
 =head1 SYNOPSIS
 
@@ -43,7 +43,7 @@ Used by half_full.pl
 
 =head1 AUTHOR
 
-Steve Hope
+Steve Hope 2016
 
 =head1 LICENSE
 

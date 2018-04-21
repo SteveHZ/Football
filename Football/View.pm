@@ -6,14 +6,14 @@ package Football::View;
 
 use Football::Spreadsheets::Teams;
 use Football::Spreadsheets::Tables;
-#use Football::Spreadsheets::Predictions;
-#use Football::Spreadsheets::Extended;
+use Football::Spreadsheets::Predictions;
+use Football::Spreadsheets::Extended;
 use Football::Spreadsheets::Favourites;
-#use Football::Spreadsheets::Goal_Expect_View;
-#use Football::Spreadsheets::Goal_Diffs_View;
-#use Football::Spreadsheets::Match_Odds_View;
-#use Football::Spreadsheets::Over_Under_View;
-#use Football::Spreadsheets::Skellam_Dist_View;
+use Football::Spreadsheets::Goal_Expect_View;
+use Football::Spreadsheets::Goal_Diffs_View;
+use Football::Spreadsheets::Match_Odds_View;
+use Football::Spreadsheets::Over_Under_View;
+use Football::Spreadsheets::Skellam_Dist_View;
 
 use Moo;
 use namespace::clean;
@@ -32,14 +32,14 @@ sub DEMOLISH {
 sub create_sheets {
 	my $self = shift;
 
-#	$self->{xlsx_predictions} = Football::Spreadsheets::Predictions->new ();
-#	$self->{xlsx_extended} = Football::Spreadsheets::Extended->new ();
+	$self->{xlsx_predictions} = Football::Spreadsheets::Predictions->new ();
+	$self->{xlsx_extended} = Football::Spreadsheets::Extended->new ();
 	$self->{xlsx_favourites} = Football::Spreadsheets::Favourites->new (filename => 'current');
-#	$self->{xlsx_goal_expect} = Football::Spreadsheets::Goal_Expect_View->new ();
-#	$self->{xlsx_goal_diffs} = Football::Spreadsheets::Goal_Diffs_View->new ();
-#	$self->{xlsx_match_odds} = Football::Spreadsheets::Match_Odds_View->new ();
-#	$self->{xlsx_over_under} = Football::Spreadsheets::Over_Under_View->new ();
-#	$self->{xlsx_skellam} = Football::Spreadsheets::Skellam_Dist_View->new ();
+	$self->{xlsx_goal_expect} = Football::Spreadsheets::Goal_Expect_View->new ();
+	$self->{xlsx_goal_diffs} = Football::Spreadsheets::Goal_Diffs_View->new ();
+	$self->{xlsx_match_odds} = Football::Spreadsheets::Match_Odds_View->new ();
+	$self->{xlsx_over_under} = Football::Spreadsheets::Over_Under_View->new ();
+	$self->{xlsx_skellam} = Football::Spreadsheets::Skellam_Dist_View->new ();
 }
 
 sub destroy_sheets {
@@ -47,14 +47,14 @@ sub destroy_sheets {
 
 	$self->{xlsx_teams}->{$_}->{workbook}->close () for keys %{ $self->{xlsx_teams}};	
 	$self->{xlsx_tables}->{$_}->{workbook}->close () for keys %{ $self->{xlsx_tables}};	
-#	$self->{xlsx_predictions}->{workbook}->close ();
-#	$self->{xlsx_extended}->{workbook}->close ();
+	$self->{xlsx_predictions}->{workbook}->close ();
+	$self->{xlsx_extended}->{workbook}->close ();
 	$self->{xlsx_favourites}->{workbook}->close ();
-#	$self->{xlsx_goal_expect}->{workbook}->close ();
-#	$self->{xlsx_goal_diffs}->{workbook}->close ();
-#	$self->{xlsx_match_odds}->{workbook}->close ();
-#	$self->{xlsx_over_under}->{workbook}->close ();
-#	$self->{xlsx_skellam}->{workbook}->close ();
+	$self->{xlsx_goal_expect}->{workbook}->close ();
+	$self->{xlsx_goal_diffs}->{workbook}->close ();
+	$self->{xlsx_match_odds}->{workbook}->close ();
+	$self->{xlsx_over_under}->{workbook}->close ();
+	$self->{xlsx_skellam}->{workbook}->close ();
 }
 
 sub create_new_teams_sheet {
@@ -238,7 +238,7 @@ sub full_aways {
 	}
 }
 
-=head
+#=head
 sub fixtures {
 	my ($self, $fixtures) = @_;
 
@@ -366,14 +366,14 @@ sub do_recent_draws {
 	print "\n";
 	$self->{xlsx_predictions}->do_recent_draws ($draws);
 }
-=cut
+#=cut
 
 sub do_favourites {
 	my ($self, $hash) = @_;
 	$self->{xlsx_favourites}->do_favourites ($hash);
 }
 
-=head
+#=head
 sub do_goal_expect {
 	my ($self, $leagues, $teams, $sorted, $fixtures) = @_;
 
@@ -392,7 +392,7 @@ sub do_over_under {
 	my ($self, $sorted) = @_;
 	$self->{xlsx_over_under}->view ($sorted->{over_under});
 }
-=cut
+#=cut
 
 sub get_formats {
 	my $self = shift;

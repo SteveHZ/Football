@@ -2,8 +2,10 @@ package Summer::Model;
 
 #	Summer::Model.pm 12/03/18
 
+use lib 'C:/Mine/perl/Football';
 use Summer::Summer_Data_Model;
 use Football::Globals qw( @summer_leagues );
+use Data::Dumper;
 
 use Moo;
 use namespace::clean;
@@ -32,7 +34,6 @@ sub update {
 	my $self = shift;
 	my $data_model = Summer::Summer_Data_Model->new ();
 	my $games = {};
-print "\nIn summer data model update";die;
 
 	for my $idx (0..$#{ $self->{csv_leagues} }) {
 		my $csv_file = $self->{path}.$self->{csv_leagues}[$idx].'.csv';
@@ -46,7 +47,7 @@ print "\nIn summer data model update";die;
 	return $games;
 }
 
-#	Not implemented by Euro::Model
+#	Not implemented by Summer::Model
 
 sub do_favourites {};
 sub do_head2head {}

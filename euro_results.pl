@@ -12,7 +12,8 @@ use strict;
 use warnings;
 
 use lib 'C:/Mine/perl/Football';
-use Football::Globals qw( $month_names $euro_season );
+use MyDate qw( $month_names );
+use Football::Globals qw( $euro_season );
 use Euro::Rename qw( check_rename );
 
 my $date_parser = qr/

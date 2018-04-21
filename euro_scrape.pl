@@ -16,7 +16,8 @@ main ();
 sub main {
     my $q;
     my $sites = {
-		"Welsh" 	=>"http://www.oddsportal.com/soccer/wales/premier-league/results/",
+	"fixtures" => "https://www.footballwebpages.co.uk/premier-league/fixtures-results",
+#	"Welsh" 	=>"http://www.oddsportal.com/soccer/wales/premier-league/results/",
 #		"Welsh August" 	=>"http://www.bbc.co.uk/sport/football/welsh-premier-league/scores-fixtures/2017-08",
 #		"Welsh Sept" 	=> "http://www.bbc.co.uk/sport/football/welsh-premier-league/scores-fixtures/2017-09",
 #		"NI August"		=> "http://www.bbc.co.uk/sport/football/irish-premiership/scores-fixtures/2017-08",

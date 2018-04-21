@@ -13,7 +13,7 @@ use Football::Globals qw( $euro_season );
 
 my $summer_dir = 'C:/Mine/perl/Football/data/Summer';
 my @leagues = qw(SWE NOR IRL USA);
-my @out_files = qw(Swedish Norwegian Irish American);
+my @out_files = qw(Swedish Norwegian Irish USA);
 
 my $data_model = Summer::Summer_Data_Model->new ();
 
@@ -28,7 +28,7 @@ print "\n";
 my $iterator = each_array (@leagues, @out_files);
 while (my ($league, $file) = $iterator->()) {
 	my $in_file = "$summer_dir/$league.csv";
-	my $out_file = "$summer_dir/$file.csv";
+	my $out_file = "$summer_dir/$file League.csv";
 	
 	my $games = $data_model->read_data ($in_file);
 	my @data = grep { $_->{year} == $euro_season } @$games;

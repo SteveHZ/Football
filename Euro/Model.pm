@@ -2,8 +2,8 @@ package Euro::Model;
 
 #	Euro::Model.pm 26/06/17
 
+use lib 'C:/Mine/perl/Football';
 use Football::Globals qw( @euro_lgs @euro_csv_lgs );
-#use Football::Globals qw( @summer_leagues @summer_csv_leagues );
 
 use Moo;
 use namespace::clean;

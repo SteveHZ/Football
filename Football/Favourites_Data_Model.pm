@@ -1,10 +1,11 @@
 package Football::Favourites_Data_Model;
 
+use List::MoreUtils qw(any);
 use Moo;
 use namespace::clean;
 
 use lib "C:/Mine/perl/Football";
-use Football::Utils qw(get_odds_cols);
+use Football::Utils qw(get_odds_cols get_over_under_cols);
 
 sub update {
 	my ($self, $file) = @_;
@@ -32,13 +33,15 @@ sub update_current {
 	my ($self, $file) = @_;
 	my $league_games = [];
 
-	open (my $fh, '<', $file) or die ("Can't find $file");
+	open my $fh, '<', $file or die "Can't find $file";
 	my $line = <$fh>;
 	my @odds_cols = get_odds_cols ($line);
-
+	my $over_under_cols = get_over_under_cols ($line);
+	
 	while ($line = <$fh>) {
 		my @data = split (',', $line);
 		last if $data [0] eq ""; # don't remove !!!
+		next if any {$_ eq ""} ( $data[4], $data[5] );
 
 		push ( @$league_games, {
 			league => $data [0],
@@ -51,6 +54,8 @@ sub update_current {
 			home_odds => $data [ $odds_cols[0] ],
 			draw_odds => $data [ $odds_cols[1] ],
 			away_odds => $data [ $odds_cols[2] ],
+			over_odds => $data [ $over_under_cols->{over} ],
+			under_odds=> $data [ $over_under_cols->{under}],
 		});
 	}
 	close $fh;
@@ -61,12 +66,13 @@ sub write_current {
 	my ($self, $file, $data) = @_;
 	open (my $fh, '>', $file) or die ("Unable to open $file");
 
-	print $fh "Div ,Date ,Home Team, Away Team, FTHG, ATHG, FTR, B365H, B365D, B365A";
+	print $fh "Div ,Date ,Home Team, Away Team, FTHG, ATHG, FTR, B365H, B365D, B365A, Over, Under";
 	for my $line (@$data) {
 		print $fh "\n". $line->{league} .",". $line->{date} .",".
 						$line->{home_team} .",". $line->{away_team} .",".
 						$line->{home_score}.",". $line->{away_score}.",". $line->{result}.",".
-						$line->{home_odds} .",". $line->{draw_odds} .",". $line->{away_odds};
+						$line->{home_odds} .",". $line->{draw_odds} .",". $line->{away_odds}.",".
+						$line->{over_odds} .",". $line->{under_odds};
 	}
 	close $fh;
 }

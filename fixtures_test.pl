@@ -6,16 +6,41 @@
 use strict;
 use warnings;
 use HTML::Strip;
+use Data::Dumper;
 
 use lib 'C:/Mine/perl/Football';
 use Euro::Rename qw(check_rename);
-use MyDate qw($short_month_names month_number get_year);
+use MyDate qw($short_month_names @days_of_week month_number get_year);
+use Football::Globals qw(@league_names);
+
+#my $leagues = qr/(Premier League|Championship|League One|League Two|National League|Scottish Championship|Scottish League #Two)/;
+#my $day = qr/Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday/;
+#my $leagues2 = qr/(join('|',@league_names))/;
+#my $day2 = qr/qw(join('|',@days_of_week))/;
+
+my $rx_days = join('|',@days_of_week);
+my $rx_lgs = join('|',@league_names);
+my $day = qr/$rx_days/;
+my $leagues = qr/($rx_lgs)/;
+
+print Dumper $day;
+print Dumper $leagues;
+#print Dumper $day2;
+#print Dumper $leagues2;
+#print Dumper $day3;
+#print Dumper $leagues3;
 
 my $date = qr/
-	(?<date>\d{2})\s
-	(?<month>\w+)\s
-	(?<year>\d{4})
+$day\s
+(?<date>\d\d?)
+\D\D\s
+(?<month>\D+)
 /x;
+#my $date = qr/
+#	(?<date>\d{2})\s
+#	(?<month>\w+)\s
+#	(?<year>\d{4})
+#/x;
 
 my $yesterdays_date = qr/
 	Yesterday\W+
@@ -28,15 +53,16 @@ my $score = qr/(\d\d?):(\d\d?)/;
 my $team = qr/[A-Za-z\& \.]/;
 my $odds = qr/\d+\.\d{2}/;
 
-die "Please enter filenames as parameters" unless @ARGV > 0;
-for my $file (@ARGV){
-	my $in_file = "C:/Mine/perl/Football/data/Euro/scraped/$file.txt";
-	my $out_file = "C:/Mine/perl/Football/data/Euro/cleaned/$file.csv";
-	open my $fh, "<" , $in_file or die "Can't find $in_file";
-	chomp( my $line = <$fh> );
-	close $fh;
+local $/= undef;
+my $in_file = "C:/Mine/perl/Football/data/fixtures_test3.txt";
+open my $fh, "<" , $in_file or die "Can't find $in_file";
+chomp( my $line = <$fh> );
+close $fh;
 
-	my $cleaned = prepare ($line);
+my $cleaned = prepare ($line);
+print "\nLINE : $_" for @$cleaned;
+die;
+
 	my @games = ();
 	my $game_date;
 
@@ -53,21 +79,23 @@ for my $file (@ARGV){
 		}
 	}
 	my @ordered = reverse @games;
-	write_csv ($out_file, \@ordered);
+#	write_csv ($out_file, \@ordered);
 	print "\n";
-}
+#}
 
 sub prepare {
-	my $line = shift;
-
-	my $hs = HTML::Strip->new ( auto_reset => 1 );
-	my $cleaned = $hs->parse ($line);
-	my $year = get_year ();
+	my $cleaned = shift;
 	
-	$cleaned =~ s/$yesterdays_date/$1 $2 $year/g; 	#	if present, amend yesterday date line to normal date format
-	$cleaned =~ s/($date)/\n$1/g;					#	add new-lines before date
-	$cleaned =~ s/$time/\n/g;						#	turn time into new-line
+#	$cleaned =~ s/\n//g;
+#	$cleaned =~ s/^.*Content//g;
+#	$cleaned =~ s/All times are UK.*$//g;
+
+	$cleaned =~ s/($day)/ $1/g;
+	$cleaned =~ s/$date/\n$1 $2/g;
+	$cleaned =~ s/$time/ v /g;
+	$cleaned =~ s/\s{2,}/\n/g;
 	$cleaned =~ s/\n//;								# 	remove initial newline
+
 	return [ split /\n/, $cleaned ];
 }
 

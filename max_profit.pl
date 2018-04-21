@@ -1,18 +1,24 @@
 #!	C:/Strawberry/perl/bin
 
 # 	max_profit.pl 11-12/03/17, 17-18/02/18
-#	v1.1 11/03/18
+#	v1.1 11/03/18, v1.2 02/04/18
+
+BEGIN { $ENV{PERL_KEYWORD_DEVELOPMENT} = 0; }
+#BEGIN { $ENV{PERL_KEYWORD_DEVELOPMENT} = 1; }
 
 use strict;
 use warnings;
-
+use Keyword::DEVELOPMENT;
 use List::MoreUtils qw(each_arrayref);
+
+use lib 'C:/Mine/perl/Football';
 use Football::Favourites_Data_Model;
 use Summer::Summer_Data_Model;
 use Football::Team_Profit;
 use Football::Team_Hash;
 use Football::Spreadsheets::Max_Profit;
 use Football::Globals qw( @csv_leagues @euro_csv_lgs @summer_leagues );
+DEVELOPMENT { use Data::Dumper; }
 
 my $euro = 0;
 if (defined $ARGV [0]) {
@@ -22,42 +28,70 @@ if (defined $ARGV [0]) {
 my @funcs = (\&get_uk_data, \&get_euro_data, \&get_summer_data);
 my $data = $funcs[$euro]->();
 
-main ();
+my %markets = (
+	"max_profit"	=> Football::Team_Hash->new ( func => \&straight_win ),
+#	"over_2pt5"		=> Football::Team_Hash->new ( func => \&over_2pt5 ),
+#	"under_2pt5"	=> Football::Team_Hash->new ( func => \&under_2pt5 ),
+);
 
-sub main {
-	my $team_hash = Football::Team_Hash->new ();
-	
-	my $iterator = each_arrayref ($data->{leagues}, $data->{index});
-	while (my ($csv_league, $lg_idx) = $iterator->()) {
-		my $file = $data->{in_path}.$csv_league.".csv";
-		my $results = $data->{read_func}->(undef, $file, $csv_league); # no $self
-		$team_hash->add_teams ($results, $lg_idx);
-
-		for my $game (@$results) {
-			$team_hash->place_stakes ( $game->{home_team}, $game->{away_team} );
-			if ($game->{result} eq 'H') {
-				$team_hash->home_win ( $game->{home_team}, $game->{home_odds} );
-			} elsif ($game->{result} eq 'A') {
-				$team_hash->away_win ( $game->{away_team}, $game->{away_odds} );
-			}
+my $iterator = each_arrayref ($data->{leagues}, $data->{index});
+while (my ($csv_league, $lg_idx) = $iterator->()) {
+	my $file = $data->{in_path}.$csv_league.".csv";
+	my $results = $data->{read_func}->( undef, $file, $csv_league ); # no $self
+	for my $market (keys %markets) {
+		$markets{$market}->add_teams ($results, $lg_idx);
+	}
+	for my $game (@$results) {
+		DEVELOPMENT { print Dumper $game; <STDIN>; }
+		for my $market (keys %markets) {
+			$markets{$market}->func->( $markets{$market}, $game );
 		}
 	}
+}
 
+for my $market (keys %markets) {
+	my $filename = "$data->{out_path}$market.xlsx";
+	my $team_hash = $markets{$market};
 	my $sorted = $team_hash->sort ();
-	for my $team (@{ $sorted->{totals} }) {
-		print "\n$team : ". $team_hash->team($team)->stake." ".
-							$team_hash->team($team)->home." ". $team_hash->team($team)->away." ".
-							$team_hash->team($team)->total." = ".($team_hash->team($team)->percent * 100)."%";
-	}
-	my $writer = Football::Spreadsheets::Max_Profit->new ( filename => $data->{out_file}, euro => $euro );
+	
+	print "\nWriting $filename...";
+	my $writer = Football::Spreadsheets::Max_Profit->new ( filename => $filename, euro => $euro );
 	$writer->show ($team_hash, $sorted);
+}
+
+sub straight_win {
+	my ($team_hash, $game) = @_;
+	$team_hash->place_stakes ( $game->{home_team}, $game->{away_team} );
+	if ($game->{result} eq 'H') {
+		$team_hash->home_win ( $game->{home_team}, $game->{home_odds} );
+	} elsif ($game->{result} eq 'A') {
+		$team_hash->away_win ( $game->{away_team}, $game->{away_odds} );
+	}
+}
+
+sub over_2pt5 {
+	my ($team_hash, $game) = @_;
+	$team_hash->place_stakes ($game->{home_team}, $game->{away_team} );
+	if ($game->{home_score} + $game->{away_score} > 2) {
+		$team_hash->home_win ( $game->{home_team}, $game->{over_odds} );
+		$team_hash->away_win ( $game->{away_team}, $game->{over_odds} );
+	}
+}
+
+sub under_2pt5 {
+	my ($team_hash, $game) = @_;
+	$team_hash->place_stakes ($game->{home_team}, $game->{away_team} );
+	if ($game->{home_score} + $game->{away_score} < 3) {
+		$team_hash->home_win ( $game->{home_team}, $game->{under_odds} );
+		$team_hash->away_win ( $game->{away_team}, $game->{under_odds} );
+	}
 }
 
 sub get_uk_data {
 	return {
 		read_func 	=> \&Football::Favourites_Data_Model::update_current,
 		in_path 	=> 'C:/Mine/perl/Football/data/',
-		out_file 	=> 'C:/Mine/perl/Football/reports/max_profit.xlsx',
+		out_path 	=> 'C:/Mine/perl/Football/reports/',
 		leagues 	=> \@csv_leagues,
 		index 		=> [ 0...$#csv_leagues ],
 	}
@@ -67,7 +101,7 @@ sub get_euro_data {
 	return {
 		read_func 	=> \&Football::Favourites_Data_Model::update_current,
 		in_path 	=> 'C:/Mine/perl/Football/data/Euro/',
-		out_file 	=> 'C:/Mine/perl/Football/reports/Euro/max_euro_profit.xlsx',
+		out_path 	=> 'C:/Mine/perl/Football/reports/Euro/',
 		leagues 	=> \@euro_csv_lgs,
 		index 		=> [ 0...$#euro_csv_lgs ],
 	}
@@ -77,7 +111,7 @@ sub get_summer_data {
 	return {
 		read_func 	=> \&Summer::Summer_Data_Model::read_csv,
 		in_path 	=> 'C:/Mine/perl/Football/data/Summer/',
-		out_file 	=> 'C:/Mine/perl/Football/reports/Summer/max_summer_profit.xlsx',
+		out_path 	=> 'C:/Mine/perl/Football/reports/Summer',
 		leagues 	=> \@summer_leagues,
 		index 		=> [ 0...$#summer_leagues ],
 	}

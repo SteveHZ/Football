@@ -9,13 +9,13 @@ use warnings;
 use MyJSON qw(write_json);
 use MyLib qw(sort_HoA);
 
-my $path = 'C:/Mine/perl/Football/data/Euro/';
+my $path = 'C:/Mine/perl/Football/data/Summer/';
 my $json_file = $path.'teams.json';
 
 my $leagues = {
 	"Irish League" => [
 		"Dundalk",
-		"St Patricks",
+		"St. Patricks",
 		"Limerick",
 		"Bohemians",
 		"Cork City",
@@ -26,39 +26,39 @@ my $leagues = {
 		"Waterford",
 	],
 	"Swedish League" => [
-		"IFK Goteborg",
-		"IFK Norrkoping",
-		"GIF Sundsvall",
+		"Goteborg",
+		"Norrkoping",
+		"Sundsvall",
 		"AIK",
-		"Orebro SK",
-		"Kalmar FF",
-		"Djurgardens IF",
-		"Ostersunds FK",
+		"Orebro",
+		"Kalmar",
+		"Djurgarden",
+		"Ostersunds",
 		"Malmo FF",
-		"Hammarby IF",
-		"BK Hacken",
-		"IF Elfsborg",
-		"IK Sirius",
-		"Dalkurd FF",
-		"IF Brommapojkarna",
-		"Trellborgs FF",
+		"Hammarby",
+		"Hacken",
+		"Elfsborg",
+		"Sirius",
+		"Dalkurd",
+		"Brommapojkarna",
+		"Trelleborgs",
 	],
 	"Norwegian League" => [
-		"Kristiansund BK",
+		"Kristiansund",
 		"Rosenborg",
 		"Tromso",
 		"Stromsgodset",
-		"Stabak",
+		"Stabaek",
 		"Sarpsborg",
 		"Lillestrom",
 		"Valerenga",
 		"Molde",
 		"Odd",
 		"Brann",
-		"FK Haugesund",
+		"Haugesund",
 		"Sandefjord",
 		"Bodo Glimt",
-		"IK Start",
+		"Start",
 		"Ranheim",
 	],
 	"USA League" => [

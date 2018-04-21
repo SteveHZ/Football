@@ -4,6 +4,7 @@ use List::MoreUtils qw(firstidx);
 use Football::Football_Data_Model;
 
 use Moo::Role;
+use Data::Dumper;
 
 requires qw(
 	read_json write_json
@@ -49,7 +50,7 @@ sub update {
 	return $games;
 }
 
-=head
+#=head
 sub get_fixtures {
 	my $self = shift;
 	my $args = { @_ };
@@ -61,7 +62,8 @@ sub get_fixtures {
 	open (my $fh, '<', $fixtures_file) or die ("\n\nCan't find $fixtures_file");
 	while (my $line = <$fh>) {
 		chomp ($line);
-		my ($league, $home, $away) = split (',', $line);
+		my ($league, $junk, $home, $away) = split (',', $line); # football data files
+#		my ($league, $home, $away) = split (',', $line); # my fixtures files
 		if ((my $idx = firstidx {$_ eq $league} @{ $self->{csv_leagues}} ) >= 0) {
 			push (@fixtures, {
 				league_idx => $idx,
@@ -74,6 +76,6 @@ sub get_fixtures {
 	close $fh;
 	return \@fixtures;
 }
-=cut
+#=cut
 
 1;

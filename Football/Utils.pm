@@ -10,11 +10,10 @@ use List::Util qw(any);
 use List::MoreUtils qw(firstidx);
 
 use Exporter 'import';
-use vars qw ($VERSION @EXPORT_OK %EXPORT_TAGS);
+use vars qw (@EXPORT_OK %EXPORT_TAGS);
 
-$VERSION	 = 1.00;
-@EXPORT_OK	 = qw (_show_signed _get_all_teams get_odds_cols get_euro_odds_cols);  # symbols to export on request
-%EXPORT_TAGS = ( All => [qw (&_show_signed &_get_all_teams &get_odds_cols &get_euro_odds_cols)]);
+@EXPORT_OK	 = qw (_show_signed _get_all_teams get_odds_cols get_euro_odds_cols get_over_under_cols );
+%EXPORT_TAGS = (all => \@EXPORT_OK);
 
 sub _show_signed {
 	my $worksheet = shift;
@@ -36,6 +35,21 @@ sub _get_all_teams {
 	);
 	return \@array;
 }	
+#sub _get_all_teams {
+#	my $games = shift;
+#	return sort { $a cmp $b }
+#		keys %{{ map { $_->{home_team} => 1, $_->{away_team} => 1 } @$games }};
+#}	
+
+#sub unique {
+#	my $args = { order => "asc", @_ };
+#
+#	my $sort_func = ($args->{order} eq "asc") ?
+#		sub { $a cmp $b } : sub { $b cmp $a };
+#
+#	return sort $sort_func
+#		keys %{{ map { $_->{$args->{field}}  => 1 } @{$args->{db}} }};
+#}
 
 sub get_odds_cols {
 	my ($data, $search_for) = @_;
@@ -52,6 +66,17 @@ sub get_odds_cols {
 sub get_euro_odds_cols {
 	my $data = shift;
 	return get_odds_cols ($data, "AvgH");
+}
+
+sub get_over_under_cols {
+	my $data = shift;
+	my @header = split (',', $data);
+	my $over  = firstidx { $_ eq 'BbAv>2.5' } @header;
+	my $under = firstidx { $_ eq 'BbAv<2.5' } @header;
+	return {
+		over  => $over,
+		under => $under,
+	};
 }
 
 =pod

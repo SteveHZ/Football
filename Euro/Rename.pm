@@ -4,14 +4,16 @@ package Euro::Rename;
 
 use strict;
 use warnings;
-use utf8;
+#use utf8;
 
 use Exporter 'import';
-use vars qw ($VERSION @EXPORT_OK %EXPORT_TAGS);
+use vars qw (@EXPORT_OK %EXPORT_TAGS);
 
 our @EXPORT = qw( $euro_teams );
-@EXPORT_OK = qw ( check_rename );
-%EXPORT_TAGS = ( All => [qw (&check_rename) ] );
+@EXPORT_OK  = qw( check_rename );
+%EXPORT_TAGS = (all => [ @EXPORT, @EXPORT_OK ]);
+
+sub new { return bless {}, shift; }
 
 our $euro_teams = {
 #	Welsh
@@ -23,6 +25,11 @@ our $euro_teams = {
 
 #	Northern Irish
 	"C. Rangers" => "Carrick Rangers",
+
+#	Norwegian
+	"Bodo/Glimt" => "Bodo Glimt",
+	"Sarpsborg 08" => "Sarpsborg",
+	
 };
 
 sub check_rename {
@@ -71,6 +78,29 @@ our $rugby_teams = {
 	"Hunslet RLFC" => "Hunslet Hawks",
 	"Gloucestershire" => "Gloucestershire All Golds",
 };
+=cut
+
+=pod
+
+=head1 NAME
+
+Euro::Rename.pm
+
+=head1 SYNOPSIS
+
+Used by max_profit.pl and euro_results.pl
+
+=head1 DESCRIPTION
+
+=head1 AUTHOR
+
+Steve Hope
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify
+it under the same terms as Perl itself.
+
 =cut
 
 1;
