@@ -12,7 +12,6 @@ BEGIN { $ENV{PERL_KEYWORD_DEVELOPMENT} = 0; }
 
 use strict;
 use warnings;
-use Keyword::DEVELOPMENT;
 use Getopt::Long qw(GetOptions);
 
 use lib 'C:/Mine/perl/Football';
@@ -30,7 +29,8 @@ sub main {
 	my $options = get_cmdline ();
 	my ($model, $view) = get_model_and_view ($options);
 
-	my $games = $model->read_games (update => $options->{update});
+	my $games = $model->read_games ($options->{update});
+#	my $games = $model->read_games (update => $options->{update});
 	my $leagues = $model->build_leagues ($games);
 
 	$view->do_teams ($leagues);

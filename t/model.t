@@ -2,6 +2,8 @@
 
 #	Model.t 01/05/16, 07/11/17
 
+BEGIN { $ENV{PERL_KEYWORD_TESTING} = 1;}
+
 use strict;
 use warnings;
 use Test::More tests => 6;
@@ -32,8 +34,7 @@ subtest 'build_leagues' => sub {
 subtest 'Football_IO_Role routines' => sub {
 	plan tests => 4;
 
-	$model->{fixtures_file} = $test_path."football fixtures.csv";
-	$games = $model->read_games (testing => 1); # no update, read test data file
+	$games = $model->read_games (); # no update, read test data file
 	$fixture_list = $model->get_fixtures ();
 
 	isa_ok ($games, 'HASH','$games');

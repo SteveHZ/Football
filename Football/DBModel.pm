@@ -2,7 +2,10 @@ package Football::DBModel;
 
 use DBI;
 use SQL::Abstract;
-use Data::Dumper;
+use MyKeyword qw(TESTING);
+TESTING {
+	use Data::Dumper;
+}
 
 use Moo;
 use namespace::clean;
@@ -45,12 +48,14 @@ sub DESTROY {
 sub build_leagues {
 	my ($self, $csv_leagues) = @_;
 	my %leagues = ();
-
+TESTING { print "\nleagues = ".Dumper $csv_leagues;}
 	for my $league (@$csv_leagues) {
+TESTING { print "\nleague = $league";}
 		print "\nBuilding $league..";
 		my $query = "select distinct HomeTeam from $league";
 		my $sth = $self->{dbh}->prepare ($query)
 			or die "Couldn't prepare statement : ".$self->{dbh}->errstr;
+TESTING { print "\nsth = ".Dumper $sth;}
 		$sth->execute;
 		
 		my @temp = ();
@@ -108,12 +113,15 @@ sub do_query {
 	my $sth = $self->{dbh}->prepare ($stmt)
 		or die "Couldn't prepare statement : ".$self->{dbh}->errstr;
 	$sth->execute (@bind);
+	TESTING {
+		print "\nStatement = $stmt\n";
+		print "\nBind = ".Dumper @bind;
+	}
 	return $sth;
-#print "\nStatement = $stmt\n";
-#print "\nBind = ".Dumper @bind;
 }
 
 #=head
+#	used by original db.pl
 sub query {
 	my ($self, $query) = @_;
 	my @result = ();

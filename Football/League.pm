@@ -6,8 +6,8 @@ package Football::League;
 
 use Football::Table;
 use Football::Team;
+use MyKeyword qw(DEVELOPMENT);
 
-use Keyword::DEVELOPMENT;
 use Moo;
 use namespace::clean;
 

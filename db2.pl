@@ -1,10 +1,14 @@
 #!	C:/Strawberry/perl/bin
 
-#	db.pl 24-25/02/18, 02/03/18, 16/03/18
+#	db.pl 24-25/02/18, 02/03/18, 16/03/18, 27/04/18
 
+#BEGIN { $ENV{PERL_KEYWORD_TESTING} = 1;}
 use strict;
 use warnings;
-use Data::Dumper;
+use MyKeyword qw(TESTING);
+TESTING {
+	use Data::Dumper;
+}
 
 use lib 'C:/Mine/perl/Football';
 use MyLib qw(prompt);
@@ -18,6 +22,7 @@ my $query_dispatch = {
 my $output_dispatch = {
 	'h' => \&print_homes,
 	'a' => \&print_aways,
+	'ha' => \&print_all,
 };
 
 my $euro = 0;
@@ -27,6 +32,7 @@ if (defined $ARGV [0]) {
 }
 my @funcs = (\&get_uk_data, \&get_euro_data, \&get_summer_data);
 my $data = $funcs[$euro]->();
+TESTING { print Dumper $data; }
 
 my $model = Football::DBModel->new (data => $data);
 my $leagues = $model->build_leagues ($data->{leagues});
@@ -41,14 +47,17 @@ sub get_results {
 	my ($model, $cmd_line) = @_;
 
 	my ($team, $options) = $model->do_cmd_line ($cmd_line);
-print "\noptions = ".Dumper $options;
+	TESTING {
+		print "\noptions = ".Dumper $options;
+	}
 	my $ha = $model->get_homeaway ($options);
 	my $league = $model->find_league ($team, $leagues,  $data->{leagues});
 	my $query = $model->build_query ($team, $options);
+	TESTING{
+		print Dumper $query;
+	}
 	my $sth = $model->do_query ($league, $query);
-
 	while (my $row = $sth->fetchrow_hashref) {
-#		print_all ($row);
 		$output_dispatch->{$ha}->($row);
 	}
 	print "\n";
@@ -56,61 +65,35 @@ print "\noptions = ".Dumper $options;
 
 #	called by $output_dispatch
 
-#=head
 sub print_all {
 	my $row = shift;
 
-	my $column = $data->{column}.'a';
+	my $home_column = $data->{column}.'h';
+	my $away_column = $data->{column}.'a';
 	print "\n$row->{date} ";
 	printf "%-20s", $row->{hometeam};
 	printf "%-20s", $row->{awayteam};
-	print "$row->{fthg}-$row->{ftag}  $row->{$column}";
+	print "$row->{fthg}-$row->{ftag}  ";
+	printf "%-0.2f  %-0.2f", $row->{$home_column}, $row->{$away_column};
 }
 
 sub print_homes {
 	my $row = shift;
-	my $column = $data->{column}.'H';
+	my $column = $data->{column}.'h';
 
-	print "\n$row->{Date} ";
-	printf "%-20s", $row->{AwayTeam};
-	print "$row->{FTHG}-$row->{FTAG}  $row->{$column}";
-}
-
-sub print_aways {
-	my $row = shift;
-	my $column = $data->{column}.'A';
-
-	print "\n$row->{Date} ";
-	printf "%-20s", $row->{HomeTeam};
-	print "$row->{FTHG}-$row->{FTAG}  $row->{$column}";
-}
-#=cut
-
-=head
-sub print_all {
-	my ($row, $column) = @_;
-
-	my $column = $data->{column}.'a';
 	print "\n$row->{date} ";
-	printf "%-20s", $row->{hometeam};
 	printf "%-20s", $row->{awayteam};
 	print "$row->{fthg}-$row->{ftag}  $row->{$column}";
 }
 
-sub print_homes {
-	my $row = shift;
-
-	my $column = $data->{column}.'H';
-	print_all ($row, $column); #?? could also do this for print_aways and print_draws ????
-}
-
 sub print_aways {
 	my $row = shift;
+	my $column = $data->{column}.'a';
 
-	my $column = $data->{column}.'A';
-	print_all ($row, $column); #?? could also do this for print_aways and print_draws ????
+	print "\n$row->{date} ";
+	printf "%-20s", $row->{hometeam};
+	print "$row->{fthg}-$row->{ftag}  $row->{$column}";
 }
-=cut
 
 sub get_uk_data {
 	return {

@@ -47,7 +47,7 @@ sub write_csv {
 	my ($self, $file, $data) = @_;
 	open (my $fh, '>', $file) or die ("Unable to open $file");
 
-	print $fh "Date ,Home Team, Away Team, FTHG, ATHG, FTR, AvgH, AvgD, AvgA";
+	print $fh "Date,HomeTeam,AwayTeam,FTHG,FTAG,FTR,AvgH,AvgD,AvgA";
 	for my $line (@$data) {
 		$line->{home_team} = check_rename ( $line->{home_team} );
 		$line->{away_team} = check_rename ( $line->{away_team} );

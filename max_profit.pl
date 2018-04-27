@@ -8,7 +8,7 @@ BEGIN { $ENV{PERL_KEYWORD_DEVELOPMENT} = 0; }
 
 use strict;
 use warnings;
-use Keyword::DEVELOPMENT;
+use MyKeyword qw(DEVELOPMENT);
 use List::MoreUtils qw(each_arrayref);
 
 use lib 'C:/Mine/perl/Football';
@@ -42,7 +42,7 @@ while (my ($csv_league, $lg_idx) = $iterator->()) {
 		$markets{$market}->add_teams ($results, $lg_idx);
 	}
 	for my $game (@$results) {
-		DEVELOPMENT { print Dumper $game; <STDIN>; }
+#		DEVELOPMENT { print Dumper $game; <STDIN>; }
 		for my $market (keys %markets) {
 			$markets{$market}->func->( $markets{$market}, $game );
 		}
@@ -101,7 +101,7 @@ sub get_euro_data {
 	return {
 		read_func 	=> \&Football::Favourites_Data_Model::update_current,
 		in_path 	=> 'C:/Mine/perl/Football/data/Euro/',
-		out_path 	=> 'C:/Mine/perl/Football/reports/Euro/',
+		out_path 	=> 'C:/Mine/perl/Football/reports/euro_',
 		leagues 	=> \@euro_csv_lgs,
 		index 		=> [ 0...$#euro_csv_lgs ],
 	}
@@ -111,7 +111,7 @@ sub get_summer_data {
 	return {
 		read_func 	=> \&Summer::Summer_Data_Model::read_csv,
 		in_path 	=> 'C:/Mine/perl/Football/data/Summer/',
-		out_path 	=> 'C:/Mine/perl/Football/reports/Summer',
+		out_path 	=> 'C:/Mine/perl/Football/reports/summer_',
 		leagues 	=> \@summer_leagues,
 		index 		=> [ 0...$#summer_leagues ],
 	}

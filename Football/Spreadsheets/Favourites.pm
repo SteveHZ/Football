@@ -119,6 +119,7 @@ sub do_favourites {
 	my $worksheet = $self->add_worksheet ($year);
 
 	do_header ($worksheet, $self->{bold_format});
+	print "\n";
 
 	my $row = 4;
 	my $leagues = \@ { $hash->{leagues} };

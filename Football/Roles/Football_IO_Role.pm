@@ -2,6 +2,7 @@ package Football::Roles::Football_IO_Role;
 
 use List::MoreUtils qw(firstidx);
 use Football::Football_Data_Model;
+use MyKeyword qw(TESTING); # for model.t
 
 use Moo::Role;
 use Data::Dumper;
@@ -14,14 +15,10 @@ requires qw(
 );
 
 sub read_games {
-	my $self = shift;
-	my $args = { @_ };
-
-	my $update = exists $args->{update} ? $args->{update} : 0;
-	my $testing = exists $args->{testing} ? $args->{testing} : 0;
+	my ($self, $update) = @_;
 	my $games;
 
-	if ($testing) {
+	TESTING {
 		print "    Reading test data from $self->{test_season_data}\n";
 		$games = $self->read_json ($self->{test_season_data});
 	} elsif ($update) {
@@ -50,20 +47,18 @@ sub update {
 	return $games;
 }
 
-#=head
 sub get_fixtures {
 	my $self = shift;
-	my $args = { @_ };
 	
-	my $testing = exists $args->{testing} ? $args->{testing} : 0;
-	my $fixtures_file = ($testing) ? $self->{test_fixtures_file} : $self->{fixtures_file};
+	my $fixtures_file = $self->{fixtures_file};
+	TESTING { $fixtures_file = $self->{test_fixtures_file}; }
 	my @fixtures = ();
 
 	open (my $fh, '<', $fixtures_file) or die ("\n\nCan't find $fixtures_file");
 	while (my $line = <$fh>) {
 		chomp ($line);
-		my ($league, $junk, $home, $away) = split (',', $line); # football data files
-#		my ($league, $home, $away) = split (',', $line); # my fixtures files
+#		my ($league, $junk, $home, $away) = split (',', $line); # football data files
+		my ($league, $home, $away) = split (',', $line); # my fixtures files
 		if ((my $idx = firstidx {$_ eq $league} @{ $self->{csv_leagues}} ) >= 0) {
 			push (@fixtures, {
 				league_idx => $idx,
@@ -76,6 +71,5 @@ sub get_fixtures {
 	close $fh;
 	return \@fixtures;
 }
-#=cut
 
 1;
