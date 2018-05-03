@@ -1,10 +1,6 @@
 #!	C:/Strawberry/perl/bin
 
 #	predict.pl 31/01/16 - 14/03/16
-# 	v2.0 23/03/16 - 19/04/16 v2.05 10/09/16
-# 	v2.08 02/04/17 v2.10 08/05/17 v2.12 27/06/17
-#	v2.13 26/07/17 v2.14 07/10/17 v2.15 29/11/17
-#	v2.20 30/11/17 - 02/12/17
 #	v3.0 12/03/18
 
 BEGIN { $ENV{PERL_KEYWORD_DEVELOPMENT} = 0; }
@@ -133,3 +129,8 @@ This library is free software. You can redistribute it and/or modify
 it under the same terms as Perl itself.
 
 =cut
+
+# 	v2.0 23/03/16 - 19/04/16 v2.05 10/09/16
+# 	v2.08 02/04/17 v2.10 08/05/17 v2.12 27/06/17
+#	v2.13 26/07/17 v2.14 07/10/17 v2.15 29/11/17
+#	v2.20 30/11/17 - 02/12/17

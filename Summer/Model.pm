@@ -4,7 +4,7 @@ package Summer::Model;
 
 use lib 'C:/Mine/perl/Football';
 use Summer::Summer_Data_Model;
-use Football::Globals qw( @summer_leagues );
+use Football::Globals qw( @summer_leagues @summer_csv_leagues );
 use Data::Dumper;
 
 use Moo;
@@ -17,7 +17,7 @@ sub BUILD {
 	my $self = shift;
 	$self->{leagues} = [];
 	$self->{league_names} = \@summer_leagues;
-	$self->{csv_leagues} = \@summer_leagues;
+	$self->{csv_leagues} = \@summer_csv_leagues;
 
 	$self->{model_name} = "Summer";
 	$self->{path} = 'C:/Mine/perl/Football/data/Summer/';

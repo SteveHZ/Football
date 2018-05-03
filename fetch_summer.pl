@@ -5,19 +5,18 @@ use strict;
 use warnings;
 
 use File::Fetch;
-use List::MoreUtils qw(each_array);
+use List::MoreUtils qw(each_arrayref);
 
 use lib 'C:/Mine/perl/Football';
 use Summer::Summer_Data_Model;
-use Football::Globals qw( $euro_season @summer_leagues);
-
-my $summer_dir = 'C:/Mine/perl/Football/data/Summer';
-my @leagues = qw(SWE NOR IRL USA);
-my @out_files = qw(Swedish Norwegian Irish USA);
+use Football::Globals qw( $euro_season @summer_fetch_leagues @summer_csv_leagues);
 
 my $data_model = Summer::Summer_Data_Model->new ();
+my $summer_dir = 'C:/Mine/perl/Football/data/Summer';
+my $leagues = \@summer_fetch_leagues;
+my $csv_leagues = \@summer_csv_leagues;
 
-for my $league (@leagues) {
+for my $league (@$leagues) {
 	my $url = "http://www.football-data.co.uk/new/$league.csv";
 	my $ff = File::Fetch->new (uri => $url);
 	my $file = $ff->fetch (to => $summer_dir) or die $ff->error;
@@ -25,12 +24,10 @@ for my $league (@leagues) {
 }
 print "\n";
 
-#my $iterator = each_array (@leagues, @summer_leagues);
-my $iterator = each_array (@leagues, @out_files);
+my $iterator = each_arrayref ($leagues, $csv_leagues);
 while (my ($league, $file) = $iterator->()) {
 	my $in_file = "$summer_dir/$league.csv";
-#	my $out_file = "$summer_dir/$file.csv";
-	my $out_file = "$summer_dir/$file"."_League.csv";
+	my $out_file = "$summer_dir/$file.csv";
 	
 	my $games = $data_model->read_data ($in_file);
 	my @data = grep { $_->{year} == $euro_season } @$games;

@@ -26,6 +26,12 @@ our $euro_teams = {
 #	Northern Irish
 	"C. Rangers" => "Carrick Rangers",
 
+#	Irish
+	"St. Patricks" => "St Patricks",
+
+#  Swedish
+	"Malmo FF" => "Malmo",
+	
 #	Norwegian
 	"Bodo/Glimt" => "Bodo Glimt",
 	"Sarpsborg 08" => "Sarpsborg",

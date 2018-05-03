@@ -27,6 +27,7 @@ our @EXPORT = qw(
 	@euro_fetch_lgs
 	@summer_leagues
 	@summer_csv_leagues
+	@summer_fetch_leagues
 	$max_skellam
 	$min_skellam
 );
@@ -84,38 +85,15 @@ our @euro_leagues = (
 
 our @euro_csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 D1 D2 SP1 SP2 I1 I2 F1 F2 N1 B1 P1 T1 G1 );
 
-# for max_profit.pl and db.pl
+# for max_profit.pl, db.pl and fetch.pl
 
 our @euro_lgs = ("German 1", "German 2", "Spanish 1", "Italian 1", "Welsh", "N Irish");
 our @euro_csv_lgs = qw( D1 D2 SP1 I1 WL NI);
-
-our @summer_leagues = ("Irish_League", "Norwegian_League");
-#our @summer_leagues = ("Irish League", "Norwegian League", "Swedish League", "USA League");
-
-# for fetch.pl
-
 our @euro_fetch_lgs = qw( D1 D2 SP1 I1);
 
-#	%euro_odds_cols
-#our %euro_odds_cols = (
-#	E0  => 23, E1  => 23, E2  => 23, E3  => 23, EC => 15,
-#	SC0 => 23, SC1 => 23, SC2 => 23, SC3 => 23,
-#	D1  => 22, D2  => 22, SP1 => 22, SP2 => 22,
-#	I1  => 22, I2  => 22, F1  => 22, F2  => 22,
-#	N1  => 22, B1  => 22, P1  => 22, T1  => 22, G1 => 22,
-#);
-#our @summer_leagues = (
-#	"Welsh League",
-#	"Northern Irish League",
-#	"Swedish League",
-#	"Norwegian League",
-#	"Irish League",
-#	"USA League",
-#);
-
-#our @summer_csv_leagues = qw( WL NIL );
-#our @summer_csv_leagues = qw( WL IL NIL SL NL AL );
-#my leagues = [ qw(Swedish Norwegian Irish American) ];
+our @summer_leagues = ("Irish League", "USA League", "Swedish League", "Norwegian League");
+our @summer_csv_leagues = qw(ROI MLS SWD NRW);
+our @summer_fetch_leagues = qw(IRL USA SWE NOR);
 
 =pod
 

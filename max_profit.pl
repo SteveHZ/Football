@@ -17,7 +17,7 @@ use Summer::Summer_Data_Model;
 use Football::Team_Profit;
 use Football::Team_Hash;
 use Football::Spreadsheets::Max_Profit;
-use Football::Globals qw( @csv_leagues @euro_csv_lgs @summer_leagues );
+use Football::Globals qw( @csv_leagues @euro_csv_lgs @summer_csv_leagues );
 DEVELOPMENT { use Data::Dumper; }
 
 my $euro = 0;
@@ -43,6 +43,7 @@ while (my ($csv_league, $lg_idx) = $iterator->()) {
 	}
 	for my $game (@$results) {
 #		DEVELOPMENT { print Dumper $game; <STDIN>; }
+#		DEVELOPMENT { print "\n$game->{home_team} v $game->{away_team}"; }
 		for my $market (keys %markets) {
 			$markets{$market}->func->( $markets{$market}, $game );
 		}
@@ -50,7 +51,7 @@ while (my ($csv_league, $lg_idx) = $iterator->()) {
 }
 
 for my $market (keys %markets) {
-	my $filename = "$data->{out_path}$market.xlsx";
+	my $filename = "$data->{out_path}$market".'_'."$data->{model}.xlsx";
 	my $team_hash = $markets{$market};
 	my $sorted = $team_hash->sort ();
 	
@@ -89,6 +90,7 @@ sub under_2pt5 {
 
 sub get_uk_data {
 	return {
+		model		=> 'uk',
 		read_func 	=> \&Football::Favourites_Data_Model::update_current,
 		in_path 	=> 'C:/Mine/perl/Football/data/',
 		out_path 	=> 'C:/Mine/perl/Football/reports/',
@@ -99,9 +101,10 @@ sub get_uk_data {
 
 sub get_euro_data {
 	return {
+		model		=> 'euro',
 		read_func 	=> \&Football::Favourites_Data_Model::update_current,
 		in_path 	=> 'C:/Mine/perl/Football/data/Euro/',
-		out_path 	=> 'C:/Mine/perl/Football/reports/euro_',
+		out_path 	=> 'C:/Mine/perl/Football/reports/',
 		leagues 	=> \@euro_csv_lgs,
 		index 		=> [ 0...$#euro_csv_lgs ],
 	}
@@ -109,11 +112,12 @@ sub get_euro_data {
 
 sub get_summer_data {
 	return {
+		model		=> 'summer',
 		read_func 	=> \&Summer::Summer_Data_Model::read_csv,
 		in_path 	=> 'C:/Mine/perl/Football/data/Summer/',
-		out_path 	=> 'C:/Mine/perl/Football/reports/summer_',
-		leagues 	=> \@summer_leagues,
-		index 		=> [ 0...$#summer_leagues ],
+		out_path 	=> 'C:/Mine/perl/Football/reports/',
+		leagues 	=> \@summer_csv_leagues,
+		index 		=> [ 0...$#summer_csv_leagues ],
 	}
 }
 

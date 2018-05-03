@@ -1,7 +1,6 @@
 #!	C:/Strawberry/perl/bin
 
 #	create_euro_teams.pl 26/06/16
-#	Irish and USA done 12/03/18
 
 use strict;
 use warnings;
@@ -15,7 +14,7 @@ my $json_file = $path.'teams.json';
 my $leagues = {
 	"Irish League" => [
 		"Dundalk",
-		"St. Patricks",
+		"St Patricks",
 		"Limerick",
 		"Bohemians",
 		"Cork City",
@@ -34,7 +33,7 @@ my $leagues = {
 		"Kalmar",
 		"Djurgarden",
 		"Ostersunds",
-		"Malmo FF",
+		"Malmo",
 		"Hammarby",
 		"Hacken",
 		"Elfsborg",

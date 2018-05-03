@@ -3,9 +3,7 @@ package Football::DBModel;
 use DBI;
 use SQL::Abstract;
 use MyKeyword qw(TESTING);
-TESTING {
-	use Data::Dumper;
-}
+TESTING { use Data::Dumper; }
 
 use Moo;
 use namespace::clean;
@@ -48,14 +46,12 @@ sub DESTROY {
 sub build_leagues {
 	my ($self, $csv_leagues) = @_;
 	my %leagues = ();
-TESTING { print "\nleagues = ".Dumper $csv_leagues;}
+
 	for my $league (@$csv_leagues) {
-TESTING { print "\nleague = $league";}
 		print "\nBuilding $league..";
 		my $query = "select distinct HomeTeam from $league";
 		my $sth = $self->{dbh}->prepare ($query)
 			or die "Couldn't prepare statement : ".$self->{dbh}->errstr;
-TESTING { print "\nsth = ".Dumper $sth;}
 		$sth->execute;
 		
 		my @temp = ();
@@ -103,6 +99,9 @@ sub build_query {
 		push @query, $temp;
 	}
 	my %qhash = (-or => [ @query ]);
+	TESTING {
+		print "\nQuery = ".Dumper (%qhash); 
+	}
 	return \%qhash;
 }
 
@@ -119,36 +118,6 @@ sub do_query {
 	}
 	return $sth;
 }
-
-#=head
-#	used by original db.pl
-sub query {
-	my ($self, $query) = @_;
-	my @result = ();
-	
-	my $sth = $self->{dbh}->prepare ($query)
-		or die "Couldn't prepare statement : ".$self->{dbh}->errstr;
-	$sth->execute;
-	while (my $row = $sth->fetchrow_hashref) {
-		push @result, $row;
-	}
-	return \@result;
-}
-
-# 	SQL functions called by dispatch tables
-
-sub get_homes {
-	my ($self, $league) = @_;
-	return "select Date, AwayTeam, FTHG, FTAG, $self->{data}->{column}H from $league
-			where (HomeTeam = ? and FTHG > FTAG)";
-}
-
-sub get_aways {
-	my ($self, $league) = @_;
-	return "select Date, HomeTeam, FTAG, FTHG, $self->{data}->{column}A from $league
-			where (AwayTeam = ? and FTAG > FTHG)";
-}
-#=cut
 
 =pod
 

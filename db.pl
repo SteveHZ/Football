@@ -1,21 +1,23 @@
 #!	C:/Strawberry/perl/bin
 
-#	db.pl 24-25/02/18, 02/03/18
+#	db.pl 24-25/02/18, 02/03/18, 16/03/18, 27-29/04/18
 
+#BEGIN { $ENV{PERL_KEYWORD_TESTING} = 1;}
 use strict;
 use warnings;
+use MyKeyword qw(TESTING);
+TESTING { use Data::Dumper; }
 
+use lib 'C:/Mine/perl/Football';
 use MyLib qw(prompt);
 use Football::DBModel;
-use Football::Globals qw( @csv_leagues @euro_csv_lgs @summer_leagues);
+use Football::Globals qw( @csv_leagues @euro_csv_lgs @summer_csv_leagues);
+#use Football::Globals qw( @csv_leagues @euro_csv_lgs @summer_leagues);
 
-my $query_dispatch = {
-	'h' => \&Football::DBModel::get_homes,
-	'a' => \&Football::DBModel::get_aways,
-};
 my $output_dispatch = {
-	'h' => \&print_homes,
-	'a' => \&print_aways,
+	'h'  => \&print_homes,
+	'a'  => \&print_aways,
+	'ha' => \&print_all,
 };
 
 my $euro = 0;
@@ -30,79 +32,84 @@ my $model = Football::DBModel->new (data => $data);
 my $leagues = $model->build_leagues ($data->{leagues});
 
 print "\n";
-while (my ($team, $ha) = get_cmdline ()) {
-	last if $team eq 'x';
-	die "Usage : (team name) [-h|-a]" unless $ha =~ /[h|a]/;
-
-	my $league = $model->find_league ($team, $leagues, $data->{leagues});
-	if ($league) {
-		get_results ($model, $league, $team, $ha);
-	} else {
-		print "\nUnknown error !!!\n";
-	}
-}
-
-sub get_cmdline {
-	my $in = prompt ('DB');
-	my ($team, $ha) = split (' -', $in);
-	return ($team, $ha);
+while (my $cmd_line = prompt ("DB-$data->{model}")) {
+	last if $cmd_line eq 'x';
+	get_results ($model, $cmd_line);
 }
 
 sub get_results {
-	my ($model, $league, $team, $ha) = @_;
+	my ($model, $cmd_line) = @_;
 
-	my $query = $query_dispatch->{$ha}->($model, $league);
-	my $sth = $model->dbh->prepare ($query)
-		or die "Couldn't prepare statement : ".$model->dbh->errstr;
-	$sth->execute ($team);
-
+	my ($team, $options) = $model->do_cmd_line ($cmd_line);
+	my $ha = $model->get_homeaway ($options);
+	my $league = $model->find_league ($team, $leagues,  $data->{leagues});
+	my $query = $model->build_query ($team, $options);
+	TESTING {
+		print Dumper $query;
+	}
+	my $sth = $model->do_query ($league, $query);
 	while (my $row = $sth->fetchrow_hashref) {
-		$output_dispatch->{$ha}->($row);
+		$output_dispatch->{$ha}->($row, $team);
 	}
 	print "\n";
 }
 
 #	called by $output_dispatch
 
+sub print_all {
+	my ($row, $team) = @_;
+
+	if ($team eq $row->{hometeam}) {
+		print_homes ($row);
+	} else {
+		print_aways ($row);
+	}
+}
+
 sub print_homes {
 	my $row = shift;
+	my $column = $data->{column}.'h';
 
-	my $column = $data->{column}.'H';
-	print "\n$row->{Date} ";
-	printf "%-20s", $row->{AwayTeam};
-	print "$row->{FTHG}-$row->{FTAG}  $row->{$column}";
+	print "\n$row->{date} ";
+	printf "%-20s H  ", $row->{awayteam};
+	print "$row->{fthg}-$row->{ftag}  ";
+	printf "%5.2f", $row->{$column};
 }
 
 sub print_aways {
 	my $row = shift;
+	my $column = $data->{column}.'a';
 
-	my $column = $data->{column}.'A';
-	print "\n$row->{Date} ";
-	printf "%-20s", $row->{HomeTeam};
-	print "$row->{FTHG}-$row->{FTAG}  $row->{$column}";
+	print "\n$row->{date} ";
+	printf "%-20s A  ", $row->{hometeam};
+	print "$row->{fthg}-$row->{ftag}  ";
+	printf "%5.2f", $row->{$column};
 }
 
 sub get_uk_data {
 	return {
-		leagues => \@csv_leagues,
-		column => 'B365',
-		path => 'data',
+		leagues	=> \@csv_leagues,
+		column	=> 'b365',
+		path	=> 'data',
+		model	=> 'UK',
 	}
 }
 
 sub get_euro_data {
 	return {
-		leagues => \@euro_csv_lgs,
-		column => 'B365',
-		path => 'data/Euro',
+		leagues	=> \@euro_csv_lgs,
+		column	=> 'b365',
+		path	=> 'data/Euro',
+		model	=> 'Euro',
 	}
 }
 
 sub get_summer_data {
 	return {
-		leagues => \@summer_leagues,
-		column => 'Avg',
-		path => 'data/Euro',
+		leagues	=> \@summer_csv_leagues,
+		column	=> 'avg',
+		path	=> 'data/Summer',
+		model	=> 'Summer',
 	}
 }
 
