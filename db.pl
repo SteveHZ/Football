@@ -12,7 +12,6 @@ use lib 'C:/Mine/perl/Football';
 use MyLib qw(prompt);
 use Football::DBModel;
 use Football::Globals qw( @csv_leagues @euro_csv_lgs @summer_csv_leagues);
-#use Football::Globals qw( @csv_leagues @euro_csv_lgs @summer_leagues);
 
 my $output_dispatch = {
 	'h'  => \&print_homes,
@@ -43,13 +42,17 @@ sub get_results {
 	my ($team, $options) = $model->do_cmd_line ($cmd_line);
 	my $ha = $model->get_homeaway ($options);
 	my $league = $model->find_league ($team, $leagues,  $data->{leagues});
-	my $query = $model->build_query ($team, $options);
-	TESTING {
-		print Dumper $query;
-	}
-	my $sth = $model->do_query ($league, $query);
-	while (my $row = $sth->fetchrow_hashref) {
-		$output_dispatch->{$ha}->($row, $team);
+	if ($league eq 0) {
+		print "\nUnknown team name. Please try again...";
+	} else {
+		my $query = $model->build_query ($team, $options);
+		TESTING {
+			print Dumper $query;
+		}
+		my $sth = $model->do_query ($league, $query);
+		while (my $row = $sth->fetchrow_hashref) {
+			$output_dispatch->{$ha}->($row, $team);
+		}
 	}
 	print "\n";
 }

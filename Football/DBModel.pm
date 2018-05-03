@@ -2,6 +2,7 @@ package Football::DBModel;
 
 use DBI;
 use SQL::Abstract;
+use MyLib qw(ucfirst_all);
 use MyKeyword qw(TESTING);
 TESTING { use Data::Dumper; }
 
@@ -13,12 +14,14 @@ has 'data' => (is => 'ro' );
 
 sub BUILD {
 	my $self = shift;
+	$self->{sqla} = SQL::Abstract->new ();
 	$self->{dbh} = DBI->connect ("DBI:CSV:", undef, undef, {
 		f_dir => $self->{data}->{path},
 		f_ext => ".csv",
 		csv_eol => "\n",
 		RaiseError => 1,
 	})	or die "Couldn't connect to database : ".DBI->errstr;
+	
 	$self->{venue_hash}= {
 		'h' => 'HomeTeam',
 		'a' => 'AwayTeam',
@@ -35,7 +38,6 @@ sub BUILD {
 			'D' => 'D',
 		},
 	};
-	$self->{sqla} = SQL::Abstract->new();
 }
 
 sub DESTROY {
@@ -74,6 +76,7 @@ sub find_league {
 sub do_cmd_line {
 	my ($self, $cmd_line) = @_;
 	my ($team, @opts) = split ' -', $cmd_line;
+	$team = ucfirst_all ($team);
 	$_ =~ s/ // for @opts;
 	
 	return ($team, \@opts);
