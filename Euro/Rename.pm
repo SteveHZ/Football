@@ -28,6 +28,7 @@ our $euro_teams = {
 
 #	Irish
 	"St. Patricks" => "St Patricks",
+	"Bray" => "Bray Wanderers",
 
 #  Swedish
 	"Malmo FF" => "Malmo",
@@ -35,7 +36,16 @@ our $euro_teams = {
 #	Norwegian
 	"Bodo/Glimt" => "Bodo Glimt",
 	"Sarpsborg 08" => "Sarpsborg",
+	"Djurgarden" => "Djurgardens",
 	
+#	Finnish
+	"HJK" => "HJK Helsinki",
+	"TPS" => "TPS Turku",
+	"VPS" => "VPS Vaasa",
+	"KuPS" => "KuPS Kuopio",
+
+#	American
+	"Los Angeles Galaxy" => "LA Galaxy"
 };
 
 sub check_rename {
@@ -68,7 +78,7 @@ our $old_euro_teams = {
 #	Welsh
 	"e New Saints" => "The New Saints",
 	"marthen Town" => "Carmarthen Town",
-	"Gap Connah's Quay" => "Connah's Quay Nomads",
+	"Gap Connah"s Quay" => "Connah"s Quay Nomads",
 };
 
 our $rugby_teams = {

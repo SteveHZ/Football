@@ -77,7 +77,6 @@ sub do_teams {
 		
 		for my $team (@$sorted) {
 			print "\n\n$team : $teams->{$team}->{position} ( $league->{title} )";
-#			my $next = $teams->{$team}->iterator ();
 			if ( my $next = $teams->{$team}->iterator () ) {
 				while ( my $list = $next->() ) {
 					printf $self->{teams_format}, $list->{date}, $list->{opponent},
@@ -248,7 +247,7 @@ sub fixtures {
 	}
 }
 
-sub do_fixtures {
+sub do_stats {
 	my ($self, $fixtures) = @_;
 	
 	print "\n\nWriting home/away predictions...\n";

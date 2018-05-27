@@ -31,6 +31,7 @@ our @EXPORT = qw(
 	$max_skellam
 	$min_skellam
 );
+#	%bbc_fixtures_leagues
 
 %EXPORT_TAGS = (all => \@EXPORT);
 
@@ -41,32 +42,58 @@ our $euro_season = 2018;
 our $season_years = 1718;
 our $full_season_years = '2017-2018';
 our $last_season = $season - 1;
-our $reports_season = 2016;
+our $reports_season = 2017;
 our $default_stats_size = 6;
 
 our @league_names = (
-	"Premier League",
-	"Championship",
-	"League One",
-	"League Two",
-	"Conference",
-	"Scots Premier",
-	"Scots Championship",
-	"Scots League One",
-	"Scots League Two",
+	'Premier League',
+	'Championship',
+	'League One',
+	'League Two',
+	'Conference',
+	'Scots Premier',
+	'Scots Championship',
+	'Scots League One',
+	'Scots League Two',
 );
 
 our @fixtures_leagues = (
-	"Premier League",
-	"Championship",
-	"League One",
-	"League Two",
-	"Conference",
-	"Scots Premier",
-	"Scots Championship",
-	"Scots League One",
-	"Scots League Two",
+	'Premier League',
+	'Championship',
+	'League One',
+	'League Two',
+	'Conference',
+	'Scots Premier',
+	'Scots Championship',
+	'Scots League One',
+	'Scots League Two',
 );
+
+=head
+our %bbc_fixtures_leagues = (
+	'Welsh Premier League' => 'WL',
+	'Irish Premiership' => 'NI',
+	'Premier League' => 'E0',
+	'Championship' => 'EC',
+	'League One' => 'E2',
+	'League Two' => 'E3',
+	'National League' => 'EC',
+	'Scottish Premiership' => 'SC0',
+	'Scottish Championship' => 'SC1',
+	'Scottish League One' => 'SC2',
+	'Scottish League Two' => 'SC3',
+	'Spanish La Liga' => 'SP1',
+	'Italian Serie A' => 'I1',
+	'Irish Premier Division' => 'ROI',
+	'Norwegian Eliteserien' => 'NOR',
+	'Swedish Allsvenskan' => 'SWE',
+	'Finnish Veikkausliiga' => 'FIN',
+	'United States Major League Soccer' => 'MLS',
+	'Russian Premier League' => 'X',
+	'Swiss Super League' => 'X',
+	'Women\'s Super League 1' => 'X',
+);
+=cut
 
 our @csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 );
 our @fixtures_csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 );
@@ -75,25 +102,26 @@ our @league_size = qw( 20 24 24 24 24 12 10 10 10 ); # clubs in each league
 # for euro.pl
 
 our @euro_leagues = (
-	"English Premier League", "English Championship", "English League One", "English League Two", "English Conference",
-	"Scots Premier League", "Scots Championship", "Scots League One", "Scots League Two",
-	"German League One", "German League Two", "Spanish League One", "Spanish League Two",
-	"Italian League One", "Italian League Two", "French League One", "French League Two",
-	"Dutch League One", "Belgian League One", "Portuguese League One", "Turkish League One",
-	"Greek League One",
+	'English Premier League', 'English Championship', 'English League One', 'English League Two', 'English Conference',
+	'Scots Premier League', 'Scots Championship', 'Scots League One', 'Scots League Two',
+	'German League One', 'German League Two', 'Spanish League One', 'Spanish League Two',
+	'Italian League One', 'Italian League Two', 'French League One', 'French League Two',
+	'Dutch League One', 'Belgian League One', 'Portuguese League One', 'Turkish League One',
+	'Greek League One',
 );
 
 our @euro_csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 D1 D2 SP1 SP2 I1 I2 F1 F2 N1 B1 P1 T1 G1 );
 
 # for max_profit.pl, db.pl and fetch.pl
 
-our @euro_lgs = ("German 1", "German 2", "Spanish 1", "Italian 1", "Welsh", "N Irish");
+our @euro_lgs = ('German 1', 'German 2', 'Spanish 1', 'Italian 1', 'Welsh', 'N Irish');
 our @euro_csv_lgs = qw( D1 D2 SP1 I1 WL NI);
 our @euro_fetch_lgs = qw( D1 D2 SP1 I1);
 
-our @summer_leagues = ("Irish League", "USA League", "Swedish League", "Norwegian League");
-our @summer_csv_leagues = qw(ROI MLS SWD NRW);
-our @summer_fetch_leagues = qw(IRL USA SWE NOR);
+our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League');
+our @summer_csv_leagues = qw(ROI MLS SWD NRW FN);
+#our @summer_csv_leagues = qw(ROI MLS SWE NOR FIN);
+our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN);
 
 =pod
 

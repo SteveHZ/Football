@@ -15,8 +15,8 @@ sub BUILD {
 	my $self = shift;
 
 	$self->create_sheet ();
-	$self->{sheet_names} = ["Home and Away", "Last Six", "Over Under"];
-	$self->{sorted_by} = ["ou_home_away", "ou_last_six", "ou_odds"];
+	$self->{sheet_names} = ["Home and Away", "Last Six", "Over Under", "OU Points"];
+	$self->{sorted_by} = ["ou_home_away", "ou_last_six", "ou_odds", "ou_points"];
 }
 
 sub create_sheet {
@@ -58,7 +58,9 @@ sub view {
 		for my $game (@{ $fixtures->{$sorted_by} } ) {
 			$self->blank_columns ( [ qw( 1 3 5 8 10 13 15) ] );
 		
-			my $row_data = $self->get_over_under_rows ($game);
+			my $row_data = ($sheet_name eq "OU Points") ?
+				$self->get_over_under_points_rows ($game) : $self->get_over_under_rows ($game);
+#			my $row_data = $self->get_over_under_rows ($game);
 			$self->write_row ($worksheet, $row, $row_data);
 			$row ++;
 		}
@@ -82,6 +84,17 @@ sub get_over_under_rows {
 		
 		{ $game->{over_2pt5} => $self->{float_format} },
 		{ $game->{under_2pt5} => $self->{float_format} },
+	];
+}
+
+sub get_over_under_points_rows {
+	my ($self, $game) = @_;
+	return [
+		{ $game->{league} => $self->{format} },
+		{ $game->{home_team} => $self->{format} },
+		{ $game->{away_team} => $self->{format} },
+
+		{ $game->{points} => $self->{float_format} },
 	];
 }
 

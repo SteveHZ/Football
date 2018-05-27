@@ -9,16 +9,14 @@ use Moo;
 use namespace::clean;
 
 extends 'Football::Model';
-with 'Football::Roles::Football_IO_Role';
-#with 'Football::Roles::Rugby_IO_Role';
+with 'Football::Roles::Football_IO_Role',
+	 'Football::Roles::Fetch_Goal_Diff';
 
 sub BUILD {
 	my $self = shift;
 	$self->{leagues} = [];
 	$self->{league_names} = \@euro_lgs;
 	$self->{csv_leagues} = \@euro_csv_lgs;
-#	$self->{league_names} = \@summer_leagues;
-#	$self->{csv_leagues} = \@summer_csv_leagues;
 
 	$self->{model_name} = "Euro";
 	$self->{path} = 'C:/Mine/perl/Football/data/Euro/';
@@ -28,13 +26,6 @@ sub BUILD {
 #	$self->{results_file} = $self->{path}.'results.ods';
 	$self->{test_season_data} = 'C:/Mine/perl/Football/t/test_data/euro_season.json';
 }
-
-=head
-sub fetch_goal_difference {
-	my ($self, $goal_diff_obj, $league_name, $goal_difference) = @_;
-	return $goal_diff_obj->fetch_array ("Premier League", $goal_difference);
-}
-=cut
 
 #	Not implemented by Euro::Model
 

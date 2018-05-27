@@ -110,16 +110,6 @@ sub do_games {
 	};
 }
 
-sub split_team_names {
-	my $hash = shift;
-	
-	my $home_len = (length ( $hash->{home}) / 2) * -1;
-	my $away_len = (length ( $hash->{away}) / 2) * -1;
-
-	my $home = substr $hash->{home}, $home_len;
-	my $away = substr $hash->{away}, $away_len;
-	return ($home, $away);
-}
 
 sub write_csv {
 	my ($csv_file, $games) = @_;

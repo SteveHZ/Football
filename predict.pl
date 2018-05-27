@@ -3,7 +3,6 @@
 #	predict.pl 31/01/16 - 14/03/16
 #	v3.0 12/03/18
 
-BEGIN { $ENV{PERL_KEYWORD_DEVELOPMENT} = 0; }
 #BEGIN { $ENV{PERL_KEYWORD_DEVELOPMENT} = 1; }
 
 use strict;
@@ -26,7 +25,6 @@ sub main {
 	my ($model, $view) = get_model_and_view ($options);
 
 	my $games = $model->read_games ($options->{update});
-#	my $games = $model->read_games (update => $options->{update});
 	my $leagues = $model->build_leagues ($games);
 
 	$view->do_teams ($leagues);
@@ -49,23 +47,23 @@ sub main {
 	);
 	$view->do_favourites ( $model->do_favourites ($season, $options->{update_favs}) );
 
-#	$view->fixtures (
-#		my $fixture_list = $model->get_fixtures ()
-#	);
-#	$view->do_fixtures (
-#		my $fixtures = $model->do_fixtures ($fixture_list, $homes, $aways, $last_six)
-#	);
+	$view->fixtures (
+		my $fixtures = $model->get_fixtures ()
+	);
+	$view->do_stats (
+		my $stats = $model->do_fixtures ($fixtures, $homes, $aways, $last_six)
+	);
 
-#	$view->do_recent_goal_difference ( $model->do_recent_goal_difference ($fixtures, $leagues) );
-#	$view->do_goal_difference ( $model->do_goal_difference ($fixtures, $leagues) );
-#	$view->do_league_places ( $model->do_league_places ($fixtures, $leagues) );
-#	$view->do_head2head ( $model->do_head2head ($fixtures) );
-#	$view->do_recent_draws ( $model->do_recent_draws ($fixtures) );
+	$view->do_recent_goal_difference ( $model->do_recent_goal_difference ($stats, $leagues) );
+	$view->do_goal_difference ( $model->do_goal_difference ($stats, $leagues) );
+	$view->do_league_places ( $model->do_league_places ($stats, $leagues) );
+	$view->do_head2head ( $model->do_head2head ($stats) );
+	$view->do_recent_draws ( $model->do_recent_draws ($stats) );
 
-#	my ($teams, $sorted) = $model->do_predict_models ($leagues, $fixture_list, $fixtures, undef);
-#	$view->do_goal_expect ($leagues, $teams, $sorted, $fixture_list);
-#	$view->do_match_odds ($sorted);
-#	$view->do_over_under ($sorted);
+	my ($teams, $sorted) = $model->do_predict_models ($leagues, $fixtures, $stats, undef); # $sport
+	$view->do_goal_expect ($leagues, $teams, $sorted, $fixtures);
+	$view->do_match_odds ($sorted);
+	$view->do_over_under ($sorted);
 }
 
 sub get_cmdline {

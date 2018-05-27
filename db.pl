@@ -1,6 +1,6 @@
 #!	C:/Strawberry/perl/bin
 
-#	db.pl 24-25/02/18, 02/03/18, 16/03/18, 27-29/04/18
+#	db.pl 24-25/02/18, 02/03/18, 16/03/18, 27/04-03/05/18
 
 #BEGIN { $ENV{PERL_KEYWORD_TESTING} = 1;}
 use strict;
@@ -71,22 +71,22 @@ sub print_all {
 
 sub print_homes {
 	my $row = shift;
-	my $column = $data->{column}.'h';
+	my $odds_column = $data->{column}.'h';
 
 	print "\n$row->{date} ";
 	printf "%-20s H  ", $row->{awayteam};
 	print "$row->{fthg}-$row->{ftag}  ";
-	printf "%5.2f", $row->{$column};
+	printf "%5.2f", $row->{$odds_column};
 }
 
 sub print_aways {
 	my $row = shift;
-	my $column = $data->{column}.'a';
+	my $odds_column = $data->{column}.'a';
 
 	print "\n$row->{date} ";
 	printf "%-20s A  ", $row->{hometeam};
-	print "$row->{fthg}-$row->{ftag}  ";
-	printf "%5.2f", $row->{$column};
+	print "$row->{ftag}-$row->{fthg}  ";
+	printf "%5.2f", $row->{$odds_column};
 }
 
 sub get_uk_data {

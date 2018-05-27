@@ -59,14 +59,19 @@ sub calc_skellam_dist {
 }
 
 sub calc_over_under {
-	my ($self, $fixtures) = @_;
+	my ($self, $leagues, $fixtures, $stats) = @_;
+
 	my $sorted = {};
-	my $over_under = Football::Over_Under_Model->new (fixtures => $fixtures);
+	my $over_under = Football::Over_Under_Model->new (
+		leagues => $leagues,
+		fixtures => $fixtures,
+		stats => $stats,
+	);
 	
 	$sorted->{ou_home_away} = $over_under->do_home_away ();
 	$sorted->{ou_last_six} = $over_under->do_last_six ();
 	$sorted->{ou_odds} = $over_under->do_over_under ();
-	
+	$sorted->{ou_points} = $over_under->do_over_under_points ();
 	return $sorted;
 }
 

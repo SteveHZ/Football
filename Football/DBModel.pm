@@ -68,7 +68,7 @@ sub build_leagues {
 sub find_league {
 	my ($self, $team, $leagues, $csv_leagues) = @_;
 	for my $league (@$csv_leagues) {
-		return $league if grep { $_ eq $team} @{ $leagues->{$league} };
+		return $league if grep { $_ eq $team } @{ $leagues->{$league} };
 	}
 	return 0;
 }
@@ -76,9 +76,13 @@ sub find_league {
 sub do_cmd_line {
 	my ($self, $cmd_line) = @_;
 	my ($team, @opts) = split ' -', $cmd_line;
+
 	$team = ucfirst_all ($team);
+	$team =~ s/Fc/FC/;
+	$opts[0] = 'ha'  if @opts == 0; # use defaults if not present
+	$opts[1] = 'wld' if @opts == 1;	# as above
 	$_ =~ s/ // for @opts;
-	
+
 	return ($team, \@opts);
 }
 

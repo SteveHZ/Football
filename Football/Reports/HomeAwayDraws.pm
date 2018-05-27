@@ -65,7 +65,7 @@ sub fetch_array {
 
 sub fetch_hash {
 	my ($self, $league, $season) = @_;
-z	return \%{ $self->{hash}->{$league}->{$season} };
+	return \%{ $self->{hash}->{$league}->{$season} };
 }
 
 1;

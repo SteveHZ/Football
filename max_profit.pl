@@ -104,7 +104,7 @@ sub get_euro_data {
 		model		=> 'euro',
 		read_func 	=> \&Football::Favourites_Data_Model::update_current,
 		in_path 	=> 'C:/Mine/perl/Football/data/Euro/',
-		out_path 	=> 'C:/Mine/perl/Football/reports/',
+		out_path 	=> 'C:/Mine/perl/Football/reports/Euro/',
 		leagues 	=> \@euro_csv_lgs,
 		index 		=> [ 0...$#euro_csv_lgs ],
 	}
@@ -115,7 +115,7 @@ sub get_summer_data {
 		model		=> 'summer',
 		read_func 	=> \&Summer::Summer_Data_Model::read_csv,
 		in_path 	=> 'C:/Mine/perl/Football/data/Summer/',
-		out_path 	=> 'C:/Mine/perl/Football/reports/',
+		out_path 	=> 'C:/Mine/perl/Football/reports/Summer/',
 		leagues 	=> \@summer_csv_leagues,
 		index 		=> [ 0...$#summer_csv_leagues ],
 	}

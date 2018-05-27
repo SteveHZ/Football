@@ -63,17 +63,29 @@ sub last_six {
 	return $league_array;
 }
 
-#=head
-sub do_fixtures {
-	my ($self, $fixture_list, $homes, $aways, $last_six) = @_;
-	my $stat_size = $default_stats_size * 2;
+sub _fixtures_deep_copy {
+	my $fixtures = shift;
+	my @copy =();
+	for my $game (@$fixtures) { 
+		my %temp = ();
+		$temp{$_} = $game->{$_} for keys %$game;
+		push @copy,\%temp;
+	}
+	return \@copy;
+}
 
+sub do_fixtures {
+	my ($self, $fixtures, $homes, $aways, $last_six) = @_;
+	my $stat_size = $default_stats_size * 2;
+#	my $new_fixtures = _fixtures_deep_copy ($fixtures);
 	my @list = ();
-	my $leagues = _get_unique_leagues ($fixture_list);
+	my $leagues = _get_unique_leagues ($fixtures);
+
 	for my $league (@$leagues) {
 		my $league_name = %$league{league};
+
 		my @games = sort {$a->{home_team} cmp $b->{home_team} }
-					grep {$_->{league_idx} eq %{$league}{league_idx} } @$fixture_list;
+					grep {$_->{league_idx} eq %{$league}{league_idx} } @$fixtures;
 
 		for my $game (@games) {
 			my $home = $game->{home_team};
@@ -138,16 +150,15 @@ sub get_unique_leagues {
 }
 
 sub do_predict_models {
-	my ($self, $leagues, $fixture_list, $fixtures, $sport) = @_;
+	my ($self, $leagues, $fixtures, $stats, $sport) = @_;
 	my $predict_model = Football::Game_Prediction_Models->new ();
 
-	my ($teams, $sorted) = $predict_model->calc_goal_expect ($leagues, $fixture_list);
-	$sorted->{match_odds} = $predict_model->calc_match_odds ($fixture_list);# unless $sport eq "Rugby";
-	$sorted->{skellam} = $predict_model->calc_skellam_dist ($fixture_list);# unless $sport eq "Rugby";
-	$sorted->{over_under} = $predict_model->calc_over_under ($fixture_list);
+	my ($teams, $sorted) = $predict_model->calc_goal_expect ($leagues, $fixtures);
+	$sorted->{match_odds} = $predict_model->calc_match_odds ($fixtures);# unless $sport eq "Rugby";
+	$sorted->{skellam} = $predict_model->calc_skellam_dist ($fixtures);# unless $sport eq "Rugby";
+	$sorted->{over_under} = $predict_model->calc_over_under ($leagues, $fixtures, $stats);
 	
 	return ($teams, $sorted);
 }
-#=cut
 
 1;
