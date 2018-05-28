@@ -17,11 +17,12 @@ my $str = join '|', keys %bbc_fixtures_leagues;
 my $leagues = qr/$str/;
 my $time = qr/\d\d:\d\d/;
 my $upper = qr/[A-Z]/;
-my $lower = qr/[a-z]|รท/;
+my $lower = qr/[a-z]/;
+#my $lower = qr/[a-z]|รท/;
 my $dmy_date = qr/\d\d\/\d\d\/\d\d/;
 
 sub prepare {
-	my ($self, $dataref, $dmy) = @_;
+	my ($self, $dataref, $day, $dmy) = @_;
 
 #	Remove beginning and end of data
 	$$dataref =~ s/^.*Content//;
@@ -35,7 +36,7 @@ sub prepare {
 	$self->do_foreign_chars ($dataref);
 	
 #	Find where team names start	
-	$$dataref =~ s/($lower)($upper)(.)/$1\n$dmy,$2$3/g;
+	$$dataref =~ s/($lower)($upper)(.)/$1\n$day $dmy,$2$3/g;
 
 #	Undo SOME workarounds
 	$self->revert ($dataref);
@@ -109,8 +110,12 @@ sub get_week {
 	my @week = ();
 	my $today = localtime;
 	
-	for my $day (1..10) {
-		push @week, ($today + ($day * ONE_DAY))->ymd;
+	for my $day_count (1..10) {
+		my $day = $today + ($day_count * ONE_DAY);
+		push @week, {
+			day	 => $day->wdayname,
+			date => $day->ymd,
+		};
 	}
 	return \@week;
 }
@@ -120,13 +125,13 @@ sub get_pages {
     my ($q, $site);
 
 	for my $date (@$week) {
-		$site = "https://www.bbc.co.uk/sport/football/scores-fixtures/$date";
+		$site = "https://www.bbc.co.uk/sport/football/scores-fixtures/$date->{date}";
 		$q = wq ($site);
 		$q->find('abbr')->replace_with ( "<b></b>" );
-		print "\nDownloading $date";
-		print "\n$date : ";
+		print "\nDownloading $date->{date}";
+		print "\n$date->{date} : ";
 		if ($q) {
-			$self->do_write ($date, $q->text);
+			$self->do_write ($date->{date}, $q->text);
 			print "Done - character length : ".length ($q->text());
 		} else {
 			print "Unable to create object";
@@ -147,7 +152,7 @@ sub do_write {
 sub delete_all {
 	my ($self, $path, $week) = @_;
 	for my $day (@$week) {
-		unlink "$path/fixtures $day.txt"
+		unlink "$path/fixtures $day->{date}.txt"
 	}
 }
 

@@ -14,7 +14,7 @@ use Football::Model;
 use MyJSON qw(read_json);
 
 my $model = Football::Model->new ();
-my ($games, $leagues, $fixture_list);
+my ($games, $leagues, $fixture_list, $stats);
 
 my $test_path = "C:/Mine/perl/Football/t/test data/";
 
@@ -62,14 +62,14 @@ subtest 'Shared_Model routines' => sub {
 	isa_ok (@$aways[0]->{aways}, 'HASH', '$aways');
 	isa_ok (@$last_six[0]->{last_six}, 'HASH', '$last_six');
 
-	my $fixtures = $model->do_fixtures ($fixture_list, $homes, $aways, $last_six);
-	isa_ok ($fixtures, 'ARRAY', '$fixtures');
+	$stats = $model->do_fixtures ($fixture_list, $homes, $aways, $last_six);
+	isa_ok ($stats, 'ARRAY', '$stats');
 };
 
 subtest 'Goal Expect Model' => sub {
 	plan tests => 6;
 	
-	my ($teams, $sorted) = $model->do_predict_models ($leagues, $fixture_list, "Football");
+	my ($teams, $sorted) = $model->do_predict_models ($leagues, $fixture_list, $stats, "Football");
 	isa_ok ($teams, 'HASH', '$teams');
 	isa_ok ($sorted, 'HASH', '$sorted');
 

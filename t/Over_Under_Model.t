@@ -22,13 +22,13 @@ my $aways = $model->aways ($leagues);
 my $last_six = $model->last_six ($leagues);
 my $league_array = \@{ $model->{leagues} };
 
-my $fixture_list = $model->get_fixtures ();
-my $fixtures = $model->do_fixtures ($fixture_list, $homes, $aways, $last_six);
+my $fixtures = $model->get_fixtures ();
+my $stats = $model->do_fixtures ($fixtures, $homes, $aways, $last_six);
 
 
 subtest 'constructor' => sub {
 	use_ok 'Football::Over_Under_Model';
-	$ou_model = Football::Over_Under_Model->new (leagues => $leagues, fixtures => $fixtures);
+	$ou_model = Football::Over_Under_Model->new (leagues => $leagues, fixtures => $fixtures, stats => $stats);
 	isa_ok ($ou_model, 'Football::Over_Under_Model', '$ou_model');
 };
 

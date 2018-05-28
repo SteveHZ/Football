@@ -21,16 +21,16 @@ PRODUCTION {
 	$model->get_pages ($week);
 }
 for my $day (@$week) {
-	my $filename = "$path/fixtures $day.txt";
+	my $filename = "$path/fixtures $day->{date}.txt";
 	open my $fh, "<", $filename or die "Can't open $filename";
 	chomp ( my $data = <$fh> );
 	close $fh;
 
-	my $dmy = $model->as_dmy ($day);
-	my $games = $model->after_prepare ( $model->prepare (\$data, $dmy) );
-	$view->dump ($games);
-	<STDIN>;
+	my $dmy = $model->as_dmy ($day->{date});
+	my $games = $model->after_prepare ( $model->prepare (\$data, $day->{day}, $dmy) );
+
 	push @all_games, @$games;
+	$view->dump ($games);
 }
 my $out_file = "$path/fixtures_week.csv";
 $view->write_csv ($out_file, \@all_games);

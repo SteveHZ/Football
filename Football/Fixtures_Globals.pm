@@ -16,42 +16,24 @@ our @EXPORT = qw(
 
 sub new { return bless {}, shift; }
 
-our %bbc_fixtures_leagues = (
-	'Welsh Premier League' => 'WL',
-	'Irish Premiership' => 'NI',
-	'Premier League' => 'E0',
-	'Championship' => 'EC',
-	'League One' => 'E2',
-	'League Two' => 'E3',
-	'National League' => 'EC',
-	'Scottish Premiership' => 'SC0',
-	'Scottish Championship' => 'SC1',
-	'Scottish League One' => 'SC2',
-	'Scottish League Two' => 'SC3',
-	'Spanish La Liga' => 'SP1',
-	'Italian Serie A' => 'I1',
-	'Irish Premier Division' => 'ROI',
-	'Norwegian Eliteserien' => 'NRW',
-	'Swedish Allsvenskan' => 'SWD',
-	'Finnish Veikkausliiga' => 'FN',
-	'United States Major League Soccer' => 'MLS',
-	'Russian Premier League' => 'X',
-	'Swiss Super League' => 'X',
-	'Women\'s Super League 1' => 'X',
-);
+our %fixtures_rename = ();
+our %bbc_fixtures_leagues = ();
 
-our %fixtures_rename = (
-#	Irish
-	"St Patrick's Athletic" => 'St Patricks',
-#	American
-	'D.C. United' => 'DC United',
-	'Minnesota United FC' => 'Minnesota',
-	'Atlanta United FC' => 'Atlanta United',
-	'New York City FC' => 'New York City',
-	'Seattle Sounders FC' => 'Seattle Sounders',
-	'Vancouver Whitecaps FC' => 'Vancouver Whitecaps',
-	'Los Angeles Football Club' => 'Los Angeles FC',
-);
+while (my $line = <DATA>) {
+	chomp $line;
+	next if  $line eq "" or $line =~ /^#.*/; # comment
+	last if $line eq "END_TEAMS";
+	my ($key, $val) = split ',', $line;
+	$fixtures_rename{$key} = $val;
+}
+while (my $line = <DATA>) {
+	chomp $line;
+	next if  $line eq "" or $line =~ /^#.*/; # comment
+	last if $line eq "END_LEAGUES";
+	my ($key, $val) = split ',', $line;
+	$bbc_fixtures_leagues{$key} = $val;
+}
+close DATA;
 
 sub fixture_rename {
 	my $name = shift;
@@ -59,6 +41,130 @@ sub fixture_rename {
 	return defined $fixtures_rename{ $name }
 		? $fixtures_rename{ $name } : $name;
 }
+
+__DATA__
+#	Irish
+St Patrick's Athletic,St Patricks
+
+#	American
+D.C. United,DC United
+Minnesota United FC,Minnesota
+Atlanta United FC,Atlanta United
+New York City FC,New York City
+Seattle Sounders FC,Seattle Sounders
+Vancouver Whitecaps FC,Vancouver Whitecaps
+Los Angeles Football Club,Los Angeles FC
+
+#	English
+Brighton & Hove Albion,Brighton
+Manchester City,Man City
+Manchester United,Man United
+Leicester City,Leicester
+Swansea City,Swansea
+Newcastle United,Newcastle
+Huddersfield Town,Huddersfield
+AFC Bournemouth,Bournemouth
+West Bromwich Albion,West Brom
+West Ham United,West Ham
+Stoke City,Stoke
+Tottenham Hotspur,Tottenham
+Birmingham City,Birmingham
+Ipswich Town,Ipswich
+Nottingham Forest,Nott'm Forest
+Hull City,Hull
+Cardiff City,Cardiff
+Burton Albion,Burton
+Leeds United,Leeds
+Bolton Wanderers,Bolton
+Norwich City,Norwich
+Sheffield Wednesday,Sheffield Weds
+Wolverhampton Wanderers,Wolves
+Queens Park Rangers,QPR
+Derby County,Derby
+Oxford United,Oxford
+Scunthorpe United,Scunthorpe
+Wigan Athletic,Wigan
+Oldham Athletic,Oldham
+Doncaster Rovers,Doncaster
+Bristol Rovers,Bristol Rvs
+Northampton Towm,Northampton
+Charlton Athletic,Charlton
+Plymouth Argyle,Plymouth
+Southend United,Southend
+Shrewsbury Town,Shrewsbury
+Rotherham United,Rotherham
+Peterborough United,Peterboro
+Blackburn Rovers,Blackburn
+Bradford City,Bradford
+Crewe Alexandra,Crewe
+Cambridge United,Cambridge
+Cheltenham Town,Cheltenham
+Carlisle United,Carlisle
+Colchester United,Colchester
+Luton Town,Luton
+Grimsby Town,Grimsby
+Lincoln City,Lincoln
+Exeter City,Exeter
+Mansfield Town,Mansfield
+Accrington Stanley,Accrington
+Coventry City,Coventry
+Wycombe Wanderers,Wycombe
+Swindon Town,Swindon
+AFC Fylde,Fylde
+FC Halifax Town,Halifax
+Dagenham & Redbridge,Dag and Red
+Maidstone United,Maidstone
+Hartlepool United,Hartlepool
+Solihull Moors,Solihull
+Aldershot Town,Aldershot
+Macclesfield Town,Macclesfield
+Tranmere Rovers,Tranmere
+Ebbsfleet United,Ebbsfleet
+Maidenhead United,Maidenhead
+Sutton United,Sutton
+
+#	Scottish
+Partick Thistle,Partick
+Hamilton Academical,Hamilton
+Heart of Midlothian,Hearts
+Queen of the South,Queen of Sth
+Brechin City,Brechin
+Inverness Caledonian Thistle,Inverness C
+Greenock Morton,Morton
+Alloa Athletic,Alloa
+Ayr United,Ayr
+Queen's Park,Queens Park
+Airdrieonians,Airdrie Utd
+Raith Rovers,Raith Rvs
+Albion Rovers,Albion Rvs
+Forfar Athletic,Forfar
+Berwick Rangers,Berwick
+Elgin City,Elgin
+Stirling Albion,Stirling
+END_TEAMS
+
+Welsh Premier League,WL,
+Irish Premiership,NI,
+Premier League,E0,
+Championship,EC,
+League One,E2,
+League Two,E3,
+National League,EC,
+Scottish Premiership,SC0,
+Scottish Championship,SC1,
+Scottish League One,SC2,
+Scottish League Two,SC3,
+Spanish La Liga,SP1,
+Italian Serie A,I1,
+Irish Premier Division,ROI,
+Norwegian Eliteserien,NRW,
+Swedish Allsvenskan,SWD,
+Finnish Veikkausliiga,FN,
+United States Major League Soccer,MLS,
+Russian Premier League,X,
+Swiss Super League,X,
+Women's Super League 1,X,
+END_LEAGUES
 
 =pod
 
@@ -81,6 +187,131 @@ Steve Hope
 This library is free software. You can redistribute it and/or modify
 it under the same terms as Perl itself.
 
+=cut
+
+=head
+our %fixtures_rename = (
+#	Irish
+	"St Patrick's Athletic" => 'St Patricks',
+#	American
+	'D.C. United' => 'DC United',
+	'Minnesota United FC' => 'Minnesota',
+	'Atlanta United FC' => 'Atlanta United',
+	'New York City FC' => 'New York City',
+	'Seattle Sounders FC' => 'Seattle Sounders',
+	'Vancouver Whitecaps FC' => 'Vancouver Whitecaps',
+	'Los Angeles Football Club' => 'Los Angeles FC',
+#	English
+	'Brighton & Hove Albion' => 'Brighton',
+	'Manchester City' => 'Man City',
+	'Manchester United' => 'Man United',
+	'Leicester City' => 'Leicester',
+	'Swansea City' => 'Swansea',
+	'Newcastle United' => 'Newcastle',
+	'Huddersfield Town' => 'Huddersfield',
+	'AFC Bournemouth' => 'Bournemouth',
+	'West Bromwich Albion' => 'West Brom',
+	'West Ham United' => 'West Ham',
+	'Stoke City' => 'Stoke',
+	'Tottenham Hotspur' => 'Tottenham',
+	'Birmingham City' => 'Birmingham',
+	'Ipswich Town' => 'Ipswich',
+	'Nottingham Forest' => "Nott'm Forest",
+	'Hull City' => 'Hull',
+	'Cardiff City' => 'Cardiff',
+	'Burton Albion' => 'Burton',
+	'Leeds United' => 'Leeds',
+	'Bolton Wanderers' => 'Bolton',
+	'Norwich City' => 'Norwich',
+	'Sheffield Wednesday' => 'Sheffield Weds',
+	'Wolverhampton Wanderers' => 'Wolves',
+	'Queens Park Rangers' => 'QPR',
+	'Derby County' => 'Derby',
+	'Oxford United' => 'Oxford',
+	'Scunthorpe United' => 'Scunthorpe',
+	'Wigan Athletic' => 'Wigan',
+	'Oldham Athletic' => 'Oldham',
+	'Doncaster Rovers' => 'Doncaster',
+	'Bristol Rovers' => 'Bristol Rvs',
+	'Northampton Towm' => 'Northampton',
+	'Charlton Athletic' => 'Charlton',
+	'Plymouth Argyle' => 'Plymouth',
+	'Southend United' => 'Southend',
+	'Shrewsbury Town' => 'Shrewsbury',
+	'Rotherham United' => 'Rotherham',
+	'Peterborough United' => 'Peterboro',
+	'Blackburn Rovers' => 'Blackburn',
+	'Bradford City' => 'Bradford',
+	'Crewe Alexandra' => 'Crewe',
+	'Cambridge United' => 'Cambridge',
+	'Cheltenham Town' => 'Cheltenham',
+	'Carlisle United' => 'Carlisle',
+	'Colchester United' => 'Colchester',
+	'Luton Town' => 'Luton',
+	'Grimsby Town' => 'Grimsby',
+	'Lincoln City' => 'Lincoln',
+	'Exeter City' => 'Exeter',
+	'Mansfield Town' => 'Mansfield',
+	'Accrington Stanley' => 'Accrington',
+	'Coventry City' => 'Coventry',
+	'Wycombe Wanderers' => 'Wycombe',
+	'Swindon Town' => 'Swindon',
+	'AFC Fylde' => 'Fylde',
+	'FC Halifax Town' => 'Halifax',
+	'Dagenham & Redbridge' => 'Dag and Red',
+	'Maidstone United' => 'Maidstone',
+	'Hartlepool United' => 'Hartlepool',
+	'Solihull Moors' => 'Solihull',
+	'Aldershot Town' => 'Aldershot',
+	'Macclesfield Town' => 'Macclesfield',
+	'Tranmere Rovers' => 'Tranmere',
+	'Ebbsfleet United' => 'Ebbsfleet',
+	'Maidenhead United' => 'Maidenhead',
+	'Sutton United' => 'Sutton',
+#	Scottish
+	'Partick Thistle' => 'Partick',
+	'Hamilton Academical' => 'Hamilton',
+	'Heart of Midlothian' => 'Hearts',
+	'Queen of the South' => 'Queen of Sth',
+	'Brechin City' => 'Brechin',
+	'Inverness Caledonian Thistle' => 'Inverness C',
+	'Greenock Morton' => 'Morton',
+	'Alloa Athletic' => 'Alloa',
+	'Ayr United' => 'Ayr',
+	"Queen's Park" => 'Queens Park',
+	'Airdrieonians' => 'Airdrie Utd',
+	'Raith Rovers' => 'Raith Rvs',
+	'Albion Rovers' => 'Albion Rvs',
+	'Forfar Athletic' => 'Forfar',
+	'Berwick Rangers' => 'Berwick',
+	'Elgin City' => 'Elgin',
+	'Stirling Albion' => 'Stirling',
+);
+=head
+our %bbc_fixtures_leagues = (
+	'Welsh Premier League' => 'WL',
+	'Irish Premiership' => 'NI',
+	'Premier League' => 'E0',
+	'Championship' => 'EC',
+	'League One' => 'E2',
+	'League Two' => 'E3',
+	'National League' => 'EC',
+	'Scottish Premiership' => 'SC0',
+	'Scottish Championship' => 'SC1',
+	'Scottish League One' => 'SC2',
+	'Scottish League Two' => 'SC3',
+	'Spanish La Liga' => 'SP1',
+	'Italian Serie A' => 'I1',
+	'Irish Premier Division' => 'ROI',
+	'Norwegian Eliteserien' => 'NRW',
+	'Swedish Allsvenskan' => 'SWD',
+	'Finnish Veikkausliiga' => 'FN',
+	'United States Major League Soccer' => 'MLS',
+	'Russian Premier League' => 'X',
+	'Swiss Super League' => 'X',
+	'Women\'s Super League 1' => 'X',
+#	'Brazilian SÚrie A' => 'X',
+);
 =cut
 
 1;
