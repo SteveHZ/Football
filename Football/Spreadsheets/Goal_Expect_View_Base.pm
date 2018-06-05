@@ -142,6 +142,7 @@ sub get_goal_expect_rows {
 		{ $rules->ou_last_six_rule ( $game ) => $self->{percent_format} },
 		{ $rules->over_odds_rule ( $game ) => $self->{blank_text_format} },
 		{ $rules->under_odds_rule ( $game ) => $self->{blank_text_format} },
+		{ $game->{date} => $self->{blank_text_format2} },
 	];
 }
 

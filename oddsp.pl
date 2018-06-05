@@ -10,23 +10,15 @@ use HTML::Strip;
 use lib 'C:/Mine/perl/Football';
 use Euro::Rename qw(check_rename);
 use MyDate qw($short_month_names month_number get_year);
+use MyRegX;
 
-my $date = qr/
-	(?<date>\d{2})\s
-	(?<month>\w+)\s
-	(?<year>\d{4})
-/x;
-
-my $yesterdays_date = qr/
-	Yesterday\W+
-	(?<date>\d{2})\s
-	(?<month>\w{3})
-/x;
-
-my $time = qr/\d{2}:\d{2}/;
-my $score = qr/(\d\d?):(\d\d?)/;
-my $team = qr/[A-Za-z\& \.]/;
-my $odds = qr/\d+\.\d{2}/;
+my $rx = MyRegX->new ();
+my $date = $rx->date ();
+my $yesterdays_date = $rx->yesterdays_date;
+my $time = $rx->time;
+my $score = $rx->score ();
+my $team = $rx->team ();
+my $odds = $rx->odds ();
 
 die "Please enter filenames as parameters" unless @ARGV > 0;
 for my $file (@ARGV){

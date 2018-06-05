@@ -21,7 +21,6 @@ sub BUILD {
 sub points_rule {
 	my ($self, $home, $away) = @_;
 
-#	return sprintf ("%s.%s", $home, $away)
 	return "$home.$away"
 		if ($home > $self->{min_points} && ($home > $away * 2))
 		or ($away > $self->{min_points} && ($away > $home * 2));

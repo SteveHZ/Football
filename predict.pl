@@ -50,6 +50,7 @@ sub main {
 	$view->fixtures (
 		my $fixtures = $model->get_fixtures ()
 	);
+
 	$view->do_stats (
 		my $stats = $model->do_fixtures ($fixtures, $homes, $aways, $last_six)
 	);

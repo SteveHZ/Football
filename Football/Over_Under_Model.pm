@@ -76,7 +76,7 @@ sub do_ou_points {
 				league => $league->{league},
 				home_team => $home,
 				away_team => $away,
-				points => _do_calcs ([ @$home_stats, @$away_stats]),
+				points => _do_calcs ([ @$home_stats, @$away_stats ]),
 			};
 		}
 	}

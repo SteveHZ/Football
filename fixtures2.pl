@@ -31,7 +31,8 @@ for my $path (@paths) {
 			$data[2] = fixture_rename ($data[2]);	# home team
 			$data[3] = fixture_rename ($data[3]);	# away team
 
-			print $fh_out $data[1].','.$data[2].','.$data[3]."\n";
+			print $fh_out $data[0].','.$data[1].','.$data[2].','.$data[3]."\n";
+#			print $fh_out $data[1].','.$data[2].','.$data[3]."\n";
 		}
 		close $fh_in;
 		close $fh_out;

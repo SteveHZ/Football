@@ -43,7 +43,7 @@ sub after_get_column_sizes {
 		Z => { size => 10, fmt => $self->{format} },
 		AA => { size => 2.5, fmt => $self->{blank_text_format2} },
 		AB => { size => 10, fmt => $self->{float_format} },
-		AC => { size => 20, fmt => $self->{blank_text_format2} },
+		"AC AH" => { size => 20, fmt => $self->{blank_text_format2} },
 		"AD:AG" => { size => 8, fmt => $self->{format} },
 	};
 }

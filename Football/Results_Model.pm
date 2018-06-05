@@ -1,9 +1,9 @@
-package Football::Fixtures_Model;
+package Football::Results_Model;
 
 use Moo;
 use namespace::clean;
 
-use Football::Fixtures_Globals qw(%bbc_fixtures_leagues);
+use Football::Fixtures_Globals qw(%bbc_fixtures_leagues %bbc_results_leagues);
 use MyRegX;
 
 extends 'Football::Web_Scraper_Model';
@@ -18,26 +18,20 @@ my $lower = $rx->lower;
 my $dmy_date = $rx->dmy_date;
 
 sub prepare {
-	my ($self, $dataref, $day, $dmy) = @_;
+	my ($self, $dataref) = @_;
 
 #	Remove beginning and end of data
 	$$dataref =~ s/^.*Content//;
 	$$dataref =~ s/All times are UK .*$//g;
+	$$dataref =~ s/FT/\n/g;
 
 #	Identify known leagues
-	$$dataref =~ s/($leagues)/\n<LEAGUE>$1/g;
+	$$dataref =~ s/($leagues)/<LEAGUE>$1\n/g;
 
 #	Work-arounds
-	$self->do_initial_chars ($dataref);
+#	$self->do_initial_chars ($dataref);
 	$self->do_foreign_chars ($dataref);
-
-	#	Find where team names start	
-	$$dataref =~ s/($lower)($upper)/$1\n$day $dmy,$2/g;
-
-#	Undo SOME workarounds
-	$self->revert ($dataref);
-	
-	$$dataref =~ s/($time)/,$1,/g;
+#	$self->revert ($dataref);
 
 	my @lines = split '\n', $$dataref;
 	shift @lines;
@@ -45,15 +39,15 @@ sub prepare {
 }
 
 sub after_prepare {
-	my ($self, $lines) = @_;
+	my ($self, $lines, $day, $dmy) = @_;
 	my $csv_league = '';
-	
+
 	for my $line (@$lines) {
-		if ($line =~ /^<LEAGUE>(.*)$/) {
-			$csv_league = (exists $bbc_fixtures_leagues{$1} ) ?
-				$bbc_fixtures_leagues{$1} : 'X';
+		if ($line =~ /<LEAGUE>(.*)$/) {
+			$csv_league = (exists $bbc_results_leagues{$1} ) ?
+				$bbc_results_leagues{$1} : 'X';
 		} else {
-			$line =~ s/($dmy_date),(.*),($time),(.*)/$1 $3,$csv_league,$2,$4/;
+			$line =~ s/(\D+)(\d\d?)(\D+)(\d\d?)/$day $dmy,$csv_league,$1,$2,$3,$4/g;
 		}
 	}
 	return $lines;
