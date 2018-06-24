@@ -1,4 +1,3 @@
-#!	C:/Strawberry/perl/bin
 
 #	MyPoisson.t 02/07/17, 28/07/17
 
@@ -43,19 +42,11 @@ subtest 'Match Odds Test' => sub {
 	plan tests => 7;
 	$game->calc ($home_expect, $away_expect);
 
-	my $home_win = $game->home_win_odds ();
-	my $away_win = $game->away_win_odds ();
-	my $draw = $game->draw_odds ();
-	my $both_sides_yes = $game->both_sides_yes_odds ();
-	my $both_sides_no = $game->both_sides_no_odds ();
-	my $under_2pt5 = $game->under_2pt5_odds ();
-	my $over_2pt5 = $game->over_2pt5_odds ();
-
-	is ($home_win, 1.38, "Home win Odds = 1.38");
-	is ($away_win, 11.6, "Away win Odds = 11.6");
-	is ($draw, 5.35, "Draw odds = 5.35");
-	is ($both_sides_yes, 2.8, "Both Sides Yes = 2.8");
-	is ($both_sides_no, 1.55, "Both Sides No = 1.55");
-	is ($under_2pt5, 1.88, "Under 2.5 = 1.88");
-	is ($over_2pt5, 2.13, "Over 2.5 = 2.13");
+	is ($game->home_win_odds, 		1.38, "Home win Odds = 1.38");
+	is ($game->away_win_odds, 		11.6, "Away win Odds = 11.6");
+	is ($game->draw_odds, 			5.35, "Draw odds = 5.35");
+	is ($game->both_sides_yes_odds, 2.8,  "Both Sides Yes = 2.8");
+	is ($game->both_sides_no_odds, 	1.55, "Both Sides No = 1.55");
+	is ($game->under_2pt5_odds, 	1.88, "Under 2.5 = 1.88");
+	is ($game->over_2pt5_odds, 		2.13, "Over 2.5 = 2.13");
 };

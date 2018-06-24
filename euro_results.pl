@@ -36,13 +36,13 @@ my $in_path = "C:/Mine/perl/Football/data/Euro/scraped/";
 my $out_path = "C:/Mine/perl/Football/data/Euro/cleaned/";
 
 my %filenames = (
-#	"Irish" 	=> [ "Ireland Feb", "Ireland March", "Ireland April", "Ireland May" ],
-#	"Norwegian"	=> [ "Norway April", "Norway May" ],
-#	"Swedish"	=> [ "Sweden April", "Sweden May" ],
-#	"USA"		=> [ "USA March", "USA April", "USA May" ],
-#	"Welsh"		=> [ "Welsh August", "Welsh Sept" ],
+	"Irish" 	=> [ "Ireland Feb", "Ireland March", "Ireland April", "Ireland May" ],
+	"Norwegian"	=> [ "Norway April", "Norway May" ],
+	"Swedish"	=> [ "Sweden April", "Sweden May" ],
+	"USA"		=> [ "USA March", "USA April", "USA May" ],
 	"N Irish" 	=> [ "NI August", "NI Sept" ],
-	"Highland" 	=> [ "HL July", "HL August", "HL Sept", "HL Oct" ],
+#	"Welsh"		=> [ "Welsh August", "Welsh Sept" ],
+#	"Highland" 	=> [ "HL July", "HL August", "HL Sept", "HL Oct" ],
 );
 
 for my $league (keys %filenames) {
@@ -95,11 +95,11 @@ sub do_games {
 	my ($hash, $games) = @_;
 
 #	Remove doubled team names
-	my ($home, $away) = split_team_names ($hash);
-	
+#	my ($home, $away) = split_team_names ($hash);
+
 #	Check for and rename teams with Unicode characters
-	$home = check_rename ($home);
-	$away = check_rename ($away);
+	my $home = check_rename ($hash->{home});
+	my $away = check_rename ($hash->{away});
 	
 	push @$games, {
 		date => $date,
@@ -109,6 +109,17 @@ sub do_games {
 		away_score => $hash->{away_score},
 	};
 }
+
+#sub split_team_names {
+#	my $hash = shift;
+	
+#	my $home_len = (length ( $hash->{home}) / 2) * -1;
+#	my $away_len = (length ( $hash->{away}) / 2) * -1;
+
+#	my $home = substr $hash->{home}, $home_len;
+#	my $away = substr $hash->{away}, $away_len;
+#	return ($home, $away);
+#}
 
 
 sub write_csv {

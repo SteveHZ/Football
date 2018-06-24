@@ -13,12 +13,12 @@ use MyDate qw($short_month_names month_number get_year);
 use MyRegX;
 
 my $rx = MyRegX->new ();
-my $date = $rx->date ();
-my $yesterdays_date = $rx->yesterdays_date;
 my $time = $rx->time;
-my $score = $rx->score ();
-my $team = $rx->team ();
-my $odds = $rx->odds ();
+my $score = $rx->score;
+my $team = $rx->team;
+my $odds = $rx->odds;
+my $date = $rx->date;
+my $yesterdays_date = $rx->yesterdays_date;
 
 die "Please enter filenames as parameters" unless @ARGV > 0;
 for my $file (@ARGV){
@@ -51,7 +51,6 @@ for my $file (@ARGV){
 
 sub prepare {
 	my $line = shift;
-
 	my $hs = HTML::Strip->new ( auto_reset => 1 );
 	my $cleaned = $hs->parse ($line);
 	my $year = get_year ();
@@ -59,7 +58,9 @@ sub prepare {
 	$cleaned =~ s/$yesterdays_date/$1 $2 $year/g; 	#	if present, amend yesterday date line to normal date format
 	$cleaned =~ s/($date)/\n$1/g;					#	add new-lines before date
 	$cleaned =~ s/$time/\n/g;						#	turn time into new-line
-	$cleaned =~ s/\n//;								# 	remove initial newline
+	$cleaned =~ s/\n//;
+
+# 	remove initial newline
 	return [ split /\n/, $cleaned ];
 }
 

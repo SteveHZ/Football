@@ -8,10 +8,10 @@ use Exporter 'import';
 use vars qw (@EXPORT_OK %EXPORT_TAGS);
 
 our @EXPORT = qw(
-	%bbc_fixtures_leagues
-	%bbc_results_leagues
 	%fixtures_rename
+	%bbc_fixtures_leagues
 );
+
 @EXPORT_OK  = qw( fixture_rename );
 %EXPORT_TAGS = (all => [ @EXPORT, @EXPORT_OK ]);
 
@@ -19,19 +19,17 @@ sub new { return bless {}, shift; }
 
 our %fixtures_rename = ();
 our %bbc_fixtures_leagues = ();
-our %bbc_results_leagues = ();
 
 my @datarefs = (
-	{ hashref => \%fixtures_rename, endline => 'END_TEAMS' },
-	{ hashref => \%bbc_fixtures_leagues, endline => 'END_LEAGUES' },
-	{ hashref => \%bbc_results_leagues, endline => 'END_RESULTS' },
+	{ hashref => \%fixtures_rename, end_token => 'END_TEAMS' },
+	{ hashref => \%bbc_fixtures_leagues, end_token => 'END_LEAGUES' },
 );
 
 for my $dataref (@datarefs) {
 	while (my $line = <DATA>) {
 		chomp $line;
 		next if $line eq "" or $line =~ /^#/;
-		last if $line eq $dataref->{endline};
+		last if $line eq $dataref->{end_token};
 		my ($key, $val) = split ',', $line;
 		$dataref->{hashref}->{$key} = $val;
 	}
@@ -164,20 +162,18 @@ Norwegian Eliteserien,NRW,
 Swedish Allsvenskan,SWD,
 Finnish Veikkausliiga,FN,
 United States Major League Soccer,MLS,
-Russian Premier League,X,
 
 International,X
 World,X
 Euro,X
 Women's,X,
 Friendl,X
+Group,X
+Round,X
+Russian Premier League,X,
 Swiss Super League,X,
 Brazilian,X
 END_LEAGUES
-
-Irish Premier Division,ROI,
-United States Major League Soccer,MLS,
-END_RESULTS
 
 =pod
 
@@ -201,10 +197,5 @@ This library is free software. You can redistribute it and/or modify
 it under the same terms as Perl itself.
 
 =cut
-
-#use Data::Dumper;
-#print Dumper %fixtures_rename;
-#<STDIN>;
-#print Dumper %bbc_fixtures_leagues;
 
 1;

@@ -22,4 +22,27 @@ sub dump {
 	print Dumper @$games;
 }
 
+=pod
+
+=head1 NAME
+
+Fixtures_View.pm
+
+=head1 SYNOPSIS
+
+Used by fixtures.pl
+
+=head1 DESCRIPTION
+
+=head1 AUTHOR
+
+Steve Hope
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
+
 1;

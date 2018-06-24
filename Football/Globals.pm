@@ -37,10 +37,10 @@ our @EXPORT = qw(
 
 sub new { return bless {}, shift; }
 
-our $season = 2017;
+our $season = 2018;
 our $euro_season = 2018;
-our $season_years = 1718;
-our $full_season_years = '2017-2018';
+our $season_years = 1819;
+our $full_season_years = '2018-2019';
 our $last_season = $season - 1;
 our $reports_season = 2017;
 our $default_stats_size = 6;

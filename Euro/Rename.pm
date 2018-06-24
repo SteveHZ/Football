@@ -4,7 +4,7 @@ package Euro::Rename;
 
 use strict;
 use warnings;
-#use utf8;
+use utf8;
 
 use Exporter 'import';
 use vars qw (@EXPORT_OK %EXPORT_TAGS);

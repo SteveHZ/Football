@@ -4,7 +4,7 @@ package Football::Spreadsheets::Predictions;
 #	v2 14/03/16, v2.1 02/04/17
 #	v2.2 06/05/17
 
-use v5.010;	#state
+#use v5.010;	#state
 use List::MoreUtils qw(each_arrayref);
 use Football::Utils qw(_show_signed);
 
@@ -262,18 +262,11 @@ sub do_recent_draws {
 
 sub build_formulae {
 	my $row = shift;
-#	state $zero_qt = qq("0"); # "0"
-#	state $zero_qt = "\"0\""; # "0"
 	return [
 		qq(=IF(SUM(H$row:L$row),(H$row/SUM(H$row:L$row))*100, "")),
 		qq(=IF(SUM(H$row:L$row),(J$row/SUM(H$row:L$row))*100, "")),
 		qq(=IF(SUM(H$row:L$row),(L$row/SUM(H$row:L$row))*100, "")),
 	];
-#	return [
-#		"=IF(SUM(H$row:L$row),(H$row/SUM(H$row:L$row))*100, $zero_qt)",
-#		"=IF(SUM(H$row:L$row),(J$row/SUM(H$row:L$row))*100, $zero_qt)",
-#		"=IF(SUM(H$row:L$row),(L$row/SUM(H$row:L$row))*100, $zero_qt)",
-#	];
 }
 
 sub signed_goal_diff {

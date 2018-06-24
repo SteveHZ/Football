@@ -28,8 +28,10 @@ for my $day (@$week) {
 	chomp ( my $data = <$fh> );
 	close $fh;
 
-	my $dmy = $model->as_dmy ($day->{date});
-	my $games = $model->after_prepare ( $model->prepare (\$data, $day->{day}, $dmy) );
+	my $date = $model->as_date_month ($day->{date});
+	my $games = $model->after_prepare (
+		$model->prepare (\$data, $day->{day}, $date)
+	);
 
 	push @all_games, @$games;
 	$view->dump ($games);
@@ -41,3 +43,30 @@ $view->write_csv ($out_file, \@all_games);
 DELETEALL {
 	$model->delete_all ($path, $week);
 }
+
+=pod
+
+=head1 NAME
+
+fixtures.pl
+
+=head1 SYNOPSIS
+
+perl fixtures.pl
+
+=head1 DESCRIPTION
+
+ Scrapes BBC Sport website for future fixtures
+ Writes out to a file called 'fixtures_week.csv' which can be edited as required
+ Run fixtures2.pl to write out finished 'fixtures.csv' file
+ 
+=head1 AUTHOR
+
+Steve Hope 2018
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut

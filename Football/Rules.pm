@@ -23,7 +23,9 @@ sub points_rule {
 
 	return "$home.$away"
 		if ($home > $self->{min_points} && ($home > $away * 2))
-		or ($away > $self->{min_points} && ($away > $home * 2));
+		or ($away > $self->{min_points} && ($away > $home * 2))
+		or ($home == $self->{min_points} && ($away < 3))
+		or ($away == $self->{min_points} && ($home < 3));
 	return "";
 }
 
@@ -101,6 +103,14 @@ sub under_odds_rule {
 	return sprintf "- %0.2f", $game->{under_2pt5}
 		if $game->{under_2pt5} >= 4.00;
 	return "";
+}
+
+sub ou_points_rule {
+	my ($self, $game) = @_;
+	return sprintf "+ %0.2f", $game->{ou_points}
+		if $game->{ou_points} >= 5.00;
+	return sprintf "- %0.2f", abs $game->{ou_points}
+		if $game->{ou_points} <= -5.00;
 }
 
 1;

@@ -75,11 +75,12 @@ sub do_goal_expect {
 	my $worksheet = $self->add_worksheet ("Goal Expect");
 	$self->do_goal_expect_header ($worksheet);
 
-	$self->blank_columns ( [ qw( 1 3 5 8 10 13 15 18 21 24 26 27 28) ] );
+	$self->blank_columns ( [ qw( 2 4 6 9 11 14 16 19 22 25 27 28 29 31 ) ] );
 	my $row = 2;
 	for my $game (@$fixtures) {
 		my $row_data = $self->get_goal_expect_rows ($game);
 		$self->write_row ($worksheet, $row, $row_data);
+#		$worksheet->write_comment ($row, 3, "$game->{date}");
 		$row ++;
 	}
 }
@@ -117,6 +118,7 @@ sub get_goal_expect_rows {
 	state $rules = $self->get_rules ();
 	
 	return [
+		{ $game->{date} => $self->{blank_text_format2} },
 		{ $game->{league} => $self->{format} },
 		{ $game->{home_team} => $self->get_format ( $game->{expected_goal_diff} * -1 ) },
 		{ $game->{away_team} => $self->get_format ( $game->{expected_goal_diff} ) },
@@ -138,11 +140,11 @@ sub get_goal_expect_rows {
 		{ $rules->last_six_rule ( $game ) => $self->{blank_text_format} },
 
 		{ $rules->match_odds_rule ( $game ) => $self->{blank_text_format} },
+		{ $rules->ou_points_rule ($game) => $self->{blank_text_format} },
 		{ $rules->ou_home_away_rule ( $game ) => $self->{percent_format} },
 		{ $rules->ou_last_six_rule ( $game ) => $self->{percent_format} },
 		{ $rules->over_odds_rule ( $game ) => $self->{blank_text_format} },
 		{ $rules->under_odds_rule ( $game ) => $self->{blank_text_format} },
-		{ $game->{date} => $self->{blank_text_format2} },
 	];
 }
 
@@ -179,21 +181,21 @@ sub do_goal_expect_header {
 	$self->set_columns ($worksheet, $self->get_column_sizes ());
 	$worksheet->set_column ($_, undef, undef, 1) for ('G:I','L:N'); # hide columns
 
-	$worksheet->write ('A1', "League", $self->{format} );
-	$worksheet->write ('C1', "Home", $self->{format} );
-	$worksheet->write ('E1', "Away", $self->{format} );
-	$worksheet->write ('G1', "H", $self->{format} );
-	$worksheet->write ('H1', "A", $self->{format} );
+	$worksheet->write ('B1', "League", $self->{format} );
+	$worksheet->write ('D1', "Home", $self->{format} );
+	$worksheet->write ('F1', "Away", $self->{format} );
+	$worksheet->write ('H1', "H", $self->{format} );
+	$worksheet->write ('I1', "A", $self->{format} );
 
-	$worksheet->write ('J1', "H/A", $self->{format} );
-	$worksheet->write ('O1', "L6", $self->{format} );
+	$worksheet->write ('K1', "H/A", $self->{format} );
+	$worksheet->write ('P1', "L6", $self->{format} );
 	
-	$worksheet->write ('Q1', "H/A", $self->{format} );
-	$worksheet->write ('R1', "LSG", $self->{format} );
-	$worksheet->write ('T1', "RGD", $self->{format} );
-	$worksheet->write ('U1', "GD", $self->{format} );
+	$worksheet->write ('R1', "H/A", $self->{format} );
+	$worksheet->write ('S1', "LSG", $self->{format} );
+	$worksheet->write ('U1', "RGD", $self->{format} );
+	$worksheet->write ('V1', "GD", $self->{format} );
 
-	$worksheet->autofilter( 'A1:A100' );
+	$worksheet->autofilter( 'B1:B100' );
 	$worksheet->freeze_panes (2,0);
 }
 
@@ -201,12 +203,12 @@ sub get_column_sizes {
 	my $self = shift;
 	
 	return {
-		"A C E" => 20,
-		"B D F I K N P S" => 2.5,
-		"G H J L M O" => 6,
+		"A B D F" => 20,
+		"C E G J L O Q T" => 2.5,
+		"H I K L M P" => 6,
 
-		"Q:R T:U" => { size => 6, fmt => $self->{float_format} },
-		V => { size => 2.5, fmt => $self->{blank_number_format2} },
+		"R:S U:V" => { size => 6, fmt => $self->{float_format} },
+		W => { size => 2.5, fmt => $self->{blank_number_format2} },
 	};
 }
 

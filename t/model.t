@@ -1,4 +1,3 @@
-#!	C:/Strawberry/perl/bin
 
 #	Model.t 01/05/16, 07/11/17
 
@@ -34,7 +33,7 @@ subtest 'build_leagues' => sub {
 subtest 'Football_IO_Role routines' => sub {
 	plan tests => 4;
 
-	$games = $model->read_games (); # no update, read test data file
+	$games = $model->read_games ();
 	$fixture_list = $model->get_fixtures ();
 
 	isa_ok ($games, 'HASH','$games');

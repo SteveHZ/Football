@@ -72,11 +72,12 @@ sub do_ou_points {
 			my ($home_results, $home_stats) = $teams->{$home}->get_most_recent (4);
 			my ($away_results, $away_stats) = $teams->{$away}->get_most_recent (4);
 
+			$game->{ou_points} = _do_calcs ([ @$home_stats, @$away_stats ]);
 			push @points, {
 				league => $league->{league},
 				home_team => $home,
 				away_team => $away,
-				points => _do_calcs ([ @$home_stats, @$away_stats ]),
+				points => $game->{ou_points},
 			};
 		}
 	}

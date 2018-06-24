@@ -22,29 +22,30 @@ after 'do_goal_expect_header' => sub {
 	my ($self, $worksheet) = @_;
 	$self->set_columns ($worksheet, $self->after_get_column_sizes ());
 
-	$worksheet->merge_range ('W1:X1', "GOAL DIFF", $self->{float_format} );
-	$worksheet->write ('W2', "H/A", $self->{format} );
-	$worksheet->write ('X2', "L6", $self->{format} );
-	$worksheet->write ('Z1', "ODDS", $self->{format} );
-	$worksheet->write ('AB1', "ODDS", $self->{format} );
+	$worksheet->merge_range ('X1:Y1', "GOAL DIFF", $self->{float_format} );
+	$worksheet->write ('X2', "H/A", $self->{format} );
+	$worksheet->write ('Y2', "L6", $self->{format} );
+	$worksheet->write ('AA1', "ODDS", $self->{format} );
+	$worksheet->write ('AC1', "ODDS", $self->{format} );
 
-	$worksheet->merge_range ('AD1:AG1', "OVER/UNDER", $self->{format} );
-	$worksheet->write ('AD2', "H/A", $self->{format} );
-	$worksheet->write ('AE2', "L6", $self->{format} );
-	$worksheet->merge_range ('AF2:AG2', "ODDS", $self->{format} );
+	$worksheet->merge_range ('AE1:AJ1', "OVER/UNDER", $self->{format} );
+	$worksheet->write ('AE2', "PTS", $self->{format} );
+	$worksheet->write ('AG2', "H/A", $self->{format} );
+	$worksheet->write ('AH2', "L6", $self->{format} );
+	$worksheet->merge_range ('AI2:AJ2', "ODDS", $self->{format} );
 };
 
 sub after_get_column_sizes {
 	my $self = shift;
 
 	return {
-		"W:X" => { size => 7, fmt => $self->{float_format} },
-		Y => { size => 2.5, fmt => $self->{blank_text_format2} },
-		Z => { size => 10, fmt => $self->{format} },
-		AA => { size => 2.5, fmt => $self->{blank_text_format2} },
-		AB => { size => 10, fmt => $self->{float_format} },
-		"AC AH" => { size => 20, fmt => $self->{blank_text_format2} },
-		"AD:AG" => { size => 8, fmt => $self->{format} },
+		"X:Y" => { size => 7, fmt => $self->{float_format} },
+		Z => { size => 2.5, fmt => $self->{blank_text_format2} },
+		AA => { size => 10, fmt => $self->{format} },
+		"AB AD AF" => { size => 2.5, fmt => $self->{blank_text_format2} },
+		AC => { size => 7, fmt => $self->{float_format} },
+		AE => { size => 8, fmt => $self->{format} },
+		"AG:AJ" => { size => 8, fmt => $self->{format} },
 	};
 }
 
