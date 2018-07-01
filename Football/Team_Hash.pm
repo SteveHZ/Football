@@ -2,23 +2,29 @@ package Football::Team_Hash;
 
 use Football::Team_Profit;
 use Football::Utils qw(_get_all_teams);
+use Football::Model;
 
 use Keyword::DEVELOPMENT;
 use Moo;
 use namespace::clean;
+DEVELOPMENT { use Data::Dumper; }
 
-has 'hash' 	=> ( is => 'ro', default => sub { {} } );
-has 'teams' => ( is => 'ro', default => sub { [] } );
-has 'func'	=> ( is => 'ro', default => sub {} );
+has 'hash' 		=> ( is => 'ro', default => sub { {} } );
+has 'teams' 	=> ( is => 'ro', default => sub { [] } );
+has 'func'		=> ( is => 'ro', default => sub {} );
+has 'fixtures' 	=> ( is => 'ro', default => sub { [] } );
+has 'min_amount'=> ( is => 'ro', default => 0.25 );
 
 sub BUILD {
 	my $self = shift;
 
-	$self->{sheetnames} = [ qw(totals homes aways) ];
+	$self->{sheetnames} = [ "totals", "all homes", "all aways", "homes", "aways" ];
 	$self->{dispatch} = {
-		totals	=> \&Football::Team_Hash::sort_totals,
-		homes	=> \&Football::Team_Hash::sort_homes,
-		aways	=> \&Football::Team_Hash::sort_aways,
+		'totals'	=> \&Football::Team_Hash::sort_totals,
+		'all homes'	=> \&Football::Team_Hash::sort_all_homes,
+		'all aways'	=> \&Football::Team_Hash::sort_all_aways,
+		'homes'		=> \&Football::Team_Hash::sort_homes,
+		'aways'		=> \&Football::Team_Hash::sort_aways,
 	};
 }
 
@@ -95,7 +101,7 @@ sub sort_totals {
 	];
 }
 
-sub sort_homes {
+sub sort_all_homes {
 	my $self = shift;
 	return [
 		sort {
@@ -105,13 +111,41 @@ sub sort_homes {
 	];
 }
 
-sub sort_aways {
+sub sort_all_aways {
 	my $self = shift;
 	return [
 		sort {
 			$self->away ($b) <=> $self->away ($a) 
 			or $a cmp $b
 		} @{ $self->{teams} }
+	];
+}
+
+sub sort_homes {
+	my $self = shift;
+
+	return [
+		sort {
+			$self->home ($b) <=> $self->home ($a) 
+			or $a cmp $b
+		}
+		grep { $self->home ($_) > $self->{min_amount} }
+		map  { $_->{home_team} }
+		@{ $self->{fixtures} }
+	];
+}
+
+sub sort_aways {
+	my $self = shift;
+
+	return [
+		sort {
+			$self->away ($b) <=> $self->away ($a) 
+			or $a cmp $b
+		}
+		grep { $self->away ($_) > $self->{min_amount} }
+		map  { $_->{away_team} }
+		@{ $self->{fixtures} }
 	];
 }
 

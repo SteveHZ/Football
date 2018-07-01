@@ -120,7 +120,6 @@ our @euro_fetch_lgs = qw( D1 D2 SP1 I1);
 
 our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League');
 our @summer_csv_leagues = qw(ROI MLS SWD NRW FN);
-#our @summer_csv_leagues = qw(ROI MLS SWE NOR FIN);
 our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN);
 
 =pod

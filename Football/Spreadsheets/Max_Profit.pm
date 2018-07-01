@@ -4,6 +4,7 @@ use Moo;
 use namespace::clean;
 
 use Football::Globals qw(@league_names @euro_lgs @summer_leagues);
+use MyLib qw(ucfirst_all);
 
 has 'filename' => ( is => 'ro' );
 has 'euro' => ( is => 'ro' );
@@ -19,9 +20,11 @@ sub BUILD {
 		? $args->{filename}
 		: $default_filename;
 	$self->{leagues} = $all_leagues[$self->{euro}];
-	$self->{sheetnames} = [ qw(totals homes aways) ];
+	$self->{sheetnames} = [ "totals", "all homes", "all aways", "homes", "aways" ];
 	$self->{dispatch} = {
 		'totals'	=> \&Football::Spreadsheets::Max_Profit::get_totals,
+		'all homes'		=> \&Football::Spreadsheets::Max_Profit::get_homes,
+		'all aways'		=> \&Football::Spreadsheets::Max_Profit::get_aways,
 		'homes'		=> \&Football::Spreadsheets::Max_Profit::get_homes,
 		'aways'		=> \&Football::Spreadsheets::Max_Profit::get_aways,
 	};
@@ -32,7 +35,7 @@ sub show {
 	$self->blank_columns ( [ qw(1 3 5 7 9 11) ] );
 	
 	for my $sheet (@{ $self->{sheetnames} }) {
-		my $worksheet = $self->add_worksheet (ucfirst $sheet);
+		my $worksheet = $self->add_worksheet (ucfirst_all $sheet);
 		$self->do_header ($worksheet, $self->{bold_format});
 		
 		my $row = 2;

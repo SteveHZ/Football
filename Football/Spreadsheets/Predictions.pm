@@ -4,7 +4,6 @@ package Football::Spreadsheets::Predictions;
 #	v2 14/03/16, v2.1 02/04/17
 #	v2.2 06/05/17
 
-#use v5.010;	#state
 use List::MoreUtils qw(each_arrayref);
 use Football::Utils qw(_show_signed);
 

@@ -1,10 +1,8 @@
-package Football::Web_Scraper_Model;
+package Football::Fixtures_Scraper_Model;
 
 use Web::Query;
 use Moo;
 use namespace::clean;
-
-has 'code' => (is => 'ro', default => sub {} );
 
 $Web::Query::UserAgent = LWP::UserAgent->new (
     agent => 'Mozilla/5.0',
@@ -16,12 +14,14 @@ sub get_pages {
 	for my $date (@$week) {
 		my $q = wq ("$site/$date->{date}");
 		if ($q) {
-			$self->{code}->($q);
+			$q->find ('abbr')
+			  ->filter ( sub { $_->text ne 'FT' } )
+			  ->replace_with ( '<b></b>' );
 
 			print "\nDownloading $date->{date}";
 			print "\n$date->{date} : ";
 			$self->do_write ($date->{date}, $q->text);
-			print "Done - character length : ".length ($q->text());
+			print "Done - character length : ".length ($q->text);
 		} else {
 			print "\nUnable to create object : $site/$date->{date}";
 		}
@@ -38,11 +38,21 @@ sub do_write {
 	close $fh;
 }
 
+#	$self->{scraper} = Football::Web_Scraper_Model->new (
+#		site => "$site",
+#		code => sub {
+#			my $q = shift;
+#			return $q->find ('abbr')
+#					 ->filter ( sub { $_->text ne 'FT' } )
+#					 ->replace_with ( '<b></b>' );
+#		}
+#	);
+
 =pod
 
 =head1 NAME
 
-Web_Scraper_Model.pm
+Fixtures_Scraper_Model.pm
 
 =head1 SYNOPSIS
 

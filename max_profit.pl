@@ -1,9 +1,8 @@
 #!	C:/Strawberry/perl/bin
 
 # 	max_profit.pl 11-12/03/17, 17-18/02/18
-#	v1.1 11/03/18, v1.2 02/04/18
+#	v1.1 11/03/18, v1.2 02/04/18 v1.3 01/07/18
 
-BEGIN { $ENV{PERL_KEYWORD_DEVELOPMENT} = 0; }
 #BEGIN { $ENV{PERL_KEYWORD_DEVELOPMENT} = 1; }
 
 use strict;
@@ -18,6 +17,9 @@ use Football::Team_Profit;
 use Football::Team_Hash;
 use Football::Spreadsheets::Max_Profit;
 use Football::Globals qw( @csv_leagues @euro_csv_lgs @summer_csv_leagues );
+use Football::Model;
+use Euro::Model;
+use Summer::Model;
 DEVELOPMENT { use Data::Dumper; }
 
 my $euro = 0;
@@ -27,9 +29,10 @@ if (defined $ARGV [0]) {
 }
 my @funcs = (\&get_uk_data, \&get_euro_data, \&get_summer_data);
 my $data = $funcs[$euro]->();
+my $fixtures = $data->{model}->get_fixtures ();
 
 my %markets = (
-	"max_profit"	=> Football::Team_Hash->new ( func => \&straight_win ),
+	"max_profit"	=> Football::Team_Hash->new ( func => \&straight_win, fixtures => $fixtures ),
 #	"over_2pt5"		=> Football::Team_Hash->new ( func => \&over_2pt5 ),
 #	"under_2pt5"	=> Football::Team_Hash->new ( func => \&under_2pt5 ),
 );
@@ -51,7 +54,7 @@ while (my ($csv_league, $lg_idx) = $iterator->()) {
 }
 
 for my $market (keys %markets) {
-	my $filename = "$data->{out_path}$market".'_'."$data->{model}.xlsx";
+	my $filename = "$data->{out_path}$market".'_'."$data->{model_type}.xlsx";
 	my $team_hash = $markets{$market};
 	my $sorted = $team_hash->sort ();
 	
@@ -90,7 +93,8 @@ sub under_2pt5 {
 
 sub get_uk_data {
 	return {
-		model		=> 'uk',
+		model		=> Football::Model->new (),
+		model_type	=> 'uk',
 		read_func 	=> \&Football::Favourites_Data_Model::update_current,
 		in_path 	=> 'C:/Mine/perl/Football/data/',
 		out_path 	=> 'C:/Mine/perl/Football/reports/',
@@ -101,7 +105,8 @@ sub get_uk_data {
 
 sub get_euro_data {
 	return {
-		model		=> 'euro',
+		model		=> Euro::Model->new (),
+		model_type	=> 'euro',
 		read_func 	=> \&Football::Favourites_Data_Model::update_current,
 		in_path 	=> 'C:/Mine/perl/Football/data/Euro/',
 		out_path 	=> 'C:/Mine/perl/Football/reports/Euro/',
@@ -112,7 +117,8 @@ sub get_euro_data {
 
 sub get_summer_data {
 	return {
-		model		=> 'summer',
+		model		=> Summer::Model->new (),
+		model_type	=> 'summer',
 		read_func 	=> \&Summer::Summer_Data_Model::read_csv,
 		in_path 	=> 'C:/Mine/perl/Football/data/Summer/',
 		out_path 	=> 'C:/Mine/perl/Football/reports/Summer/',

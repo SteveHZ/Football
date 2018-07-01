@@ -1,7 +1,7 @@
 package Football::Fixtures_Model;
 
 use Football::Fixtures_Globals qw(%bbc_fixtures_leagues);
-use Football::Web_Scraper_Model;
+use Football::Fixtures_Scraper_Model;
 use MyRegX;
 
 use Time::Piece qw(localtime);
@@ -21,14 +21,7 @@ my $dm_date = $rx->dm_date;
 
 sub BUILD {
 	my $self = shift;
-	$self->{scraper} = Football::Web_Scraper_Model->new (
-		code => sub {
-			my $q = shift;
-			return $q->find ('abbr')
-					 ->filter ( sub { $_->text ne 'FT' } )
-					 ->replace_with ( '<b></b>' );
-		}
-	);
+	$self->{scraper} = Football::Fixtures_Scraper_Model->new ();
 }
 
 sub get_pages {
