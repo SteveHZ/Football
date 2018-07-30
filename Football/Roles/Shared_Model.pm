@@ -6,10 +6,28 @@ package Football::Roles::Shared_Model;
 use List::MoreUtils qw(firstidx);
 use Football::Game_Prediction_Models;
 use Football::Globals qw($default_stats_size );
+use MyKeyword qw(TESTING); # for model.t
+use Clone qw(clone);
 
 use Moo::Role;
 
-requires qw( leagues league_names csv_leagues );
+requires qw( leagues league_names csv_leagues test_season_data);
+
+sub read_games {
+	my ($self, $update) = @_;
+	my $games;
+
+	TESTING {
+		print "    Reading test data from $self->{test_season_data}\n";
+		$games = $self->read_json ($self->{test_season_data});
+	} elsif ($update) {
+		$games = $self->update ();
+	} else {
+		$games = (-e $self->{season_data}) ?
+			$self->read_json ($self->{season_data}) : {};
+	}
+	return $games;
+}
 
 sub do_home_table {
 	my ($self, $games) = @_;
@@ -63,69 +81,6 @@ sub last_six {
 	return $league_array;
 }
 
-sub _fixtures_deep_copy {
-	my $fixtures = shift;
-	my @copy =();
-	for my $game (@$fixtures) { 
-		my %temp = ();
-		$temp{$_} = $game->{$_} for keys %$game;
-		push @copy,\%temp;
-	}
-	return \@copy;
-}
-
-sub do_fixtures {
-	my ($self, $fixtures, $homes, $aways, $last_six) = @_;
-	my $stat_size = $default_stats_size * 2;
-#	my $new_fixtures = _fixtures_deep_copy ($fixtures);
-	my @list = ();
-	my $leagues = _get_unique_leagues ($fixtures);
-
-	for my $league (@$leagues) {
-		my $league_name = %$league{league};
-
-		my @games = sort {$a->{home_team} cmp $b->{home_team} }
-					grep {$_->{league_idx} eq %{$league}{league_idx} } @$fixtures;
-
-		for my $game (@games) {
-			my $home = $game->{home_team};
-			my $away = $game->{away_team};
-			my $idx = $game->{league_idx};
-		
-			$game->{homes} = @$homes[$idx]->{homes}->{$home}->{homes};
-			$game->{full_homes} = @$homes[$idx]->{homes}->{$home}->{full_homes};
-			$game->{home_last_six} = @$last_six[$idx]->{last_six}->{$home}->{last_six};
-			$game->{full_home_last_six} = @$last_six[$idx]->{last_six}->{$home}->{full_last_six};
-			$game->{home_over_under} = @$homes[$idx]->{homes}->{$home}->{home_over_under};
-
-			$game->{home_points} = @$homes[$idx]->{homes}->{$home}->{points};
-			$game->{home_draws} = @$homes[$idx]->{homes}->{$home}->{draws};
-			$game->{last_six_home_points} = @$last_six[$idx]->{last_six}->{$home}->{points};
-			$game->{home_last_six_over_under} = @$homes[$idx]->{last_six}->{$home}->{last_six_over_under};
-		
-			$game->{aways} = @$aways[$idx]->{aways}->{$away}->{aways};
-			$game->{full_aways} = @$aways[$idx]->{aways}->{$away}->{full_aways};
-			$game->{away_last_six} = @$last_six[$idx]->{last_six}->{$away}->{last_six};
-			$game->{full_away_last_six} = @$last_six[$idx]->{last_six}->{$away}->{full_last_six};
-			$game->{away_over_under} = @$aways[$idx]->{aways}->{$away}->{away_over_under};
-			
-			$game->{away_points} = @$aways[$idx]->{aways}->{$away}->{points};
-			$game->{away_draws} = @$aways[$idx]->{aways}->{$away}->{draws};
-			$game->{last_six_away_points} = @$last_six[$idx]->{last_six}->{$away}->{points};
-			$game->{away_last_six_over_under} = @$aways[$idx]->{last_six}->{$away}->{last_six_over_under};
-			$game->{draws} = $game->{home_draws} + $game->{away_draws};
-
-			$game->{home_away} = ($game->{home_over_under} + $game->{away_over_under}) / $stat_size,
-			$game->{last_six} = ($game->{home_last_six_over_under} + $game->{away_last_six_over_under}) / $stat_size,
-
-		}
-		push (@list, {
-			league => $league_name,
-			games => \@games,
-		});
-	}
-	return \@list;
-}
 
 sub _get_unique_leagues {
 	my $fixtures = shift;
@@ -137,7 +92,7 @@ sub _get_unique_leagues {
 	return [ 
 		map { {
 			'league_idx' => $_,
-			'league' => $leagues{$_},
+			'league_name' => $leagues{$_},
 		} } 
 		sort { $a <=> $b } keys %leagues
 	];
@@ -150,15 +105,78 @@ sub get_unique_leagues {
 }
 
 sub do_predict_models {
-	my ($self, $leagues, $fixtures, $stats, $sport) = @_;
+	my ($self, $fixtures, $leagues) = @_;
 	my $predict_model = Football::Game_Prediction_Models->new ();
 
-	my ($teams, $sorted) = $predict_model->calc_goal_expect ($leagues, $fixtures);
-	$sorted->{match_odds} = $predict_model->calc_match_odds ($fixtures);# unless $sport eq "Rugby";
-	$sorted->{skellam} = $predict_model->calc_skellam_dist ($fixtures);# unless $sport eq "Rugby";
-	$sorted->{over_under} = $predict_model->calc_over_under ($leagues, $fixtures, $stats);
+	my ($teams, $sorted) = $predict_model->calc_goal_expect ($fixtures, $leagues);
+	$sorted->{match_odds} = $predict_model->calc_match_odds ($fixtures);
+	$sorted->{skellam} = $predict_model->calc_skellam_dist ($fixtures);
+	$sorted->{over_under} = $predict_model->calc_over_under ($fixtures, $leagues);
 	
 	return ($teams, $sorted);
+}
+
+sub do_fixtures {
+	my ($self, $fixtures, $homes, $aways, $last_six) = @_;
+
+	my $leagues = $self->get_unique_leagues ($fixtures);
+	my $datafunc = _get_game_data ($homes, $aways, $last_six);
+	my $fixtures_clone = clone $fixtures;
+	my @fixture_list = ();
+
+	for my $league (@$leagues) {
+		my @games = sort { $a->{home_team} cmp $b->{home_team} }
+					grep { $_->{league_idx} eq $league->{league_idx} }
+					@$fixtures_clone;
+
+		$datafunc->($_) for @games;
+		push @fixture_list, {
+			league 	=> $league->{league_name},
+			games  	=> \@games,
+		};
+	}
+	return {
+		by_match  =>  $fixtures_clone,
+		by_league => \@fixture_list,
+	};
+}
+
+sub _get_game_data {
+	my ($homes, $aways, $last_six) = @_;
+	my $stat_size = $default_stats_size * 2;
+	
+	return sub {
+		my $game = shift;
+		my $home = $game->{home_team};
+		my $away = $game->{away_team};
+		my $idx = $game->{league_idx};
+
+		$game->{homes} = @$homes[$idx]->{homes}->{$home}->{homes};
+		$game->{full_homes} = @$homes[$idx]->{homes}->{$home}->{full_homes};
+		$game->{home_last_six} = @$last_six[$idx]->{last_six}->{$home}->{last_six};
+		$game->{full_home_last_six} = @$last_six[$idx]->{last_six}->{$home}->{full_last_six};
+		$game->{home_over_under} = @$homes[$idx]->{homes}->{$home}->{home_over_under};
+
+		$game->{home_points} = @$homes[$idx]->{homes}->{$home}->{points};
+		$game->{home_draws} = @$homes[$idx]->{homes}->{$home}->{draws};
+		$game->{last_six_home_points} = @$last_six[$idx]->{last_six}->{$home}->{points};
+		$game->{home_last_six_over_under} = @$homes[$idx]->{last_six}->{$home}->{last_six_over_under};
+		
+		$game->{aways} = @$aways[$idx]->{aways}->{$away}->{aways};
+		$game->{full_aways} = @$aways[$idx]->{aways}->{$away}->{full_aways};
+		$game->{away_last_six} = @$last_six[$idx]->{last_six}->{$away}->{last_six};
+		$game->{full_away_last_six} = @$last_six[$idx]->{last_six}->{$away}->{full_last_six};
+		$game->{away_over_under} = @$aways[$idx]->{aways}->{$away}->{away_over_under};
+			
+		$game->{away_points} = @$aways[$idx]->{aways}->{$away}->{points};
+		$game->{away_draws} = @$aways[$idx]->{aways}->{$away}->{draws};
+		$game->{last_six_away_points} = @$last_six[$idx]->{last_six}->{$away}->{points};
+		$game->{away_last_six_over_under} = @$aways[$idx]->{last_six}->{$away}->{last_six_over_under};
+		$game->{draws} = $game->{home_draws} + $game->{away_draws};
+
+		$game->{home_away} = ($game->{home_over_under} + $game->{away_over_under}) / $stat_size;
+		$game->{last_six} = ($game->{home_last_six_over_under} + $game->{away_last_six_over_under}) / $stat_size;
+	};
 }
 
 1;

@@ -17,6 +17,8 @@ use Euro::Model;
 use Euro::View;
 use Summer::Model;
 use Summer::View;
+use Rugby::Model;
+use Rugby::View;
 
 main ();
 
@@ -47,28 +49,25 @@ sub main {
 	);
 	$view->do_favourites ( $model->do_favourites ($season, $options->{update_favs}) );
 
-	$view->fixtures (
+	$view->fixture_list (
 		my $fixtures = $model->get_fixtures ()
 	);
 
-	$view->do_stats (
-		my $stats = $model->do_fixtures ($fixtures, $homes, $aways, $last_six)
-	);
+	my $data = $model->do_fixtures ($fixtures, $homes, $aways, $last_six);
+	$view->fixtures ( $data->{by_league} );
 
-	$view->do_recent_goal_difference ( $model->do_recent_goal_difference ($stats, $leagues) );
-	$view->do_goal_difference ( $model->do_goal_difference ($stats, $leagues) );
-	$view->do_league_places ( $model->do_league_places ($stats, $leagues) );
-	$view->do_head2head ( $model->do_head2head ($stats) );
-	$view->do_recent_draws ( $model->do_recent_draws ($stats) );
+	$view->do_recent_goal_difference ( $model->do_recent_goal_difference ($data->{by_league}, $leagues) );
+	$view->do_goal_difference ( $model->do_goal_difference ($data->{by_league}, $leagues) );
+	$view->do_league_places ( $model->do_league_places ($data->{by_league}, $leagues) );
+	$view->do_head2head ( $model->do_head2head ($data->{by_league} ) );
+	$view->do_recent_draws ( $model->do_recent_draws ($data->{by_league} ) );
 
-	my ($teams, $sorted) = $model->do_predict_models ($leagues, $fixtures, $stats, undef); # $sport
-	$view->do_goal_expect ($leagues, $teams, $sorted, $fixtures);
-	$view->do_match_odds ($sorted);
-	$view->do_over_under ($sorted);
+	my ($teams, $sorted) = $model->do_predict_models ($data->{by_match}, $leagues);
+	$view->do_predict_models ($leagues, $teams, $sorted);
 }
 
 sub get_cmdline {
-	my ($uk, $euro, $summer, $update, $favs, $update_favs) = (0,0,0,0,0,0);
+	my ($uk, $euro, $summer, $update, $favs, $rugby) = (0,0,0,0,0,0);
 	
 	Getopt::Long::Configure ("bundling");
 	GetOptions (
@@ -76,10 +75,11 @@ sub get_cmdline {
 		'summer|s' => \$summer,
 		'update|u' => \$update,
 		'update_favs|f' => \$favs,
+		'rugby|r' => \$rugby,
 	) or die "Usage perl predict.pl -u -uf -r -ru -e -eu";
 
-	$update_favs = ($update && (! $favs)) ? 1 : 0; # do NOT update favourites if set
-	$uk = 1 unless ($euro or $summer);
+	my $update_favs = ($update && (! $favs)) ? 1 : 0; # do NOT update favourites if set
+	$uk = 1 unless ($euro or $summer or $rugby);
 
 	return {
 		uk => $uk,
@@ -87,6 +87,7 @@ sub get_cmdline {
 		summer => $summer,
 		update => $update,
 		update_favs => $update_favs,
+		rugby => $rugby,
 	};
 }
 
@@ -95,6 +96,7 @@ sub get_model_and_view {
 	return (Football::Model->new (), Football::View->new ()) if $options->{uk};
 	return (Euro::Model->new (), Euro::View->new ()) if $options->{euro};
 	return (Summer::Model->new (), Summer::View->new ()) if $options->{summer};
+	return (Rugby::Model->new (), Rugby::View->new ()) if $options->{rugby};
 	die "Unknown error in get_model_and_view";
 }
 

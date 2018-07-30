@@ -74,7 +74,7 @@ sub sort_dispatch_keys {
 			$a->[1] <=> $b->[1]
 		}
 		map	 { [ split ' from ', $_ ] } 	# transform '3 from 8 ' -> [3,8]
-			keys %$dispatch
+		keys %$dispatch
 	];
 }
 

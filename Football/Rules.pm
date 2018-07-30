@@ -33,7 +33,7 @@ sub goal_diffs_rule {
 	my ($self, $results) = @_;
 
 	my $total_games = sum @$results;
-	return 0 if $total_games == 0; # unrecognised goal diff
+	return '** 0 **' if $total_games == 0; # unrecognised goal diff
 
 	my $home = round ((@$results[0] / $total_games) * 100); # home win percentage
 	my $away = round ((@$results[1] / $total_games) * 100); # away win precentage

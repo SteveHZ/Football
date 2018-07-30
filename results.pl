@@ -1,45 +1,50 @@
-#	results.pl 04-05/06/18
+#	results.pl 04-05/06/18, 07/07/18
 
-#BEGIN { $ENV{PERL_KEYWORD_PRODUCTION} = 1;}
+BEGIN { $ENV{PERL_KEYWORD_PRODUCTION} = 1;}
 #BEGIN { $ENV{PERL_KEYWORD_DELETEALL} = 1;}
 
 use strict;
 use warnings;
 
-use Football::Results_Model;
-use Football::Fixtures_View;
+use Rugby::Results_Model;
+use Rugby::Results_View;
 use MyKeyword qw(PRODUCTION DELETEALL);
 use Data::Dumper;
 
-my $model = Football::Results_Model->new ();
-my $view = Football::Fixtures_View->new ();
-my $week = $model->get_reverse_week (3);
+my $model = Rugby::Results_Model->new ();
+my $view = Rugby::Results_View->new ();
 
-my $path = "C:/Mine/perl/Football/data/Euro/scraped/";
-my @all_games = ();
+my $out_path = 'C:/Mine/perl/Football/data/Rugby';
+my $in_path = $out_path.'/scraped';
+
+my $all_games = {};
+my @leagues = (
+	{ name => 'Super League', site => 'https://www.bbc.co.uk/sport/rugby-league/super-league/results' },
+	{ name => 'Championship', site => 'https://www.bbc.co.uk/sport/rugby-league/championship/results' },
+	{ name => 'League One',	  site => 'https://www.bbc.co.uk/sport/rugby-league/league-one/results'},
+);
 
 PRODUCTION {
-	my $site = "https://www.bbc.co.uk/sport/football/scores-fixtures";
-	$model->get_pages ($site, $week);
+	$model->get_pages (\@leagues);
 }
 
-for my $day (@$week) {
-	my $filename = "$path/fixtures $day->{date}.txt";
+for my $league (@leagues) {
+	my $filename = "$in_path/$league->{name}.txt";
 	open my $fh, '<', $filename or die "Can't open $filename";
 	chomp ( my $data = <$fh> );
 	close $fh;
 
-	my $dmy = $model->as_dmy ($day->{date});
-	my $games = $model->after_prepare ( 
-		$model->prepare (\$data), $day->{day}, $dmy );
-
-	push @all_games, @$games;
-	$view->dump ($games);
+	my $games = $model->after_prepare (
+		$model->prepare (\$data)
+	);
+	print Dumper $games;
+	$all_games->{ $league->{name} } = $games;
 }
 
-my $out_file = "$path/results_week.csv";
-$view->write_csv ($out_file, \@all_games);
+# IDEA : grep $all_games on csv_league to seperate uk and summer ??
 
-DELETEALL {
-	$model->delete_all ($path, $week);
-}
+$view->write_csv ($out_path, $all_games);
+
+#DELETEALL {
+#	$model->delete_all ($path, $week);
+#}

@@ -45,9 +45,9 @@ sub view {
 	my ($self, $leagues, $teams, $fixtures) = @_;
 
 	for my $league (@$leagues) {
-		my $league_name = $league->{title};
+		my $league_name = $league->name;
 		print "\n\n$league_name :";
-		for my $team ( @{ $league->{team_list} } ) {
+		for my $team ( @{ $league->team_list } ) {
 			printf "\n%-25s", $team;
 			print "$teams->{$team}->{home_for} - ";
 			print "$teams->{$team}->{av_home_for} ";
@@ -89,14 +89,14 @@ sub write_data {
 	my ($self, $leagues, $teams, $fixtures) = @_;
 
 	for my $league (@$leagues) {
-		my $league_name = $league->{title};
+		my $league_name = $league->name;
 
 		my $worksheet = $self->add_worksheet ($league_name);
 		do_write_data_header ($worksheet, $self->{bold_format});
 
 		$self->blank_columns ( [ qw(1 4 7 10 13 16 19 22) ] );
 		my $row = 2;
-		for my $team ( @{ $league->{team_list} } ) {
+		for my $team ( @{ $league->team_list } ) {
 			my $row_data = $self->get_write_data_rows ($teams, $team);
 			$self->write_row ($worksheet, $row, $row_data);
 			$row ++;

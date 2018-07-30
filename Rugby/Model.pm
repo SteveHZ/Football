@@ -30,6 +30,7 @@ has 'model_name' => ( is => 'ro' );
 has 'path' => ( is => 'ro' );
 has 'fixtures_file' => ( is => 'ro' );
 has 'season_data' => ( is => 'ro' );
+has 'test_season_data' => ( is => 'ro' ); # Need to add this
 
 with 'Roles::MyJSON',
 'Football::Roles::Shared_Model',
@@ -58,7 +59,7 @@ sub build_leagues {
 	for my $league (@league_names) {
 #		die "No games played in $league" if scalar (@ {$games->{$league}} == 0);
 		push (@$league_array, Rugby::League->new (
-			title		=> $league,
+			name		=> $league,
 			games		=> $games->{$league},
 			team_list	=> \@ { $teams->{$league} },
 		));
@@ -73,7 +74,7 @@ sub do_league_places {
 	my $league_places = Rugby::Reports::LeaguePlaces->new ();
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};
-		my $idx = firstidx {$league_name eq $_->{title}} @{$self->{leagues}};
+		my $idx = firstidx {$league_name eq $_->{name}} @{$self->{leagues}};
 
 		for my $game (@{ $league->{games}}) {
 			$home = $game->{home_team};
@@ -115,7 +116,7 @@ sub do_recent_goal_difference {
 	my $goal_diff = Rugby::Reports::Recent_GoalDifference->new ();
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};
-		my $idx = firstidx {$league_name eq $_->{title}} @{$self->{leagues}};
+		my $idx = firstidx {$league_name eq $_->{name}} @{$self->{leagues}};
 
 		for my $game (@{ $league->{games}}) {
 			$home = $game->{home_team};
@@ -138,7 +139,7 @@ sub do_goal_difference {
 	my $goal_diff = Rugby::Reports::GoalDifference->new ();
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};
-		my $idx = firstidx {$league_name eq $_->{title}} @{$self->{leagues}};
+		my $idx = firstidx {$league_name eq $_->{name}} @{$self->{leagues}};
 
 		for my $game (@{ $league->{games}}) {
 			$home = $game->{home_team};

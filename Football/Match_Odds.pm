@@ -3,7 +3,8 @@ package Football::Match_Odds;
 #	Football::Match_Odds.pm 02-03/07/17
 
 use Math::Round qw(nearest);
-use List::Util qw(max);
+use List::Util qw(min);
+#use List::Util qw(max);
 use Football::MyPoisson;
 
 use Moo;
@@ -39,12 +40,20 @@ sub schwartz_sort {
 	
 	return [
 		map	 { $_->[0] }
-		sort { $b->[1] <=> $a->[1] }
-		map	 { [ $_, max (	$_->{home_win},
-							$_->{draw},
-							$_->{away_win} )
+		sort { $a->[1] <=> $b->[1] }
+		map	 { [
+			$_, min (	$_->{home_win},
+						$_->{away_win} )
 		] } @$games
 	];
+#	return [
+#		map	 { $_->[0] }
+#		sort { $b->[1] <=> $a->[1] }
+#		map	 { [ $_, max (	$_->{home_win},
+#							$_->{draw},
+#							$_->{away_win} )
+#		] } @$games
+#	];
 }
 
 sub print_all {

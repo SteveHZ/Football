@@ -9,20 +9,26 @@ use vars qw (@EXPORT_OK %EXPORT_TAGS);
 
 our @EXPORT = qw(
 	%fixtures_rename
+	%rugby_rename
 	%bbc_fixtures_leagues
+	%rugby_fixtures_leagues
 );
 
-@EXPORT_OK  = qw( fixture_rename );
+@EXPORT_OK  = qw( fixture_rename rugby_rename);
 %EXPORT_TAGS = (all => [ @EXPORT, @EXPORT_OK ]);
 
 sub new { return bless {}, shift; }
 
 our %fixtures_rename = ();
+our %rugby_rename = ();
 our %bbc_fixtures_leagues = ();
+our %rugby_fixtures_leagues = ();
 
 my @datarefs = (
-	{ hashref => \%fixtures_rename, end_token => 'END_TEAMS' },
+	{ hashref => \%fixtures_rename, end_token => 'END_FOOTBALL' },
+	{ hashref => \%rugby_rename, end_token => 'END_RUGBY' },
 	{ hashref => \%bbc_fixtures_leagues, end_token => 'END_LEAGUES' },
+	{ hashref => \%rugby_fixtures_leagues, end_token => 'END_RUGBY_LEAGUES' },
 );
 
 for my $dataref (@datarefs) {
@@ -41,6 +47,14 @@ sub fixture_rename {
 	return unless defined $name;
 	return defined $fixtures_rename{ $name }
 		? $fixtures_rename{ $name } : $name
+}
+
+
+sub rugby_rename {
+	my $name = shift;
+	return unless defined $name;
+	return defined $rugby_rename{ $name }
+		? $rugby_rename{ $name } : $name
 }
 
 __DATA__
@@ -142,39 +156,73 @@ Forfar Athletic,Forfar
 Berwick Rangers,Berwick
 Elgin City,Elgin
 Stirling Albion,Stirling
-END_TEAMS
+END_FOOTBALL
 
-Welsh Premier League,WL,
-Irish Premiership,NI,
-Premier League,E0,
-Championship,EC,
-League One,E2,
-League Two,E3,
-National League,EC,
-Scottish Premiership,SC0,
-Scottish Championship,SC1,
-Scottish League One,SC2,
-Scottish League Two,SC3,
-Spanish La Liga,SP1,
-Italian Serie A,I1,
-Irish Premier Division,ROI,
-Norwegian Eliteserien,NRW,
-Swedish Allsvenskan,SWD,
-Finnish Veikkausliiga,FN,
-United States Major League Soccer,MLS,
+#	Rugby League
+Castleford,Castleford Tigers
+Wakefield,Wakefield Trinity
+Wigan,Wigan Warriors
+Leeds,Leeds Rhinos
+Hudd'sfld,Huddersfield
+Salford,Salford Red Devils
+Warrington,Warrington Wolves
+Catalans,Catalans Dragons
+Widnes,Widnes Vikings
+Dewsbury,Dewsbury Rams
+Rochdale,Rochdale Hornets
+Toulouse,Toulouse Olympique
+London,London Broncos
+Featherstone,Featherstone Rovers
+Leigh,Leigh Centurions
+Toronto,Toronto Wolfpack
+Barrow,Barrow Raiders
+York,York City Knights
+Coventry,Coventry Bears
+Hunslet,Hunslet Hawks
+Keighley,Keighley Cougars
+Crusaders,North Wales Crusaders
+Raiders,West Wales Raiders
+Workington,Workington Town
+Newcastle,Newcastle Thunder
+Bradford,Bradford Bulls
+END_RUGBY
+
+Welsh Premier League,WL
+Irish Premiership,NI
+Premier League,E0
+Championship,EC
+League One,E2
+League Two,E3
+National League,EC
+Scottish Premiership,SC0
+Scottish Championship,SC1
+Scottish League One,SC2
+Scottish League Two,SC3
+Spanish La Liga,SP1
+Italian Serie A,I1
+Irish Premier Division,ROI
+Norwegian Eliteserien,NRW
+Swedish Allsvenskan,SWD
+Finnish Veikkausliiga,FN
+United States Major League Soccer,MLS
 
 International,X
 World,X
 Euro,X
-Women's,X,
+Women's,X
 Friendl,X
 Group,X
 Round,X
-Russian Premier League,X,
-Swiss Super League,X,
+Russian Premier League,X
+Swiss Super League,X
 Brazilian,X
+Danish,X
 END_LEAGUES
 
+Super League,SL
+Championship,CH
+League 1,L1
+END_RUGBY_LEAGUES
 =pod
 
 =head1 NAME

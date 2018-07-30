@@ -9,7 +9,6 @@ use warnings;
 use MyJSON qw(read_json write_json);
 use Football::Table;
 use Football::Season;
-#use Data::Dumper;
 
 my $path = 'C:/Mine/perl/Football/data/';
 my $historical_path = 'C:/Mine/perl/Football/data/historical/';

@@ -9,10 +9,14 @@ use Moo;
 use namespace::clean;
 
 sub calc_goal_expect {
-	my ($self, $leagues, $fixtures) = @_;
+	my ($self, $fixtures, $leagues) = @_;
 	my $sorted = {};
 
-	my $expect = Football::Goal_Expect_Model->new (leagues => $leagues, fixtures => $fixtures);
+	my $expect = Football::Goal_Expect_Model->new (
+		fixtures => $fixtures,
+		leagues => $leagues,
+	);
+
 	my $teams = $expect->calc_goal_expects ();
 	
 	for my $game (@$fixtures) {
@@ -59,13 +63,12 @@ sub calc_skellam_dist {
 }
 
 sub calc_over_under {
-	my ($self, $leagues, $fixtures, $stats) = @_;
+	my ($self, $fixtures, $leagues) = @_;
 
 	my $sorted = {};
 	my $over_under = Football::Over_Under_Model->new (
-		leagues => $leagues,
 		fixtures => $fixtures,
-		stats => $stats,
+		leagues => $leagues,
 	);
 	
 	$sorted->{ou_home_away} = $over_under->do_home_away ();

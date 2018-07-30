@@ -9,7 +9,7 @@ use namespace::clean;
 use List::Util qw(max);
 use Football::Globals qw($default_stats_size);
 
-has 'default_stats_size' => (is => 'ro', default => $default_stats_size);
+has 'stats_size' => (is => 'ro', default => $default_stats_size);
 has 'games' => ( is => 'ro' );
 
 sub add {
@@ -44,19 +44,19 @@ sub reverse_iterator {
 
 sub get_homes {
 	my ($self, $num_games) = @_;
-	$num_games //= $self->{default_stats_size};
+	$num_games //= $self->{stats_size};
 	return $self->get_stats ('H', $num_games);
 }
 
 sub get_aways {
 	my ($self, $num_games) = @_;
-	$num_games //= $self->{default_stats_size};
+	$num_games //= $self->{stats_size};
 	return $self->get_stats ('A', $num_games);
 }
 
 sub most_recent {
 	my ($self, $num_games) = @_;
-	$num_games //= $self->{default_stats_size};
+	$num_games //= $self->{stats_size};
 	return $self->get_most_recent ($num_games);
 }
 

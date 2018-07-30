@@ -3,20 +3,28 @@
 use strict;
 use warnings;
 
-use Football::Fixtures_Globals qw( fixture_rename );
+use Football::Fixtures_Globals qw( fixture_rename rugby_rename );
 
 my @paths = (
 	{
 		in_file  => "C:/Mine/perl/Football/data/Euro/scraped/fixtures_uk.csv",
 		out_file => "C:/Mine/perl/Football/data/fixtures.csv",
+		func => \&Football::Fixtures_Globals::fixture_rename,
 	},
 	{
 		in_file  => "C:/Mine/perl/Football/data/Euro/scraped/fixtures_euro.csv",
 		out_file => "C:/Mine/perl/Football/data/Euro/fixtures.csv",
+		func => \&Football::Fixtures_Globals::fixture_rename,
 	},
 	{
 		in_file  => "C:/Mine/perl/Football/data/Euro/scraped/fixtures_summer.csv",
 		out_file => "C:/Mine/perl/Football/data/Summer/fixtures.csv",
+		func => \&Football::Fixtures_Globals::fixture_rename,
+	},
+	{
+		in_file  => "C:/Mine/perl/Football/data/Euro/scraped/fixtures_rugby.csv",
+		out_file => "C:/Mine/perl/Football/data/Rugby/fixtures.csv",
+		func => \&Football::Fixtures_Globals::rugby_rename,
 	},
 );
 
@@ -28,8 +36,8 @@ for my $path (@paths) {
 		while (my $line = <$fh_in>) {
 			chomp $line;
 			my @data = split ',', $line;
-			$data[2] = fixture_rename ($data[2]);	# home team
-			$data[3] = fixture_rename ($data[3]);	# away team
+			$data[2] = $path->{func}->( $data[2] );	# home team
+			$data[3] = $path->{func}->( $data[3] );	# away team
 
 			print $fh_out $data[0].','.$data[1].','.$data[2].','.$data[3]."\n";
 		}

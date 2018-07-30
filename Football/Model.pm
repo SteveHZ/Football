@@ -67,7 +67,7 @@ sub build_leagues {
 	for my $league (@{ $self->{league_names} } ) {
 #		die "No games played in $league" if scalar (@ {$games->{$league}} == 0);
 		push (@{ $self->{leagues} }, Football::League->new (
-			title		=> $league,
+			name		=> $league,
 			games 		=> $games->{$league},
 			team_list	=> $teams->{$league},
 		));
@@ -124,7 +124,7 @@ sub do_recent_goal_difference {
 	my $goal_diff = Football::Reports::Recent_GoalDifference->new ();
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};
-		my $idx = firstidx {$league_name eq $_->{title}} @{$self->{leagues}};
+		my $idx = firstidx {$league_name eq $_->{name}} @{$self->{leagues}};
 
 		for my $game (@{ $league->{games}}) {
 			$home = $game->{home_team};
@@ -145,7 +145,7 @@ sub do_goal_difference {
 	my $goal_diff = Football::Reports::GoalDifference->new ();
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};
-		my $idx = firstidx {$league_name eq $_->{title}} @{$self->{leagues}};
+		my $idx = firstidx {$league_name eq $_->{name}} @{$self->{leagues}};
 
 		for my $game (@{ $league->{games}}) {
 			$home = $game->{home_team};

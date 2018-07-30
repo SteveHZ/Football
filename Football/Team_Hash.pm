@@ -13,7 +13,7 @@ has 'hash' 		=> ( is => 'ro', default => sub { {} } );
 has 'teams' 	=> ( is => 'ro', default => sub { [] } );
 has 'func'		=> ( is => 'ro', default => sub {} );
 has 'fixtures' 	=> ( is => 'ro', default => sub { [] } );
-has 'min_amount'=> ( is => 'ro', default => 0.25 );
+has 'min_profit'=> ( is => 'ro', default => 0.50 );
 
 sub BUILD {
 	my $self = shift;
@@ -129,7 +129,7 @@ sub sort_homes {
 			$self->home ($b) <=> $self->home ($a) 
 			or $a cmp $b
 		}
-		grep { $self->home ($_) > $self->{min_amount} }
+		grep { $self->home ($_) >= $self->{min_profit} }
 		map  { $_->{home_team} }
 		@{ $self->{fixtures} }
 	];
@@ -143,7 +143,7 @@ sub sort_aways {
 			$self->away ($b) <=> $self->away ($a) 
 			or $a cmp $b
 		}
-		grep { $self->away ($_) > $self->{min_amount} }
+		grep { $self->away ($_) >= $self->{min_profit} }
 		map  { $_->{away_team} }
 		@{ $self->{fixtures} }
 	];

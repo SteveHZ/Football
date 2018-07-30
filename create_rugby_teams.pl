@@ -2,7 +2,6 @@
 
 #	create_rugby_teams.pl 23/07/16
 #	When updating to Middle 8s, need to leave teams within their original league as well
-#	2018 done 05/01/18
 
 use strict;
 use warnings;
@@ -61,7 +60,7 @@ my $leagues = {
 		"Hunslet Hawks",
 		"Keighley Cougars",
 		"North Wales Crusaders",
-		"South Wales Ironmen",
+		"West Wales Raiders",
 		"Whitehaven",
 		"Workington Town",
 		"Newcastle Thunder",

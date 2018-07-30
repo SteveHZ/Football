@@ -12,7 +12,7 @@ use Moo;
 use namespace::clean;
 
 #	constructor arguments
-has 'title' => ( is => 'ro' );
+has 'name' => ( is => 'ro' );
 has 'games' => ( is => 'ro' );
 has 'team_list' => ( is => 'ro' );
 

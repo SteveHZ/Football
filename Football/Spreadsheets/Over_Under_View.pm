@@ -60,7 +60,6 @@ sub view {
 		
 			my $row_data = ($sheet_name eq "OU Points") ?
 				$self->get_over_under_points_rows ($game) : $self->get_over_under_rows ($game);
-#			my $row_data = $self->get_over_under_rows ($game);
 			$self->write_row ($worksheet, $row, $row_data);
 			$row ++;
 		}

@@ -7,13 +7,14 @@ use strict;
 use warnings;
 use Test::More tests => 6;
 use Test::Deep;
+use Data::Dumper;
 
 use lib "C:/Mine/perl/Football";
 use Football::Model;
 use MyJSON qw(read_json);
 
 my $model = Football::Model->new ();
-my ($games, $leagues, $fixture_list, $stats);
+my ($games, $leagues, $fixture_list, $data);
 
 my $test_path = "C:/Mine/perl/Football/t/test data/";
 
@@ -61,14 +62,15 @@ subtest 'Shared_Model routines' => sub {
 	isa_ok (@$aways[0]->{aways}, 'HASH', '$aways');
 	isa_ok (@$last_six[0]->{last_six}, 'HASH', '$last_six');
 
-	$stats = $model->do_fixtures ($fixture_list, $homes, $aways, $last_six);
-	isa_ok ($stats, 'ARRAY', '$stats');
+	$data = $model->do_fixtures ($fixture_list, $homes, $aways, $last_six);
+	isa_ok ($data, 'HASH', '$data');
 };
 
 subtest 'Goal Expect Model' => sub {
 	plan tests => 6;
 	
-	my ($teams, $sorted) = $model->do_predict_models ($leagues, $fixture_list, $stats, "Football");
+	my ($teams, $sorted) = $model->do_predict_models ($data->{by_match}, $leagues);
+#	my ($teams, $sorted) = $model->do_predict_models ($leagues, $fixture_list, $stats, "Football");
 	isa_ok ($teams, 'HASH', '$teams');
 	isa_ok ($sorted, 'HASH', '$sorted');
 
@@ -88,6 +90,32 @@ subtest 'get_unique_leagues' => sub {
 	my $leagues = $model->get_unique_leagues ($fixtures);
 	cmp_deeply ($leagues, $expect, 'got unique leagues');
 };
+
+=head
+subtest 'Shared_Model2 routines' => sub {
+	plan tests => 8;
+
+	my $home_table = $model->do_home_table ($games);
+	my $away_table = $model->do_away_table ($games);
+	
+	isa_ok ($home_table, 'ARRAY', '$home table');
+	isa_ok ($away_table, 'ARRAY', '$away table');
+	isa_ok (@$home_table[0]->{home_table}, 'Football::HomeTable', '$home table[0]');
+	isa_ok (@$away_table[0]->{away_table}, 'Football::AwayTable', '$away table[0]');
+
+	my $homes = $model->homes ($leagues);
+	my $aways = $model->aways ($leagues);
+	my $last_six = $model->last_six ($leagues);
+
+	isa_ok (@$homes[0]->{homes}, 'HASH', '$homes');
+	isa_ok (@$aways[0]->{aways}, 'HASH', '$aways');
+	isa_ok (@$last_six[0]->{last_six}, 'HASH', '$last_six');
+
+	$stats = $model->do_fixtures ($fixture_list, $homes, $aways, $last_six);
+	isa_ok ($stats, 'ARRAY', '$stats');
+	my $stats2 = $model->do_fixtures2 ($fixture_list, $homes, $aways, $last_six);
+};
+#=cut
 
 #	tests to do :
 

@@ -9,7 +9,6 @@ use namespace::clean;
 
 has 'leagues' => (is => 'ro');
 has 'fixtures' => (is => 'ro');
-has 'stats' => (is => 'ro');
 
 sub do_home_away {
 	my $self = shift;
@@ -63,23 +62,22 @@ sub do_ou_points {
 	
 	my @points = ();
 	my $league_array = $self->{leagues};
-	for my $league ( @{ $self->{stats} } ) {
-		for my $game (@ {$league->{games}}) {
-			my $home = $game->{home_team};
-			my $away = $game->{away_team};
 
-			my $teams = @$league_array [ $game->{league_idx} ]->teams;
-			my ($home_results, $home_stats) = $teams->{$home}->get_most_recent (4);
-			my ($away_results, $away_stats) = $teams->{$away}->get_most_recent (4);
+	for my $game ( @{ $self->{fixtures} } ) {
+		my $home = $game->{home_team};
+		my $away = $game->{away_team};
 
-			$game->{ou_points} = _do_calcs ([ @$home_stats, @$away_stats ]);
-			push @points, {
-				league => $league->{league},
-				home_team => $home,
-				away_team => $away,
-				points => $game->{ou_points},
-			};
-		}
+		my $teams = @$league_array [ $game->{league_idx} ]->teams;
+		my ($home_results, $home_stats) = $teams->{$home}->get_most_recent (4);
+		my ($away_results, $away_stats) = $teams->{$away}->get_most_recent (4);
+
+		$game->{ou_points} = _do_calcs ([ @$home_stats, @$away_stats ]);
+		push @points, {
+			league => @$league_array [ $game->{league_idx} ]->name,
+			home_team => $home,
+			away_team => $away,
+			points => $game->{ou_points},
+		};
 	}
 	return \@points;
 }
