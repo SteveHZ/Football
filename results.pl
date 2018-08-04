@@ -41,8 +41,6 @@ for my $league (@leagues) {
 	$all_games->{ $league->{name} } = $games;
 }
 
-# IDEA : grep $all_games on csv_league to seperate uk and summer ??
-
 $view->write_csv ($out_path, $all_games);
 
 #DELETEALL {

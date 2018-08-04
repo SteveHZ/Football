@@ -3,23 +3,23 @@
 use strict;
 use warnings;
 
-use Football::Fixtures_Globals qw( fixture_rename rugby_rename );
+use Football::Fixtures_Globals qw( football_rename rugby_rename );
 
 my @paths = (
 	{
 		in_file  => "C:/Mine/perl/Football/data/Euro/scraped/fixtures_uk.csv",
 		out_file => "C:/Mine/perl/Football/data/fixtures.csv",
-		func => \&Football::Fixtures_Globals::fixture_rename,
+		func => \&Football::Fixtures_Globals::football_rename,
 	},
 	{
 		in_file  => "C:/Mine/perl/Football/data/Euro/scraped/fixtures_euro.csv",
 		out_file => "C:/Mine/perl/Football/data/Euro/fixtures.csv",
-		func => \&Football::Fixtures_Globals::fixture_rename,
+		func => \&Football::Fixtures_Globals::football_rename,
 	},
 	{
 		in_file  => "C:/Mine/perl/Football/data/Euro/scraped/fixtures_summer.csv",
 		out_file => "C:/Mine/perl/Football/data/Summer/fixtures.csv",
-		func => \&Football::Fixtures_Globals::fixture_rename,
+		func => \&Football::Fixtures_Globals::football_rename,
 	},
 	{
 		in_file  => "C:/Mine/perl/Football/data/Euro/scraped/fixtures_rugby.csv",

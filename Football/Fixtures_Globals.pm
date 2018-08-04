@@ -8,26 +8,26 @@ use Exporter 'import';
 use vars qw (@EXPORT_OK %EXPORT_TAGS);
 
 our @EXPORT = qw(
-	%fixtures_rename
+	%football_rename
 	%rugby_rename
-	%bbc_fixtures_leagues
+	%football_fixtures_leagues
 	%rugby_fixtures_leagues
 );
 
-@EXPORT_OK  = qw( fixture_rename rugby_rename);
+@EXPORT_OK  = qw( football_rename rugby_rename);
 %EXPORT_TAGS = (all => [ @EXPORT, @EXPORT_OK ]);
 
 sub new { return bless {}, shift; }
 
-our %fixtures_rename = ();
+our %football_rename = ();
 our %rugby_rename = ();
-our %bbc_fixtures_leagues = ();
+our %football_fixtures_leagues = ();
 our %rugby_fixtures_leagues = ();
 
 my @datarefs = (
-	{ hashref => \%fixtures_rename, end_token => 'END_FOOTBALL' },
-	{ hashref => \%rugby_rename, end_token => 'END_RUGBY' },
-	{ hashref => \%bbc_fixtures_leagues, end_token => 'END_LEAGUES' },
+	{ hashref => \%football_rename, end_token => 'END_FOOTBALL_TEAMS' },
+	{ hashref => \%rugby_rename, end_token => 'END_RUGBY_TEAMS' },
+	{ hashref => \%football_fixtures_leagues, end_token => 'END_FOOTBALL_LEAGUES' },
 	{ hashref => \%rugby_fixtures_leagues, end_token => 'END_RUGBY_LEAGUES' },
 );
 
@@ -42,11 +42,11 @@ for my $dataref (@datarefs) {
 }
 close DATA;
 
-sub fixture_rename {
+sub football_rename {
 	my $name = shift;
 	return unless defined $name;
-	return defined $fixtures_rename{ $name }
-		? $fixtures_rename{ $name } : $name
+	return defined $football_rename{ $name }
+		? $football_rename{ $name } : $name
 }
 
 
@@ -137,6 +137,7 @@ Tranmere Rovers,Tranmere
 Ebbsfleet United,Ebbsfleet
 Maidenhead United,Maidenhead
 Sutton United,Sutton
+Salford City,Salford
 
 #	Scottish
 Partick Thistle,Partick
@@ -156,7 +157,7 @@ Forfar Athletic,Forfar
 Berwick Rangers,Berwick
 Elgin City,Elgin
 Stirling Albion,Stirling
-END_FOOTBALL
+END_FOOTBALL_TEAMS
 
 #	Rugby League
 Castleford,Castleford Tigers
@@ -185,7 +186,7 @@ Raiders,West Wales Raiders
 Workington,Workington Town
 Newcastle,Newcastle Thunder
 Bradford,Bradford Bulls
-END_RUGBY
+END_RUGBY_TEAMS
 
 Welsh Premier League,WL
 Irish Premiership,NI
@@ -217,7 +218,7 @@ Russian Premier League,X
 Swiss Super League,X
 Brazilian,X
 Danish,X
-END_LEAGUES
+END_FOOTBALL_LEAGUES
 
 Super League,SL
 Championship,CH

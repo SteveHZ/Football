@@ -1,6 +1,6 @@
 package Football::Fixtures_Model;
 
-use Football::Fixtures_Globals qw(%bbc_fixtures_leagues);
+use Football::Fixtures_Globals qw(%football_fixtures_leagues);
 use Football::Fixtures_Scraper_Model;
 use MyRegX;
 
@@ -10,7 +10,7 @@ use utf8;
 use Moo;
 use namespace::clean;
 
-my $str = join '|', keys %bbc_fixtures_leagues;
+my $str = join '|', keys %football_fixtures_leagues;
 my $leagues = qr/$str/;
 
 my $rx = MyRegX->new ();
@@ -62,8 +62,8 @@ sub after_prepare {
 	
 	for my $line (@$lines) {
 		if ($line =~ /^<LEAGUE>(.*)$/) {
-			$csv_league = (exists $bbc_fixtures_leagues{$1} ) ?
-				$bbc_fixtures_leagues{$1} : 'X';
+			$csv_league = (exists $football_fixtures_leagues{$1} ) ?
+				$football_fixtures_leagues{$1} : 'X';
 		} else {
 			$line =~ s/($dm_date),(.*),($time),(.*)/$1 $3,$csv_league,$2,$4/;
 		}

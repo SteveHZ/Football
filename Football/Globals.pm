@@ -31,7 +31,6 @@ our @EXPORT = qw(
 	$max_skellam
 	$min_skellam
 );
-#	%bbc_fixtures_leagues
 
 %EXPORT_TAGS = (all => \@EXPORT);
 
@@ -68,32 +67,6 @@ our @fixtures_leagues = (
 	'Scots League One',
 	'Scots League Two',
 );
-
-=head
-our %bbc_fixtures_leagues = (
-	'Welsh Premier League' => 'WL',
-	'Irish Premiership' => 'NI',
-	'Premier League' => 'E0',
-	'Championship' => 'EC',
-	'League One' => 'E2',
-	'League Two' => 'E3',
-	'National League' => 'EC',
-	'Scottish Premiership' => 'SC0',
-	'Scottish Championship' => 'SC1',
-	'Scottish League One' => 'SC2',
-	'Scottish League Two' => 'SC3',
-	'Spanish La Liga' => 'SP1',
-	'Italian Serie A' => 'I1',
-	'Irish Premier Division' => 'ROI',
-	'Norwegian Eliteserien' => 'NOR',
-	'Swedish Allsvenskan' => 'SWE',
-	'Finnish Veikkausliiga' => 'FIN',
-	'United States Major League Soccer' => 'MLS',
-	'Russian Premier League' => 'X',
-	'Swiss Super League' => 'X',
-	'Women\'s Super League 1' => 'X',
-);
-=cut
 
 our @csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 );
 our @fixtures_csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 );

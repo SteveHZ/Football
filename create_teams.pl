@@ -134,7 +134,7 @@ my $leagues = {
 		"Maidenhead",
 		"Barnet",
 		"Chesterfield",
-		"Salford City",
+		"Salford",
 		"Havant & Waterlooville",
 		"Harrogate Town",
 		"Braintree Town",
@@ -193,6 +193,7 @@ my $leagues = {
 
 my $sorted = sort_HoA ($leagues);
 write_json ($json_file, $sorted);
+print "\nDone";
 
 =pod
 

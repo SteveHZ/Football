@@ -15,10 +15,6 @@ my $weekdays = join '|', @days_of_week;
 my $leagues = join '|', @fixtures_leagues;
 
 my $rx = MyRegX->new ();
-my $time = $rx->time;
-my $upper = $rx->upper;
-my $lower = $rx->lower;
-my $dmy_date = $rx->dmy_date;
 my $date_parser = $rx->date_parser;
 
 sub prepare {
@@ -56,7 +52,28 @@ sub after_prepare {
 			$line =~ s/(\D+)(\d\d?\d?)(\D+)(\d\d?\d?)/$date,$1,$3,$2,$4/
 		}
 	}
-	return [ grep { $_ =~ /\/$results_season/ } @$games ];
+	return $self->sort_games ( $games );
+}
+
+sub sort_games {
+	my ($self, $games) = @_;
+	
+	return [
+		map { "$_->[1],$_->[2],$_->[3],$_->[4],$_->[5]" }
+		sort {
+			$a->[0] <=> $b->[0] 	# date_cmp
+			or $a->[2] cmp $b->[2] 	# home_team
+		}
+		map { [ $self->get_date_cmp (\$_), split (',', $_) ] }
+		grep { $_ =~ /\/$results_season/ }
+		@$games
+	];
+}
+
+sub get_date_cmp {
+	my ($self, $dateref) = @_;
+	return "$3$2$1" if $$dateref =~ /^(\d\d)\/(\d\d)\/(\d\d)/;
+	return 0;
 }
 
 sub do_dates {
