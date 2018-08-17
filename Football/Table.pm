@@ -96,16 +96,16 @@ sub sort_table {
 	my $self = shift;
 	my $table = $self->{table};
 
-	$self->{sorted} = [];
-	for my $team ( sort {
+	return $self->{sorted} = [
+		map  { $table->{$_} }
+		sort {
 			$table->{$b}->{points} <=> $table->{$a}->{points}
 			or _goal_diff ($table->{$b}) <=> _goal_diff ($table->{$a})
 			or $table->{$b}->{for} <=> $table->{$a}->{for}
 			or $table->{$a}->{team} cmp $table->{$b}->{team}
-		} keys %{$table}) {
-			push (@ {$self->{sorted} }, $table->{$team} );
-	}
-	return \@ {$self->{sorted} };
+		}
+		keys %$table		
+	];
 } 	
 
 sub _goal_diff {

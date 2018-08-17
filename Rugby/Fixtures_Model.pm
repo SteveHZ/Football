@@ -1,7 +1,7 @@
 package Rugby::Fixtures_Model;
 
 use Football::Fixtures_Globals qw(%rugby_fixtures_leagues);
-use Football::Fixtures_Scraper_Model3;
+use Football::Fixtures_Scraper_Model;
 use Rugby::Globals qw($season);
 use MyRegX;
 use MyDate qw( $month_names );
@@ -14,11 +14,11 @@ use namespace::clean;
 my $str = join '|', keys %rugby_fixtures_leagues;
 my $leagues = qr/$str/;
 
-my $rx = MyRegX->new ();
+my $rx = MyRegX->new ();?##
 
 sub BUILD {
 	my $self = shift;
-	$self->{scraper} = Football::Fixtures_Scraper_Model3->new ();
+	$self->{scraper} = Football::Fixtures_Scraper_Model->new ();
 }
 
 sub get_pages {

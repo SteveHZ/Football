@@ -1,14 +1,16 @@
 package Football::Fixtures_Model;
 
-use Football::Fixtures_Globals qw(%football_fixtures_leagues);
+use Football::Fixtures_Globals qw(%football_fixtures_leagues %rugby_fixtures_leagues);
 use Football::Fixtures_Scraper_Model;
 use MyRegX;
+use MyDate qw( $month_names );
 
 use Time::Piece qw(localtime);
 use Time::Seconds qw(ONE_DAY);
 use utf8;
 use Moo;
 use namespace::clean;
+use Data::Dumper;
 
 my $str = join '|', keys %football_fixtures_leagues;
 my $leagues = qr/$str/;
@@ -18,6 +20,7 @@ my $time = $rx->time;
 my $upper = $rx->upper;
 my $lower = $rx->lower;
 my $dm_date = $rx->dm_date;
+my $year = 2018;
 
 sub BUILD {
 	my $self = shift;
@@ -25,8 +28,10 @@ sub BUILD {
 }
 
 sub get_pages {
-	my ($self, $site, $week) = @_;
-	$self->{scraper}->get_pages ($site, $week);
+	my ($self, $sites, $week) = @_;
+	for my $site (@$sites) {
+		$self->{scraper}->get_football_pages ($site, $week);
+	}
 }
 
 sub prepare {
@@ -132,6 +137,7 @@ sub do_initial_chars {
 	$$dataref =~ s/AFC/Afc/g;
 	$$dataref =~ s/SJK/SJk/g;
 	$$dataref =~ s/AIK/AIk/g;
+	$$dataref =~ s/MU/Mu/g;  # Welsh
 #	Order is important here !
 	$$dataref =~ s/ FF//g;	# Swedish
 	$$dataref =~ s/IFK //g;	
@@ -155,6 +161,7 @@ sub do_initial_chars {
 sub revert {
 	my ($self, $dataref) = @_;
 	$$dataref =~ s/Fc/FC/g;
+	$$dataref =~ s/Mu/MU/g;
 	$$dataref =~ s/Afc/AFC/g;
 	$$dataref =~ s/AIk/AIK/g;
 	$$dataref =~ s/KUPS/KuPS/g;

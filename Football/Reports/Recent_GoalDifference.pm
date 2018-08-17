@@ -13,8 +13,8 @@ sub BUILD {
 	my ($self, $args) = @_;
 
 	$self->{json_file} = $self->get_json_file ();
+	( $self->{min}, $self->{max} ) = $self->get_minmax ();
 	if ($args->{leagues}) {
-		( $self->{min}, $self->{max} ) = $self->get_minmax ();
 		$self->{hash} = $self->setup ($args->{leagues});
 	} else {
 		$self->{hash} = $self->read_json ($self->{json_file});
@@ -69,6 +69,10 @@ sub write_report {
 
 sub fetch_array {
 	my ($self, $league, $goal_diff) = @_;
+#	UNLIKELY
+#	if (abs ($goal_diff) > $self->{max}) {
+#		$goal_diff = ($goal_diff > 0) ? $self->{max} : $self->{min};
+#	}
 	return [
 		$self->{hash}->{$league}->{$goal_diff}->{home_win},
 		$self->{hash}->{$league}->{$goal_diff}->{away_win},

@@ -4,10 +4,11 @@ package Football::Roles::Shared_Model;
 #	v1.2 02/04/17
 
 use List::MoreUtils qw(firstidx);
+use Clone qw(clone);
+
 use Football::Game_Prediction_Models;
 use Football::Globals qw($default_stats_size );
 use MyKeyword qw(TESTING); # for model.t
-use Clone qw(clone);
 
 use Moo::Role;
 
@@ -81,7 +82,6 @@ sub last_six {
 	return $league_array;
 }
 
-
 sub _get_unique_leagues {
 	my $fixtures = shift;
 
@@ -120,7 +120,7 @@ sub do_fixtures {
 	my ($self, $fixtures, $homes, $aways, $last_six) = @_;
 
 	my $leagues = $self->get_unique_leagues ($fixtures);
-	my $datafunc = _get_game_data ($homes, $aways, $last_six);
+	my $datafunc = _get_game_data_func ($homes, $aways, $last_six);
 	my $fixtures_clone = clone $fixtures;
 	my @fixture_list = ();
 
@@ -141,7 +141,7 @@ sub do_fixtures {
 	};
 }
 
-sub _get_game_data {
+sub _get_game_data_func {
 	my ($homes, $aways, $last_six) = @_;
 	my $stat_size = $default_stats_size * 2;
 	

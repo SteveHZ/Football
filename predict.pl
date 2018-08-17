@@ -20,51 +20,48 @@ use Summer::View;
 use Rugby::Model;
 use Rugby::View;
 
-main ();
+my $options = get_cmdline ();
+my ($model, $view) = get_model_and_view ($options);
 
-sub main {
-	my $options = get_cmdline ();
-	my ($model, $view) = get_model_and_view ($options);
+my $games = $model->read_games ($options->{update});
+my $leagues = $model->build_leagues ($games);
 
-	my $games = $model->read_games ($options->{update});
-	my $leagues = $model->build_leagues ($games);
+$view->do_teams ($leagues);
+$view->do_table ($leagues);
 
-	$view->do_teams ($leagues);
-	$view->do_table ($leagues);
+$view->do_home_table ( $model->do_home_table ($games) );
+$view->do_away_table ( $model->do_away_table ($games) );
 
-	$view->do_home_table ( $model->do_home_table ($games) );
-	$view->do_away_table ( $model->do_away_table ($games) );
+$view->homes (
+	my $homes = $model->homes ($leagues)
+);
+$view->aways (
+	my $aways = $model->aways ($leagues)
+);
 
-	$view->homes (
-		my $homes = $model->homes ($leagues)
-	);
-	$view->aways (
-		my $aways = $model->aways ($leagues)
-	);
+$view->full_homes ( $homes );
+$view->full_aways ( $aways );
+$view->last_six ( 
+	my $last_six = $model->last_six ($leagues)
+);
+$view->do_favourites ( $model->do_favourites ($season, $options->{update_favs}) );
 
-	$view->full_homes ( $homes );
-	$view->full_aways ( $aways );
-	$view->last_six ( 
-		my $last_six = $model->last_six ($leagues)
-	);
-	$view->do_favourites ( $model->do_favourites ($season, $options->{update_favs}) );
+$view->fixture_list (
+	my $fixtures = $model->get_fixtures ()
+);
 
-	$view->fixture_list (
-		my $fixtures = $model->get_fixtures ()
-	);
+my $data = $model->do_fixtures ($fixtures, $homes, $aways, $last_six);
+$view->fixtures ( $data->{by_league} );
 
-	my $data = $model->do_fixtures ($fixtures, $homes, $aways, $last_six);
-	$view->fixtures ( $data->{by_league} );
+$view->do_recent_goal_difference ( $model->do_recent_goal_difference ($data->{by_league}, $leagues) );
+$view->do_goal_difference ( $model->do_goal_difference ($data->{by_league}, $leagues) );
+$view->do_league_places ( $model->do_league_places ($data->{by_league}, $leagues) );
+$view->do_head2head ( $model->do_head2head ($data->{by_league} ) );
+$view->do_recent_draws ( $model->do_recent_draws ($data->{by_league} ) );
 
-	$view->do_recent_goal_difference ( $model->do_recent_goal_difference ($data->{by_league}, $leagues) );
-	$view->do_goal_difference ( $model->do_goal_difference ($data->{by_league}, $leagues) );
-	$view->do_league_places ( $model->do_league_places ($data->{by_league}, $leagues) );
-	$view->do_head2head ( $model->do_head2head ($data->{by_league} ) );
-	$view->do_recent_draws ( $model->do_recent_draws ($data->{by_league} ) );
+my ($teams, $sorted) = $model->do_predict_models ($data->{by_match}, $leagues);
+$view->do_predict_models ($leagues, $teams, $sorted);
 
-	my ($teams, $sorted) = $model->do_predict_models ($data->{by_match}, $leagues);
-	$view->do_predict_models ($leagues, $teams, $sorted);
-}
 
 sub get_cmdline {
 	my ($uk, $euro, $summer, $update, $favs, $rugby) = (0,0,0,0,0,0);

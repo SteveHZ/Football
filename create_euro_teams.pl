@@ -116,8 +116,6 @@ my $leagues = {
 	],
 	"Welsh" => [
 		"Bala Town",
-		"Bangor City",
-		"Prestatyn",
 		"Cefn Druids",
 		"Llandudno",
 		"Barry Town",
@@ -127,10 +125,11 @@ my $leagues = {
 		"Cardiff MU",
 		"Carmarthen Town",
 		"Aberystwyth",
+		"Caernarfon Town",
+		"Llanelli",
 	],
 	"N Irish" => [
 		"Ballymena",
-		"Ballinamallard",
 		"Cliftonville",
 		"Dungannon",
 		"Linfield",
@@ -139,8 +138,9 @@ my $leagues = {
 		"Glentoran",
 		"Ards",
 		"Coleraine",
-		"Carrick Rangers",
 		"Glenavon",
+		"Institute",
+		"Newry City",
 	],
 };
 

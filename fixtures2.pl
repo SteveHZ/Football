@@ -21,11 +21,11 @@ my @paths = (
 		out_file => "C:/Mine/perl/Football/data/Summer/fixtures.csv",
 		func => \&Football::Fixtures_Globals::football_rename,
 	},
-	{
-		in_file  => "C:/Mine/perl/Football/data/Euro/scraped/fixtures_rugby.csv",
-		out_file => "C:/Mine/perl/Football/data/Rugby/fixtures.csv",
-		func => \&Football::Fixtures_Globals::rugby_rename,
-	},
+#	{
+#		in_file  => "C:/Mine/perl/Football/data/Euro/scraped/fixtures_rugby.csv",
+#		out_file => "C:/Mine/perl/Football/data/Rugby/fixtures.csv",
+#		func => \&Football::Fixtures_Globals::rugby_rename,
+#	},
 );
 
 for my $path (@paths) {

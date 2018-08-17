@@ -55,6 +55,8 @@ sub after_prepare {
 	return $self->sort_games ( $games );
 }
 
+#	Reverse list to run from earliest date first,
+#	keeping alphabetical order for each date
 sub sort_games {
 	my ($self, $games) = @_;
 	
@@ -64,7 +66,9 @@ sub sort_games {
 			$a->[0] <=> $b->[0] 	# date_cmp
 			or $a->[2] cmp $b->[2] 	# home_team
 		}
-		map { [ $self->get_date_cmp (\$_), split (',', $_) ] }
+		map {
+			[ $self->get_date_cmp (\$_), split (',', $_) ]
+		}
 		grep { $_ =~ /\/$results_season/ }
 		@$games
 	];
@@ -72,7 +76,7 @@ sub sort_games {
 
 sub get_date_cmp {
 	my ($self, $dateref) = @_;
-	return "$3$2$1" if $$dateref =~ /^(\d\d)\/(\d\d)\/(\d\d)/;
+	return "$3$2$1" if $$dateref =~ m{^(\d\d)/(\d\d)/(\d\d)};
 	return 0;
 }
 

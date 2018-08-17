@@ -223,6 +223,8 @@ END_FOOTBALL_LEAGUES
 Super League,SL
 Championship,CH
 League 1,L1
+Qualifiers,M8
+Shield,SH
 END_RUGBY_LEAGUES
 =pod
 

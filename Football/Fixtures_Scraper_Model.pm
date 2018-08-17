@@ -1,14 +1,16 @@
 package Football::Fixtures_Scraper_Model;
 
 use Web::Query;
+use MyLib qw(ucfirst_all);
 use Moo;
 use namespace::clean;
+use Data::Dumper;
 
 $Web::Query::UserAgent = LWP::UserAgent->new (
     agent => 'Mozilla/5.0',
 );
 
-sub get_pages {
+sub get_football_pages {
 	my ($self, $site, $week) = @_;
 
 	for my $date (@$week) {
@@ -20,7 +22,7 @@ sub get_pages {
 
 			print "\nDownloading $date->{date}";
 			print "\n$date->{date} : ";
-			$self->do_write ($date->{date}, $q->text);
+			$self->do_football_write ($date->{date}, $q->text);
 			print "Done - character length : ".length ($q->text);
 		} else {
 			print "\nUnable to create object : $site/$date->{date}";
@@ -29,7 +31,32 @@ sub get_pages {
 	print "\n";
 }
 
-sub do_write {
+sub get_rugby_pages {
+	my ($self, $sites, $week) = @_;
+
+	for my $site (@$sites) {
+		my $league = get_league_name ($site);
+		my $q = wq ($site);
+		if ($q) {
+			print "\nDownloading $league";
+			print "\n$league : ";
+			$self->do_rugby_write ($league, $q->text);
+			print "Done - character length : ".length ($q->text);
+		} else {
+			print "\nUnable to create object : $site";
+		}
+	}
+	print "\n";
+}
+
+sub get_league_name {
+	my $str = shift;
+	$str =~ s/^.*\/(.*)\/fixtures/$1/;
+	$str =~ s/-/ /g;
+	return ucfirst_all ($str);
+}
+
+sub do_football_write {
 	my ($self, $date, $txt) = @_;
 	my $filename = "C:/Mine/perl/Football/data/Euro/scraped/fixtures $date.txt";
 
@@ -38,15 +65,14 @@ sub do_write {
 	close $fh;
 }
 
-#	$self->{scraper} = Football::Web_Scraper_Model->new (
-#		site => "$site",
-#		code => sub {
-#			my $q = shift;
-#			return $q->find ('abbr')
-#					 ->filter ( sub { $_->text ne 'FT' } )
-#					 ->replace_with ( '<b></b>' );
-#		}
-#	);
+sub do_rugby_write {
+	my ($self, $league, $txt) = @_;
+	my $filename = "C:/Mine/perl/Football/data/Euro/scraped/$league.txt";
+
+	open my $fh, '>', $filename or die "Can't open $filename";
+	print $fh $txt;
+	close $fh;
+}
 
 =pod
 
