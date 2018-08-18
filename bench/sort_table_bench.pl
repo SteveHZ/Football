@@ -5,7 +5,6 @@
 use strict;
 use warnings;
 
-#use lib '../../Football';
 use Summer::Model;
 use Benchmark qw(timethese cmpthese);
 
