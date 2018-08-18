@@ -14,7 +14,7 @@ use namespace::clean;
 my $str = join '|', keys %rugby_fixtures_leagues;
 my $leagues = qr/$str/;
 
-my $rx = MyRegX->new ();?##
+my $rx = MyRegX->new ();## ?
 
 sub BUILD {
 	my $self = shift;

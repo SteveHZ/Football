@@ -210,14 +210,28 @@ United States Major League Soccer,MLS
 International,X
 World,X
 Euro,X
+Champions,
 Women's,X
 Friendl,X
+Qualifi,X
 Group,X
 Round,X
+Highland League,X
+Lowland League,X
 Russian Premier League,X
 Swiss Super League,X
 Brazilian,X
 Danish,X
+Argentine,X
+Portuguese,X
+Turkish,X
+Dutch,X
+German,X
+Austrian,X
+Greek,X
+The FA,X
+FA Cup,X
+
 END_FOOTBALL_LEAGUES
 
 Super League,SL
