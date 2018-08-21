@@ -44,6 +44,7 @@ $view->full_aways ( $aways );
 $view->last_six ( 
 	my $last_six = $model->last_six ($leagues)
 );
+#print "\n update = $options->{update_favs}";<STDIN>;
 $view->do_favourites ( $model->do_favourites ($season, $options->{update_favs}) );
 
 $view->fixture_list (

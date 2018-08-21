@@ -90,6 +90,7 @@ Hull City,Hull
 Cardiff City,Cardiff
 Burton Albion,Burton
 Leeds United,Leeds
+Preston North End,Preston
 Bolton Wanderers,Bolton
 Norwich City,Norwich
 Sheffield Wednesday,Sheffield Weds
@@ -102,7 +103,7 @@ Wigan Athletic,Wigan
 Oldham Athletic,Oldham
 Doncaster Rovers,Doncaster
 Bristol Rovers,Bristol Rvs
-Northampton Towm,Northampton
+Northampton Town,Northampton
 Charlton Athletic,Charlton
 Plymouth Argyle,Plymouth
 Southend United,Southend
@@ -116,6 +117,7 @@ Cambridge United,Cambridge
 Cheltenham Town,Cheltenham
 Carlisle United,Carlisle
 Colchester United,Colchester
+Forest Green Rovers,Forest Green
 Luton Town,Luton
 Grimsby Town,Grimsby
 Lincoln City,Lincoln
@@ -125,11 +127,13 @@ Accrington Stanley,Accrington
 Coventry City,Coventry
 Wycombe Wanderers,Wycombe
 Swindon Town,Swindon
+Yeovil Town,Yeovil
 AFC Fylde,Fylde
 FC Halifax Town,Halifax
 Dagenham & Redbridge,Dag and Red
 Maidstone United,Maidstone
 Hartlepool United,Hartlepool
+Harrogate Town,Harrogate
 Solihull Moors,Solihull
 Aldershot Town,Aldershot
 Macclesfield Town,Macclesfield
@@ -191,7 +195,7 @@ END_RUGBY_TEAMS
 Welsh Premier League,WL
 Irish Premiership,NI
 Premier League,E0
-Championship,EC
+Championship,E1
 League One,E2
 League Two,E3
 National League,EC

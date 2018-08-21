@@ -259,7 +259,7 @@ sub fixtures {
 			printf $self->{fixtures_format}, $game->{home_team}, $game->{away_team};
 			print " $_"  for (@{ $game->{aways}} );
 			printf $self->{fixtures_format2}, $game->{home_points}, $game->{away_points};
-			printf "  %2d-%d", $game->{home_points}, $game->{away_points};
+			printf "  %2d-%d", $game->{last_six_home_points}, $game->{last_six_away_points};
 		}
 	}
 	print "\n";
