@@ -192,7 +192,7 @@ END_RUGBY_TEAMS
 Welsh Premier League,WL
 Irish Premiership,NI
 Premier League,E0
-Championship,EC
+Championship,E1
 League One,E2
 League Two,E3
 National League,EC
