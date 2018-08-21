@@ -102,7 +102,7 @@ Wigan Athletic,Wigan
 Oldham Athletic,Oldham
 Doncaster Rovers,Doncaster
 Bristol Rovers,Bristol Rvs
-Northampton Towm,Northampton
+Northampton Town,Northampton
 Charlton Athletic,Charlton
 Plymouth Argyle,Plymouth
 Southend United,Southend
@@ -130,6 +130,7 @@ FC Halifax Town,Halifax
 Dagenham & Redbridge,Dag and Red
 Maidstone United,Maidstone
 Hartlepool United,Hartlepool
+Harrogate Town,Harrogate
 Solihull Moors,Solihull
 Aldershot Town,Aldershot
 Macclesfield Town,Macclesfield

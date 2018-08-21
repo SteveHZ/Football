@@ -82,7 +82,7 @@ sub do_league_places {
 	my $league_places = Football::Reports::LeaguePlaces->new ();
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};
-		my $idx = firstidx {$league_name eq $_->{title}} @{$self->{leagues}};
+		my $idx = firstidx {$league_name eq $_->{name}} @{$self->{leagues}};
 
 		for my $game (@{ $league->{games}}) {
 			$home = $game->{home_team};
