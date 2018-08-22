@@ -206,6 +206,7 @@ sub do_favourites {
 		$data_model->write_current ($file_to, $data);
 		$fav_model->update ($league, $year, $data);
 	}
+
 	return {
 		data => $fav_model->hash (),
 		history => $fav_model->history (),

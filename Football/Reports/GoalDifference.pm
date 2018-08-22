@@ -70,6 +70,7 @@ sub write_report {
 sub fetch_array {
 	my ($self, $league, $goal_diff) = @_;
 	$goal_diff = $self->do_limits ($goal_diff) if abs $goal_diff > $self->{max};
+
 	return [
 		$self->{hash}->{$league}->{$goal_diff}->{home_win},
 		$self->{hash}->{$league}->{$goal_diff}->{away_win},

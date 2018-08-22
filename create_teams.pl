@@ -136,7 +136,7 @@ my $leagues = {
 		"Chesterfield",
 		"Salford",
 		"Havant & Waterlooville",
-		"Harrogate Town",
+		"Harrogate",
 		"Braintree Town",
 	],
 	"Scots Premier" => [

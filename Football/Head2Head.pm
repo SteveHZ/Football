@@ -31,7 +31,7 @@ sub new {
 
 sub fetch {
 	my ($self, $league, $home, $away) = @_;
-	return \@{ $self->{hash}->{$league}->{$home}->{$away} };
+	return \@{ $self->{hash}->{$league}->{$home}->{$away} };;
 }
 
 sub create {

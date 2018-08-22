@@ -90,6 +90,7 @@ Hull City,Hull
 Cardiff City,Cardiff
 Burton Albion,Burton
 Leeds United,Leeds
+Preston North End,Preston
 Bolton Wanderers,Bolton
 Norwich City,Norwich
 Sheffield Wednesday,Sheffield Weds
@@ -116,6 +117,7 @@ Cambridge United,Cambridge
 Cheltenham Town,Cheltenham
 Carlisle United,Carlisle
 Colchester United,Colchester
+Forest Green Rovers,Forest Green
 Luton Town,Luton
 Grimsby Town,Grimsby
 Lincoln City,Lincoln
@@ -125,6 +127,7 @@ Accrington Stanley,Accrington
 Coventry City,Coventry
 Wycombe Wanderers,Wycombe
 Swindon Town,Swindon
+Yeovil Town,Yeovil
 AFC Fylde,Fylde
 FC Halifax Town,Halifax
 Dagenham & Redbridge,Dag and Red
@@ -211,16 +214,28 @@ United States Major League Soccer,MLS
 International,X
 World,X
 Euro,X
+Champions,
 Women's,X
 Friendl,X
 Qualifi,X
 Group,X
 Round,X
+Highland League,X
+Lowland League,X
 Russian Premier League,X
 Swiss Super League,X
 Brazilian,X
 Danish,X
 Greek,X
+Argentine,X
+Portuguese,X
+Turkish,X
+Dutch,X
+German,X
+Austrian,X
+Greek,X
+The FA,X
+FA Cup,X
 END_FOOTBALL_LEAGUES
 
 Super League,SL

@@ -32,7 +32,7 @@ sub read_games {
 
 sub do_home_table {
 	my ($self, $games) = @_;
-	my $league_array = \@{ $self->{leagues} };
+	my $league_array = $self->{leagues};
 	
 	for my $idx (0..$#{ $self->{csv_leagues}} ) {
 		my $league = $self->{league_names}[$idx];
@@ -43,7 +43,7 @@ sub do_home_table {
 
 sub do_away_table {
 	my ($self, $games) = @_;
-	my $league_array = \@{ $self->{leagues} };
+	my $league_array = $self->{leagues};
 	
 	for my $idx (0..$#{ $self->{csv_leagues}} ) {
 		my $league = $self->{league_names}[$idx];
@@ -54,7 +54,7 @@ sub do_away_table {
 
 sub homes {
 	my ($self, $games) = @_;
-	my $league_array = \@{ $self->{leagues} };
+	my $league_array = $self->{leagues};
 
 	for my $idx (0..$#{ $self->{csv_leagues}} ) {
 		@$league_array[$idx]->{homes} = @$league_array[$idx]->homes ( @$league_array[$idx]->{teams} );
@@ -64,7 +64,7 @@ sub homes {
 
 sub aways {
 	my ($self, $games) = @_;
-	my $league_array = \@{ $self->{leagues} };
+	my $league_array = $self->{leagues};
 
 	for my $idx (0..$#{ $self->{csv_leagues}} ) {
 		@$league_array[$idx]->{aways} = @$league_array[$idx]->aways ( @$league_array[$idx]->{teams} );
@@ -74,7 +74,7 @@ sub aways {
 
 sub last_six {
 	my ($self, $games) = @_;
-	my $league_array = \@{ $self->{leagues} };
+	my $league_array = $self->{leagues};
 
 	for my $idx (0..$#{ $self->{csv_leagues}} ) {
 		@$league_array[$idx]->{last_six} = @$league_array[$idx]->last_six ( @$league_array[$idx]->{teams} );
