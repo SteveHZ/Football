@@ -213,12 +213,14 @@ World,X
 Euro,X
 Women's,X
 Friendl,X
+Qualifi,X
 Group,X
 Round,X
 Russian Premier League,X
 Swiss Super League,X
 Brazilian,X
 Danish,X
+Greek,X
 END_FOOTBALL_LEAGUES
 
 Super League,SL
@@ -227,6 +229,7 @@ League 1,L1
 Qualifiers,M8
 Shield,SH
 END_RUGBY_LEAGUES
+
 =pod
 
 =head1 NAME

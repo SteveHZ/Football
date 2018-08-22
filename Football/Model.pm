@@ -23,6 +23,7 @@ use Football::Reports::LeaguePlaces;
 use Football::Reports::GoalDifference;
 use Football::Reports::Recent_GoalDifference;
 use Football::Globals qw( @league_names @csv_leagues $default_stats_size );
+use MyKeyword qw(TESTING); # for model.t
 use Data::Dumper;
 
 use Moo;
@@ -56,6 +57,7 @@ sub BUILD {
 	$self->{teams_file} = $self->{path}.'teams.json';
 	
 	$self->{test_path} = 'C:/Mine/perl/Football/t/test data/';
+	$self->{test_teams_file} = $self->{test_path}.'teams.json';
 	$self->{test_season_data} = $self->{test_path}.'season.json';
 	$self->{test_fixtures_file} = $self->{test_path}.'football fixtures.csv';
 }
@@ -63,6 +65,7 @@ sub BUILD {
 sub build_leagues {
 	my ($self, $games) = @_;
 	my $teams = $self->read_json ( $self->{teams_file} );
+	TESTING { $teams = $self->read_json ( $self->{test_teams_file} ); }
 
 	for my $league (@{ $self->{league_names} } ) {
 #		die "No games played in $league" if scalar (@ {$games->{$league}} == 0);

@@ -13,27 +13,6 @@ requires qw(
 	path fixtures_file season_data 
 	test_fixtures_file
 );
-#	test_season_data
-
-#use MyKeyword qw(TESTING); # for model.t
-#	test_season_data
-# 	moved this into Shared Model as rugby now reads a similar file
-
-#sub read_games {
-#	my ($self, $update) = @_;
-#	my $games;
-
-#	TESTING {
-#		print "    Reading test data from $self->{test_season_data}\n";
-#		$games = $self->read_json ($self->{test_season_data});
-#	} elsif ($update) {
-#		$games = $self->update ();
-#	} else {
-#		$games = (-e $self->{season_data}) ?
-#			$self->read_json ($self->{season_data}) : {};
-#	}
-#	return $games;
-#}
 
 sub update {
 	my $self = shift;
@@ -76,5 +55,25 @@ sub get_fixtures {
 	close $fh;
 	return \@fixtures;
 }
+
+#	test_season_data
+
+# 	moved this into Shared Model as rugby now reads a similar file
+
+#sub read_games {
+#	my ($self, $update) = @_;
+#	my $games;
+
+#	TESTING {
+#		print "    Reading test data from $self->{test_season_data}\n";
+#		$games = $self->read_json ($self->{test_season_data});
+#	} elsif ($update) {
+#		$games = $self->update ();
+#	} else {
+#		$games = (-e $self->{season_data}) ?
+#			$self->read_json ($self->{season_data}) : {};
+#	}
+#	return $games;
+#}
 
 1;

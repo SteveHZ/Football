@@ -28,12 +28,16 @@ for my $league (@euro_fetch_lgs) {
 }
 
 my $url = "http://www.football-data.co.uk/$id/$season_years/all-euro-data-$full_season_years.xlsx";
-#my $url = "http://www.football-data.co.uk/$id/$season_years/all-euro-data-$full_season_years.zip";
-my $xlsx_file = "$dir/all-euro-data-$full_season_years.xlsx";
-
 my $ff = File::Fetch->new (uri => $url);
-my $zip_file = $ff->fetch (to => $dir) or die $ff->error;
-print "\n\nDownloading $zip_file...";
+my $euro_file = $ff->fetch (to => $dir) or die $ff->error;
+print "\n\nDownloading $euro_file...";
+
+#my $url = "http://www.football-data.co.uk/$id/$season_years/all-euro-data-$full_season_years.zip";
+#my $xlsx_file = "$dir/all-euro-data-$full_season_years.xlsx";
+
+#my $ff = File::Fetch->new (uri => $url);
+#my $zip_file = $ff->fetch (to => $dir) or die $ff->error;
+#print "\n\nDownloading $zip_file...";
 
 #print "\nUnpacking to $xlsx_file...\n";
 #my $ae = Archive::Extract->new (archive => $zip_file);

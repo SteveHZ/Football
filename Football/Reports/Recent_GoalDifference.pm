@@ -69,10 +69,6 @@ sub write_report {
 
 sub fetch_array {
 	my ($self, $league, $goal_diff) = @_;
-#	UNLIKELY
-#	if (abs ($goal_diff) > $self->{max}) {
-#		$goal_diff = ($goal_diff > 0) ? $self->{max} : $self->{min};
-#	}
 	return [
 		$self->{hash}->{$league}->{$goal_diff}->{home_win},
 		$self->{hash}->{$league}->{$goal_diff}->{away_win},
