@@ -21,7 +21,7 @@ sub BUILD {
 	unless ($args->{seasons}) {
 		$self->{hash} = $self->read_json ( $self->{h2h_file} );
 	} elsif ($args->{all_teams}) {
-		$self->{hash} = $self->create ( $args->{leagues}, $args->{league_size}, 
+		$self->{hash} = $self->create ( $args->{leagues}, $args->{league_size},
 										$args->{all_teams}, $args->{seasons} );
 	} else {
 		die "Problem creating Head2Head object !!";
@@ -127,7 +127,7 @@ sub build_head2head {
 sub calc_points {
 	my ($self, $stats) = @_;
 	my ($home, $away) = (0,0);
-	
+
 	for my $result (@$stats) {
 		if ($result eq 'H') 	{ $home += 3; }
 		elsif ($result eq 'A') 	{ $away += 3; }
