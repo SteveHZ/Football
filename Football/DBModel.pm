@@ -101,6 +101,7 @@ sub build_query {
 		my $temp = {};
 		
 		my @results = map { $self->{results_hash}->{uc $venue}->{$_} } @options;
+
 		$temp->{ $self->{venue_hash}->{$venue} } = $team; # HomeTeam = ?
 		$temp->{FTR} = [ @results ]; # (FTR = ? OR FTR = ?)...
 		push @query, $temp;

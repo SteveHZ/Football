@@ -118,8 +118,8 @@ sub get_goal_expect_rows {
 	state $rules = $self->get_rules ();
 	
 	return [
-		{ $game->{date} => $self->{blank_text_format2} },
 		{ $game->{league} => $self->{format} },
+		{ $game->{date} => $self->{blank_text_format2} },
 		{ $game->{home_team} => $self->get_format ( $game->{expected_goal_diff} * -1 ) },
 		{ $game->{away_team} => $self->get_format ( $game->{expected_goal_diff} ) },
 		{ $game->{home_goals} => $self->{float_format} },
@@ -179,7 +179,7 @@ sub do_goal_expect_header {
 	my ($self, $worksheet) = @_;
 
 	$self->set_columns ($worksheet, $self->get_column_sizes ());
-	$worksheet->set_column ($_, undef, undef, 1) for ('G:I','L:N'); # hide columns
+	$worksheet->set_column ($_, undef, undef, 1) for ('B:B','G:I','L:N'); # hide columns
 
 	$worksheet->write ('B1', "League", $self->{format} );
 	$worksheet->write ('D1', "Home", $self->{format} );
@@ -195,7 +195,7 @@ sub do_goal_expect_header {
 	$worksheet->write ('U1', "RGD", $self->{format} );
 	$worksheet->write ('V1', "GD", $self->{format} );
 
-	$worksheet->autofilter( 'B1:B100' );
+	$worksheet->autofilter( 'A1:A100' );
 	$worksheet->freeze_panes (2,0);
 }
 

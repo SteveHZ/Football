@@ -2,9 +2,10 @@ package Football::Fixtures_Scraper_Model;
 
 use Web::Query;
 use MyLib qw(ucfirst_all);
+#use utf8;
+use Data::Dumper;
 use Moo;
 use namespace::clean;
-use Data::Dumper;
 
 $Web::Query::UserAgent = LWP::UserAgent->new (
     agent => 'Mozilla/5.0',
@@ -60,7 +61,7 @@ sub do_football_write {
 	my ($self, $date, $txt) = @_;
 	my $filename = "C:/Mine/perl/Football/data/Euro/scraped/fixtures $date.txt";
 
-	open my $fh, '>', $filename or die "Can't open $filename";
+	open my $fh, '>:utf8', $filename or die "Can't open $filename";
 	print $fh $txt;
 	close $fh;
 }
@@ -69,7 +70,7 @@ sub do_rugby_write {
 	my ($self, $league, $txt) = @_;
 	my $filename = "C:/Mine/perl/Football/data/Euro/scraped/$league.txt";
 
-	open my $fh, '>', $filename or die "Can't open $filename";
+	open my $fh, '>:utf8', $filename or die "Can't open $filename";
 	print $fh $txt;
 	close $fh;
 }

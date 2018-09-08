@@ -60,7 +60,7 @@ sub do_perms {
 			my $obj = shift;
 			my $genref = $obj->get_array (deep_copy => 0);
 
-			my $str = "=";
+			my $str = '=';
 			if (! $trixie) {
 				$str .= build_singles ($genref) if $sels == 3; # permed patent
 			}
@@ -68,7 +68,8 @@ sub do_perms {
 			for my $multis (2..$sels) {
 				$str .= $multiples->($multis);
 			}
-			$str = substr $str,0,-1; # remove last '+'
+			$str =~ s/\+$//; # remove trailing '+'
+#			$str = substr $str,0,-1; # remove last '+'
 			push @formulas, $str;
 		};
 		$gen->onIteration ($coderef);

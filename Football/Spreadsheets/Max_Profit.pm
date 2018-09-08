@@ -23,8 +23,8 @@ sub BUILD {
 	$self->{sheetnames} = [ "totals", "all homes", "all aways", "homes", "aways" ];
 	$self->{dispatch} = {
 		'totals'	=> \&Football::Spreadsheets::Max_Profit::get_totals,
-		'all homes'		=> \&Football::Spreadsheets::Max_Profit::get_homes,
-		'all aways'		=> \&Football::Spreadsheets::Max_Profit::get_aways,
+		'all homes'	=> \&Football::Spreadsheets::Max_Profit::get_homes,
+		'all aways'	=> \&Football::Spreadsheets::Max_Profit::get_aways,
 		'homes'		=> \&Football::Spreadsheets::Max_Profit::get_homes,
 		'aways'		=> \&Football::Spreadsheets::Max_Profit::get_aways,
 	};

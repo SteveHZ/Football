@@ -5,6 +5,7 @@
 #BEGIN { $ENV{PERL_KEYWORD_TESTING} = 1;}
 use strict;
 use warnings;
+use TryCatch;
 use MyKeyword qw(TESTING);
 TESTING { use Data::Dumper; }
 
@@ -45,13 +46,17 @@ sub get_results {
 	if ($league eq 0) {
 		print "\nUnknown team name. Please try again...";
 	} else {
-		my $query = $model->build_query ($team, $options);
-		TESTING {
-			print Dumper $query;
-		}
-		my $sth = $model->do_query ($league, $query);
-		while (my $row = $sth->fetchrow_hashref) {
-			$output_dispatch->{$ha}->($row, $team);
+		try {
+			my $query = $model->build_query ($team, $options);
+			TESTING {
+				print Dumper $query;
+			}
+			my $sth = $model->do_query ($league, $query);
+			while (my $row = $sth->fetchrow_hashref) {
+				$output_dispatch->{$ha}->($row, $team);
+			}
+		} catch {
+			print "\nUsage : perldb.pl -[ha] -[wld]";
 		}
 	}
 	print "\n";

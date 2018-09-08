@@ -1,20 +1,24 @@
 #	fixtures.pl 05-14/05/18
 #	v1.1 29/07-12/08/18
 
-#BEGIN { $ENV{PERL_KEYWORD_PRODUCTION} = 1;}
-#BEGIN { $ENV{PERL_KEYWORD_DELETEALL} = 1;}
+BEGIN { $ENV{PERL_KEYWORD_PRODUCTION} = 1;}
+BEGIN { $ENV{PERL_KEYWORD_DELETEALL} = 1;}
 BEGIN { $ENV{PERL_KEYWORD_FOOTBALL} = 1;}
 #BEGIN { $ENV{PERL_KEYWORD_RUGBY} = 1;}
 
 use strict;
 use warnings;
 
-use Football::Fixtures_Model;
-use Football::Fixtures_View;
-use Rugby::Fixtures_Model;
-use Rugby::Globals qw(@league_names);
 use MyKeyword qw(PRODUCTION DELETEALL FOOTBALL RUGBY);
-use Data::Dumper;
+use Football::Fixtures_View;
+#use Data::Dumper;
+FOOTBALL {
+	use Football::Fixtures_Model;
+}
+RUGBY {
+	use Rugby::Fixtures_Model;
+	use Rugby::Globals qw(@league_names);
+}
 
 my $data = get_data ();
 my $view = Football::Fixtures_View->new ();
@@ -115,7 +119,7 @@ perl fixtures.pl
 
  Scrapes BBC Sport website for future fixtures
  Writes out to a file called 'fixtures_week.csv' which can be edited as required
- Run fixtures2.pl to write out finished 'fixtures.csv' file
+ Run fixtures2.pl to write out finished 'fixtures.csv' file(s)
  
 =head1 AUTHOR
 

@@ -113,8 +113,10 @@ sub do_calc {
 		for my $group (@$combs) {
 			$str .= "(". join ('*', @$group). ")+";
 		}
-		$str = substr $str,0,-1; # remove last '+'
-		$str .= ")";
+		$str =~ s/\+$/)/; # replace trailing '+' with closing bracket
+#		$str = substr $str,0,-1; # remove last '+'
+#		$str .= ")";
+#		print "\n$str";
 		
 		return $str;
 	}
