@@ -8,7 +8,7 @@ with 'Roles::Spreadsheet';
 
 sub BUILD {
 	my ($self, $args) = @_;
-	
+
 	$self->create_sheet ($args->{filename});
 
 	$self->{dispatch} = {
@@ -94,7 +94,7 @@ sub current {
 	my ($self, $hash, $leagues, $seasons) = @_;
 	my ($hashref, $row);
 	my $year = @$seasons [0];
-	
+
 	my $worksheet = $self->add_worksheet ($year);
 	do_header ($worksheet, $self->{bold_format});
 
@@ -164,25 +164,25 @@ sub do_history {
 sub do_header {
 	my ($worksheet, $format) = @_;
 	my ($row, $col) = (2,1);
-	
-	$worksheet->set_column ('A:A', 20);
-	$worksheet->set_column ($_, 12) for ('B:B', 'D:E', 'G:H', 'J:K');
-	$worksheet->set_column ($_, 3) for ('C:C', 'F:F', 'I:I');
 
-	$worksheet->merge_range ('D2:E2',"Underdogs",$format);
-	$worksheet->merge_range ('G2:H2',"Favourites",$format);
-	$worksheet->merge_range ('J2:K2',"Draws",$format);
-	
-	$worksheet->write ($row, $col, "Stake", $format);
+	$worksheet->set_column ('A:A', 20);
+	$worksheet->set_column ($_, 12) for (qw (B:B D:E G:H J:K));
+	$worksheet->set_column ($_, 3) for (qw (C:C F:F I:I));
+
+	$worksheet->merge_range ('D2:E2', 'Underdogs', $format);
+	$worksheet->merge_range ('G2:H2', 'Favourites', $format);
+	$worksheet->merge_range ('J2:K2', 'Draws', $format);
+
+	$worksheet->write ($row, $col, 'Stake', $format);
 	$col +=2;
-	$worksheet->write ($row, $col ++, "Return", $format);
-	$worksheet->write ($row, $col, "Profit", $format);
+	$worksheet->write ($row, $col ++, 'Return', $format);
+	$worksheet->write ($row, $col, 'Profit', $format);
 	$col +=2;
-	$worksheet->write ($row, $col ++, "Return", $format);
-	$worksheet->write ($row, $col, "Profit", $format);
+	$worksheet->write ($row, $col ++, 'Return', $format);
+	$worksheet->write ($row, $col, 'Profit', $format);
 	$col +=2;
-	$worksheet->write ($row, $col ++, "Return", $format);
-	$worksheet->write ($row, $col, "Profit", $format);
+	$worksheet->write ($row, $col ++, 'Return', $format);
+	$worksheet->write ($row, $col, 'Profit', $format);
 }
 
 sub write_row {
@@ -196,7 +196,7 @@ sub write_row {
 	$worksheet->write ($row, $col ++, $hashref->{under_winnings}, $self->{currency_format});
 	$percent = ($hashref->{stake} > 0) ? $hashref->{under_winnings} / $hashref->{stake} - 1 : 0;
 	$worksheet->write ($row, $col, $percent, $self->get_format ($percent));
-	
+
 	$col += 2;
 	$worksheet->write ($row, $col ++, $hashref->{fav_winnings}, $self->{currency_format});
 	$percent = ($hashref->{stake} > 0) ? $hashref->{fav_winnings} / $hashref->{stake} - 1 : 0;

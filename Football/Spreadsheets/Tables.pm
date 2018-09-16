@@ -27,7 +27,7 @@ sub create_sheet {
 sub do_table {
 	my ($self, $table, $title) = @_;
 	$title //= "Table";
-	
+
 	my $worksheet = $self->add_worksheet ($title);
 	$worksheet->add_write_handler( qr/^-?\d+$/, \&table_signed_goal_diff);
 	$self->do_table_header ($worksheet, $self->{bold_format});
@@ -66,11 +66,11 @@ sub do_home_aways {
 
 	do_form_header ($worksheet, $title, $self->{bold_format});
 	my @sorted = sort {
-		$list->{$b}->{points} <=> $list->{$a}->{points} 
+		$list->{$b}->{points} <=> $list->{$a}->{points}
 		or $list->{$b}->{goal_difference} <=> $list->{$a}->{goal_difference}
 		or $a cmp $b
 	} keys %$list;
-	
+
 	my $row = 3;
 	my $place = 1;
 	for my $team (@sorted) {
@@ -144,9 +144,9 @@ sub do_table_header {
 sub do_form_header {
 	my ($worksheet, $title, $format) = @_;
 
-	$worksheet->set_column ($_, 5)  for ('A:A','D:I', 'K:K');
-	$worksheet->set_column ($_, 8)  for ('C:C', 'J:J');
-	$worksheet->set_column ($_, 20) for ('B:B', 'N:N');
+	$worksheet->set_column ($_, 5)  for (qw (A:A D:I K:K));
+	$worksheet->set_column ($_, 8)  for (qw (C:C J:J));
+	$worksheet->set_column ($_, 20) for (qw (B:B N:N));
 
 	$worksheet->write ('B2', "Team", $format);
 	$worksheet->merge_range ('D2:I2', $title, $format);

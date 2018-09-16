@@ -34,7 +34,7 @@ my @datarefs = (
 for my $dataref (@datarefs) {
 	while (my $line = <DATA>) {
 		chomp $line;
-		next if $line eq "" or $line =~ /^#/;
+		next if $line eq '' or $line =~ /^#/;
 		last if $line eq $dataref->{end_token};
 		my ($key, $val) = split ',', $line;
 		$dataref->{hashref}->{$key} = $val;
@@ -203,8 +203,6 @@ Scottish Premiership,SC0
 Scottish Championship,SC1
 Scottish League One,SC2
 Scottish League Two,SC3
-Spanish La Liga,SP1
-Italian Serie A,I1
 Irish Premier Division,ROI
 Norwegian Eliteserien,NRW
 Swedish Allsvenskan,SWD
@@ -224,6 +222,8 @@ Highland League,X
 Lowland League,X
 Russian Premier League,X
 Swiss Super League,X
+Spanish La Liga,X
+Italian Serie A,X
 Brazilian,X
 Danish,X
 Greek,X

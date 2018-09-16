@@ -20,7 +20,7 @@ sub BUILD {
 		? $args->{filename}
 		: $default_filename;
 	$self->{leagues} = $all_leagues[$self->{euro}];
-	$self->{sheetnames} = [ "totals", "all homes", "all aways", "homes", "aways" ];
+	$self->{sheetnames} = [ 'totals', 'all homes', 'all aways', 'homes', 'aways' ];
 	$self->{dispatch} = {
 		'totals'	=> \&Football::Spreadsheets::Max_Profit::get_totals,
 		'all homes'	=> \&Football::Spreadsheets::Max_Profit::get_homes,
@@ -33,11 +33,11 @@ sub BUILD {
 sub show {
 	my ($self, $hash, $sorted) = @_;
 	$self->blank_columns ( [ qw(1 3 5 7 9 11) ] );
-	
+
 	for my $sheet (@{ $self->{sheetnames} }) {
 		my $worksheet = $self->add_worksheet (ucfirst_all $sheet);
 		$self->do_header ($worksheet, $self->{bold_format});
-		
+
 		my $row = 2;
 		for my $team (@{ $sorted->{$sheet} }) {
 			my $row_data = $self->{dispatch}->{$sheet}->($self, $hash, $team);
@@ -49,16 +49,16 @@ sub show {
 
 sub do_header {
 	my ($self, $worksheet, $format) = @_;
-	
+
 	$self->set_columns ($worksheet, $self->get_column_sizes ());
 
-	$worksheet->write ('A1', "League", $format);
-	$worksheet->write ('C1', "Team", $format);
-	$worksheet->write ('E1', "Stake", $format);
-	$worksheet->write ('G1', "Home", $format);
-	$worksheet->write ('I1', "Away", $format);
-	$worksheet->write ('K1', "Total", $format);
-	$worksheet->write ('M1', "Percentage", $format);
+	$worksheet->write ('A1', 'League', $format);
+	$worksheet->write ('C1', 'Team', $format);
+	$worksheet->write ('E1', 'Stake', $format);
+	$worksheet->write ('G1', 'Home', $format);
+	$worksheet->write ('I1', 'Away', $format);
+	$worksheet->write ('K1', 'Total', $format);
+	$worksheet->write ('M1', 'Percentage', $format);
 
 	$worksheet->autofilter( 'A1:A200' );
 	$worksheet->freeze_panes (2,0);
@@ -107,7 +107,7 @@ sub get_aways {
 
 sub get_column_sizes {
 	my $self = shift;
-	
+
 	return {
 		"A C" => 20,
 		"M" => 12,

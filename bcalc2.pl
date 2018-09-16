@@ -8,20 +8,20 @@ use lib 'C:/Mine/perl/Modules';
 use ComboGen;
 
 my $formula = {};
-my $filename = "C:/Mine/perl/Spreadsheets/bcalc2.txt";
+my $filename = 'C:/Mine/perl/Spreadsheets/bcalc2.txt';
 
 my $ptrixie = do_perms (3);
 my $ppatent = do_perms (3);
 my $pyankee = do_perms (4);
 
 my $dispatch = {
-	"permed trixie from 4" => $ptrixie->(4,1), # flag for trixie
-	"permed patent from 4" => $ppatent->(4),
-	"permed patent from 5" => $ppatent->(5),
-	"permed patent from 6" => $ppatent->(6),
+	'permed trixie from 4' => $ptrixie->(4,1), # flag for trixie
+	'permed patent from 4' => $ppatent->(4),
+	'permed patent from 5' => $ppatent->(5),
+	'permed patent from 6' => $ppatent->(6),
 
-	"permed yankee from 5" => $pyankee->(5),
-	"permed yankee from 6" => $pyankee->(6),
+	'permed yankee from 5' => $pyankee->(5),
+	'permed yankee from 6' => $pyankee->(6),
 };
 
 for my $func (%$dispatch) {
@@ -53,7 +53,7 @@ sub do_perms {
 		my ($from, $trixie) = @_;
 		$trixie //= 0;
 		my @formulas = ();
-		
+
 		print "\n\nCalculating $sels from $from";
 		my $gen = ComboGen->new ($sels, $from);
 		my $coderef = sub {
@@ -69,12 +69,11 @@ sub do_perms {
 				$str .= $multiples->($multis);
 			}
 			$str =~ s/\+$//; # remove trailing '+'
-#			$str = substr $str,0,-1; # remove last '+'
 			push @formulas, $str;
 		};
 		$gen->onIteration ($coderef);
 		$gen->run ();
-	
+
 		print "\n$_" for @formulas;
 		return \@formulas;
 	}
@@ -87,8 +86,8 @@ sub build_singles {
 	my $genref = shift;
 	my $start = 3;
 
-	my @temp = map { "I".( $start + $_ ) } @$genref;
-	return "(". join ('+', @temp). ")+";
+	my @temp = map { 'I'.( $start + $_ ) } @$genref;
+	return '('. join ('+', @temp). ')+';
 }
 
 #	sub build_multiples ($from, $genref)
@@ -101,16 +100,16 @@ sub build_multiples {
 
 	return sub {
 		my $sels = shift;
-		my $start = 3; # first cell
-		my $str = "";
+		my $start = 3; # first ce''ll
+		my $str = '';
 
 		my $gen = ComboGen->new ($sels, $from);
 		my $coderef = sub {
 			my $obj = shift;
 			my $objref = $obj->get_array (deep_copy => 0);				# get current state of this generator
 
-			my @temp = map { "I".( $start + @$genref [$_] ) } @$objref;	# index into other generator passed into build_multiples
-			$str .= "(". join ('*', @temp). ")+";
+			my @temp = map { 'I'.( $start + @$genref [$_] ) } @$objref;	# index into other generator passed into build_multiples
+			$str .= '('. join ('*', @temp). ')+';
 		};
 
 		$gen->onIteration ($coderef);

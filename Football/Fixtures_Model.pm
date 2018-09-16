@@ -7,10 +7,10 @@ use MyDate qw( $month_names );
 
 use Time::Piece qw(localtime);
 use Time::Seconds qw(ONE_DAY);
-use utf8;
+#use Data::Dumper;
+#use utf8;
 use Moo;
 use namespace::clean;
-use Data::Dumper;
 
 my $str = join '|', keys %football_fixtures_leagues;
 my $leagues = qr/$str/;
@@ -48,12 +48,12 @@ sub prepare {
 	$self->do_initial_chars ($dataref);
 	$self->do_foreign_chars ($dataref);
 
-#	Find where team names start	
+#	Find where team names start
 	$$dataref =~ s/($lower)($upper)/$1\n$day $date,$2/g;
 
 #	Undo SOME workarounds
 	$self->revert ($dataref);
-	
+
 	$$dataref =~ s/($time)/,$1,/g;
 
 	my @lines = split '\n', $$dataref;
@@ -63,17 +63,19 @@ sub prepare {
 
 sub after_prepare {
 	my ($self, $lines) = @_;
+	my @fixed_lines = ();
 	my $csv_league = '';
-	
+
 	for my $line (@$lines) {
 		if ($line =~ /^<LEAGUE>(.*)$/) {
 			$csv_league = (exists $football_fixtures_leagues{$1} ) ?
 				$football_fixtures_leagues{$1} : 'X';
-		} else {
+		} elsif ($line =~ /\d:\d/) { # valid lines have a time eg 15:00
 			$line =~ s/($dm_date),(.*),($time),(.*)/$1 $3,$csv_league,$2,$4/;
+			push @fixed_lines, $line;
 		}
 	}
-	return $lines;
+	return \@fixed_lines;
 }
 
 sub delete_all {
@@ -98,12 +100,12 @@ sub get_week {
 	my ($self, $days, $forwards) = @_;
 	$days //= 10;
 	$forwards //= 1;
-	
+
 	my @week = ();
 	my $today = localtime;
-	
+
 	for my $day_count (1..$days) {
-		my $day = ($forwards) ? 
+		my $day = ($forwards) ?
 			$today + ($day_count * ONE_DAY):
 			$today - ($day_count * ONE_DAY);
 		push @week, {
@@ -122,35 +124,33 @@ sub get_reverse_week {
 
 sub do_foreign_chars {
 	my ($self, $dataref) = @_;
-	$$dataref =~ s/ä/a/g;
-	$$dataref =~ s/å/a/g;
-	$$dataref =~ s/ö/o/g;
+	$$dataref =~ s/$_/a/g for (qw(ä å));
+	$$dataref =~ s/$_/o/g for (qw(ö ø));
 	$$dataref =~ s/Ö/O/g;
-	$$dataref =~ s/ø/o/g;
 	$$dataref =~ s/æ/ae/g;
 	$$dataref =~ s/\// /g;
 }
 
 sub do_initial_chars {
 	my ($self, $dataref) = @_;
-	$$dataref =~ s/FC/Fc/g;	
+	$$dataref =~ s/FC/Fc/g;
 	$$dataref =~ s/AFC/Afc/g;
 	$$dataref =~ s/SJK/SJk/g;
 	$$dataref =~ s/AIK/AIk/g;
 	$$dataref =~ s/MU/Mu/g;  # Welsh
 #	Order is important here !
 	$$dataref =~ s/ FF//g;	# Swedish
-	$$dataref =~ s/IFK //g;	
-	$$dataref =~ s/FK //g;	
-	$$dataref =~ s/ FK//g;	
-	$$dataref =~ s/GIF //g;	
-	$$dataref =~ s/ IF//g;	
-	$$dataref =~ s/IF //g;	
-	$$dataref =~ s/IK //g;	
-	$$dataref =~ s/ SK//g;	
-	$$dataref =~ s/BK //g;	
-	$$dataref =~ s/ BK//g;	
-	$$dataref =~ s/ SC//g;	
+	$$dataref =~ s/IFK //g;
+	$$dataref =~ s/FK //g;
+	$$dataref =~ s/ FK//g;
+	$$dataref =~ s/GIF //g;
+	$$dataref =~ s/ IF//g;
+	$$dataref =~ s/IF //g;
+	$$dataref =~ s/IK //g;
+	$$dataref =~ s/ SK//g;
+	$$dataref =~ s/BK //g;
+	$$dataref =~ s/ BK//g;
+	$$dataref =~ s/ SC//g;
 	$$dataref =~ s/ 08//g;
 	$$dataref =~ s/KuPS/KUPS/g; # Finnish
 	$$dataref =~ s/RoPS //g;

@@ -42,7 +42,7 @@ sub do_league_places {
 	while ( my ($league, $size) = $iterator->() ) {
 		my $worksheet = $self->{workbook}->add_worksheet ($league);
 		do_league_places_header ($worksheet, $self->{bold_format});
-	
+
 		my $row = 3;
 		for my $home (1..$size) {
 			for my $away (1..$size) {
@@ -96,7 +96,7 @@ sub do_recent_goal_diff {
 		my $worksheet = $self->{workbook}->add_worksheet ($league);
 		$worksheet->add_write_handler( qr/^-?\d+$/, \&signed_goal_diff);
 		do_goal_diff_header ($worksheet, $self->{bold_format});
-	
+
 		my $row = 3;
 		for my $goal_diff (-1 * $self->{size}..$self->{size}) {
 			$worksheet->write ($row, 0, $goal_diff, $self->{format});
@@ -123,7 +123,7 @@ sub do_homeawaydraws {
 	for my $league (@$leagues) {
 		my $worksheet = $self->{workbook}->add_worksheet ($league);
 		do_homeawaydraws_header ($worksheet, $self->{bold_format});
-	
+
 		my $row = 3;
 		my @seasons = sort {$a <=> $b} keys %{ $hash->{$league} };
 		for my $season (@seasons) {
@@ -164,55 +164,55 @@ sub do_league_places_header {
 	$worksheet->set_column ('A:B', 15);
 	$worksheet->set_column ('D:E', 15);
 
-	$worksheet->merge_range ('A1:B1',"League Positions", $format);
-	$worksheet->merge_range ('D1:F1',"Results", $format);
+	$worksheet->merge_range ('A1:B1', 'League Positions', $format);
+	$worksheet->merge_range ('D1:F1', 'Results', $format);
 
-	$worksheet->write ('A2', "Home", $format);
-	$worksheet->write ('B2', "Away", $format);
+	$worksheet->write ('A2', 'Home', $format);
+	$worksheet->write ('B2', 'Away', $format);
 
-	$worksheet->write ('D2', "Home Wins", $format);
-	$worksheet->write ('E2', "Away Wins", $format);
-	$worksheet->write ('F2', "Draws", $format);
+	$worksheet->write ('D2', 'Home Wins', $format);
+	$worksheet->write ('E2', 'Away Wins', $format);
+	$worksheet->write ('F2', 'Draws', $format);
 }
 
 sub do_goal_diff_header {
 	my ($worksheet, $format) = @_;
-	
+
 	$worksheet->set_column ('A:A', 15);
 	$worksheet->set_column ('C:E', 15);
-	$worksheet->write ('A1', "Goal Difference", $format);
-	$worksheet->merge_range ('C1:E1',"Results", $format);
-	$worksheet->merge_range ('H1:J1',"Percentages", $format);
+	$worksheet->write ('A1', 'Goal Difference', $format);
+	$worksheet->merge_range ('C1:E1', 'Results', $format);
+	$worksheet->merge_range ('H1:J1', 'Percentages', $format);
 
-	$worksheet->write ('C2', "Home Wins", $format);
-	$worksheet->write ('D2', "Away Wins", $format);
-	$worksheet->write ('E2', "Draws", $format);
+	$worksheet->write ('C2', 'Home Wins', $format);
+	$worksheet->write ('D2', 'Away Wins', $format);
+	$worksheet->write ('E2', 'Draws', $format);
 
-	$worksheet->write ('H2', "Home", $format);
-	$worksheet->write ('I2', "Away", $format);
-	$worksheet->write ('J2', "Draw", $format);
+	$worksheet->write ('H2', 'Home', $format);
+	$worksheet->write ('I2', 'Away', $format);
+	$worksheet->write ('J2', 'Draw', $format);
 }
 
 sub do_homeawaydraws_header {
 	my ($worksheet, $format) = @_;
-	
-	$worksheet->write ('A2', "Season", $format);
-	$worksheet->write ('C2', "Homes", $format);
-	$worksheet->write ('D2', "Aways", $format);
-	$worksheet->write ('E2', "Draws", $format);
-	$worksheet->merge_range ('H2:J2', "Percentages", $format);
+
+	$worksheet->write ('A2', 'Season', $format);
+	$worksheet->write ('C2', 'Homes', $format);
+	$worksheet->write ('D2', 'Aways', $format);
+	$worksheet->write ('E2', 'Draws', $format);
+	$worksheet->merge_range ('H2:J2', 'Percentages', $format);
 }
 
 sub do_homeawaydraws_footer {
 	my ($worksheet, $format, $bold_format) = @_;
-	
-	$worksheet->write ('A26', "Totals", $bold_format);
-	$worksheet->write ('C26', "=SUM(C4:C23)", $format);
-	$worksheet->write ('D26', "=SUM(D4:D23)", $format);
-	$worksheet->write ('E26', "=SUM(E4:E23)", $format);
-	$worksheet->write ('H26', "=(C26/SUM(C26:E26))*100", $bold_format);
-	$worksheet->write ('I26', "=(D26/SUM(C26:E26))*100", $bold_format);
-	$worksheet->write ('J26', "=(E26/SUM(C26:E26))*100", $bold_format);
+
+	$worksheet->write ('A26', 'Totals', $bold_format);
+	$worksheet->write ('C26', '=SUM(C4:C23)', $format);
+	$worksheet->write ('D26', '=SUM(D4:D23)', $format);
+	$worksheet->write ('E26', '=SUM(E4:E23)', $format);
+	$worksheet->write ('H26', '=(C26/SUM(C26:E26))*100', $bold_format);
+	$worksheet->write ('I26', '=(D26/SUM(C26:E26))*100', $bold_format);
+	$worksheet->write ('J26', '=(E26/SUM(C26:E26))*100', $bold_format);
 }
 
 1;

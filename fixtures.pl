@@ -12,6 +12,7 @@ use warnings;
 use MyKeyword qw(PRODUCTION DELETEALL FOOTBALL RUGBY);
 use Football::Fixtures_View;
 #use Data::Dumper;
+
 FOOTBALL {
 	use Football::Fixtures_Model;
 }
@@ -64,7 +65,7 @@ sub do_rugby {
 	PRODUCTION {
 		$model->get_pages ($data->{rugby}->{sites});
 	}
-	
+
 	for my $league (@league_names) {
 		my $filename = "$path/$league.txt";
 
@@ -93,7 +94,7 @@ sub get_data {
 		football => {
 			sites => [
 				"https://www.bbc.co.uk/sport/football/scores-fixtures",
-			], 
+			],
 		},
 		rugby => {
 			sites => [
@@ -120,7 +121,7 @@ perl fixtures.pl
  Scrapes BBC Sport website for future fixtures
  Writes out to a file called 'fixtures_week.csv' which can be edited as required
  Run fixtures2.pl to write out finished 'fixtures.csv' file(s)
- 
+
 =head1 AUTHOR
 
 Steve Hope 2018

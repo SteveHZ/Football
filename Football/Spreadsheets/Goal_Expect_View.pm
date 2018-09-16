@@ -22,17 +22,17 @@ after 'do_goal_expect_header' => sub {
 	my ($self, $worksheet) = @_;
 	$self->set_columns ($worksheet, $self->after_get_column_sizes ());
 
-	$worksheet->merge_range ('X1:Y1', "GOAL DIFF", $self->{float_format} );
-	$worksheet->write ('X2', "H/A", $self->{format} );
-	$worksheet->write ('Y2', "L6", $self->{format} );
-	$worksheet->write ('AA1', "ODDS", $self->{format} );
-	$worksheet->write ('AC1', "ODDS", $self->{format} );
+	$worksheet->merge_range ('X1:Y1', 'GOAL DIFF', $self->{float_format} );
+	$worksheet->write ('X2', 'H/A', $self->{format} );
+	$worksheet->write ('Y2', 'L6', $self->{format} );
+	$worksheet->write ('AA1', 'ODDS', $self->{format} );
+	$worksheet->write ('AC1', 'ODDS', $self->{format} );
 
-	$worksheet->merge_range ('AE1:AJ1', "OVER/UNDER", $self->{format} );
-	$worksheet->write ('AE2', "PTS", $self->{format} );
-	$worksheet->write ('AG2', "H/A", $self->{format} );
-	$worksheet->write ('AH2', "L6", $self->{format} );
-	$worksheet->merge_range ('AI2:AJ2', "ODDS", $self->{format} );
+	$worksheet->merge_range ('AE1:AJ1', 'OVER/UNDER', $self->{format} );
+	$worksheet->write ('AE2', 'PTS', $self->{format} );
+	$worksheet->write ('AG2', 'H/A', $self->{format} );
+	$worksheet->write ('AH2', 'L6', $self->{format} );
+	$worksheet->merge_range ('AI2:AJ2', 'ODDS', $self->{format} );
 };
 
 sub after_get_column_sizes {

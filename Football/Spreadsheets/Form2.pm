@@ -1,4 +1,4 @@
-package Football::Spreadsheets::Form2;
+'package Football::Spreadsheets::Form2;
 
 use List::MoreUtils qw (each_arrayref);
 use Spreadsheets::Template;
@@ -15,8 +15,8 @@ my $template_path = 'C:/Mine/perl/Football/Football/Spreadsheets/';
 sub BUILD {
 	my $self = shift;
 	$self->{filename} = $filename;
-	$self->{sheets} = [ "All", "Homes", "Aways", "Last Six" ];
-	$self->{lists} = [ "sort_all", "sort_home", "sort_away", "sort_last_six" ];
+	$self->{sheets} = [ 'All', 'Homes', 'Aways', 'Last Six' ];
+	$self->{lists} = [ 'sort_all', 'sort_home', 'sort_away', 'sort_last_six' ];
 }
 
 sub show {
@@ -41,18 +41,18 @@ sub show {
 
 sub do_header {
 	my ($worksheet, $format) = @_;
-	
-	$worksheet->set_column ($_, 20) for ('A:A','C:C');
-	$worksheet->set_column ($_, 8) for ('E:E','G:G','I:I','K:K');
-	$worksheet->set_column ($_, 3) for ('B:B','D:D');
-	$worksheet->set_column ($_, 1) for ('F:F','H:H','J:J');
 
-	$worksheet->write ('A1', "League", $format);
-	$worksheet->write ('C1', "Team", $format);
-	$worksheet->write ('E1', "Total", $format);
-	$worksheet->write ('G1', "Homes", $format);
-	$worksheet->write ('I1', "Aways", $format);
-	$worksheet->write ('K1', "Last Six", $format);
+	$worksheet->set_column ($_, 20) for (qw (A:A C:C));
+	$worksheet->set_column ($_, 8) for (qw (E:E G:G I:I K:K));
+	$worksheet->set_column ($_, 3) for (qw (B:B D:D));
+	$worksheet->set_column ($_, 1) for (qw (F:F H:H J:J));
+
+	$worksheet->write ('A1', 'League', $format);
+	$worksheet->write ('C1', 'Team', $format);
+	$worksheet->write ('E1', 'Total', $format);
+	$worksheet->write ('G1', 'Homes', $format);
+	$worksheet->write ('I1', 'Aways', $format);
+	$worksheet->write ('K1', 'Last Six', $format);
 
 	$worksheet->autofilter( 'A1:A160' );
 }

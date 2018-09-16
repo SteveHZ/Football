@@ -12,7 +12,7 @@ use MyKeyword qw(TESTING); # for model.t
 
 use Moo::Role;
 
-requires qw( leagues league_names csv_leagues test_season_data);
+requires qw( read_json update leagues league_names csv_leagues test_season_data );
 
 sub read_games {
 	my ($self, $update) = @_;
@@ -33,7 +33,7 @@ sub read_games {
 sub do_home_table {
 	my ($self, $games) = @_;
 	my $league_array = $self->{leagues};
-	
+
 	for my $idx (0..$#{ $self->{csv_leagues}} ) {
 		my $league = $self->{league_names}[$idx];
 		@$league_array[$idx]->{home_table} = @$league_array[$idx]->do_home_table ( $games->{$league} );
@@ -44,7 +44,7 @@ sub do_home_table {
 sub do_away_table {
 	my ($self, $games) = @_;
 	my $league_array = $self->{leagues};
-	
+
 	for my $idx (0..$#{ $self->{csv_leagues}} ) {
 		my $league = $self->{league_names}[$idx];
 		@$league_array[$idx]->{away_table} = @$league_array[$idx]->do_away_table ( $games->{$league} );
@@ -89,11 +89,11 @@ sub _get_unique_leagues {
 	my %leagues = map { $_->{league_idx} => $_->{league} } @$fixtures;
 
 #	map to sorted array of hashrefs
-	return [ 
+	return [
 		map { {
 			'league_idx' => $_,
 			'league_name' => $leagues{$_},
-		} } 
+		} }
 		sort { $a <=> $b } keys %leagues
 	];
 }
@@ -112,7 +112,7 @@ sub do_predict_models {
 	$sorted->{match_odds} = $predict_model->calc_match_odds ($fixtures);
 	$sorted->{skellam} = $predict_model->calc_skellam_dist ($fixtures);
 	$sorted->{over_under} = $predict_model->calc_over_under ($fixtures, $leagues);
-	
+
 	return ($teams, $sorted);
 }
 
@@ -144,7 +144,7 @@ sub do_fixtures {
 sub _get_game_data_func {
 	my ($homes, $aways, $last_six) = @_;
 	my $stat_size = $default_stats_size * 2;
-	
+
 	return sub {
 		my $game = shift;
 		my $home = $game->{home_team};
@@ -161,13 +161,13 @@ sub _get_game_data_func {
 		$game->{home_draws} = @$homes[$idx]->{homes}->{$home}->{draws};
 		$game->{last_six_home_points} = @$last_six[$idx]->{last_six}->{$home}->{points};
 		$game->{home_last_six_over_under} = @$homes[$idx]->{last_six}->{$home}->{last_six_over_under};
-		
+
 		$game->{aways} = @$aways[$idx]->{aways}->{$away}->{aways};
 		$game->{full_aways} = @$aways[$idx]->{aways}->{$away}->{full_aways};
 		$game->{away_last_six} = @$last_six[$idx]->{last_six}->{$away}->{last_six};
 		$game->{full_away_last_six} = @$last_six[$idx]->{last_six}->{$away}->{full_last_six};
 		$game->{away_over_under} = @$aways[$idx]->{aways}->{$away}->{away_over_under};
-			
+
 		$game->{away_points} = @$aways[$idx]->{aways}->{$away}->{points};
 		$game->{away_draws} = @$aways[$idx]->{aways}->{$away}->{draws};
 		$game->{last_six_away_points} = @$last_six[$idx]->{last_six}->{$away}->{points};

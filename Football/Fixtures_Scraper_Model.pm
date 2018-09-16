@@ -2,7 +2,7 @@ package Football::Fixtures_Scraper_Model;
 
 use Web::Query;
 use MyLib qw(ucfirst_all);
-#use utf8;
+use utf8;
 use Data::Dumper;
 use Moo;
 use namespace::clean;

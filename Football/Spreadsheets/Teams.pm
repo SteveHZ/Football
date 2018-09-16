@@ -28,7 +28,7 @@ sub do_teams {
 		print "\nWriting data for $team...";
 		my $worksheet = $self->add_worksheet ($team);
 		$self->do_teams_headers ($worksheet);
-		
+
 		my $row = 1;
 		if ( my $next = $teams->{$team}->iterator () ) {
 #		my $next = $teams->{$team}->iterator () ) {
@@ -52,11 +52,11 @@ sub do_teams_headers {
 
 	$self->set_columns ($worksheet);
 
-	$worksheet->write ('A1', "DATE", $self->{bold_format});
-	$worksheet->write ('B1', "OPPONENT", $self->{bold_format});
-	$worksheet->write ('C1', "H/A", $self->{bold_format});
-	$worksheet->write ('D1', "RESULT", $self->{bold_format});
-	$worksheet->write ('E1', "SCORE", $self->{bold_format});
+	$worksheet->write ('A1', 'DATE', $self->{bold_format});
+	$worksheet->write ('B1', 'OPPONENT', $self->{bold_format});
+	$worksheet->write ('C1', 'H/A', $self->{bold_format});
+	$worksheet->write ('D1', 'RESULT', $self->{bold_format});
+	$worksheet->write ('E1', 'SCORE', $self->{bold_format});
 }
 
 sub set_columns {

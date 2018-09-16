@@ -41,10 +41,10 @@ $view->aways (
 
 $view->full_homes ( $homes );
 $view->full_aways ( $aways );
-$view->last_six ( 
+$view->last_six (
 	my $last_six = $model->last_six ($leagues)
 );
-#print "\n update = $options->{update_favs}";<STDIN>;
+
 $view->do_favourites ( $model->do_favourites ($season, $options->{update_favs}) );
 
 $view->fixture_list (
@@ -66,7 +66,7 @@ $view->do_predict_models ($leagues, $teams, $sorted);
 
 sub get_cmdline {
 	my ($uk, $euro, $summer, $update, $favs, $rugby) = (0,0,0,0,0,0);
-	
+
 	Getopt::Long::Configure ("bundling");
 	GetOptions (
 		'euro|e' => \$euro,
@@ -107,7 +107,7 @@ predict.pl
 =head1 SYNOPSIS
 
  cd football
- perl predict.pl 
+ perl predict.pl
  perl predict.pl -u
  perl predict.pl -e OR -eu
  perl predict.pl -s OR -su

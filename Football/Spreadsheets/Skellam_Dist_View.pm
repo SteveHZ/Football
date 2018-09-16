@@ -21,7 +21,7 @@ sub create_sheet {
 
 after 'BUILD' => sub {
 	my $self = shift;
-	
+
 	$self->{blank_text_format} = $self->copy_format ( $self->{format} );
 	$self->{blank_text_format}->set_num_format ('@');
 
@@ -34,7 +34,7 @@ after 'BUILD' => sub {
 
 	$self->{blank_number_format2} = $self->copy_format ($self->{blank_text_format2} );
 	$self->{blank_number_format2}->set_num_format ('#0.00');
-	
+
 	$self->{blank_number_format3} = $self->copy_format ($self->{blank_text_format2} );
 	$self->{blank_number_format3}->set_num_format ('#0');
 
@@ -50,7 +50,7 @@ sub view {
 		print "\n$game->{home_team} v $game->{away_team}";
 		print " [ $game->{home_goals} - $game->{away_goals} ]";
 	}
-	$self->do_skellam ($fixtures); 
+	$self->do_skellam ($fixtures);
 }
 
 sub do_skellam {
@@ -70,7 +70,7 @@ sub do_skellam {
 sub get_format {
 	my ($self, $goal_diff) = @_;
 	return ($goal_diff >= 0) ? $self->{float_format} : $self->{bold_float_format};
-} 
+}
 
 sub get_skellam_rows {
 	my ($self, $game) = @_;
@@ -98,18 +98,18 @@ sub get_skellam_rows {
 sub do_skellam_header {
 	my ($self, $worksheet) = @_;
 
-	$worksheet->set_column ($_, 20) for ('A:A','C:D',);
-	$worksheet->set_column ($_, 8) for ('F:H');
-	$worksheet->set_column ($_, 6) for ('J:N','P:P','R:V');
-	$worksheet->set_column ($_, 2.5) for ('B:B','E:E','I:I','O:O','Q:Q');
-	
+	$worksheet->set_column ($_, 20) for (qw (A:A C:D));
+	$worksheet->set_column ($_, 8) for (qw (F:H));
+	$worksheet->set_column ($_, 6) for (qw (J:N P:P R:V));
+	$worksheet->set_column ($_, 2.5) for (qw (B:B E:E I:I O:O Q:Q));
+
 	$worksheet->write ('A1', "League", $self->{format} );
 	$worksheet->write ('C1', "Home", $self->{format} );
 	$worksheet->write ('D1', "Away", $self->{format} );
 	$worksheet->write ('F1', "HW", $self->{format} );
 	$worksheet->write ('G1', "Draw", $self->{format} );
 	$worksheet->write ('H1', "AW", $self->{format} );
-	
+
 	$worksheet->write ('J1', "+5", $self->{format} );
 	$worksheet->write ('K1', "+4", $self->{format} );
 	$worksheet->write ('L1', "+3", $self->{format} );

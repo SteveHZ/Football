@@ -19,7 +19,7 @@ sub get_rules {}
 
 after 'BUILD' => sub {
 	my $self = shift;
-	
+
 	$self->{blank_text_format} = $self->copy_format ( $self->{format} );
 	$self->{blank_text_format}->set_num_format ('@');
 
@@ -32,7 +32,7 @@ after 'BUILD' => sub {
 
 	$self->{blank_number_format2} = $self->copy_format ($self->{blank_text_format2} );
 	$self->{blank_number_format2}->set_num_format ('#0.00');
-	
+
 	$self->{blank_number_format3} = $self->copy_format ($self->{blank_text_format2} );
 	$self->{blank_number_format3}->set_num_format ('#0');
 
@@ -65,13 +65,13 @@ sub view {
 			print "$teams->{$team}->{expect_away_against} ";
 		}
 	}
-	$self->do_goal_expect ($fixtures); 
+	$self->do_goal_expect ($fixtures);
 	$self->write_data ($leagues, $teams, $fixtures);
 }
 
 sub do_goal_expect {
 	my ($self, $fixtures) = @_;
-	
+
 	my $worksheet = $self->add_worksheet ("Goal Expect");
 	$self->do_goal_expect_header ($worksheet);
 
@@ -111,12 +111,12 @@ sub write_data {
 sub get_format {
 	my ($self, $goal_diff) = @_;
 	return ($goal_diff >= 0) ? $self->{float_format} : $self->{bold_float_format};
-} 
+}
 
 sub get_goal_expect_rows {
 	my ($self, $game) = @_;
 	state $rules = $self->get_rules ();
-	
+
 	return [
 		{ $game->{league} => $self->{format} },
 		{ $game->{date} => $self->{blank_text_format2} },
@@ -179,7 +179,7 @@ sub do_goal_expect_header {
 	my ($self, $worksheet) = @_;
 
 	$self->set_columns ($worksheet, $self->get_column_sizes ());
-	$worksheet->set_column ($_, undef, undef, 1) for ('B:B','G:I','L:N'); # hide columns
+	$worksheet->set_column ($_, undef, undef, 1) for (qw (B:B G:I L:N)); # hide columns
 
 	$worksheet->write ('B1', "League", $self->{format} );
 	$worksheet->write ('D1', "Home", $self->{format} );
@@ -189,7 +189,7 @@ sub do_goal_expect_header {
 
 	$worksheet->write ('K1', "H/A", $self->{format} );
 	$worksheet->write ('P1', "L6", $self->{format} );
-	
+
 	$worksheet->write ('R1', "H/A", $self->{format} );
 	$worksheet->write ('S1', "LSG", $self->{format} );
 	$worksheet->write ('U1', "RGD", $self->{format} );
@@ -201,7 +201,7 @@ sub do_goal_expect_header {
 
 sub get_column_sizes {
 	my $self = shift;
-	
+
 	return {
 		"A B D F" => 20,
 		"C E G J L O Q T" => 2.5,
@@ -214,7 +214,7 @@ sub get_column_sizes {
 
 sub do_write_data_header {
 	my ($worksheet, $format) = @_;
-	
+
 	$worksheet->set_column ('A:A', 20);
 	$worksheet->set_column ('B:Y' , 5.5);
 
