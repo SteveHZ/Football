@@ -70,7 +70,7 @@ sub after_prepare {
 		if ($line =~ /^<LEAGUE>(.*)$/) {
 			$csv_league = (exists $football_fixtures_leagues{$1} ) ?
 				$football_fixtures_leagues{$1} : 'X';
-		} elsif ($line =~ /\d:\d/) { # valid lines have a time eg 15:00
+		} elsif ($line =~ /\d:\d/) { # valid lines will have a time eg 15:00
 			$line =~ s/($dm_date),(.*),($time),(.*)/$1 $3,$csv_league,$2,$4/;
 			push @fixed_lines, $line;
 		}
