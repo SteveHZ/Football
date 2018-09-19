@@ -25,24 +25,24 @@ after 'do_goal_expect_header' => sub {
 
 	$self->set_columns ($worksheet, $self->after_get_column_sizes ());
 
-	$worksheet->merge_range ('W1:X1', "GOAL DIFF", $self->{float_format} );
-	$worksheet->write ('W2', "H/A", $self->{format} );
-	$worksheet->write ('X2', "L6", $self->{format} );
+	$worksheet->merge_range ('W1:X1', 'GOAL DIFF', $self->{float_format} );
+	$worksheet->write ('W2', 'H/A', $self->{format} );
+	$worksheet->write ('X2', 'L6', $self->{format} );
 
-	$worksheet->write ('U1', "PD", $self->{format} );
-	$worksheet->write ('Z1', "ODDS", $self->{format} );
-	$worksheet->write ('AB1', "SKY", $self->{format} );
-	$worksheet->write ('AC1', "B365", $self->{format} );
+	$worksheet->write ('U1', 'PD', $self->{format} );
+	$worksheet->write ('Z1', 'ODDS', $self->{format} );
+	$worksheet->write ('AB1', 'SKY', $self->{format} );
+	$worksheet->write ('AC1', 'B365', $self->{format} );
 };
 
 sub after_get_column_sizes {
 	my $self = shift;
-	
+
 	return {
-		"W:X" => { size => 7, fmt => $self->{float_format} },
-		"Y AA" => { size => 2.5, fmt => $self->{blank_number_format2} },
+		'W:X' => { size => 7, fmt => $self->{float_format} },
+		'Y AA' => { size => 2.5, fmt => $self->{blank_number_format2} },
 		Z => { size => 10, fmt => $self->{format} },
-		"AB:AC" => { size => 6, fmt => $self->{blank_number_format} },
+		'AB:AC' => { size => 6, fmt => $self->{blank_number_format} },
 	};
 }
 

@@ -18,11 +18,11 @@ sub BUILD {
 
 sub do_rugby_points {
 	my ($self, $hash, $range) = @_;
-	
+
 	print "\nWriting worksheet...";
-	my $worksheet = $self->add_worksheet ("Rugby Points");
+	my $worksheet = $self->add_worksheet ('Rugby Points');
 	do_header ($worksheet, $self->{bold_format});
-		
+
 	my $row = 1;
 	for my $points_diff (@$range) {
 		if ($hash->{$points_diff}) {
@@ -39,10 +39,10 @@ sub do_header {
 
 	$worksheet->set_column ($_, 20) for ('A:A');
 	$worksheet->set_column ($_, 10) for ('C:C');
-	$worksheet->set_column ($_, 5) for ('B:B','D:D');
+	$worksheet->set_column ($_, 5) for (qw (B:B D:D));
 
-	$worksheet->write ('A1', "Points Difference", $format);
-	$worksheet->write ('C1', "Games", $format);
+	$worksheet->write ('A1', 'Points Difference', $format);
+	$worksheet->write ('C1', 'Games', $format);
 }
 
 1;
