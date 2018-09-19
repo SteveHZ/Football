@@ -4,7 +4,7 @@
 use strict;
 use warnings;
 
-die "Usage perl csvcat.pl to_file from_file(s)..." unless @ARGV >= 2;
+die 'Usage perl csvcat.pl to_file from_file(s)...' unless @ARGV >= 2;
 
 my $to_file = "C:/Mine/perl/Football/data/Euro/$ARGV[0].csv";
 
@@ -22,9 +22,9 @@ for my $file_count (1..$#ARGV) {
 	for my $game (@games) {
 		chomp $game;
 		my @line = split ',', $game;
-		print $fh2 	$line[0].",".$line[1].",".$line[2],",". $line[3].",",
-					$line[4].",". $line[5].",".$line[6].",,,,,,,,,,,,,,,,".
-					$line[22].",". $line[23].",". $line[24].",0,0\n";
+		print $fh2 	$linev[0].','.$line[1].','.$line[2],','. $line[3].',',
+					$line[4].','. $line[5].','.$line[6].',,,,,,,,,,,,,,,,'.
+					$line[22].','. $line[23].','. $line[24].",0,0\n";
 	}
 	close $fh2;
 }
@@ -43,7 +43,7 @@ perl csvcat.pl to_file from_file(s)
 
  Append from_file(s).csv to to_file.csv
  Do not use file extensions as part of argument
- 
+
 =head1 AUTHOR
 
 Steve Hope 2018

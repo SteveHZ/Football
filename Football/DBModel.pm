@@ -15,13 +15,13 @@ has 'data' => (is => 'ro' );
 sub BUILD {
 	my $self = shift;
 	$self->{sqla} = SQL::Abstract->new ();
-	$self->{dbh} = DBI->connect ("DBI:CSV:", undef, undef, {
+	$self->{dbh} = DBI->connect ('DBI:CSV:', undef, undef, {
 		f_dir => $self->{data}->{path},
-		f_ext => ".csv",
+		f_ext => '.csv',
 		csv_eol => "\n",
 		RaiseError => 1,
 	})	or die "Couldn't connect to database : ".DBI->errstr;
-	
+
 	$self->{venue_hash}= {
 		'h' => 'HomeTeam',
 		'a' => 'AwayTeam',
@@ -55,7 +55,7 @@ sub build_leagues {
 		my $sth = $self->{dbh}->prepare ($query)
 			or die "Couldn't prepare statement : ".$self->{dbh}->errstr;
 		$sth->execute;
-		
+
 		my @temp = ();
 		while (my $row = $sth->fetchrow_hashref) {
 			push (@temp, $row->{HomeTeam} );
@@ -99,7 +99,7 @@ sub build_query {
 
 	for my $venue (@venues) {
 		my $temp = {};
-		
+
 		my @results = map { $self->{results_hash}->{uc $venue}->{$_} } @options;
 
 		$temp->{ $self->{venue_hash}->{$venue} } = $team; # HomeTeam = ?
@@ -108,7 +108,7 @@ sub build_query {
 	}
 	my %qhash = (-or => [ @query ]);
 	TESTING {
-		print "\nQuery = ".Dumper (%qhash); 
+		print "\nQuery = ".Dumper (%qhash);
 	}
 	return \%qhash;
 }

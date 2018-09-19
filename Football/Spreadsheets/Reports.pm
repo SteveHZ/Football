@@ -22,10 +22,10 @@ sub create_sheet {
 	my ($self, $report) = @_;
 	my $path = $self->get_path ();
 	my $xlsx_files = {
-		"League Places" 		 => $path.'league_places.xlsx',
-		"Goal Difference"		 => $path.'goal_difference.xlsx',
-		"Recent Goal Difference" => $path.'recent_goal_difference.xlsx',
-		"Homes Aways Draws" 	 => $path.'homes_aways_draws.xlsx',
+		'League Places' 		 => $path.'league_places.xlsx',
+		'Goal Difference'		 => $path.'goal_difference.xlsx',
+		'Recent Goal Difference' => $path.'recent_goal_difference.xlsx',
+		'Homes Aways Draws' 	 => $path.'homes_aways_draws.xlsx',
 	};
 	$self->{filename} = $xlsx_files->{$report};
 }

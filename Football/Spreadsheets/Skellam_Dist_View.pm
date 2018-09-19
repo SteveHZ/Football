@@ -55,7 +55,7 @@ sub view {
 
 sub do_skellam {
 	my ($self, $fixtures) = @_;
-	my $worksheet = $self->add_worksheet ("Skellam Distribution");
+	my $worksheet = $self->add_worksheet ('Skellam Distribution');
 	$self->do_skellam_header ($worksheet);
 
 	$self->blank_columns ( [ qw( 1 4 8 14 16 ) ] );
@@ -103,25 +103,25 @@ sub do_skellam_header {
 	$worksheet->set_column ($_, 6) for (qw (J:N P:P R:V));
 	$worksheet->set_column ($_, 2.5) for (qw (B:B E:E I:I O:O Q:Q));
 
-	$worksheet->write ('A1', "League", $self->{format} );
-	$worksheet->write ('C1', "Home", $self->{format} );
-	$worksheet->write ('D1', "Away", $self->{format} );
-	$worksheet->write ('F1', "HW", $self->{format} );
-	$worksheet->write ('G1', "Draw", $self->{format} );
-	$worksheet->write ('H1', "AW", $self->{format} );
+	$worksheet->write ('A1', 'League', $self->{format} );
+	$worksheet->write ('C1', 'Home', $self->{format} );
+	$worksheet->write ('D1', 'Away', $self->{format} );
+	$worksheet->write ('F1', 'HW', $self->{format} );
+	$worksheet->write ('H1', "AW', $self->{format} );
+	$worksheet->write ('G1', 'Draw', $self->{format} );
 
-	$worksheet->write ('J1', "+5", $self->{format} );
-	$worksheet->write ('K1', "+4", $self->{format} );
-	$worksheet->write ('L1', "+3", $self->{format} );
-	$worksheet->write ('M1', "+2", $self->{format} );
-	$worksheet->write ('N1', "+1", $self->{format} );
-	$worksheet->write ('P1', "0", $self->{format} );
+	$worksheet->write ('J1', '+5', $self->{format} );
+	$worksheet->write ('K1', '+4', $self->{format} );
+	$worksheet->write ('L1', '+3', $self->{format} );
+	$worksheet->write ('M1', '+2', $self->{format} );
+	$worksheet->write ('N1', '+1', $self->{format} );
+	$worksheet->write ('P1', '0', $self->{format} );
 
-	$worksheet->write ('R1', "-1", $self->{format} );
-	$worksheet->write ('S1', "-2", $self->{format} );
-	$worksheet->write ('T1', "-3", $self->{format} );
-	$worksheet->write ('U1', "-4", $self->{format} );
-	$worksheet->write ('V1', "-5", $self->{format} );
+	$worksheet->write ('R1', '-1', $self->{format} );
+	$worksheet->write ('S1', '-2', $self->{format} );
+	$worksheet->write ('T1', '-3', $self->{format} );
+	$worksheet->write ('U1', '-4', $self->{format} );
+	$worksheet->write ('V1', '-5', $self->{format} );
 
 	$worksheet->autofilter( 'A1:A100' );
 	$worksheet->freeze_panes (2,0);

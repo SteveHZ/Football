@@ -15,7 +15,7 @@ sub update {
 	my $line = <$fh>;	# skip first line
 	while ($line = <$fh>) {
 		my @data = (split ',', $line)[4..9];
-		last if $data [0] eq ""; # don't remove !!!
+		last if $data [0] eq ''; # don't remove !!!
 		push ( @$league_games, {
 			home_score => $data [0],
 			away_score => $data [1],
@@ -37,11 +37,11 @@ sub update_current {
 	my $line = <$fh>;
 	my @odds_cols = get_odds_cols ($line);
 	my $over_under_cols = get_over_under_cols ($line);
-	
+
 	while ($line = <$fh>) {
 		my @data = split (',', $line);
-		last if $data [0] eq ""; # don't remove !!!
-		next if any {$_ eq ""} ( $data[4], $data[5] );
+		last if $data [0] eq ''; # don't remove !!!
+		next if any {$_ eq ''} ( $data[4], $data[5] );
 
 		push ( @$league_games, {
 			league => $data [0],
@@ -66,13 +66,13 @@ sub write_current {
 	my ($self, $file, $data) = @_;
 	open (my $fh, '>', $file) or die ("Unable to open $file");
 
-	print $fh "Div ,Date ,Home Team, Away Team, FTHG, ATHG, FTR, B365H, B365D, B365A, Over, Under";
+	print $fh 'Div ,Date ,Home Team, Away Team, FTHG, ATHG, FTR, B365H, B365D, B365A, Over, Under';
 	for my $line (@$data) {
-		print $fh "\n". $line->{league} .",". $line->{date} .",".
-						$line->{home_team} .",". $line->{away_team} .",".
-						$line->{home_score}.",". $line->{away_score}.",". $line->{result}.",".
-						$line->{home_odds} .",". $line->{draw_odds} .",". $line->{away_odds}.",".
-						$line->{over_odds} .",". $line->{under_odds};
+		print $fh "\n". $line->{league} .','. $line->{date} .','.
+						$line->{home_team} .','. $line->{away_team} .','.
+						$line->{home_score}.','. $line->{away_score}.','. $line->{result}.','.
+						$line->{home_odds} .','. $line->{draw_odds} .','. $line->{away_odds}.','.
+						$line->{over_odds} .','. $line->{under_odds};
 	}
 	close $fh;
 }

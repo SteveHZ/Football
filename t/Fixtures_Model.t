@@ -3,6 +3,7 @@
 use strict;
 use warnings;
 use Test::More tests => 4;
+#use Test::More tests => 5;
 
 use lib "C:/Mine/perl/Football";
 use Football::Fixtures_Model;
@@ -33,3 +34,10 @@ subtest 'do_foreign chars' => sub {
 	$model->do_foreign_chars (\$str);
     is ($str, 'AAaaAA oOoae', 'foreign chars ok');
 };
+
+#subtest 'contains' => sub {
+#	plan tests => 2;
+#	my @list = qw(Steve Linda Zappy);
+#	is ($model->contains (\@list, 'Zappy'), 1, 'contains');
+#	is ($model->contains (\@list, 'Hopey'), 0, 'doesn\'t contain');
+#};

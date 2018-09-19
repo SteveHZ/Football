@@ -168,6 +168,13 @@ sub revert {
 	$$dataref =~ s/SJk/SJK/g;
 }
 
+#use List::MoreUtils qw(firstidx);
+#sub contains {
+#	my ($self, $list, $value) = @_;
+#	return 1 if (firstidx { $_ eq $value } @$list) > 0;
+#	return 0;
+#}
+
 =pod
 
 =head1 NAME

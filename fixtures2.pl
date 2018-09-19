@@ -7,23 +7,23 @@ use Football::Fixtures_Globals qw( football_rename rugby_rename );
 
 my @paths = (
 	{
-		in_file  => "C:/Mine/perl/Football/data/Euro/scraped/fixtures_uk.csv",
-		out_file => "C:/Mine/perl/Football/data/fixtures.csv",
+		in_file  => 'C:/Mine/perl/Football/data/Euro/scraped/fixtures_uk.csv',
+		out_file => 'C:/Mine/perl/Football/data/fixtures.csv',
 		func => \&Football::Fixtures_Globals::football_rename,
 	},
 	{
-		in_file  => "C:/Mine/perl/Football/data/Euro/scraped/fixtures_euro.csv",
-		out_file => "C:/Mine/perl/Football/data/Euro/fixtures.csv",
+		in_file  => 'C:/Mine/perl/Football/data/Euro/scraped/fixtures_euro.csv',
+		out_file => 'C:/Mine/perl/Football/data/Euro/fixtures.csv',
 		func => \&Football::Fixtures_Globals::football_rename,
 	},
 	{
-		in_file  => "C:/Mine/perl/Football/data/Euro/scraped/fixtures_summer.csv",
-		out_file => "C:/Mine/perl/Football/data/Summer/fixtures.csv",
+		in_file  => 'C:/Mine/perl/Football/data/Euro/scraped/fixtures_summer.csv',
+		out_file => 'C:/Mine/perl/Football/data/Summer/fixtures.csv',
 		func => \&Football::Fixtures_Globals::football_rename,
 	},
 #	{
-#		in_file  => "C:/Mine/perl/Football/data/Euro/scraped/fixtures_rugby.csv",
-#		out_file => "C:/Mine/perl/Football/data/Rugby/fixtures.csv",
+#		in_file  => 'C:/Mine/perl/Football/data/Euro/scraped/fixtures_rugby.csv',
+#		out_file => 'C:/Mine/perl/Football/data/Rugby/fixtures.csv',
 #		func => \&Football::Fixtures_Globals::rugby_rename,
 #	},
 );
@@ -61,7 +61,7 @@ perl fixtures.pl
 
  Run fixtures to write out 'fixtures_week.csv' then edit as required
  Run fixtures2.pl to write out finished 'fixtures.csv' file
- 
+
 =head1 AUTHOR
 
 Steve Hope 2018

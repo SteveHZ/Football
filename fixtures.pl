@@ -93,14 +93,14 @@ sub get_data {
 	return {
 		football => {
 			sites => [
-				"https://www.bbc.co.uk/sport/football/scores-fixtures",
+				'https://www.bbc.co.uk/sport/football/scores-fixtures',
 			],
 		},
 		rugby => {
 			sites => [
-				"https://www.bbc.co.uk/sport/rugby-league/super-league/fixtures",
-				"https://www.bbc.co.uk/sport/rugby-league/championship/fixtures",
-				"https://www.bbc.co.uk/sport/rugby-league/league-one/fixtures",
+				'https://www.bbc.co.uk/sport/rugby-league/super-league/fixtures',
+				'https://www.bbc.co.uk/sport/rugby-league/championship/fixtures',
+				'https://www.bbc.co.uk/sport/rugby-league/league-one/fixtures',
 			],
 		},
 	};

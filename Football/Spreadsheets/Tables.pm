@@ -26,7 +26,7 @@ sub create_sheet {
 
 sub do_table {
 	my ($self, $table, $title) = @_;
-	$title //= "Table";
+	$title //= 'Table';
 
 	my $worksheet = $self->add_worksheet ($title);
 	$worksheet->add_write_handler( qr/^-?\d+$/, \&table_signed_goal_diff);
@@ -51,12 +51,12 @@ sub do_table {
 
 sub do_home_table {
 	my ($self, $table) = @_;
-	$self->do_table ($table, "Home Table");
+	$self->do_table ($table, 'Home Table');
 }
 
 sub do_away_table {
 	my ($self, $table) = @_;
-	$self->do_table ($table, "Away Table");
+	$self->do_table ($table, 'Away Table');
 }
 
 sub do_home_aways {
@@ -75,7 +75,7 @@ sub do_home_aways {
 	my $place = 1;
 	for my $team (@sorted) {
 		my $col = 3;
-		my $full_str = "full_".$home_away;
+		my $full_str = 'full_'.$home_away;
 
 		$worksheet->write ($row, 0, $place ++, $self->{format});
 		$worksheet->write ($row, 1, $list->{$team}->{name}, $self->{format});
@@ -91,22 +91,22 @@ sub do_home_aways {
 		$worksheet->write ($row, ++$col, $list->{$team}->{points}, $self->{format});
 		$row ++;
 	}
-	$self->do_draws ($worksheet, $list, "Home Draws");
+	$self->do_draws ($worksheet, $list, 'Home Draws');
 }
 
 sub do_homes {
 	my ($self, $list, $title) = @_;
-	$self->do_home_aways ($list, $title, "homes");
+	$self->do_home_aways ($list, $title, 'homes');
 }
 
 sub do_aways {
 	my ($self, $list, $title) = @_;
-	$self->do_home_aways ($list, $title, "aways");
+	$self->do_home_aways ($list, $title, 'aways');
 }
 
 sub do_last_six {
 	my ($self, $list, $title) = @_;
-	$self->do_home_aways ($list, $title, "last_six");
+	$self->do_home_aways ($list, $title, 'last_six');
 }
 
 sub do_draws {
@@ -148,11 +148,11 @@ sub do_form_header {
 	$worksheet->set_column ($_, 8)  for (qw (C:C J:J));
 	$worksheet->set_column ($_, 20) for (qw (B:B N:N));
 
-	$worksheet->write ('B2', "Team", $format);
+	$worksheet->write ('B2', 'Team', $format);
 	$worksheet->merge_range ('D2:I2', $title, $format);
-	$worksheet->write ('K2', "GD", $format);
-	$worksheet->write ('L2', "Points", $format);
-	$worksheet->merge_range ('N2:O2', "Draws" , $format);
+	$worksheet->write ('K2', 'GD', $format);
+	$worksheet->write ('L2', 'Points', $format);
+	$worksheet->merge_range ('N2:O2', 'Draws', $format);
 }
 
 sub table_signed_goal_diff {

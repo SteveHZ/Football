@@ -23,10 +23,10 @@ main ();
 sub main {
 	my $model = Football::Euro_Data_Model->new ();
 	my $team_hash = Football::Team_Hash->new ();
-	
+
 	my $iterator = each_arrayref ($leagues, $index);
 	while (my ($csv_league, $lg_idx) = $iterator->()) {
-		my $file = $in_path.$csv_league.".csv";
+		my $file = $in_path.$csv_league.'.csv';
 		my $results = $model->read_csv ($file, $csv_league);
 		$team_hash->add_teams ($results, $lg_idx);
 
@@ -42,9 +42,9 @@ sub main {
 
 	my $sorted = $team_hash->sort ();
 	for my $team (@{ $sorted->{totals} }) {
-		print "\n$team : ". $team_hash->team($team)->stake." ".
-							$team_hash->team($team)->home." ". $team_hash->team($team)->away." ".
-							$team_hash->team($team)->total." = ".($team_hash->team($team)->percent * 100)."%";
+		print "\n$team : ". $team_hash->team($team)->stake.' '.
+							$team_hash->team($team)->home.' '. $team_hash->team($team)->away.' '.
+							$team_hash->team($team)->total.' = '.($team_hash->team($team)->percent * 100).'%';
 	}
 	my $writer = Football::Spreadsheets::Max_Profit->new ( filename => $out_file, euro => 1 );
 	$writer->show ($team_hash, $sorted);
