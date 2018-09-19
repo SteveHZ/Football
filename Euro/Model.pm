@@ -18,7 +18,7 @@ sub BUILD {
 	$self->{league_names} = \@euro_lgs;
 	$self->{csv_leagues} = \@euro_csv_lgs;
 
-	$self->{model_name} = "Euro";
+	$self->{model_name} = 'Euro';
 	$self->{path} = 'C:/Mine/perl/Football/data/Euro/';
 	$self->{fixtures_file} = $self->{path}.'fixtures.csv';
 	$self->{season_data} = $self->{path}.'season.json';

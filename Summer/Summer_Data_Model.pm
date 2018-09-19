@@ -20,8 +20,8 @@ sub read_data {
 	while ($line = <$fh>) {
 		chomp $line;
 		my @data = split (',', $line);
-		last if $data [0] eq ""; # don't remove !!!
-		
+		last if $data [0] eq ''; # don't remove !!!
+
 		push ( @$league_games, {
 			league => $data [0],
 			year => $data [2],
@@ -35,7 +35,7 @@ sub read_data {
 			draw_odds => $data [ $odds_cols[1] ],
 			away_odds => $data [ $odds_cols[2] ],
 		});
-		
+
 	}
 	close $fh;
 	return $league_games;
@@ -47,15 +47,15 @@ sub write_csv {
 	my ($self, $file, $data) = @_;
 	open (my $fh, '>', $file) or die ("Unable to open $file");
 
-	print $fh "Date,HomeTeam,AwayTeam,FTHG,FTAG,FTR,AvgH,AvgD,AvgA";
+	print $fh 'Date,HomeTeam,AwayTeam,FTHG,FTAG,FTR,AvgH,AvgD,AvgA';
 	for my $line (@$data) {
 		$line->{home_team} = check_rename ( $line->{home_team} );
 		$line->{away_team} = check_rename ( $line->{away_team} );
-	
-		print $fh "\n". $line->{date} .",".
-						$line->{home_team} .",". $line->{away_team} .",".
-						$line->{home_score}.",". $line->{away_score}.",". $line->{result}.",".
-						$line->{home_odds} .",". $line->{draw_odds} .",". $line->{away_odds};
+
+		print $fh "\n". $line->{date} .','.
+						$line->{home_team} .','. $line->{away_team} .','.
+						$line->{home_score}.','. $line->{away_score}.','. $line->{result}.','.
+						$line->{home_odds} .','. $line->{draw_odds} .','. $line->{away_odds};
 	}
 	close $fh;
 }
@@ -72,8 +72,8 @@ sub read_csv {
 	while ($line = <$fh>) {
 		chomp $line;
 		my @data = split (',', $line);
-		last if $data [0] eq ""; # don't remove !!!
-		
+		last if $data [0] eq ''; # don't remove !!!
+
 		push ( @$league_games, {
 			date => $data [0],
 			home_team => $data [1],
@@ -103,7 +103,7 @@ sub update_euro {
 		chomp $line;
 		my @data = split (',', $line);
 		last if $data [0] eq ""; # don't remove !!!
-		
+
 		if ($data [2] eq "2017") {
 			push ( @$league_games, {
 				league => $data [0],

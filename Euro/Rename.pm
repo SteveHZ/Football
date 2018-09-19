@@ -17,35 +17,35 @@ sub new { return bless {}, shift; }
 
 our $euro_teams = {
 #	Welsh
-	"Druids" => "Cefn Druids",
-	"Connahs Q." => "Connahs Quay",
-	"Cardiff Metropolitan" => "Cardiff MU",
-	"Barry" => "Barry Town",
-	"Bala" => "Bala Town",
+	'Druids' => 'Cefn Druids',
+	'Connahs Q.' => 'Connahs Quay',
+	'Cardiff Metropolitan' => 'Cardiff MU',
+	'Barry' => 'Barry Town',
+	'Bala' => 'Bala Town',
 
 #	Northern Irish
-	"C. Rangers" => "Carrick Rangers",
+	'C. Rangers' => 'Carrick Rangers',
 
 #	Irish
-	"St. Patricks" => "St Patricks",
-	"Bray" => "Bray Wanderers",
+	'St. Patricks' => 'St Patricks',
+	'Bray' => 'Bray Wanderers',
 
 #  Swedish
-	"Malmo FF" => "Malmo",
-	
+	'Malmo FF' => 'Malmo',
+
 #	Norwegian
-	"Bodo/Glimt" => "Bodo Glimt",
-	"Sarpsborg 08" => "Sarpsborg",
-	"Djurgarden" => "Djurgardens",
-	
+	'Bodo/Glimt' => 'Bodo Glimt',
+	'Sarpsborg 08' => 'Sarpsborg',
+	'Djurgarden' => 'Djurgardens',
+
 #	Finnish
-	"HJK" => "HJK Helsinki",
-	"TPS" => "TPS Turku",
-	"VPS" => "VPS Vaasa",
-	"KuPS" => "KuPS Kuopio",
+	'HJK' => 'HJK Helsinki',
+	'TPS' => 'TPS Turku',
+	'VPS' => 'VPS Vaasa',
+	'KuPS' => 'KuPS Kuopio',
 
 #	American
-	"Los Angeles Galaxy" => "LA Galaxy"
+	'Los Angeles Galaxy' => 'LA Galaxy'
 };
 
 sub check_rename {

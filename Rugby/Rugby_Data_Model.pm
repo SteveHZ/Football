@@ -12,10 +12,10 @@ sub update {
 	print "\nReading $filename...";
 	my $book = Spreadsheet::Read->new ($filename);
 	die "\nProblem reading $filename" unless $book->sheets;
-	
+
 	my @sheetnames = $book->sheets;
 	my ($home_score, $away_score);
-	
+
 	for my $sheet (1..scalar @sheetnames) {
 		my $league = $sheetnames [$sheet - 1];
 		my @rows = rows ($book->[$sheet]);
@@ -37,18 +37,18 @@ sub update {
 
 sub write_csv {
 	my ($self, $data, $path) = @_;
-	
+
 	for my $league (keys %$data) {
 		my $filename = $path.$league.".csv";
 		open my $fh, ">", $filename or die "Can't open $filename";
 
-		print $fh "Date,Home Team,Away Team,Home,Away";
+		print $fh 'Date,Home Team,Away Team,Home,Away';
 		for my $game ( @{ $data->{$league} } ) {
 			print $fh "\n".
-				$game->{date}.",".
-				$game->{home_team}.",".
-				$game->{away_team}.",".
-				$game->{home_score}.",".
+				$game->{date}.','.
+				$game->{home_team}.','.
+				$game->{away_team}.','.
+				$game->{home_score}.','.
 				$game->{away_score};
 		}
 		close $fh;
@@ -64,9 +64,9 @@ sub read_archived {
 	while ($line = <$fh>) {
 		chomp ($line);
 		my @data = split (',', $line);
-		last if $data [0] eq ""; # don't remove !!!
+		last if $data [0] eq ''; # don't remove !!!
 		die "No result for $data[1] v $data[2]\n...in $file\n" if any {$_ eq ""} ( $data[3], $data[4] );
-		
+
 		push ( @league_games, {
 			date => $data [0],
 			home_team => $data [1],

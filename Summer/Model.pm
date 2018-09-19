@@ -19,7 +19,7 @@ sub BUILD {
 	$self->{league_names} = \@summer_leagues;
 	$self->{csv_leagues} = \@summer_csv_leagues;
 
-	$self->{model_name} = "Summer";
+	$self->{model_name} = 'Summer';
 	$self->{path} = 'C:/Mine/perl/Football/data/Summer/';
 	$self->{season_data} = $self->{path}.'season.json';
 	$self->{teams_file} = $self->{path}.'teams.json';

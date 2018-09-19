@@ -26,17 +26,17 @@ our $reports_start = 2016;
 
 if ($regular_season) {
 	our @league_names = (
-		"Super League",
-		"Championship",
-		"League One",
-#		"NRL",
+		'Super League',
+		'Championship',
+		'League One',
+#		'NRL',
 	);
 
 	our @fixtures_leagues = (
-		"Super League",
-		"Championship",
-		"League 1",
-#		"NRL",
+		'Super League',
+		'Championship',
+		'League 1',
+#		'NRL',
 	);
 
 	our @csv_leagues = qw(SL CH L1);
@@ -46,19 +46,19 @@ if ($regular_season) {
 } else {
 
 	our @league_names = (
-		"Super League",
-		"Middle 8s",
-		"Championship",
-		"League One",
-#		"NRL",
+		'Super League',
+		'Middle 8s',
+		'Championship',
+		'League One',
+#		'NRL',
 	);
 
 	our @fixtures_leagues = (
-		"Super League",
-		"Middle 8s",
-		"Championship",
-		"League 1",
-#		"NRL",
+		'Super League',
+		'Middle 8s',
+		'Championship',
+		'League 1',
+#		'NRL',
 	);
 
 	our @csv_leagues = qw(SL M8 CH L1);
