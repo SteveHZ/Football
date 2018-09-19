@@ -15,7 +15,7 @@ my $hash = {
 };
 
 my $t = timethese ( -10, {
-	"Schwartzian 1" => sub {
+	'Schwartzian 1' => sub {
 		my @sorted_hash =
 			map  { $_->[0] }
 			sort { $a->[1] <=> $b->[1] or
@@ -24,7 +24,7 @@ my $t = timethese ( -10, {
 			keys (%$hash);
 		return \@sorted_hash;
 	},
-	"Schwartzian 2" => sub {
+	'Schwartzian 2' => sub {
 		return [
 			map  { $_->[0] }
 			sort { $a->[1] <=> $b->[1] or
@@ -33,7 +33,7 @@ my $t = timethese ( -10, {
 			keys (%$hash)
 		];
 	},
-	"Simpler sort routine" => sub {
+	'Simpler sort routine' => sub {
 		my @temp = sort {
 			my ($a1, $a2) = split ('-', $a);
 			my ($b1, $b2) = split ('-', $b);

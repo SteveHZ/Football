@@ -9,10 +9,10 @@ use lib 'C:/Mine/perl/Football';
 use Benchmark qw(:all);
 
 my $t = timethese ( -20, {
-	"check" => sub {
+	'check' => sub {
 		check ();
 	},
-	"check2" => sub {
+	'check2' => sub {
 		check2 ();
 	},
 });
@@ -42,6 +42,3 @@ sub check_it2 {
 	return 1 if $number == 1 or $number == 0;
 	return 0;
 }
-
-
-

@@ -36,14 +36,14 @@ subtest 'Test 1' => sub {
 
 	$model->do_recent_goal_difference ($fixtures, $leagues);
 	$model->do_goal_difference ($fixtures, $leagues);
-	$model->do_league_places ($fixtures, $leagues); 
+	$model->do_league_places ($fixtures, $leagues);
 	$model->do_head2head ($fixtures);
-	
+
 	$model->do_recent_draws ($fixtures);
 
 #	my $predict_model = Football::Game_Prediction_Models->new ();
 #	my ($teams, $sorted) = $predict_model->calc_goal_expect ($leagues, $fixture_list, "Football");
-	my ($teams, $sorted) = $model->do_goal_expect ($leagues, $fixture_list, "Football");
+	my ($teams, $sorted) = $model->do_goal_expect ($leagues, $fixture_list, 'Football');
 
 	$view->do_match_odds ($sorted);
 	$view->do_over_under ($sorted);
@@ -57,16 +57,16 @@ sub do_skellam_benchmark {
 
 	print "\n\nSkellam Distibution Model Benchmark :\n";
 	my $t = timethese (-10, {
-		"Simple sort" => sub {
+		'Simple sort' => sub {
 			$skellam->simple_sort ($fixtures);
 		},
-		"Schwartzian sort" => sub {
+		'Schwartzian sort' => sub {
 			$skellam->schwartz_sort ($fixtures);
 		},
-		"Cache sort" => sub {
+		'Cache sort' => sub {
 			$skellam->cache_sort ($fixtures);
 		},
-#		"My Transform sort" => sub {
+#		'My Transform sort' => sub {
 #			$skellam->transform_sort ($fixtures);
 #		},
 	});

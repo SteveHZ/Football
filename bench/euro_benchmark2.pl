@@ -26,20 +26,20 @@ my $game_parser = qr/
 	(?<away_score>\d\d?)# away score
 /x;
 
-my $in_path = "C:/Mine/perl/Football/data/Euro/scraped/";
+my $in_path = 'C:/Mine/perl/Football/data/Euro/scraped/';
 my @days = ("Friday ","Saturday ","Sunday ","Monday ","Tuesday ","Wednesday ","Thursday ");
 my @months = qw(February March April May);
 my @games = ();
 my $date;
 my $year = 17;
 
-my $filename = $in_path."USA April".".txt";
+my $filename = $in_path.'USA April'.".txt";
 open my $fh, '<', $filename or die "Can't open $filename !!";
 chomp ( my $data = <$fh> );
 my $lines = prepare (\$data);
 
 my $t = timethese ( -60, {
-	"with_line" => sub {
+	'with_line' => sub {
 		for my $line (@$lines) {
 			if ($line =~ $date_parser) {
 				do_dates ( \%+ );
@@ -48,7 +48,7 @@ my $t = timethese ( -60, {
 			}
 		}
 	},
-	"without_line" => sub {
+	'without_line' => sub {
 		for (@$lines) {
 			if (/$date_parser/) {
 				do_dates ( \%+ );
@@ -62,7 +62,7 @@ cmpthese $t;
 
 sub prepare {
 	my $dataref = shift;
-	
+
 #	Remove beginning and end of data
 	$$dataref =~ s/^.*Content//;
 	$$dataref =~ s/All times are UK.*$//g;
@@ -88,13 +88,13 @@ sub do_dates {
 
 sub do_games {
 	my ($hash, $games) = @_;
-	
+
 #	Check for and rename teams with Unicode characters
 	my $home = defined $euro_teams->{ $hash->{home} }
 		? $euro_teams->{ $hash->{home} } : $hash->{home};
 	my $away = defined $euro_teams->{ $hash->{away} }
 		? $euro_teams->{ $hash->{away} } : $hash->{away};
-	
+
 	push @$games, {
 		date => $date,
 		home_team => $home,

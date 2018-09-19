@@ -14,19 +14,19 @@ my $leagues = $model->build_leagues ($games);
 my $table = @$leagues[0]->get_table ();
 
 my $t = timethese (-10, {
-	"sort 1" => sub {
+	'sort 1' => sub {
 		sort_table1 ($table);
 	},
-	"sort 2" => sub {
+	'sort 2' => sub {
 		sort_table2 ($table);
 	},
-	"sort 3" => sub {
+	'sort 3' => sub {
 		sort_table3 ($table);
 	},
-	"sort 4" => sub {
+	'sort 4' => sub {
 		sort_table4 ($table);
 	},
-	"sort 5" => sub {
+	'sort 5' => sub {
 		sort_table5 ($table);
 	}
 });
@@ -47,7 +47,7 @@ sub sort_table1 {
 		push (@ {$self->{sorted} }, $table->{$team} );
 	}
 	return \@ {$self->{sorted} };
-} 	
+}
 
 sub sort_table2 {
 	my $self = shift;
@@ -61,9 +61,9 @@ sub sort_table2 {
 			or $table->{$b}->{for} <=> $table->{$a}->{for}
 			or $table->{$a}->{team} cmp $table->{$b}->{team}
 		}
-		keys %$table		
+		keys %$table
 	];
-} 	
+}
 
 sub sort_table3 {
 	my $self = shift;
@@ -77,12 +77,12 @@ sub sort_table3 {
 			or $table->{ $b->[0] }->{for} <=> $table->{ $a->[0] }->{for}
 			or $table->{ $a->[0] }->{team} cmp $table->{ $b->[0] }->{team}
 		}
-		map { 
+		map {
 			[ $_, _goal_diff ( $table->{$_} ) ]
 		}
-		keys %$table		
+		keys %$table
 	];
-} 	
+}
 
 sub sort_table4 {
 	my $self = shift;
@@ -102,9 +102,9 @@ sub sort_table4 {
 			goal_diff =>_goal_diff ( $table->{$_} ),
 			for => $table->{$_}->{for},
 		] }
-		keys %$table		
+		keys %$table
 	];
-} 	
+}
 
 sub sort_table5 {
 	my $self = shift;
@@ -124,9 +124,9 @@ sub sort_table5 {
 			_goal_diff ( $table->{$_} ),
 			$table->{$_}->{for},
 		] }
-		keys %$table		
+		keys %$table
 	];
-} 	
+}
 =header
 3421-4
 4213-5
