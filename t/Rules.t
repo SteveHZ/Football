@@ -19,5 +19,5 @@ subtest 'constructor' => sub {
 subtest 'points' => sub {
 	plan tests => 1;
 	my $val = $rules->points_rule (16,0);
-	is ($val, "16.0", "points = $val"); 
+	is ($val, '16.0', "points = $val"); 
 };

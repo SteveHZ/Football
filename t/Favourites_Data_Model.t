@@ -24,12 +24,12 @@ subtest 'update current' => sub {
 	plan tests => 6;
 
 	my $games = $data_model->update_current ($file);
-	is (@$games[0]->{home_odds}, 1.53, "home odds ok");
-	is (@$games[0]->{away_odds}, 6.5,  "away odds ok");
-	is (@$games[0]->{draw_odds}, 4.5,  "draw odds ok");
+	is (@$games[0]->{home_odds}, 1.53, 'home odds ok');
+	is (@$games[0]->{away_odds}, 6.5,  'away odds ok');
+	is (@$games[0]->{draw_odds}, 4.5,  'draw odds ok');
 
 	$games = $data_model->update_current ($file2);
-	is (@$games[0]->{home_odds}, 2.9,  "home odds ok");
-	is (@$games[0]->{away_odds}, 2.38, "away odds ok");
-	is (@$games[0]->{draw_odds}, 3.4,  "draw odds ok");
+	is (@$games[0]->{home_odds}, 2.9,  'home odds ok');
+	is (@$games[0]->{away_odds}, 2.38, 'away odds ok');
+	is (@$games[0]->{draw_odds}, 3.4,  'draw odds ok');
 };

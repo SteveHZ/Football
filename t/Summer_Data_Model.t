@@ -8,7 +8,7 @@ use strict;
 use warnings;
 use Test::More tests => 3;
 
-use lib "C:/Mine/perl/Football";
+use lib 'C:/Mine/perl/Football';
 use Summer::Summer_Data_Model;
 
 my $dir = 'test data/';
@@ -24,9 +24,9 @@ subtest 'read euro' => sub {
 
 	my $file = "$dir/IRL.csv";
 	my $games = $data_model->read_data ($file);
-	is (@$games[0]->{home_odds}, 9.8 , "home odds ok");
-	is (@$games[0]->{away_odds}, 1.3 , "away odds ok");
-	is (@$games[0]->{draw_odds}, 4.74, "draw odds ok");
+	is (@$games[0]->{home_odds}, 9.8 , 'home odds ok');
+	is (@$games[0]->{away_odds}, 1.3 , 'away odds ok');
+	is (@$games[0]->{draw_odds}, 4.74, 'draw odds ok');
 };
 
 subtest 'read csv' => sub {
@@ -34,7 +34,7 @@ subtest 'read csv' => sub {
 
 	my $file = "$dir/Irish.csv";
 	my $games = $data_model->read_csv ($file);
-	is (@$games[0]->{home_odds}, 3.69, "home odds ok");
-	is (@$games[0]->{away_odds}, 2.08, "away odds ok");
-	is (@$games[0]->{draw_odds}, 3.12, "draw odds ok");
+	is (@$games[0]->{home_odds}, 3.69, 'home odds ok');
+	is (@$games[0]->{away_odds}, 2.08, 'away odds ok');
+	is (@$games[0]->{draw_odds}, 3.12, 'draw odds ok');
 };

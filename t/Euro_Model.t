@@ -19,6 +19,6 @@ subtest 'constructor' => sub {
 	my $leagues = $model->build_leagues ($games);
 
 	isa_ok ($model, 'Euro::Model', '$model');
-	isa_ok ($games, 'HASH','$games');
+	isa_ok ($games, 'HASH', '$games');
 	isa_ok (@$leagues [0], 'Football::League', '@$leagues[0]');
 };

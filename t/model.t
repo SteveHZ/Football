@@ -16,7 +16,7 @@ use MyJSON qw(read_json);
 my $model = Football::Model->new ();
 my ($games, $leagues, $fixture_list, $data);
 
-my $test_path = "C:/Mine/perl/Football/t/test data/";
+my $test_path = 'C:/Mine/perl/Football/t/test data/';
 
 subtest 'constructor' => sub {
 	plan tests => 1;
@@ -39,8 +39,8 @@ subtest 'Football_IO_Role routines' => sub {
 
 	isa_ok ($games, 'HASH','$games');
 	isa_ok ($fixture_list, 'ARRAY', '$fixture_list');
-	is (@$fixture_list[0]->{home_team}, "West Ham", "fixture list home team ok");
-	is (@$fixture_list[1]->{away_team}, "Stoke", "fixture list away team ok");
+	is (@$fixture_list[0]->{home_team}, 'West Ham', 'fixture list home team ok');
+	is (@$fixture_list[1]->{away_team}, 'Stoke', 'fixture list away team ok');
 };
 
 subtest 'Shared_Model routines' => sub {
@@ -48,7 +48,7 @@ subtest 'Shared_Model routines' => sub {
 
 	my $home_table = $model->do_home_table ($games);
 	my $away_table = $model->do_away_table ($games);
-	
+
 	isa_ok ($home_table, 'ARRAY', '$home table');
 	isa_ok ($away_table, 'ARRAY', '$away table');
 	isa_ok (@$home_table[0]->{home_table}, 'Football::HomeTable', '$home table[0]');
@@ -68,24 +68,24 @@ subtest 'Shared_Model routines' => sub {
 
 subtest 'Goal Expect Model' => sub {
 	plan tests => 6;
-	
+
 	my ($teams, $sorted) = $model->do_predict_models ($data->{by_match}, $leagues);
 #	my ($teams, $sorted) = $model->do_predict_models ($leagues, $fixture_list, $stats, "Football");
 	isa_ok ($teams, 'HASH', '$teams');
 	isa_ok ($sorted, 'HASH', '$sorted');
 
-	is ($teams->{Stoke}->{av_home_for}, 1.33, "Stoke - Average home for 1.33");
-	is ($teams->{Stoke}->{av_home_against}, 1.83, "Stoke - Average home against 1.83");
-	is ($teams->{Stoke}->{av_away_for}, 1.17, "Stoke - Average away for 1.17");
-	is ($teams->{Stoke}->{av_away_against}, 2.17, "Stoke - Average away against 2.17");
+	is ($teams->{Stoke}->{av_home_for}, 1.33, 'Stoke - Average home for 1.33');
+	is ($teams->{Stoke}->{av_home_against}, 1.83, 'Stoke - Average home against 1.83');
+	is ($teams->{Stoke}->{av_away_for}, 1.17, 'Stoke - Average away for 1.17');
+	is ($teams->{Stoke}->{av_away_against}, 2.17, 'Stoke - Average away against 2.17');
 };
 
 subtest 'get_unique_leagues' => sub {
 	plan tests => 1;
-	
+
 	my $unique_file = "test data/unique leagues.json";
 	my $expect = read_json ($unique_file);
-	
+
 	my $fixtures = $model->get_fixtures ( testing => 1 );
 	my $leagues = $model->get_unique_leagues ($fixtures);
 	cmp_deeply ($leagues, $expect, 'got unique leagues');
