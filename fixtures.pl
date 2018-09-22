@@ -1,5 +1,6 @@
 #	fixtures.pl 05-14/05/18
 #	v1.1 29/07-12/08/18
+#	v1.2 20-22/09/18
 
 BEGIN { $ENV{PERL_KEYWORD_PRODUCTION} = 1;}
 BEGIN { $ENV{PERL_KEYWORD_DELETEALL} = 1;}
@@ -11,7 +12,7 @@ use warnings;
 
 use MyKeyword qw(PRODUCTION DELETEALL FOOTBALL RUGBY);
 use Football::Fixtures_View;
-#use Data::Dumper;
+use Data::Dumper;
 
 FOOTBALL {
 	use Football::Fixtures_Model;
@@ -31,7 +32,8 @@ RUGBY 	 { do_rugby (); }
 sub do_football {
 	my $model = Football::Fixtures_Model->new ();
 	my $week = $model->get_week ();
-	my @all_games = ();
+	my $all_games = {};
+
 	PRODUCTION {
 		$model->get_pages ($data->{football}->{sites}, $week);
 	}
@@ -47,12 +49,14 @@ sub do_football {
 			$model->prepare (\$data, $day->{day}, $date)
 		);
 
-		push @all_games, @$games;
-		$view->dump ($games);
+		for my $key (keys %$games) {
+			push @{ $all_games->{$key} }, $_ for (@{ $games->{$key} });
+		}
 	}
 
-	my $out_file = "$path/fixtures_week.csv";
-	$view->write_csv ($out_file, \@all_games);
+	$view->dump ($all_games);
+	my $fname = "$path/fixtures_week";
+	$view->write_csv ($fname, $all_games);
 
 	DELETEALL {
 		$model->delete_all ($path, $week);

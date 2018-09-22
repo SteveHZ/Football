@@ -5,23 +5,38 @@ use Moo;
 use namespace::clean;
 
 sub write_csv {
-	my ($self, $filename, $games) = @_;
+	my ($self, $fname, $games) = @_;
 
-	print "\nWriting $filename...";
-	open my $fh, '>', $filename or die "Can't open $filename";
-	for my $game (@$games) {
-#		next if $game =~ /<LEAGUE>/; 	# for fixtures.pl
-		next if $game =~ /,X,/;
-		next if $game =~ /<DATE>/;
-		print $fh $game."\n";
+	for my $key (keys %$games) {
+		my $filename = $fname."_$key.csv";
+		print "\nWriting $filename...";
+		open my $fh, '>', $filename or die "Can't open $filename";
+		for my $game (@{$games->{$key}}) {
+#			next if $game =~ /<DATE>/; # for rugby ??
+			print $fh $game."\n";
+		}
+		close $fh;
 	}
-	close $fh;
 }
 
 sub dump {
 	my ($self, $games) = @_;
-	print Dumper $games;
+	print Dumper $games->{$_} for keys %$games;
 }
+
+#sub write_csv {
+#	my ($self, $filename, $games) = @_;
+#
+#	print "\nWriting $filename...";
+#	open my $fh, '>', $filename or die "Can't open $filename";
+#	for my $game (@$games) {
+#		next if $game =~ /<LEAGUE>/; 	# for fixtures.pl
+#		next if $game =~ /,X,/;
+#		next if $game =~ /<DATE>/;
+#		print $fh $game."\n";
+#	}
+#	close $fh;
+#}
 
 =pod
 

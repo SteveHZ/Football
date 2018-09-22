@@ -4,10 +4,12 @@ use Football::Fixtures_Globals qw(%football_fixtures_leagues %rugby_fixtures_lea
 use Football::Fixtures_Scraper_Model;
 use MyRegX;
 use MyDate qw( $month_names );
+use Football::Globals qw(@csv_leagues @summer_csv_leagues @euro_csv_lgs);
+#use Rugby::Globals qw(@rugby_csv_leagues);
 
 use Time::Piece qw(localtime);
 use Time::Seconds qw(ONE_DAY);
-#use Data::Dumper;
+use Data::Dumper;
 #use utf8;
 use Moo;
 use namespace::clean;
@@ -25,6 +27,23 @@ my $year = 2018;
 sub BUILD {
 	my $self = shift;
 	$self->{scraper} = Football::Fixtures_Scraper_Model->new ();
+	$self->{files} = transform_hash ({
+	    uk      => \@csv_leagues,
+	    euro    => \@euro_csv_lgs,
+	    summer  => \@summer_csv_leagues,
+#	    rugby   => \@rugby_csv_leagues,
+	});
+}
+
+sub transform_hash {
+    my $old_hash = shift;
+    my %new_hash = ();
+    for my $key (keys %$old_hash) {
+        for my $val ( @{ $old_hash->{$key} } ) {
+            $new_hash{$val} = $key;
+        }
+    }
+    return \%new_hash;
 }
 
 sub get_pages {
@@ -63,19 +82,21 @@ sub prepare {
 
 sub after_prepare {
 	my ($self, $lines) = @_;
-	my @fixed_lines = ();
+	my $fixed_lines = {};
 	my $csv_league = '';
 
 	for my $line (@$lines) {
 		if ($line =~ /^<LEAGUE>(.*)$/) {
 			$csv_league = (exists $football_fixtures_leagues{$1} ) ?
 				$football_fixtures_leagues{$1} : 'X';
-		} elsif ($line =~ /\d:\d/) { # valid lines will have a time eg 15:00
+		}
+		next if $csv_league eq 'X';
+		if ($line =~ /\d:\d/) { # valid lines will have a time eg 15:00
 			$line =~ s/($dm_date),(.*),($time),(.*)/$1 $3,$csv_league,$2,$4/;
-			push @fixed_lines, $line;
+			push @{ $fixed_lines->{ $self->{files}{$csv_league}} }, $line;
 		}
 	}
-	return \@fixed_lines;
+	return $fixed_lines;
 }
 
 sub delete_all {
@@ -173,6 +194,22 @@ sub revert {
 #	my ($self, $list, $value) = @_;
 #	return 1 if (firstidx { $_ eq $value } @$list) > 0;
 #	return 0;
+#}
+#sub after_prepare {
+#	my ($self, $lines) = @_;
+#	my @fixed_lines = ();
+#	my $csv_league = '';
+
+#	for my $line (@$lines) {
+#		if ($line =~ /^<LEAGUE>(.*)$/) {
+#			$csv_league = (exists $football_fixtures_leagues{$1} ) ?
+#				$football_fixtures_leagues{$1} : 'X';
+#		} elsif ($line =~ /\d:\d/) { # valid lines will have a time eg 15:00
+#			$line =~ s/($dm_date),(.*),($time),(.*)/$1 $3,$csv_league,$2,$4/;
+#			push @fixed_lines, $line;
+#		}
+#	}
+#	return \@fixed_lines;
 #}
 
 =pod

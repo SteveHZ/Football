@@ -17,7 +17,7 @@ use Rugby::Reports::LeaguePlaces;
 use Rugby::Reports::Head2Head;
 use Rugby::Reports::Recent_GoalDifference;
 use Rugby::Reports::GoalDifference;
-use Rugby::Globals qw( @league_names @csv_leagues );
+use Rugby::Globals qw( @league_names @rugby_csv_leagues );
 
 use Moo;
 use namespace::clean;
@@ -40,7 +40,7 @@ sub BUILD {
 	my $self = shift;
 	$self->{leagues} = [];
 	$self->{league_names} = \@league_names;
-	$self->{csv_leagues} = \@csv_leagues;
+	$self->{csv_leagues} = \@rugby_csv_leagues;
 
 	$self->{model_name} = "Rugby";
 	$self->{path} = 'C:/Mine/perl/Football/data/Rugby/';
@@ -55,7 +55,7 @@ sub build_leagues {
 	my ($self, $games) = @_;
 	my $teams = $self->read_json ($self->{teams_file});
 	my $league_array = \@{ $self->{leagues} };
-	
+
 	for my $league (@league_names) {
 #		die "No games played in $league" if scalar (@ {$games->{$league}} == 0);
 		push (@$league_array, Rugby::League->new (
@@ -70,7 +70,7 @@ sub build_leagues {
 sub do_league_places {
 	my ($self, $fixtures, $teams) = @_;
 	my ($home, $away, $home_points, $away_points);
-	
+
 	my $league_places = Rugby::Reports::LeaguePlaces->new ();
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};
@@ -91,7 +91,7 @@ sub do_league_places {
 sub do_head2head {
 	my ($self, $fixtures) = @_;
 	my ($home, $away, $home_points, $away_points);
-	
+
 	my $h2h = Rugby::Reports::Head2Head->new ();
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};
@@ -112,7 +112,7 @@ sub do_head2head {
 sub do_recent_goal_difference {
 	my ($self, $fixtures, $teams) = @_;
 	my ($home, $away, $home_diff, $away_diff, $rgd_div10);
-	
+
 	my $goal_diff = Rugby::Reports::Recent_GoalDifference->new ();
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};
@@ -135,7 +135,7 @@ sub do_recent_goal_difference {
 sub do_goal_difference {
 	my ($self, $fixtures, $teams) = @_;
 	my ($home, $away, $home_diff, $away_diff, $gd_div10);
-	
+
 	my $goal_diff = Rugby::Reports::GoalDifference->new ();
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};

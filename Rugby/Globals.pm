@@ -11,7 +11,7 @@ our @EXPORT = qw(
 	@league_size
 	@league_names
 	@fixtures_leagues
-	@csv_leagues
+	@rugby_csv_leagues
 	@fixtures_csv_leagues
 );
 
@@ -39,7 +39,7 @@ if ($regular_season) {
 #		'NRL',
 	);
 
-	our @csv_leagues = qw(SL CH L1);
+	our @rugby_csv_leagues = qw(SL CH L1);
 	our @fixtures_csv_leagues = qw(SL CH L1);
 	our @league_size = qw( 12 12 14 ); # clubs in each league
 
@@ -61,7 +61,7 @@ if ($regular_season) {
 #		'NRL',
 	);
 
-	our @csv_leagues = qw(SL M8 CH L1);
+	our @rugby_csv_leagues = qw(SL M8 CH L1);
 	our @fixtures_csv_leagues = qw(SL M8 CH L1);
 	our @league_size = qw( 12 8 12 14 ); # clubs in each league
 }

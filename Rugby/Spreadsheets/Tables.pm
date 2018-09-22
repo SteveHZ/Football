@@ -80,7 +80,7 @@ sub do_table_header {
 sub do_form_header {
 	my ($worksheet, $title, $format) = @_;
 
-	my @size5  = (qw (A:A D:I K:K M:M);
+	my @size5  = (qw (A:A D:I K:K M:M));
 	my @size8  = (qw (C:C J:J L:L N:N));
 	my @size25 = ('B:B');
 

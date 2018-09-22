@@ -107,7 +107,7 @@ sub do_skellam_header {
 	$worksheet->write ('C1', 'Home', $self->{format} );
 	$worksheet->write ('D1', 'Away', $self->{format} );
 	$worksheet->write ('F1', 'HW', $self->{format} );
-	$worksheet->write ('H1', "AW', $self->{format} );
+	$worksheet->write ('H1', 'AW', $self->{format} );
 	$worksheet->write ('G1', 'Draw', $self->{format} );
 
 	$worksheet->write ('J1', '+5', $self->{format} );

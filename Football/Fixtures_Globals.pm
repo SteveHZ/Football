@@ -192,6 +192,7 @@ Newcastle,Newcastle Thunder
 Bradford,Bradford Bulls
 END_RUGBY_TEAMS
 
+Women's Championship,X
 Welsh Premier League,WL
 Irish Premiership,NI
 Premier League,E0
@@ -213,7 +214,6 @@ International,X
 World,X
 Euro,X
 Champions,
-Women's,X
 Friendl,X
 Qualifi,X
 Group,X
