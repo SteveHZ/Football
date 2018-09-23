@@ -37,11 +37,14 @@ our @EXPORT = qw(
 sub new { return bless {}, shift; }
 
 our $season = 2018;
-our $euro_season = 2018;
-our $season_years = 1819;
-our $full_season_years = '2018-2019';
+our $euro_season = $season;
+my $next_season = $season + 1;
+our $season_years = ($season-2000).($next_season-2000);
+#our $season_years = 1819;
+our $full_season_years = "$season-$next_season";
+#our $full_season_years = '2018-2019';
 our $last_season = $season - 1;
-our $reports_season = 2017;
+our $reports_season = $last_season;
 our $default_stats_size = 6;
 
 our @league_names = (
@@ -87,8 +90,10 @@ our @euro_csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 D1 D2 SP1 SP2 I1 I2 F
 
 # for max_profit.pl, db.pl and fetch.pl
 
-our @euro_lgs = ('German 1', 'German 2', 'Spanish 1', 'Italian 1', 'Welsh', 'N Irish');
-our @euro_csv_lgs = qw( D1 D2 SP1 I1 WL NI);
+our @euro_lgs = ('Welsh', 'N Irish');
+our @euro_csv_lgs = qw( WL NI);
+#our @euro_lgs = ('German 1', 'German 2', 'Spanish 1', 'Italian 1', 'Welsh', 'N Irish');
+#our @euro_csv_lgs = qw( D1 D2 SP1 I1 WL NI);
 our @euro_fetch_lgs = qw( D1 D2 SP1 I1);
 
 our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League');

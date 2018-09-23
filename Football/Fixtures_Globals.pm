@@ -161,6 +161,21 @@ Forfar Athletic,Forfar
 Berwick Rangers,Berwick
 Elgin City,Elgin
 Stirling Albion,Stirling
+
+#	Welsh
+Llandudno FC,Llandudno
+Llanelli Town,Llanelli
+Aberystwyth Town,Aberystwyth
+Connah's Quay Nomads,Connahs Quay
+The New Saints,TNS
+
+#	N Irish
+Ballymena United,Ballymena
+Dungannon Swifts,Dungannon
+Institute FC,Institute
+Newry City AFC,Newry City
+Warrenpoint Town,Warrenpoint
+
 END_FOOTBALL_TEAMS
 
 #	Rugby League

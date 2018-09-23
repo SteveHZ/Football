@@ -39,7 +39,7 @@ sub prepare {
 	$$dataref =~ s/($leagues)/\n<LEAGUE>$1/g;
 
 	$$dataref =~ s/($date_parser)(\s+)/\n<DATE>$1\n/g;
-	$$dataref =~ s/($team+?)\s+($time)\s+($team+?)\s{2,}/$2-$1,$3\n/g;	
+	$$dataref =~ s/($team+?)\s+($time)\s+($team+?)\s{2,}/$2-$1,$3\n/g;
 
 	my @lines = split '\n', $$dataref;
 	shift @lines;
@@ -51,7 +51,7 @@ sub after_prepare {
 	my $date_parser = $rx->date_parser;
 	my $csv_league = '';
 	my $date = '';
-	
+#print Dumper $lines;<STDIN>;
 	for my $line (@$lines) {
 		if ($line =~ /^<LEAGUE>(.*)$/) {
 			my $temp = $1;

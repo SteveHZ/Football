@@ -5,7 +5,6 @@ use Football::Fixtures_Scraper_Model;
 use MyRegX;
 use MyDate qw( $month_names );
 use Football::Globals qw(@csv_leagues @summer_csv_leagues @euro_csv_lgs);
-#use Rugby::Globals qw(@rugby_csv_leagues);
 
 use Time::Piece qw(localtime);
 use Time::Seconds qw(ONE_DAY);
@@ -31,17 +30,17 @@ sub BUILD {
 	    uk      => \@csv_leagues,
 	    euro    => \@euro_csv_lgs,
 	    summer  => \@summer_csv_leagues,
-#	    rugby   => \@rugby_csv_leagues,
 	});
 }
 
+#   transform a hash from key => value 'one-to-many' relationship
+#   to a value => key 'many-to-one' relaationship.
+#   eg transform uk=>[qw(E0 E1 E2 E3 EC)] to E0=>uk, E1=>uk, E2=>uk, E3=>uk, EC=>uk
 sub transform_hash {
     my $old_hash = shift;
     my %new_hash = ();
     for my $key (keys %$old_hash) {
-        for my $val ( @{ $old_hash->{$key} } ) {
-            $new_hash{$val} = $key;
-        }
+		map { $new_hash{$_} = $key } @{ $old_hash->{$key} };
     }
     return \%new_hash;
 }
@@ -82,6 +81,7 @@ sub prepare {
 
 sub after_prepare {
 	my ($self, $lines) = @_;
+	my $files = $self->{files};
 	my $fixed_lines = {};
 	my $csv_league = '';
 
@@ -93,7 +93,7 @@ sub after_prepare {
 		next if $csv_league eq 'X';
 		if ($line =~ /\d:\d/) { # valid lines will have a time eg 15:00
 			$line =~ s/($dm_date),(.*),($time),(.*)/$1 $3,$csv_league,$2,$4/;
-			push @{ $fixed_lines->{ $self->{files}{$csv_league}} }, $line;
+			push @{ $fixed_lines->{ $files->{$csv_league}} }, $line;
 		}
 	}
 	return $fixed_lines;

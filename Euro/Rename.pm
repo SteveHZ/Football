@@ -22,7 +22,8 @@ our $euro_teams = {
 	'Cardiff Metropolitan' => 'Cardiff MU',
 	'Barry' => 'Barry Town',
 	'Bala' => 'Bala Town',
-
+	'Caernarfon' => 'Caernarfon Town',
+	
 #	Northern Irish
 	'C. Rangers' => 'Carrick Rangers',
 
