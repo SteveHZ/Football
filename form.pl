@@ -20,7 +20,7 @@ my @models = (
 my @filenames = (
 	'form.xlsx',
 	'Euro/form_euro.xlsx',
-	'Summer/form_euro.xlsx'
+	'Summer/form_summer.xlsx'
 );
 my $update = 0;
 

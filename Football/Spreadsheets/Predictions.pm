@@ -262,8 +262,8 @@ sub do_recent_draws {
 sub build_formulae {
 	my $row = shift;
 	return [
-		qq(=IF(SUM(H$row:L$row),(J$row/SUM(H$row:L$row))*100, '')),
 		qq(=IF(SUM(H$row:L$row),(H$row/SUM(H$row:L$row))*100, '')),
+		qq(=IF(SUM(H$row:L$row),(J$row/SUM(H$row:L$row))*100, '')),
 		qq(=IF(SUM(H$row:L$row),(L$row/SUM(H$row:L$row))*100, '')),
 	];
 }
