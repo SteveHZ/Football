@@ -100,8 +100,9 @@ sub _get_unique_leagues {
 
 #	wrapper for testing
 sub get_unique_leagues {
-	my ($self, $fixtures) = @_;
-	return _get_unique_leagues ($fixtures);
+	TESTNG { # shift $self from @_first
+		shift;	return _get_unique_leagues (shift);
+	}
 }
 
 sub do_predict_models {

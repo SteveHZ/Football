@@ -9,15 +9,18 @@ use lib 'C:/Mine/perl/Football';
 use Football::Model;
 use Football::Form_Model;
 use Euro::Model;
+use Summer::Model;
 use List::MoreUtils qw(each_arrayref);
 
 my @models = (
 	Football::Model->new (),
 	Euro::Model->new (),
+	Summer::Model->new (),
 );
 my @filenames = (
-	"form.xlsx",
-	"Euro/euro_form.xlsx",
+	'form.xlsx',
+	'Euro/form_euro.xlsx',
+	'Summer/form_euro.xlsx'
 );
 my $update = 0;
 
@@ -35,7 +38,7 @@ while (my ($model, $filename) = $iterator->()) {
 		filename => $filename,
 	);
 	$form_model->show ($filename);
-}	
+}
 
 =pod
 

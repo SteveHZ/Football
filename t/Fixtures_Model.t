@@ -1,12 +1,14 @@
 #	Fixtures_Model.t 16/06/18, 11/09/18
 
+BEGIN { $ENV{PERL_KEYWORD_TESTING} = 1; } # for Fixtures_Model:transform_hash
+
 use strict;
 use warnings;
-use Test::More tests => 4;
-#use Test::More tests => 5;
+use Test::More tests => 5;
 
 use lib "C:/Mine/perl/Football";
 use Football::Fixtures_Model;
+use Football::Globals qw(@csv_leagues @summer_csv_leagues @euro_csv_lgs);
 
 my $model = Football::Fixtures_Model->new ();
 my $date = '2018-06-16';
@@ -41,3 +43,16 @@ subtest 'do_foreign chars' => sub {
 #	is ($model->contains (\@list, 'Zappy'), 1, 'contains');
 #	is ($model->contains (\@list, 'Hopey'), 0, 'doesn\'t contain');
 #};
+
+subtest 'transform_hash' => sub {
+    plan tests => 3;
+	my $files = $model->transform_hash ({
+	    uk      => \@csv_leagues,
+	    euro    => \@euro_csv_lgs,
+	    summer  => \@summer_csv_leagues,
+	});
+
+    is ($files->{E0}, 'uk', 'uk ok');
+    isnt ($files->{EC}, 'summer', 'EC not summer ok');
+    is ($files->{WL}, 'euro', 'euro ok');
+};

@@ -24,7 +24,7 @@ sub create_list {
 	for my $league (@{ $self->{leagues} }) {
 		for my $team (@{ $league->team_list} ) {
 			push (@list, {
-				league => $league->{title},
+				league => $league->{name},
 				team => $team,
 				all => \% {$league->get_table->{$team} },
 				home => \% { $league->{homes}->{$team} },
@@ -52,7 +52,7 @@ sub show {
 
 	my $form_view = Football::Spreadsheets::Form_View->new ( filename => $self->{filename} );
 	$form_view->show ( $self->{form} );
-	print "\nDone";
+	print "\nDone\n";
 }
 
 =pod

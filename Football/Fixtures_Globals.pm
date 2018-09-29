@@ -176,6 +176,37 @@ Institute FC,Institute
 Newry City AFC,Newry City
 Warrenpoint Town,Warrenpoint
 
+#	Italian
+Inter Milan,Inter
+AC Milan,Milan
+
+#	Spanish
+Celta Vigo,Celta
+Rayo Vallecano,Vallecano
+Real Sociedad,Sociedad
+Espanyol,Espanol
+Athletic Bilbao,Ath Bilbao
+Atletico Madrid,Ath Madrid
+Real Valladolid,Valladolid
+Real Betis,Betis
+
+#	German
+Hertha Berlin,Hertha
+Nuremberg,Nurnberg
+Schalke,Schalke 04
+Mainz 05,Mainz
+Borussia Monchengladbach,M'gladbach
+#Bayer 04 Leverkusen,Leverkusen
+Borussia Dortmund,Dortmund
+Eintracht Frankfurt,Ein Frankfurt
+FC Augsburg,Augsburg
+SC Freiburg,Freiburg
+
+#	Italian
+SPAL,Spal
+Inter Milan,Inter
+AC Milan,Milan
+
 END_FOOTBALL_TEAMS
 
 #	Rugby League
@@ -207,7 +238,10 @@ Newcastle,Newcastle Thunder
 Bradford,Bradford Bulls
 END_RUGBY_TEAMS
 
-Women's Championship,X
+Cup,X
+Trophy,X
+Women,X
+#Women's Championship,X
 Welsh Premier League,WL
 Irish Premiership,NI
 Premier League,E0
@@ -224,6 +258,9 @@ Norwegian Eliteserien,NRW
 Swedish Allsvenskan,SWD
 Finnish Veikkausliiga,FN
 United States Major League Soccer,MLS
+German Bundesliga,D1
+Italian Serie A,I1
+Spanish La Liga,SP1
 
 International,X
 World,X
@@ -237,8 +274,7 @@ Highland League,X
 Lowland League,X
 Russian Premier League,X
 Swiss Super League,X
-Spanish La Liga,X
-Italian Serie A,X
+French,X
 Brazilian,X
 Danish,X
 Greek,X
@@ -246,7 +282,6 @@ Argentine,X
 Portuguese,X
 Turkish,X
 Dutch,X
-German,X
 Austrian,X
 Greek,X
 The FA,X

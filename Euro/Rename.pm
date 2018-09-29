@@ -1,6 +1,7 @@
 package Euro::Rename;
 
 #	Euro::Rename.pm 20/07/17, 13/03/18
+#	Amend downloaded team names from football-data or odds-portal
 
 use strict;
 use warnings;
@@ -23,7 +24,7 @@ our $euro_teams = {
 	'Barry' => 'Barry Town',
 	'Bala' => 'Bala Town',
 	'Caernarfon' => 'Caernarfon Town',
-	
+
 #	Northern Irish
 	'C. Rangers' => 'Carrick Rangers',
 

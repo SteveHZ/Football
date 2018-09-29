@@ -5,6 +5,7 @@ use Football::Fixtures_Scraper_Model;
 use MyRegX;
 use MyDate qw( $month_names );
 use Football::Globals qw(@csv_leagues @summer_csv_leagues @euro_csv_lgs);
+use MyKeyword qw(TESTING);
 
 use Time::Piece qw(localtime);
 use Time::Seconds qw(ONE_DAY);
@@ -26,23 +27,11 @@ my $year = 2018;
 sub BUILD {
 	my $self = shift;
 	$self->{scraper} = Football::Fixtures_Scraper_Model->new ();
-	$self->{files} = transform_hash ({
+	$self->{files} = _transform_hash ({
 	    uk      => \@csv_leagues,
 	    euro    => \@euro_csv_lgs,
 	    summer  => \@summer_csv_leagues,
 	});
-}
-
-#   transform a hash from key => value 'one-to-many' relationship
-#   to a value => key 'many-to-one' relaationship.
-#   eg transform uk=>[qw(E0 E1 E2 E3 EC)] to E0=>uk, E1=>uk, E2=>uk, E3=>uk, EC=>uk
-sub transform_hash {
-    my $old_hash = shift;
-    my %new_hash = ();
-    for my $key (keys %$old_hash) {
-		map { $new_hash{$_} = $key } @{ $old_hash->{$key} };
-    }
-    return \%new_hash;
 }
 
 sub get_pages {
@@ -147,19 +136,25 @@ sub do_foreign_chars {
 	my ($self, $dataref) = @_;
 	$$dataref =~ s/$_/a/g for (qw(ä å));
 	$$dataref =~ s/$_/o/g for (qw(ö ø));
+	$$dataref =~ s/é/e/g;
 	$$dataref =~ s/Ö/O/g;
+	$$dataref =~ s/ü/u/g;
 	$$dataref =~ s/æ/ae/g;
 	$$dataref =~ s/\// /g;
 }
 
 sub do_initial_chars {
 	my ($self, $dataref) = @_;
+	$$dataref =~ s/Serie A/Serie a/g;
+	$$dataref =~ s/French Ligue 1/French Ligue 1x/g;
+	$$dataref =~ s/Division A/Division Ax/g;
+
+#	Order is important here !
 	$$dataref =~ s/FC/Fc/g;
 	$$dataref =~ s/AFC/Afc/g;
 	$$dataref =~ s/SJK/SJk/g;
 	$$dataref =~ s/AIK/AIk/g;
 	$$dataref =~ s/MU/Mu/g;  # Welsh
-#	Order is important here !
 	$$dataref =~ s/ FF//g;	# Swedish
 	$$dataref =~ s/IFK //g;
 	$$dataref =~ s/FK //g;
@@ -173,6 +168,14 @@ sub do_initial_chars {
 	$$dataref =~ s/ BK//g;
 	$$dataref =~ s/ SC//g;
 	$$dataref =~ s/ 08//g;
+	$$dataref =~ s/VfB //g;  # German
+	$$dataref =~ s/VfL //g;
+	$$dataref =~ s/1\. Fc //g;
+	$$dataref =~ s/Bayer 04 //g;
+	$$dataref =~ s/ 96//g;
+	$$dataref =~ s/ 05//g;
+	$$dataref =~ s/1899 //g;
+	$$dataref =~ s/Fc Schalke 04/Schalke/g;
 	$$dataref =~ s/KuPS/KUPS/g; # Finnish
 	$$dataref =~ s/RoPS //g;
 	$$dataref =~ s/ fB/ fb/g;
@@ -181,12 +184,33 @@ sub do_initial_chars {
 
 sub revert {
 	my ($self, $dataref) = @_;
+	$$dataref =~ s/Serie a/Serie A/g;
 	$$dataref =~ s/Fc/FC/g;
-	$$dataref =~ s/Mu/MU/g;
+	$$dataref =~ s/Mu(?!n)/MU/g; # Cardiff MU - but not Bayern Munich
 	$$dataref =~ s/Afc/AFC/g;
 	$$dataref =~ s/AIk/AIK/g;
 	$$dataref =~ s/KUPS/KuPS/g;
 	$$dataref =~ s/SJk/SJK/g;
+}
+
+#   transform a hash from key => value 'one-to-many' relationship
+#   to a value => key 'many-to-one' relaationship.
+#   eg transform uk=>[qw(E0 E1 E2 E3 EC)] to E0=>uk, E1=>uk, E2=>uk, E3=>uk, EC=>uk
+
+sub _transform_hash {
+    my $old_hash = shift;
+    my %new_hash = ();
+    for my $key (keys %$old_hash) {
+		map { $new_hash{$_} = $key } @{ $old_hash->{$key} };
+    }
+    return \%new_hash;
+}
+
+#	wrapper for testing
+sub transform_hash {
+	TESTNG { # shift $self from @_first
+		shift; return _transform_hash (shift);
+	}
 }
 
 #use List::MoreUtils qw(firstidx);

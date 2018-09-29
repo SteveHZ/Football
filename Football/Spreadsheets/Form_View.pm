@@ -1,5 +1,5 @@
 package Football::Spreadsheets::Form_View;
-
+use Data::Dumper;
 use List::MoreUtils qw(each_arrayref);
 use Moo;
 use namespace::clean;
@@ -36,6 +36,7 @@ sub show {
 				{ $team->{away}->{points} => $self->{format} },
 				{ $team->{last_six}->{points} => $self->{format} },
 			];
+#			print Dumper $row_data;<STDIN>;
 			$self->write_row ($worksheet, $row, $row_data);
 			$row ++;
 		}
