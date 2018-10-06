@@ -34,13 +34,13 @@ sub sort_expect_data {
 	return [
 		sort {
 			abs $b->{$sort_by}  <=> abs $a->{$sort_by}
-		} @{ $self->{fixtures} } 
+		} @{ $self->{fixtures} }
 	];
 }
 
 sub grep_goal_diffs {
 	my $self = shift;
-	return [ 
+	return [
 		grep {
 			abs $_->{home_away_goal_diff} > 2 or
 			abs $_->{last_six_goal_diff}  > 2
@@ -51,7 +51,7 @@ sub grep_goal_diffs {
 sub calculate_homes {
 	my ($self, $teams, $league, $team) = @_;
 	my $played = $league->{home_table}->played ($team);
-	
+
 	$teams->{$team}->{home_for} = $league->{home_table}->for($team);
 	$teams->{$team}->{home_against} = $league->{home_table}->against($team);
 	$teams->{$team}->{av_home_for} = sprintf "%0.2f", $teams->{$team}->{home_for} / $played;
@@ -79,7 +79,7 @@ sub calculate_last_six {
 
 sub calculate_expects {
 	my ($self, $teams, $league, $team) = @_;
-		
+
 	$teams->{$team}->{expect_home_for} = sprintf "%0.2f", $teams->{$team}->{av_home_for} / $league->{av_home_goals};
 	$teams->{$team}->{expect_home_against} = sprintf "%0.2f", $teams->{$team}->{av_home_against} / $league->{av_away_goals};
 	$teams->{$team}->{expect_away_for} = sprintf "%0.2f", $teams->{$team}->{av_away_for} / $league->{av_away_goals};
@@ -97,7 +97,7 @@ sub calculate_expects {
 
 sub calc_expected_scores {
 	my ($self, $teams, $game) = @_;
-	
+
 	my $league = @{ $self->{leagues} }[ $game->{league_idx} ];
 	my $home = $game->{home_team};
 	my $away = $game->{away_team};
@@ -121,7 +121,7 @@ sub calc_expected_scores {
 
 sub calc_goal_diffs {
 	my ($self, $teams, $game) = @_;
-	
+
 	my $league = @{ $self->{leagues} }[ $game->{league_idx} ];
 	my $home = $game->{home_team};
 	my $away = $game->{away_team};
@@ -135,7 +135,7 @@ sub calc_goal_diffs {
 
 	my $home_last_six_gd = $league->{last_six}->{$home}->{goal_difference};
 	my $away_last_six_gd = $league->{last_six}->{$away}->{goal_difference};
-	
+
 	$game->{home_last_six_goal_diff} = get_average ($home_last_six_gd, $league->{last_six}->{$home}, "last_six" );
 	$game->{away_last_six_goal_diff} = get_average ($away_last_six_gd, $league->{last_six}->{$away}, "last_six" );
 	$game->{last_six_goal_diff} = sprintf ("%0.2f", $game->{home_last_six_goal_diff} - $game->{away_last_six_goal_diff} );

@@ -4,11 +4,14 @@ BEGIN { $ENV{PERL_KEYWORD_TESTING} = 1; } # for Fixtures_Model:transform_hash
 
 use strict;
 use warnings;
-use Test::More tests => 5;
+use Test::More tests => 6;
+use Test::Deep;
+use utf8;
 
 use lib "C:/Mine/perl/Football";
 use Football::Fixtures_Model;
 use Football::Globals qw(@csv_leagues @summer_csv_leagues @euro_csv_lgs);
+use MyJSON qw(read_json write_json);
 
 my $model = Football::Fixtures_Model->new ();
 my $date = '2018-06-16';
@@ -55,4 +58,29 @@ subtest 'transform_hash' => sub {
     is ($files->{E0}, 'uk', 'uk ok');
     isnt ($files->{EC}, 'summer', 'EC not summer ok');
     is ($files->{WL}, 'euro', 'euro ok');
+};
+
+subtest 'prepare' => sub {
+	plan tests => 1;
+	my $all_games = {};
+	my $data = {};
+	my $week = read_json ('c:/mine/perl/football/t/test data/fixtures/dates.json');
+	for my $day (@$week) {
+		$data->{$day} = read_json ("c:/mine/perl/football/t/test data/fixtures/before_prepare $day->{date}.json");
+	}
+	my $after = read_json ('c:/mine/perl/football/t/test data/fixtures/after_prepare.json');
+
+	for my $day (@$week) {
+		my $dataref = @{$data->{$day}}[0];
+		my $date = $model->as_date_month ($day->{date});
+		my $games = $model->after_prepare (
+			$model->prepare (\$dataref, $day->{day}, $date)
+		);
+
+		for my $key (keys %$games) {
+			push @{ $all_games->{$key} }, $_ for (@{ $games->{$key} });
+		}
+	}
+	write_json ('c:/mine/perl/football/t/test data/fixtures/actual.json', $all_games);
+	cmp_deeply ($all_games, $after, 'compare data');
 };

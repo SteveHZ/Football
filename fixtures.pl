@@ -2,17 +2,19 @@
 #	v1.1 29/07-12/08/18
 #	v1.2 20-22/09/18
 
-#BEGIN { $ENV{PERL_KEYWORD_PRODUCTION} = 1;}
-#BEGIN { $ENV{PERL_KEYWORD_DELETEALL} = 1;}
+BEGIN { $ENV{PERL_KEYWORD_PRODUCTION} = 1;}
+BEGIN { $ENV{PERL_KEYWORD_DELETEALL} = 1;}
 BEGIN { $ENV{PERL_KEYWORD_FOOTBALL} = 1;}
 #BEGIN { $ENV{PERL_KEYWORD_RUGBY} = 1;}
 
 use strict;
 use warnings;
+use utf8;
 
 use MyKeyword qw(PRODUCTION DELETEALL FOOTBALL RUGBY);
 use Football::Fixtures_View;
 use Data::Dumper;
+use MyJSON qw(write_json);
 
 FOOTBALL {
 	use Football::Fixtures_Model;
@@ -43,7 +45,7 @@ sub do_football {
 		open my $fh, '<', $filename or die "Can't open $filename";
 		chomp ( my $data = <$fh> );
 		close $fh;
-
+#write_json ("c:/mine/perl/football/t/test data/fixtures/before_prepare $day->{date}.json", [$data]);
 		my $date = $model->as_date_month ($day->{date});
 		my $games = $model->after_prepare (
 			$model->prepare (\$data, $day->{day}, $date)
@@ -53,6 +55,8 @@ sub do_football {
 			push @{ $all_games->{$key} }, $_ for (@{ $games->{$key} });
 		}
 	}
+#write_json ('c:/mine/perl/football/t/test data/fixtures/after_prepare.json', $all_games);
+#write_json ('c:/mine/perl/football/t/test data/fixtures/dates.json', $week);
 
 	$view->dump ($all_games);
 	my $fname = "$path/fixtures_week";

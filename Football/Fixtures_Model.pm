@@ -114,6 +114,7 @@ sub get_week {
 	my @week = ();
 	my $today = localtime;
 
+#	for my $day_count (0..$days) {
 	for my $day_count (1..$days) {
 		my $day = ($forwards) ?
 			$today + ($day_count * ONE_DAY):
@@ -145,9 +146,8 @@ sub do_foreign_chars {
 
 sub do_initial_chars {
 	my ($self, $dataref) = @_;
-	$$dataref =~ s/Serie A/Serie a/g;
+	$$dataref =~ s/(Serie|Division) A/$1 a/g;
 	$$dataref =~ s/French Ligue 1/French Ligue 1x/g;
-	$$dataref =~ s/Division A/Division Ax/g;
 
 #	Order is important here !
 	$$dataref =~ s/FC/Fc/g;
@@ -155,39 +155,39 @@ sub do_initial_chars {
 	$$dataref =~ s/SJK/SJk/g;
 	$$dataref =~ s/AIK/AIk/g;
 	$$dataref =~ s/MU/Mu/g;  # Welsh
-	$$dataref =~ s/ FF//g;	# Swedish
-	$$dataref =~ s/IFK //g;
+	$$dataref =~ s/IFK //g;  # Swedish
+	$$dataref =~ s/GIF //g;
+	$$dataref =~ s/ FF//g;
 	$$dataref =~ s/FK //g;
 	$$dataref =~ s/ FK//g;
-	$$dataref =~ s/GIF //g;
-	$$dataref =~ s/ IF//g;
 	$$dataref =~ s/IF //g;
+	$$dataref =~ s/ IF//g;
 	$$dataref =~ s/IK //g;
 	$$dataref =~ s/ SK//g;
 	$$dataref =~ s/BK //g;
 	$$dataref =~ s/ BK//g;
 	$$dataref =~ s/ SC//g;
-	$$dataref =~ s/ 08//g;
+	$$dataref =~ s/SC //g;
+	$$dataref =~ s/AC //g;
+	$$dataref =~ s/ \d\d//g; #04,05,08,96
 	$$dataref =~ s/VfB //g;  # German
 	$$dataref =~ s/VfL //g;
-	$$dataref =~ s/1\. Fc //g;
-	$$dataref =~ s/Bayer 04 //g;
-	$$dataref =~ s/ 96//g;
-	$$dataref =~ s/ 05//g;
+	$$dataref =~ s/1\. //g;
 	$$dataref =~ s/1899 //g;
-	$$dataref =~ s/Fc Schalke 04/Schalke/g;
 	$$dataref =~ s/KuPS/KUPS/g; # Finnish
 	$$dataref =~ s/RoPS //g;
 	$$dataref =~ s/ fB/ fb/g;
 	$$dataref =~ s/jyskE/jyske/g; # Danish
 }
+#	$$dataref =~ s/(?<!$upper)$upper{2} //g;
+#    $$dataref =~ s/ $upper{2}(?!$upper)//g;
 
 sub revert {
 	my ($self, $dataref) = @_;
 	$$dataref =~ s/Serie a/Serie A/g;
 	$$dataref =~ s/Fc/FC/g;
-	$$dataref =~ s/Mu(?!n)/MU/g; # Cardiff MU - but not Bayern Munich
 	$$dataref =~ s/Afc/AFC/g;
+	$$dataref =~ s/Mu(?!n)/MU/g; # Cardiff MU - but not Bayern Munich
 	$$dataref =~ s/AIk/AIK/g;
 	$$dataref =~ s/KUPS/KuPS/g;
 	$$dataref =~ s/SJk/SJK/g;
@@ -218,22 +218,6 @@ sub transform_hash {
 #	my ($self, $list, $value) = @_;
 #	return 1 if (firstidx { $_ eq $value } @$list) > 0;
 #	return 0;
-#}
-#sub after_prepare {
-#	my ($self, $lines) = @_;
-#	my @fixed_lines = ();
-#	my $csv_league = '';
-
-#	for my $line (@$lines) {
-#		if ($line =~ /^<LEAGUE>(.*)$/) {
-#			$csv_league = (exists $football_fixtures_leagues{$1} ) ?
-#				$football_fixtures_leagues{$1} : 'X';
-#		} elsif ($line =~ /\d:\d/) { # valid lines will have a time eg 15:00
-#			$line =~ s/($dm_date),(.*),($time),(.*)/$1 $3,$csv_league,$2,$4/;
-#			push @fixed_lines, $line;
-#		}
-#	}
-#	return \@fixed_lines;
 #}
 
 =pod

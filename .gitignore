@@ -21,6 +21,7 @@
 v3.pl
 *.xlsx
 *.ods
+*.json
 .precomp
 /.precomp
 goal_expect_test.pl

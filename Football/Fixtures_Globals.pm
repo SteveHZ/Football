@@ -192,20 +192,21 @@ Real Betis,Betis
 
 #	German
 Hertha Berlin,Hertha
-Nuremberg,Nurnberg
-Schalke,Schalke 04
+FC Nuremberg,Nurnberg
+FC Schalke,Schalke 04
 Mainz 05,Mainz
 Borussia Monchengladbach,M'gladbach
-#Bayer 04 Leverkusen,Leverkusen
+Bayer Leverkusen,Leverkusen
 Borussia Dortmund,Dortmund
 Eintracht Frankfurt,Ein Frankfurt
 FC Augsburg,Augsburg
-SC Freiburg,Freiburg
+#SC Freiburg,Freiburg
+#RB Leipzig,Leipzig
 
 #	Italian
 SPAL,Spal
 Inter Milan,Inter
-AC Milan,Milan
+Milan,Milan
 
 END_FOOTBALL_TEAMS
 
