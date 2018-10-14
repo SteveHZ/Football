@@ -21,6 +21,7 @@ for my $league (@$leagues) {
 	my $ff = File::Fetch->new (uri => $url);
 	my $file = $ff->fetch (to => $summer_dir) or die $ff->error;
 	print "\nDownloading $file...";
+	sleep 1;
 }
 print "\n";
 
@@ -28,7 +29,7 @@ my $iterator = each_arrayref ($leagues, $csv_leagues);
 while (my ($league, $file) = $iterator->()) {
 	my $in_file = "$summer_dir/$league.csv";
 	my $out_file = "$summer_dir/$file.csv";
-	
+
 	my $games = $data_model->read_data ($in_file);
 	my @data = grep { $_->{year} =~ $euro_season } @$games;
 #	my @data = grep { $_->{year} == $euro_season } @$games;

@@ -25,6 +25,7 @@ sub get_football_pages {
 			print "\n$date->{date} : ";
 			$self->do_football_write ($date->{date}, $q->text);
 			print "Done - character length : ".length ($q->text);
+            sleep 1;
 		} else {
 			print "\nUnable to create object : $site/$date->{date}";
 		}
@@ -43,6 +44,7 @@ sub get_rugby_pages {
 			print "\n$league : ";
 			$self->do_rugby_write ($league, $q->text);
 			print "Done - character length : ".length ($q->text);
+            sleep 1;
 		} else {
 			print "\nUnable to create object : $site";
 		}

@@ -38,11 +38,10 @@ sub new { return bless {}, shift; }
 
 our $season = 2018;
 our $euro_season = $season;
+
 my $next_season = $season + 1;
 our $season_years = ($season-2000).($next_season-2000);
-#our $season_years = 1819;
 our $full_season_years = "$season-$next_season";
-#our $full_season_years = '2018-2019';
 our $last_season = $season - 1;
 our $reports_season = $last_season;
 our $default_stats_size = 6;

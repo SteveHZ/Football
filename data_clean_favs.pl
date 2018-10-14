@@ -1,11 +1,12 @@
 
-#   data_clean_favs.pl 06/10/18
+#   data_clean_favs.pl 06-07/10/18
 
 use strict;
 use warnings;
 use v5.010; # say
 
 use MyJSON qw(write_json read_json);
+use MyLib qw(is_empty_array);
 use Football::Globals qw($season);
 use File::Copy qw(move);
 
@@ -19,11 +20,11 @@ my $idx;
 my $data = read_json ($filename);
 
 for my $week (@$data) {
-    if (is_empty (\@cleaned)) {
+    if (is_empty_array (\@cleaned)) {
         push @cleaned, @$data[0];
         $idx = 0;
     } else {
-        if (compare ($cleaned[$idx], $week)) {
+        if (compare ($week, $cleaned[$idx])) {
             push @cleaned, $week;
             $idx ++;
         }
@@ -35,20 +36,15 @@ say "Writing $filename...";
 write_json ($filename, \@cleaned);
 say "Done";
 
-sub is_empty {
-    my $arrayref = shift;
-    return $#$arrayref == -1;
-}
-
 sub compare {
-    my ($cleaned, $week) = @_;
+    my ($week, $cleaned) = @_;
 
     for my $league (keys %$week) {
         my $weekref = $week->{$league}->{$season};
-        my $cleanref = $cleaned->{$league}->{$season};
+        my $cleanedref = $cleaned->{$league}->{$season};
 
         for my $key (keys %$weekref) {
-            return 1 if $weekref->{$key} != $cleanref->{$key};
+            return 1 if $weekref->{$key} != $cleanedref->{$key};
         }
     }
     return 0;

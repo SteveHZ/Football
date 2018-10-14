@@ -18,6 +18,7 @@ for my $league (@csv_leagues) {
 	my $ff = File::Fetch->new (uri => $url);
 	my $file = $ff->fetch (to => $dir) or die $ff->error;
 	print "\nDownloading $file...";
+	sleep 1;
 }
 
 for my $league (@euro_fetch_lgs) {
@@ -25,6 +26,7 @@ for my $league (@euro_fetch_lgs) {
 	my $ff = File::Fetch->new (uri => $url);
 	my $file = $ff->fetch (to => $euro_dir) or die $ff->error;
 	print "\nDownloading $file...";
+	sleep 1;
 }
 
 my $url = "http://www.football-data.co.uk/$id/$season_years/all-euro-data-$full_season_years.xlsx";
