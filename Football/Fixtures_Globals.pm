@@ -48,7 +48,8 @@ sub football_rename {
 	return defined $football_rename{ $name }
 		? $football_rename{ $name } : $name
 }
-
+#use Data::Dumper;
+#print Dumper { %rugby_rename };<STDIN>;
 
 sub rugby_rename {
 	my $name = shift;
@@ -237,9 +238,14 @@ Raiders,West Wales Raiders
 Workington,Workington Town
 Newcastle,Newcastle Thunder
 Bradford,Bradford Bulls
+Cronulla Sutherland Sharks,Cronulla Sharks
+St George Illawarra Dragons,St.George Illawarra
+Canterbury Bankstown Bulldogs,Canterbury Bulldogs
+Manly Warringah Sea Eagles,Manly Sea Eagles
 END_RUGBY_TEAMS
 
 Cup,X
+Copa del Ray,X
 Trophy,X
 Women,X
 #Women's Championship,X

@@ -11,12 +11,12 @@ use Spreadsheet::Read qw(rows);
 use lib 'C:/Mine/perl/Football';
 use Football::Favourites_Model;
 use Football::Spreadsheets::Favourites;
-use Football::Globals qw( @euro_leagues $season );
+use Football::Globals qw( @euro_leagues $season $full_season_years );
 use Football::Utils qw(get_odds_cols);
 
 my $year = $season;
-my $path = "C:/Mine/perl/Football/data/";
-my $filename = $path."all-euro-data-2017-2018.xlsx";
+my $path = "C:/Mine/perl/Football/data";
+my $filename = "$path/all-euro-data-$full_season_years.xlsx";
 
 main ();
 
@@ -37,7 +37,7 @@ sub update {
 	for my $sheet (1..scalar @sheetnames) {
 		my $league = $euro_leagues[$sheet - 1];
 		my $csv_sheetname = $sheetnames[$sheet - 1];
-		
+
 		my @rows = rows ($book->[$sheet]);
 		my $results = get_data (\@rows);
 		$fav_model->update ($league, $year, $results);
@@ -79,7 +79,7 @@ sub get_data {
 
 sub view {
 	my ($fav_model, $leagues, $year) = @_;
-	
+
 	for my $league (@$leagues) {
 		my $hashref = $fav_model->hash->{$league}->{$year};
 

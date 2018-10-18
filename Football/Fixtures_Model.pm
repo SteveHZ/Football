@@ -170,6 +170,7 @@ sub do_initial_chars {
 	$$dataref =~ s/SC //g;
 	$$dataref =~ s/AC //g;
 	$$dataref =~ s/ \d\d//g; #04,05,08,96
+	$$dataref =~ s/SPAL/SPAl/g;
 	$$dataref =~ s/VfB //g;  # German
 	$$dataref =~ s/VfL //g;
 	$$dataref =~ s/1\. //g;
@@ -191,6 +192,7 @@ sub revert {
 	$$dataref =~ s/AIk/AIK/g;
 	$$dataref =~ s/KUPS/KuPS/g;
 	$$dataref =~ s/SJk/SJK/g;
+	$$dataref =~ s/SPAl/SPAL/g;
 }
 
 #   transform a hash from key => value 'one-to-many' relationship

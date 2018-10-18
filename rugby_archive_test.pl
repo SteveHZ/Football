@@ -20,9 +20,9 @@ package main;
 use Rugby::Rugby_Data_Model;
 
 my $year = 2017;
-my $path = "C:/Mine/perl/Football/data/Rugby/historical/";
-my $archive_path = "C:/Mine/perl/Football/data/Rugby/historical/".$year."/";
-my $json_file = $path.$year." season.json";
+my $path = 'C:/Mine/perl/Football/data/Rugby/historical/';
+my $archive_path = "C:/Mine/perl/Football/data/Rugby/historical/$year/";
+my $json_file = $path.$year.' season.json';
 
 main ();
 
@@ -33,6 +33,6 @@ sub main {
 
 	mkdir $archive_path unless -d $archive_path;
 	$data_model->write_csv ($data, $archive_path);
-	
+
 	print "\nDone.";
 }

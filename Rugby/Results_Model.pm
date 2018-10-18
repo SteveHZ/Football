@@ -15,7 +15,7 @@ my $weekdays = join '|', @days_of_week;
 my $leagues = join '|', @fixtures_leagues;
 
 my $rx = MyRegX->new ();
-my $date_parser = $rx->date_parser;
+my $date_parser = $rx->rugby_results_date_parser;
 
 sub prepare {
 	my ($self, $dataref) = @_;
@@ -26,12 +26,11 @@ sub prepare {
 
 #	Remove whitespace and other stuff
 	$$dataref =~ s/\s{2}+//g;
-	$$dataref =~ s/Super 8s|Shield|Grand Final|Semi-final|Final|Play-off //g;
+	$$dataref =~ s/Super 8s|Shield|Grand Final|Semi-|final|Final|Play-off //g;
 
 #	Find dates
-	$$dataref =~ s/($weekdays)/\n<DATE>$1/g;
-	$$dataref =~ s/(\d\d\d\d)/$1\n/g;
-	
+    $$dataref =~ s/($date_parser)/\n<DATE>$1\n/g;
+
 #	Find games - without positive lookahead (?=\D) this matches on the year so 2018 -> 20\n18
 	$$dataref =~ s/(\D+\d\d?\d?\D+\d\d?\d?(?=\D))/$1\n/g;
 
@@ -44,12 +43,13 @@ sub prepare {
 sub after_prepare {
 	my ($self, $games) = @_;
 	my $date;
-	
+
 	for my $line (@$games) {
 		if ($line =~ /^<DATE>$date_parser/ ) {
 			$date = do_dates ( \%+ );
 		} else {
-			$line =~ s/(\D+)(\d\d?\d?)(\D+)(\d\d?\d?)/$date,$1,$3,$2,$4/
+            $line =~ s/\s*(\D+)(\d{1,3})\s*(\D+)(\d{1,3})/$date,$1,$3,$2,$4/
+#			$line =~ s/\s*(\D+)(\d\d?\d?)\s*(\D+)(\d\d?\d?)/$date,$1,$3,$2,$4/
 		}
 	}
 	return $self->sort_games ( $games );
@@ -59,7 +59,7 @@ sub after_prepare {
 #	keeping alphabetical order for each date
 sub sort_games {
 	my ($self, $games) = @_;
-	
+
 	return [
 		map { "$_->[1],$_->[2],$_->[3],$_->[4],$_->[5]" }
 		sort {
@@ -99,7 +99,8 @@ sub get_pages {
 			print "\n$league->{name} : ";
 			$self->do_write ($league->{name}, $q->text);
 			print "Done - character length : ".length ($q->text);
-		} else {
+            sleep 1;
+        } else {
 			print "\nUnable to create object : $league->{name}";
 		}
 	}

@@ -11,24 +11,24 @@ use Rugby::Rugby_Data_Model;
 use MyJSON qw(read_json);
 
 my $year = 2017;
-my $path = "C:/Mine/perl/Football/data/Rugby/";
-my $historical_path = $path."historical/";
-my $archive_path = $historical_path.$year."/";
+my $path = 'C:/Mine/perl/Football/data/Rugby/';
+my $historical_path = $path.'historical/';
+my $archive_path = $historical_path.$year.'/';
 
-my $src_file = $path."season.json";
-my $json_file = $historical_path.$year." season.json";
+my $src_file = $path.'season.json';
+my $json_file = $historical_path.$year.' season.json';
 
 main ();
 
 sub main {
 	my $data_model = Rugby::Rugby_Data_Model->new ();
-	
+
 	copy $src_file, $json_file;
 	my $data = read_json ($json_file);
 
 	mkdir $archive_path unless -d $archive_path;
 	$data_model->write_csv ($data, $archive_path);
-	
+
 	print "\nDone.";
 }
 

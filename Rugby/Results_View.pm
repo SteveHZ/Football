@@ -7,7 +7,7 @@ use namespace::clean;
 
 sub write_csv {
 	my ($self, $path, $games) = @_;
-	
+
 	for my $league (keys %$games) {
 		my $filename = "$path/$league.csv";
 		print "\nWriting $filename...";
@@ -17,13 +17,16 @@ sub write_csv {
 		for my $game (@ { $games->{$league} } ) {
 			next if $game =~ /<DATE>/;
 			next if $game =~ /,X,/;
-			
+
 			my @data = split ',', $game;
-			$data[1] = rugby_rename ($data[1]);	# home team
-			$data[2] = rugby_rename ($data[2]);	# away team
+#			$data[1] =~ s/^\s*//;	# home team
+			$data[1] = rugby_rename ($data[1]);
+#			$data[2] =~ s/^\s*//;	# home team
+			$data[2] = rugby_rename ($data[2]);
 			print $fh $data[0].','.$data[1].','.$data[2].','.$data[3].','.$data[4]."\n";
 		}
 		close $fh;
+
 	}
 }
 

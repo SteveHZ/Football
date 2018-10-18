@@ -9,6 +9,7 @@ use vars qw (@EXPORT_OK %EXPORT_TAGS);
 
 our @EXPORT = qw(
 	$season
+	$next_season
 	$euro_season
 	$season_years
 	$full_season_years
@@ -39,7 +40,7 @@ sub new { return bless {}, shift; }
 our $season = 2018;
 our $euro_season = $season;
 
-my $next_season = $season + 1;
+our $next_season = $season + 1;
 our $season_years = ($season-2000).($next_season-2000);
 our $full_season_years = "$season-$next_season";
 our $last_season = $season - 1;

@@ -1,4 +1,4 @@
-#	results.pl 04-05/06/18, 07/07/18
+#	results.pl 04-05/06/18, 07/07/18, 18/10/18
 
 BEGIN { $ENV{PERL_KEYWORD_PRODUCTION} = 1;}
 #BEGIN { $ENV{PERL_KEYWORD_DELETEALL} = 1;}
@@ -21,7 +21,8 @@ my $all_games = {};
 my @leagues = (
 	{ name => 'Super League', site => 'https://www.bbc.co.uk/sport/rugby-league/super-league/results' },
 	{ name => 'Championship', site => 'https://www.bbc.co.uk/sport/rugby-league/championship/results' },
-	{ name => 'League One',	  site => 'https://www.bbc.co.uk/sport/rugby-league/league-one/results'},
+	{ name => 'League One',	  site => 'https://www.bbc.co.uk/sport/rugby-league/league-one/results' },
+	{ name => 'NRL',          site => 'https://www.bbc.co.uk/sport/rugby-league/nrl-premiership/results' },
 );
 
 PRODUCTION {
