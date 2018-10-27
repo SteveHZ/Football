@@ -14,7 +14,7 @@ our @EXPORT = qw(
 	%rugby_fixtures_leagues
 );
 
-@EXPORT_OK  = qw( football_rename rugby_rename);
+@EXPORT_OK  = qw( football_rename rugby_rename );
 %EXPORT_TAGS = (all => [ @EXPORT, @EXPORT_OK ]);
 
 sub new { return bless {}, shift; }
@@ -43,19 +43,18 @@ for my $dataref (@datarefs) {
 close DATA;
 
 sub football_rename {
-	my $name = shift;
-	return unless defined $name;
-	return defined $football_rename{ $name }
-		? $football_rename{ $name } : $name
+	return _rename ($_[0], \%football_rename);
 }
-#use Data::Dumper;
-#print Dumper { %rugby_rename };<STDIN>;
 
 sub rugby_rename {
-	my $name = shift;
+	return _rename ($_[0], \%rugby_rename);
+}
+
+sub _rename {
+	my ($name, $hashref) = @_;
 	return unless defined $name;
-	return defined $rugby_rename{ $name }
-		? $rugby_rename{ $name } : $name
+	return defined $hashref->{ $name }
+		? $hashref->{ $name } : $name
 }
 
 __DATA__
@@ -208,7 +207,6 @@ FC Augsburg,Augsburg
 SPAL,Spal
 Inter Milan,Inter
 Milan,Milan
-
 END_FOOTBALL_TEAMS
 
 #	Rugby League

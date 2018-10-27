@@ -3,10 +3,12 @@
 
 use strict;
 use warnings;
+use File::Copy qw(copy);
 
 die 'Usage perl csvcat.pl to_file from_file(s)...' unless @ARGV >= 2;
 
 my $to_file = "C:/Mine/perl/Football/data/Euro/$ARGV[0].csv";
+my $bak_file = "C:/Mine/perl/Football/data/backups/$ARGV[0].csv";
 
 for my $file_count (1..$#ARGV) {
 	my $from_file = "C:/Mine/perl/Football/data/Euro/cleaned/$ARGV[ $file_count ].csv";
@@ -17,7 +19,7 @@ for my $file_count (1..$#ARGV) {
 	chomp ( my @games = <$fh> );
 	close $fh;
 
-	print "\nAppending to $to_file..\n";
+	print "\nAppending to $to_file..";
 	open my $fh2, '>>', $to_file or die "Can't open $to_file !!";
 	for my $game (@games) {
 		chomp $game;
@@ -27,6 +29,8 @@ for my $file_count (1..$#ARGV) {
 					$line[22].','. $line[23].','. $line[24].",0,0\n";
 	}
 	close $fh2;
+	print "\nWriting $bak_file..\n";
+	copy ($to_file, $bak_file);
 }
 
 =pod

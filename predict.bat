@@ -4,7 +4,11 @@ cd c:/mine/perl/football
 
 perl fetch.pl
 perl fetch_summer.pl
-oddsp
+
+REM ** oddsp.bat
+perl oddsp.pl ni welsh
+perl csvcat.pl ni ni
+perl csvcat.pl wl welsh
 
 perl predict.pl -u
 perl predict.pl -eu

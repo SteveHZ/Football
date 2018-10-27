@@ -1,4 +1,5 @@
-perl predict.pl -ru
-perl rugby_archive.pl
-perl create_rugby_reports.pl
-perl predict.pl -r
+REM ** update_rugby.bat
+REM perl predict.pl -ru
+REM perl rugby_archive.pl
+REM perl create_rugby_reports.pl
+REM perl predict.pl -r

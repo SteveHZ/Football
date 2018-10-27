@@ -3,13 +3,14 @@
 #	v1.2 20-22/09/18
 
 BEGIN { $ENV{PERL_KEYWORD_PRODUCTION} = 1;}
+BEGIN { $ENV{PERL_KEYWORD_TESTING} = 0; }
 BEGIN { $ENV{PERL_KEYWORD_DELETEALL} = 1;}
 BEGIN { $ENV{PERL_KEYWORD_FOOTBALL} = 1;}
 #BEGIN { $ENV{PERL_KEYWORD_RUGBY} = 1;}
 
 use strict;
 use warnings;
-use utf8;
+#use utf8;
 
 use MyKeyword qw(PRODUCTION DELETEALL FOOTBALL RUGBY);
 use Football::Fixtures_View;

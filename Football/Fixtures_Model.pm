@@ -9,8 +9,9 @@ use MyKeyword qw(TESTING);
 
 use Time::Piece qw(localtime);
 use Time::Seconds qw(ONE_DAY);
+TESTING { use utf8; }
 use Data::Dumper;
-#use utf8;
+
 use Moo;
 use namespace::clean;
 
@@ -138,10 +139,10 @@ sub do_foreign_chars {
 	$$dataref =~ s/$_/a/g for (qw(ä å));
 	$$dataref =~ s/$_/o/g for (qw(ö ø));
 	$$dataref =~ s/é/e/g;
+	$$dataref =~ s/Ú/e/g; # for test
 	$$dataref =~ s/Ö/O/g;
 	$$dataref =~ s/ü/u/g;
 	$$dataref =~ s/æ/ae/g;
-	$$dataref =~ s/\// /g;
 }
 
 sub do_initial_chars {
@@ -178,6 +179,7 @@ sub do_initial_chars {
 	$$dataref =~ s/KuPS/KUPS/g; # Finnish
 	$$dataref =~ s/RoPS //g;
 	$$dataref =~ s/ fB/ fb/g;
+	$$dataref =~ s/\// /g; # Norwegian (Bodo/Glimt)
 	$$dataref =~ s/jyskE/jyske/g; # Danish
 }
 #	$$dataref =~ s/(?<!$upper)$upper{2} //g;
@@ -211,7 +213,8 @@ sub _transform_hash {
 #	wrapper for testing
 sub transform_hash {
 	TESTNG { # shift $self from @_first
-		shift; return _transform_hash (shift);
+		my ($self, $hash) = @_;
+		return _transform_hash ($hash);
 	}
 }
 

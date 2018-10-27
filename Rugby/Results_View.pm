@@ -19,9 +19,7 @@ sub write_csv {
 			next if $game =~ /,X,/;
 
 			my @data = split ',', $game;
-#			$data[1] =~ s/^\s*//;	# home team
 			$data[1] = rugby_rename ($data[1]);
-#			$data[2] =~ s/^\s*//;	# home team
 			$data[2] = rugby_rename ($data[2]);
 			print $fh $data[0].','.$data[1].','.$data[2].','.$data[3].','.$data[4]."\n";
 		}
@@ -32,7 +30,7 @@ sub write_csv {
 
 sub dump {
 	my ($self, $games) = @_;
-	print Dumper %$games;
+	print Dumper @$games;
 }
 
 =pod

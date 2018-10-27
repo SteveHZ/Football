@@ -6,7 +6,8 @@ use strict;
 use warnings;
 use Test::More tests => 6;
 use Test::Deep;
-use utf8;
+#use utf8;
+#use Data::Dumper;
 
 use lib "C:/Mine/perl/Football";
 use Football::Fixtures_Model;
@@ -35,17 +36,10 @@ subtest 'as_date_month' => sub {
 
 subtest 'do_foreign chars' => sub {
 	plan tests => 1;
-    my $str = 'AAäåAA/öÖøæ';
+    my $str = 'äåöøÖéüæ';
 	$model->do_foreign_chars (\$str);
-    is ($str, 'AAaaAA oOoae', 'foreign chars ok');
+    is ($str, 'aaooOeuae', 'foreign chars ok');
 };
-
-#subtest 'contains' => sub {
-#	plan tests => 2;
-#	my @list = qw(Steve Linda Zappy);
-#	is ($model->contains (\@list, 'Zappy'), 1, 'contains');
-#	is ($model->contains (\@list, 'Hopey'), 0, 'doesn\'t contain');
-#};
 
 subtest 'transform_hash' => sub {
     plan tests => 3;
@@ -65,18 +59,21 @@ subtest 'prepare' => sub {
 	my $all_games = {};
 	my $data = {};
 	my $week = read_json ('c:/mine/perl/football/t/test data/fixtures/dates.json');
+
 	for my $day (@$week) {
-		$data->{$day} = read_json ("c:/mine/perl/football/t/test data/fixtures/before_prepare $day->{date}.json");
+		my $filename = "c:/mine/perl/football/t/test data/fixtures/before_prepare $day->{date}.txt";
+		open my $fh, '<', $filename or die "Can't open $filename";
+		chomp ( $data->{$day} = <$fh> );
+		close $fh;
 	}
 	my $after = read_json ('c:/mine/perl/football/t/test data/fixtures/after_prepare.json');
 
 	for my $day (@$week) {
-		my $dataref = @{$data->{$day}}[0];
+		my $dataref = $data->{$day};
 		my $date = $model->as_date_month ($day->{date});
 		my $games = $model->after_prepare (
 			$model->prepare (\$dataref, $day->{day}, $date)
 		);
-
 		for my $key (keys %$games) {
 			push @{ $all_games->{$key} }, $_ for (@{ $games->{$key} });
 		}
@@ -84,3 +81,10 @@ subtest 'prepare' => sub {
 	write_json ('c:/mine/perl/football/t/test data/fixtures/actual.json', $all_games);
 	cmp_deeply ($all_games, $after, 'compare data');
 };
+
+#subtest 'contains' => sub {
+#	plan tests => 2;
+#	my @list = qw(Steve Linda Zappy);
+#	is ($model->contains (\@list, 'Zappy'), 1, 'contains');
+#	is ($model->contains (\@list, 'Hopey'), 0, 'doesn\'t contain');
+#};

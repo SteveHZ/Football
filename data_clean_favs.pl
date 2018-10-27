@@ -24,7 +24,7 @@ for my $week (@$data) {
         push @cleaned, @$data[0];
         $idx = 0;
     } else {
-        if (compare ($week, $cleaned[$idx])) {
+        if (is_different ($week, $cleaned[$idx])) {
             push @cleaned, $week;
             $idx ++;
         }
@@ -34,9 +34,13 @@ for my $week (@$data) {
 move ($filename, $backup);
 say "Writing $filename...";
 write_json ($filename, \@cleaned);
-say "Done";
 
-sub compare {
+my $data_lines = scalar @$data;
+my $cleaned_lines = scalar @cleaned;
+say "Edited $data_lines lines to $cleaned_lines.";
+say "Done.";
+
+sub is_different {
     my ($week, $cleaned) = @_;
 
     for my $league (keys %$week) {

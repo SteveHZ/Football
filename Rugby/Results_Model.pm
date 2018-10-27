@@ -22,6 +22,7 @@ sub prepare {
 
 #	Remove beginning and end of data
 	$$dataref =~ s/^.*Betfred ($leagues)//;
+    $$dataref =~ s/^.*Telstra Premiership//;
 	$$dataref =~ s/Please note.*$//g;
 
 #	Remove whitespace and other stuff
@@ -32,11 +33,10 @@ sub prepare {
     $$dataref =~ s/($date_parser)/\n<DATE>$1\n/g;
 
 #	Find games - without positive lookahead (?=\D) this matches on the year so 2018 -> 20\n18
-	$$dataref =~ s/(\D+\d\d?\d?\D+\d\d?\d?(?=\D))/$1\n/g;
+    $$dataref =~ s/(\D+\d{1,3}\D+\d{1,3}(?=\D))/$1\n/g;
 
 	my @lines = grep { $_ ne '' } split '\n', $$dataref;
 	shift @lines;
-	pop @lines;
 	return \@lines;
 }
 
@@ -48,8 +48,7 @@ sub after_prepare {
 		if ($line =~ /^<DATE>$date_parser/ ) {
 			$date = do_dates ( \%+ );
 		} else {
-            $line =~ s/\s*(\D+)(\d{1,3})\s*(\D+)(\d{1,3})/$date,$1,$3,$2,$4/
-#			$line =~ s/\s*(\D+)(\d\d?\d?)\s*(\D+)(\d\d?\d?)/$date,$1,$3,$2,$4/
+            $line =~ s/\s*(\D+)(\d{1,3})\s*(\D+)(\d{1,3})/$date,$1,$3,$2,$4/;
 		}
 	}
 	return $self->sort_games ( $games );
