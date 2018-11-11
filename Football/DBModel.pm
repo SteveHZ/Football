@@ -2,7 +2,7 @@ package Football::DBModel;
 
 use DBI;
 use SQL::Abstract;
-use MyLib qw(ucfirst_all);
+use MyLib qw(wordcase);
 use MyKeyword qw(TESTING);
 TESTING { use Data::Dumper; }
 
@@ -77,7 +77,7 @@ sub do_cmd_line {
 	my ($self, $cmd_line) = @_;
 	my ($team, @opts) = split ' -', $cmd_line;
 
-	$team = ucfirst_all ($team);
+	$team = wordcase ($team);
 	$team =~ s/Fc/FC/;
 	$opts[0] = 'ha'  if @opts == 0; # use defaults if not present
 	$opts[1] = 'wld' if @opts == 1;	# as above

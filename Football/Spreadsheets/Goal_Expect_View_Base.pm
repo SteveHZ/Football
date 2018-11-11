@@ -178,7 +178,7 @@ sub get_write_data_rows {
 sub do_goal_expect_header {
 	my ($self, $worksheet) = @_;
 
-	$self->set_columns ($worksheet, $self->get_column_sizes ());
+	$self->set_columns ($worksheet, $self->get_expect_columns ());
 	$worksheet->set_column ($_, undef, undef, 1) for (qw (B:B G:I L:N)); # hide columns
 
 	$worksheet->write ('B1', "League", $self->{format} );
@@ -199,7 +199,7 @@ sub do_goal_expect_header {
 	$worksheet->freeze_panes (2,0);
 }
 
-sub get_column_sizes {
+sub get_expect_columns {
 	my $self = shift;
 
 	return {

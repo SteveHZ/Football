@@ -20,7 +20,7 @@ sub get_rules {
 
 after 'do_goal_expect_header' => sub {
 	my ($self, $worksheet) = @_;
-	$self->set_columns ($worksheet, $self->after_get_column_sizes ());
+	$self->set_columns ($worksheet, $self->after_get_expect_columns ());
 
 	$worksheet->merge_range ('X1:Y1', 'GOAL DIFF', $self->{float_format} );
 	$worksheet->write ('X2', 'H/A', $self->{format} );
@@ -35,7 +35,7 @@ after 'do_goal_expect_header' => sub {
 	$worksheet->merge_range ('AI2:AJ2', 'ODDS', $self->{format} );
 };
 
-sub after_get_column_sizes {
+sub after_get_expect_columns {
 	my $self = shift;
 
 	return {

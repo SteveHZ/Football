@@ -1,7 +1,7 @@
 package Football::Fixtures_Scraper_Model;
 
 use Web::Query;
-use MyLib qw(ucfirst_all);
+use MyLib qw(wordcase);
 use utf8;
 use Data::Dumper;
 use Moo;
@@ -56,7 +56,7 @@ sub get_league_name {
 	my $str = shift;
 	$str =~ s/^.*\/(.*)\/fixtures/$1/;
 	$str =~ s/-/ /g;
-	return ucfirst_all ($str);
+	return wordcase ($str);
 }
 
 sub do_football_write {

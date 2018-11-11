@@ -4,7 +4,7 @@ use Moo;
 use namespace::clean;
 
 use Football::Globals qw(@league_names @euro_lgs @summer_leagues);
-use MyLib qw(ucfirst_all);
+use MyLib qw(wordcase);
 
 has 'filename' => ( is => 'ro' );
 has 'euro' => ( is => 'ro' );
@@ -35,7 +35,7 @@ sub show {
 	$self->blank_columns ( [ qw(1 3 5 7 9 11) ] );
 
 	for my $sheet (@{ $self->{sheetnames} }) {
-		my $worksheet = $self->add_worksheet (ucfirst_all $sheet);
+		my $worksheet = $self->add_worksheet (wordcase $sheet);
 		$self->do_header ($worksheet, $self->{bold_format});
 
 		my $row = 2;
@@ -50,7 +50,7 @@ sub show {
 sub do_header {
 	my ($self, $worksheet, $format) = @_;
 
-	$self->set_columns ($worksheet, $self->get_column_sizes ());
+	$self->set_columns ($worksheet, $self->get_maxp_columns ());
 
 	$worksheet->write ('A1', 'League', $format);
 	$worksheet->write ('C1', 'Team', $format);
@@ -105,7 +105,7 @@ sub get_aways {
 	];
 }
 
-sub get_column_sizes {
+sub get_maxp_columns {
 	my $self = shift;
 
 	return {
