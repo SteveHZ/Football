@@ -12,20 +12,20 @@ use Data::Dumper;
 my $path = 'c:/mine/perl/Football/reports';
 
 my @expect_files = (
-    { name => 'UK Expect', file => "$path/goal_expect.ods" },
-    { name => 'Euro Expect', file => "$path/Euro/goal_expect.ods" },
+    { name => 'UK Expect', file => "$path/goal_expect.xlsx" },
+    { name => 'Euro Expect', file => "$path/Euro/goal_expect.xlsx" },
 #   { name => 'Summer Expect', file => "$path/Summer/goal_expect.ods" },
 );
 my @maxp_files = (
-    { name => 'UK Homes', file => "$path/max_profit_uk.ods", sheet => 4, },
-    { name => 'UK Aways', file => "$path/max_profit_uk.ods", sheet => 5, },
-    { name => 'Euro Homes', file => "$path/Euro/max_profit_euro.ods", sheet => 4, },
-    { name => 'Euro Aways', file => "$path/Euro/max_profit_euro.ods", sheet => 5, },
-#   { name => 'Summer Max', file => "$path/Summer/max_profit_summer.ods" },
+    { name => 'UK Homes', file => "$path/max_profit_uk.xlsx", sheet => 4, },
+    { name => 'UK Aways', file => "$path/max_profit_uk.xlsx", sheet => 5, },
+    { name => 'Euro Homes', file => "$path/Euro/max_profit_euro.xlsx", sheet => 4, },
+    { name => 'Euro Aways', file => "$path/Euro/max_profit_euro.xlsx", sheet => 5, },
+#   { name => 'Summer Max', file => "$path/Summer/max_profit_summer.xlsx" },
 );
 my $out_file = "$path/combined.xlsx";
 my $data = {};
-my $tick_col = 27; # column AB
+#my $tick_col = 27; # column AB
 
 read_goal_expects ($data);
 read_maxp ($data);
@@ -42,7 +42,8 @@ sub read_goal_expects {
         my $row_count = 0;
         for my $row (@rows) {
             next if $row_count++ < 2;
-            push @{ $data->{$name} }, $row if @$row[$tick_col] # if col AB not undef
+            push @{ $data->{$name} }, $row;
+#            push @{ $data->{$name} }, $row if @$row[$tick_col] # if col AB not undef
         }
         for my $row (@{ $data->{$name} } ) {
             map { $_ = '' unless $_ } @$row; # amend all undef cells to blank
@@ -62,7 +63,7 @@ sub read_maxp {
         my $row_count = 0;
         for my $row (@rows) {
             next if $row_count++ < 2;
-            push @{ $data->{$name} }, $row;# if @$row[$tick_col] # if col AB not undef
+            push @{ $data->{$name} }, $row;
         }
         for my $row (@{ $data->{$name} } ) {
             map { $_ = '' unless $_ } @$row; # amend all undef cells to blank
