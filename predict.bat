@@ -17,3 +17,5 @@ perl predict.pl -su
 perl max_profit.pl
 perl max_profit.pl -e
 perl max_profit.pl -s
+
+perl combine.pl

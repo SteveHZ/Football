@@ -1,7 +1,6 @@
 package Football::Spreadsheets::Goal_Expect_View_Base;
 
 use v5.10; # state
-
 use Moo;
 use namespace::clean;
 
@@ -34,11 +33,14 @@ after 'BUILD' => sub {
 	$self->{blank_number_format2}->set_num_format ('#0.00');
 
 	$self->{blank_number_format3} = $self->copy_format ($self->{blank_text_format2} );
-	$self->{blank_number_format3}->set_num_format ('#0');
+	$self->{bold_float_format} = $self->copy_format ( $self->{float_format} );
 
 	$self->{bold_float_format} = $self->copy_format ( $self->{float_format} );
 	$self->{bold_float_format}->set_color ('orange');
 	$self->{bold_float_format}->set_bold ();
+
+	$self->{float_format2} = $self->copy_format ( $self->{float_format} );
+	$self->{float_format2}->set_num_format ('#,##0.0#'); # for combined.pl
 };
 
 sub view {
@@ -75,14 +77,33 @@ sub do_goal_expect {
 	my $worksheet = $self->add_worksheet ("Goal Expect");
 	$self->do_goal_expect_header ($worksheet);
 
-	$self->blank_columns ( [ qw( 2 4 6 9 11 14 16 19 22 25 27 28 29 31 ) ] );
+	my $formats = $self->get_all_formats ();
+#	$self->blank_columns ( [ qw( 2 4 6 9 11 14 16 19 22 25 27 28 29 31 ) ] );
 	my $row = 2;
 	for my $game (@$fixtures) {
-		my $row_data = $self->get_goal_expect_rows ($game);
+		my $expect_data = $self->get_expect_data ($game);
+		my $row_data = $self->do_formats ($expect_data, $formats, $game);
 		$self->write_row ($worksheet, $row, $row_data);
-#		$worksheet->write_comment ($row, 3, "$game->{date}");
 		$row ++;
 	}
+}
+
+sub do_formats {
+	my ($self, $data, $formats, $game) = @_;
+	my $idx = 0;
+	my @row_data = map { { $_ => @$formats [$idx++] } } @$data;
+
+#   get formats for Home Team, Away Team, Home/Away and Last Six
+	$row_data [2] = { @$data [2] => $self->get_format ( $game->{expected_goal_diff} * -1 ) };
+	$row_data [3] = { @$data [3] => $self->get_format ( $game->{expected_goal_diff} ) };
+	$row_data [6] = { @$data [6] => $self->get_format ( $game->{expected_goal_diff} ) };
+	$row_data [9] = { @$data [9] => $self->get_format ( $game->{expected_goal_diff_last_six} ) };
+	return \@row_data;
+}
+
+sub get_format {
+	my ($self, $goal_diff) = @_;
+	return ($goal_diff >= 0) ? $self->{float_format} : $self->{bold_float_format};
 }
 
 sub write_data {
@@ -106,46 +127,6 @@ sub write_data {
 		$worksheet->write ( ++$row, 0, "Average Away Goals", $self->{format} );
 		$worksheet->write ( $row, 2, $league->{av_away_goals}, $self->{float_format} );
 	}
-}
-
-sub get_format {
-	my ($self, $goal_diff) = @_;
-	return ($goal_diff >= 0) ? $self->{float_format} : $self->{bold_float_format};
-}
-
-sub get_goal_expect_rows {
-	my ($self, $game) = @_;
-	state $rules = $self->get_rules ();
-
-	return [
-		{ $game->{league} => $self->{format} },
-		{ $game->{date} => $self->{blank_text_format2} },
-		{ $game->{home_team} => $self->get_format ( $game->{expected_goal_diff} * -1 ) },
-		{ $game->{away_team} => $self->get_format ( $game->{expected_goal_diff} ) },
-		{ $game->{home_goals} => $self->{float_format} },
-		{ $game->{away_goals} => $self->{float_format} },
-		{ $game->{expected_goal_diff} => $self->get_format ( $game->{expected_goal_diff} ) },
-
-		{ $game->{home_last_six} => $self->{float_format} },
-		{ $game->{away_last_six} => $self->{float_format} },
-		{ $game->{expected_goal_diff_last_six} => $self->get_format ( $game->{expected_goal_diff_last_six} ) },
-
-		{ $rules->points_rule ( $game->{home_points}, $game->{away_points} ) => $self->{blank_text_format} },
-		{ $rules->points_rule ( $game->{last_six_home_points}, $game->{last_six_away_points} ) => $self->{blank_text_format} },
-
-		{ $rules->goal_diffs_rule ( $game->{rgd_results} ) => $self->{blank_text_format} },
-		{ $rules->goal_diffs_rule ( $game->{gd_results} ) => $self->{blank_text_format} },
-
-		{ $rules->home_away_rule ( $game ) => $self->{blank_text_format} },
-		{ $rules->last_six_rule ( $game ) => $self->{blank_text_format} },
-
-		{ $rules->match_odds_rule ( $game ) => $self->{blank_text_format} },
-		{ $rules->ou_points_rule ($game) => $self->{blank_text_format} },
-		{ $rules->ou_home_away_rule ( $game ) => $self->{percent_format} },
-		{ $rules->ou_last_six_rule ( $game ) => $self->{percent_format} },
-		{ $rules->over_odds_rule ( $game ) => $self->{blank_text_format} },
-		{ $rules->under_odds_rule ( $game ) => $self->{blank_text_format} },
-	];
 }
 
 sub get_write_data_rows {
@@ -181,7 +162,7 @@ sub do_goal_expect_header {
 	$self->set_columns ($worksheet, $self->get_expect_columns ());
 	$worksheet->set_column ($_, undef, undef, 1) for (qw (B:B G:I L:N)); # hide columns
 
-	$worksheet->write ('B1', "League", $self->{format} );
+	$worksheet->write ('A1', "League", $self->{format} );
 	$worksheet->write ('D1', "Home", $self->{format} );
 	$worksheet->write ('F1', "Away", $self->{format} );
 	$worksheet->write ('H1', "H", $self->{format} );
@@ -228,5 +209,107 @@ sub do_write_data_header {
 	$worksheet->merge_range ('U1:V1', "Last Six For", $format);
 	$worksheet->merge_range ('X1:Y1', "Last Six Ag", $format);
 }
+
+sub get_expect_data {
+	my ($self, $game) = @_;
+	state $rules = $self->get_rules ();
+
+	return [
+		$game->{league}, $game->{date}, $game->{home_team}, $game->{away_team},
+		$game->{home_goals}, $game->{away_goals}, $game->{expected_goal_diff},
+		$game->{home_last_six}, $game->{away_last_six}, $game->{expected_goal_diff_last_six},
+
+		$rules->points_rule ( $game->{home_points}, $game->{away_points} ),
+		$rules->points_rule ( $game->{last_six_home_points}, $game->{last_six_away_points} ),
+		$rules->goal_diffs_rule ( $game->{rgd_results} ),
+		$rules->goal_diffs_rule ( $game->{gd_results} ),
+
+		$rules->home_away_rule ( $game ),
+		$rules->last_six_rule ( $game ),
+
+		$rules->match_odds_rule ( $game ),
+		$rules->ou_points_rule ($game),
+		$rules->ou_home_away_rule ( $game ),
+		$rules->ou_last_six_rule ( $game ),
+		$rules->over_odds_rule ( $game ),
+		$rules->under_odds_rule ( $game ),
+	];
+}
+
+sub get_all_formats {
+	my $self = shift;
+	$self->blank_columns ( [ qw( 2 4 6 9 11 14 16 19 22 25 27 28 29 31 ) ] );
+	return [
+		$self->{format},
+		$self->{blank_text_format2},
+		undef,
+		undef,
+#	home_away
+		$self->{float_format},
+		$self->{float_format},
+		undef,
+#	last_six
+		$self->{float_format},
+		$self->{float_format},
+		undef,
+#	h/a lastsix
+		$self->{blank_text_format},
+		$self->{blank_text_format},
+#	rgd/gd
+		$self->{blank_text_format},
+		$self->{blank_text_format},
+#	goal diff
+		$self->{blank_text_format},
+		$self->{blank_text_format},
+#	match_odds_rule
+$self->{format},
+$self->{float_format},
+#		$self->{blank_text_format},
+#		$self->{blank_text_format},
+		$self->{percent_format},
+		$self->{percent_format},
+		$self->{percent_format},
+		$self->{percent_format},
+		$self->{blank_text_format},
+		$self->{blank_text_format},
+	];
+}
+
+=head
+sub get_goal_expect_rows {
+	my ($self, $game) = @_;
+	state $rules = $self->get_rules ();
+
+	return [
+		{ $game->{league} => $self->{format} },
+		{ $game->{date} => $self->{blank_text_format2} },
+		{ $game->{home_team} => $self->get_format ( $game->{expected_goal_diff} * -1 ) },
+		{ $game->{away_team} => $self->get_format ( $game->{expected_goal_diff} ) },
+		{ $game->{home_goals} => $self->{float_format} },
+		{ $game->{away_goals} => $self->{float_format} },
+		{ $game->{expected_goal_diff} => $self->get_format ( $game->{expected_goal_diff} ) },
+
+		{ $game->{home_last_six} => $self->{float_format} },
+		{ $game->{away_last_six} => $self->{float_format} },
+		{ $game->{expected_goal_diff_last_six} => $self->get_format ( $game->{expected_goal_diff_last_six} ) },
+
+		{ $rules->points_rule ( $game->{home_points}, $game->{away_points} ) => $self->{blank_text_format} },
+		{ $rules->points_rule ( $game->{last_six_home_points}, $game->{last_six_away_points} ) => $self->{blank_text_format} },
+
+		{ $rules->goal_diffs_rule ( $game->{rgd_results} ) => $self->{blank_text_format} },
+		{ $rules->goal_diffs_rule ( $game->{gd_results} ) => $self->{blank_text_format} },
+
+		{ $rules->home_away_rule ( $game ) => $self->{blank_text_format} },
+		{ $rules->last_six_rule ( $game ) => $self->{blank_text_format} },
+
+		{ $rules->match_odds_rule ( $game ) => $self->{blank_text_format} },
+		{ $rules->ou_points_rule ($game) => $self->{blank_text_format} },
+		{ $rules->ou_home_away_rule ( $game ) => $self->{percent_format} },
+		{ $rules->ou_last_six_rule ( $game ) => $self->{percent_format} },
+		{ $rules->over_odds_rule ( $game ) => $self->{blank_text_format} },
+		{ $rules->under_odds_rule ( $game ) => $self->{blank_text_format} },
+	];
+}
+=cut
 
 1;
