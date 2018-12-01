@@ -1,5 +1,5 @@
 package Football::League;
- 
+
 #	Football::League.pm 23/02/16, Mouse version 04/05/16
 #	Moo version 01/10/16
 # 	v 1.1 05/05/17
@@ -121,7 +121,7 @@ sub update_away {
 sub do_home_table {
 	my ($self, $games) = @_;
 	my $table = $self->create_new_home_table ();
-	
+
 	for my $game (@$games) {
 		$table->update ($game);
 	}
@@ -133,7 +133,7 @@ sub do_home_table {
 sub do_away_table {
 	my ($self, $games) = @_;
 	my $table = $self->create_new_away_table ();
-	
+
 	for my $game (@$games) {
 		$table->update ($game);
 	}
@@ -182,7 +182,7 @@ sub aways {
 sub last_six {
 	my ($self, $teams) = @_;
 	my $list = {};
-	
+
 	for my $team (@{ $self->{team_list} }) {
 		my ( $last_six, $full_last_six ) = $teams->{$team}->most_recent ();
 		my ($last_six_for, $last_six_against) = $self->_get_last_six_scores ($full_last_six);
@@ -204,7 +204,7 @@ sub last_six {
 sub _get_points {
 	my ($self, $stats) = @_;
 	my $total = 0;
-	
+
 	for my $game (@$stats) {
 		$total += $self->{points}->{$game};
 	}
@@ -214,7 +214,7 @@ sub _get_points {
 sub _get_draws {
 	my ($self, $stats) = @_;
 	my $total = 0;
-	
+
 	for my $game (@$stats) {
 		$total ++ if $game eq 'D';
 	}
@@ -224,7 +224,7 @@ sub _get_draws {
 sub _get_last_six_scores {
 	my ($self, $stats) = @_;
 	my ($for, $against) = (0,0);
-	
+
 	for my $game (@$stats) {
 		my ($game_for, $game_against) = split ('-', $game->{score});
 		$for += $game_for;
@@ -236,7 +236,7 @@ sub _get_last_six_scores {
 sub _get_over_under {
 	my ($self, $stats) = @_;
 	my $over = 0;
-	
+
 	for my $game (@$stats) {
 		my ($game_for, $game_against) = split ('-', $game->{score});
 		$over ++ if $game_for + $game_against > 2;

@@ -4,7 +4,8 @@ use Football::Fixtures_Globals qw(%football_fixtures_leagues %rugby_fixtures_lea
 use Football::Fixtures_Scraper_Model;
 use MyRegX;
 use MyDate qw( $month_names );
-use Football::Globals qw(@csv_leagues @summer_csv_leagues @euro_csv_lgs);
+use Football::Globals qw(@csv_leagues @euro_csv_lgs);
+#use Football::Globals qw(@csv_leagues @summer_csv_leagues @euro_csv_lgs);
 use MyKeyword qw(TESTING);
 
 use Time::Piece qw(localtime);
@@ -31,7 +32,7 @@ sub BUILD {
 	$self->{files} = _transform_hash ({
 	    uk      => \@csv_leagues,
 	    euro    => \@euro_csv_lgs,
-	    summer  => \@summer_csv_leagues,
+#	    summer  => \@summer_csv_leagues,
 	});
 }
 

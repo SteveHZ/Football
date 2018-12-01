@@ -27,10 +27,10 @@ sub create_list {
 			push (@list, {
 				league => $league->{title},
 				team => $team,
-				all => \% {$league->get_table ()->{$team} },
-				home => \% { $league->{homes}->{$team} },
-				away => \% { $league->{aways}->{$team} },
-				last_six => \% { $league->{last_six}->{$team} },
+				all => $league->get_table ()->{$team},
+				home => $league->{homes}->{$team},
+				away => $league->{aways}->{$team},
+				last_six => $league->{last_six}->{$team},
 			});
 		}
 	}
@@ -40,12 +40,12 @@ sub create_list {
 sub sort_list {
 	my ($self, $sort_by) = @_;
 
-	my @list = sort {
-		$b->{$sort_by}->{points} <=> $a->{$sort_by}->{points}
-		or $a->{team} cmp $b->{team}
-	} @{ $self->{all_teams} };
-
-	return \@list;
+	return [
+		sort {
+			$b->{$sort_by}->{points} <=> $a->{$sort_by}->{points}
+			or $a->{team} cmp $b->{team}
+		} @{ $self->{all_teams} }
+	];
 }
 
 sub show {
@@ -62,7 +62,7 @@ sub show {
 #		print " - $team->{home}->{points}";
 #		print " - $team->{away}->{points}";
 #		print " - $team->{last_six}->{points}";
-##		print " home gd = $team->{all}->goal_difference ($team->{name})"; 
+##		print " home gd = $team->{all}->goal_difference ($team->{name})";
 #	}
 ##	<STDIN>;
 #	for my $team (@{ $self->{form}->{sort_home} } ) {
@@ -71,7 +71,7 @@ sub show {
 #		print " - $team->{home}->{points}";
 #		print " - $team->{away}->{points}";
 #		print " - $team->{last_six}->{points}";
-#		print " home gd = $team->{home}->{goal_difference}"; 
+#		print " home gd = $team->{home}->{goal_difference}";
 #	}
 ##	<STDIN>;
 #	for my $team (@{ $self->{form}->{sort_away} } ) {
@@ -80,7 +80,7 @@ sub show {
 #		print " - $team->{home}->{points}";
 #		print " - $team->{away}->{points}";
 #		print " - $team->{last_six}->{points}";
-#		print " away gd = $team->{away}->{goal_difference}"; 
+#		print " away gd = $team->{away}->{goal_difference}";
 #	}
 ##	<STDIN>;
 #	for my $team (@{ $self->{form}->{sort_last_six} } ) {
@@ -89,7 +89,7 @@ sub show {
 #		print " - $team->{home}->{points}";
 #		print " - $team->{away}->{points}";
 #		print " - $team->{last_six}->{points}";
-#		print " last six gd = $team->{last_six}->{goal_difference}"; 
+#		print " last six gd = $team->{last_six}->{goal_difference}";
 #	}
 
 1;

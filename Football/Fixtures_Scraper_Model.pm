@@ -3,7 +3,7 @@ package Football::Fixtures_Scraper_Model;
 use Web::Query;
 use MyLib qw(wordcase);
 use utf8;
-use Data::Dumper;
+#use Data::Dumper;
 use Moo;
 use namespace::clean;
 

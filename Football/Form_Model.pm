@@ -26,10 +26,10 @@ sub create_list {
 			push (@list, {
 				league => $league->{name},
 				team => $team,
-				all => \% {$league->get_table->{$team} },
-				home => \% { $league->{homes}->{$team} },
-				away => \% { $league->{aways}->{$team} },
-				last_six => \% { $league->{last_six}->{$team} },
+				all => $league->get_table->{$team},
+				home => $league->{homes}->{$team},
+				away => $league->{aways}->{$team},
+				last_six => $league->{last_six}->{$team},
 			});
 		}
 	}
@@ -39,12 +39,12 @@ sub create_list {
 sub sort_list {
 	my ($self, $sort_by) = @_;
 
-	my @list = sort {
-		$b->{$sort_by}->{points} <=> $a->{$sort_by}->{points}
-		or $a->{team} cmp $b->{team}
-	} @{ $self->{all_teams} };
-
-	return \@list;
+	return [
+		sort {
+			$b->{$sort_by}->{points} <=> $a->{$sort_by}->{points}
+			or $a->{team} cmp $b->{team}
+		} @{ $self->{all_teams} }
+	];
 }
 
 sub show {

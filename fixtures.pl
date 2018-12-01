@@ -46,7 +46,7 @@ sub do_football {
 		open my $fh, '<', $filename or die "Can't open $filename";
 		chomp ( my $data = <$fh> );
 		close $fh;
-#write_json ("c:/mine/perl/football/t/test data/fixtures/before_prepare $day->{date}.json", [$data]);
+
 		my $date = $model->as_date_month ($day->{date});
 		my $games = $model->after_prepare (
 			$model->prepare (\$data, $day->{day}, $date)
@@ -56,8 +56,6 @@ sub do_football {
 			push @{ $all_games->{$key} }, $_ for (@{ $games->{$key} });
 		}
 	}
-#write_json ('c:/mine/perl/football/t/test data/fixtures/after_prepare.json', $all_games);
-#write_json ('c:/mine/perl/football/t/test data/fixtures/dates.json', $week);
 
 	$view->dump ($all_games);
 	my $fname = "$path/fixtures_week";

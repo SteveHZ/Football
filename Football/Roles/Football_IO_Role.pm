@@ -5,12 +5,11 @@ use Football::Football_Data_Model;
 use MyKeyword qw(TESTING); # for model.t
 
 use Moo::Role;
-use Data::Dumper;
 
 requires qw(
 	read_json write_json
 	league_names csv_leagues
-	path fixtures_file season_data 
+	path fixtures_file season_data
 	test_fixtures_file
 );
 
@@ -33,7 +32,7 @@ sub update {
 
 sub get_fixtures {
 	my $self = shift;
-	
+
 	my $fixtures_file = $self->{fixtures_file};
 	TESTING { $fixtures_file = $self->{test_fixtures_file}; }
 	my @fixtures = ();

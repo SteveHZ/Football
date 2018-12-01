@@ -5,7 +5,7 @@ BEGIN { $ENV{PERL_KEYWORD_TESTING} = 1;}
 
 use strict;
 use warnings;
-use Test::More tests => 6;
+use Test::More tests => 7;
 use Test::Deep;
 use Data::Dumper;
 
@@ -90,6 +90,15 @@ subtest 'get_unique_leagues' => sub {
 	my $leagues = $model->get_unique_leagues ($fixtures);
 	cmp_deeply ($leagues, $expect, 'got unique leagues');
 };
+
+#Shared Model
+subtest 'get_league_idx' => sub {
+	plan tests => 3;
+
+	is ($model->get_league_idx ('Premier League'), 0, 'Premier League idx 0');
+	is ($model->get_league_idx ('Conference'), 4, 'Conference 4');
+	is ($model->get_league_idx ('Scots League Two'), 8, 'Scots League Two idx 8');
+}
 
 #	tests to do :
 

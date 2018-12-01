@@ -80,6 +80,8 @@ subtest 'prepare' => sub {
 	}
 	write_json ('c:/mine/perl/football/t/test data/fixtures/actual.json', $all_games);
 	cmp_deeply ($all_games, $after, 'compare data');
+#	my ($ok, $stack) = cmp_details ($all_games, $after);
+#my $reason = deep_diag($stack) unless $ok;
 };
 
 #subtest 'contains' => sub {

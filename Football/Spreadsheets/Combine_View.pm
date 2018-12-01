@@ -2,8 +2,6 @@ package Football::Spreadsheets::Combine_View;
 
 use strict;
 use warnings;
-#use v5.010;
-#use List::Util qw(any);
 
 use parent qw (
     Football::Spreadsheets::Goal_Expect_View
@@ -50,7 +48,7 @@ sub do_goal_expect {
 
 sub do_formats {
 	my ($self, $data, $formats, $game) = @_;
-    my @rows = ();
+    my @row_data = ();
 	my ($col_idx, $fmt_idx) = (0,0);
 
     my $iterator = make_iterator ( $self->{blank_columns} );
@@ -58,10 +56,10 @@ sub do_formats {
 
     for my $rowdata (@$data) {
         if ($col_idx == $next_blank) {
-            push @rows, { $rowdata => $self->{blank_text_format2} };
+            push @row_data, { $rowdata => $self->{blank_text_format2} };
             $next_blank = $iterator->();
         } else {
-            push @rows,
+            push @row_data,
                 ($rowdata ne '') ? { $rowdata => @$formats [$fmt_idx] }
                                  : { $rowdata => $self->{format} };
             $fmt_idx ++;
@@ -70,11 +68,11 @@ sub do_formats {
     }
 
 #   get formats for Home Team, Away Team, Home/Away and Last Six
-	$rows [3]  = { @$data [3]  => $self->get_format ( @$data [10] * -1 ) };
-	$rows [5]  = { @$data [5]  => $self->get_format ( @$data [10] ) };
-	$rows [10] = { @$data [10] => $self->get_format ( @$data [10] ) };
-	$rows [15] = { @$data [15] => $self->get_format ( @$data [15] ) };
-	return \@rows;
+	$row_data [3]  = { @$data [3]  => $self->get_format ( @$data [10] * -1 ) };
+	$row_data [5]  = { @$data [5]  => $self->get_format ( @$data [10] ) };
+	$row_data [10] = { @$data [10] => $self->get_format ( @$data [10] ) };
+	$row_data [15] = { @$data [15] => $self->get_format ( @$data [15] ) };
+	return \@row_data;
 }
 
 sub do_maxp {
@@ -124,51 +122,5 @@ sub get_row_data {
         map { { $_ => $iterator->() } } @$row
     ];
 }
-
-#            if ($rowdata ne '') { # data here
-#                push @row_data, { $rowdata => @$formats [$fmt_idx] };
-#            } else { #empty data
-#                push @row_data, { $rowdata => $self->{format} };
-#            }
-#    for my $rowdata (@$data) {
-#        if ($rowdata ne '') { # data here
-#            push @row_data, { $rowdata => @$formats [$fmt_idx] };
-#            $fmt_idx++;
-#        } elsif ($col == $next_blank) { # blank column
-#            push @row_data, { $rowdata => $self->{blank_text_format2} };
-#            $next_blank = $iterator->();
-#        } else { # empty data
-#            push @row_data, { $rowdata => $self->{format} };
-#            $fmt_idx++;
-#        }
-#        $col ++;
-#    }
-#    for my $rowdata (@$data) {
-#        if ($rowdata ne '') {
-#            push @row_data, { $rowdata => @$formats [$fmt_idx] };
-#        } else {
-#            push @row_data, { $rowdata => $self->{blank_text_format2} };
-#        }
-#        if ($col == $next_blank) {
-#            $next_blank = $iterator->();
-#        } else {
-#            $fmt_idx++;
-#        }
-#        $col ++;
-#    }
-#    for my $rowdata (@$data) {
-#        if ($rowdata ne '') {
-#            push @row_data, { $rowdata => @$formats [$fmt_idx] };
-#        } else {
-#            push @row_data, { $rowdata => $self->{blank_text_format2} };
-#        }
-#        $fmt_idx ++ unless any { $col == $_ } @{ $self->{blank_columns} };
-#        $col ++;
-#    }
-#    my @row_data = map {
-#		($_ ne '')  ? { $_ => @$formats [$idx] }
-#					: { $_ => $self->{blank_text_format2} };
-#        $idx ++;
-#	} @$data;
 
 1;

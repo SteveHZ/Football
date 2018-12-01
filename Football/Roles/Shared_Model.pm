@@ -3,7 +3,6 @@ package Football::Roles::Shared_Model;
 #	v1.1 18-19/01/17
 #	v1.2 02/04/17
 
-use List::MoreUtils qw(firstidx);
 use Clone qw(clone);
 
 use Football::Game_Prediction_Models;
@@ -13,6 +12,26 @@ use MyKeyword qw(TESTING); # for model.t
 use Moo::Role;
 
 requires qw( read_json update leagues league_names csv_leagues test_season_data );
+
+sub BUILD {}
+
+after 'BUILD' => sub {
+	my $self = shift;
+	$self->{league_idx} = $self->build_league_idx ($self->{league_names});
+};
+
+sub build_league_idx {
+	my ($self, $leagues) = @_;
+	my $idx = 0;
+	return {
+		map { $_ => $idx++ } @$leagues
+	};
+}
+
+sub get_league_idx {
+	my ($self, $league) = @_;
+	return $self->{league_idx}->{$league};
+}
 
 sub read_games {
 	my ($self, $update) = @_;

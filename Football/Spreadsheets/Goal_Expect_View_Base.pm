@@ -262,10 +262,8 @@ sub get_all_formats {
 		$self->{blank_text_format},
 		$self->{blank_text_format},
 #	match_odds_rule
-$self->{format},
-$self->{float_format},
-#		$self->{blank_text_format},
-#		$self->{blank_text_format},
+		$self->{format},
+		$self->{float_format},
 		$self->{percent_format},
 		$self->{percent_format},
 		$self->{percent_format},

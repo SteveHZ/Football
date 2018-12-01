@@ -4,8 +4,9 @@ package Football::Model;
 # 	v2.0 23-28/03/16, v2.01 Mouse 04/05/16, v2.02 Football_Data_Model 27/05/16 v2.03 26-27/07/16
 #	v2.06 Moo 01/10/16
 #	v2.07 with Football::Shared_Model 18-19/01/17
-	
-use List::MoreUtils qw(firstidx each_array);
+
+use List::MoreUtils qw(each_array);
+#use List::MoreUtils qw(firstidx each_array);
 
 use lib 'C:/Mine/perl/Football';
 use Football::League;
@@ -24,7 +25,7 @@ use Football::Reports::GoalDifference;
 use Football::Reports::Recent_GoalDifference;
 use Football::Globals qw( @league_names @csv_leagues $default_stats_size );
 use MyKeyword qw(TESTING); # for model.t
-use Data::Dumper;
+#use Data::Dumper;
 
 use Moo;
 use namespace::clean;
@@ -55,7 +56,7 @@ sub BUILD {
 	$self->{fixtures_file} = $self->{path}.'fixtures.csv';
 	$self->{season_data} = $self->{path}.'season.json';
 	$self->{teams_file} = $self->{path}.'teams.json';
-	
+
 	$self->{test_path} = 'C:/Mine/perl/Football/t/test data/';
 	$self->{test_teams_file} = $self->{test_path}.'teams.json';
 	$self->{test_season_data} = $self->{test_path}.'season.json';
@@ -81,11 +82,11 @@ sub build_leagues {
 sub do_league_places {
 	my ($self, $fixtures, $teams) = @_;
 	my ($home, $away, $home_points, $away_points);
-	
+
 	my $league_places = Football::Reports::LeaguePlaces->new ();
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};
-		my $idx = firstidx {$league_name eq $_->{name}} @{$self->{leagues}};
+		my $idx = $self->get_league_idx ($league_name);
 
 		for my $game (@{ $league->{games}}) {
 			$home = $game->{home_team};
@@ -102,7 +103,7 @@ sub do_league_places {
 sub do_head2head {
 	my ($self, $fixtures) = @_;
 	my ($home, $away, $home_points, $away_points);
-	
+
 	my $h2h = Football::Reports::Head2Head->new ();
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};
@@ -123,11 +124,11 @@ sub do_head2head {
 sub do_recent_goal_difference {
 	my ($self, $fixtures, $teams) = @_;
 	my ($home, $away, $home_diff, $away_diff);
-	
+
 	my $goal_diff = Football::Reports::Recent_GoalDifference->new ();
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};
-		my $idx = firstidx {$league_name eq $_->{name}} @{$self->{leagues}};
+		my $idx = $self->get_league_idx ($league_name);
 
 		for my $game (@{ $league->{games}}) {
 			$home = $game->{home_team};
@@ -144,11 +145,11 @@ sub do_recent_goal_difference {
 sub do_goal_difference {
 	my ($self, $fixtures, $teams) = @_;
 	my ($home, $away, $home_diff, $away_diff);
-	
+
 	my $goal_diff = Football::Reports::GoalDifference->new ();
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};
-		my $idx = firstidx {$league_name eq $_->{name}} @{$self->{leagues}};
+		my $idx = $self->get_league_idx ($league_name);
 
 		for my $game (@{ $league->{games}}) {
 			$home = $game->{home_team};
@@ -170,7 +171,7 @@ sub fetch_goal_difference {
 
 sub do_recent_draws {
 	my ($self, $fixtures) = @_;
-	
+
 	my @temp = ();
 	for my $league (@$fixtures) {
 		for my $game (@{ $league->{games} } ) {

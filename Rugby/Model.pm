@@ -6,7 +6,7 @@ package Rugby::Model;
 #	v2.07 with Football::Shared_Model 18-19/01/17
 #	v2.12 with Football::Rugby_Data 04/07/17
 
-use List::MoreUtils qw(firstidx);
+#use List::MoreUtils qw(firstidx);
 
 use Football::Team;
 use Rugby::League;
@@ -74,7 +74,8 @@ sub do_league_places {
 	my $league_places = Rugby::Reports::LeaguePlaces->new ();
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};
-		my $idx = firstidx {$league_name eq $_->{name}} @{$self->{leagues}};
+		my $idx = $self->get_league_idx ($league_name);
+#		my $idx = firstidx {$league_name eq $_->{name}} @{$self->{leagues}};
 
 		for my $game (@{ $league->{games}}) {
 			$home = $game->{home_team};
@@ -116,7 +117,8 @@ sub do_recent_goal_difference {
 	my $goal_diff = Rugby::Reports::Recent_GoalDifference->new ();
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};
-		my $idx = firstidx {$league_name eq $_->{name}} @{$self->{leagues}};
+		my $idx = $self->get_league_idx ($league_name);
+#		my $idx = firstidx {$league_name eq $_->{name}} @{$self->{leagues}};
 
 		for my $game (@{ $league->{games}}) {
 			$home = $game->{home_team};
@@ -139,7 +141,8 @@ sub do_goal_difference {
 	my $goal_diff = Rugby::Reports::GoalDifference->new ();
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};
-		my $idx = firstidx {$league_name eq $_->{name}} @{$self->{leagues}};
+		my $idx = $self->get_league_idx ($league_name);
+#		my $idx = firstidx {$league_name eq $_->{name}} @{$self->{leagues}};
 
 		for my $game (@{ $league->{games}}) {
 			$home = $game->{home_team};
