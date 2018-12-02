@@ -91,7 +91,7 @@ subtest 'get_unique_leagues' => sub {
 	cmp_deeply ($leagues, $expect, 'got unique leagues');
 };
 
-#Shared Model
+# Shared Model
 subtest 'get_league_idx' => sub {
 	plan tests => 3;
 

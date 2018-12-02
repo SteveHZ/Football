@@ -16,8 +16,9 @@ with 'Football::Roles::Football_IO_Role',
 sub BUILD {
 	my $self = shift;
 	$self->{leagues} = [];
-	$self->{league_names} = \@summer_leagues;
 	$self->{csv_leagues} = \@summer_csv_leagues;
+	$self->{league_names} = \@summer_leagues;
+	$self->{league_idx} = $self->build_league_idx ($self->{league_names});
 
 	$self->{model_name} = 'Summer';
 	$self->{path} = 'C:/Mine/perl/Football/data/Summer/';

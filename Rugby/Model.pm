@@ -39,8 +39,9 @@ with 'Roles::MyJSON',
 sub BUILD {
 	my $self = shift;
 	$self->{leagues} = [];
-	$self->{league_names} = \@league_names;
 	$self->{csv_leagues} = \@rugby_csv_leagues;
+	$self->{league_names} = \@league_names;
+	$self->{league_idx} = $self->build_league_idx ($self->{league_names});
 
 	$self->{model_name} = "Rugby";
 	$self->{path} = 'C:/Mine/perl/Football/data/Rugby/';
@@ -75,7 +76,6 @@ sub do_league_places {
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};
 		my $idx = $self->get_league_idx ($league_name);
-#		my $idx = firstidx {$league_name eq $_->{name}} @{$self->{leagues}};
 
 		for my $game (@{ $league->{games}}) {
 			$home = $game->{home_team};
@@ -118,7 +118,6 @@ sub do_recent_goal_difference {
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};
 		my $idx = $self->get_league_idx ($league_name);
-#		my $idx = firstidx {$league_name eq $_->{name}} @{$self->{leagues}};
 
 		for my $game (@{ $league->{games}}) {
 			$home = $game->{home_team};
@@ -142,7 +141,6 @@ sub do_goal_difference {
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};
 		my $idx = $self->get_league_idx ($league_name);
-#		my $idx = firstidx {$league_name eq $_->{name}} @{$self->{leagues}};
 
 		for my $game (@{ $league->{games}}) {
 			$home = $game->{home_team};

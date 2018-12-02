@@ -6,7 +6,6 @@ package Football::Model;
 #	v2.07 with Football::Shared_Model 18-19/01/17
 
 use List::MoreUtils qw(each_array);
-#use List::MoreUtils qw(firstidx each_array);
 
 use lib 'C:/Mine/perl/Football';
 use Football::League;
@@ -48,8 +47,9 @@ with 'Roles::MyJSON',
 sub BUILD {
 	my $self = shift;
 	$self->{leagues} = [];
-	$self->{league_names} = \@league_names;
 	$self->{csv_leagues} = \@csv_leagues;
+	$self->{league_names} = \@league_names;
+	$self->{league_idx} = $self->build_league_idx ($self->{league_names});
 
 	$self->{model_name} = "Football";
 	$self->{path} = 'C:/Mine/perl/Football/data/';

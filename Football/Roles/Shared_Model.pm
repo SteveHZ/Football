@@ -1,7 +1,7 @@
 package Football::Roles::Shared_Model;
 
-#	v1.1 18-19/01/17
-#	v1.2 02/04/17
+#	v1.1 18-19/01/17 v1.2 02/04/17
+#	v1.3 01/12/18
 
 use Clone qw(clone);
 
@@ -12,13 +12,6 @@ use MyKeyword qw(TESTING); # for model.t
 use Moo::Role;
 
 requires qw( read_json update leagues league_names csv_leagues test_season_data );
-
-sub BUILD {}
-
-after 'BUILD' => sub {
-	my $self = shift;
-	$self->{league_idx} = $self->build_league_idx ($self->{league_names});
-};
 
 sub build_league_idx {
 	my ($self, $leagues) = @_;

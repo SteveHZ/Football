@@ -5,7 +5,7 @@
 
 use strict;
 use warnings;
-use Test::More tests => 1;
+use Test::More tests => 2;
 
 use lib "C:/Mine/perl/Football";
 use Euro::Model;
@@ -22,3 +22,12 @@ subtest 'constructor' => sub {
 	isa_ok ($games, 'HASH', '$games');
 	isa_ok (@$leagues [0], 'Football::League', '@$leagues[0]');
 };
+
+# Shared Model
+subtest 'get_league_idx' => sub {
+	plan tests => 3;
+
+	is ($model->get_league_idx ('German'), 0, 'German idx 0');
+	is ($model->get_league_idx ('Italian'), 2, 'Italian idx 2');
+	is ($model->get_league_idx ('N Irish'), 4, 'N Irish idx 4');
+}
