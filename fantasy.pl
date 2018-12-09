@@ -58,11 +58,12 @@ sub sort_by_position {
         @$players
     ];
 }
+#       grep_points_per_game(6),
 
-#sub grep_points_per_game {
-#    my ($points, $data) = @_;
-#    return grep { $_->{points_per_game} > $points} @$data;
-#}
+sub grep_points_per_game {
+    my ($points, $data) = @_;
+    return grep { $_->{points_per_game} > $points} @$data;
+}
 
 sub update {
     my $json_file = shift;

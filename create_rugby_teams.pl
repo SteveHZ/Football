@@ -1,7 +1,7 @@
 #!	C:/Strawberry/perl/bin
 
 #	create_rugby_teams.pl 23/07/16
-#	When updating to Middle 8s, need to leave teams within their original league as well
+#	2019 season done 04/12/18
 
 use strict;
 use warnings;
@@ -24,8 +24,8 @@ my $leagues = {
 		'Salford Red Devils',
 		'Warrington Wolves',
 		'Catalans Dragons',
-		'Widnes Vikings',
 		'Hull KR',
+		'London Broncos',
 	],
 	'Championship' => [
 		'Batley',
@@ -34,17 +34,17 @@ my $leagues = {
 		'Swinton',
 		'Rochdale Hornets',
 		'Toulouse Olympique',
-		'London Broncos',
 		'Halifax',
 		'Featherstone Rovers',
 		'Leigh Centurions',
 		'Toronto Wolfpack',
 		'Barrow Raiders',
+		'Bradford Bulls',
+		'York City Knights',
+		'Widnes Vikings',
 	],
 	'League One' => [
 		'London Skolars',
-		'York City Knights',
-		'Hemel Stags',
 		'Doncaster',
 		'Coventry Bears',
 		'Hunslet Hawks',
@@ -54,7 +54,6 @@ my $leagues = {
 		'Whitehaven',
 		'Workington Town',
 		'Newcastle Thunder',
-		'Bradford Bulls',
 		'Oldham',
 	],
 	'NRL' => [

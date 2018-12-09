@@ -10,6 +10,8 @@ has 'away'  => ( is => 'ro', default => 0 );
 has 'total' => ( is => 'ro', default => 0 );
 has 'home_stake' => ( is => 'ro', default => 0 );
 has 'away_stake' => ( is => 'ro', default => 0 );
+has 'home_win' => ( is => 'ro', default => 0 );
+has 'away_win' => ( is => 'ro', default => 0 );
 
 sub home_staked {
 	my $self = shift;

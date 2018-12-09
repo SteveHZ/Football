@@ -19,3 +19,4 @@ perl max_profit.pl -e
 REM perl max_profit.pl -s
 
 perl combine.pl
+perl form.pl

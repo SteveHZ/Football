@@ -35,7 +35,7 @@ sub team {
 
 sub add_teams {
 	my ($self, $results, $lg_idx) = @_;
-	
+
 	my $teams = _get_all_teams ($results, 'home_team');
 	for my $team (@$teams) {
 		$self->{hash}->{$team} = Football::Team_Profit->new (team => $team);
@@ -55,6 +55,7 @@ sub home_win {
 	DEVELOPMENT { print "\nHome : $team - $amount"; }
 	$self->{hash}->{$team}->{home} += $amount;
 	$self->{hash}->{$team}->{total} += $amount;
+	$self->{hash}->{$team}->{home_win} ++;
 }
 
 sub away_win {
@@ -62,6 +63,7 @@ sub away_win {
 	DEVELOPMENT { print "\nAway : $team - $amount"; }
 	$self->{hash}->{$team}->{away} += $amount;
 	$self->{hash}->{$team}->{total} += $amount;
+	$self->{hash}->{$team}->{away_win} ++;
 }
 
 sub percent {
@@ -82,7 +84,7 @@ sub away {
 sub sort {
 	my $self = shift;
 	my %hash = ();
-	
+
 	for my $sheetname ( @{ $self->{sheetnames} } ) {
 		$hash{$sheetname} = $self->{dispatch}->{ $sheetname }->($self);
 	}
@@ -95,7 +97,7 @@ sub sort_totals {
 	my $self = shift;
 	return [
 		sort {
-			$self->percent ($b) <=> $self->percent ($a) 
+			$self->percent ($b) <=> $self->percent ($a)
 			or $a cmp $b
 		} @{ $self->{teams} }
 	];
@@ -105,7 +107,7 @@ sub sort_all_homes {
 	my $self = shift;
 	return [
 		sort {
-			$self->home ($b) <=> $self->home ($a) 
+			$self->home ($b) <=> $self->home ($a)
 			or $a cmp $b
 		} @{ $self->{teams} }
 	];
@@ -115,7 +117,7 @@ sub sort_all_aways {
 	my $self = shift;
 	return [
 		sort {
-			$self->away ($b) <=> $self->away ($a) 
+			$self->away ($b) <=> $self->away ($a)
 			or $a cmp $b
 		} @{ $self->{teams} }
 	];
@@ -126,7 +128,7 @@ sub sort_homes {
 
 	return [
 		sort {
-			$self->home ($b) <=> $self->home ($a) 
+			$self->home ($b) <=> $self->home ($a)
 			or $a cmp $b
 		}
 		grep { $self->home ($_) >= $self->{min_profit} }
@@ -140,7 +142,7 @@ sub sort_aways {
 
 	return [
 		sort {
-			$self->away ($b) <=> $self->away ($a) 
+			$self->away ($b) <=> $self->away ($a)
 			or $a cmp $b
 		}
 		grep { $self->away ($_) >= $self->{min_profit} }

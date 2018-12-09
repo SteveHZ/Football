@@ -32,7 +32,8 @@ sub BUILD {
 
 sub show {
 	my ($self, $hash, $sorted) = @_;
-	$self->blank_columns ( [ qw(1 3 5 7 9 11) ] );
+	$self->blank_columns ( [ qw(1 3 5 7 9 11 13) ] );
+#	$self->blank_columns ( [ qw(1 3 5 7 9 11 13 15) ] );
 
 	for my $sheet (@{ $self->{sheetnames} }) {
 		my $worksheet = $self->add_worksheet (wordcase $sheet);
@@ -59,6 +60,7 @@ sub do_header {
 	$worksheet->write ('I1', 'Away', $format);
 	$worksheet->write ('K1', 'Total', $format);
 	$worksheet->write ('M1', 'Percentage', $format);
+	$worksheet->write ('O1', 'Win Rate', $format);
 
 	$worksheet->autofilter( 'A1:A200' );
 	$worksheet->freeze_panes (2,0);
@@ -76,6 +78,8 @@ sub get_totals {
 		{ $hash->team($team)->away,	$self->{currency_format} },
 		{ $hash->team($team)->total, $self->{currency_format} },
 		{ $hash->team($team)->percent, $self->{percent_format} },
+#		{ $hash->team($team)->home_win + $hash->team($team)->away_win, $self->{float_format} },
+		{ ( $hash->team($team)->home_win + $hash->team($team)->away_win )/ $hash->team($team)->stake, $self->{percent_format} },
 	];
 }
 
@@ -89,6 +93,8 @@ sub get_homes {
 		{ $hash->team($team)->away,	$self->{currency_format} },
 		{ $hash->team($team)->total, $self->{currency_format} },
 		{ $hash->team($team)->home_percent, $self->{percent_format} },
+#		{ $hash->team($team)->home_win, $self->{format} },
+		{ $hash->team($team)->home_win / $hash->team($team)->home_stake, $self->{percent_format} },
 	];
 }
 
@@ -102,6 +108,8 @@ sub get_aways {
 		{ $hash->team($team)->away,	$self->{currency_format} },
 		{ $hash->team($team)->total, $self->{currency_format} },
 		{ $hash->team($team)->away_percent, $self->{percent_format} },
+#		{ $hash->team($team)->away_win, $self->{format} },
+		{ $hash->team($team)->away_win / $hash->team($team)->away_stake, $self->{percent_format} },
 	];
 }
 
@@ -111,9 +119,11 @@ sub get_maxp_columns {
 	return {
 		"A C" => 20,
 		"M" => 12,
-		"E G I K" => 8,
-		"B D F H J L" => 3,
+		"E G I K O" => 8,
+		"B D F H J L N" => 3,
 	};
 }
+#"E G I K O Q" => 8,
+#"B D F H J L N P" => 3,
 
 1;

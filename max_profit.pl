@@ -1,7 +1,7 @@
 #!	C:/Strawberry/perl/bin
 
 # 	max_profit.pl 11-12/03/17, 17-18/02/18
-#	v1.1 11/03/18, v1.2 02/04/18 v1.3 01/07/18
+#	v1.1 11/03/18, v1.2 02/04/18 v1.3 01/07/18 v1.4 09/12/18
 
 #BEGIN { $ENV{PERL_KEYWORD_DEVELOPMENT} = 1; }
 
@@ -11,12 +11,13 @@ use MyKeyword qw(DEVELOPMENT);
 use List::MoreUtils qw(each_arrayref);
 
 use lib 'C:/Mine/perl/Football';
-use Football::Favourites_Data_Model;
-use Summer::Summer_Data_Model;
 use Football::Team_Profit;
 use Football::Team_Hash;
+use Football::Favourites_Data_Model;
+use Summer::Summer_Data_Model;
 use Football::Spreadsheets::Max_Profit;
 use Football::Globals qw( @csv_leagues @euro_csv_lgs @summer_csv_leagues );
+
 use Football::Model;
 use Euro::Model;
 use Summer::Model;
@@ -32,7 +33,7 @@ my $data = $funcs[$euro]->();
 my $fixtures = $data->{model}->get_fixtures ();
 
 my %markets = (
-	"max_profit"	=> Football::Team_Hash->new ( 
+	"max_profit"	=> Football::Team_Hash->new (
 		func => \&straight_win,
 		fixtures => $fixtures
 	),
@@ -60,7 +61,7 @@ for my $market (keys %markets) {
 	my $filename = "$data->{out_path}$market".'_'."$data->{model_type}.xlsx";
 	my $team_hash = $markets{$market};
 	my $sorted = $team_hash->sort ();
-	
+
 	print "\nWriting $filename...";
 	my $writer = Football::Spreadsheets::Max_Profit->new ( filename => $filename, euro => $euro );
 	$writer->show ($team_hash, $sorted);

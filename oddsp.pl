@@ -2,7 +2,7 @@
 
 #	Select all games from results frame, right click then View Selection Source
 #	Save as text file then enter filename(s) as script argument (without .txt)
- 
+
 use strict;
 use warnings;
 use HTML::Strip;
@@ -54,7 +54,7 @@ sub prepare {
 	my $hs = HTML::Strip->new ( auto_reset => 1 );
 	my $cleaned = $hs->parse ($line);
 	my $year = get_year ();
-	
+
 	$cleaned =~ s/$yesterdays_date/$1 $2 $year/g; 	#	if present, amend yesterday date line to normal date format
 	$cleaned =~ s/($date)/\n$1/g;					#	add new-lines before date
 	$cleaned =~ s/$time/\n/g;						#	turn time into new-line
@@ -73,7 +73,7 @@ sub get_date {
 sub do_game {
 	my ($game_date, $line) = @_;
 	my $game = {};
-	
+
 	$game->{date} = $game_date;
 	( $game->{home_team}, $game->{away_team} ) 	 					= get_teams ($line);
 	( $game->{home_score}, $game->{away_score} ) 					= get_score ($line);
@@ -99,7 +99,7 @@ sub get_score {
 
 sub get_odds {
 	my $line = shift;
-	$line =~ /($odds) ($odds) ($odds)/;
+    die 'Wrong odds format !!' unless $line =~ /($odds) ($odds) ($odds)/;
 	return ($1,$2,$3);
 }
 
@@ -146,7 +146,7 @@ perl oddsp.pl file(s)
  perl oddsp.pl ni welsh
  perl csvcat.pl ni ni
  perl csvcat.pl wl welsh
- 
+
 =head1 AUTHOR
 
 Steve Hope 2018

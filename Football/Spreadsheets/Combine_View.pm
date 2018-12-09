@@ -108,7 +108,7 @@ sub get_maxp_format {
         $self->{format}, $self->{blank_text_format2},
         $self->{currency_format}, $self->{percent_format},
     );
-    my @formats_idx = qw(0 1 0 1 2 1 2 1 2 1 2 1 3);
+    my @formats_idx = qw(0 1 0 1 2 1 2 1 2 1 2 1 3 1 3);
 
     return [
         map { $formats [$_] } @formats_idx
