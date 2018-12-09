@@ -33,7 +33,6 @@ sub BUILD {
 sub show {
 	my ($self, $hash, $sorted) = @_;
 	$self->blank_columns ( [ qw(1 3 5 7 9 11 13) ] );
-#	$self->blank_columns ( [ qw(1 3 5 7 9 11 13 15) ] );
 
 	for my $sheet (@{ $self->{sheetnames} }) {
 		my $worksheet = $self->add_worksheet (wordcase $sheet);
@@ -78,7 +77,6 @@ sub get_totals {
 		{ $hash->team($team)->away,	$self->{currency_format} },
 		{ $hash->team($team)->total, $self->{currency_format} },
 		{ $hash->team($team)->percent, $self->{percent_format} },
-#		{ $hash->team($team)->home_win + $hash->team($team)->away_win, $self->{float_format} },
 		{ ( $hash->team($team)->home_win + $hash->team($team)->away_win )/ $hash->team($team)->stake, $self->{percent_format} },
 	];
 }
@@ -93,7 +91,6 @@ sub get_homes {
 		{ $hash->team($team)->away,	$self->{currency_format} },
 		{ $hash->team($team)->total, $self->{currency_format} },
 		{ $hash->team($team)->home_percent, $self->{percent_format} },
-#		{ $hash->team($team)->home_win, $self->{format} },
 		{ $hash->team($team)->home_win / $hash->team($team)->home_stake, $self->{percent_format} },
 	];
 }
@@ -108,7 +105,6 @@ sub get_aways {
 		{ $hash->team($team)->away,	$self->{currency_format} },
 		{ $hash->team($team)->total, $self->{currency_format} },
 		{ $hash->team($team)->away_percent, $self->{percent_format} },
-#		{ $hash->team($team)->away_win, $self->{format} },
 		{ $hash->team($team)->away_win / $hash->team($team)->away_stake, $self->{percent_format} },
 	];
 }
@@ -123,7 +119,5 @@ sub get_maxp_columns {
 		"B D F H J L N" => 3,
 	};
 }
-#"E G I K O Q" => 8,
-#"B D F H J L N P" => 3,
 
 1;
