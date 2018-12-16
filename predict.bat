@@ -6,9 +6,12 @@ perl fetch.pl
 REM perl fetch_summer.pl
 
 REM ** oddsp.bat
-perl oddsp.pl ni welsh
+perl oddsp.pl ni
 perl csvcat.pl ni ni
-perl csvcat.pl wl welsh
+
+REM perl oddsp.pl ni welsh
+REM perl csvcat.pl ni ni
+REM perl csvcat.pl wl welsh
 
 perl predict.pl -u
 perl predict.pl -eu

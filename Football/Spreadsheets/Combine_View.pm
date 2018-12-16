@@ -1,8 +1,53 @@
 package Football::Spreadsheets::Combine_View;
 
-use strict;
-use warnings;
+use Football::Spreadsheets::Combine_Expect;
+use Football::Spreadsheets::Combine_Maxp;
 
+use Moo;
+use namespace::clean;
+
+use parent qw (
+    Football::Spreadsheets::Goal_Expect_View
+    Football::Spreadsheets::Max_Profit
+);
+
+with 'Football::Spreadsheets::Combine_Expect';
+with 'Football::Spreadsheets::Combine_Maxp';
+
+sub create_sheet {
+    my $self = shift;
+    my $path = 'C:/Mine/perl/Football/reports/';
+    $self->{filename} = $path.'combined.xlsx';
+}
+
+#   override Roles::Spreadsheet::write_row
+#   to eliminate adding blank columns
+
+sub write_row {
+	my ($self, $worksheet, $row, $row_data) = @_;
+
+	my $col = 0;
+	for my $cell_data (@$row_data) {
+		while (my ($data, $fmt) = each %$cell_data) {
+#			$col ++ while any { $col == $_ } @{ $self->blank_columns };
+			$worksheet->write ( $row, $col ++, $data, $fmt );
+		}
+	}
+}
+=head
+sub do_goal_expect {
+    my ($self, $data, $files) = @_;
+    my $view = Football::Spreadsheets::Combine_Expect->new ();
+    $view->do_goal_expect ($data, $files);
+}
+sub do_maxp {
+    my ($self, $data, $files) = @_;
+    my $view = Football::Spreadsheets::Combine_Maxp->new ();
+    $view->do_maxp ($data, $files);
+}
+=cut
+
+=head
 use parent qw (
     Football::Spreadsheets::Goal_Expect_View
     Football::Spreadsheets::Max_Profit
@@ -122,5 +167,7 @@ sub get_row_data {
         map { { $_ => $iterator->() } } @$row
     ];
 }
+=cut
+
 
 1;

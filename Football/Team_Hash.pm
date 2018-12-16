@@ -5,15 +5,16 @@ use Football::Utils qw(_get_all_teams);
 use Football::Model;
 
 use Keyword::DEVELOPMENT;
-use Moo;
-use namespace::clean;
 DEVELOPMENT { use Data::Dumper; }
 
-has 'hash' 		=> ( is => 'ro', default => sub { {} } );
-has 'teams' 	=> ( is => 'ro', default => sub { [] } );
-has 'func'		=> ( is => 'ro', default => sub {} );
-has 'fixtures' 	=> ( is => 'ro', default => sub { [] } );
-has 'min_profit'=> ( is => 'ro', default => 0.50 );
+use Mu;
+use namespace::clean;
+
+ro 'hash', default => sub { {} };
+ro 'teams', default => sub { [] };
+ro 'fixtures', default => sub { [] };
+ro 'func', default => sub {};
+ro 'min_profit', default => 0.50;
 
 sub BUILD {
 	my $self = shift;
@@ -150,6 +151,13 @@ sub sort_aways {
 		@{ $self->{fixtures} }
 	];
 }
+
+#use Moo;
+#has 'hash' 		=> ( is => 'ro', default => sub { {} } );
+#has 'teams' 	=> ( is => 'ro', default => sub { [] } );
+#has 'fixtures' 	=> ( is => 'ro', default => sub { [] } );
+#has 'func'		=> ( is => 'ro', default => sub {} );
+#has 'min_profit'=> ( is => 'ro', default => 0.50 );
 
 =pod
 

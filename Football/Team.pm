@@ -1,13 +1,14 @@
 package Football::Team;
- 
+
 #	Football::Team.pm 03/02/16 - 12/03/16, Mouse version 04/05/16
 #	Moo version 01/10/16
 
-use Moo;
-use namespace::clean;
-
 use List::Util qw(max);
 use Football::Globals qw($default_stats_size);
+
+use Moo;
+use namespace::clean;
+with 'Roles::Iterators'; # make_iterator, make_reverse_iterator
 
 has 'stats_size' => (is => 'ro', default => $default_stats_size);
 has 'games' => ( is => 'ro' );
@@ -18,28 +19,15 @@ sub add {
 }
 
 sub iterator {
-	my $self = shift;
-	
-	return () unless defined $self->{games};
-	my $size = scalar (@{ $self->{games} });
-	my $idx = 0;
-
-	return sub {
-		return () if $idx == $size;
-		return @{ $self->{games} }[$idx++];
-	}
+    my $self = shift;
+    return () unless defined $self->{games};
+    return make_iterator ($self->{games});
 }
 
 sub reverse_iterator {
-	my $self = shift;
-
-	return () unless defined $self->{games};
-	my $idx = scalar (@{ $self->{games} }) - 1;
-
-	return sub {
-		return undef if $idx < 0;
-		return @{ $self->{games} }[$idx--];
-	}
+    my $self = shift;
+    return () unless defined $self->{games};
+    return make_reverse_iterator ($self->{games});
 }
 
 sub get_homes {
@@ -73,11 +61,11 @@ sub get_stats {
 
 sub get_most_recent {
 	my ($self, $num_games) = @_;
-	my @results = ();		
-	
+	my @results = ();
+
 	my @list = @{ $self->{games} };
 	my $full_stats = $self->splice_array (\@list, $num_games);
-	
+
 	push @results, $_->{result} for @$full_stats;
 	return (\@results, $full_stats);
 }
@@ -92,6 +80,33 @@ sub splice_array {
 	my @spliced = splice (@$arrayref, $start, $games);
 	return \@spliced;
 }
+
+=head
+sub iterator {
+	my $self = shift;
+
+	return () unless defined $self->{games};
+	my $size = scalar (@{ $self->{games} });
+	my $idx = 0;
+
+	return sub {
+		return () if $idx == $size;
+		return @{ $self->{games} }[$idx++];
+	}
+}
+
+sub reverse_iterator {
+	my $self = shift;
+
+	return () unless defined $self->{games};
+	my $idx = scalar (@{ $self->{games} }) - 1;
+
+	return sub {
+		return undef if $idx < 0;
+		return @{ $self->{games} }[$idx--];
+	}
+}
+=cut
 
 =pod
 

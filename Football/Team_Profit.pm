@@ -1,17 +1,17 @@
 package Football::Team_Profit;
 
-use Moo;
+use Mu;
 use namespace::clean;
 
-has 'team'  => ( is => 'ro' );
-has 'stake' => ( is => 'ro', default => 0 );
-has 'home'  => ( is => 'ro', default => 0 );
-has 'away'  => ( is => 'ro', default => 0 );
-has 'total' => ( is => 'ro', default => 0 );
-has 'home_stake' => ( is => 'ro', default => 0 );
-has 'away_stake' => ( is => 'ro', default => 0 );
-has 'home_win' => ( is => 'ro', default => 0 );
-has 'away_win' => ( is => 'ro', default => 0 );
+ro 'team';
+ro 'stake', default => 0;
+ro 'home', default => 0;
+ro 'away', default => 0;
+ro 'total', default => 0;
+ro 'home_stake', default => 0;
+ro 'away_stake', default => 0;
+ro 'home_win', default => 0;
+ro 'away_win', default => 0;
 
 sub home_staked {
 	my $self = shift;
@@ -59,6 +59,22 @@ sub percent_gain {
 	my ($initial_amount, $closing_amount) = @_;
 	return (($closing_amount - $initial_amount) / $initial_amount);
 }
+
+#use Moo;
+#has 'team'  => ( is => 'ro' );
+#has 'stake' => ( is => 'ro', default => 0 );
+#has 'home'  => ( is => 'ro', default => 0 );
+#has 'away'  => ( is => 'ro', default => 0 );
+#has 'total' => ( is => 'ro', default => 0 );
+#has 'home_stake' => ( is => 'ro', default => 0 );
+#has 'away_stake' => ( is => 'ro', default => 0 );
+#has 'home_win' => ( is => 'ro', default => 0 );
+#has 'away_win' => ( is => 'ro', default => 0 );
+
+#before [qw( home_staked away_staked )] => sub {
+#	my $self = shift;
+#	$self->{stake} ++;
+#};
 
 =pod
 

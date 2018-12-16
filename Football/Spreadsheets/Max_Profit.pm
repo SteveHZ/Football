@@ -1,13 +1,14 @@
 package Football::Spreadsheets::Max_Profit;
 
-use Moo;
+use Mu;
 use namespace::clean;
-
+use v5.10;
 use Football::Globals qw(@league_names @euro_lgs @summer_leagues);
 use MyLib qw(wordcase);
 
-has 'filename' => ( is => 'ro' );
-has 'euro' => ( is => 'ro' );
+ro 'filename';
+ro 'euro';
+#ro 'euro', default => 0;
 with 'Roles::Spreadsheet';
 
 my $path = 'C:/Mine/perl/Football/reports/';
@@ -19,7 +20,8 @@ sub BUILD {
 	$self->{filename} = ( exists $args->{filename} )
 		? $args->{filename}
 		: $default_filename;
-	$self->{leagues} = $all_leagues[$self->{euro}];
+	$self->{euro} //= 0; # work-around to construct Combine_View
+	$self->{leagues} = $all_leagues [ $self->{euro} ];
 	$self->{sheetnames} = [ 'totals', 'all homes', 'all aways', 'homes', 'aways' ];
 	$self->{dispatch} = {
 		'totals'	=> \&Football::Spreadsheets::Max_Profit::get_totals,
@@ -30,6 +32,14 @@ sub BUILD {
 	};
 }
 
+#after 'BUILD' => sub {
+#my $self = shift;
+#$self->{euro} //= 0;
+#say "euro = ".$self->{euro};
+#use Data::Dumper;
+#print Dumper @all_leagues;
+#$self->{leagues} = $all_leagues [ $self->{euro} ];
+#};
 sub show {
 	my ($self, $hash, $sorted) = @_;
 	$self->blank_columns ( [ qw(1 3 5 7 9 11 13) ] );
@@ -119,5 +129,9 @@ sub get_maxp_columns {
 		"B D F H J L N" => 3,
 	};
 }
+
+#use Moo;
+#has 'filename' => ( is => 'ro' );
+#has 'euro' => ( is => 'ro' );
 
 1;
