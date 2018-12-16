@@ -8,7 +8,7 @@ use Football::Globals qw($default_stats_size);
 
 use Moo;
 use namespace::clean;
-with 'Roles::Iterators'; # make_iterator, make_reverse_iterator
+with 'Roles::Iterators'; # make_iterator
 
 has 'stats_size' => (is => 'ro', default => $default_stats_size);
 has 'games' => ( is => 'ro' );
@@ -22,12 +22,6 @@ sub iterator {
     my $self = shift;
     return () unless defined $self->{games};
     return make_iterator ($self->{games});
-}
-
-sub reverse_iterator {
-    my $self = shift;
-    return () unless defined $self->{games};
-    return make_reverse_iterator ($self->{games});
 }
 
 sub get_homes {
@@ -80,33 +74,6 @@ sub splice_array {
 	my @spliced = splice (@$arrayref, $start, $games);
 	return \@spliced;
 }
-
-=head
-sub iterator {
-	my $self = shift;
-
-	return () unless defined $self->{games};
-	my $size = scalar (@{ $self->{games} });
-	my $idx = 0;
-
-	return sub {
-		return () if $idx == $size;
-		return @{ $self->{games} }[$idx++];
-	}
-}
-
-sub reverse_iterator {
-	my $self = shift;
-
-	return () unless defined $self->{games};
-	my $idx = scalar (@{ $self->{games} }) - 1;
-
-	return sub {
-		return undef if $idx < 0;
-		return @{ $self->{games} }[$idx--];
-	}
-}
-=cut
 
 =pod
 
