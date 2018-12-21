@@ -21,7 +21,7 @@ use namespace::clean;
 sub BUILD {
 	my $self = shift;
 	$self->create_sheets ();
-	$self->get_formats ();	
+	$self->get_formats ();
 }
 
 sub DEMOLISH {
@@ -45,8 +45,8 @@ sub create_sheets {
 sub destroy_sheets {
 	my $self = shift;
 
-	$self->{xlsx_teams}->{$_}->{workbook}->close () for keys %{ $self->{xlsx_teams}};	
-	$self->{xlsx_tables}->{$_}->{workbook}->close () for keys %{ $self->{xlsx_tables}};	
+	$self->{xlsx_teams}->{$_}->{workbook}->close () for keys %{ $self->{xlsx_teams}};
+	$self->{xlsx_tables}->{$_}->{workbook}->close () for keys %{ $self->{xlsx_tables}};
 	$self->{xlsx_predictions}->{workbook}->close ();
 	$self->{xlsx_extended}->{workbook}->close ();
 	$self->{xlsx_favourites}->{workbook}->close ();
@@ -74,9 +74,9 @@ sub do_teams {
 		my $league_name = $league->{name};
 		my $teams  = \% {$league->{teams}};
 		my $sorted = \@ {$league->{team_list}};
-		
+
 		for my $team (@$sorted) {
-		print "\n\n$team : $teams->{$team}->{position} ( $league->{name} )";
+			print "\n\n$team : ".$league->position ($team)." ( $league->{name} )";
 			if ( my $next = $teams->{$team}->iterator () ) {
 				while ( my $list = $next->() ) {
 					printf $self->{teams_format}, $list->{date}, $list->{opponent},
@@ -95,7 +95,7 @@ sub do_table {
 	for my $league (@$leagues) {
 		my $league_name = $league->{name};
 		my $table = $league->{table}->sorted;
-	
+
 		print "\n\n$league_name Full Table : \n\n";
 		printf $self->{table_format}, @{ $self->{table_header} };
 		for my $team (@$table) {
@@ -113,7 +113,7 @@ sub do_table {
 
 sub do_home_table {
 	my ($self, $leagues) = @_;
-	
+
 	for my $league (@$leagues) {
 		my $league_name = $league->{name};
 		my $table = $league->{home_table}->sorted ();
@@ -134,7 +134,7 @@ sub do_home_table {
 
 sub do_away_table {
 	my ($self, $leagues) = @_;
-	
+
 	for my $league (@$leagues) {
 		my $league_name = $league->{name};
 		my $table = $league->{away_table}->sorted ();
@@ -155,11 +155,11 @@ sub do_away_table {
 
 sub homes {
 	my ($self, $leagues) = @_;
-	
+
 	for my $league (@$leagues) {
 		my $league_name = $league->{name};
 		my $list = $league->{homes};
-	
+
 		print "\n\n$league_name Homes :\n";
 		for my $team (keys %$list) {
 			printf $self->{homes_format}, $list->{$team}->{name};
@@ -171,11 +171,11 @@ sub homes {
 
 sub aways {
 	my ($self, $leagues) = @_;
-	
+
 	for my $league (@$leagues) {
 		my $league_name = $league->{name};
 		my $list = $league->{aways};
-	
+
 		print "\n\n$league_name Aways :\n";
 		for my $team (keys %$list) {
 			printf $self->{homes_format}, $list->{$team}->{name};
@@ -187,11 +187,11 @@ sub aways {
 
 sub last_six {
 	my ($self, $leagues) = @_;
-	
+
 	for my $league (@$leagues) {
 		my $league_name = $league->{name};
 		my $list = $league->{last_six};
-		
+
 		print "\n\n$league_name Last Six Games :\n";
 		for my $team (keys %$list) {
 			printf $self->{homes_format}, $list->{$team}->{name};
@@ -203,11 +203,11 @@ sub last_six {
 
 sub full_homes {
 	my ($self, $leagues) = @_;
-	
+
 	for my $league (@$leagues) {
 		my $league_name = $league->{name};
 		my $list = $league->{homes};
-	
+
 		for my $team (keys %$list) {
 			print "\n\n$list->{$team}->{name} :";
 			for my $game (@{ $list->{$team}->{full_homes}} ) {
@@ -221,11 +221,11 @@ sub full_homes {
 
 sub full_aways {
 	my ($self, $leagues) = @_;
-	
+
 	for my $league (@$leagues) {
 		my $league_name = $league->{name};
 		my $list = $league->{aways};
-	
+
 		for my $team (keys %$list) {
 			print "\n\n$list->{$team}->{name} :";
 			for my $game (@{ $list->{$team}->{full_aways}} ) {
@@ -248,7 +248,7 @@ sub fixture_list {
 
 sub fixtures {
 	my ($self, $fixtures) = @_;
-	
+
 	print "\n\nWriting home/away predictions...\n";
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};
@@ -270,7 +270,7 @@ sub fixtures {
 
 sub do_head2head {
 	my ($self, $fixtures) = @_;
-	
+
 	print "\n\nWriting head to head predictions...\n";
 	for my $league (@$fixtures) {
 		print "\n\n$league->{league} :";
@@ -287,7 +287,7 @@ sub do_head2head {
 
 sub do_league_places {
 	my ($self, $fixtures) = @_;
-	
+
 	print "\n\nWriting league places predictions...\n";
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};
@@ -310,7 +310,7 @@ sub do_league_places {
 
 sub do_recent_goal_difference {
 	my ($self, $fixtures) = @_;
-	
+
 	print "\n\nWriting recent goal difference predictions...\n";
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};
@@ -332,7 +332,7 @@ sub do_recent_goal_difference {
 
 sub do_goal_difference {
 	my ($self, $fixtures) = @_;
-	
+
 	print "\n\nWriting goal difference predictions...\n";
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};
@@ -354,7 +354,7 @@ sub do_goal_difference {
 
 sub do_recent_draws {
 	my ($self, $draws) = @_;
-	
+
 	print "\n\nWriting recent draw predictions...\n";
 	for my $game (@$draws) {
 		print "\n";
@@ -372,7 +372,7 @@ sub do_favourites {
 
 sub do_predict_models {
 	my ($self, $leagues, $teams, $sorted) = @_;
-	
+
 	$self->do_goal_expect ($leagues, $teams, $sorted);
 	$self->do_match_odds ($sorted);
 	$self->do_over_under ($sorted);
@@ -387,7 +387,7 @@ sub do_goal_expect {
 
 sub do_match_odds {
 	my ($self, $sorted) = @_;
-	
+
 	$self->{xlsx_skellam}->view ($sorted->{skellam});
 	$self->{xlsx_match_odds}->view ($sorted->{match_odds});
 }

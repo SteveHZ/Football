@@ -6,7 +6,7 @@ package Football::HomeTable;
 
 use Moo;
 use namespace::clean;
- 
+
 extends 'Football::Table';
 
 sub do_played {

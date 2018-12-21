@@ -6,6 +6,7 @@ package Football::League;
 
 use Football::Table;
 use Football::Team;
+#use Football::Team_Data;
 use MyKeyword qw(DEVELOPMENT);
 
 use Moo;
@@ -24,11 +25,6 @@ sub BUILD {
 	my $self = shift;
 	$self->{points} = { W => 3, D => 1, L => 0, };
 	$self->build_teams ();
-}
-
-sub get_table {
-	my $self = shift;
-	return $self->{table}->table;
 }
 
 sub create_new_table {
@@ -65,14 +61,7 @@ sub build_teams {
 		$self->update_teams ($self->{teams}, $game);
 		$self->{table}->update ($game);
 	}
-#	die "No games played" if $self->{table}->check_for_zero_games ();
-	my $sorted_table = $self->{table}->sort_table ();
-
-	my $idx = 1;
-	for my $sorted (@$sorted_table) {
-		my $team = $sorted->{team};
-		$self->{teams}->{$team}->{position} = $idx++;
-	}
+	$self->{table}->sort_table ();
 }
 
 sub update_teams {
@@ -254,11 +243,16 @@ sub recent_goal_diff {
 	return $self->{table}->recent_goal_diff ($team);
 }
 
-#position needs to be in table
 sub position {
 	my ($self, $team) = @_;
-	return $self->{teams}->{$team}->{position};
+	return $self->{table}->position ($team);
 }
+
+#sub get_table {
+#	my $self = shift;
+#	return $self->{table};
+#	return $self->{table}->table;
+#}
 
 =pod
 

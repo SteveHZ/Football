@@ -3,11 +3,12 @@ package Football::Table;
 # 	Football::Table.pm 15/02/16 - 07/03/16, Mouse version 04/05/16
 #	Moo version 01/10/16
 
+use List::Util qw(sum);
 use Moo;
 use namespace::clean;
 
-has 'sorted' => ( is => 'ro' );
 has 'table' => ( is => 'ro' );
+has 'sorted' => ( is => 'ro' );
 
 sub BUILD {
 	my ($self, $args) = @_;
@@ -21,6 +22,7 @@ sub set_up_team {
 	my $team = shift;
 	return {
 		team => $team,
+		position => 0,
 		played => 0,
 		won => 0,
 		lost => 0,
@@ -28,23 +30,13 @@ sub set_up_team {
 		for => 0,
 		against => 0,
 		points => 0,
-		recent_goal_diff => [0,0,0,0,0,0],
+		recent_goal_diff => {
+			list => [0,0,0,0,0,0],
+			rgd => 0,
+		},
 	};
 }
-=head
-At some point,
-recent_goal_diff => {
-list => [000000],
-sum => 0,
-}
-shift/unshift in rgd method ->list
-then rgd->sum = sum rgd->{list} # use List:Utils::sum
-update table rgd method
-then lazy goal diff method ? poss even rgd??
 
-!!! Table class SHOULD NOT have a table !!!
-BUILD should just be $self->{team}
-=cut
 sub update {
 	my ($self, $game) = @_;
 
@@ -99,18 +91,24 @@ sub do_goals {
 sub do_recent_goal_diff {
 	my ($self, $game) = @_;
 
-	shift  @{ $self->{table}->{ $game->{home_team} }->{recent_goal_diff} };
-	shift  @{ $self->{table}->{ $game->{away_team} }->{recent_goal_diff} };
-	push ( @{ $self->{table}->{ $game->{home_team} }->{recent_goal_diff} }, $game->{home_score} - $game->{away_score} );
-	push ( @{ $self->{table}->{ $game->{away_team} }->{recent_goal_diff} }, $game->{away_score} - $game->{home_score} );
+	shift  @{ $self->{table}->{ $game->{home_team} }->{recent_goal_diff}->{list} };
+	shift  @{ $self->{table}->{ $game->{away_team} }->{recent_goal_diff}->{list} };
+	push ( @{ $self->{table}->{ $game->{home_team} }->{recent_goal_diff}->{list} }, $game->{home_score} - $game->{away_score} );
+	push ( @{ $self->{table}->{ $game->{away_team} }->{recent_goal_diff}->{list} }, $game->{away_score} - $game->{home_score} );
+	$self->{table}->{ $game->{home_team} }->{recent_goal_diff}->{rgd} = sum @{ $self->{table}->{ $game->{home_team} }->{recent_goal_diff}->{list} };
+	$self->{table}->{ $game->{away_team} }->{recent_goal_diff}->{rgd} = sum @{ $self->{table}->{ $game->{away_team} }->{recent_goal_diff}->{list} };
 }
 
 sub sort_table {
 	my $self = shift;
 	my $table = $self->{table};
+	my $idx = 1;
 
-	return $self->{sorted} = [
-		map  { $table->{$_} }
+	$self->{sorted} = [
+		map  {
+			$table->{$_}->{position} = $idx++;
+ 			$table->{$_}
+		}
 		sort {
 			$table->{$b}->{points} <=> $table->{$a}->{points}
 			or _goal_diff ($table->{$b}) <=> _goal_diff ($table->{$a})
@@ -133,10 +131,7 @@ sub goal_diff {
 
 sub recent_goal_diff {
 	my ($self, $team) = @_;
-
-	my $total = 0;
-	$total += $_ for (@ {$self->{table}->{$team}->{recent_goal_diff} } );
-	return $total;
+	return $self->{table}->{$team}->{recent_goal_diff}->{rgd};
 }
 
 sub calc_goal_difference {
@@ -154,7 +149,7 @@ sub calc_goal_difference {
 sub check_for_zero_games {
 	my $self = shift;
 
-	for my $team (keys %{ $self->{table}} ) {
+	for my $team (keys %$self) {
 		return 1 if $self->played ($team) == 0;
 	}
 	return 0;
@@ -165,6 +160,7 @@ sub _get {
 	return $self->{table}->{$team}->{$data};
 }
 
+sub position{ my ($self, $team) = @_; return $self->_get ($team, 'position'); };
 sub played	{ my ($self, $team) = @_; return $self->_get ($team, 'played'); };
 sub won		{ my ($self, $team) = @_; return $self->_get ($team, 'won'); }
 sub lost 	{ my ($self, $team) = @_; return $self->_get ($team, 'lost'); }
