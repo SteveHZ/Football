@@ -4,7 +4,6 @@ package Football::Match_Odds;
 
 use Math::Round qw(nearest);
 use List::Util qw(min);
-#use List::Util qw(max);
 use Football::MyPoisson;
 
 use Moo;
@@ -37,23 +36,15 @@ sub calc {
 
 sub schwartz_sort {
 	my ($self, $games) = @_;
-	
+
 	return [
 		map	 { $_->[0] }
 		sort { $a->[1] <=> $b->[1] }
 		map	 { [
-			$_, min (	$_->{home_win},
-						$_->{away_win} )
+			$_, min ( $_->{home_win},
+					  $_->{away_win} )
 		] } @$games
 	];
-#	return [
-#		map	 { $_->[0] }
-#		sort { $b->[1] <=> $a->[1] }
-#		map	 { [ $_, max (	$_->{home_win},
-#							$_->{draw},
-#							$_->{away_win} )
-#		] } @$games
-#	];
 }
 
 sub print_all {
@@ -69,7 +60,7 @@ sub print_all {
 sub home_win {
 	my $self = shift;
 	my $total = 0;
-	
+
 	for my $home_score (1..$self->{max}) {
 		for my $away_score (0..$home_score - 1) {
 			$total += $self->{stats}[$home_score][$away_score];
@@ -88,7 +79,7 @@ sub home_win_odds {
 sub away_win {
 	my $self = shift;
 	my $total = 0;
-	
+
 	for my $away_score (1..$self->{max}) {
 		for my $home_score (0..$away_score - 1) {
 			$total += $self->{stats}[$home_score][$away_score];
@@ -107,7 +98,7 @@ sub away_win_odds {
 sub draw {
 	my $self = shift;
 	my $total = 0;
-	
+
 	for my $score (0..$self->{max}) {
 		$total += $self->{stats}[$score][$score];
 	}
@@ -124,7 +115,7 @@ sub draw_odds {
 sub both_sides_yes {
 	my $self = shift;
 	my $total = 0;
-	
+
 	for my $home_score (1..$self->{max}) {
 		for my $away_score (1..$self->{max}) {
 			$total += $self->{stats}[$home_score][$away_score];
@@ -143,7 +134,7 @@ sub both_sides_yes_odds {
 sub both_sides_no {
 	my $self = shift;
 	my $total = 0;
-	
+
 	$total += $self->{stats}[0][0];
 	for my $score (1..$self->{max}) {
 		$total += $self->{stats}[$score][0];
@@ -162,7 +153,7 @@ sub both_sides_no_odds {
 sub under_2pt5 {
 	my $self = shift;
 	my $total = 0;
-	
+
 	for my $home_score (0..2) {
 		for my $away_score (0..2) {
 			if (($home_score + $away_score) < 3) {
@@ -183,7 +174,7 @@ sub under_2pt5_odds {
 sub over_2pt5 {
 	my $self = shift;
 	my $total = 0;
-	
+
 	for my $home_score (0..$self->{max}) {
 		for my $away_score (0..$self->{max}) {
 			if ($home_score + $away_score > 2) {
@@ -196,7 +187,7 @@ sub over_2pt5 {
 
 sub over_2pt5_odds {
 	my $self = shift;
-	
+
 	return 0 if ( my $stats = $self->over_2pt5 () ) == 0;
 	return nearest (0.01, 100 / $stats);
 }

@@ -11,6 +11,8 @@ use Data::Dumper;
 
 use lib "C:/Mine/perl/Football";
 use Football::Model;
+use Football::HomeTable;
+use Football::AwayTable;
 use MyJSON qw(read_json);
 
 my $model = Football::Model->new ();

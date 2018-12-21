@@ -9,10 +9,10 @@ use List::MoreUtils qw(each_array);
 
 use lib 'C:/Mine/perl/Football';
 use Football::League;
-use Football::Team;
-use Football::Table;
-use Football::HomeTable;
-use Football::AwayTable;
+#use Football::Team;
+#use Football::Table;
+#use Football::HomeTable;
+#use Football::AwayTable;
 
 use Football::Favourites_Data_Model;
 use Football::Favourites_Model;
@@ -29,15 +29,17 @@ use MyKeyword qw(TESTING); # for model.t
 use Moo;
 use namespace::clean;
 
-# pre-declare these to use Shared_Model and Football_IO roles
+# pre-declare these to use Shared_Model role
+#has 'model_name' => ( is => 'ro' ); # not used here but required for roles
 has 'leagues' => ( is => 'ro' );
 has 'league_names' => ( is => 'ro' );
 has 'csv_leagues' => ( is => 'ro' );
-has 'model_name' => ( is => 'ro' ); # not used here but required for roles
+has 'test_season_data' => ( is => 'ro' );
+
+# pre-declare these to use Football_IO role
 has 'path' => ( is => 'ro' );
 has 'fixtures_file' => ( is => 'rw' );
 has 'season_data' => ( is => 'ro' );
-has 'test_season_data' => ( is => 'ro' );
 has 'test_fixtures_file' => ( is => 'ro' );
 
 with 'Roles::MyJSON',
@@ -46,12 +48,12 @@ with 'Roles::MyJSON',
 
 sub BUILD {
 	my $self = shift;
+	$self->{model_name} = "Football";
 	$self->{leagues} = [];
 	$self->{csv_leagues} = \@csv_leagues;
 	$self->{league_names} = \@league_names;
 	$self->{league_idx} = $self->build_league_idx ($self->{league_names});
 
-	$self->{model_name} = "Football";
 	$self->{path} = 'C:/Mine/perl/Football/data/';
 	$self->{fixtures_file} = $self->{path}.'fixtures.csv';
 	$self->{season_data} = $self->{path}.'season.json';
@@ -79,6 +81,115 @@ sub build_leagues {
 	return $self->{leagues};
 }
 
+=head
+sub do_goal_difference {
+	my ($self, $fixtures, $teams) = @_;
+	my ($home, $away, $home_diff, $away_diff);
+
+	my $goal_diff = Football::Reports::GoalDifference->new ();
+	for my $league (@$fixtures) {
+		my $league_name = $league->{league};
+		my $idx = $self->get_league_idx ($league_name);
+
+		for my $game (@{ $league->{games}}) {
+			$home = $game->{home_team};
+			$away = $game->{away_team};
+
+			$home_diff = $self->{leagues}[$idx]->{table}->goal_diff ($home);
+			$away_diff = $self->{leagues}[$idx]->{table}->goal_diff ($away);
+			$game->{goal_difference} = $home_diff - $away_diff;
+			$game->{gd_results} = $self->fetch_goal_difference ($goal_diff, $league_name, $game->{goal_difference});
+		}
+	}
+	return $fixtures;
+}
+
+sub do_goal_difference2 {
+=cut
+sub do_goal_difference {
+	my ($self, $fixtures, $teams) = @_;
+	my ($home, $away, $home_diff, $away_diff);
+
+	my $goal_diff = Football::Reports::GoalDifference->new ();
+	for my $league_fixtures (@$fixtures) {
+		my $league_name = $league_fixtures->{league};
+		my $idx = $self->get_league_idx ($league_name);
+		my $league = $self->{leagues}[$idx];
+
+		for my $game (@{ $league_fixtures->{games} } ) {
+			$home_diff = $league->goal_diff ($game->{home_team});
+			$away_diff = $league->goal_diff ($game->{away_team});
+
+#			$home = $game->{home_team};
+#			$away = $game->{away_team};
+
+#			$home_diff = $self->{leagues}[$idx]->{table}->goal_diff ($home);
+#			$away_diff = $self->{leagues}[$idx]->{table}->goal_diff ($away);
+
+			$game->{goal_difference} = $home_diff - $away_diff;
+			$game->{gd_results} = $self->fetch_goal_difference ($goal_diff, $league_name, $game->{goal_difference});
+		}
+	}
+	return $fixtures;
+}
+
+sub fetch_goal_difference {
+	my ($self, $goal_diff_obj, $league_name, $goal_difference) = @_;
+	return $goal_diff_obj->fetch_array ($league_name, $goal_difference);
+}
+
+=head
+sub do_recent_goal_difference {
+	my ($self, $fixtures, $teams) = @_;
+	my ($home, $away, $home_diff, $away_diff);
+
+	my $goal_diff = Football::Reports::Recent_GoalDifference->new ();
+	for my $league (@$fixtures) {
+		my $league_name = $league->{league};
+		my $idx = $self->get_league_idx ($league_name);
+
+		for my $game (@{ $league->{games}}) {
+			$home = $game->{home_team};
+			$away = $game->{away_team};
+			$home_diff = $self->{leagues}[$idx]->{table}->recent_goal_diff ($home);
+			$away_diff = $self->{leagues}[$idx]->{table}->recent_goal_diff ($away);
+			$game->{recent_goal_difference} = $home_diff - $away_diff;
+			$game->{rgd_results} = $self->fetch_goal_difference ($goal_diff, $league_name, $game->{recent_goal_difference});
+		}
+	}
+	return $fixtures;
+}
+
+sub do_recent_goal_difference2 {
+=cut
+sub do_recent_goal_difference {
+	my ($self, $fixtures, $teams) = @_;
+	my ($home, $away, $home_diff, $away_diff);
+
+	my $goal_diff = Football::Reports::Recent_GoalDifference->new ();
+	for my $league_fixtures (@$fixtures) {
+		my $league_name = $league_fixtures->{league};
+		my $idx = $self->get_league_idx ($league_name);
+		my $league = $self->{leagues}[$idx];
+
+		for my $game (@{ $league_fixtures->{games} } ) {
+			$home_diff = $league->recent_goal_diff ($game->{home_team});
+			$away_diff = $league->recent_goal_diff ($game->{away_team});
+
+#			$home = $game->{home_team};
+#			$away = $game->{away_team};
+
+#			$home_diff = $self->{leagues}[$idx]->{table}->goal_diff ($home);
+#			$away_diff = $self->{leagues}[$idx]->{table}->goal_diff ($away);
+
+			$game->{recent_goal_difference} = $home_diff - $away_diff;
+			$game->{rgd_results} = $self->fetch_goal_difference ($goal_diff, $league_name, $game->{recent_goal_difference});
+		}
+	}
+	return $fixtures;
+}
+
+=head
 sub do_league_places {
 	my ($self, $fixtures, $teams) = @_;
 	my ($home, $away, $home_points, $away_points);
@@ -94,6 +205,32 @@ sub do_league_places {
 
 			$game->{home_pos} = $self->{leagues}[$idx]->{teams}->{$home}->{position};
 			$game->{away_pos} = $self->{leagues}[$idx]->{teams}->{$away}->{position};
+			$game->{results} = $league_places->fetch_array ($league_name, $game->{home_pos}, $game->{away_pos});
+		}
+	}
+	return $fixtures;
+}
+
+sub do_league_places2 {
+=cut
+sub do_league_places {
+	my ($self, $fixtures, $teams) = @_;
+	my ($home, $away, $home_points, $away_points);
+
+	my $league_places = Football::Reports::LeaguePlaces->new ();
+	for my $league_fixtures (@$fixtures) {
+		my $league_name = $league_fixtures->{league};
+		my $idx = $self->get_league_idx ($league_name);
+		my $league = $self->{leagues}[$idx];
+
+		for my $game (@{ $league_fixtures->{games} } ) {
+#			$home = $game->{home_team};
+#			$away = $game->{away_team};
+
+			$game->{home_pos} = $league->position ($game->{home_team});
+			$game->{away_pos} = $league->position ($game->{away_team});
+#			$game->{home_pos} = $self->{leagues}[$idx]->{teams}->{$home}->{position};
+#			$game->{away_pos} = $self->{leagues}[$idx]->{teams}->{$away}->{position};
 			$game->{results} = $league_places->fetch_array ($league_name, $game->{home_pos}, $game->{away_pos});
 		}
 	}
@@ -119,54 +256,6 @@ sub do_head2head {
 		}
 	}
 	return $fixtures;
-}
-
-sub do_recent_goal_difference {
-	my ($self, $fixtures, $teams) = @_;
-	my ($home, $away, $home_diff, $away_diff);
-
-	my $goal_diff = Football::Reports::Recent_GoalDifference->new ();
-	for my $league (@$fixtures) {
-		my $league_name = $league->{league};
-		my $idx = $self->get_league_idx ($league_name);
-
-		for my $game (@{ $league->{games}}) {
-			$home = $game->{home_team};
-			$away = $game->{away_team};
-			$home_diff = $self->{leagues}[$idx]->{table}->recent_goal_diff ($home);
-			$away_diff = $self->{leagues}[$idx]->{table}->recent_goal_diff ($away);
-			$game->{recent_goal_difference} = $home_diff - $away_diff;
-			$game->{rgd_results} = $self->fetch_goal_difference ($goal_diff, $league_name, $game->{recent_goal_difference});
-		}
-	}
-	return $fixtures;
-}
-
-sub do_goal_difference {
-	my ($self, $fixtures, $teams) = @_;
-	my ($home, $away, $home_diff, $away_diff);
-
-	my $goal_diff = Football::Reports::GoalDifference->new ();
-	for my $league (@$fixtures) {
-		my $league_name = $league->{league};
-		my $idx = $self->get_league_idx ($league_name);
-
-		for my $game (@{ $league->{games}}) {
-			$home = $game->{home_team};
-			$away = $game->{away_team};
-
-			$home_diff = $self->{leagues}[$idx]->{table}->goal_diff ($home);
-			$away_diff = $self->{leagues}[$idx]->{table}->goal_diff ($away);
-			$game->{goal_difference} = $home_diff - $away_diff;
-			$game->{gd_results} = $self->fetch_goal_difference ($goal_diff, $league_name, $game->{goal_difference});
-		}
-	}
-	return $fixtures;
-}
-
-sub fetch_goal_difference {
-	my ($self, $goal_diff_obj, $league_name, $goal_difference) = @_;
-	return $goal_diff_obj->fetch_array ($league_name, $goal_difference);
 }
 
 sub do_recent_draws {

@@ -244,6 +244,22 @@ sub _get_over_under {
 	return $over;
 }
 
+sub goal_diff {
+	my ($self, $team) = @_;
+	return $self->{table}->goal_diff ($team);
+}
+
+sub recent_goal_diff {
+	my ($self, $team) = @_;
+	return $self->{table}->recent_goal_diff ($team);
+}
+
+#position needs to be in table
+sub position {
+	my ($self, $team) = @_;
+	return $self->{teams}->{$team}->{position};
+}
+
 =pod
 
 =head1 NAME

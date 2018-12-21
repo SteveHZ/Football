@@ -31,7 +31,20 @@ sub set_up_team {
 		recent_goal_diff => [0,0,0,0,0,0],
 	};
 }
+=head
+At some point,
+recent_goal_diff => {
+list => [000000],
+sum => 0,
+}
+shift/unshift in rgd method ->list
+then rgd->sum = sum rgd->{list} # use List:Utils::sum
+update table rgd method
+then lazy goal diff method ? poss even rgd??
 
+!!! Table class SHOULD NOT have a table !!!
+BUILD should just be $self->{team}
+=cut
 sub update {
 	my ($self, $game) = @_;
 
@@ -85,7 +98,7 @@ sub do_goals {
 
 sub do_recent_goal_diff {
 	my ($self, $game) = @_;
-	
+
 	shift  @{ $self->{table}->{ $game->{home_team} }->{recent_goal_diff} };
 	shift  @{ $self->{table}->{ $game->{away_team} }->{recent_goal_diff} };
 	push ( @{ $self->{table}->{ $game->{home_team} }->{recent_goal_diff} }, $game->{home_score} - $game->{away_score} );
@@ -104,9 +117,9 @@ sub sort_table {
 			or $table->{$b}->{for} <=> $table->{$a}->{for}
 			or $table->{$a}->{team} cmp $table->{$b}->{team}
 		}
-		keys %$table		
+		keys %$table
 	];
-} 	
+}
 
 sub _goal_diff {
 	my $team = shift;
@@ -128,7 +141,7 @@ sub recent_goal_diff {
 
 sub calc_goal_difference {
 	my ($self, $games) = @_;
-	
+
 	my $total = 0;
 	for my $game (@$games) {
 		if ($game->{score} =~ /(\d+)-(\d+)/) {

@@ -1,8 +1,8 @@
 package Football::Spreadsheets::Combine_Maxp;
 
+use MyIterators qw(make_circular_iterator);
 use Moo::Role;
 use namespace::clean;
-with 'Roles::Iterators'; # make_circular_iterator
 
 requires qw(add_worksheet do_header write_row);
 

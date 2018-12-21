@@ -1,8 +1,8 @@
 package Football::Spreadsheets::Combine_Expect;
 
+use MyIterators qw(make_circular_iterator);
 use Moo::Role;
 use namespace::clean;
-with 'Roles::Iterators'; # make_circular_iterator
 
 requires qw(get_all_formats add_worksheet do_goal_expect_header write_row);
 

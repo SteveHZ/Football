@@ -8,7 +8,7 @@ use Football::Globals qw($default_stats_size);
 
 use Moo;
 use namespace::clean;
-with 'Roles::Iterators'; # make_iterator
+use MyIterators qw(make_iterator);
 
 has 'stats_size' => (is => 'ro', default => $default_stats_size);
 has 'games' => ( is => 'ro' );
