@@ -30,10 +30,8 @@ sub set_up_team {
 		for => 0,
 		against => 0,
 		points => 0,
-		recent_goal_diff => {
-			list => [0,0,0,0,0,0],
-			rgd => 0,
-		},
+		recent_goal_diff => 0,
+		rgd_list => [0,0,0,0,0,0],
 	};
 }
 
@@ -91,12 +89,10 @@ sub do_goals {
 sub do_recent_goal_diff {
 	my ($self, $game) = @_;
 
-	shift  @{ $self->{table}->{ $game->{home_team} }->{recent_goal_diff}->{list} };
-	shift  @{ $self->{table}->{ $game->{away_team} }->{recent_goal_diff}->{list} };
-	push ( @{ $self->{table}->{ $game->{home_team} }->{recent_goal_diff}->{list} }, $game->{home_score} - $game->{away_score} );
-	push ( @{ $self->{table}->{ $game->{away_team} }->{recent_goal_diff}->{list} }, $game->{away_score} - $game->{home_score} );
-	$self->{table}->{ $game->{home_team} }->{recent_goal_diff}->{rgd} = sum @{ $self->{table}->{ $game->{home_team} }->{recent_goal_diff}->{list} };
-	$self->{table}->{ $game->{away_team} }->{recent_goal_diff}->{rgd} = sum @{ $self->{table}->{ $game->{away_team} }->{recent_goal_diff}->{list} };
+	shift  @{ $self->{table}->{ $game->{home_team} }->{rgd_list} };
+	shift  @{ $self->{table}->{ $game->{away_team} }->{rgd_list} };
+	push ( @{ $self->{table}->{ $game->{home_team} }->{rgd_list} }, $game->{home_score} - $game->{away_score} );
+	push ( @{ $self->{table}->{ $game->{away_team} }->{rgd_list} }, $game->{away_score} - $game->{home_score} );
 }
 
 sub sort_table {
@@ -107,7 +103,8 @@ sub sort_table {
 	$self->{sorted} = [
 		map  {
 			$table->{$_}->{position} = $idx++;
- 			$table->{$_}
+			$table->{$_}->{recent_goal_diff} = sum @{ $table->{$_}->{rgd_list} };
+ 			$table->{$_};
 		}
 		sort {
 			$table->{$b}->{points} <=> $table->{$a}->{points}
@@ -131,7 +128,7 @@ sub goal_diff {
 
 sub recent_goal_diff {
 	my ($self, $team) = @_;
-	return $self->{table}->{$team}->{recent_goal_diff}->{rgd};
+	return $self->{table}->{$team}->{recent_goal_diff};
 }
 
 sub calc_goal_difference {

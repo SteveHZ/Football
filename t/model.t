@@ -5,7 +5,8 @@ BEGIN { $ENV{PERL_KEYWORD_TESTING} = 1;}
 
 use strict;
 use warnings;
-use Test::More tests => 7;
+#use Test::More tests => 7;
+use Test::More tests => 8;
 use Test::Deep;
 use Data::Dumper;
 
@@ -100,7 +101,19 @@ subtest 'get_league_idx' => sub {
 	is ($model->get_league_idx ('Premier League'), 0, 'Premier League idx 0');
 	is ($model->get_league_idx ('Conference'), 4, 'Conference 4');
 	is ($model->get_league_idx ('Scots League Two'), 8, 'Scots League Two idx 8');
-}
+};
+
+subtest 'refactor' => sub {
+	plan tests => 1;
+	is (1,1,'ok');
+
+#	use Data::Dumper;
+print Dumper @$leagues[1]->{homes}->{Norwich}->{name};
+print Dumper @$leagues[1]->get_homes ('Norwich');
+#	print Dumper @$leagues[1]->{homes}->{'Stoke City'}->{full_homes};
+#	$game->{full_homes} = @$homes[$idx]->{homes}->{$home}->{full_homes};
+
+};
 
 #	tests to do :
 
