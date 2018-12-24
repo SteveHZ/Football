@@ -6,10 +6,12 @@ package Football::League;
 
 use Football::Table;
 use Football::Team;
+use Football::Roles::Team_Data;
 use MyKeyword qw(DEVELOPMENT);
 
 use Moo;
 use namespace::clean;
+with 'Football::Roles::Team_Data';
 
 #	constructor arguments
 has 'name' => ( is => 'ro' );
@@ -17,13 +19,21 @@ has 'games' => ( is => 'ro' );
 has 'team_list' => ( is => 'ro' );
 
 #	other object data
-has 'teams' => ( is => 'ro' );
-has 'table' => ( is => 'ro' );
+has 'teams' => ( is => 'ro', default => sub { {} }, );
+has 'table' => ( is => 'ro', default => sub { {} }, );
+#has 'homes' => ( is => 'ro', default => sub { {} }, );
+#has 'aways' => ( is => 'ro', default => sub { {} }, );
+#has 'last_six' => ( is => 'ro', default => sub { {} }, );
 
 sub BUILD {
 	my $self = shift;
 	$self->{points} = { W => 3, D => 1, L => 0, };
 	$self->build_teams ();
+}
+
+sub get_table {
+	my $self = shift;
+	return $self->{table}->table;
 }
 
 sub create_new_table {
@@ -231,103 +241,6 @@ sub _get_over_under {
 	}
 	return $over;
 }
-
-sub goal_diff {
-	my ($self, $team) = @_;
-	return $self->{table}->goal_diff ($team);
-}
-
-sub recent_goal_diff {
-	my ($self, $team) = @_;
-	return $self->{table}->recent_goal_diff ($team);
-}
-
-sub position {
-	my ($self, $team) = @_;
-	return $self->{table}->position ($team);
-}
-
-# Homes
-
-sub get_homes {
-	my ($self, $team) = @_;
-	return $self->{homes}->{$team}->{homes};
-}
-
-sub get_full_homes {
-	my ($self, $team) = @_;
-	return $self->{homes}->{$team}->{full_homes};
-}
-
-sub get_home_over_under {
-	my ($self, $team) = @_;
-	return $self->{homes}->{$team}->{home_over_under};
-}
-
-sub get_home_points {
-	my ($self, $team) = @_;
-	return $self->{homes}->{$team}->{points};
-}
-
-sub get_home_draws {
-	my ($self, $team) = @_;
-	return $self->{homes}->{$team}->{draws};
-}
-
-# Aways
-
-sub get_aways {
-	my ($self, $team) = @_;
-	return $self->{aways}->{$team}->{aways};
-}
-
-sub get_full_aways {
-	my ($self, $team) = @_;
-	return $self->{aways}->{$team}->{full_aways};
-}
-
-sub get_away_over_under {
-	my ($self, $team) = @_;
-	return $self->{aways}->{$team}->{away_over_under};
-}
-
-sub get_away_points {
-	my ($self, $team) = @_;
-	return $self->{aways}->{$team}->{points};
-}
-
-sub get_away_draws {
-	my ($self, $team) = @_;
-	return $self->{aways}->{$team}->{draws};
-}
-
-# Last Six
-
-sub get_last_six {
-	my ($self, $team) = @_;
-	return $self->{last_six}->{$team}->{last_six};
-}
-
-sub get_full_last_six {
-	my ($self, $team) = @_;
-	return $self->{last_six}->{$team}->{full_last_six};
-}
-
-sub get_last_six_points {
-	my ($self, $team) = @_;
-	return $self->{last_six}->{$team}->{points};
-}
-
-sub get_last_six_over_under {
-	my ($self, $team) = @_;
-	return $self->{last_six}->{$team}->{last_six_over_under};
-}
-
-#sub get_table {
-#	my $self = shift;
-#	return $self->{table};
-#	return $self->{table}->table;
-#}
 
 =pod
 

@@ -27,9 +27,9 @@ sub create_list {
 				league => $league->{name},
 				team => $team,
 				all => $league->get_table->{$team},
-				home => $league->{homes}->{$team},
-				away => $league->{aways}->{$team},
-				last_six => $league->{last_six}->{$team},
+				home => $league->get_team_home_data ($team),
+				away => $league->get_team_away_data ($team),
+				last_six => $league->get_team_last_six_data ($team),
 			});
 		}
 	}
