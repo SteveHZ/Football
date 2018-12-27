@@ -10,8 +10,6 @@ use Football::Roles::Team_Data;
 use MyKeyword qw(DEVELOPMENT);
 
 use Moo;
-use namespace::clean;
-with 'Football::Roles::Team_Data';
 
 #	constructor arguments
 has 'name' => ( is => 'ro' );
@@ -21,9 +19,11 @@ has 'team_list' => ( is => 'ro' );
 #	other object data
 has 'teams' => ( is => 'ro', default => sub { {} }, );
 has 'table' => ( is => 'ro', default => sub { {} }, );
-#has 'homes' => ( is => 'ro', default => sub { {} }, );
-#has 'aways' => ( is => 'ro', default => sub { {} }, );
-#has 'last_six' => ( is => 'ro', default => sub { {} }, );
+has 'homes' => ( is => 'ro', default => sub { {} }, );
+has 'aways' => ( is => 'ro', default => sub { {} }, );
+has 'last_six' => ( is => 'ro', default => sub { {} }, );
+
+with 'Football::Roles::Team_Data';
 
 sub BUILD {
 	my $self = shift;
@@ -140,7 +140,7 @@ sub do_away_table {
 	return $table;
 }
 
-sub homes {
+sub do_homes {
 	my ($self, $teams) = @_;
 	my $list = {};
 	for my $team (@{ $self->{team_list} }) {
@@ -158,7 +158,7 @@ sub homes {
 	return $list;
 }
 
-sub aways {
+sub do_aways {
 	my ($self, $teams) = @_;
 	my $list = {};
 
@@ -177,7 +177,7 @@ sub aways {
 	return $list;
 }
 
-sub last_six {
+sub do_last_six {
 	my ($self, $teams) = @_;
 	my $list = {};
 

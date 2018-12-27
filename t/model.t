@@ -5,7 +5,6 @@ BEGIN { $ENV{PERL_KEYWORD_TESTING} = 1;}
 
 use strict;
 use warnings;
-#use Test::More tests => 7;
 use Test::More tests => 8;
 use Test::Deep;
 use Data::Dumper;
@@ -18,6 +17,7 @@ use MyJSON qw(read_json);
 
 my $model = Football::Model->new ();
 my ($games, $leagues, $fixture_list, $data);
+my ($homes, $aways, $last_six);
 
 my $test_path = 'C:/Mine/perl/Football/t/test data/';
 
@@ -29,6 +29,7 @@ subtest 'constructor' => sub {
 subtest 'build_leagues' => sub {
 	plan tests => 1;
 
+	$games = $model->read_games (0);
 	$leagues = $model->build_leagues ($games);
 	isa_ok (@$leagues [0], 'Football::League', '@$leagues[0]');
 };
@@ -57,9 +58,9 @@ subtest 'Shared_Model routines' => sub {
 	isa_ok (@$home_table[0]->{home_table}, 'Football::HomeTable', '$home table[0]');
 	isa_ok (@$away_table[0]->{away_table}, 'Football::AwayTable', '$away table[0]');
 
-	my $homes = $model->homes ($leagues);
-	my $aways = $model->aways ($leagues);
-	my $last_six = $model->last_six ($leagues);
+	$homes = $model->do_homes ($leagues);
+	$aways = $model->do_aways ($leagues);
+	$last_six = $model->do_last_six ($leagues);
 
 	isa_ok (@$homes[0]->{homes}, 'HASH', '$homes');
 	isa_ok (@$aways[0]->{aways}, 'HASH', '$aways');
@@ -103,16 +104,15 @@ subtest 'get_league_idx' => sub {
 	is ($model->get_league_idx ('Scots League Two'), 8, 'Scots League Two idx 8');
 };
 
-subtest 'refactor' => sub {
-	plan tests => 1;
-	is (1,1,'ok');
+subtest 'Team_Data access methods' => sub {
+#	Refactored hash access in Football::Roles::Shared Model into Football::League methods,
+#	then from Football::League into Football::Roles::Team_Data December 2018
+	plan tests => 4;
 
-#	use Data::Dumper;
-print Dumper @$leagues[1]->{homes}->{Norwich}->{name};
-print Dumper @$leagues[1]->get_homes ('Norwich');
-#	print Dumper @$leagues[1]->{homes}->{'Stoke City'}->{full_homes};
-#	$game->{full_homes} = @$homes[$idx]->{homes}->{$home}->{full_homes};
-
+	cmp_deeply (@$leagues[0]->{homes}->{Stoke}->{homes}, @$leagues[0]->get_homes ('Stoke'), 'get_homes');
+	cmp_deeply (@$leagues[0]->{aways}->{Stoke}->{aways}, @$leagues[0]->get_aways ('Stoke'), 'get_aways');
+	cmp_deeply (@$leagues[0]->{homes}->{Stoke}->{full_homes}, @$leagues[0]->get_full_homes ('Stoke'), 'get_full_homes');
+	cmp_deeply (@$leagues[0]->{aways}->{Stoke}->{full_aways}, @$leagues[0]->get_full_aways ('Stoke'), 'get_full_aways');
 };
 
 #	tests to do :

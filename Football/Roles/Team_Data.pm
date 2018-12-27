@@ -1,9 +1,8 @@
 package Football::Roles::Team_Data;
 
 use Moo::Role;
-use namespace::clean;
 
-#requires qw( homes aways last_six );
+requires qw(table homes aways last_six);
 
 sub goal_diff {
 	my ($self, $team) = @_;
@@ -121,7 +120,7 @@ Roles::Team_Data.pm
 
 =head1 SYNOPSIS
 
-Role used by League.pm to return data
+Role used by Football::League.pm to return data
 for each team in the league
 
 =head1 DESCRIPTION

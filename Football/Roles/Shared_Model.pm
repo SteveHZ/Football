@@ -64,32 +64,32 @@ sub do_away_table {
 	return $league_array;
 }
 
-sub homes {
+sub do_homes {
 	my ($self, $games) = @_;
 	my $league_array = $self->{leagues};
 
 	for my $idx (0..$#{ $self->{csv_leagues}} ) {
-		@$league_array[$idx]->{homes} = @$league_array[$idx]->homes ( @$league_array[$idx]->{teams} );
+		@$league_array[$idx]->{homes} = @$league_array[$idx]->do_homes ( @$league_array[$idx]->{teams} );
 	}
 	return $league_array;
 }
 
-sub aways {
+sub do_aways {
 	my ($self, $games) = @_;
 	my $league_array = $self->{leagues};
 
 	for my $idx (0..$#{ $self->{csv_leagues}} ) {
-		@$league_array[$idx]->{aways} = @$league_array[$idx]->aways ( @$league_array[$idx]->{teams} );
+		@$league_array[$idx]->{aways} = @$league_array[$idx]->do_aways ( @$league_array[$idx]->{teams} );
 	}
 	return $league_array;
 }
 
-sub last_six {
+sub do_last_six {
 	my ($self, $games) = @_;
 	my $league_array = $self->{leagues};
 
 	for my $idx (0..$#{ $self->{csv_leagues}} ) {
-		@$league_array[$idx]->{last_six} = @$league_array[$idx]->last_six ( @$league_array[$idx]->{teams} );
+		@$league_array[$idx]->{last_six} = @$league_array[$idx]->do_last_six ( @$league_array[$idx]->{teams} );
 	}
 	return $league_array;
 }
@@ -191,30 +191,5 @@ sub get_game_data_func {
 		$game->{last_six} = ($game->{home_last_six_over_under} + $game->{away_last_six_over_under}) / $stat_size;
 	};
 }
-
-#		my $idx = $game->{league_idx};
-#		my $league = @{ $self->{leagues} }[$idx];
-
-#		$game->{homes} = @$homes[$idx]->{homes}->{$home}->{homes};
-#		$game->{full_homes} = @$homes[$idx]->{homes}->{$home}->{full_homes};
-#		$game->{home_last_six} = @$last_six[$idx]->{last_six}->{$home}->{last_six};
-#		$game->{full_home_last_six} = @$last_six[$idx]->{last_six}->{$home}->{full_last_six};
-#		$game->{home_over_under} = @$homes[$idx]->{homes}->{$home}->{home_over_under};
-
-#		$game->{home_points} = @$homes[$idx]->{homes}->{$home}->{points};
-#		$game->{home_draws} = @$homes[$idx]->{homes}->{$home}->{draws};
-#		$game->{last_six_home_points} = @$last_six[$idx]->{last_six}->{$home}->{points};
-#		$game->{home_last_six_over_under} = @$homes[$idx]->{last_six}->{$home}->{last_six_over_under};
-
-#		$game->{aways} = @$aways[$idx]->{aways}->{$away}->{aways};
-#		$game->{full_aways} = @$aways[$idx]->{aways}->{$away}->{full_aways};
-#		$game->{away_last_six} = @$last_six[$idx]->{last_six}->{$away}->{last_six};
-#		$game->{full_away_last_six} = @$last_six[$idx]->{last_six}->{$away}->{full_last_six};
-#		$game->{away_over_under} = @$aways[$idx]->{aways}->{$away}->{away_over_under};
-
-#		$game->{away_points} = @$aways[$idx]->{aways}->{$away}->{points};
-#		$game->{away_draws} = @$aways[$idx]->{aways}->{$away}->{draws};
-#		$game->{last_six_away_points} = @$last_six[$idx]->{last_six}->{$away}->{points};
-#		$game->{away_last_six_over_under} = @$aways[$idx]->{last_six}->{$away}->{last_six_over_under};
 
 1;

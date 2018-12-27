@@ -33,16 +33,16 @@ $view->do_home_table ( $model->do_home_table ($games) );
 $view->do_away_table ( $model->do_away_table ($games) );
 
 $view->homes (
-	my $homes = $model->homes ($leagues)
+	my $homes = $model->do_homes ($leagues)
 );
 $view->aways (
-	my $aways = $model->aways ($leagues)
+	my $aways = $model->do_aways ($leagues)
 );
 
 $view->full_homes ( $homes );
 $view->full_aways ( $aways );
 $view->last_six (
-	my $last_six = $model->last_six ($leagues)
+	my $last_six = $model->do_last_six ($leagues)
 );
 
 $view->do_favourites ( $model->do_favourites ($season, $options->{update_favs}) );

@@ -280,6 +280,7 @@ Lowland League,X
 Russian Premier League,X
 Swiss Super League,X
 French,X
+Belgian,X
 Brazilian,X
 Danish,X
 Greek,X
@@ -287,6 +288,7 @@ Argentine,X
 Portuguese,X
 Turkish,X
 Dutch,X
+Australian,X
 Austrian,X
 Greek,X
 The FA,X
