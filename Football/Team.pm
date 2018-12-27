@@ -5,10 +5,10 @@ package Football::Team;
 
 use List::Util qw(max);
 use Football::Globals qw($default_stats_size);
+use MyIterators qw(make_iterator);
 
 use Moo;
 use namespace::clean;
-use MyIterators qw(make_iterator);
 
 has 'stats_size' => (is => 'ro', default => $default_stats_size);
 has 'games' => ( is => 'ro' );

@@ -10,6 +10,7 @@ use Football::Roles::Team_Data;
 use MyKeyword qw(DEVELOPMENT);
 
 use Moo;
+use namespace::clean;
 
 #	constructor arguments
 has 'name' => ( is => 'ro' );
