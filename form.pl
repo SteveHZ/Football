@@ -29,9 +29,9 @@ while (my ($model, $filename) = $iterator->()) {
 	my $games = $model->read_games (update => $update);
 	my $leagues = $model->build_leagues ($games);
 
-	$model->homes ($leagues);
-	$model->aways ($leagues);
-	$model->last_six ($leagues);
+	$model->do_homes ($leagues);
+	$model->do_aways ($leagues);
+	$model->do_last_six ($leagues);
 
 	my $form_model = Football::Form_Model->new (
 		leagues => $leagues,
