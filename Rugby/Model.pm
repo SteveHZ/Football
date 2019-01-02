@@ -8,29 +8,32 @@ package Rugby::Model;
 
 #use List::MoreUtils qw(firstidx);
 
-use Football::Team;
+#use Football::Team;
 use Rugby::League;
-use Rugby::Table;
-use Rugby::HomeTable;
-use Rugby::AwayTable;
+#use Rugby::Table;
+#use Rugby::HomeTable;
+#use Rugby::AwayTable;
+use Rugby::Reports::GoalDifference;
+use Rugby::Reports::Recent_GoalDifference;
 use Rugby::Reports::LeaguePlaces;
 use Rugby::Reports::Head2Head;
-use Rugby::Reports::Recent_GoalDifference;
-use Rugby::Reports::GoalDifference;
 use Rugby::Globals qw( @league_names @rugby_csv_leagues );
 
 use Moo;
 use namespace::clean;
 
-# pre-declare these to use Shared_Model and Rugby_IO roles
+# pre-declare these to use Shared_Model role
+#has 'model_name' => ( is => 'ro' ); # not used here but required for roles
 has 'leagues' => ( is => 'ro' );
 has 'league_names' => ( is => 'ro' );
 has 'csv_leagues' => ( is => 'ro' );
-has 'model_name' => ( is => 'ro' );
+has 'test_season_data' => ( is => 'ro' ); # Need to add this
+
+# pre-declare these to use Rugby_IO roles
 has 'path' => ( is => 'ro' );
 has 'fixtures_file' => ( is => 'ro' );
 has 'season_data' => ( is => 'ro' );
-has 'test_season_data' => ( is => 'ro' ); # Need to add this
+has 'test_fixtures_file' => ( is => 'ro' );
 
 with 'Roles::MyJSON',
 'Football::Roles::Shared_Model',
@@ -38,16 +41,17 @@ with 'Roles::MyJSON',
 
 sub BUILD {
 	my $self = shift;
+	$self->{model_name} = "Rugby";
 	$self->{leagues} = [];
 	$self->{csv_leagues} = \@rugby_csv_leagues;
 	$self->{league_names} = \@league_names;
 	$self->{league_idx} = $self->build_league_idx ($self->{league_names});
 
-	$self->{model_name} = "Rugby";
 	$self->{path} = 'C:/Mine/perl/Football/data/Rugby/';
 	$self->{fixtures_file} = $self->{path}.'fixtures.csv';
 	$self->{season_data} = $self->{path}.'season.json';
 	$self->{teams_file} = $self->{path}.'teams.json';
+
 	$self->{results_file} = $self->{path}.'results.ods';
 	$self->{test_season_data} = 'C:/Mine/perl/Football/t/test_data/rugby_season.json';
 }
@@ -70,39 +74,51 @@ sub build_leagues {
 
 sub do_league_places {
 	my ($self, $fixtures, $teams) = @_;
-	my ($home, $away, $home_points, $away_points);
+#	my ($home, $away, $home_points, $away_points);
 
 	my $league_places = Rugby::Reports::LeaguePlaces->new ();
-	for my $league (@$fixtures) {
-		my $league_name = $league->{league};
+	for my $league_fixtures (@$fixtures) {
+		my $league_name = $league_fixtures->{league};
 		my $idx = $self->get_league_idx ($league_name);
+		my $league = $self->{leagues}[$idx];
 
-		for my $game (@{ $league->{games}}) {
-			$home = $game->{home_team};
-			$away = $game->{away_team};
-
-			$game->{home_pos} = $self->{leagues}[$idx]->{teams}->{$home}->{position};
-			$game->{away_pos} = $self->{leagues}[$idx]->{teams}->{$away}->{position};
+		for my $game (@{ $league_fixtures->{games} } ) {
+			$game->{home_pos} = $league->position ($game->{home_team});
+			$game->{away_pos} = $league->position ($game->{away_team});
 			$game->{results} = $league_places->fetch_array ($league_name, $game->{home_pos}, $game->{away_pos});
 		}
 	}
 	return $fixtures;
+#	for my $league (@$fixtures) {
+#		my $league_name = $league->{league};
+#		my $idx = $self->get_league_idx ($league_name);
+
+#		for my $game (@{ $league->{games}}) {
+#			$home = $game->{home_team};
+#			$away = $game->{away_team};
+
+#			$game->{home_pos} = $self->{leagues}[$idx]->{teams}->{$home}->{position};
+#			$game->{away_pos} = $self->{leagues}[$idx]->{teams}->{$away}->{position};
+#			$game->{results} = $league_places->fetch_array ($league_name, $game->{home_pos}, $game->{away_pos});
+#		}
+#	}
+#	return $fixtures;
 }
 
 sub do_head2head {
 	my ($self, $fixtures) = @_;
-	my ($home, $away, $home_points, $away_points);
+#	my ($home, $away, $home_points, $away_points);
 
 	my $h2h = Rugby::Reports::Head2Head->new ();
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};
 
 		for my $game (@{ $league->{games}}) {
-			$home = $game->{home_team};
-			$away = $game->{away_team};
+			my $home = $game->{home_team};
+			my $away = $game->{away_team};
 			$game->{head2head} = $h2h->fetch ($league_name, $home, $away);
 
-			($home_points, $away_points) = $h2h->calc_points ($game->{head2head});
+			my ($home_points, $away_points) = $h2h->calc_points ($game->{head2head});
 			$game->{home_h2h} = $home_points;
 			$game->{away_h2h} = $away_points;
 		}

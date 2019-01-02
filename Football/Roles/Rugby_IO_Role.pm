@@ -12,18 +12,6 @@ requires qw(
 	model_name path fixtures_file season_data
 );
 
-#sub read_games {
-#	my $self = shift;
-#	my $args = { @_ };
-#	my $update = exists $args->{update} ? $args->{update} : 0;
-
-#	my $games = (-e $self->{season_data}) ?
-#		$self->read_json ($self->{season_data}) : {};
-#	$self->update ($games) if $update;
-##die "\n\nFinished reading results"; # for the first few weeks of each season
-#	return $games;
-#}
-
 sub update {
 	my $self = shift;
 	my $data_model = Rugby::Rugby_Data_Model->new ();
@@ -52,7 +40,7 @@ sub update {
 
 #sub do_backup {
 #	my ($self, $games) = @_;
-#	
+#
 #	my $date = Date::Simple->new (today ());
 #	my $backup_file = "C:/Mine/perl/Football/data/backups/".
 #		$self->{model_name}." ".$date.".json";

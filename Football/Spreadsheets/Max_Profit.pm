@@ -8,7 +8,6 @@ use MyLib qw(wordcase);
 
 ro 'filename';
 ro 'euro';
-#ro 'euro', default => 0;
 with 'Roles::Spreadsheet';
 
 my $path = 'C:/Mine/perl/Football/reports/';
@@ -32,14 +31,6 @@ sub BUILD {
 	};
 }
 
-#after 'BUILD' => sub {
-#my $self = shift;
-#$self->{euro} //= 0;
-#say "euro = ".$self->{euro};
-#use Data::Dumper;
-#print Dumper @all_leagues;
-#$self->{leagues} = $all_leagues [ $self->{euro} ];
-#};
 sub show {
 	my ($self, $hash, $sorted) = @_;
 	$self->blank_columns ( [ qw(1 3 5 7 9 11 13) ] );
@@ -129,9 +120,5 @@ sub get_maxp_columns {
 		"B D F H J L N" => 3,
 	};
 }
-
-#use Moo;
-#has 'filename' => ( is => 'ro' );
-#has 'euro' => ( is => 'ro' );
 
 1;

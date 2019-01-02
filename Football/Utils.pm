@@ -34,22 +34,7 @@ sub _get_all_teams {
 		field => $field,
 	);
 	return \@array;
-}	
-#sub _get_all_teams {
-#	my $games = shift;
-#	return sort { $a cmp $b }
-#		keys %{{ map { $_->{home_team} => 1, $_->{away_team} => 1 } @$games }};
-#}	
-
-#sub unique {
-#	my $args = { order => "asc", @_ };
-#
-#	my $sort_func = ($args->{order} eq "asc") ?
-#		sub { $a cmp $b } : sub { $b cmp $a };
-#
-#	return sort $sort_func
-#		keys %{{ map { $_->{$args->{field}}  => 1 } @{$args->{db}} }};
-#}
+}
 
 sub get_odds_cols {
 	my ($data, $search_for) = @_;
@@ -71,11 +56,9 @@ sub get_euro_odds_cols {
 sub get_over_under_cols {
 	my $data = shift;
 	my @header = split (',', $data);
-	my $over  = firstidx { $_ eq 'BbAv>2.5' } @header;
-	my $under = firstidx { $_ eq 'BbAv<2.5' } @header;
 	return {
-		over  => $over,
-		under => $under,
+		over  => firstidx { $_ eq 'BbAv>2.5' } @header,
+		under => firstidx { $_ eq 'BbAv<2.5' } @header,
 	};
 }
 
