@@ -1,7 +1,7 @@
 package Football::Roles::Rugby_IO_Role;
 
 use List::MoreUtils qw(firstidx);
-use Date::Simple qw(today);
+#use Date::Simple qw(today);
 use Rugby::Rugby_Data_Model;
 
 use Moo::Role;
@@ -9,8 +9,9 @@ use Moo::Role;
 requires qw(
 	read_json write_json
 	league_names csv_leagues
-	model_name path fixtures_file season_data
+	path fixtures_file season_data
 );
+# model_name path fixtures_file season_data
 
 sub update {
 	my $self = shift;
@@ -28,6 +29,8 @@ sub update {
 	print "\nWriting data...";
 	return $games;
 }
+
+# Seems model_name needed only for this, but simpler to do csv backup ??
 
 #sub update {
 #	my ($self, $games) = @_;

@@ -56,9 +56,13 @@ sub get_euro_odds_cols {
 sub get_over_under_cols {
 	my $data = shift;
 	my @header = split (',', $data);
+
+#	Need to assign these two variables first, then write to hash in scalar context (DON'T change !!)
+	my $over  = firstidx { $_ eq 'BbAv>2.5' } @header;
+	my $under = firstidx { $_ eq 'BbAv<2.5' } @header;
 	return {
-		over  => firstidx { $_ eq 'BbAv>2.5' } @header,
-		under => firstidx { $_ eq 'BbAv<2.5' } @header,
+		over  => $over,
+		under => $under,
 	};
 }
 

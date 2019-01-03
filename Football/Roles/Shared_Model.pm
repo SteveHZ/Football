@@ -6,7 +6,7 @@ package Football::Roles::Shared_Model;
 use Clone qw(clone);
 
 use Football::Game_Prediction_Models;
-use Football::Globals qw($default_stats_size );
+use Football::Globals qw( $default_stats_size );
 use MyKeyword qw(TESTING); # for model.t
 
 use Moo::Role;

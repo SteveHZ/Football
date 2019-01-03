@@ -5,6 +5,9 @@ package Football::League;
 # 	v 1.1 05/05/17
 
 use Football::Table;
+use Football::HomeTable;
+use Football::AwayTable;
+
 use Football::Team;
 use Football::Roles::Team_Data;
 use MyKeyword qw(DEVELOPMENT);
