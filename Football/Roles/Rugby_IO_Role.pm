@@ -30,26 +30,6 @@ sub update {
 	return $games;
 }
 
-# Seems model_name needed only for this, but simpler to do csv backup ??
-
-#sub update {
-#	my ($self, $games) = @_;
-#	my $data_model = Rugby::Rugby_Data_Model->new ();
-#
-#	$data_model->update ($games, $self->{results_file});
-#	$self->write_json ($self->{season_data}, $games);
-#	$self->do_backup ($games);
-#}
-
-#sub do_backup {
-#	my ($self, $games) = @_;
-#
-#	my $date = Date::Simple->new (today ());
-#	my $backup_file = "C:/Mine/perl/Football/data/backups/".
-#		$self->{model_name}." ".$date.".json";
-#	$self->write_json ($backup_file, $games);
-#}
-
 sub get_fixtures {
 	my $self = shift;
 	my @fixtures = ();
@@ -71,5 +51,25 @@ sub get_fixtures {
 	close $fh;
 	return \@fixtures;
 }
+
+# Seems model_name needed only for this, but simpler to do csv backup ??
+
+#sub update {
+#	my ($self, $games) = @_;
+#	my $data_model = Rugby::Rugby_Data_Model->new ();
+#
+#	$data_model->update ($games, $self->{results_file});
+#	$self->write_json ($self->{season_data}, $games);
+#	$self->do_backup ($games);
+#}
+
+#sub do_backup {
+#	my ($self, $games) = @_;
+#
+#	my $date = Date::Simple->new (today ());
+#	my $backup_file = "C:/Mine/perl/Football/data/backups/".
+#		$self->{model_name}." ".$date.".json";
+#	$self->write_json ($backup_file, $games);
+#}
 
 1;

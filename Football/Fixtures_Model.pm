@@ -4,14 +4,15 @@ use Football::Fixtures_Globals qw(%football_fixtures_leagues %rugby_fixtures_lea
 use Football::Fixtures_Scraper_Model;
 use MyRegX;
 use MyDate qw( $month_names );
-use Football::Globals qw(@csv_leagues @euro_csv_lgs);
-#use Football::Globals qw(@csv_leagues @summer_csv_leagues @euro_csv_lgs);
 use MyKeyword qw(TESTING);
 
 use Time::Piece qw(localtime);
 use Time::Seconds qw(ONE_DAY);
-TESTING { use utf8; }
 use Data::Dumper;
+
+TESTING { use utf8; }
+TESTING { use Football::Globals qw(@csv_leagues @summer_csv_leagues @euro_csv_lgs); }
+else { use Football::Globals qw(@csv_leagues @euro_csv_lgs); }
 
 use Moo;
 use namespace::clean;
@@ -26,14 +27,19 @@ my $lower = $rx->lower;
 my $dm_date = $rx->dm_date;
 my $year = 2018;
 
+sub get_league_hash {
+	TESTING { return { uk => \@csv_leagues, euro => \@euro_csv_lgs, summer => \@summer_csv_leagues, }; }
+	return {
+		uk      => \@csv_leagues,
+		euro    => \@euro_csv_lgs,
+#		summer  => \@summer_csv_leagues,
+	};
+}
+
 sub BUILD {
 	my $self = shift;
 	$self->{scraper} = Football::Fixtures_Scraper_Model->new ();
-	$self->{files} = _transform_hash ({
-	    uk      => \@csv_leagues,
-	    euro    => \@euro_csv_lgs,
-#	    summer  => \@summer_csv_leagues,
-	});
+	$self->{files} = _transform_hash (get_league_hash ());
 }
 
 sub get_pages {

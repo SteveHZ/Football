@@ -28,6 +28,7 @@ sub get_league_idx {
 
 sub read_games {
 	my ($self, $update) = @_;
+	$update //= 0;
 	my $games;
 
 	TESTING {

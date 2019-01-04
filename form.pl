@@ -9,24 +9,23 @@ use lib 'C:/Mine/perl/Football';
 use Football::Model;
 use Football::Form_Model;
 use Euro::Model;
-use Summer::Model;
+#use Summer::Model;
 use List::MoreUtils qw(each_arrayref);
 
 my @models = (
 	Football::Model->new (),
 	Euro::Model->new (),
-	Summer::Model->new (),
+#	Summer::Model->new (),
 );
 my @filenames = (
 	'form.xlsx',
 	'Euro/form_euro.xlsx',
-	'Summer/form_summer.xlsx'
+#	'Summer/form_summer.xlsx'
 );
-my $update = 0;
 
 my $iterator = each_arrayref (\@models, \@filenames);
 while (my ($model, $filename) = $iterator->()) {
-	my $games = $model->read_games (update => $update);
+	my $games = $model->read_games ();
 	my $leagues = $model->build_leagues ($games);
 
 	$model->do_homes ($leagues);

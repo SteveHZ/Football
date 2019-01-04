@@ -29,7 +29,7 @@ subtest 'constructor' => sub {
 subtest 'build_leagues' => sub {
 	plan tests => 1;
 
-	$games = $model->read_games (0);
+	$games = $model->read_games ();
 	$leagues = $model->build_leagues ($games);
 	isa_ok (@$leagues [0], 'Football::League', '@$leagues[0]');
 };
@@ -74,7 +74,6 @@ subtest 'Goal Expect Model' => sub {
 	plan tests => 6;
 
 	my ($teams, $sorted) = $model->do_predict_models ($data->{by_match}, $leagues);
-#	my ($teams, $sorted) = $model->do_predict_models ($leagues, $fixture_list, $stats, "Football");
 	isa_ok ($teams, 'HASH', '$teams');
 	isa_ok ($sorted, 'HASH', '$sorted');
 

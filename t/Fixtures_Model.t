@@ -13,6 +13,7 @@ use lib "C:/Mine/perl/Football";
 use Football::Fixtures_Model;
 use Football::Globals qw(@csv_leagues @summer_csv_leagues @euro_csv_lgs);
 use MyJSON qw(read_json write_json);
+use MyKeyword qw(TESTING);
 
 my $model = Football::Fixtures_Model->new ();
 my $date = '2018-06-16';
@@ -42,7 +43,7 @@ subtest 'do_foreign chars' => sub {
 };
 
 subtest 'transform_hash' => sub {
-    plan tests => 3;
+    plan tests => 4;
 	my $files = $model->transform_hash ({
 	    uk      => \@csv_leagues,
 	    euro    => \@euro_csv_lgs,
@@ -50,6 +51,7 @@ subtest 'transform_hash' => sub {
 	});
 
     is ($files->{E0}, 'uk', 'uk ok');
+	is ($files->{NRW}, 'summer', 'summer ok');
     isnt ($files->{EC}, 'summer', 'EC not summer ok');
     is ($files->{WL}, 'euro', 'euro ok');
 };

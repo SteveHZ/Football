@@ -17,9 +17,9 @@ my $model = Football::Model->new ();
 my $games = $model->read_games ();
 my $leagues = $model->build_leagues ($games);
 
-my $homes = $model->homes ($leagues);
-my $aways = $model->aways ($leagues);
-my $last_six = $model->last_six ($leagues);
+my $homes = $model->do_homes ($leagues);
+my $aways = $model->do_aways ($leagues);
+my $last_six = $model->do_last_six ($leagues);
 my $league_array = \@{ $model->{leagues} };
 
 my $fixtures = $model->get_fixtures ();
@@ -38,7 +38,7 @@ subtest ' do_calcs' => sub {
 	my $arsenal = $test_data->{Arsenal};
 	my $palace = $test_data->{'Crystal Palace'};
 	my $stoke = $test_data->{Stoke};
-	
+
 	is ( $ou_model->do_calcs ([ @$burnley, @$arsenal ]), -1.5, 'Burnley v Arsenal = -1.5' );
 	is ( $ou_model->do_calcs ([ @$palace, @$stoke ]), 2.5, 'CPalace v Stoke = 2.5' );
 };
@@ -49,7 +49,7 @@ for my $league (@$fixtures) {
 		my $teams = @$league_array [ $game->{league_idx} ]->teams;
 		my $home = $game->{home_team};
 		my $away = $game->{away_team};
-		
+
 		print "\n$home v $away\n";
 		my ($home_results, $home_stats) = $teams->{$home}->get_most_recent (4);
 		my ($away_results, $away_stats) = $teams->{$away}->get_most_recent (4);
@@ -66,4 +66,3 @@ print "$away : \n".Dumper $away_stats; <STDIN>;
 #use_ok 'Football::Over_Under_Model';
 #my $ou_model = Football::Over_Under_Model->new (leagues => $leagues, fixtures => $fixtures);
 #isa_ok ($ou_model, 'Football::Over_Under_Model', '$ou_model');
-

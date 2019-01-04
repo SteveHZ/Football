@@ -203,6 +203,8 @@ sub do_last_six {
 	return $list;
 }
 
+#	private methods
+
 sub _get_points {
 	my ($self, $stats) = @_;
 	my $total = 0;

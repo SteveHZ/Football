@@ -15,15 +15,15 @@ main ();
 sub main {
 	my $model = Rugby::Model->new ();
 
-	my $games = $model->read_games (0);
+	my $games = $model->read_games ();
 	my $leagues = $model->build_leagues ($games);
 	my $handicaps = Rugby::Handicap_Model->new (leagues => $leagues);
-	
+
 	for my $league (@$leagues) {
 		my $league_name = $league->{title};
 		my $teams  = \% {$league->{teams}};
 		my $team_list = \@ {$league->{team_list}};
-	
+
 		for my $team (@$team_list) {
 		my $next = $teams->{$team}->iterator ();
 

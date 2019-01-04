@@ -1,4 +1,6 @@
-'package Football::Spreadsheets::Form2;
+package Football::Spreadsheets::Form2;
+
+#	Not used, but saved as uses a template to write a Spreadsheet
 
 use List::MoreUtils qw (each_arrayref);
 use Spreadsheets::Template;
