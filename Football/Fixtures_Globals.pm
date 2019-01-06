@@ -4,7 +4,6 @@ use strict;
 use warnings;
 
 use Exporter 'import';
-
 use vars qw (@EXPORT_OK %EXPORT_TAGS);
 
 our @EXPORT = qw(
@@ -13,7 +12,6 @@ our @EXPORT = qw(
 	%football_fixtures_leagues
 	%rugby_fixtures_leagues
 );
-
 @EXPORT_OK  = qw( football_rename rugby_rename );
 %EXPORT_TAGS = (all => [ @EXPORT, @EXPORT_OK ]);
 
@@ -242,11 +240,6 @@ Canterbury Bankstown Bulldogs,Canterbury Bulldogs
 Manly Warringah Sea Eagles,Manly Sea Eagles
 END_RUGBY_TEAMS
 
-Cup,X
-Copa del Ray,X
-Trophy,X
-Women,X
-#Women's Championship,X
 Welsh Premier League,WL
 Irish Premiership,NI
 Premier League,E0
@@ -267,18 +260,25 @@ German Bundesliga,D1
 Italian Serie A,I1
 Spanish La Liga,SP1
 
+#Cup,X
+The FA,X
+FA Cup,X
+Copa del Ray,X
+Italian Coppa Italia,X
+#Trophy,X
+Women,X
 International,X
 World,X
 Euro,X
-Champions,
+Champions,X
 Friendl,X
 Qualifi,X
 Group,X
 Round,X
 Highland League,X
 Lowland League,X
-Russian Premier League,X
-Swiss Super League,X
+Russian,X
+Swiss,X
 French,X
 Belgian,X
 Brazilian,X
@@ -291,8 +291,6 @@ Dutch,X
 Australian,X
 Austrian,X
 Greek,X
-The FA,X
-FA Cup,X
 END_FOOTBALL_LEAGUES
 
 Super League,SL

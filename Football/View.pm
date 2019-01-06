@@ -116,7 +116,7 @@ sub do_home_table {
 
 	for my $league (@$leagues) {
 		my $league_name = $league->{name};
-		my $table = $league->{home_table}->sorted ();
+		my $table = $league->{home_table}->sorted;
 
 		print "\n\n$league_name Home Table : \n\n";
 		printf $self->{table_format}, @{ $self->{table_header} };
@@ -137,7 +137,7 @@ sub do_away_table {
 
 	for my $league (@$leagues) {
 		my $league_name = $league->{name};
-		my $table = $league->{away_table}->sorted ();
+		my $table = $league->{away_table}->sorted;
 
 		print "\n\n$league_name Away Table : \n\n";
 		printf $self->{table_format}, @{ $self->{table_header} };

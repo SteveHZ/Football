@@ -33,6 +33,7 @@ for my $row ($data->{elements}) {
             total_points => $player->{total_points},
             points_per_game => $player->{points_per_game},
             position => $positions [ $player->{element_type} -1 ],
+            selected_by => $player->{selected_by_percent},
             price => fmt ( $player->{now_cost} / 10, $price_format),
         };
     }
@@ -51,18 +52,13 @@ $view->write ($sorted);
 sub sort_by_position {
     my ($players, $position) = @_;
     return [
-        sort { $b->{points_per_game} <=> $a->{points_per_game} }
         sort { $b->{total_points} <=> $a->{total_points} }
-        grep { $_->{points_per_game} > 4.5}
-        grep { $_->{position} eq $position}
+        sort { $b->{points_per_game} <=> $a->{points_per_game} }
+        grep { $_->{points_per_game} > 4.5 }
+        grep { $_->{selected_by} > 5 }
+        grep { $_->{position} eq $position }
         @$players
     ];
-}
-#       grep_points_per_game(6),
-
-sub grep_points_per_game {
-    my ($points, $data) = @_;
-    return grep { $_->{points_per_game} > $points} @$data;
 }
 
 sub update {

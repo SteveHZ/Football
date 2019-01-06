@@ -1,4 +1,3 @@
-#!	C:/Strawberry/perl/bin
 
 #   webquerytest.pl 09/12/15
 #	euro_scrape.pl 19/07/17
@@ -23,7 +22,7 @@ sub main {
 	for my $key (keys %$sites) {
 		print "\n$key : \n\n";
 		$q = wq ($sites->{$key}, { indent=>'**  '} );
-	
+
 		if ($q) {
 			print $q->text();
 			do_write ($key, $q->text);

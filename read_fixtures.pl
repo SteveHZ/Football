@@ -1,4 +1,3 @@
-#!	C:/Strawberry/perl/bin
 
 # 	read_fixtures.pl 12/03/16 - 15/03/16
 #	rewritten 15/03 to copy from a fixtures_test xls sheet
@@ -17,7 +16,7 @@ main ();
 
 sub main {
 	my (@fixtures);
-	
+
 	my $book = ReadData ($xls_file);
 	my @rows = rows ($book->[1]);
 
@@ -53,4 +52,4 @@ sub main {
 		}
 	}
 	close $fh_in;
-=cut	
+=cut

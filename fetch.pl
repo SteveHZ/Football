@@ -5,9 +5,7 @@ use warnings;
 
 use lib 'C:/Mine/perl/Football';
 use Football::Globals qw(@csv_leagues @euro_fetch_lgs $season_years $full_season_years);
-
 use File::Fetch;
-#use Archive::Extract;
 
 my $id = 'mmz4281';
 my $dir = 'C:/Mine/perl/Football/data';
@@ -33,18 +31,6 @@ my $url = "http://www.football-data.co.uk/$id/$season_years/all-euro-data-$full_
 my $ff = File::Fetch->new (uri => $url);
 my $euro_file = $ff->fetch (to => $dir) or die $ff->error;
 print "\n\nDownloading $euro_file...";
-
-#my $url = "http://www.football-data.co.uk/$id/$season_years/all-euro-data-$full_season_years.zip";
-#my $xlsx_file = "$dir/all-euro-data-$full_season_years.xlsx";
-
-#my $ff = File::Fetch->new (uri => $url);
-#my $zip_file = $ff->fetch (to => $dir) or die $ff->error;
-#print "\n\nDownloading $zip_file...";
-
-#print "\nUnpacking to $xlsx_file...\n";
-#my $ae = Archive::Extract->new (archive => $zip_file);
-#$ae->extract (to => $dir) or die $ae->error;
-#unlink $zip_file;
 
 =pod
 

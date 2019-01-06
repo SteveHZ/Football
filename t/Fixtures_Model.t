@@ -6,14 +6,11 @@ use strict;
 use warnings;
 use Test::More tests => 6;
 use Test::Deep;
-#use utf8;
-#use Data::Dumper;
 
 use lib "C:/Mine/perl/Football";
 use Football::Fixtures_Model;
 use Football::Globals qw(@csv_leagues @summer_csv_leagues @euro_csv_lgs);
 use MyJSON qw(read_json write_json);
-use MyKeyword qw(TESTING);
 
 my $model = Football::Fixtures_Model->new ();
 my $date = '2018-06-16';
@@ -82,13 +79,4 @@ subtest 'prepare' => sub {
 	}
 	write_json ('c:/mine/perl/football/t/test data/fixtures/actual.json', $all_games);
 	cmp_deeply ($all_games, $after, 'compare data');
-#	my ($ok, $stack) = cmp_details ($all_games, $after);
-#my $reason = deep_diag($stack) unless $ok;
 };
-
-#subtest 'contains' => sub {
-#	plan tests => 2;
-#	my @list = qw(Steve Linda Zappy);
-#	is ($model->contains (\@list, 'Zappy'), 1, 'contains');
-#	is ($model->contains (\@list, 'Hopey'), 0, 'doesn\'t contain');
-#};

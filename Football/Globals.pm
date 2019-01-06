@@ -95,16 +95,16 @@ our @euro_lgs = ('German', 'Spanish', 'Italian', 'Welsh', 'N Irish');
 our @euro_csv_lgs = qw( D1 SP1 I1 WL NI);
 our @euro_fetch_lgs = qw( D1 SP1 I1);
 
-# ensble TESTING/else blocks to reduce number of leagues used at start/end of season_data
+# enable TESTING/else blocks to reduce number of leagues used at start/end of season_data
 # while still ensuring test scripts will pass
 TESTING {
 	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League');
 	our @summer_csv_leagues = qw(ROI MLS SWD NRW FN);
 	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN);
 } else {
-#	our @summer_leagues = ('Norwegian League');
-#	our @summer_csv_leagues = qw(NRW);
-#	our @summer_fetch_leagues = qw(NOR);
+	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League');
+	our @summer_csv_leagues = qw(ROI MLS SWD NRW FN);
+	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN);
 }
 
 =pod

@@ -1,4 +1,3 @@
-#!	C:/Strawberry/perl/bin
 
 #	rugby_archive.pl 15/01/17
 #	v1.1 22/04/17, 05/06/17

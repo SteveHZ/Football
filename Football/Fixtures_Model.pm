@@ -1,5 +1,6 @@
 package Football::Fixtures_Model;
 
+use Football::Globals qw(@csv_leagues @summer_csv_leagues @euro_csv_lgs);
 use Football::Fixtures_Globals qw(%football_fixtures_leagues %rugby_fixtures_leagues);
 use Football::Fixtures_Scraper_Model;
 use MyRegX;
@@ -11,8 +12,6 @@ use Time::Seconds qw(ONE_DAY);
 use Data::Dumper;
 
 TESTING { use utf8; }
-TESTING { use Football::Globals qw(@csv_leagues @summer_csv_leagues @euro_csv_lgs); }
-else { use Football::Globals qw(@csv_leagues @euro_csv_lgs); }
 
 use Moo;
 use namespace::clean;
@@ -25,10 +24,13 @@ my $time = $rx->time;
 my $upper = $rx->upper;
 my $lower = $rx->lower;
 my $dm_date = $rx->dm_date;
-my $year = 2018;
 
 sub get_league_hash {
-	TESTING { return { uk => \@csv_leagues, euro => \@euro_csv_lgs, summer => \@summer_csv_leagues, }; }
+	TESTING { return {
+		uk 		=> \@csv_leagues,
+		euro 	=> \@euro_csv_lgs,
+		summer 	=> \@summer_csv_leagues,
+	} };
 	return {
 		uk      => \@csv_leagues,
 		euro    => \@euro_csv_lgs,
@@ -189,8 +191,6 @@ sub do_initial_chars {
 	$$dataref =~ s/\// /g; # Norwegian (Bodo/Glimt)
 	$$dataref =~ s/jyskE/jyske/g; # Danish
 }
-#	$$dataref =~ s/(?<!$upper)$upper{2} //g;
-#    $$dataref =~ s/ $upper{2}(?!$upper)//g;
 
 sub revert {
 	my ($self, $dataref) = @_;
@@ -224,13 +224,6 @@ sub transform_hash {
 		return _transform_hash ($hash);
 	}
 }
-
-#use List::MoreUtils qw(firstidx);
-#sub contains {
-#	my ($self, $list, $value) = @_;
-#	return 1 if (firstidx { $_ eq $value } @$list) > 0;
-#	return 0;
-#}
 
 =pod
 

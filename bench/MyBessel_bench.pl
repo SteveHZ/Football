@@ -4,45 +4,39 @@
 use strict;
 use warnings;
 
-use Test::More tests => 1;
-
 use lib '../../Football';
 use Football::Model;
 use Football::View;
 use Football::Skellam_Dist_Model;
 use Benchmark qw(timethese cmpthese);
 
-subtest 'Test 1' => sub {
-	is (1,1,"Test");
+my $model = Football::Model->new ();
+my $view = Football::View->new ();
 
-	my $model = Football::Model->new ();
-	my $view = Football::View->new ();
+my $games = $model->read_games ();
+my $leagues = $model->build_leagues ($games);
 
-	my $games = $model->read_games ();
-	my $leagues = $model->build_leagues ($games);
+$view->do_table ($leagues);
+$view->do_home_table ( $model->do_home_table ($games));
+$view->do_away_table ( $model->do_away_table ($games));
 
-	$view->do_table ($leagues);
-	$view->do_home_table ( $model->do_home_table ($games));
-	$view->do_away_table ( $model->do_away_table ($games));
+my $homes = $model->do_homes ($leagues);
+my $aways = $model->do_aways ($leagues);
+my $last_six = $model->do_last_six ($leagues);
 
-	my $homes = $model->do_homes ($leagues);
-	my $aways = $model->do_aways ($leagues);
-	my $last_six = $model->do_last_six ($leagues);
+my $fixtures = $model->get_fixtures ();
+my $data = $model->do_fixtures ($fixtures, $homes, $aways, $last_six);
 
-	my $fixtures = $model->get_fixtures ();
-	my $data = $model->do_fixtures ($fixtures, $homes, $aways, $last_six);
+$model->do_recent_goal_difference ($data->{by_league}, $leagues);
+$model->do_goal_difference ($data->{by_league}, $leagues);
+$model->do_league_places ($data->{by_league}, $leagues);
+$model->do_head2head ($data->{by_league});
+$model->do_recent_draws ($data->{by_league});
 
-	$model->do_recent_goal_difference ($data->{by_league}, $leagues);
-	$model->do_goal_difference ($data->{by_league}, $leagues);
-	$model->do_league_places ($data->{by_league}, $leagues);
-	$model->do_head2head ($data->{by_league});
-	$model->do_recent_draws ($data->{by_league});
+my ($teams, $sorted) = $model->do_predict_models ($data->{by_match}, $leagues);
+$view->do_predict_models ($leagues, $teams, $sorted);
 
-	my ($teams, $sorted) = $model->do_predict_models ($data->{by_match}, $leagues);
-	$view->do_predict_models ($leagues, $teams, $sorted);
-
-	do_skellam_benchmark ($sorted->{expect});
-};
+do_skellam_benchmark ($sorted->{expect});
 
 sub do_skellam_benchmark {
 	my $fixtures = shift;

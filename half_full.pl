@@ -1,4 +1,3 @@
-#!	C:/Strawberry/perl/bin
 
 # 	half_full.pl 07-21/05/16
 #	use Football::Globals 18/06/17
@@ -29,7 +28,7 @@ sub main {
 sub create_hash {
 	my $hash = {};
 	my $half_times = {};
-	
+
 	my $it = Football::Scores_Iterator->new (
 		hash => $hash,
 		callback => sub {
@@ -46,7 +45,7 @@ sub read_files {
 	my ($hash, $half_times) = @_;
 	my $data_model = Football::Football_Data_Model->new ( full_data => 1 );
 	my ($half_time, $full_time);
-	
+
 	for my $league (@league_names) {
 		for my $year (@$years) {
 			my $games = $data_model->update ($path.$league.'/'.$year.'.csv');
