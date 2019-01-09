@@ -1,4 +1,3 @@
-#!	C:/Strawberry/perl/bin
 
 # 	max_profit.pl 11-12/03/17, 17-18/02/18
 #	v1.1 11/03/18, v1.2 02/04/18 v1.3 01/07/18 v1.4 09/12/18
@@ -11,7 +10,6 @@ use MyKeyword qw(DEVELOPMENT);
 use List::MoreUtils qw(each_arrayref);
 
 use lib 'C:/Mine/perl/Football';
-use Football::Team_Profit;
 use Football::Team_Hash;
 use Football::Favourites_Data_Model;
 use Summer::Summer_Data_Model;
@@ -49,7 +47,6 @@ while (my ($csv_league, $lg_idx) = $iterator->()) {
 		$markets{$market}->add_teams ($results, $lg_idx);
 	}
 	for my $game (@$results) {
-#		DEVELOPMENT { print Dumper $game; <STDIN>; }
 #		DEVELOPMENT { print "\n$game->{home_team} v $game->{away_team}"; }
 		for my $market (keys %markets) {
 			$markets{$market}->func->( $markets{$market}, $game );

@@ -10,10 +10,11 @@ DEVELOPMENT { use Data::Dumper; }
 use Mu;
 use namespace::clean;
 
+ro 'func', default => sub {};
+ro 'fixtures', default => sub { [] };
+
 ro 'hash', default => sub { {} };
 ro 'teams', default => sub { [] };
-ro 'fixtures', default => sub { [] };
-ro 'func', default => sub {};
 ro 'min_profit', default => 0.50;
 
 sub BUILD {
@@ -92,7 +93,7 @@ sub sort {
 	return \%hash;
 }
 
-#	called as arguments to $self->{dispatch}
+#	called from sort as arguments to $self->{dispatch}
 
 sub sort_totals {
 	my $self = shift;
@@ -151,13 +152,6 @@ sub sort_aways {
 		@{ $self->{fixtures} }
 	];
 }
-
-#use Moo;
-#has 'hash' 		=> ( is => 'ro', default => sub { {} } );
-#has 'teams' 	=> ( is => 'ro', default => sub { [] } );
-#has 'fixtures' 	=> ( is => 'ro', default => sub { [] } );
-#has 'func'		=> ( is => 'ro', default => sub {} );
-#has 'min_profit'=> ( is => 'ro', default => 0.50 );
 
 =pod
 

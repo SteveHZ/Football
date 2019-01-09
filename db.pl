@@ -1,11 +1,11 @@
-#!	C:/Strawberry/perl/bin
-
 #	db.pl 24-25/02/18, 02/03/18, 16/03/18, 27/04-03/05/18
+#	v1.1 07/01/19
 
 #BEGIN { $ENV{PERL_KEYWORD_TESTING} = 1;}
 use strict;
 use warnings;
 use TryCatch;
+
 use MyKeyword qw(TESTING);
 TESTING { use Data::Dumper; }
 
@@ -27,9 +27,7 @@ if (defined $ARGV [0]) {
 }
 my @funcs = (\&get_uk_data, \&get_euro_data, \&get_summer_data);
 my $data = $funcs[$euro]->();
-
 my $model = Football::DBModel->new (data => $data);
-my $leagues = $model->build_leagues ($data->{leagues});
 
 print "\n";
 while (my $cmd_line = prompt ("DB-$data->{model}")) {
@@ -42,16 +40,12 @@ sub get_results {
 
 	my ($team, $options) = $model->do_cmd_line ($cmd_line);
 	my $ha = $model->get_homeaway ($options);
-	my $league = $model->find_league ($team, $leagues,  $data->{leagues});
+	my $league = $model->find_league ($team);
 	if ($league eq 0) {
 		print "\nUnknown team name. Please try again...";
 	} else {
 		try {
-			my $query = $model->build_query ($team, $options);
-			TESTING {
-				print Dumper $query;
-			}
-			my $sth = $model->do_query ($league, $query);
+			my $sth = $model->do_query ($league, $team, $options);
 			while (my $row = $sth->fetchrow_hashref) {
 				$output_dispatch->{$ha}->($row, $team);
 			}

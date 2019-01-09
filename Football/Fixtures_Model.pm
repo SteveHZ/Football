@@ -26,11 +26,12 @@ my $lower = $rx->lower;
 my $dm_date = $rx->dm_date;
 
 sub get_league_hash {
-	TESTING { return {
+TESTING {
+	return {
 		uk 		=> \@csv_leagues,
 		euro 	=> \@euro_csv_lgs,
 		summer 	=> \@summer_csv_leagues,
-	} };
+}};
 	return {
 		uk      => \@csv_leagues,
 		euro    => \@euro_csv_lgs,

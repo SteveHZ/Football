@@ -2,6 +2,7 @@ package Football::DBModel;
 
 use DBI;
 use SQL::Abstract;
+
 use MyLib qw(wordcase);
 use MyKeyword qw(TESTING);
 TESTING { use Data::Dumper; }
@@ -9,18 +10,19 @@ TESTING { use Data::Dumper; }
 use Moo;
 use namespace::clean;
 
-has 'dbh' => ( is => 'ro' );
 has 'data' => (is => 'ro' );
 
 sub BUILD {
 	my $self = shift;
-	$self->{sqla} = SQL::Abstract->new ();
+
 	$self->{dbh} = DBI->connect ('DBI:CSV:', undef, undef, {
 		f_dir => $self->{data}->{path},
 		f_ext => '.csv',
 		csv_eol => "\n",
 		RaiseError => 1,
 	})	or die "Couldn't connect to database : ".DBI->errstr;
+	$self->{leagues} = $self->build_leagues ();
+	$self->{sqla} = SQL::Abstract->new ();
 
 	$self->{venue_hash}= {
 		'h' => 'HomeTeam',
@@ -46,11 +48,13 @@ sub DESTROY {
 }
 
 sub build_leagues {
-	my ($self, $csv_leagues) = @_;
+	my $self = shift;
+	my $csv_leagues = $self->{data}->{leagues};
 	my %leagues = ();
 
 	for my $league (@$csv_leagues) {
 		print "\nBuilding $league..";
+
 		my $query = "select distinct HomeTeam from $league";
 		my $sth = $self->{dbh}->prepare ($query)
 			or die "Couldn't prepare statement : ".$self->{dbh}->errstr;
@@ -58,17 +62,18 @@ sub build_leagues {
 
 		my @temp = ();
 		while (my $row = $sth->fetchrow_hashref) {
-			push (@temp, $row->{HomeTeam} );
+			push @temp, $row->{HomeTeam};
 		}
-		$leagues{$league} =  \@temp;
+		$leagues{$league} = \@temp;
 	}
 	return \%leagues;
 }
 
 sub find_league {
-	my ($self, $team, $leagues, $csv_leagues) = @_;
+	my ($self, $team) = @_;
+	my $csv_leagues = $self->{data}->{leagues};
 	for my $league (@$csv_leagues) {
-		return $league if grep { $_ eq $team } @{ $leagues->{$league} };
+		return $league if grep { $_ eq $team } @{ $self->{leagues}->{$league} };
 	}
 	return 0;
 }
@@ -91,6 +96,22 @@ sub get_homeaway {
 	return @$options [0];
 }
 
+sub do_query {
+	my ($self, $league, $team, $opts) = @_;
+
+	my $query = $self->build_query ($team, $opts);
+    my($stmt, @bind) = $self->{sqla}->select($league, '*', $query);
+	TESTING {
+		print "\nStatement = $stmt\n";
+		print "\nBind =\n".Dumper [ @bind ];
+	}
+
+	my $sth = $self->{dbh}->prepare ($stmt)
+		or die "Couldn't prepare statement : ".$self->{dbh}->errstr;
+	$sth->execute (@bind);
+	return $sth;
+}
+
 sub build_query {
 	my ($self, $team, $opts) = @_;
 	my @venues = split '', @$opts[0];
@@ -99,32 +120,17 @@ sub build_query {
 
 	for my $venue (@venues) {
 		my $temp = {};
-
 		my @results = map { $self->{results_hash}->{uc $venue}->{$_} } @options;
 
-		$temp->{ $self->{venue_hash}->{$venue} } = $team; # HomeTeam = ?
+		$temp->{ $self->{venue_hash}->{$venue} } = $team; # HomeTeam/AwayTeam = ?
 		$temp->{FTR} = [ @results ]; # (FTR = ? OR FTR = ?)...
 		push @query, $temp;
 	}
 	my %qhash = (-or => [ @query ]);
 	TESTING {
-		print "\nQuery = ".Dumper (%qhash);
+		print Dumper { %qhash };
 	}
 	return \%qhash;
-}
-
-sub do_query {
-	my ($self, $league, $query) = @_;
-
-    my($stmt, @bind) = $self->{sqla}->select($league, '*', $query);
-	my $sth = $self->{dbh}->prepare ($stmt)
-		or die "Couldn't prepare statement : ".$self->{dbh}->errstr;
-	$sth->execute (@bind);
-	TESTING {
-		print "\nStatement = $stmt\n";
-		print "\nBind = ".Dumper @bind;
-	}
-	return $sth;
 }
 
 =pod
