@@ -1,4 +1,3 @@
-#!	C:/Strawberry/perl/bin
 
 #	csvdb_test.pl 18/06/17
 
@@ -31,6 +30,6 @@ sub main  {
 		}
 		<>;
 	}
-	
+
 	$dbh->disconnect;
 }

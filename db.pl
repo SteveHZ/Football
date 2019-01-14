@@ -1,5 +1,5 @@
 #	db.pl 24-25/02/18, 02/03/18, 16/03/18, 27/04-03/05/18
-#	v1.1 07/01/19
+#	v1.1 07-09/01/19
 
 #BEGIN { $ENV{PERL_KEYWORD_TESTING} = 1;}
 use strict;
@@ -22,8 +22,8 @@ my $output_dispatch = {
 
 my $euro = 0;
 if (defined $ARGV [0]) {
-	$euro = 1 if $ARGV[0] eq "-e";
-	$euro = 2 if $ARGV[0] eq "-s";
+	$euro = 1 if $ARGV[0] eq '-e';
+	$euro = 2 if $ARGV[0] eq '-s';
 }
 my @funcs = (\&get_uk_data, \&get_euro_data, \&get_summer_data);
 my $data = $funcs[$euro]->();
@@ -50,7 +50,7 @@ sub get_results {
 				$output_dispatch->{$ha}->($row, $team);
 			}
 		} catch {
-			print "\nUsage : perldb.pl -[ha] -[wld]";
+			print "\nUsage : (team name) -[ha] -[wld]";
 		}
 	}
 	print "\n";
@@ -61,7 +61,7 @@ sub get_results {
 sub print_all {
 	my ($row, $team) = @_;
 
-	if ($team eq $row->{hometeam}) {
+	if ($row->{hometeam} =~ /$team.*/) {
 		print_homes ($row);
 	} else {
 		print_aways ($row);
@@ -87,6 +87,8 @@ sub print_aways {
 	print "$row->{ftag}-$row->{fthg}  ";
 	printf "%5.2f", $row->{$odds_column};
 }
+
+#	data functions
 
 sub get_uk_data {
 	return {

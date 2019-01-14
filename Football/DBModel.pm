@@ -21,10 +21,11 @@ sub BUILD {
 		csv_eol => "\n",
 		RaiseError => 1,
 	})	or die "Couldn't connect to database : ".DBI->errstr;
-	$self->{leagues} = $self->build_leagues ();
-	$self->{sqla} = SQL::Abstract->new ();
 
-	$self->{venue_hash}= {
+	$self->{sqla} = SQL::Abstract->new ();
+	$self->{leagues} = $self->build_leagues ();
+
+	$self->{ha_team}= {
 		'h' => 'HomeTeam',
 		'a' => 'AwayTeam',
 	};
@@ -73,7 +74,7 @@ sub find_league {
 	my ($self, $team) = @_;
 	my $csv_leagues = $self->{data}->{leagues};
 	for my $league (@$csv_leagues) {
-		return $league if grep { $_ eq $team } @{ $self->{leagues}->{$league} };
+		return $league if grep { $_ =~ /$team/ } @{ $self->{leagues}->{$league} };
 	}
 	return 0;
 }
@@ -100,10 +101,11 @@ sub do_query {
 	my ($self, $league, $team, $opts) = @_;
 
 	my $query = $self->build_query ($team, $opts);
-    my($stmt, @bind) = $self->{sqla}->select($league, '*', $query);
+    my ($stmt, @bind) = $self->{sqla}->select ($league, '*', $query);
 	TESTING {
 		print "\nStatement = $stmt\n";
 		print "\nBind =\n".Dumper [ @bind ];
+#		<STDIN>;
 	}
 
 	my $sth = $self->{dbh}->prepare ($stmt)
@@ -114,17 +116,16 @@ sub do_query {
 
 sub build_query {
 	my ($self, $team, $opts) = @_;
-	my @venues = split '', @$opts[0];
+	my @home_or_away = split '', @$opts[0];
 	my @options = map { uc $_ } split '', @$opts[1];
 	my @query = ();
 
-	for my $venue (@venues) {
-		my $temp = {};
-		my @results = map { $self->{results_hash}->{uc $venue}->{$_} } @options;
-
-		$temp->{ $self->{venue_hash}->{$venue} } = $team; # HomeTeam/AwayTeam = ?
-		$temp->{FTR} = [ @results ]; # (FTR = ? OR FTR = ?)...
-		push @query, $temp;
+	for my $ha (@home_or_away) {
+		my @results = map { $self->{results_hash}->{uc $ha}->{$_} } @options;
+		push @query, {
+			FTR 					=> [ @results ],			# (FTR = ? OR FTR = ?)...
+			$self->{ha_team}->{$ha} => { -like => "%$team%" },	# HomeTeam/AwayTeam LIKE ?
+		};
 	}
 	my %qhash = (-or => [ @query ]);
 	TESTING {
