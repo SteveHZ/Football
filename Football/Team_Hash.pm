@@ -16,6 +16,7 @@ ro 'fixtures', default => sub { [] };
 ro 'hash', default => sub { {} };
 ro 'teams', default => sub { [] };
 ro 'min_profit', default => 0.50;
+ro 'min_win_rate', default => 0.50;
 
 sub BUILD {
 	my $self = shift;
@@ -83,6 +84,16 @@ sub away {
 	return $self->{hash}->{$team}->away_percent ();
 }
 
+sub home_win_rate {
+	my ($self, $team) = @_;
+	return $self->{hash}->{$team}->home_win_rate ();
+}
+
+sub away_win_rate {
+	my ($self, $team) = @_;
+	return $self->{hash}->{$team}->away_win_rate ();
+}
+
 sub sort {
 	my $self = shift;
 	my %hash = ();
@@ -133,7 +144,10 @@ sub sort_homes {
 			$self->home ($b) <=> $self->home ($a)
 			or $a cmp $b
 		}
-		grep { $self->home ($_) >= $self->{min_profit} }
+		grep {
+			$self->home ($_) >= $self->{min_profit}
+		 	&& $self->home_win_rate ($_) >= $self->{min_win_rate}
+		}
 		map  { $_->{home_team} }
 		@{ $self->{fixtures} }
 	];
@@ -147,7 +161,10 @@ sub sort_aways {
 			$self->away ($b) <=> $self->away ($a)
 			or $a cmp $b
 		}
-		grep { $self->away ($_) >= $self->{min_profit} }
+		grep {
+			$self->away ($_) >= $self->{min_profit}
+		 	&& $self->away_win_rate ($_) >= $self->{min_win_rate}
+		}
 		map  { $_->{away_team} }
 		@{ $self->{fixtures} }
 	];

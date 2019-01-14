@@ -1,10 +1,11 @@
 package Football::Spreadsheets::Max_Profit;
 
-use Mu;
-use namespace::clean;
 use v5.10;
 use Football::Globals qw(@league_names @euro_lgs @summer_leagues);
 use MyLib qw(wordcase);
+
+use Mu;
+use namespace::clean;
 
 ro 'filename';
 ro 'euro';
@@ -78,7 +79,7 @@ sub get_totals {
 		{ $hash->team($team)->away,	$self->{currency_format} },
 		{ $hash->team($team)->total, $self->{currency_format} },
 		{ $hash->team($team)->percent, $self->{percent_format} },
-		{ ( $hash->team($team)->home_win + $hash->team($team)->away_win )/ $hash->team($team)->stake, $self->{percent_format} },
+		{ $hash->team($team)->total_win_rate, $self->{percent_format} },
 	];
 }
 
@@ -92,7 +93,7 @@ sub get_homes {
 		{ $hash->team($team)->away,	$self->{currency_format} },
 		{ $hash->team($team)->total, $self->{currency_format} },
 		{ $hash->team($team)->home_percent, $self->{percent_format} },
-		{ $hash->team($team)->home_win / $hash->team($team)->home_stake, $self->{percent_format} },
+		{ $hash->team($team)->home_win_rate, $self->{percent_format} },
 	];
 }
 
@@ -106,7 +107,7 @@ sub get_aways {
 		{ $hash->team($team)->away,	$self->{currency_format} },
 		{ $hash->team($team)->total, $self->{currency_format} },
 		{ $hash->team($team)->away_percent, $self->{percent_format} },
-		{ $hash->team($team)->away_win / $hash->team($team)->away_stake, $self->{percent_format} },
+		{ $hash->team($team)->away_win_rate, $self->{percent_format} },
 	];
 }
 

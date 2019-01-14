@@ -40,24 +40,44 @@ sub away_add {
 sub percent {
 	my $self = shift;
 	return sprintf "%.4f",
-		percent_gain ( $self->{stake}, $self->{total} );
+		_percent_gain ( $self->{stake}, $self->{total} );
 }
 
 sub home_percent {
 	my $self = shift;
 	return sprintf "%.4f",
-		percent_gain ( $self->{home_stake}, $self->{home} );
+		_percent_gain ( $self->{home_stake}, $self->{home} );
 }
 
 sub away_percent {
 	my $self = shift;
 	return sprintf "%.4f",
-		percent_gain ( $self->{away_stake}, $self->{away} )
+		_percent_gain ( $self->{away_stake}, $self->{away} )
 }
 
-sub percent_gain {
+sub _percent_gain {
 	my ($initial_amount, $closing_amount) = @_;
 	return (($closing_amount - $initial_amount) / $initial_amount);
+}
+
+sub home_win_rate {
+	my $self = shift;
+	return _win_rate ($self->{home_win}, $self->{home_stake});
+}
+
+sub away_win_rate {
+	my $self = shift;
+	return _win_rate ($self->{away_win}, $self->{away_stake});
+}
+
+sub total_win_rate {
+	my $self = shift;
+	return _win_rate ($self->{home_win} + $self->{away_win}, $self->{stake});
+}
+
+sub _win_rate {
+	my ($wins, $stake) = @_;
+	return $wins / $stake;
 }
 
 =pod

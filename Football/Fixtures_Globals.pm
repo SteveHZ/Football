@@ -263,6 +263,7 @@ Spanish La Liga,SP1
 #Cup,X
 The FA,X
 FA Cup,X
+EFL,X
 Copa del Ray,X
 Italian Coppa Italia,X
 #Trophy,X
@@ -291,6 +292,7 @@ Dutch,X
 Australian,X
 Austrian,X
 Greek,X
+Asian,X
 END_FOOTBALL_LEAGUES
 
 Super League,SL
