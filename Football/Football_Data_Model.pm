@@ -10,15 +10,14 @@ has 'full_data' => (is => 'rw', default => '0');
 sub update {
 	my ($self, $file, $full_data) = @_;
 	my @league_games = ();
-	
+
 	open my $fh, '<', $file or die "Can't find $file";
 	my $line = <$fh>;	# skip first line
 	while ($line = <$fh>) {
 		my @data = split (',', $line);
 		last if $data [0] eq ""; # don't remove !!!
 		next if any {$_ eq ""} ( $data[4], $data[5] );
-#		die "No result for $data[2] v $data[3]\n...in $file\n" if any {$_ eq ""} ( $data[4], $data[5] );
-		
+
 		if ($self->{full_data}) {
 			push ( @league_games, {
 				date => $data [1],
