@@ -20,10 +20,10 @@ sub calc_goal_expects {
 			$league->{av_away_goals} = sprintf "%0.2f", _get_away_goals ($league) / $total_games;
 			for my $team ( @{ $league->{team_list} } ) {
 				$teams->{$team} = {};
-				$self->calculate_homes ($teams, $league, $team);
-				$self->calculate_aways ($teams, $league, $team);
-				$self->calculate_last_six ($teams, $league, $team);
-				$self->calculate_expects ($teams, $league, $team);
+				$self->calculate_homes ($teams->{$team}, $league, $team);
+				$self->calculate_aways ($teams->{$team}, $league, $team);
+				$self->calculate_last_six ($teams->{$team}, $league, $team);
+				$self->calculate_expects ($teams->{$team}, $league, $team);
 			}
 		}
 	}
@@ -50,41 +50,36 @@ sub grep_goal_diffs {
 }
 
 sub calculate_homes {
-	my ($self, $teams, $league, $team) = @_;
-	my $team_hash = $teams->{$team};
+	my ($self, $team_hash, $league, $team) = @_;
 	my $played = $league->{home_table}->played ($team);
 
-	$team_hash->{home_for} = $league->{home_table}->for($team);
-	$team_hash->{home_against} = $league->{home_table}->against($team);
+	$team_hash->{home_for} = $league->{home_table}->for ($team);
+	$team_hash->{home_against} = $league->{home_table}->against ($team);
 	$team_hash->{av_home_for} = sprintf "%0.2f", $team_hash->{home_for} / $played;
 	$team_hash->{av_home_against} = sprintf "%0.2f", $team_hash->{home_against} / $played;
 }
 
 sub calculate_aways {
-	my ($self, $teams, $league, $team) = @_;
-	my $team_hash = $teams->{$team};
+	my ($self, $team_hash, $league, $team) = @_;
 	my $played = $league->{away_table}->played ($team);
 
-	$team_hash->{away_for} = $league->{away_table}->for($team);
-	$team_hash->{away_against} = $league->{away_table}->against($team);
+	$team_hash->{away_for} = $league->{away_table}->for ($team);
+	$team_hash->{away_against} = $league->{away_table}->against ($team);
 	$team_hash->{av_away_for} = sprintf "%0.2f", $team_hash->{away_for} / $played;
 	$team_hash->{av_away_against} = sprintf "%0.2f", $team_hash->{away_against} / $played;
 }
 
 sub calculate_last_six {
-	my ($self, $teams, $league, $team) = @_;
-	my $team_hash = $teams->{$team};
+	my ($self, $team_hash, $league, $team) = @_;
 
-#	This needs changing
-	$team_hash->{last_six_for} = $league->{last_six}->{$team}->{last_six_for};
-	$team_hash->{last_six_against} = $league->{last_six}->{$team}->{last_six_against};
+	$team_hash->{last_six_for} = $league->get_last_six_for ($team);
+	$team_hash->{last_six_against} = $league->get_last_six_against ($team);
 	$team_hash->{av_last_six_for} = $team_hash->{last_six_for} / 6;
 	$team_hash->{av_last_six_against} = $team_hash->{last_six_against} / 6;
 }
 
 sub calculate_expects {
-	my ($self, $teams, $league, $team) = @_;
-	my $team_hash = $teams->{$team};
+	my ($self, $team_hash, $league, $team) = @_;
 
 	$team_hash->{expect_home_for} = sprintf "%0.2f", $team_hash->{av_home_for} / $league->{av_home_goals};
 	$team_hash->{expect_home_against} = sprintf "%0.2f", $team_hash->{av_home_against} / $league->{av_away_goals};
@@ -132,15 +127,15 @@ sub calc_goal_diffs {
 	my $home = $game->{home_team};
 	my $away = $game->{away_team};
 
-	my $home_gd = $league->{homes}->{$home}->{goal_difference};
-	my $away_gd = $league->{aways}->{$away}->{goal_difference};
+	my $home_gd = $league->get_home_goal_diff ($home);
+	my $away_gd = $league->get_away_goal_diff ($away);
 
 	$game->{home_goal_diff} = _get_average ($home_gd, $league->{homes}->{$home}, "homes");
 	$game->{away_goal_diff} = _get_average ($away_gd, $league->{aways}->{$away}, "aways");
 	$game->{home_away_goal_diff} = sprintf ("%0.2f", $game->{home_goal_diff} - $game->{away_goal_diff} );
 
-	my $home_last_six_gd = $league->{last_six}->{$home}->{goal_difference};
-	my $away_last_six_gd = $league->{last_six}->{$away}->{goal_difference};
+	my $home_last_six_gd = $league->get_last_six_goal_diff ($home);
+	my $away_last_six_gd = $league->get_last_six_goal_diff ($away);
 
 	$game->{home_last_six_goal_diff} = _get_average ($home_last_six_gd, $league->{last_six}->{$home}, "last_six" );
 	$game->{away_last_six_goal_diff} = _get_average ($away_last_six_gd, $league->{last_six}->{$away}, "last_six" );

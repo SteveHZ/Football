@@ -46,6 +46,11 @@ sub get_home_draws {
 	return $self->{homes}->{$team}->{draws};
 }
 
+sub get_home_goal_diff {
+	my ($self, $team) = @_;
+	return $self->{homes}->{$team}->{goal_difference};
+}
+
 # Aways
 
 sub get_aways {
@@ -73,6 +78,11 @@ sub get_away_draws {
 	return $self->{aways}->{$team}->{draws};
 }
 
+sub get_away_goal_diff {
+	my ($self, $team) = @_;
+	return $self->{aways}->{$team}->{goal_difference};
+}
+
 # Last Six
 
 sub get_last_six {
@@ -93,6 +103,21 @@ sub get_last_six_points {
 sub get_last_six_over_under {
 	my ($self, $team) = @_;
 	return $self->{last_six}->{$team}->{last_six_over_under};
+}
+
+sub get_last_six_for {
+	my ($self, $team) = @_;
+	return $self->{last_six}->{$team}->{last_six_for};
+}
+
+sub get_last_six_against {
+	my ($self, $team) = @_;
+	return $self->{last_six}->{$team}->{last_six_against};
+}
+
+sub get_last_six_goal_diff {
+	my ($self, $team) = @_;
+	return $self->{last_six}->{$team}->{goal_difference};
 }
 
 # All team data (for form.pl)
