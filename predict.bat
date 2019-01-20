@@ -3,12 +3,12 @@ REM run football scripts 15/10/18
 cd c:/mine/perl/football
 
 perl fetch.pl
-perl fetch_summer.pl
+REM perl fetch_summer.pl
 
 REM ** oddsp.bat
-REM perl oddsp.pl ni welsh
-REM perl csvcat.pl ni ni
-REM perl csvcat.pl wl welsh
+perl oddsp.pl ni welsh
+perl csvcat.pl ni ni
+perl csvcat.pl wl welsh
 
 perl predict.pl -u
 perl predict.pl -eu

@@ -4,8 +4,8 @@ package Football::Team;
 #	Moo version 01/10/16
 
 use List::Util qw(max);
-use Football::Globals qw($default_stats_size);
 use MyIterators qw(make_iterator);
+use Football::Globals qw($default_stats_size);
 
 use Moo;
 use namespace::clean;

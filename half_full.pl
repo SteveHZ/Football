@@ -1,6 +1,6 @@
-
 # 	half_full.pl 07-21/05/16
 #	use Football::Globals 18/06/17
+# 	use Football_Data_Model read_csv 19/01/19
 
 use strict;
 use warnings;
@@ -17,13 +17,9 @@ my $json_path = 'c:/Mine/perl/Football/data/';
 my $json_file = $json_path.'half_full.json';
 my $years = [ 2010..$last_season ];
 
-main ();
-
-sub main {
-	my ($hash, $half_times) = create_hash ();
-	read_files ($hash, $half_times);
-	do_hash ($hash, $half_times);
-}
+my ($hash, $half_times) = create_hash ();
+read_files ($hash, $half_times);
+do_hash ($hash, $half_times);
 
 sub create_hash {
 	my $hash = {};
@@ -43,12 +39,15 @@ sub create_hash {
 
 sub read_files {
 	my ($hash, $half_times) = @_;
-	my $data_model = Football::Football_Data_Model->new ( full_data => 1 );
+	my $data_model = Football::Football_Data_Model->new (
+		my_keys => [ qw(date home_team away_team home_score away_score half_time_home half_time_away) ],
+		my_cols => [ qw(1 2 3 4 5 7 8) ],
+	);
 	my ($half_time, $full_time);
 
 	for my $league (@league_names) {
 		for my $year (@$years) {
-			my $games = $data_model->update ($path.$league.'/'.$year.'.csv');
+			my $games = $data_model->read_csv ($path.$league.'/'.$year.'.csv');
 
 			for my $game (@$games) {
 				$half_time = sprintf ("%d-%d", $game->{half_time_home}, $game->{half_time_away} );
@@ -100,6 +99,8 @@ sub sort_results {
 		keys (%$hash)
 	];
 }
+#	my $data_model = Football::Football_Data_Model->new ( full_data => 1 );
+#	my $games = $data_model->update ($path.$league.'/'.$year.'.csv');
 
 =pod
 

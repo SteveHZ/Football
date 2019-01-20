@@ -49,7 +49,7 @@ sub do_header {
 	$worksheet->set_column ($_, 15) for (qw (E:E));
 	$worksheet->set_column ($_, 5) for (qw (B:B D:D));
 
-	$worksheet->write ('A1', 'HALF TIME', $format);
+	$worksheet->write ('A1', 'FULL TIME', $format);
 	$worksheet->write ('C1', 'GAMES', $format);
 	$worksheet->write ('E1', 'PERCENTAGE', $format);
 }

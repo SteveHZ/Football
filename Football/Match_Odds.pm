@@ -17,6 +17,9 @@ sub BUILD {
 	$self->{stats} = ( [] );
 }
 
+#	16/01/19 This needs testing at some point
+#	Is cache_p caching anything at all here ?
+
 sub calc {
 	my ($self, $home_expect, $away_expect) = @_;
 	my $p = Football::MyPoisson->new ();

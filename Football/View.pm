@@ -376,8 +376,8 @@ sub do_predict_models {
 	$self->do_goal_expect ($leagues, $teams, $sorted);
 	$self->do_match_odds ($sorted);
 	$self->do_over_under ($sorted);
-
 }
+
 sub do_goal_expect {
 	my ($self, $leagues, $teams, $sorted) = @_;
 

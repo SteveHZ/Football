@@ -26,6 +26,33 @@ sub get_league_idx {
 	return $self->{league_idx}->{$league};
 }
 
+sub build_data {
+	my ($self, $options) = @_;
+	my $games = $self->read_games ($options->{update});
+	my $leagues = $self->build_leagues ($games);
+
+	$self->do_home_table ($games);
+	$self->do_away_table ($games);
+
+	return {
+		games => $games,
+		leagues => $leagues,
+		homes => $self->do_homes ($leagues),
+		aways => $self->do_aways ($leagues),
+		last_six => $self->do_last_six ($leagues),
+	};
+}
+#	my $favs = $self->do_favourites ($season, $options->{update_favs}) );
+
+#	my $fixtures = $model->get_fixtures ();
+#	my $data = $self->do_fixtures ($fixtures, $homes, $aways, $last_six);
+
+#	$view->do_recent_goal_difference ( $model->do_recent_goal_difference ($data->{by_league}, $leagues) );
+#	$view->do_goal_difference ( $model->do_goal_difference ($data->{by_league}, $leagues) );
+#	$view->do_league_places ( $model->do_league_places ($data->{by_league}, $leagues) );
+#	$view->do_head2head ( $model->do_head2head ($data->{by_league} ) );
+#	$view->do_recent_draws ( $model->do_recent_draws ($data->{by_league} ) );
+
 sub read_games {
 	my ($self, $update) = @_;
 	$update //= 0;

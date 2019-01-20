@@ -22,7 +22,8 @@ sub update {
 		my $csv_file = $self->{path}.$self->{csv_leagues}[$idx].'.csv';
 		if (-e $csv_file) {
 			print "\nUpdating $self->{league_names}[$idx]...";
-			$games->{ $self->{league_names}[$idx] } = $data_model->update ($csv_file);
+			$games->{ $self->{league_names}[$idx] } = $data_model->read_csv ($csv_file);
+#			$games->{ $self->{league_names}[$idx] } = $data_model->update ($csv_file);
 		}
 	}
 	$self->write_json ($self->{season_data}, $games);

@@ -1,5 +1,7 @@
 package Football::Football_Data_API;
 
+#	moved to Football::Football_Data_Model
+
 use DBI;
 use List::MoreUtils qw(any pairwise);
 
@@ -10,8 +12,8 @@ use namespace::clean;
 has 'connect' => (is => 'ro', default => 'csv');
 has 'keys' => (is => 'ro', default => sub { [ qw(div date hometeam awayteam fthg ftag) ] } );
 #   for CSV
-has 'my_keys' => (is => 'ro', default => sub { [ qw(League Date Home_Team Away_Team Home_Score Away_Score Result) ] } );
-has 'my_cols' => (is => 'ro', default => sub { [ qw(0 1 2 3 4 5 6) ] } );
+has 'my_keys' => (is => 'ro', default => sub { [ qw(Date Home_Team Away_Team Home_Score Away_Score) ] } );
+has 'my_cols' => (is => 'ro', default => sub { [ qw(1 2 3 4 5) ] } );
 
 has 'path' => (is => 'ro', default => 'C:/Mine/perl/Football/data');
 
@@ -32,6 +34,7 @@ sub do_query {
     my ($self, $stmt) = @_;
     my @rows = ();
 
+    die "No DBI connection !" unless $self->{dbh};
     my $sth = $self->{dbh}->prepare ($stmt)
         or die "Couldn't prepare statement : ".$self->{dbh}->errstr;
     $sth->execute ();
@@ -50,13 +53,19 @@ sub read_csv {
 	open my $fh, '<', $file or die "Can't find $file";
 	my $line = <$fh>;	# skip first line
 	while ($line = <$fh>) {
-		my @data = split (',', $line);
+		my @data = split ',', $line;
 		last if $data [0] eq ''; # don't remove !!!
 		next if any {$_ eq ''} ( $data[4], $data[5] );
 
         push @league_games, {
-            pairwise { $a => $data[$b] } @{ $self->{my_keys} }, @{ $self->{my_cols} }
+            pairwise { $a => $data[$b] }
+                @{ $self->{my_keys} }, @{ $self->{my_cols} }
         };
+	}
+	close $fh;
+	return \@league_games;
+}
+
 #		push ( @league_games, {
 #			date => $data [1],
 #			home_team => $data [2],
@@ -64,10 +73,6 @@ sub read_csv {
 #			home_score => $data [4],
 #			away_score => $data [5],
 #		});
-	}
-	close $fh;
-	return \@league_games;
-}
 
 sub do_query_orig {
     my ($self, $stmt) = @_;
