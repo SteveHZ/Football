@@ -25,7 +25,7 @@ subtest 'wtf' => sub {
 	is (@$options [1], 'wd', 'option 2 = wd');
 
 	my $qhash = $model->build_query ($team, $options);
-	my($stmt2, @bind2) = $sqla->select('E0', '*',$qhash);
+	my($stmt2, @bind2) = $sqla->select('E0', '*', $qhash);
 	print "\nstatement = \n$stmt2\n";
 	print "\nBind values = \n".Dumper @bind2;
 

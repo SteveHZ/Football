@@ -23,6 +23,9 @@ has 'team_list' => ( is => 'ro' );
 #	other object data
 has 'teams' => ( is => 'ro', default => sub { {} }, );
 has 'table' => ( is => 'ro', default => sub { {} }, );
+has 'home_table' => ( is => 'ro', default => sub { {} }, );
+has 'away_table' => ( is => 'ro', default => sub { {} }, );
+
 has 'homes' => ( is => 'ro', default => sub { {} }, );
 has 'aways' => ( is => 'ro', default => sub { {} }, );
 has 'last_six' => ( is => 'ro', default => sub { {} }, );

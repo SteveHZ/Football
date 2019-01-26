@@ -93,7 +93,7 @@ sub get_over_under_points_rows {
 		{ $game->{home_team} => $self->{format} },
 		{ $game->{away_team} => $self->{format} },
 
-		{ $game->{points} => $self->{float_format} },
+		{ $game->{ou_points} => $self->{float_format} },
 	];
 }
 

@@ -1,5 +1,3 @@
-#!	C:/Strawberry/perl/bin
-
 #	Favourites_Data_Model.t 14/09/16
 
 use strict;

@@ -1,5 +1,3 @@
-#!	C:/Strawberry/perl/bin
-
 #	Season.t 01/05/16
 #	v2 05/06/15
 

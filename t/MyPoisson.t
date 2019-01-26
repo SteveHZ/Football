@@ -1,4 +1,3 @@
-
 #	MyPoisson.t 02/07/17, 28/07/17
 
 use strict;

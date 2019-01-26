@@ -1,5 +1,3 @@
-#!	C:/Strawberry/perl/bin
-
 #	Model.t 01/05/16
 #	Euro::Model.t 10/08/17, 07/11/17
 

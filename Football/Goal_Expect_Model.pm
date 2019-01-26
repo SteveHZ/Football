@@ -130,23 +130,25 @@ sub calc_goal_diffs {
 	my $home_gd = $league->get_home_goal_diff ($home);
 	my $away_gd = $league->get_away_goal_diff ($away);
 
-	$game->{home_goal_diff} = _get_average ($home_gd, $league->{homes}->{$home}, "homes");
-	$game->{away_goal_diff} = _get_average ($away_gd, $league->{aways}->{$away}, "aways");
+#	May be less than six games played at start of season
+	$game->{home_goal_diff} = _get_average ($home_gd, $league->get_homes ($home));
+	$game->{away_goal_diff} = _get_average ($away_gd, $league->get_aways ($away));
 	$game->{home_away_goal_diff} = sprintf ("%0.2f", $game->{home_goal_diff} - $game->{away_goal_diff} );
 
 	my $home_last_six_gd = $league->get_last_six_goal_diff ($home);
 	my $away_last_six_gd = $league->get_last_six_goal_diff ($away);
 
-	$game->{home_last_six_goal_diff} = _get_average ($home_last_six_gd, $league->{last_six}->{$home}, "last_six" );
-	$game->{away_last_six_goal_diff} = _get_average ($away_last_six_gd, $league->{last_six}->{$away}, "last_six" );
+#	May be less than six games played at start of season
+	$game->{home_last_six_goal_diff} = _get_average ($home_last_six_gd, $league->get_last_six ($home));
+	$game->{away_last_six_goal_diff} = _get_average ($away_last_six_gd, $league->get_last_six ($away));
 	$game->{last_six_goal_diff} = sprintf ("%0.2f", $game->{home_last_six_goal_diff} - $game->{away_last_six_goal_diff} );
 };
 
 #	private methods
 
 sub _get_average {
-	my ($value, $list, $home_away) = @_;
-	my $elems = scalar ( @{$list->{$home_away}} );
+	my ($value, $list) = @_;
+	my $elems = scalar @$list;
 	return 0 if $elems == 0;
 	return sprintf "%.02f", $value / $elems;
 }
@@ -154,7 +156,7 @@ sub _get_average {
 # wrapper for testing
 sub get_average {
 	my $self = shift;
-	return _get_average (@_);
+	return _get_average @_;
 }
 
 sub _get_home_goals {

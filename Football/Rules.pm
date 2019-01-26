@@ -57,7 +57,7 @@ sub home_away_rule {
 	return "H $game->{home_away_goal_diff}"
 		if $game->{home_away_goal_diff} >= $self->{max_goal_diff}
 		and $game->{home_goal_diff} >= $self->{min_goal_diff};
-		
+
 	return "A ".sprintf "%0.2f", abs $game->{home_away_goal_diff} # abs returns integer only if argument ends with .00
 		if abs $game->{home_away_goal_diff} >= $self->{max_goal_diff}
 		and $game->{away_goal_diff} >= $self->{min_goal_diff};

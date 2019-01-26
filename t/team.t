@@ -1,5 +1,3 @@
-#!	C:/Strawberry/perl/bin
-
 #	Team.t 05/06/16
 
 use strict;
@@ -20,7 +18,7 @@ subtest 'constructor' => sub {
 
 subtest 'splice_array' => sub {
 	plan tests => $default_stats_size;
-	
+
 	$team->{games} = [
 		{ date => '01/02/16', opponent => 'Liverpool', 	score => '2-0', home_away => 'H', result => 'W' },
 		{ date => '02/02/16', opponent => 'Chelsea', 	score => '0-1', home_away => 'H', result => 'L' },

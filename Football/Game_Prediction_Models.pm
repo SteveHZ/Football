@@ -4,27 +4,31 @@ use Football::Goal_Expect_Model;
 use Football::Match_Odds;
 use Football::Skellam_Dist_Model;
 use Football::Over_Under_Model;
+use Football::Globals qw( $default_stats_size );
 
 use Moo;
 use namespace::clean;
 
+has 'fixtures' => (is => 'ro', default => sub { [] });
+has 'leagues' => (is => 'ro', default => sub { [] });
+
 sub calc_goal_expect {
-	my ($self, $fixtures, $leagues) = @_;
+	my $self = shift;
 	my $sorted = {};
 
 	my $expect = Football::Goal_Expect_Model->new (
-		fixtures => $fixtures,
-		leagues => $leagues,
+		fixtures => $self->{fixtures},
+		leagues => $self->{leagues},
 	);
 
 	my $teams = $expect->calc_goal_expects ();
-	
-	for my $game (@$fixtures) {
+
+	for my $game (@{ $self->{fixtures} } ) {
 		$expect->calc_expected_scores ($teams, $game);
 		$expect->calc_goal_diffs ($teams, $game);
 	}
 
-	$sorted->{expect}    = $expect->sort_expect_data ('expected_goal_diff'); 
+	$sorted->{expect}    = $expect->sort_expect_data ('expected_goal_diff');
 	$sorted->{home_away} = $expect->sort_expect_data ('home_away_goal_diff');
 	$sorted->{last_six}  = $expect->sort_expect_data ('last_six_goal_diff');
 	$sorted->{grepped}   = $expect->grep_goal_diffs ();
@@ -33,11 +37,11 @@ sub calc_goal_expect {
 }
 
 sub calc_match_odds {
-	my ($self, $fixtures) = @_;
+	my $self = shift;
 
 	my $odds = Football::Match_Odds->new ();
-	
-	for my $game (@$fixtures) {
+
+	for my $game (@{ $self->{fixtures} } ) {
 		$odds->calc ($game->{home_goals}, $game->{away_goals});
 
 		$game->{home_win} = $odds->home_win_odds ();
@@ -48,29 +52,44 @@ sub calc_match_odds {
 		$game->{under_2pt5} = $odds->under_2pt5_odds ();
 		$game->{over_2pt5} = $odds->over_2pt5_odds ();
 	}
-	return $odds->schwartz_sort ($fixtures);
+	return $odds->schwartz_sort ($self->{fixtures});
 }
 
 sub calc_skellam_dist {
-	my ($self, $fixtures) = @_;
-	
+	my $self = shift;
+
 	my $skellam = Football::Skellam_Dist_Model->new ();
-	
-	for my $game (@$fixtures) {
+
+	for my $game (@{ $self->{fixtures} } ) {
 		$game->{skellam} = $skellam->calc ($game->{home_goals}, $game->{away_goals});
 	}
-	return $skellam->schwartz_sort ($fixtures);
+	return $skellam->schwartz_sort ($self->{fixtures});
 }
 
 sub calc_over_under {
-	my ($self, $fixtures, $leagues) = @_;
+	my $self = shift;
+	my $stat_size = $default_stats_size * 2;
 
 	my $sorted = {};
 	my $over_under = Football::Over_Under_Model->new (
-		fixtures => $fixtures,
-		leagues => $leagues,
+		fixtures => $self->{fixtures},
+		leagues => $self->{leagues},
 	);
-	
+
+	for my $game (@{ $self->{fixtures} } ) {
+		my $home = $game->{home_team};
+		my $away = $game->{away_team};
+		my $league = @{ $self->{leagues} }[$game->{league_idx}];
+
+		$game->{home_over_under} = $league->get_home_over_under ($home);
+		$game->{away_over_under} = $league->get_away_over_under ($away);
+		$game->{home_last_six_over_under} = $league->get_last_six_over_under ($home);
+		$game->{away_last_six_over_under} = $league->get_last_six_over_under ($away);
+		$game->{home_away} = ($game->{home_over_under} + $game->{away_over_under}) / $stat_size;
+		$game->{last_six} = ($game->{home_last_six_over_under} + $game->{away_last_six_over_under}) / $stat_size;
+		$game->{ou_points} = $over_under->do_ou_points ($game);
+	}
+
 	$sorted->{ou_home_away} = $over_under->do_home_away ();
 	$sorted->{ou_last_six} = $over_under->do_last_six ();
 	$sorted->{ou_odds} = $over_under->do_over_under ();

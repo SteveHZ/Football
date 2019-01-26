@@ -42,16 +42,6 @@ sub build_data {
 		last_six => $self->do_last_six ($leagues),
 	};
 }
-#	my $favs = $self->do_favourites ($season, $options->{update_favs}) );
-
-#	my $fixtures = $model->get_fixtures ();
-#	my $data = $self->do_fixtures ($fixtures, $homes, $aways, $last_six);
-
-#	$view->do_recent_goal_difference ( $model->do_recent_goal_difference ($data->{by_league}, $leagues) );
-#	$view->do_goal_difference ( $model->do_goal_difference ($data->{by_league}, $leagues) );
-#	$view->do_league_places ( $model->do_league_places ($data->{by_league}, $leagues) );
-#	$view->do_head2head ( $model->do_head2head ($data->{by_league} ) );
-#	$view->do_recent_draws ( $model->do_recent_draws ($data->{by_league} ) );
 
 sub read_games {
 	my ($self, $update) = @_;
@@ -59,7 +49,7 @@ sub read_games {
 	my $games;
 
 	TESTING {
-		print "    Reading test data from $self->{test_season_data}\n";
+		print "*** Reading test data from $self->{test_season_data}\n\n";
 		$games = $self->read_json ($self->{test_season_data});
 	} elsif ($update) {
 		$games = $self->update ();
@@ -147,12 +137,12 @@ sub get_unique_leagues {
 
 sub do_predict_models {
 	my ($self, $fixtures, $leagues) = @_;
-	my $predict_model = Football::Game_Prediction_Models->new ();
+	my $predict_model = Football::Game_Prediction_Models->new (fixtures => $fixtures, leagues => $leagues);
 
-	my ($teams, $sorted) = $predict_model->calc_goal_expect ($fixtures, $leagues);
-	$sorted->{match_odds} = $predict_model->calc_match_odds ($fixtures);
-	$sorted->{skellam} = $predict_model->calc_skellam_dist ($fixtures);
-	$sorted->{over_under} = $predict_model->calc_over_under ($fixtures, $leagues);
+	my ($teams, $sorted) = $predict_model->calc_goal_expect ();
+	$sorted->{match_odds} = $predict_model->calc_match_odds ();
+	$sorted->{skellam} = $predict_model->calc_skellam_dist ();
+	$sorted->{over_under} = $predict_model->calc_over_under ();
 
 	return ($teams, $sorted);
 }
@@ -196,27 +186,21 @@ sub get_game_data_func {
 		$game->{full_homes} = $league->get_full_homes ($home);
 		$game->{home_points} = $league->get_home_points ($home);
 		$game->{home_draws} = $league->get_home_draws ($home);
-		$game->{home_over_under} = $league->get_home_over_under ($home);
 
 		$game->{home_last_six} = $league->get_last_six ($home);
 		$game->{full_home_last_six} = $league->get_full_last_six ($home);
 		$game->{last_six_home_points} = $league->get_last_six_points ($home);
-		$game->{home_last_six_over_under} = $league->get_last_six_over_under ($home);
 
 		$game->{aways} = $league->get_aways ($away);
 		$game->{full_aways} = $league->get_full_aways ($away);
 		$game->{away_points} = $league->get_away_points ($away);
 		$game->{away_draws} = $league->get_away_draws ($away);
-		$game->{away_over_under} = $league->get_away_over_under ($away);
 
 		$game->{away_last_six} = $league->get_last_six ($away);
 		$game->{full_away_last_six} = $league->get_full_last_six ($away);
 		$game->{last_six_away_points} = $league->get_last_six_points ($away);
-		$game->{away_last_six_over_under} = $league->get_last_six_over_under ($away);
 
 		$game->{draws} = $game->{home_draws} + $game->{away_draws};
-		$game->{home_away} = ($game->{home_over_under} + $game->{away_over_under}) / $stat_size;
-		$game->{last_six} = ($game->{home_last_six_over_under} + $game->{away_last_six_over_under}) / $stat_size;
 	};
 }
 

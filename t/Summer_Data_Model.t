@@ -1,5 +1,3 @@
-#!	C:/Strawberry/perl/bin
-
 #	Favourites_Data_Model.t 14/09/16
 #	Euro_Data_Model.t 11/02/18
 #	Summer::Summer_Data_Model.t 20/03/18

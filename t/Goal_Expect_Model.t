@@ -13,8 +13,12 @@ use Football::Goal_Expect_Model;
 use Data::Dumper;
 
 my $model = Football::Model->new ();
-my $predict_model = Football::Game_Prediction_Models->new ();
-my $expect_model = Football::Goal_Expect_Model->new ();
+my $data = $model->build_data ();
+my $fixtures = $model->get_fixtures ();
+my $stats = $model->do_fixtures ($fixtures, $data->{homes}, $data->{aways}, $data->{last_six});
+
+my $predict_model = Football::Game_Prediction_Models->new (fixtures => $stats->{by_match}, leagues => $data->{leagues});
+my $expect_model = Football::Goal_Expect_Model->new (fixtures => $stats->{by_match}, leagues => $data->{leagues});
 
 subtest 'Constructors' => sub {
 	plan tests => 3;
@@ -25,19 +29,14 @@ subtest 'Constructors' => sub {
 
 subtest 'get_average' => sub {
 	plan tests => 1;
-	my $list = {
-		'teams' => [ qw( Stoke Vale Crewe Leek ) ],
-	};
-	is ($expect_model->get_average (24, $list, 'teams'), '6.00', 'get_average');
+	my $list = [ qw( Stoke Vale Crewe Leek ) ];
+	is ($expect_model->get_average (24, $list), '6.00', 'get_average');
 };
 
 subtest 'goal_expect' => sub {
-	plan tests => 13;
+	plan tests => 16;
 
-	my $league_data = $model->build_data ();
-	my $fixtures = $model->get_fixtures ();
-	my $data = $model->do_fixtures ($fixtures, $league_data->{homes}, $league_data->{aways}, $league_data->{last_six});
-	my ($teams, $sorted) = $predict_model->calc_goal_expect ($fixtures, $league_data->{leagues});
+	my ($teams, $sorted) = $predict_model->calc_goal_expect ();
 
 #	print Dumper $teams->{Stoke};
 	is ($teams->{Stoke}->{av_home_for}, 1.33, 'av home for');
@@ -55,25 +54,11 @@ subtest 'goal_expect' => sub {
 	is ($teams->{Stoke}->{av_last_six_for}, 1.66666666666667, 'av last_six for');
 	is ($teams->{Stoke}->{av_last_six_against}, 2.33333333333333, 'av last_six against');
 
-	print Dumper $sorted->{last_six}[0]; # to test goal diff routines in expect model / team_data
-	my $game = $sorted->{last_six}[0]; # to test goal diff routines in expect model / team_data
-=head
-home_goals, 0.281792
-away_goals, 2.347488
-expected_goal_diff, -2.065696
+#	print Dumper $game;
+	my $game = $sorted->{last_six}[0];
 
-home_last_six, 0.281792
-away_last_six, 6.49686
-expected_goal_diff_last_six -6.215068
-
-home_goal_diff, -0.17
-away_goal_diff, 2.17
-home_away_goal_diff, -2.34
-
-home_last_six_goal_diff, -1.83
-away_last_six_goal_diff, 2.33
-=cut
+	is ($game->{expected_goal_diff}, -2.065696, 'expected_goal_diff');
+	is ($game->{expected_goal_diff_last_six}, -6.215068, 'expected_goal_diff_last_six');
+	is ($game->{home_away_goal_diff}, -2.34, 'home_away_goal_diff');
 	is ($game->{last_six_goal_diff}, -4.16, 'last six goal diff');
-
-
 };

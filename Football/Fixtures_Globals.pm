@@ -267,6 +267,7 @@ EFL,X
 Copa del Ray,X
 Italian Coppa Italia,X
 #Trophy,X
+FA Women,X
 Women,X
 International,X
 World,X
