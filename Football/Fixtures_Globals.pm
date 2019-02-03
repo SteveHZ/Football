@@ -264,7 +264,7 @@ Spanish La Liga,SP1
 The FA,X
 FA Cup,X
 EFL,X
-Copa del Ray,X
+Spanish Copa del Ray,X
 Italian Coppa Italia,X
 #Trophy,X
 FA Women,X

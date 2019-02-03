@@ -11,6 +11,9 @@ use namespace::clean;
 
 has 'fixtures' => (is => 'ro', default => sub { [] });
 has 'leagues' => (is => 'ro', default => sub { [] });
+has 'filename' => (is => 'ro');
+
+#need to amend this as will write over data for -e
 
 sub calc_goal_expect {
 	my $self = shift;
@@ -33,6 +36,8 @@ sub calc_goal_expect {
 	$sorted->{last_six}  = $expect->sort_expect_data ('last_six_goal_diff');
 	$sorted->{grepped}   = $expect->grep_goal_diffs ();
 
+print "\n\n\nfilename = $self->{filename}";<STDIN>;
+	$expect->write_goal_expect ($self->{filename});
 	return ($teams, $sorted);
 }
 

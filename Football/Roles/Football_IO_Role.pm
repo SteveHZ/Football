@@ -31,9 +31,9 @@ sub update {
 }
 
 sub get_fixtures {
-	my $self = shift;
+	my ($self, $fixtures_file) = @_; # for benchtesting
 
-	my $fixtures_file = $self->{fixtures_file};
+	$fixtures_file //= $self->{fixtures_file};
 	TESTING { $fixtures_file = $self->{test_fixtures_file}; }
 	my @fixtures = ();
 

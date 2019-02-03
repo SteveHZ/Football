@@ -6,8 +6,10 @@ package Football::Roles::Shared_Model;
 use Clone qw(clone);
 
 use Football::Game_Prediction_Models;
+use Football::Football_Data_Model;
 use Football::Globals qw( $default_stats_size );
-use MyKeyword qw(TESTING); # for model.t
+use MyKeyword qw(TESTING ANALYSIS); # for model.t
+use MyJSON qw(read_json);
 
 use Moo::Role;
 
@@ -27,8 +29,17 @@ sub get_league_idx {
 }
 
 sub build_data {
-	my ($self, $options) = @_;
-	my $games = $self->read_games ($options->{update});
+	my ($self, $args) = @_;
+	my $games;
+
+	if (exists $args->{json}) {
+		$games = read_json ($args->{json});
+#	} elsif (exists $args->{csv}) {
+#		my $data_model = Football::Football_Data_Model->new ();
+#		$games = $data_model->read_csv ($args->{csv});
+	} else {
+		$games = $self->read_games ();
+	}
 	my $leagues = $self->build_leagues ($games);
 
 	$self->do_home_table ($games);
@@ -137,7 +148,8 @@ sub get_unique_leagues {
 
 sub do_predict_models {
 	my ($self, $fixtures, $leagues) = @_;
-	my $predict_model = Football::Game_Prediction_Models->new (fixtures => $fixtures, leagues => $leagues);
+	my $predict_model = Football::Game_Prediction_Models->new (
+		fixtures => $fixtures, leagues => $leagues, filename => $self->{predictions_file});
 
 	my ($teams, $sorted) = $predict_model->calc_goal_expect ();
 	$sorted->{match_odds} = $predict_model->calc_match_odds ();

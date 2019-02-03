@@ -2,6 +2,8 @@ package Football::Goal_Expect_Model;
 
 use Moo;
 use namespace::clean;
+use File::Copy qw(move);
+use MyJSON qw(write_json);
 
 has 'leagues' => (is => 'ro', default => sub { [] });
 has 'fixtures' => (is => 'ro', default => sub { [] } );
@@ -143,6 +145,24 @@ sub calc_goal_diffs {
 	$game->{away_last_six_goal_diff} = _get_average ($away_last_six_gd, $league->get_last_six ($away));
 	$game->{last_six_goal_diff} = sprintf ("%0.2f", $game->{home_last_six_goal_diff} - $game->{away_last_six_goal_diff} );
 };
+
+sub write_goal_expect {
+	my ($self, $filename) = @_;
+	my $prev = $filename.'_prev';
+	move $filename, $prev if -e $filename;
+
+	my @list = ();
+	for my $game (@{ $self->{fixtures} }) {
+		push @list, {
+			home_team => $game->{home_team},
+			away_team => $game->{away_team},
+			expected_goal_diff => sprintf ("%0.2f", $game->{expected_goal_diff}),
+			expected_goal_diff_last_six => sprintf ("%0.2f", $game->{expected_goal_diff_last_six}),
+			league => $game->{league},
+		}
+	}
+	write_json ($filename, \@list);
+}
 
 #	private methods
 

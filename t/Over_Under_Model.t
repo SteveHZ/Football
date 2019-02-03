@@ -24,6 +24,8 @@ my $predict_model = Football::Game_Prediction_Models->new (
 );
 
 subtest 'constructor' => sub {
+	plan tests => 3;
+
 	use_ok 'Football::Over_Under_Model';
 	$ou_model = Football::Over_Under_Model->new (leagues => $data->{leagues}, fixtures => $fixtures, stats => $stats);
 	isa_ok ($ou_model, 'Football::Over_Under_Model', '$ou_model');
@@ -31,6 +33,8 @@ subtest 'constructor' => sub {
 };
 
 subtest 'do_calcs' => sub {
+	plan tests => 2;
+	
 	my $test_data = read_json ('C:/Mine/perl/Football/t/test data/ou_points data.json');
 	my $burnley = $test_data->{Burnley};
 	my $arsenal = $test_data->{Arsenal};

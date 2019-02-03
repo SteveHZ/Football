@@ -19,7 +19,6 @@ use Football::Reports::LeaguePlaces;
 use Football::Reports::Head2Head;
 use Football::Globals qw( @league_names @csv_leagues );
 use MyKeyword qw(TESTING); # for model.t
-#use Data::Dumper;
 
 use Moo;
 use namespace::clean;
@@ -27,8 +26,10 @@ use namespace::clean;
 # pre-declare these to use Shared_Model role
 #has 'model_name' => ( is => 'ro' ); # not used here but required for roles
 has 'leagues' => ( is => 'ro' );
-has 'league_names' => ( is => 'ro' );
-has 'csv_leagues' => ( is => 'ro' );
+has 'league_names' => ( is => 'ro', default => sub {[@league_names]} );
+has 'csv_leagues' => ( is => 'ro', default => sub {\@csv_leagues} );
+#has 'league_names' => ( is => 'ro' );
+#has 'csv_leagues' => ( is => 'ro' );
 has 'test_season_data' => ( is => 'ro' );
 
 # pre-declare these to use Football_IO role
@@ -36,6 +37,7 @@ has 'path' => ( is => 'ro' );
 has 'fixtures_file' => ( is => 'rw' );
 has 'season_data' => ( is => 'ro' );
 has 'test_fixtures_file' => ( is => 'ro' );
+has 'predictions_file' => (is => 'ro');
 
 with 'Roles::MyJSON',
 'Football::Roles::Shared_Model',
@@ -45,8 +47,8 @@ sub BUILD {
 	my $self = shift;
 	$self->{model_name} = "Football";
 	$self->{leagues} = [];
-	$self->{csv_leagues} = \@csv_leagues;
-	$self->{league_names} = \@league_names;
+#	$self->{csv_leagues} = \@csv_leagues;
+#	$self->{league_names} = \@league_names;
 	$self->{league_idx} = $self->build_league_idx ($self->{league_names});
 
 	$self->{path} = 'C:/Mine/perl/Football/data/';
@@ -58,6 +60,9 @@ sub BUILD {
 	$self->{test_teams_file} = $self->{test_path}.'teams.json';
 	$self->{test_season_data} = $self->{test_path}.'season.json';
 	$self->{test_fixtures_file} = $self->{test_path}.'football fixtures.csv';
+
+	$self->{benchtest_path} = $self->{path}.'benchtest/';
+	$self->{predictions_file} = $self->{benchtest_path}.'goal_expect.json';
 }
 
 sub build_leagues {

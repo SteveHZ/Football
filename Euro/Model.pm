@@ -26,6 +26,7 @@ sub BUILD {
 	$self->{teams_file} = $self->{path}.'teams.json';
 #	$self->{results_file} = $self->{path}.'results.ods';
 	$self->{test_season_data} = 'C:/Mine/perl/Football/t/test_data/euro_season.json';
+	$self->{predictions_file} = $self->{benchtest_path}.'goal_expect_euro.json';
 }
 
 #	Not implemented by Euro::Model
