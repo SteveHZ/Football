@@ -38,7 +38,7 @@ sub do_backup {
 
 	for my $league (keys %$games) {
 		my $src_file = "$path/$league.csv";
-		my $bak_file = "$path/backups/$league $date.csv"
+		my $bak_file = "$path/backups/$league $date.csv";
 		copy ($src_file, $bak_file) or die "Backup failed : $!";
 	}
 }

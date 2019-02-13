@@ -33,7 +33,7 @@ for my $file (@ARGV){
 	my $game_date;
 
 	for my $line (@$cleaned) {
-		next if $line =~/postp|award/;
+		next if $line =~/postp|award|abn/;
 		if ($line =~ /$date/) {
 			$game_date = get_date ($line);
 		} else {

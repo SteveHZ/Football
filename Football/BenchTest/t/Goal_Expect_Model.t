@@ -14,10 +14,11 @@ use Football::Globals qw(@league_names @csv_leagues);
 
 #print Dumper @league_names;print Dumper @csv_leagues;
 my $expect_model = Football::BenchTest::Goal_Expect_Model->new ();
-my $data_model = Football::BenchTest::Football_Data_Model->new (path => 'C:/Mine/perl/Football/data/benchtest');
+my $data_model = Football::BenchTest::Football_Data_Model->new ();
+#my $data_model = Football::BenchTest::Football_Data_Model->new (path => 'C:/Mine/perl/Football/data/benchtest');
 my $bt_model = Football::BenchTest::BenchTest_Model->new ();
 
-my $leagues = { pairwise { $a => $b } @league_names, @csv_leagues };
+my $leagues = $bt_model->make_league_hash ();
 my $expect_data = read_json ('C:/Mine/perl/Football/data/benchtest/test data/goal_expect_test.json');
 print Dumper $expect_data;<STDIN>;
 for my $game (@$expect_data) {

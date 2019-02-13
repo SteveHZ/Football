@@ -17,7 +17,7 @@ our @EXPORT = qw(
 
 sub new { return bless {}; shift; }
 
-our $season = 2018;
+our $season = 2019;
 our $results_season = substr $season,2,2;
 our $reports_start = 2016;
 

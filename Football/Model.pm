@@ -26,14 +26,13 @@ use namespace::clean;
 # pre-declare these to use Shared_Model role
 #has 'model_name' => ( is => 'ro' ); # not used here but required for roles
 has 'leagues' => ( is => 'ro' );
-has 'league_names' => ( is => 'ro', default => sub {[@league_names]} );
-has 'csv_leagues' => ( is => 'ro', default => sub {\@csv_leagues} );
-#has 'league_names' => ( is => 'ro' );
-#has 'csv_leagues' => ( is => 'ro' );
+has 'league_names' => ( is => 'ro', default => sub { \@league_names } );
+has 'csv_leagues' => ( is => 'ro', default => sub { \@csv_leagues } );
 has 'test_season_data' => ( is => 'ro' );
 
 # pre-declare these to use Football_IO role
 has 'path' => ( is => 'ro' );
+#has 'fixtures' => ( is => 'ro' );
 has 'fixtures_file' => ( is => 'rw' );
 has 'season_data' => ( is => 'ro' );
 has 'test_fixtures_file' => ( is => 'ro' );
@@ -47,8 +46,6 @@ sub BUILD {
 	my $self = shift;
 	$self->{model_name} = "Football";
 	$self->{leagues} = [];
-#	$self->{csv_leagues} = \@csv_leagues;
-#	$self->{league_names} = \@league_names;
 	$self->{league_idx} = $self->build_league_idx ($self->{league_names});
 
 	$self->{path} = 'C:/Mine/perl/Football/data/';
@@ -62,7 +59,7 @@ sub BUILD {
 	$self->{test_fixtures_file} = $self->{test_path}.'football fixtures.csv';
 
 	$self->{benchtest_path} = $self->{path}.'benchtest/';
-	$self->{predictions_file} = $self->{benchtest_path}.'goal_expect.json';
+	$self->{predictions_file} = $self->{benchtest_path}.'predictions.json';
 }
 
 sub build_leagues {

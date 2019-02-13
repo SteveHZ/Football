@@ -149,13 +149,14 @@ sub get_unique_leagues {
 sub do_predict_models {
 	my ($self, $fixtures, $leagues) = @_;
 	my $predict_model = Football::Game_Prediction_Models->new (
-		fixtures => $fixtures, leagues => $leagues, filename => $self->{predictions_file});
+		fixtures => $fixtures, leagues => $leagues);
 
 	my ($teams, $sorted) = $predict_model->calc_goal_expect ();
 	$sorted->{match_odds} = $predict_model->calc_match_odds ();
 	$sorted->{skellam} = $predict_model->calc_skellam_dist ();
 	$sorted->{over_under} = $predict_model->calc_over_under ();
 
+	$self->write_predictions ($fixtures);
 	return ($teams, $sorted);
 }
 

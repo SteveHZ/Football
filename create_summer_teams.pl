@@ -1,7 +1,7 @@
 #!	C:/Strawberry/perl/bin
 
 #	create_euro_teams.pl 26/06/16
-
+#	Irish + USA teams updated 05.02 but need to check against Football Data site
 use strict;
 use warnings;
 
@@ -15,14 +15,14 @@ my $leagues = {
 	'Irish League' => [
 		'Dundalk',
 		'St Patricks',
-		'Limerick',
 		'Bohemians',
 		'Cork City',
 		'Shamrock Rovers',
-		'Bray Wanderers',
 		'Sligo Rovers',
 		'Derry City',
 		'Waterford',
+		'UCD',
+		'Finn Harps',
 	],
 	'Swedish League' => [
 		'Goteborg',
@@ -84,6 +84,7 @@ my $leagues = {
 		'Atlanta United',
 		'Vancouver Whitecaps',
 		'Philadelphia Union',
+		'Cincinnati',
 	],
 	'Finnish League' => [
 		'Rovaniemi',

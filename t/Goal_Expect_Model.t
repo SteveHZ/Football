@@ -17,8 +17,15 @@ my $data = $model->build_data ();
 my $fixtures = $model->get_fixtures ();
 my $stats = $model->do_fixtures ($fixtures, $data->{homes}, $data->{aways}, $data->{last_six});
 
-my $predict_model = Football::Game_Prediction_Models->new (fixtures => $stats->{by_match}, leagues => $data->{leagues});
-my $expect_model = Football::Goal_Expect_Model->new (fixtures => $stats->{by_match}, leagues => $data->{leagues});
+my $predict_model = Football::Game_Prediction_Models->new (
+	fixtures => $stats->{by_match},
+ 	leagues => $data->{leagues},
+# 	filename => 'C://Mine/perl/Football/data/benchtest/goal_expect_testing.json',
+);
+my $expect_model = Football::Goal_Expect_Model->new (
+	fixtures => $stats->{by_match},
+	leagues => $data->{leagues},
+);
 
 subtest 'Constructors' => sub {
 	plan tests => 3;

@@ -1,7 +1,9 @@
 package Football::Roles::Football_IO_Role;
 
 use List::MoreUtils qw(firstidx);
+use File::Copy qw(move);
 use Football::Football_Data_Model;
+use MyJSON qw(write_json);
 use MyKeyword qw(TESTING); # for model.t
 
 use Moo::Role;
@@ -53,6 +55,30 @@ sub get_fixtures {
 	}
 	close $fh;
 	return \@fixtures;
+}
+
+sub write_predictions {
+	my ($self, $fixtures) = @_;
+	my $prev = $self->append_prev ($self->{predictions_file});
+	move $self->{predictions_file}, $prev if -e $self->{predictions_file};
+
+	my @list = ();
+	for my $game (@$fixtures) {
+		push @list, {
+			league => $game->{league},
+			home_team => $game->{home_team},
+			away_team => $game->{away_team},
+			expected_goal_diff => sprintf ("%0.2f", $game->{expected_goal_diff}),
+			expected_goal_diff_last_six => sprintf ("%0.2f", $game->{expected_goal_diff_last_six}),
+		}
+	}
+	write_json ($self->{predictions_file}, \@list);
+}
+
+sub append_prev {
+	my ($self, $filename) = @_;
+	$filename =~ s/\.json$/_prev\.json/;
+    return $filename;
 }
 
 1;

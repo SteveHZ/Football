@@ -1,16 +1,89 @@
 package Football::BenchTest::Goal_Expect_Model;
 
+use List::MoreUtils qw(true);
 use Football::Goal_Expect_Model;
 use Moo;
 use namespace::clean;
 
 extends 'Football::Goal_Expect_Model';
 
-sub BUILD {
-#    print "\nIn Goal Expect Benchtest model";
+#sub BUILD {
+#    my $self = shift;
+#    $self->{funcs} = [ \&grep, \&true];
+#}
+
+#   Methods to return count of successful data
+
+sub count_home_away_games {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return true {
+        $_->{expected_goal_diff} > $n
+        or $_->{expected_goal_diff} < ($n * -1)
+    } @$data;
 }
 
-sub write_goal_expect {} # temp for analyse.pl
+sub count_home_away_wins {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return true {
+        ( $_->{expected_goal_diff} > $n && $_->{result} eq 'H' )
+        or ( $_->{expected_goal_diff} < ($n * -1) && $_->{result} eq 'A')
+    } @$data;
+}
+
+sub count_last_six_games {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return true {
+        $_->{expected_goal_diff_last_six} > $n
+        or $_->{expected_goal_diff_last_six} < ($n * -1)
+    } @$data;
+}
+
+sub count_last_six_wins {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return true {
+        ( $_->{expected_goal_diff_last_six} > $n && $_->{result} eq 'H' )
+        or ( $_->{expected_goal_diff_last_six} < ($n * -1) && $_->{result} eq 'A')
+    } @$data;
+}
+
+sub count_ha_lsx_games {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return true {
+        ( $_->{expected_goal_diff} > $n && $_->{expected_goal_diff_last_six} > $n )
+        or ( $_->{expected_goal_diff} < ($n * -1) && $_->{expected_goal_diff_last_six} < ($n * -1))
+    } @$data;
+}
+
+sub count_ha_lsx_wins {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return true {
+        (( $_->{expected_goal_diff} > $n && $_->{result} eq 'H' )
+        or ( $_->{expected_goal_diff} < ($n * -1) && $_->{result} eq 'A'))
+    &&
+        (( $_->{expected_goal_diff_last_six} > $n && $_->{result} eq 'H' )
+        or ( $_->{expected_goal_diff_last_six} < ($n * -1) && $_->{result} eq 'A'))
+    } @$data;
+}
+
+sub count_ha_lsx_lost {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return true {
+        (( $_->{expected_goal_diff} < ($n * -1) && $_->{result} eq 'H' )
+        or ( $_->{expected_goal_diff} > $n && $_->{result} eq 'A'))
+    &&
+        (( $_->{expected_goal_diff_last_six} < ($n * -1) && $_->{result} eq 'H' )
+        or ( $_->{expected_goal_diff_last_six} > $n && $_->{result} eq 'A'))
+    } @$data;
+}
+
+#   Methods to return arrayrefs of successful data
 
 sub home_away_games {
     my ($self, $data, $n) = @_;
@@ -27,9 +100,7 @@ sub home_away_wins {
     my ($self, $data, $n) = @_;
     $n //= 0;
     return [
-        sort {
-            $b->{expected_goal_diff} <=> $a->{expected_goal_diff}
-        } grep {
+        grep {
             ( $_->{expected_goal_diff} > $n && $_->{result} eq 'H' )
             or ( $_->{expected_goal_diff} < ($n * -1) && $_->{result} eq 'A')
         } @$data
@@ -51,9 +122,7 @@ sub last_six_wins {
     my ($self, $data, $n) = @_;
     $n //= 0;
     return [
-        sort {
-            $b->{expected_goal_diff_last_six} <=> $a->{expected_goal_diff_last_six}
-        } grep {
+        grep {
             ( $_->{expected_goal_diff_last_six} > $n && $_->{result} eq 'H' )
             or ( $_->{expected_goal_diff_last_six} < ($n * -1) && $_->{result} eq 'A')
         } @$data
@@ -86,14 +155,15 @@ sub ha_lsx_wins {
 }
 
 sub ha_lsx_lost {
-    my ($self, $data) = @_;
+    my ($self, $data, $n) = @_;
+    $n //= 0;
     return [
         grep {
-            (( $_->{expected_goal_diff} < 0 && $_->{result} eq 'H' )
-            or ( $_->{expected_goal_diff} > 0 && $_->{result} eq 'A'))
+            (( $_->{expected_goal_diff} < ($n * -1) && $_->{result} eq 'H' )
+            or ( $_->{expected_goal_diff} > $n && $_->{result} eq 'A'))
         &&
-            (( $_->{expected_goal_diff_last_six} < 0 && $_->{result} eq 'H' )
-            or ( $_->{expected_goal_diff_last_six} > 0 && $_->{result} eq 'A'))
+            (( $_->{expected_goal_diff_last_six} < ($n * -1) && $_->{result} eq 'H' )
+            or ( $_->{expected_goal_diff_last_six} > $n && $_->{result} eq 'A'))
         } @$data
     ];
 }

@@ -4,6 +4,7 @@ use Web::Query;
 use Rugby::Globals qw(@fixtures_leagues $results_season);
 use MyDate qw(@days_of_week $month_names);
 use MyRegX;
+use Data::Dumper;
 use Moo;
 use namespace::clean;
 
@@ -21,17 +22,22 @@ sub prepare {
 	my ($self, $dataref) = @_;
 
 #	Remove beginning and end of data
-	$$dataref =~ s/^.*Betfred ($leagues)//;
-    $$dataref =~ s/^.*Telstra Premiership//;
-	$$dataref =~ s/Please note.*$//g;
+#	$$dataref =~ s/^.*Betfred ($leagues)//;
+#    $$dataref =~ s/^.*Telstra Premiership//;
+$$dataref =~ s/^.*Content//;
+$$dataref =~ s/All times are UK.*$//g;
+#	$$dataref =~ s/Please note.*$//g;
 
 #	Remove whitespace and other stuff
-	$$dataref =~ s/\s{2}+//g;
+#	$$dataref =~ s/\s{2}+//g;
 	$$dataref =~ s/Super 8s|Shield|Grand Final|Semi-|final|Final|Play-off //g;
 
+print Dumper $$dataref;<STDIN>;
 #	Find dates
     $$dataref =~ s/($date_parser)/\n<DATE>$1\n/g;
-
+print Dumper $$dataref;
+<STDIN>;
+#die;
 #	Find games - without positive lookahead (?=\D) this matches on the year so 2018 -> 20\n18
     $$dataref =~ s/(\D+\d{1,3}\D+\d{1,3}(?=\D))/$1\n/g;
 
@@ -94,6 +100,8 @@ sub get_pages {
 	for my $league (@$leagues) {
 		my $q = wq ("$league->{site}");
 		if ($q) {
+            $q->find ('abbr')   # ->filter ( sub { $_->text ne 'FT' } )
+              ->replace_with ( '<b></b>' );
 			print "\nDownloading $league->{site}";
 			print "\n$league->{name} : ";
 			$self->do_write ($league->{name}, $q->text);
