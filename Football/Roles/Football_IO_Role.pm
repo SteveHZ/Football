@@ -39,7 +39,7 @@ sub get_fixtures {
 	TESTING { $fixtures_file = $self->{test_fixtures_file}; }
 	my @fixtures = ();
 
-	open (my $fh, '<', $fixtures_file) or die ("\n\nCan't find $fixtures_file");
+	open my $fh, '<', $fixtures_file or die "\n\nCan't find $fixtures_file";
 	while (my $line = <$fh>) {
 		chomp ($line);
 		my ($date, $league, $home, $away) = split (',', $line); # my fixtures files
@@ -70,6 +70,10 @@ sub write_predictions {
 			away_team => $game->{away_team},
 			expected_goal_diff => sprintf ("%0.2f", $game->{expected_goal_diff}),
 			expected_goal_diff_last_six => sprintf ("%0.2f", $game->{expected_goal_diff_last_six}),
+
+#			ou_home_away => $game->{home_away},
+#			ou_last_six => $game->{last_six},
+#			ou_points => $game->{ou_points},
 		}
 	}
 	write_json ($self->{predictions_file}, \@list);

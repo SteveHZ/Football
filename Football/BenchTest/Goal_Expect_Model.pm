@@ -7,11 +7,6 @@ use namespace::clean;
 
 extends 'Football::Goal_Expect_Model';
 
-#sub BUILD {
-#    my $self = shift;
-#    $self->{funcs} = [ \&grep, \&true];
-#}
-
 #   Methods to return count of successful data
 
 sub count_home_away_games {

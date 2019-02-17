@@ -36,6 +36,7 @@ sub write {
     my $iterator = each_arrayref ($self->{sheets}, $self->{keys});
     while (my ($sheet, $key) = $iterator->() ) {
         $worksheet->write ($row++, 1, uc $sheet, $self->{format});
+
         for (my $i = 0; $i <= 3; $i += 0.5) {
             my $hashref = $totals->{$key}->{$i};
             my $percent = ($hashref->{from} == 0) ? 0 : $hashref->{wins} / $hashref->{from};
