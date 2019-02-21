@@ -71,9 +71,9 @@ sub write_predictions {
 			expected_goal_diff => sprintf ("%0.2f", $game->{expected_goal_diff}),
 			expected_goal_diff_last_six => sprintf ("%0.2f", $game->{expected_goal_diff_last_six}),
 
-#			ou_home_away => $game->{home_away},
-#			ou_last_six => $game->{last_six},
-#			ou_points => $game->{ou_points},
+			ou_home_away => $game->{home_away},
+			ou_last_six => $game->{last_six},
+			ou_points => $game->{ou_points},
 		}
 	}
 	write_json ($self->{predictions_file}, \@list);
