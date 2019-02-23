@@ -4,7 +4,6 @@ use strict;
 use warnings;
 use List::MoreUtils qw(each_arrayref);
 use utf8;
-#use Data::Dumper;
 
 use Moo;
 use namespace::clean;
@@ -17,11 +16,11 @@ sub BUILD {
     $self->{sheetnames} = [ 'Goal Expects', 'Over Unders' ];
     $self->{headings} = {
         'Goal Expects'  => ['Home Away', 'Last Six', 'HA Last Six'],
-        'Over Unders'   => ['Home Away', 'Last Six', 'OU Points'],
+        'Over Unders'   => ['Home Away', 'Last Six', 'HA Last Six', 'OU Points'],
     };
     $self->{keys} = {
         'Goal Expects'  => [ qw(home_away last_six ha_lsx) ],
-        'Over Unders'   => [ qw(ou_home_away ou_last_six ou_points) ],
+        'Over Unders'   => [ qw(ou_home_away ou_last_six ou_ha_lsx ou_points) ],
     };
     $self->{dispatch} = {
         'Goal Expects'	=> \&Football::BenchTest::Spreadsheets::BenchTest_View::do_expects,

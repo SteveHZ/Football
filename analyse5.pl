@@ -1,8 +1,11 @@
-#	analyse4.pl 30/01 - 21/02/19
+#	analyse4.pl 30/01 - 23/02/19
+
+# need to add ou_ha_lsx to to model and Spreadsheet
+# also llok at h/a for ou_points rather than l6 @games
+# OR figure out new algo for points see Plymouth Rochdale (maybe save to file for later)
 
 use strict;
 use warnings;
-#use Data::Dumper;
 
 use lib "C:/Mine/perl/Football";
 use Football::BenchTest::BenchTest_Model;
@@ -19,7 +22,7 @@ my $update = (defined $ARGV[0] && $ARGV[0] eq '-u') ? 1 : 0;
 my $json_file = ($update) ? 'C:/Mine/perl/Football/data/benchtest/predictions_prev.json'
                           : 'C:/Mine/perl/Football/data/benchtest/test data/goal_expect_test.json';
 my $expect_data = read_json ($json_file);
-my $results_json = 'C:/Mine/perl/Football/data/benchtest/results.json';
+my $totals_file = 'C:/Mine/perl/Football/data/benchtest/totals.json';
 
 my $bt_model = Football::BenchTest::BenchTest_Model->new ();
 my $expect_model = Football::BenchTest::Goal_Expect_Model->new ();
@@ -35,27 +38,21 @@ for my $game (@$expect_data) {
 $expect_data = $bt_model->remove_postponed ($expect_data);
 
 print "\nBuilding weekly results...";
-my $results = {};
-$expect_model->get_results ($results, $expect_data);
-$ou_model->get_results ($results, $expect_data);
+my $week = {};
+$expect_model->get_results ($week, $expect_data);
+$ou_model->get_results ($week, $expect_data);
 
-print "\nWriting weekly results...";
-my $results_data = (-e $results_json) ? read_json ($results_json) : [];
+print "\nLoading historical data...";
+my $totals = read_json ($totals_file);
 if ($update) {
-    push @$results_data, $results;
-    write_json ($results_json, $results_data);
+    print "\nUpdating totals...";
+    $expect_model->update_totals ($week, $totals);
+    $ou_model->update_totals ($week, $totals);
+    write_json ($totals_file, $totals);
 
     my $date = prompt ('Enter date for backup (yyyymmdd)');
     $bt_model->do_backup ($date, $expect_data);
 }
-
-#do I really need results_data week on week, could just store ongoing totals
-#goal expect is already being saved week on week
-
-print "\nUpdating totals...";
-my $totals = {};
-$expect_model->update_totals ($totals, $results_data);
-$ou_model->update_totals ($totals, $results_data);
 
 my $bt_view = Football::BenchTest::Spreadsheets::BenchTest_View->new ();
 $bt_view->write ($totals);

@@ -1,7 +1,6 @@
 package Football::BenchTest::Goal_Expect_Model;
 
 use List::MoreUtils qw(true);
-use Football::Goal_Expect_Model;
 use Moo;
 use namespace::clean;
 
@@ -13,53 +12,34 @@ sub _build_keys {
     return [ qw(home_away last_six ha_lsx) ];
 }
 
-sub init_totals {
-    my ($self, $totals) = @_;
-#    my $self = shift;
-#    my $totals = {};
-
-    for my $key (@{ $self->{keys} }) {
-        for (my $i = 0; $i <= 3; $i += 0.5) {
-            $totals->{$key}->{$i}->{wins} = 0;
-            $totals->{$key}->{$i}->{from} = 0;
-        }
-    }
-    return $totals;
-}
-
 sub get_results {
-    my ($self, $results, $expect_data) = @_;
+    my ($self, $week, $expect_data) = @_;
     for (my $i = 0; $i <= 3; $i += 0.5) {
-        $results->{home_away}->{$i} = {
+        $week->{home_away}->{$i} = {
             wins => $self->count_home_away_wins ($expect_data, $i),
             from => $self->count_home_away_games ($expect_data, $i),
         };
-        $results->{last_six}->{$i} = {
+        $week->{last_six}->{$i} = {
             wins => $self->count_last_six_wins ($expect_data, $i),
             from => $self->count_last_six_games ($expect_data, $i),
         };
-        $results->{ha_lsx}->{$i} = {
+        $week->{ha_lsx}->{$i} = {
             wins => $self->count_ha_lsx_wins ($expect_data, $i),
             from => $self->count_ha_lsx_games ($expect_data, $i),
         };
-        print "\n\nHome Away $i : ". $results->{home_away}->{$i}->{wins}.' from '.$results->{home_away}->{$i}->{from};
-        print "\nLast Six  $i : ". $results->{last_six}->{$i}->{wins}.' from '.$results->{last_six}->{$i}->{from};
-        print "\nBoth      $i : ". $results->{ha_lsx}->{$i}->{wins}.' from '.$results->{ha_lsx}->{$i}->{from};
+        print "\n\nHome Away $i : ". $week->{home_away}->{$i}->{wins}.' from '.$week->{home_away}->{$i}->{from};
+        print "\nLast Six  $i : ". $week->{last_six}->{$i}->{wins}.' from '.$week->{last_six}->{$i}->{from};
+        print "\nBoth      $i : ". $week->{ha_lsx}->{$i}->{wins}.' from '.$week->{ha_lsx}->{$i}->{from};
     }
 }
 
-
 sub update_totals {
-    my ($self, $totals, $results_data) = @_;
-    $self->init_totals ($totals);
-#    my $totals = $expect_model->init_totals ();
+    my ($self, $week, $totals) = @_;
     my $keys = $self->keys;
-    for my $week (0...$#$results_data) {
-        for my $key (@$keys) {
-            for (my $i = 0; $i <=3; $i+=0.5) {
-                $totals->{$key}->{$i}->{wins} += @$results_data [$week]->{$key}->{$i}->{wins};
-                $totals->{$key}->{$i}->{from} += @$results_data [$week]->{$key}->{$i}->{from};
-            }
+    for my $key (@$keys) {
+        for (my $i = 0; $i <=3; $i+=0.5) {
+            $totals->{$key}->{$i}->{wins} += $week->{$key}->{$i}->{wins};
+            $totals->{$key}->{$i}->{from} += $week->{$key}->{$i}->{from};
         }
     }
 }
