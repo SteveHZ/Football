@@ -1,11 +1,8 @@
 package Football::BenchTest::Over_Under_Model;
 
 use List::MoreUtils qw(true);
-use Data::Dumper;
 use Moo;
 use namespace::clean;
-
-extends 'Football::Over_Under_Model';
 
 has 'keys' => (is =>'ro', builder => '_build_keys');
 
@@ -123,6 +120,89 @@ sub count_ou_points_wins {
     return true {
         $_->{ou_points} > $n && $_->{over_under}->{goals} > 2.5
     } @$data;
+}
+
+sub home_away_games {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return [
+        grep {
+            $_->{ou_home_away} > $n
+        } @$data
+    ];
+}
+
+sub home_away_wins {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return [
+        grep {
+            $_->{ou_home_away} > $n && $_->{over_under}->{goals} > 2.5
+        } @$data
+    ];
+}
+
+sub last_six_games {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return [
+        grep {
+            $_->{ou_last_six} > $n
+        } @$data
+    ];
+}
+
+sub last_six_wins {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return [
+        grep {
+            $_->{ou_last_six} > $n && $_->{over_under}->{goals} > 2.5
+        } @$data
+    ];
+}
+
+sub ha_lsx_games {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return [
+        grep {
+            $_->{ou_home_away} > $n
+            && $_->{ou_last_six} > $n
+        } @$data
+    ];
+}
+
+sub ha_lsx_wins {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return [
+        grep {
+            $_->{ou_home_away} > $n
+            && $_->{ou_last_six} > $n
+            && $_->{over_under}->{goals} > 2.5
+        } @$data
+    ];
+}
+
+sub ou_points_games {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return [
+        grep {
+            $_->{ou_points} > $n
+        } @$data
+    ];
+}
+
+sub ou_points_wins {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return [
+        grep {
+            $_->{ou_points} > $n && $_->{over_under}->{goals} > 2.5
+        } @$data
+    ];
 }
 
 1;

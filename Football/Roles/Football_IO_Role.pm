@@ -74,6 +74,9 @@ sub write_predictions {
 			ou_home_away => $game->{home_away},
 			ou_last_six => $game->{last_six},
 			ou_points => $game->{ou_points},
+
+			home_away_goal_diff => $game->{home_away_goal_diff},
+			last_six_goal_diff => $game->{last_six_goal_diff},
 		}
 	}
 	write_json ($self->{predictions_file}, \@list);

@@ -21,4 +21,4 @@ REM perl max_profit.pl -s
 perl combine.pl
 perl form.pl
 
-perl analyse5.pl -u
+perl analyse.pl -u

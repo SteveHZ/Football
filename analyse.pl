@@ -1,128 +1,61 @@
-#	analyse.pl 26/01/19
+#	analyse4.pl 30/01 - 23/02/19
 
-#BEGIN { $ENV{PERL_KEYWORD_ANALYSIS} = 1; }
+# Look at h/a for ou_points rather than last 6 games
+# Figure out new algo for points see Plymouth Rochdale (maybe save to file for later)
 
 use strict;
 use warnings;
-use Test::More tests => 1;
-use List::MoreUtils qw(each_arrayref);
-use Data::Dumper;
 
 use lib "C:/Mine/perl/Football";
-use Football::Model;
-use Football::Game_Prediction_Models;
-use Football::Globals qw(@csv_leagues);
-
+use Football::BenchTest::BenchTest_Model;
 use Football::BenchTest::Goal_Expect_Model;
 use Football::BenchTest::Over_Under_Model;
+use Football::BenchTest::Goal_Diffs_Model;
 use Football::BenchTest::Football_Data_Model;
-use Football::BenchTest::Utils qw(get_league make_csv_file_list make_file_list);
+use Football::BenchTest::Spreadsheets::BenchTest_View;
+
 use MyJSON qw(read_json write_json);
+use MyLib qw(prompt);
 
-my $file = 'C:/Mine/perl/Football/data/benchtest/season.json';
-my $model = Football::Model->new ( csv_leagues => [qw(E1 E2 E3)], league_names => ['Championship','League One','League Two']);
-# DOESNT WORK !! - only reading one leagues so Model::build_leagues gets confused at $games->{league}
-#my $data = $model->build_data ( {csv => 'C:/Mine/perl/Football/data/E1.csv'});
-#my $data = $model->build_data ();
-my $data = $model->build_data ({ json => $file });
-
-my $fixtures = $model->get_fixtures ('C:/Mine/perl/football/data/benchtest/fixtures.csv');
-#print Dumper $fixtures;<STDIN>;
-#my $fixtures = get_league ($fixture_list, 'Championship');
-my $stats = $model->do_fixtures ($fixtures, $data->{homes}, $data->{aways}, $data->{last_six});
-my $predict_model = Football::Game_Prediction_Models->new (
-	fixtures => $stats->{by_match},
-	leagues => $data->{leagues},
-);
-my $ou_model = Football::Over_Under_Model->new (
-	leagues => $data->{leagues},
-	fixtures => $fixtures, stats => $stats
-);
-
-subtest 'constructor' => sub {
-	use_ok 'Football::Over_Under_Model';
-	isa_ok ($ou_model, 'Football::Over_Under_Model', '$ou_model');
-	isa_ok ($predict_model, 'Football::Game_Prediction_Models', '$predict_model');
-};
-print Dumper $fixtures;
-
-my $expect_model = Football::BenchTest::Goal_Expect_Model->new();
-my $ou_model2 = Football::BenchTest::Over_Under_Model->new();
-
-my ($teams, $sorted) = $predict_model->calc_goal_expect (1);#don't re-write json file
-#print Dumper $teams;<STDIN>;
-#print Dumper @{$sorted->{home_away}}[0];
-
-my $sheets = [ qw(home_away last_six) ];
-my $keys = [ qw(expected_goal_diff expected_goal_diff_last_six) ];
-
-my $iterator = each_arrayref ($sheets, $keys);
-while (my ($sheet, $key) = $iterator->()) {
-	print "\n\n$sheet";
-	for my $game (@{ $sorted->{$sheet} }) {
-#	for my $i(0..11) {
-#		my $game = @{ $sorted->{$sheet} }[$i];
-		print "\n".$game->{home_team}.', ';
-		print $game->{away_team}.', ';
-		print $game->{$key};
-	}
-}
-
-sub write_goal_expect {
-	my ($self, $stats) = @_;
-	my @list = ();
-	for my $game (@$stats) {
-#		my $expected_goal_diff = sprintf ("%0.2f", $game->{expected_goal_diff});
-#		my $expected_goal_diff_last_six = sprintf ("%0.2f", $game->{expected_goal_diff_last_six});
-#print "\n$expected_goal_diff - $expected_goal_diff_last_six";
-		push @list, {
-			home_team => $game->{home_team},
-			away_team => $game->{away_team},
-			expected_goal_diff => sprintf ("%0.2f", $game->{expected_goal_diff}),
-			expected_goal_diff_last_six => sprintf ("%0.2f", $game->{expected_goal_diff_last_six}),
-#			expected_goal_diff => $expected_goal_diff,
-#			expected_goal_diff_last_six => $expected_goal_diff_last_six,
-			league => $game->{league},
-		}
-	}
-	<STDIN>;
-	print Dumper @list;<STDIN>;
-	write_json ('c:/mine/perl/football/data/benchtest/goal_expect_test.json', \@list);
-}
-=head
-print "\n\nExpect";
-for my $i(0..10) {
-	my $game = @{ $sorted->{expect} }[$i];
-	print "\n".$game->{home_team}.', ';
-	print $game->{away_team}.', ';
-	print $game->{expected_goal_diff}.', ';
-}
-print "\n\nHome Away";
-for my $i(0..10) {
-	my $game = @{ $sorted->{home_away} }[$i];
-	print "\n".$game->{home_team}.', ';
-	print $game->{away_team}.', ';
-	print $game->{home_away_goal_diff}.', ';
-}
-print "\n\nLast Six";
-for my $i(0..10) {
-	my $game = @{ $sorted->{last_six} }[$i];
-	print "\n".$game->{home_team}.', ';
-	print $game->{away_team}.', ';
-	print $game->{last_six_goal_diff}.', ';
-}
-=cut
-print "\n\nGrepped";
-for my $i(0..scalar @{$sorted->{grepped}}-1) {
-	my $game = @{ $sorted->{grepped} }[$i];
-	print "\n".$game->{home_team}.', ';
-	print $game->{away_team};
-#	print @{$sorted->{home_away}}[$i]->{home_away_goal_diff}.', ';
-}
-
-print "\n\nDBI :\n";
+my $bt_model = Football::BenchTest::BenchTest_Model->new ();
+my $expect_model = Football::BenchTest::Goal_Expect_Model->new ();
+my $ou_model = Football::BenchTest::Over_Under_Model->new ();
+my $gd_model = Football::BenchTest::Goal_Diffs_Model->new ();
 my $data_model = Football::BenchTest::Football_Data_Model->new ();
-my $result = $data_model->get_result ('E1','Sheffield United','Swansea');
-print Dumper $result;
 
-write_goal_expect (undef, $stats->{by_match});
+print "\nLoading data...";
+my $totals_file = 'C:/Mine/perl/Football/data/benchtest/totals.json';
+my $json_file = 'C:/Mine/perl/Football/data/benchtest/predictions_prev.json';
+my $expect_data = read_json ($json_file);
+my $update = (defined $ARGV[0] && $ARGV[0] eq '-u') ? 1 : 0;
+
+print "\nLoading results...";
+my $leagues = $bt_model->league_hash;
+for my $game (@$expect_data) {
+    $game->{result} = $data_model->get_result ($leagues->{$game->{league}}, $game->{home_team}, $game->{away_team});
+    $game->{over_under} = $data_model->get_over_under_result ($leagues->{$game->{league}}, $game->{home_team}, $game->{away_team});
+}
+$expect_data = $bt_model->remove_postponed ($expect_data);
+
+print "\nBuilding weekly results...";
+my $week = {};
+$expect_model->get_results ($week, $expect_data);
+$ou_model->get_results ($week, $expect_data);
+$gd_model->get_results ($week, $expect_data);
+
+print "\nLoading historical data...";
+my $totals = read_json ($totals_file);
+
+if ($update) {
+    print "\nUpdating totals...";
+    $expect_model->update_totals ($week, $totals);
+    $ou_model->update_totals ($week, $totals);
+    $gd_model->update_totals ($week, $totals);
+    write_json ($totals_file, $totals);
+
+    my $date = prompt ('Enter date for backup (yyyymmdd)');
+    $bt_model->do_backup ($date, $expect_data);
+}
+
+my $bt_view = Football::BenchTest::Spreadsheets::BenchTest_View->new ();
+$bt_view->write ($totals);

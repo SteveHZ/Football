@@ -144,34 +144,6 @@ sub calc_goal_diffs {
 	$game->{last_six_goal_diff} = sprintf ("%0.2f", $game->{home_last_six_goal_diff} - $game->{away_last_six_goal_diff} );
 };
 
-=head
-#use File::Copy qw(move);
-#use MyJSON qw(write_json);
-sub write_goal_expect {
-	my ($self, $filename) = @_;
-	my $prev = $self->append_prev ($filename);
-	move $filename, $prev if -e $filename;
-
-	my @list = ();
-	for my $game (@{ $self->{fixtures} }) {
-		push @list, {
-			home_team => $game->{home_team},
-			away_team => $game->{away_team},
-			expected_goal_diff => sprintf ("%0.2f", $game->{expected_goal_diff}),
-			expected_goal_diff_last_six => sprintf ("%0.2f", $game->{expected_goal_diff_last_six}),
-			league => $game->{league},
-		}
-	}
-	write_json ($filename, \@list);
-}
-
-sub append_prev {
-	my ($self, $filename) = @_;
-	$filename =~ s/\.json$/_prev\.json/;
-    return $filename;
-}
-=cut
-
 #	private methods
 
 sub _get_average {

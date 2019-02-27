@@ -4,8 +4,6 @@ use List::MoreUtils qw(true);
 use Moo;
 use namespace::clean;
 
-extends 'Football::Goal_Expect_Model';
-
 has 'keys' => (is =>'ro', builder => '_build_keys');
 
 sub _build_keys {
@@ -44,7 +42,7 @@ sub update_totals {
     }
 }
 
-#   Should all methods below be in  a role ??
+#   Should all methods below be in a role ??
 #   Methods to return count of successful data
 
 sub count_home_away_games {
