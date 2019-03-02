@@ -51,7 +51,7 @@ $view->fixture_list (
 	my $fixtures = $model->get_fixtures ()
 );
 
-my $data = $model->do_fixtures ($fixtures, $homes, $aways, $last_six);
+my $data = $model->do_fixtures ($fixtures);
 $view->fixtures ( $data->{by_league} );
 
 $view->do_recent_goal_difference ( $model->do_recent_goal_difference ($data->{by_league}, $leagues) );

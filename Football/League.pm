@@ -19,6 +19,7 @@ use namespace::clean;
 has 'name' => ( is => 'ro' );
 has 'games' => ( is => 'ro' );
 has 'team_list' => ( is => 'ro' );
+has 'auto_build' => ( is => 'ro', default => 1);	# for backtest.#!/usr/bin/env perl
 
 #	other object data
 has 'teams' => ( is => 'ro', default => sub { {} }, );
@@ -73,11 +74,13 @@ sub build_teams {
 		$self->{teams}->{$team} = Football::Team->new ();
 	}
 
-	for my $game ( @{ $self->{games} } ) {
-		$self->update_teams ($self->{teams}, $game);
-		$self->{table}->update ($game);
+	if ($self->{auto_build}) {
+		for my $game ( @{ $self->{games} } ) {
+			$self->update_teams ($self->{teams}, $game);
+			$self->{table}->update ($game);
+		}
+		$self->{table}->sort_table ();
 	}
-	$self->{table}->sort_table ();
 }
 
 sub update_teams {

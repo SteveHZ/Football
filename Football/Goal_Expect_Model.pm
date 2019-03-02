@@ -42,7 +42,9 @@ sub sort_expect_data {
 sub grep_goal_diffs {
 	my $self = shift;
 	return [
-		grep {
+		sort {
+			abs $b->{home_away_goal_diff} <=> $a->{home_away_goal_diff}
+		} grep {
 			abs $_->{home_away_goal_diff} > 2 or
 			abs $_->{last_six_goal_diff}  > 2
 		} @{ $self->{fixtures} }

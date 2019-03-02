@@ -260,7 +260,7 @@ German Bundesliga,D1
 Italian Serie A,I1
 Spanish La Liga,SP1
 
-#Cup,X
+Cup,X
 The FA,X
 FA Cup,X
 EFL,X

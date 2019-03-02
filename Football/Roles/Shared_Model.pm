@@ -161,10 +161,10 @@ sub do_predict_models {
 }
 
 sub do_fixtures {
-	my ($self, $fixtures, $homes, $aways, $last_six) = @_;
+	my ($self, $fixtures) = @_;
 
 	my $leagues = $self->get_unique_leagues ($fixtures);
-	my $datafunc = $self->get_game_data_func ($homes, $aways, $last_six);
+	my $datafunc = $self->get_game_data_func ();
 	my $fixtures_clone = clone $fixtures;
 	my @fixture_list = ();
 
@@ -186,14 +186,15 @@ sub do_fixtures {
 }
 
 sub get_game_data_func {
-	my ($self, $homes, $aways, $last_six) = @_;
+	my $self = shift;
 	my $stat_size = $default_stats_size * 2;
 
 	return sub {
-		my $game = shift;
+		my ($game, $league) = @_;
+		$league //= @{ $self->{leagues} }[$game->{league_idx}];
+
 		my $home = $game->{home_team};
 		my $away = $game->{away_team};
-		my $league = @{ $self->{leagues} }[$game->{league_idx}];
 
 		$game->{homes} = $league->get_homes ($home);
 		$game->{full_homes} = $league->get_full_homes ($home);
