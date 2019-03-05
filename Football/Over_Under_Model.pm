@@ -4,7 +4,6 @@ package Football::Over_Under_Model;
 #	https://www.online-betting.me.uk/strategies/vincent.php
 #	https://www.online-betting.me.uk/strategies/ben.php
 
-use v5.010; # state
 use Moo;
 use namespace::clean;
 
@@ -59,7 +58,7 @@ sub do_over_under_points {
 
 sub do_ou_points {
 	my ($self, $game) = @_;
-	state $league_array = $self->{leagues};
+	my $league_array = $self->{leagues};
 	my $teams = @$league_array [ $game->{league_idx} ]->teams;
 
 	my $home = $game->{home_team};
@@ -91,67 +90,6 @@ sub do_calcs {
 	my $self = shift;
 	_do_calcs @_;
 }
-
-=head
-sub do_over_under_points {
-	my $self = shift;
-
-	$self->do_ou_points ();
-	return [
-		sort {
-			$b->{points} <=> $a->{points}
-			or $a->{home_team} cmp $b->{home_team}
-		} @$points
-	];
-}
-
-sub do_ou_points {
-	my $self = shift;
-
-	my @points = ();
-	my $league_array = $self->{leagues};
-
-	for my $game ( @{ $self->{fixtures} } ) {
-		my $home = $game->{home_team};
-		my $away = $game->{away_team};
-
-		my $teams = @$league_array [ $game->{league_idx} ]->teams;
-		my ($home_results, $home_stats) = $teams->{$home}->get_most_recent (4);
-		my ($away_results, $away_stats) = $teams->{$away}->get_most_recent (4);
-
-		$game->{ou_points} = _do_calcs ([ @$home_stats, @$away_stats ]);
-		push @points, {
-			league => @$league_array [ $game->{league_idx} ]->name,
-			home_team => $home,
-			away_team => $away,
-			points => $game->{ou_points},
-		};
-	}
-	return \@points;
-}
-
-sub _do_calcs {
-	my $stats = shift;
-	my $total = 0;
-
-	for my $game (@$stats) {
-		my ($for, $ag) = split '-', $game->{score};
-		if (($for + $ag) > 2)	 	{ $total += 0.5 }
-		else						{ $total -= 0.5 }
-
-		if ($for > 0 && $ag > 0)	{ $total += 0.75 }
-		else						{ $total -= 0.75 }
-	}
-	return $total;
-}
-
-#	wrapper for testing
-
-sub do_calcs {
-	my $self = shift;
-	_do_calcs @_;
-}
-=cut
 
 =pod
 

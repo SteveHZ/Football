@@ -14,6 +14,7 @@ sub get_result {
         or die "Couldn't prepare statement : ".$self->{dbh}->errstr;
     $sth->execute (@bind);
     my $row = $self->{dbh}->selectrow_hashref($sth);
+    die "Database error : $home v $away" unless $row;
 	return $row->{FTR};
 }
 
@@ -25,6 +26,8 @@ sub get_over_under_result {
         or die "Couldn't prepare statement : ".$self->{dbh}->errstr;
     $sth->execute (@bind);
     my $row = $self->{dbh}->selectrow_hashref($sth);
+    die "Database error : $home v $away" unless $row;
+
     my $goals = $row->{FTHG} + $row->{FTAG};
 	return {
         result => $row->{FTR},

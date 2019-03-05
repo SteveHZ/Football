@@ -28,9 +28,8 @@ my $leagues = $model->build_leagues ($games);
 
 $view->do_teams ($leagues);
 $view->do_table ($leagues);
-
-$view->do_home_table ( $model->do_home_table ($games) );
-$view->do_away_table ( $model->do_away_table ($games) );
+$view->do_home_table ( $leagues );
+$view->do_away_table ( $leagues );
 
 $view->homes (
 	my $homes = $model->do_homes ($leagues)

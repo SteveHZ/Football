@@ -1,3 +1,6 @@
+
+#   backtest.pl 01/03/19
+
 use strict;
 use warnings;
 
@@ -28,10 +31,12 @@ $league->{home_table} = $league->create_new_home_table ();
 $league->{away_table} = $league->create_new_away_table ();
 my $datafunc = $model->get_game_data_func ();
 my $flag = 0;
+my $played = 0;
+my $ha_wins = 0;
 
 for my $game (@$games) {
     $game->{league_idx} = 0;
-#print Dumper $game;
+print Dumper $game unless $flag;
     $league->{homes} = $league->do_homes ($league->teams);
     $league->{aways} = $league->do_aways ($league->teams);
     $league->{last_six} = $league->do_last_six ($league->teams);
@@ -49,22 +54,25 @@ for my $game (@$games) {
 #        $flag = done_six_games ($game, $league);
 #    }
     if ($flag) {
+        $played ++;
 #        do_table ($league);
-#<STDIN>;
-my ($teams, $sorted) = do_predict_models (undef, [$game],[$league]);
+#       <STDIN>;
+        my ($teams, $sorted) = do_predict_models (undef, [$game],[$league]);
 #<STDIN>;
 #print Dumper $teams;
 
 #<STDIN>;
 #print Dumper $sorted->{expect};
-my $expect = @{ $sorted->{expect} }[0];
-print "\n\n$game->{home_team} v $game->{away_team} $game->{home_score} - $game->{away_score}";
-print "\nhome = $expect->{home_goals} away = $expect->{away_goals} diff = $expect->{expected_goal_diff}";
-print "\nsorted = ". @{ $sorted->{expect} }[0]->{home_goals};
+        my $expect = @{ $sorted->{expect} }[0];
+        print "\n\n$game->{home_team} v $game->{away_team} $game->{home_score}-$game->{away_score}";
+        print "\nhome = $expect->{home_goals} away = $expect->{away_goals} diff = $expect->{expected_goal_diff}";
+        $ha_wins ++ if ($expect->{home_score} > $expect->{away_score} && $expect->{expected_goal_diff} > 0 )
+                    or ($expect->{away_score} > $expect->{home_score} && $expect->{expected_goal_diff} < 0 )
 #    print Dumper $league->table;
-    <STDIN>;
+#    <STDIN>;
     }
 }
+print "\n\n$ha_wins wins from $played played";
 
 sub do_predict_models {
 	my ($self, $fixtures, $leagues) = @_;
@@ -88,7 +96,7 @@ sub done_six_games {
     my ($game, $league) = @_;
     for my $team (@{ $league->team_list} ) {
         return 0 unless $league->{table}->played ( $game->{home_team} ) > 6
-                    &&  $league->{table}->played ( $game->{away_team} ) > 6
+                     && $league->{table}->played ( $game->{away_team} ) > 6
     }
     return 1;
 }

@@ -13,15 +13,18 @@ with 'Roles::Spreadsheet';
 
 sub BUILD {
     my $self = shift;
+#    $self->{sheetnames} = [ 'Goal Expects', 'Goal Diffs' ];
     $self->{sheetnames} = [ 'Goal Expects', 'Over Unders', 'Goal Diffs' ];
     $self->{headings} = {
         'Goal Expects'  => ['Home Away', 'Last Six', 'HA Last Six'],
-        'Over Unders'   => ['Home Away', 'Last Six', 'HA Last Six', 'OU Points'],
+        'Over Unders'   => ['Home Away', 'Last Six', 'HA Last Six'],
+#        'Over Unders'   => ['Home Away', 'Last Six', 'HA Last Six', 'OU Points'],
         'Goal Diffs'  => ['Home Away', 'Last Six', 'HA Last Six'],
     };
     $self->{keys} = {
         'Goal Expects'  => [ qw(home_away last_six ha_lsx) ],
-        'Over Unders'   => [ qw(ou_home_away ou_last_six ou_ha_lsx ou_points) ],
+        'Over Unders'   => [ qw(ou_home_away ou_last_six ou_ha_lsx) ],
+#        'Over Unders'   => [ qw(ou_home_away ou_last_six ou_ha_lsx ou_points) ],
         'Goal Diffs'  => [ qw(gd_home_away gd_last_six gd_ha_lsx) ],
     };
     $self->{dispatch} = {

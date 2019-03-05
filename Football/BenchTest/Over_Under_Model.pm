@@ -205,4 +205,54 @@ sub ou_points_wins {
     ];
 }
 
+
+#   Methods for single data items
+
+sub home_away_game {
+    my ($self, $expect, $n) = @_;
+    $n //= 0;
+    return 1 if $expect->{home_away} > $n;
+    return 0;
+}
+
+sub home_away_win {
+    my ($self, $expect, $n) = @_;
+    $n //= 0;
+    return 1 if $expect->{home_away} > $n
+             && $expect->{home_score} + $expect->{away_score} > 2.5;
+    return 0;
+}
+
+sub last_six_game {
+    my ($self, $expect, $n) = @_;
+    $n //= 0;
+    return 1 if $expect->{last_six} > $n;
+    return 0;
+}
+
+sub last_six_win {
+    my ($self, $expect, $n) = @_;
+    $n //= 0;
+    return 1 if $expect->{last_six} > $n
+             && $expect->{home_score} + $expect->{away_score} > 2.5;
+    return 0;
+}
+
+sub ha_lsx_game {
+    my ($self, $expect, $n) = @_;
+    $n //= 0;
+    return 1 if $expect->{home_away} > $n
+             && $expect->{last_six} > $n;
+    return 0;
+}
+
+sub ha_lsx_win {
+    my ($self, $expect, $n) = @_;
+    $n //= 0;
+    return 1 if $expect->{home_away} > $n
+             && $expect->{last_six} > $n
+             && $expect->{home_score} + $expect->{away_score} > 2.5;
+    return 0;
+}
+
 1;

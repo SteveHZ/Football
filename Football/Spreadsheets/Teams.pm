@@ -31,7 +31,6 @@ sub do_teams {
 
 		my $row = 1;
 		if ( my $next = $teams->{$team}->iterator () ) {
-#		my $next = $teams->{$team}->iterator () ) {
 			while (my $list = $next->()) {
 				$worksheet->write ($row, 0, $list->{date}, $self->{format});
 				$worksheet->write ($row, 1, $list->{opponent}, $self->{format});

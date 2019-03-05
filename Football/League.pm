@@ -69,6 +69,8 @@ sub build_teams {
 	my $self = shift;
 
 	$self->{table} = $self->create_new_table ();
+	$self->{home_table} = $self->create_new_home_table ();
+	$self->{away_table} = $self->create_new_away_table ();
 
 	for my $team (@ {$self->{team_list} } ) {
 		$self->{teams}->{$team} = Football::Team->new ();
@@ -77,10 +79,19 @@ sub build_teams {
 	if ($self->{auto_build}) {
 		for my $game ( @{ $self->{games} } ) {
 			$self->update_teams ($self->{teams}, $game);
-			$self->{table}->update ($game);
+			$self->update_tables ($game);
 		}
 		$self->{table}->sort_table ();
+		$self->{home_table}->sort_table ();
+		$self->{away_table}->sort_table ();
 	}
+}
+
+sub update_tables {
+	my ($self, $game) = @_;
+	$self->{table}->update ($game);
+	$self->{home_table}->update ($game);
+	$self->{away_table}->update ($game);
 }
 
 sub update_teams {
@@ -124,30 +135,6 @@ sub update_away {
 		result => $away_result,
 		score => $game->{away_score}.'-'.$game->{home_score}
 	};
-}
-
-sub do_home_table {
-	my ($self, $games) = @_;
-	my $table = $self->create_new_home_table ();
-
-	for my $game (@$games) {
-		$table->update ($game);
-	}
-#	die "No home games played" if $table->check_for_zero_games ();
-	$table->sort_table ();
-	return $table;
-}
-
-sub do_away_table {
-	my ($self, $games) = @_;
-	my $table = $self->create_new_away_table ();
-
-	for my $game (@$games) {
-		$table->update ($game);
-	}
-#	die "No away games played" if $table->check_for_zero_games ();
-	$table->sort_table ();
-	return $table;
 }
 
 sub do_homes {
@@ -254,6 +241,59 @@ sub _get_over_under {
 	return $over;
 }
 
+=head
+sub get_home_table {
+	my $self = shift;
+	return $self->{home_table};
+}
+
+sub get_away_table {
+	my $self = shift;
+	return $self->{away_table};
+}
+
+sub build_teams {
+	my $self = shift;
+
+	$self->{table} = $self->create_new_table ();
+
+	for my $team (@ {$self->{team_list} } ) {
+		$self->{teams}->{$team} = Football::Team->new ();
+	}
+
+	if ($self->{auto_build}) {
+		for my $game ( @{ $self->{games} } ) {
+			$self->update_teams ($self->{teams}, $game);
+			$self->{table}->update ($game);
+		}
+		$self->{table}->sort_table ();
+	}
+}
+
+sub get_home_table {
+	my ($self, $games) = @_;
+	my $table = $self->create_new_home_table ();
+
+	for my $game (@$games) {
+		$table->update ($game);
+	}
+#	die "No home games played" if $table->check_for_zero_games ();
+	$table->sort_table ();
+	return $table;
+}
+
+sub get_away_table {
+	my ($self, $games) = @_;
+	my $table = $self->create_new_away_table ();
+
+	for my $game (@$games) {
+		$table->update ($game);
+	}
+#	die "No away games played" if $table->check_for_zero_games ();
+	$table->sort_table ();
+	return $table;
+}
+=cut
 =pod
 
 =head1 NAME

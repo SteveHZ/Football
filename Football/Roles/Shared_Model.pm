@@ -42,8 +42,8 @@ sub build_data {
 	}
 	my $leagues = $self->build_leagues ($games);
 
-	$self->do_home_table ($games);
-	$self->do_away_table ($games);
+#	$self->do_home_table ($games);
+#	$self->do_away_table ($games);
 
 	return {
 		games => $games,
@@ -69,28 +69,6 @@ sub read_games {
 			$self->read_json ($self->{season_data}) : {};
 	}
 	return $games;
-}
-
-sub do_home_table {
-	my ($self, $games) = @_;
-	my $league_array = $self->{leagues};
-
-	for my $idx (0..$#{ $self->{csv_leagues}} ) {
-		my $league = $self->{league_names}[$idx];
-		@$league_array[$idx]->{home_table} = @$league_array[$idx]->do_home_table ( $games->{$league} );
-	}
-	return $league_array;
-}
-
-sub do_away_table {
-	my ($self, $games) = @_;
-	my $league_array = $self->{leagues};
-
-	for my $idx (0..$#{ $self->{csv_leagues}} ) {
-		my $league = $self->{league_names}[$idx];
-		@$league_array[$idx]->{away_table} = @$league_array[$idx]->do_away_table ( $games->{$league} );
-	}
-	return $league_array;
 }
 
 sub do_homes {
@@ -217,5 +195,28 @@ sub get_game_data_func {
 		$game->{draws} = $game->{home_draws} + $game->{away_draws};
 	};
 }
+=head
+sub do_home_table {
+	my ($self, $games) = @_;
+	my $league_array = $self->{leagues};
+
+	for my $idx (0..$#{ $self->{csv_leagues}} ) {
+		my $league = $self->{league_names}[$idx];
+		@$league_array[$idx]->{home_table} = @$league_array[$idx]->do_home_table ( $games->{$league} );
+	}
+	return $league_array;
+}
+
+sub do_away_table {
+	my ($self, $games) = @_;
+	my $league_array = $self->{leagues};
+
+	for my $idx (0..$#{ $self->{csv_leagues}} ) {
+		my $league = $self->{league_names}[$idx];
+		@$league_array[$idx]->{away_table} = @$league_array[$idx]->do_away_table ( $games->{$league} );
+	}
+	return $league_array;
+}
+=cut
 
 1;

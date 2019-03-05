@@ -1,5 +1,5 @@
 package Football::Goal_Expect_Model;
-
+use Data::Dumper;
 use Moo;
 use namespace::clean;
 
@@ -11,7 +11,7 @@ sub calc_goal_expects {
 	my $teams = {};
 
 	for my $league (@{ $self->{leagues} }) {
-		my $league_name = $league->{title};
+		my $league_name = $league->{name};
 		$league->{av_home_goals} = 1;
 		$league->{av_away_goals} = 1;
 

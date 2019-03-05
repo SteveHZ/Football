@@ -279,7 +279,7 @@ Group,X
 Round,X
 Highland League,X
 Lowland League,X
-Russian,X
+Russian Premier League,X
 Swiss,X
 French,X
 Belgian,X

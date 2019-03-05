@@ -199,4 +199,55 @@ sub ha_lsx_lost {
     ];
 }
 
+#   Methods for single data items
+
+sub home_away_game {
+    my ($self, $expect, $n) = @_;
+    $n //= 0;
+    return 1 if abs ( $expect->{home_away_goal_diff} ) > $n;
+    return 0;
+}
+
+sub home_away_win {
+    my ($self, $expect, $n) = @_;
+    $n //= 0;
+    return 1 if ($expect->{home_score} > $expect->{away_score} && $expect->{home_away_goal_diff} > $n )
+             or ($expect->{away_score} > $expect->{home_score} && $expect->{home_away_goal_diff} < ($n * -1));
+    return 0;
+}
+
+sub last_six_game {
+    my ($self, $expect, $n) = @_;
+    $n //= 0;
+    return 1 if abs( $expect->{last_six_goal_diff} ) > $n;
+    return 0;
+}
+
+sub last_six_win {
+    my ($self, $expect, $n) = @_;
+    $n //= 0;
+    return 1 if ($expect->{home_score} > $expect->{away_score} && $expect->{last_six_goal_diff} > $n )
+    or ($expect->{away_score} > $expect->{home_score} && $expect->{last_six_goal_diff} < ($n * -1) );
+    return 0;
+}
+
+sub ha_lsx_game {
+    my ($self, $expect, $n) = @_;
+    $n //= 0;
+    return 1 if abs ( $expect->{home_away_goal_diff} ) > $n
+             && abs ( $expect->{last_six_goal_diff} ) > $n;
+    return 0;
+}
+
+sub ha_lsx_win {
+    my ($self, $expect, $n) = @_;
+    $n //= 0;
+    return 1 if (($expect->{home_score} > $expect->{away_score} && $expect->{home_away_goal_diff} > $n )
+             or ($expect->{away_score} > $expect->{home_score} && $expect->{home_away_goal_diff} < ($n * -1) ))
+        &&
+            (($expect->{home_score} > $expect->{away_score} && $expect->{last_six_goal_diff} > $n )
+             or ($expect->{away_score} > $expect->{home_score} && $expect->{last_six_goal_diff} < ($n * -1) ));
+    return 0;
+}
+
 1;

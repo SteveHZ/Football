@@ -24,7 +24,6 @@ use Moo;
 use namespace::clean;
 
 # pre-declare these to use Shared_Model role
-#has 'model_name' => ( is => 'ro' ); # not used here but required for roles
 has 'leagues' => ( is => 'ro' );
 has 'league_names' => ( is => 'ro', default => sub { \@league_names } );
 has 'csv_leagues' => ( is => 'ro', default => sub { \@csv_leagues } );
@@ -32,7 +31,6 @@ has 'test_season_data' => ( is => 'ro' );
 
 # pre-declare these to use Football_IO role
 has 'path' => ( is => 'ro' );
-#has 'fixtures' => ( is => 'ro' );
 has 'fixtures_file' => ( is => 'rw' );
 has 'season_data' => ( is => 'ro' );
 has 'test_fixtures_file' => ( is => 'ro' );
