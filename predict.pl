@@ -59,7 +59,7 @@ $view->do_league_places ( $model->do_league_places ($data->{by_league}, $leagues
 $view->do_head2head ( $model->do_head2head ($data->{by_league} ) );
 $view->do_recent_draws ( $model->do_recent_draws ($data->{by_league} ) );
 
-my ($teams, $sorted) = $model->do_predict_models ($data->{by_match}, $leagues);
+my ($teams, $sorted) = $model->do_predict_models ($data->{by_match}, $leagues, $options->{update});
 $view->do_predict_models ($leagues, $teams, $sorted);
 
 

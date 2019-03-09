@@ -5,14 +5,19 @@ use Moo;
 use namespace::clean;
 
 has 'keys' => (is =>'ro', builder => '_build_keys');
+has 'range' => (is =>'ro', builder => '_build_range');
 
 sub _build_keys {
     return [ qw(ou_home_away ou_last_six ou_ha_lsx ou_points) ];
 }
 
+sub _build_range {
+    return [ 0.5,0.6,0.7,0.8,0.9,1 ];
+}
+
 sub get_results {
     my ($self, $week, $expect_data) = @_;
-    for (my $i = 0.5; $i <= 1; $i += 0.1) {
+    for my $i (@{ $self->{range} }) {
         $week->{ou_home_away}->{$i} = {
             wins => $self->count_home_away_wins ($expect_data, $i),
             from => $self->count_home_away_games ($expect_data, $i),
@@ -42,7 +47,7 @@ sub update_totals {
     my $keys = $self->keys;
 
     for my $key (@$keys) {
-        for (my $i = 0.5; $i <= 1; $i += 0.1) {
+        for my $i (@{ $self->{range} }) {
             if ($key eq 'ou_points') {
                 my $j = $i * 10;
                 $totals->{$key}->{$j}->{wins} += $week->{$key}->{$j}->{wins};

@@ -81,9 +81,7 @@ sub build_teams {
 			$self->update_teams ($self->{teams}, $game);
 			$self->update_tables ($game);
 		}
-		$self->{table}->sort_table ();
-		$self->{home_table}->sort_table ();
-		$self->{away_table}->sort_table ();
+		$self->sort_tables ();
 	}
 }
 
@@ -92,6 +90,13 @@ sub update_tables {
 	$self->{table}->update ($game);
 	$self->{home_table}->update ($game);
 	$self->{away_table}->update ($game);
+}
+
+sub sort_tables {
+	my $self = shift;
+	$self->{table}->sort_table ();
+	$self->{home_table}->sort_table ();
+	$self->{away_table}->sort_table ();
 }
 
 sub update_teams {

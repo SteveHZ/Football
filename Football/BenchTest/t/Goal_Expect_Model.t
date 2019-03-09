@@ -2,10 +2,11 @@
 
 use strict;
 use warnings;
-use List::MoreUtils qw(pairwise);
-use Data::Dumper;
+use List::MoreUtils qw(pairwise true);
+#use Data::Dumper;
 use Test::More tests => 1;
 
+=head
 use MyJSON qw (read_json);
 use Football::BenchTest::Goal_Expect_Model;
 use Football::BenchTest::BenchTest_Model;
@@ -54,3 +55,26 @@ for my $game (@$ha_wins) {
 #subtest 'get_result' => sub {
 #
 #}
+=cut
+subtest 'abs' => sub {
+    my $data = [-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8];
+    for my $i (3..6) {
+        my $result1 = count_home_away_games ($data,$i);
+        my $result2 = count_home_away_games2 ($data,$i);
+        is ($result1,$result2,"ok $i = $result1 and $result2");
+    }
+};
+
+sub count_home_away_games {
+    my ($data, $n) = @_;
+    return true {
+        $_ > $n
+        or $_ < ($n * -1)
+    } @$data;
+}
+sub count_home_away_games2 {
+    my ($data, $n) = @_;
+    return true {
+        abs $_ > $n
+    } @$data;
+}

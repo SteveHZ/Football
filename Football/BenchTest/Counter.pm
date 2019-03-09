@@ -3,37 +3,50 @@ package Football::BenchTest::Counter;
 use Football::BenchTest::Goal_Expect_Model;
 use Football::BenchTest::Over_Under_Model;
 use Football::BenchTest::Goal_Diffs_Model;
+use Data::Dumper;
+
 use Moo;
 use namespace::clean;
 
 sub BUILD {
     my $self = shift;
-    my @keys = ( qw(
-        home_away last_six ha_lsx
-        gd_home_away gd_last_six gd_ha_lsx
-    ));
-    my @range = (0,0.5,1,1.5,2,2.5,3);
-    for my $i (@range) {
-        for my $key (@keys) {
-            $self->{$key}->{$i} = { wins => 0, from => 0, };
-        }
-    }
 
-    my @ou_keys = ( qw(ou_home_away ou_last_six ou_ha_lsx));
-    my @ou_rane = (0.5,0.6,0.7,0.8,0.9,1);
-    for my $i (@ou_range) {
-        for my $key (@ou_keys) {
-            $self->{$key}->{$i} = { wins => 0, from => 0, };
-        }
-    }
     $self->{expect_model} = Football::BenchTest::Goal_Expect_Model->new ();
     $self->{ou_model} = Football::BenchTest::Over_Under_Model->new();
     $self->{gd_model} = Football::BenchTest::Goal_Diffs_Model->new();
+    $self->{models} = [ values %$self ];
+
+    for my $model (@{ $self->{models} }) {
+        for my $key (@{ $model->keys }) {
+            for my $i (@{ $model->range }) {
+                $self->{$key}->{$i} = { wins => 0, from => 0, };
+            }
+        }
+    }
+#print Dumper $self->{models};<STDIN>;
 }
 
+sub do_counts {
+    my ($self, $data) = @_;
+
+    for my $model (@{ $self->{models} }) {
+        my @keys = @{ $model->keys };
+        for my $n (@{ $model->range }) {
+            $self->{ $keys [0] }->{$n}->{from} ++ if $model->home_away_game ($data, $n);
+            $self->{ $keys [0] }->{$n}->{wins} ++ if $model->home_away_win ($data, $n);
+            $self->{ $keys [1] }->{$n}->{from} ++ if $model->last_six_game ($data, $n);
+            $self->{ $keys [1] }->{$n}->{wins} ++ if $model->last_six_win ($data, $n);
+            $self->{ $keys [2] }->{$n}->{from} ++ if $model->ha_lsx_game ($data, $n);
+            $self->{ $keys [2] }->{$n}->{wins} ++ if $model->ha_lsx_win ($data, $n);
+        }
+    }
+}
+
+=head
 sub do_count {
     my ($self, $data, $n) = @_;
 
+# can all this be done simpler with a dispatch table ??
     $self->{home_away}->{$n}->{from} ++ if $self->{expect_model}->home_away_game ($data, $n);
     $self->{home_away}->{$n}->{wins} ++ if $self->{expect_model}->home_away_win ($data, $n);
     $self->{last_six}->{$n}->{from} ++ if $self->{expect_model}->last_six_game ($data, $n);
@@ -59,6 +72,7 @@ sub do_over_under {
     $self->{ou_ha_lsx}->{$n}->{from} ++ if $self->{ou_model}->ha_lsx_game ($data, $n);
     $self->{ou_ha_lsx}->{$n}->{wins} ++ if $self->{ou_model}->ha_lsx_win ($data, $n);
 }
+=cut
 
 #   Hash accessors
 

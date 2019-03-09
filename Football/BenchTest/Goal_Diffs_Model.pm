@@ -5,14 +5,19 @@ use Moo;
 use namespace::clean;
 
 has 'keys' => (is =>'ro', builder => '_build_keys');
+has 'range' => (is =>'ro', builder => '_build_range');
 
 sub _build_keys {
     return [ qw(gd_home_away gd_last_six gd_ha_lsx) ];
 }
 
+sub _build_range {
+    return [ 0,0.5,1,1.5,2,2.5,3 ];
+}
+
 sub get_results {
     my ($self, $week, $expect_data) = @_;
-    for (my $i = 0; $i <= 3; $i += 0.5) {
+    for my $i (@{ $self->{range} }) {
         $week->{gd_home_away}->{$i} = {
             wins => $self->count_home_away_wins ($expect_data, $i),
             from => $self->count_home_away_games ($expect_data, $i),
@@ -35,22 +40,22 @@ sub update_totals {
     my ($self, $week, $totals) = @_;
     my $keys = $self->keys;
     for my $key (@$keys) {
-        for (my $i = 0; $i <=3; $i+=0.5) {
+        for my $i (@{ $self->{range} }) {
             $totals->{$key}->{$i}->{wins} += $week->{$key}->{$i}->{wins};
             $totals->{$key}->{$i}->{from} += $week->{$key}->{$i}->{from};
         }
     }
 }
 
-#   Should all methods below be in  a role ??
 #   Methods to return count of successful data
 
 sub count_home_away_games {
     my ($self, $data, $n) = @_;
     $n //= 0;
     return true {
-        $_->{home_away_goal_diff} > $n
-        or $_->{home_away_goal_diff} < ($n * -1)
+        abs $_->{home_away_goal_diff} > $n
+#        $_->{home_away_goal_diff} > $n
+#        or $_->{home_away_goal_diff} < ($n * -1)
     } @$data;
 }
 
@@ -67,8 +72,9 @@ sub count_last_six_games {
     my ($self, $data, $n) = @_;
     $n //= 0;
     return true {
-        $_->{last_six_goal_diff} > $n
-        or $_->{last_six_goal_diff} < ($n * -1)
+        abs $_->{last_six_goal_diff} > $n
+#        $_->{last_six_goal_diff} > $n
+#        or $_->{last_six_goal_diff} < ($n * -1)
     } @$data;
 }
 
@@ -102,18 +108,6 @@ sub count_ha_lsx_wins {
     } @$data;
 }
 
-sub count_ha_lsx_lost {
-    my ($self, $data, $n) = @_;
-    $n //= 0;
-    return true {
-        (( $_->{home_away_goal_diff} < ($n * -1) && $_->{result} eq 'H' )
-        or ( $_->{home_away_goal_diff} > $n && $_->{result} eq 'A'))
-    &&
-        (( $_->{last_six_goal_diff} < ($n * -1) && $_->{result} eq 'H' )
-        or ( $_->{last_six_goal_diff} > $n && $_->{result} eq 'A'))
-    } @$data;
-}
-
 #   Methods to return arrayrefs of successful data
 
 sub home_away_games {
@@ -121,8 +115,9 @@ sub home_away_games {
     $n //= 0;
     return [
         grep {
-            $_->{home_away_goal_diff} > $n
-            or $_->{home_away_goal_diff} < ($n * -1)
+            abs $_->{home_away_goal_diff} > $n
+#            $_->{home_away_goal_diff} > $n
+#            or $_->{home_away_goal_diff} < ($n * -1)
         } @$data
     ];
 }
@@ -143,8 +138,9 @@ sub last_six_games {
     $n //= 0;
     return [
         grep {
-            $_->{last_six_goal_diff} > $n
-            or $_->{last_six_goal_diff} < ($n * -1)
+            abs $_->{last_six_goal_diff} > $n
+#            $_->{last_six_goal_diff} > $n
+#            or $_->{last_six_goal_diff} < ($n * -1)
         } @$data
     ];
 }
@@ -181,20 +177,6 @@ sub ha_lsx_wins {
         &&
             (( $_->{last_six_goal_diff} > $n && $_->{result} eq 'H' )
             or ( $_->{last_six_goal_diff} < ($n * -1) && $_->{result} eq 'A'))
-        } @$data
-    ];
-}
-
-sub ha_lsx_lost {
-    my ($self, $data, $n) = @_;
-    $n //= 0;
-    return [
-        grep {
-            (( $_->{home_away_goal_diff} < ($n * -1) && $_->{result} eq 'H' )
-            or ( $_->{home_away_goal_diff} > $n && $_->{result} eq 'A'))
-        &&
-            (( $_->{last_six_goal_diff} < ($n * -1) && $_->{result} eq 'H' )
-            or ( $_->{last_six_goal_diff} > $n && $_->{result} eq 'A'))
         } @$data
     ];
 }

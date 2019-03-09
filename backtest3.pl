@@ -1,5 +1,5 @@
 
-#   backtest.pl 01-05/03/19
+#   backtest.pl 01-09/03/19
 
 use strict;
 use warnings;
@@ -56,14 +56,7 @@ print "\nReading $league_name...";
             my ($teams, $sorted) = do_predict_models ( [$game], [$league] );
 
             my $data = @{ $sorted->{expect} }[0];
-#            print "\nhome = $data->{home_goals} away = $data->{away_goals} diff = $data->{expected_goal_diff}\n";
-
-            for (my $i = 0; $i <= 3; $i += 0.5) {
-                $counter->do_count ($data, $i);
-            }
-            for (my $i = 0.5; $i <= 1; $i += 0.1) {
-                $counter->do_over_under ($data, $i);
-            }
+            $counter->do_counts ($data);
         }
     }
 }
