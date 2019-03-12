@@ -1,9 +1,13 @@
 package Football::BenchTest::Counter;
 
 use Football::BenchTest::Goal_Expect_Model;
-use Football::BenchTest::Over_Under_Model;
 use Football::BenchTest::Goal_Diffs_Model;
+use Football::BenchTest::Over_Under_Model;
+use Football::BenchTest::OU_Points_Model;
 use Data::Dumper;
+
+#has 'ou_pts' => (is => 'ro');
+#has 'test_data' => (is => 'ro', default => sub {[]});
 
 use Moo;
 use namespace::clean;
@@ -12,8 +16,9 @@ sub BUILD {
     my $self = shift;
 
     $self->{expect_model} = Football::BenchTest::Goal_Expect_Model->new ();
-    $self->{ou_model} = Football::BenchTest::Over_Under_Model->new();
     $self->{gd_model} = Football::BenchTest::Goal_Diffs_Model->new();
+    $self->{ou_model} = Football::BenchTest::Over_Under_Model->new();
+    $self->{ou_pts_model} = Football::BenchTest::OU_Points_Model->new();
     $self->{models} = [ values %$self ];
 
     for my $model (@{ $self->{models} }) {
@@ -23,7 +28,6 @@ sub BUILD {
             }
         }
     }
-#print Dumper $self->{models};<STDIN>;
 }
 
 sub do_counts {
@@ -31,6 +35,7 @@ sub do_counts {
 
     for my $model (@{ $self->{models} }) {
         my @keys = @{ $model->keys };
+        next if $keys[0] eq 'ou_points';
         for my $n (@{ $model->range }) {
             $self->{ $keys [0] }->{$n}->{from} ++ if $model->home_away_game ($data, $n);
             $self->{ $keys [0] }->{$n}->{wins} ++ if $model->home_away_win ($data, $n);
@@ -40,6 +45,11 @@ sub do_counts {
             $self->{ $keys [2] }->{$n}->{wins} ++ if $model->ha_lsx_win ($data, $n);
         }
     }
+    for my $n (@{ $self->{ou_pts_model}->range }) {
+        $self->{ou_points}->{$n}->{from} ++ if $self->{ou_pts_model}->ou_points_game ($data, $n);
+        $self->{ou_points}->{$n}->{wins} ++ if $self->{ou_pts_model}->ou_points_win ($data, $n);
+    }
+#push @test_
 }
 
 =head
@@ -134,6 +144,16 @@ sub ou_ha_lsx_wins {
 sub ou_ha_lsx_games {
     my ($self, $n) = @_;
     return $self->{ou_ha_lsx}->{$n}->{from};
+}
+
+sub ou_points_wins {
+    my ($self, $n) = @_;
+    return $self->{ou_points}->{$n}->{wins};
+}
+
+sub ou_points_games {
+    my ($self, $n) = @_;
+    return $self->{ou_points}->{$n}->{from};
 }
 
 sub gd_home_away_wins {

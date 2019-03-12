@@ -15,6 +15,7 @@ sub _build_range {
     return [ 0,0.5,1,1.5,2,2.5,3 ];
 }
 
+=head
 sub get_results {
     my ($self, $week, $expect_data) = @_;
     for my $i (@{ $self->{range} }) {
@@ -38,15 +39,15 @@ sub get_results {
 
 sub update_totals {
     my ($self, $week, $totals) = @_;
-    my $keys = $self->keys;
-    for my $key (@$keys) {
+
+    for my $key (@{ $self->keys }) {
         for my $i (@{ $self->{range} }) {
             $totals->{$key}->{$i}->{wins} += $week->{$key}->{$i}->{wins};
             $totals->{$key}->{$i}->{from} += $week->{$key}->{$i}->{from};
         }
     }
 }
-
+=cut
 #   Should all methods below be in a role ??
 #   Methods to return count of successful data
 
@@ -55,8 +56,6 @@ sub count_home_away_games {
     $n //= 0;
     return true {
         abs $_->{expected_goal_diff} > $n
-#        $_->{expected_goal_diff} > $n
-#        or $_->{expected_goal_diff} < ($n * -1)
     } @$data;
 }
 
@@ -74,8 +73,6 @@ sub count_last_six_games {
     $n //= 0;
     return true {
         abs $_->{expected_goal_diff_last_six} > $n
-#        $_->{expected_goal_diff_last_six} > $n
-#        or $_->{expected_goal_diff_last_six} < ($n * -1)
     } @$data;
 }
 
@@ -117,8 +114,6 @@ sub home_away_games {
     return [
         grep {
             abs $_->{expected_goal_diff} > $n
-#            $_->{expected_goal_diff} > $n
-#            or $_->{expected_goal_diff} < ($n * -1)
         } @$data
     ];
 }
@@ -140,8 +135,6 @@ sub last_six_games {
     return [
         grep {
             abs $_->{expected_goal_diff_last_six} > $n
-#            $_->{expected_goal_diff_last_six} > $n
-#            or $_->{expected_goal_diff_last_six} < ($n * -1)
         } @$data
     ];
 }

@@ -15,6 +15,7 @@ sub _build_range {
     return [ 0.5,0.6,0.7,0.8,0.9,1 ];
 }
 
+=head
 sub get_results {
     my ($self, $week, $expect_data) = @_;
     for my $i (@{ $self->{range} }) {
@@ -44,9 +45,8 @@ sub get_results {
 
 sub update_totals {
     my ($self, $week, $totals) = @_;
-    my $keys = $self->keys;
 
-    for my $key (@$keys) {
+    for my $key (@{ $self->keys }) {
         for my $i (@{ $self->{range} }) {
             if ($key eq 'ou_points') {
                 my $j = $i * 10;
@@ -59,6 +59,7 @@ sub update_totals {
         }
     }
 }
+=cut
 
 sub count_home_away_games {
     my ($self, $data, $n) = @_;
@@ -210,53 +211,52 @@ sub ou_points_wins {
     ];
 }
 
-
 #   Methods for single data items
 
 sub home_away_game {
-    my ($self, $expect, $n) = @_;
+    my ($self, $data, $n) = @_;
     $n //= 0;
-    return 1 if $expect->{home_away} > $n;
+    return 1 if $data->{home_away} > $n;
     return 0;
 }
 
 sub home_away_win {
-    my ($self, $expect, $n) = @_;
+    my ($self, $data, $n) = @_;
     $n //= 0;
-    return 1 if $expect->{home_away} > $n
-             && $expect->{home_score} + $expect->{away_score} > 2.5;
+    return 1 if $data->{home_away} > $n
+             && $data->{home_score} + $data->{away_score} > 2.5;
     return 0;
 }
 
 sub last_six_game {
-    my ($self, $expect, $n) = @_;
+    my ($self, $data, $n) = @_;
     $n //= 0;
-    return 1 if $expect->{last_six} > $n;
+    return 1 if $data->{last_six} > $n;
     return 0;
 }
 
 sub last_six_win {
-    my ($self, $expect, $n) = @_;
+    my ($self, $data, $n) = @_;
     $n //= 0;
-    return 1 if $expect->{last_six} > $n
-             && $expect->{home_score} + $expect->{away_score} > 2.5;
+    return 1 if $data->{last_six} > $n
+             && $data->{home_score} + $data->{away_score} > 2.5;
     return 0;
 }
 
 sub ha_lsx_game {
-    my ($self, $expect, $n) = @_;
+    my ($self, $data, $n) = @_;
     $n //= 0;
-    return 1 if $expect->{home_away} > $n
-             && $expect->{last_six} > $n;
+    return 1 if $data->{home_away} > $n
+             && $data->{last_six} > $n;
     return 0;
 }
 
 sub ha_lsx_win {
-    my ($self, $expect, $n) = @_;
+    my ($self, $data, $n) = @_;
     $n //= 0;
-    return 1 if $expect->{home_away} > $n
-             && $expect->{last_six} > $n
-             && $expect->{home_score} + $expect->{away_score} > 2.5;
+    return 1 if $data->{home_away} > $n
+             && $data->{last_six} > $n
+             && $data->{home_score} + $data->{away_score} > 2.5;
     return 0;
 }
 
