@@ -1,19 +1,96 @@
 package Football::BenchTest::Goal_Expect_Model;
 
+use Football::BenchTest::Counter;
 use List::MoreUtils qw(true);
 use Moo;
 use namespace::clean;
 
-has 'keys' => (is =>'ro', builder => '_build_keys');
-has 'range' => (is =>'ro', builder => '_build_range');
+#these should be in a base class
+has 'keys' => (is =>'ro');
+has 'headings' => ( is => 'ro');
+has 'range' => (is =>'ro');
+has 'counter' => (is => 'ro');
+has 'dispatch' => (is => 'ro', builder => '_build_dispatch');
+has 'sheetname' => (is => 'ro', default => 'Goal Expects');
 
-sub _build_keys {
-    return [ qw(home_away last_six ha_lsx) ];
+sub BUILD {
+    my $self = shift;
+    $self->{keys} = [ qw(home_away last_six ha_lsx) ];
+    $self->{headings} = ['Home Away', 'Last Six', 'HA Last Six'];
+    $self->{range} = [ 0,0.5,1,1.5,2,2.5,3 ];
+    $self->{counter} = Football::BenchTest::Counter->new (model => $self);
 }
 
-sub _build_range {
-    return [ 0,0.5,1,1.5,2,2.5,3 ];
+sub _build_dispatch {
+    my $self = shift;
+    $self->{dispatch} = {
+        home_away => {
+            from => \&Football::BenchTest::Goal_Expect_Model::home_away_game,
+            wins => \&Football::BenchTest::Goal_Expect_Model::home_away_win,
+        },
+        last_six => {
+            from => \&Football::BenchTest::Goal_Expect_Model::last_six_game,
+            wins => \&Football::BenchTest::Goal_Expect_Model::last_six_win,
+        },
+        ha_lsx => {
+            from => \&Football::BenchTest::Goal_Expect_Model::ha_lsx_game,
+            wins => \&Football::BenchTest::Goal_Expect_Model::ha_lsx_win,
+        },
+    };
 }
+
+#   Methods for single data items
+
+sub home_away_game {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return 1 if abs $data->{expected_goal_diff} > $n;
+    return 0;
+}
+
+sub home_away_win {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return 1 if ($data->{home_score} > $data->{away_score} && $data->{expected_goal_diff} > $n )
+             or ($data->{away_score} > $data->{home_score} && $data->{expected_goal_diff} < ($n * -1));
+    return 0;
+}
+
+sub last_six_game {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return 1 if abs $data->{expected_goal_diff_last_six} > $n;
+    return 0;
+}
+
+sub last_six_win {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return 1 if ($data->{home_score} > $data->{away_score} && $data->{expected_goal_diff_last_six} > $n )
+    or ($data->{away_score} > $data->{home_score} && $data->{expected_goal_diff_last_six} < ($n * -1) );
+    return 0;
+}
+
+sub ha_lsx_game {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return 1 if abs $data->{expected_goal_diff} > $n
+             && abs $data->{expected_goal_diff_last_six} > $n;
+    return 0;
+}
+
+sub ha_lsx_win {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return 1 if (($data->{home_score} > $data->{away_score} && $data->{expected_goal_diff} > $n )
+             or ($data->{away_score} > $data->{home_score} && $data->{expected_goal_diff} < ($n * -1) ))
+        &&
+            (($data->{home_score} > $data->{away_score} && $data->{expected_goal_diff_last_six} > $n )
+             or ($data->{away_score} > $data->{home_score} && $data->{expected_goal_diff_last_six} < ($n * -1) ));
+    return 0;
+}
+
+1;
 
 =head
 sub get_results {
@@ -47,7 +124,6 @@ sub update_totals {
         }
     }
 }
-=cut
 #   Should all methods below be in a role ??
 #   Methods to return count of successful data
 
@@ -175,55 +251,36 @@ sub ha_lsx_wins {
     ];
 }
 
-#   Methods for single data items
+=head
+#these should be in a base class
+has 'keys' => (is =>'ro', builder => '_build_keys');
+has 'range' => (is =>'ro', builder => '_build_range');
+has 'counter' => (is => 'ro', builder => '_build_counter');
+has 'dispatch' => (is => 'ro', builder => '_build_dispatch');
+#has 'funcs' => (is -> 'ro', builder => '_build_funcs', lazy => 1);
+has 'name' => (is => 'ro', default => 'Goal Expect Model');
 
-sub home_away_game {
-    my ($self, $expect, $n) = @_;
-    $n //= 0;
-    return 1 if abs $expect->{expected_goal_diff} > $n;
-    return 0;
+sub _build_keys {
+    return [ qw(home_away last_six ha_lsx) ];
 }
 
-sub home_away_win {
-    my ($self, $expect, $n) = @_;
-    $n //= 0;
-    return 1 if ($expect->{home_score} > $expect->{away_score} && $expect->{expected_goal_diff} > $n )
-             or ($expect->{away_score} > $expect->{home_score} && $expect->{expected_goal_diff} < ($n * -1));
-    return 0;
+sub _build_range {
+    return [ 0,0.5,1,1.5,2,2.5,3 ];
 }
 
-sub last_six_game {
-    my ($self, $expect, $n) = @_;
-    $n //= 0;
-    return 1 if abs $expect->{expected_goal_diff_last_six} > $n;
-    return 0;
-}
+#this should also be in a base class
+#does $self refer to parent or child - think child
+#sub _build_counter {
+#    my $self = shift;
+#print "\nIn build counter";
+#    return Football::BenchTest::Counter->new (model => $self);
+#}
+sub BUILD {
+#}
+#after 'BUILD' => sub {
+    my $self=shift;
+    $self->{counter}=Football::BenchTest::Counter->new (model => $self);
 
-sub last_six_win {
-    my ($self, $expect, $n) = @_;
-    $n //= 0;
-    return 1 if ($expect->{home_score} > $expect->{away_score} && $expect->{expected_goal_diff_last_six} > $n )
-    or ($expect->{away_score} > $expect->{home_score} && $expect->{expected_goal_diff_last_six} < ($n * -1) );
-    return 0;
 }
-
-sub ha_lsx_game {
-    my ($self, $expect, $n) = @_;
-    $n //= 0;
-    return 1 if abs $expect->{expected_goal_diff} > $n
-             && abs $expect->{expected_goal_diff_last_six} > $n;
-    return 0;
-}
-
-sub ha_lsx_win {
-    my ($self, $expect, $n) = @_;
-    $n //= 0;
-    return 1 if (($expect->{home_score} > $expect->{away_score} && $expect->{expected_goal_diff} > $n )
-             or ($expect->{away_score} > $expect->{home_score} && $expect->{expected_goal_diff} < ($n * -1) ))
-        &&
-            (($expect->{home_score} > $expect->{away_score} && $expect->{expected_goal_diff_last_six} > $n )
-             or ($expect->{away_score} > $expect->{home_score} && $expect->{expected_goal_diff_last_six} < ($n * -1) ));
-    return 0;
-}
-
-1;
+#;
+=cut

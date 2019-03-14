@@ -1,5 +1,96 @@
 package Football::BenchTest::Over_Under_Model;
 
+use Football::BenchTest::Counter;
+use List::MoreUtils qw(true);
+use Moo;
+use namespace::clean;
+
+#these should be in a base class
+has 'keys' => (is =>'ro');
+has 'headings' => ( is => 'ro');
+has 'range' => (is =>'ro');
+has 'counter' => (is => 'ro');
+has 'dispatch' => (is => 'ro', builder => '_build_dispatch');
+has 'sheetname' => (is => 'ro', default => 'Over Unders');
+
+sub BUILD {
+    my $self = shift;
+    $self->{keys} = [ qw(ou_home_away ou_last_six ou_ha_lsx) ];
+    $self->{headings} = ['Home Away', 'Last Six', 'HA Last Six'];
+    $self->{range} = [ 0.5,0.6,0.7,0.8,0.9,1 ];
+    $self->{counter} = Football::BenchTest::Counter->new (model => $self);
+}
+
+sub _build_dispatch {
+    my $self = shift;
+    $self->{dispatch} = {
+        ou_home_away => {
+            from => \&Football::BenchTest::Over_Under_Model::home_away_game,
+            wins => \&Football::BenchTest::Over_Under_Model::home_away_win,
+        },
+        ou_last_six => {
+            from => \&Football::BenchTest::Over_Under_Model::last_six_game,
+            wins => \&Football::BenchTest::Over_Under_Model::last_six_win,
+        },
+        ou_ha_lsx => {
+            from => \&Football::BenchTest::Over_Under_Model::ha_lsx_game,
+            wins => \&Football::BenchTest::Over_Under_Model::ha_lsx_win,
+        },
+    };
+}
+
+#   Methods for single data items
+
+sub home_away_game {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return 1 if $data->{home_away} > $n;
+    return 0;
+}
+
+sub home_away_win {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return 1 if $data->{home_away} > $n
+             && $data->{home_score} + $data->{away_score} > 2.5;
+    return 0;
+}
+
+sub last_six_game {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return 1 if $data->{last_six} > $n;
+    return 0;
+}
+
+sub last_six_win {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return 1 if $data->{last_six} > $n
+             && $data->{home_score} + $data->{away_score} > 2.5;
+    return 0;
+}
+
+sub ha_lsx_game {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return 1 if $data->{home_away} > $n
+             && $data->{last_six} > $n;
+    return 0;
+}
+
+sub ha_lsx_win {
+    my ($self, $data, $n) = @_;
+    $n //= 0;
+    return 1 if $data->{home_away} > $n
+             && $data->{last_six} > $n
+             && $data->{home_score} + $data->{away_score} > 2.5;
+    return 0;
+}
+
+1;
+
+=head
 use List::MoreUtils qw(true);
 use Moo;
 use namespace::clean;
@@ -59,7 +150,6 @@ sub update_totals {
         }
     }
 }
-=cut
 
 sub count_home_away_games {
     my ($self, $data, $n) = @_;
@@ -211,53 +301,4 @@ sub ou_points_wins {
     ];
 }
 
-#   Methods for single data items
-
-sub home_away_game {
-    my ($self, $data, $n) = @_;
-    $n //= 0;
-    return 1 if $data->{home_away} > $n;
-    return 0;
-}
-
-sub home_away_win {
-    my ($self, $data, $n) = @_;
-    $n //= 0;
-    return 1 if $data->{home_away} > $n
-             && $data->{home_score} + $data->{away_score} > 2.5;
-    return 0;
-}
-
-sub last_six_game {
-    my ($self, $data, $n) = @_;
-    $n //= 0;
-    return 1 if $data->{last_six} > $n;
-    return 0;
-}
-
-sub last_six_win {
-    my ($self, $data, $n) = @_;
-    $n //= 0;
-    return 1 if $data->{last_six} > $n
-             && $data->{home_score} + $data->{away_score} > 2.5;
-    return 0;
-}
-
-sub ha_lsx_game {
-    my ($self, $data, $n) = @_;
-    $n //= 0;
-    return 1 if $data->{home_away} > $n
-             && $data->{last_six} > $n;
-    return 0;
-}
-
-sub ha_lsx_win {
-    my ($self, $data, $n) = @_;
-    $n //= 0;
-    return 1 if $data->{home_away} > $n
-             && $data->{last_six} > $n
-             && $data->{home_score} + $data->{away_score} > 2.5;
-    return 0;
-}
-
-1;
+=cut
