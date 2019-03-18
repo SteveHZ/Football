@@ -57,6 +57,9 @@ sub get_fixtures {
 	return \@fixtures;
 }
 
+1;
+
+=head
 sub write_predictions {
 	my ($self, $fixtures) = @_;
 	my $prev = $self->append_prev ($self->{predictions_file});
@@ -87,5 +90,4 @@ sub append_prev {
 	$filename =~ s/\.json$/_prev\.json/;
     return $filename;
 }
-
-1;
+=cut

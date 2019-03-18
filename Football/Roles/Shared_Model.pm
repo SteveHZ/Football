@@ -134,7 +134,6 @@ sub do_predict_models {
 	$sorted->{skellam} = $predict_model->calc_skellam_dist ();
 	$sorted->{over_under} = $predict_model->calc_over_under ();
 
-	$self->write_predictions ($fixtures) if $update;
 	return ($teams, $sorted);
 }
 

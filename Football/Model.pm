@@ -34,7 +34,6 @@ has 'path' => ( is => 'ro' );
 has 'fixtures_file' => ( is => 'rw' );
 has 'season_data' => ( is => 'ro' );
 has 'test_fixtures_file' => ( is => 'ro' );
-has 'predictions_file' => (is => 'ro');
 
 with 'Roles::MyJSON',
 'Football::Roles::Shared_Model',
@@ -55,9 +54,6 @@ sub BUILD {
 	$self->{test_teams_file} = $self->{test_path}.'teams.json';
 	$self->{test_season_data} = $self->{test_path}.'season.json';
 	$self->{test_fixtures_file} = $self->{test_path}.'football fixtures.csv';
-
-	$self->{benchtest_path} = $self->{path}.'benchtest/';
-	$self->{predictions_file} = $self->{benchtest_path}.'predictions.json';
 }
 
 sub build_leagues {
