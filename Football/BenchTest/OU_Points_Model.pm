@@ -4,16 +4,9 @@ use Football::BenchTest::Counter;
 use Moo;
 use namespace::clean;
 
-#has 'keys' => (is =>'ro');
-#has 'headings' => ( is => 'ro');
-#has 'range' => (is =>'ro');
+with 'Football::BenchTest::Roles::ModelBase';
 has 'over_range' => (is =>'ro');
 has 'under_range' => (is =>'ro');
-#has 'counter' => (is => 'ro');
-#has 'sheetname' => (is => 'ro', default => 'OU Points');
-#has 'dispatch' => (is => 'ro', builder => '_build_dispatch');
-
-with 'Football::Roles::Counter';
 
 sub BUILD {
     my $self = shift;
@@ -23,7 +16,6 @@ sub BUILD {
     $self->{over_range} = [ 5,6,7,8,9,10 ];
     $self->{under_range} = [ -5,-6,-7,-8,-9,-10 ];
     $self->{sheetname} = 'OU Points';
-##    $self->{counter} = Football::BenchTest::Counter->new (model => $self);
 }
 
 sub _build_dispatch {

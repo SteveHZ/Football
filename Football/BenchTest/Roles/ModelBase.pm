@@ -1,4 +1,4 @@
-package Football::Roles::Counter;
+package Football::BenchTest::Roles::ModelBase;
 
 use Football::BenchTest::Counter;
 use Moo::Role;
@@ -9,9 +9,8 @@ has 'keys' => (is =>'ro');
 has 'headings' => ( is => 'ro');
 has 'range' => (is =>'ro');
 has 'sheetname' => (is => 'ro');
-#has 'dispatch' => (is => 'ro');
 
-requires qw(counter keys headings range sheetname _build_dispatch);
+requires qw(_build_dispatch keys headings range sheetname);
 
 sub BUILD {}
 

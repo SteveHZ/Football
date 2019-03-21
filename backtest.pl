@@ -1,5 +1,5 @@
 
-#   backtest.pl 01-14/03/19
+#   backtest.pl 01-19/03/19
 
 use strict;
 use warnings;
@@ -13,7 +13,6 @@ use Football::BenchTest::Over_Under_Model;
 use Football::BenchTest::OU_Points_Model;
 use Football::BenchTest::Spreadsheets::BenchTest_View;
 use MyJSON qw(read_json);
-#use Data::Dumper;
 
 my $filename = 'C:/Mine/perl/Football/reports/backtest.xlsx';
 my $models = [

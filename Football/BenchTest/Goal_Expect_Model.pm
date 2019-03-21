@@ -4,14 +4,7 @@ use Football::BenchTest::Counter;
 use Moo;
 use namespace::clean;
 
-#has 'keys' => (is =>'ro');
-#has 'headings' => (is => 'ro');
-#has 'range' => (is =>'ro');
-#has 'counter' => (is => 'ro');
-#has 'sheetname' => (is => 'ro', default => 'Goal Expects');
-#has 'dispatch' => (is => 'ro', builder => '_build_dispatch');
-
-with 'Football::Roles::Counter';
+with 'Football::BenchTest::Roles::ModelBase';
 
 sub BUILD {
     my $self = shift;
@@ -19,7 +12,6 @@ sub BUILD {
     $self->{headings} = ['Home Away', 'Last Six', 'HA Last Six'];
     $self->{range} = [ 0,0.5,1,1.5,2,2.5,3 ];
     $self->{sheetname} = 'Goal Expects';
-#    $self->{counter} = Football::BenchTest::Counter->new (model => $self);
 }
 
 sub _build_dispatch {

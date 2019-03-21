@@ -1,5 +1,4 @@
 REM run football scripts 15/10/18
-
 cd c:/mine/perl/football
 
 perl fetch.pl

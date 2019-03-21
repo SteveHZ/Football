@@ -21,8 +21,6 @@ sub do_counts {
         for my $key (@{ $self->model->keys } ) {
             $self->{$key}->{$n}->{wins} ++ if $self->model->do_wins ($key, $data, $n);
             $self->{$key}->{$n}->{from} ++ if $self->model->do_from ($key, $data, $n);
-#           $self->{$key}->{$n}->{wins} ++ if $self->model->dispatch->{$key}->{wins}->($self, $data, $n);
-#           $self->{$key}->{$n}->{from} ++ if $self->model->dispatch->{$key}->{from}->($self, $data, $n);
         }
     }
 }

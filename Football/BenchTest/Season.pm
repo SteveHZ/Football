@@ -8,8 +8,6 @@ use Football::Utils qw(_get_all_teams);
 use MyJSON qw(read_json);
 
 use List::MoreUtils qw(each_arrayref);
-#use Data::Dumper;
-
 use Moo;
 use namespace::clean;
 
@@ -55,7 +53,6 @@ sub run {
                 my $data = $self->func->($self, $game, $league);
                 for my $model (@{ $self->models }) {
                     $model->do_counts ($data);
-#                    $model->counter->do_counts ($data);
                 }
             }
             $league->update_teams ($league->teams, $game);

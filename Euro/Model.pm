@@ -14,19 +14,17 @@ with 'Football::Roles::Football_IO_Role',
 
 sub BUILD {
 	my $self = shift;
+	$self->{model_name} = 'Euro';
 	$self->{leagues} = [];
 	$self->{csv_leagues} = \@euro_csv_lgs;
 	$self->{league_names} = \@euro_lgs;
 	$self->{league_idx} = $self->build_league_idx ($self->{league_names});
 
-	$self->{model_name} = 'Euro';
 	$self->{path} = 'C:/Mine/perl/Football/data/Euro/';
 	$self->{fixtures_file} = $self->{path}.'fixtures.csv';
 	$self->{season_data} = $self->{path}.'season.json';
 	$self->{teams_file} = $self->{path}.'teams.json';
-#	$self->{results_file} = $self->{path}.'results.ods';
 	$self->{test_season_data} = 'C:/Mine/perl/Football/t/test_data/euro_season.json';
-	$self->{predictions_file} = $self->{benchtest_path}.'goal_expect_euro.json';
 }
 
 #	Not implemented by Euro::Model
