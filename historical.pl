@@ -1,5 +1,5 @@
 
-#   backtest.pl 01-23/03/19
+#   historical.pl 23/03/19
 
 use strict;
 use warnings;
@@ -14,7 +14,7 @@ use Football::BenchTest::Over_Under_Model;
 use Football::BenchTest::OU_Points_Model;
 use Football::BenchTest::Spreadsheets::BenchTest_View;
 
-my $filename = 'C:/Mine/perl/Football/reports/backtest.xlsx';
+my $filename = 'C:/Mine/perl/Football/reports/historical.xlsx';
 my $models = [
     Football::BenchTest::Goal_Expect_Model->new (),
     Football::BenchTest::Goal_Diffs_Model->new (),
@@ -25,8 +25,9 @@ my $models = [
 my $file_list = Football::BenchTest::FileList->new (
     leagues     => \@league_names,
     csv_leagues => \@csv_leagues,
+    path        => 'C:/Mine/perl/Football/data/historical',
 );
-my $files = $file_list->get_current ();
+my $files = $file_list->get_historical ();
 
 my $season = Football::BenchTest::Season->new (
     models      => $models,
@@ -43,7 +44,7 @@ $bt_view->write ();
 
 sub do_predict_models {
 	my ($self, $game, $league) = @_;
-    my $predict_model = Football::Game_Prediction_Models->new (
+	my $predict_model = Football::Game_Prediction_Models->new (
         fixtures    => [ $game ],
         leagues     => [ $league ],
     );

@@ -5,17 +5,13 @@ use Football::Football_Data_Model;
 use Football::Game_Prediction_Models;
 use Football::BenchTest::Spreadsheets::BenchTest_View;
 use Football::Utils qw(_get_all_teams);
-use MyJSON qw(read_json);
 
 use List::MoreUtils qw(each_arrayref);
 use Moo;
 use namespace::clean;
 
-has 'models' => (is => 'ro');
-has 'leagues' => (is => 'ro');
-has 'csv_leagues' => (is => 'ro');
-#maybe have a file list passed in instead ??
-has 'path' => (is => 'ro', default => 'C:/Mine/perl/Football/data/');
+has 'models' => (is => 'ro', required => 1);
+has 'files' => (is => 'ro', required => 1);
 has 'func' => (is => 'ro', init_arg => 'callback', required => 1);
 
 sub BUILD {
@@ -26,37 +22,39 @@ sub BUILD {
 
 sub run {
     my $self = shift;
-    my $iterator = each_arrayref ($self->{leagues}, $self->{csv_leagues});
-    while (my ($league_name, $csv_league) = $iterator->()) {
-        print "\nReading $league_name...";
-        my $csv_file = $self->{path}.$csv_league.'.csv';
-        my $games = $self->{data_model}->read_csv ($csv_file);
 
-        my $league = Football::League->new (
-            name		=> $league_name,
-            games 		=> [],
-            team_list	=> _get_all_teams ($games, 'home_team'),
-            auto_build  => 0,
-        );
-        my $datafunc = $self->{football_model}->get_game_data_func ();
-        my $flag = 0;
+    for my $league ( @{ $self->{files} }) {
+        my ($league_name, $file_list) = each %$league;
+        for my $file (@$file_list) {
+            print "\nReading $file->{tag}...";
+            my $games = $self->{data_model}->read_csv ($file->{name});
 
-        for my $game (@$games) {
-            $game->{league_idx} = 0;
-            $league->{homes} = $league->do_homes ($league->teams);
-            $league->{aways} = $league->do_aways ($league->teams);
-            $league->{last_six} = $league->do_last_six ($league->teams);
-            $flag = done_six_games ($game, $league) unless $flag;
+            my $league = Football::League->new (
+                name		=> $league_name,
+                games 		=> [],
+                team_list	=> _get_all_teams ($games, 'home_team'),
+                auto_build  => 0,
+            );
+            my $datafunc = $self->{football_model}->get_game_data_func ();
+            my $flag = 0;
 
-            if ($flag) {
-                $datafunc->($game, $league);
-                my $data = $self->func->($self, $game, $league);
-                for my $model (@{ $self->models }) {
-                    $model->do_counts ($data);
+            for my $game (@$games) {
+                $game->{league_idx} = 0;
+                $league->{homes} = $league->do_homes ($league->teams);
+                $league->{aways} = $league->do_aways ($league->teams);
+                $league->{last_six} = $league->do_last_six ($league->teams);
+                $flag = done_six_games ($game, $league) unless $flag;
+
+                if ($flag) {
+                    $datafunc->($game, $league);
+                    my $data = $self->func->($self, $game, $league);
+                    for my $model (@{ $self->models }) {
+                        $model->do_counts ($data);
+                    }
                 }
+                $league->update_teams ($league->teams, $game);
+                $league->update_tables ($game);
             }
-            $league->update_teams ($league->teams, $game);
-            $league->update_tables ($game);
         }
     }
 }
