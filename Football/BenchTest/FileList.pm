@@ -2,7 +2,6 @@ package Football::BenchTest::FileList;
 
 use List::MoreUtils qw(each_arrayref);
 use File::Find;
-use Data::Dumper;
 
 use Moo;
 use namespace::clean;
@@ -16,12 +15,12 @@ sub get_current {
     my @list = ();
     my $iterator = each_arrayref ($self->{leagues}, $self->{csv_leagues});
     while (my ($league, $csv_league) = $iterator->()) {
-#       create array of hashrefs made up of an arrayref of hashrefs
+#       create array of hashrefs for each league, containing another arrayref of hashrefs
         push @list, {
-            $league => [ {
+            $league => [{
                 tag => $league,
                 name => "$self->{path}/$csv_league.csv",
-            } ]
+            }]
         };
     }
     return \@list;
@@ -61,3 +60,34 @@ sub remove_ext {
 }
 
 1;
+=head
+data structure from get_current
+{
+    'Premier League' => [
+        {
+            'tag' => 'Premier League',
+            'name' => 'C:/Mine/perl/Football/data/E0.csv'
+        }
+    ]
+};
+
+data_structure from get_historical
+
+{
+    'Premier League' => [
+        {
+            'name' => 'C:/Mine/perl/Football/data/historical/Premier League/2015.csv',
+            'tag' => 'Premier League 2015'
+        },
+        {
+            'name' => 'C:/Mine/perl/Football/data/historical/Premier League/2016.csv',
+            'tag' => 'Premier League 2016'
+        },
+        {
+            'name' => 'C:/Mine/perl/Football/data/historical/Premier League/2017.csv',
+            'tag' => 'Premier League 2017'
+        }
+    ]
+};
+
+=cut

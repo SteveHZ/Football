@@ -1,5 +1,5 @@
 
-#   backtest.pl 01-23/03/19
+#   backtest_sqrt.pl 23-26/03/19
 
 use strict;
 use warnings;
@@ -15,7 +15,7 @@ use Football::BenchTest::OU_Points_Model;
 use Football::BenchTest::Spreadsheets::BenchTest_View;
 use Football::BenchTest::Goal_Expect_Override;
 
-my $filename = 'C:/Mine/perl/Football/reports/backtest.xlsx';
+my $filename = 'C:/Mine/perl/Football/reports/backtest_sqrt.xlsx';
 my $models = [
     Football::BenchTest::Goal_Expect_Model->new (),
     Football::BenchTest::Goal_Diffs_Model->new (),
@@ -47,6 +47,8 @@ sub do_predict_models {
     my $predict_model = Football::Game_Prediction_Models->new (
         fixtures    => [ $game ],
         leagues     => [ $league ],
+        model       => Football::BenchTest::Goal_Expect_Override->new ( fixtures => [$game], leagues => [$league] ),
+#        model       => Football::BenchTest::Goal_Expect_Override->new (),
     );
 
 	my ($teams, $sorted) = $predict_model->calc_goal_expect ();

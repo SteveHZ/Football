@@ -6,6 +6,8 @@ use namespace::clean;
 has 'leagues' => (is => 'ro', default => sub { [] });
 has 'fixtures' => (is => 'ro', default => sub { [] } );
 
+#sub BUILD {}
+
 sub calc_goal_expects {
 	my $self = shift;
 	my $teams = {};

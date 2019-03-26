@@ -9,18 +9,42 @@ use Football::Globals qw( $default_stats_size );
 use Moo;
 use namespace::clean;
 
-has 'fixtures' => (is => 'ro', default => sub { [] });
-has 'leagues' => (is => 'ro', default => sub { [] });
+has 'fixtures' => (is => 'ro', default => sub { [] }, required => 1);
+has 'leagues' => (is => 'ro', default => sub { [] }, required => 1);
+has 'model' => (is => 'ro');
+#has 'models' => (is => 'ro');
+
+sub BUILD {}
+after 'BUILD' => sub {
+	my $self = shift;
+
+#=head
+	$self->{model} = Football::Goal_Expect_Model->new (
+		fixtures => $self->{fixtures},
+		leagues => $self->{leagues},
+	) unless defined $self->{model};
+#=cut
+=head
+#	too much to maintain if I could use multiple overriding modules ?
+#	unless model is an array or hash of objects ? (HASH)
+#for my($key.$val) = each($self->{models})
+	if (defined $self->{model}) { # called by benchtesting script
+		$self->{model}->{fixtures} = $self->{fixtures};
+		$self->{model}->{leagues} = $self->{leagues};
+	} else { # called by predict.pl
+		$self->{model} = Football::Goal_Expect_Model->new (
+			fixtures => $self->{fixtures},
+			leagues => $self->{leagues},
+		);
+	}
+=cut
+};
 
 sub calc_goal_expect {
 	my $self = shift;
 	my $sorted = {};
 
-	my $expect = Football::Goal_Expect_Model->new (
-		fixtures => $self->{fixtures},
-		leagues => $self->{leagues},
-	);
-
+	my $expect = $self->{model};
 	my $teams = $expect->calc_goal_expects ();
 
 	for my $game (@{ $self->{fixtures} } ) {

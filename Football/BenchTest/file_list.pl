@@ -11,6 +11,7 @@ my $list = Football::BenchTest::FileList->new (
     leagues     => \@league_names,
     csv_leagues => \@csv_leagues,
 );
+
 my $files = $list->get_current ();
 for my $file (@$files) {
     print Dumper $file;
@@ -22,23 +23,14 @@ my $list2 = Football::BenchTest::FileList->new (
     csv_leagues => \@csv_leagues,
     path => 'C:/Mine/perl/Football/data/historical'
 );
+
 my $files2 = $list2->get_historical ();
 for my $league (@$files2) {
     print Dumper $league;
     <STDIN>;
 }
 
-#my $files = get_current ();
-#my $files = get_historical ();
-#for my $league (@league_names) {
-#    print Dumper $files->{$league};
-#    <STDIN>;
-#}
-
-#my $path = 'C:/Mine/perl/Football';
-#my $files = make_file_list (path => "$path/data", name => 'Zappa');
-#print Dumper $files;
-
+=head
 sub get_current {
     my $list = {};
     my $path = 'C:/Mine/perl/Football/data';
@@ -84,69 +76,4 @@ sub historical_tag {
 sub remove_ext {
     return ( split '\.', $_[0] )[0];
 }
-=head
-my $files = get_current ();
-#my $files = get_historical ();
-for my $league (@league_names) {
-    print Dumper $files->{$league};
-    <STDIN>;
-}
 =cut
-#print Dumper $files;
-
-#    next unless -d $path/$league;
-#    chdir $path.$league;
-#     readdir /grep ?
-
-#    print Dumper $path.$league;
-#    print Dumper [@files];
-#    <STDIN>;
-#}
-#}
-
-#         grep {
-#            $_ =~ /\.csv/
-#        } readdir $path.$league;
-
-=head
-sub make_file_list {
-    my $args = {@_};
-    opendir (my $DIR, $args->{path}) or die "Can't open directory $args->{dir}: $!";
-    my @files = readdir ($DIR);
-    close $DIR;
-    return [ grep { $_ =~ /\.csv$/ } @files ];
-}
-
-#get current {
-#
-#    my $path = 'C:/Mine/perl/Football/data';
-#}
-=cut
-=head
-return [
-    map { {
-        'league_idx' => $_,
-        'league_name' => $leagues{$_},
-    } }
-    sort { $a <=> $b } keys %leagues
-];
-=cut
-=head
-my @t1 = sort {$b cmp $a}@files;
-print Dumper [@t1];
-my $t2=  [map {{
-#$_=>'zap'
-        tag => $league,
-        file => "$str/$_",
-}} @t1];
-print Dumper $t2;
-=cut
-#$list->{$league} = [
-#    map {{
-#        tag => $_,
-#        filec => $_,
-#    }} @t1
-#}
-#;
-
-#print Dumper [@t1];
