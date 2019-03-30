@@ -3,7 +3,7 @@ package Football::BenchTest::Roles::ModelBase;
 use Football::BenchTest::Counter;
 use Moo::Role;
 
-has 'counter' => (is => 'ro', handles => [ qw(do_counts) ]);
+has 'counter' => (is => 'ro', handles => [ qw( do_counts ) ]);
 has 'dispatch' => (is => 'ro', builder => '_build_dispatch');
 has 'keys' => (is =>'ro');
 has 'headings' => ( is => 'ro');

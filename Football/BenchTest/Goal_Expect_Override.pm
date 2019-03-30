@@ -1,16 +1,9 @@
 package Football::BenchTest::Goal_Expect_Override;
 
-#use Data::Dumper;
 use Moo;
 use namespace::clean;
 
 extends 'Football::Goal_Expect_Model';
-
-#after 'BUILD' => sub {
-#    my $self = shift;
-#    $self->{model}->{fixtures} = $self->{fixtures};
-#    $self->{model}->{leagues} = $self->{leagues};
-#};
 
 sub calc_expected_scores {
     my ($self, $teams, $game) = @_;

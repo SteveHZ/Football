@@ -1,12 +1,10 @@
 package Football::Goal_Expect_Model;
-use Data::Dumper;
+
 use Moo;
 use namespace::clean;
 
 has 'leagues' => (is => 'ro', default => sub { [] });
 has 'fixtures' => (is => 'ro', default => sub { [] } );
-
-#sub BUILD {}
 
 sub calc_goal_expects {
 	my $self = shift;

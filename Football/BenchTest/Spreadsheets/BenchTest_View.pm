@@ -9,7 +9,7 @@ use Moo;
 use namespace::clean;
 
 has 'models' => (is => 'ro');
-has 'filename' => (is => 'ro', default => 'C:/Mine/perl/Football/reports/benchtest.xlsx');
+has 'filename' => (is => 'ro', required => 1);
 with 'Roles::Spreadsheet';
 
 sub BUILD {

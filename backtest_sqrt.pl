@@ -1,19 +1,20 @@
 
-#   backtest_sqrt.pl 23-26/03/19
+#   backtest_sqrt.pl 23-28/03/19
 
 use strict;
 use warnings;
 
 use Football::Globals qw(@league_names @csv_leagues);
-use Football::Game_Prediction_Models;
+
 use Football::BenchTest::Season;
 use Football::BenchTest::FileList;
 use Football::BenchTest::Goal_Expect_Model;
 use Football::BenchTest::Goal_Diffs_Model;
 use Football::BenchTest::Over_Under_Model;
 use Football::BenchTest::OU_Points_Model;
-use Football::BenchTest::Spreadsheets::BenchTest_View;
 use Football::BenchTest::Goal_Expect_Override;
+use Football::BenchTest::Adapter::Game_Prediction_Models;
+use Football::BenchTest::Spreadsheets::BenchTest_View;
 
 my $filename = 'C:/Mine/perl/Football/reports/backtest_sqrt.xlsx';
 my $models = [
@@ -44,11 +45,12 @@ $bt_view->write ();
 
 sub do_predict_models {
 	my ($self, $game, $league) = @_;
-    my $predict_model = Football::Game_Prediction_Models->new (
-        fixtures    => [ $game ],
-        leagues     => [ $league ],
-        model       => Football::BenchTest::Goal_Expect_Override->new ( fixtures => [$game], leagues => [$league] ),
-#        model       => Football::BenchTest::Goal_Expect_Override->new (),
+    my $predict_model = Football::BenchTest::Adapter::Game_Prediction_Models->new (
+        game    => $game,
+        league  => $league,
+        models  => {
+           'expect_model' =>   Football::BenchTest::Goal_Expect_Override->new (),
+       },
     );
 
 	my ($teams, $sorted) = $predict_model->calc_goal_expect ();

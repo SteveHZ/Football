@@ -11,42 +11,20 @@ use namespace::clean;
 
 has 'fixtures' => (is => 'ro', default => sub { [] }, required => 1);
 has 'leagues' => (is => 'ro', default => sub { [] }, required => 1);
-has 'model' => (is => 'ro');
-#has 'models' => (is => 'ro');
-
-sub BUILD {}
-after 'BUILD' => sub {
-	my $self = shift;
-
-#=head
-	$self->{model} = Football::Goal_Expect_Model->new (
-		fixtures => $self->{fixtures},
-		leagues => $self->{leagues},
-	) unless defined $self->{model};
-#=cut
-=head
-#	too much to maintain if I could use multiple overriding modules ?
-#	unless model is an array or hash of objects ? (HASH)
-#for my($key.$val) = each($self->{models})
-	if (defined $self->{model}) { # called by benchtesting script
-		$self->{model}->{fixtures} = $self->{fixtures};
-		$self->{model}->{leagues} = $self->{leagues};
-	} else { # called by predict.pl
-		$self->{model} = Football::Goal_Expect_Model->new (
-			fixtures => $self->{fixtures},
-			leagues => $self->{leagues},
-		);
-	}
-=cut
-};
+has 'models' => (is => 'ro', default => sub { {} });
+#	models can be defined by Football::BenchTest::Adapter::Game_Prediction_Models
 
 sub calc_goal_expect {
 	my $self = shift;
 	my $sorted = {};
 
-	my $expect = $self->{model};
-	my $teams = $expect->calc_goal_expects ();
+	$self->{models}->{expect_model} = Football::Goal_Expect_Model->new (
+		fixtures => $self->{fixtures},
+		leagues => $self->{leagues},
+	) unless defined $self->{models}->{expect_model};
+	my $expect = $self->{models}->{expect_model};
 
+	my $teams = $expect->calc_goal_expects ();
 	for my $game (@{ $self->{fixtures} } ) {
 		$expect->calc_expected_scores ($teams, $game);
 		$expect->calc_goal_diffs ($teams, $game);
@@ -63,7 +41,9 @@ sub calc_goal_expect {
 sub calc_match_odds {
 	my $self = shift;
 
-	my $odds = Football::Match_Odds->new ();
+	$self->{models}->{odds_model} = Football::Match_Odds->new ()
+		unless defined $self->{models}->{odds_model};
+	my $odds = $self->{models}->{odds_model};
 
 	for my $game (@{ $self->{fixtures} } ) {
 		$odds->calc ($game->{home_goals}, $game->{away_goals});
@@ -82,7 +62,9 @@ sub calc_match_odds {
 sub calc_skellam_dist {
 	my $self = shift;
 
-	my $skellam = Football::Skellam_Dist_Model->new ();
+	$self->{models}->{skellam_model} = Football::Skellam_Dist_Model->new ()
+		unless defined $self->{models}->{skellam_model};
+	my $skellam = $self->{models}->{skellam_model};
 
 	for my $game (@{ $self->{fixtures} } ) {
 		$game->{skellam} = $skellam->calc ($game->{home_goals}, $game->{away_goals});
@@ -95,10 +77,11 @@ sub calc_over_under {
 	my $stat_size = $default_stats_size * 2;
 
 	my $sorted = {};
-	my $over_under = Football::Over_Under_Model->new (
+	$self->{models}->{over_under_model} = Football::Over_Under_Model->new (
 		fixtures => $self->{fixtures},
 		leagues => $self->{leagues},
-	);
+	) unless defined $self->{models}->{over_under_model};
+	my $over_under = $self->{models}->{over_under_model};
 
 	for my $game (@{ $self->{fixtures} } ) {
 		my $home = $game->{home_team};
