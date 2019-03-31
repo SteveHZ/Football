@@ -29,4 +29,27 @@ sub do_from {
     return $self->dispatch->{$key}->{from}->($self, $data, $n);
 }
 
+=pod
+
+=head1 NAME
+
+Football/BenchTest/Roles/ModelBase.pm
+
+=head1 SYNOPSIS
+
+used by BenchTest Models as base
+
+=head1 DESCRIPTION
+
+=head1 AUTHOR
+
+Steve Hope
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
+
 1;

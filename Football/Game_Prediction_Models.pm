@@ -9,10 +9,10 @@ use Football::Globals qw( $default_stats_size );
 use Moo;
 use namespace::clean;
 
+#	models can be defined by Football::BenchTest::Adapter::Game_Prediction_Models
+has 'models' => (is => 'ro', default => sub { {} });
 has 'fixtures' => (is => 'ro', default => sub { [] }, required => 1);
 has 'leagues' => (is => 'ro', default => sub { [] }, required => 1);
-has 'models' => (is => 'ro', default => sub { {} });
-#	models can be defined by Football::BenchTest::Adapter::Game_Prediction_Models
 
 sub calc_goal_expect {
 	my $self = shift;

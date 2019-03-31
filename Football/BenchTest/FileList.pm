@@ -59,8 +59,20 @@ sub remove_ext {
     return ( split '\.', $_[0] )[0];
 }
 
-1;
-=head
+=pod
+
+=head1 NAME
+
+Football/BenchTest/FileList.pm
+
+=head1 SYNOPSIS
+
+used by backtest.pl
+
+=head1 DESCRIPTION
+
+Creates data structure of file lists as required
+
 data structure from get_current
 {
     'Premier League' => [
@@ -90,4 +102,15 @@ data_structure from get_historical
     ]
 };
 
+=head1 AUTHOR
+
+Steve Hope
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify
+it under the same terms as Perl itself.
+
 =cut
+
+1;

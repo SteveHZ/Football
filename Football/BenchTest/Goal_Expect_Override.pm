@@ -29,4 +29,30 @@ sub calc_expected_scores {
 	$game->{expected_goal_diff_last_six} = $game->{home_last_six} - $game->{away_last_six};
 }
 
+=pod
+
+=head1 NAME
+
+Football/BenchTest/Goal_Expect_Model_Override.pm;
+
+=head1 SYNOPSIS
+
+use Football::BenchTest::Goal_Expect_Override;
+my $model = Football::BenchTest::Goal_Expect_Model_Override->new();
+
+=head1 DESCRIPTION
+
+Used by backtest.pl to override calc_expected_scores method in Goal_Expect_Model.
+
+=head1 AUTHOR
+
+Steve Hope
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
+
 1;

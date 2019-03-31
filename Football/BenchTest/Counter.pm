@@ -40,4 +40,29 @@ sub get_data_from {
     return $self->{$key}->{$n}->{from};
 }
 
+=pod
+
+=head1 NAME
+
+Football/BenchTest/Counter.pm
+
+=head1 SYNOPSIS
+
+used by backtest.pl
+
+=head1 DESCRIPTION
+
+Class to count wins/losses and return results
+
+=head1 AUTHOR
+
+Steve Hope
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
+
 1;

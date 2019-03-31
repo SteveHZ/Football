@@ -39,7 +39,7 @@ our @EXPORT = qw(
 sub new { return bless {}, shift; }
 
 our $season = 2018;
-our $euro_season = $season;
+our $euro_season = 2019;
 
 our $next_season = $season + 1;
 our $season_years = ($season-2000).($next_season-2000);
@@ -97,11 +97,11 @@ our @euro_fetch_lgs = qw( D1 SP1 I1);
 
 # enable TESTING/else blocks to reduce number of leagues used at start/end of season_data
 # while still ensuring test scripts will pass
-TESTING {
+TESTING { # Do not touch these lines
 	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League');
 	our @summer_csv_leagues = qw(ROI MLS SWD NRW FN);
 	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN);
-} else {
+} else { # Amend these lines as needed
 	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League');
 	our @summer_csv_leagues = qw(ROI MLS SWD NRW FN);
 	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN);

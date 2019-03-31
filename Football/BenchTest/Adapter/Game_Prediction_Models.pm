@@ -22,4 +22,41 @@ sub BUILD {
     }
 }
 
+=pod
+
+=head1 NAME
+
+Football/BenchTest/Adapter/Game_Prediction_Models.pm
+
+=head1 SYNOPSIS
+
+Used by backtest.pl to simplify calling the Game_Prediction models module for a single game
+
+=head1 DESCRIPTION
+
+Instead of
+my $predict_model = Football::Game_Prediction_Models->new (
+    fixtures => [ $game ],
+    leagues  => [ $league ],
+);
+
+Much simpler to write
+my $predict_model = Football::BenchTest::Adapter::Game_Prediction_Models->new (
+    game    => $game,
+    league  => $league,
+);
+
+game and league will convert to fixtures => [$game] and leagues => [$league] behinf the scenes
+
+=head1 AUTHOR
+
+Steve Hope
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
+
 1;

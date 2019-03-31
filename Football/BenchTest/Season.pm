@@ -67,4 +67,29 @@ sub done_six_games {
     return 1;
 }
 
+=pod
+
+=head1 NAME
+
+Football/BenchTest/Season.pm
+
+=head1 SYNOPSIS
+
+used by backtest.pl
+
+=head1 DESCRIPTION
+
+Read every line from CSV results file and call callback function on each game
+
+=head1 AUTHOR
+
+Steve Hope
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
+
 1;

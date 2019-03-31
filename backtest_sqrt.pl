@@ -59,3 +59,28 @@ sub do_predict_models {
     my $data = @{ $sorted->{expect} }[0];
     return $data;
 }
+
+=pod
+
+=head1 NAME
+
+Football/backtest_sqrt.pl
+
+=head1 SYNOPSIS
+
+perl backtest.pl
+
+=head1 DESCRIPTION
+
+Stand-alone script to backtest full season data with chosen models
+
+=head1 AUTHOR
+
+Steve Hope
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut

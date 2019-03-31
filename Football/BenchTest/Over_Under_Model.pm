@@ -79,4 +79,29 @@ sub ha_lsx_win {
     return 0;
 }
 
+=pod
+
+=head1 NAME
+
+Football/BenchTest/Over_Under_Model.pm
+
+=head1 SYNOPSIS
+
+used by backtest.pl
+
+=head1 DESCRIPTION
+
+Methods to test validity of results from Over_Under_Model
+
+=head1 AUTHOR
+
+Steve Hope
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
+
 1;

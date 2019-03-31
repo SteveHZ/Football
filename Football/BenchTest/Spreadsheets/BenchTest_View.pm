@@ -8,8 +8,8 @@ use utf8;
 use Moo;
 use namespace::clean;
 
-has 'models' => (is => 'ro');
 has 'filename' => (is => 'ro', required => 1);
+has 'models' => (is => 'ro');
 with 'Roles::Spreadsheet';
 
 sub BUILD {
@@ -88,5 +88,28 @@ sub do_ou_points {
         $$row ++;
     }
 }
+
+=pod
+
+=head1 NAME
+
+Football/BenchTest/Spreadsheets/BenchTest_View.pm
+
+=head1 SYNOPSIS
+
+used by backtest.pl
+
+=head1 DESCRIPTION
+
+=head1 AUTHOR
+
+Steve Hope
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
 
 1;

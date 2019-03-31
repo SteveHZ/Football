@@ -64,4 +64,29 @@ sub ou_unders_win {
     return 0;
 }
 
+=pod
+
+=head1 NAME
+
+Football/BenchTest/OU_Points_Model.pm
+
+=head1 SYNOPSIS
+
+used by backtest.pl
+
+=head1 DESCRIPTION
+
+Methods to test validity of results from OU_Points_Model
+
+=head1 AUTHOR
+
+Steve Hope
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
+
 1;

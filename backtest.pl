@@ -14,6 +14,7 @@ use Football::BenchTest::Over_Under_Model;
 use Football::BenchTest::OU_Points_Model;
 use Football::BenchTest::Spreadsheets::BenchTest_View;
 use Football::BenchTest::Goal_Expect_Override;
+use Football::BenchTest::Adapter::Game_Prediction_Models;
 
 my $filename = 'C:/Mine/perl/Football/reports/backtest.xlsx';
 my $models = [
@@ -44,9 +45,9 @@ $bt_view->write ();
 
 sub do_predict_models {
 	my ($self, $game, $league) = @_;
-    my $predict_model = Football::Game_Prediction_Models->new (
-        fixtures    => [ $game ],
-        leagues     => [ $league ],
+    my $predict_model = Football::BenchTest::Adapter::Game_Prediction_Models->new (
+        game    => $game,
+        league  => $league,
     );
 
 	my ($teams, $sorted) = $predict_model->calc_goal_expect ();
@@ -55,3 +56,28 @@ sub do_predict_models {
     my $data = @{ $sorted->{expect} }[0];
     return $data;
 }
+
+=pod
+
+=head1 NAME
+
+Football/backtest.pl
+
+=head1 SYNOPSIS
+
+perl backtest.pl
+
+=head1 DESCRIPTION
+
+Stand-alone script to backtest full season data with chosen models
+
+=head1 AUTHOR
+
+Steve Hope
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
