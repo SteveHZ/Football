@@ -1,7 +1,12 @@
-#!	C:/Strawberry/perl/bin
+#	create_summer_teams.pl 26/06/16
 
-#	create_euro_teams.pl 26/06/16
+#	Team names to be used within predict.pl
+#	To edit names from Football Data CSV files, use Euro::Rename
+#	To edit names from BBC fixtures files use Football::Fixtures_Globals, Football::Fixtures_Model
+
 #	Irish + USA teams updated 05.02 but need to check against Football Data site
+#	All done except Finnish 03/04
+
 use strict;
 use warnings;
 
@@ -38,9 +43,9 @@ my $leagues = {
 		'Hacken',
 		'Elfsborg',
 		'Sirius',
-		'Dalkurd',
-		'Brommapojkarna',
-		'Trelleborgs',
+		'Falkenbergs',
+		'AFC Eskilstuna',
+		'Helsingborg',
 	],
 	'Norwegian League' => [
 		'Kristiansund',
@@ -55,10 +60,10 @@ my $leagues = {
 		'Odd',
 		'Brann',
 		'Haugesund',
-		'Sandefjord',
 		'Bodo Glimt',
-		'Start',
 		'Ranheim',
+		'Mjondalen',
+		'Viking',
 	],
 	'USA League' => [
 		'Portland Timbers',

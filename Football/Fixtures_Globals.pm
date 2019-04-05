@@ -1,5 +1,8 @@
 package Football::Fixtures_Globals;
 
+#	Creates hash tables to convert team names as scraped from BBC fixture pages
+#	to team names as used within predict.pl (from create_(euro/summer)teams.pl)
+
 use strict;
 use warnings;
 

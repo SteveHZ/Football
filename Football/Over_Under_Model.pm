@@ -91,6 +91,33 @@ sub do_calcs {
 	_do_calcs @_;
 }
 
+sub do_unders {
+	my $self = shift;
+	my @unders = ();
+
+	for my $league ( @{ $self->{leagues} } ) {
+		for my $team ( @{ $league->team_list } ) {
+			my $total = 0;
+			my $games = $league->get_most_recent ($team, 4);
+			for my $game (@$games) {
+				my ($for, $ag) = split '-', $game->{score};
+				$total += ($for + $ag);
+			}
+			push @unders, {
+					league => $league->{name},
+					team => $team,
+					goals => $total,
+			};
+		}
+	}
+	return [
+		sort {
+			$a->{goals} <=> $b->{goals}
+			or $a->{team} cmp $b->{team}
+		} @unders
+	];
+}
+
 =pod
 
 =head1 NAME

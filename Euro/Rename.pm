@@ -31,14 +31,15 @@ our $euro_teams = {
 #	Irish
 	'St. Patricks' => 'St Patricks',
 	'Bray' => 'Bray Wanderers',
+	'UC Dublin' => 'UCD',
 
 #  Swedish
-	'Malmo FF' => 'Malmo',
+	'Malmo FF' => 'Malmo', # FF removed in Fixtures_Model ??
+	'Djurgarden' => 'Djurgardens',
 
 #	Norwegian
 	'Bodo/Glimt' => 'Bodo Glimt',
 	'Sarpsborg 08' => 'Sarpsborg',
-	'Djurgarden' => 'Djurgardens',
 
 #	Finnish
 	'HJK' => 'HJK Helsinki',

@@ -15,8 +15,16 @@ sub BUILD {
 	my $self = shift;
 
 	$self->create_sheet ();
-	$self->{sheet_names} = ['Home and Away', 'Last Six', 'Over Under', 'OU Points'];
-	$self->{sorted_by} = ['ou_home_away', 'ou_last_six', 'ou_odds', 'ou_points'];
+	$self->{sheet_names} = ['Home and Away', 'Last Six', 'Over Under', 'OU Points', 'OU Unders',];
+	$self->{sorted_by} = ['ou_home_away', 'ou_last_six', 'ou_odds', 'ou_points', 'ou_unders'];
+
+	$self->{dispatch} = {
+		ou_home_away	=> sub { my $self = shift; $self->get_over_under_rows (@_) },
+		ou_last_six 	=> sub { my $self = shift; $self->get_over_under_rows (@_) },
+		ou_odds 		=> sub { my $self = shift; $self->get_over_under_rows (@_) },
+		ou_points 		=> sub { my $self = shift; $self->get_over_under_points_rows (@_) },
+		ou_unders 		=> sub { my $self = shift; $self->get_unders_rows (@_) },
+	};
 }
 
 sub create_sheet {
@@ -47,7 +55,7 @@ after 'BUILD' => sub {
 };
 
 sub view {
-	my ($self, $fixtures) = @_;
+	my ($self, $sorted) = @_;
 	my $iterator = each_arrayref ($self->{sheet_names}, $self->{sorted_by});
 
 	while (my ($sheet_name, $sorted_by) = $iterator->() ) {
@@ -55,11 +63,10 @@ sub view {
 		do_over_under_header ($worksheet, $self->{format});
 
 		my $row = 2;
-		for my $game (@{ $fixtures->{$sorted_by} } ) {
+		for my $game (@{ $sorted->{$sorted_by} } ) {
 			$self->blank_columns ( [ qw( 1 3 5 8 10 13 15) ] );
 
-			my $row_data = ($sheet_name eq 'OU Points') ?
-				$self->get_over_under_points_rows ($game) : $self->get_over_under_rows ($game);
+			my $row_data = $self->{dispatch}->{$sorted_by}->($self, $game);
 			$self->write_row ($worksheet, $row, $row_data);
 			$row ++;
 		}
@@ -94,6 +101,15 @@ sub get_over_under_points_rows {
 		{ $game->{away_team} => $self->{format} },
 
 		{ $game->{ou_points} => $self->{float_format} },
+	];
+}
+
+sub get_unders_rows {
+	my ($self, $team) = @_;
+	return [
+		{ $team->{league} => $self->{format} },
+		{ $team->{team} => $self->{format} },
+		{ $team->{goals} => $self->{format} },
 	];
 }
 

@@ -120,6 +120,13 @@ sub get_last_six_goal_diff {
 	return $self->{last_six}->{$team}->{goal_difference};
 }
 
+# Get Most Recent
+
+sub get_most_recent {
+	my ($self, $team, $n) = @_;
+	return $self->{teams}->{$team}->get_most_recent ($n);
+}
+
 # All team data (for form.pl)
 
 sub get_team_home_data {

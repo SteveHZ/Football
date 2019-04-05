@@ -4,7 +4,7 @@ BEGIN { $ENV{PERL_KEYWORD_TESTING} = 1; }
 
 use strict;
 use warnings;
-use Test::More tests => 3;
+use Test::More tests => 4;
 use Data::Dumper;
 
 use lib "C:/Mine/perl/Football";
@@ -34,7 +34,7 @@ subtest 'constructor' => sub {
 
 subtest 'do_calcs' => sub {
 	plan tests => 2;
-	
+
 	my $test_data = read_json ('C:/Mine/perl/Football/t/test data/ou_points data.json');
 	my $burnley = $test_data->{Burnley};
 	my $arsenal = $test_data->{Arsenal};
@@ -59,3 +59,9 @@ subtest 'over under' => sub {
 	is ($game->{away_team}, 'Sheffield Weds', 'away team');
 	is ($game->{ou_points}, 5, 'ou points');
 };
+
+subtest 'unders' => sub {
+	plan tests => 1;
+	is (1,1,'ok');
+	$ou_model->do_unders ();
+}

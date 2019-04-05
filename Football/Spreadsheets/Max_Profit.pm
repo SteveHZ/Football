@@ -24,11 +24,11 @@ sub BUILD {
 	$self->{leagues} = $all_leagues [ $self->{euro} ];
 	$self->{sheetnames} = [ 'totals', 'all homes', 'all aways', 'homes', 'aways' ];
 	$self->{dispatch} = {
-		'totals'	=> \&Football::Spreadsheets::Max_Profit::get_totals,
-		'all homes'	=> \&Football::Spreadsheets::Max_Profit::get_homes,
-		'all aways'	=> \&Football::Spreadsheets::Max_Profit::get_aways,
-		'homes'		=> \&Football::Spreadsheets::Max_Profit::get_homes,
-		'aways'		=> \&Football::Spreadsheets::Max_Profit::get_aways,
+		'totals'	=> sub { my $self = shift; $self->get_totals (@_) },
+		'all homes'	=> sub { my $self = shift; $self->get_homes (@_) },
+		'all aways'	=> sub { my $self = shift; $self->get_aways (@_) },
+		'homes'		=> sub { my $self = shift; $self->get_homes (@_) },
+		'aways'		=> sub { my $self = shift; $self->get_aways (@_) },
 	};
 }
 

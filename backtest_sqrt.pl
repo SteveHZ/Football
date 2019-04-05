@@ -5,7 +5,7 @@ use strict;
 use warnings;
 
 use Football::Globals qw(@league_names @csv_leagues);
-
+use Football::BenchTest::Adapter::Game_Prediction_Models;
 use Football::BenchTest::Season;
 use Football::BenchTest::FileList;
 use Football::BenchTest::Goal_Expect_Model;
@@ -13,7 +13,6 @@ use Football::BenchTest::Goal_Diffs_Model;
 use Football::BenchTest::Over_Under_Model;
 use Football::BenchTest::OU_Points_Model;
 use Football::BenchTest::Goal_Expect_Override;
-use Football::BenchTest::Adapter::Game_Prediction_Models;
 use Football::BenchTest::Spreadsheets::BenchTest_View;
 
 my $filename = 'C:/Mine/perl/Football/reports/backtest_sqrt.xlsx';
@@ -56,8 +55,7 @@ sub do_predict_models {
 	my ($teams, $sorted) = $predict_model->calc_goal_expect ();
     $sorted->{over_under} = $predict_model->calc_over_under ();
 
-    my $data = @{ $sorted->{expect} }[0];
-    return $data;
+    return $predict_model->get_data ($sorted);
 }
 
 =pod

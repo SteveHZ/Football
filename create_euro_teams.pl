@@ -1,6 +1,8 @@
-#!	C:/Strawberry/perl/bin
-
 #	create_euro_teams.pl 26/06/16
+
+#	Team names to be used within predict.pl
+#	To edit names from Football Data CSV files, use Euro::Rename
+#	To edit names from BBC fixtures files use Football::Fixtures_Globals
 
 use strict;
 use warnings;
