@@ -8,7 +8,7 @@ use Football::Fixtures_Globals qw( football_rename rugby_rename );
 my @paths = (
 	{
 		in_file  => 'C:/Mine/perl/Football/data/Euro/scraped/fixtures_week_uk.csv',
-		out_file => 'C:/Mine/perl/Football/data/fixtures_test.csv',
+		out_file => 'C:/Mine/perl/Football/data/fixtures.csv',
 		func 	 => sub { football_rename (@_) },
 	},
 	{
