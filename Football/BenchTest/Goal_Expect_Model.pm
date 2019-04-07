@@ -16,18 +16,19 @@ sub BUILD {
 
 sub _build_dispatch {
     my $self = shift;
+
     $self->{dispatch} = {
         home_away => {
-            from => \&Football::BenchTest::Goal_Expect_Model::home_away_game,
-            wins => \&Football::BenchTest::Goal_Expect_Model::home_away_win,
+            from => sub { my $self = shift; $self->home_away_game (@_) },
+            wins => sub { my $self = shift; $self->home_away_win (@_) },
         },
         last_six => {
-            from => \&Football::BenchTest::Goal_Expect_Model::last_six_game,
-            wins => \&Football::BenchTest::Goal_Expect_Model::last_six_win,
+            from => sub { my $self = shift; $self->last_six_game (@_) },
+            wins => sub { my $self = shift; $self->last_six_win (@_) },
         },
         ha_lsx => {
-            from => \&Football::BenchTest::Goal_Expect_Model::ha_lsx_game,
-            wins => \&Football::BenchTest::Goal_Expect_Model::ha_lsx_win,
+            from => sub { my $self = shift; $self->ha_lsx_game (@_) },
+            wins => sub { my $self = shift; $self->ha_lsx_win (@_) },
         },
     };
 }

@@ -15,10 +15,10 @@ with 'Roles::Spreadsheet';
 sub BUILD {
     my $self = shift;
     $self->{dispatch} = {
-        'Goal Expects'	=> \&Football::BenchTest::Spreadsheets::BenchTest_View::do_expects,
-        'Goal Diffs'	=> \&Football::BenchTest::Spreadsheets::BenchTest_View::do_expects,
-        'Over Unders'	=> \&Football::BenchTest::Spreadsheets::BenchTest_View::do_expects,
-        'OU Points'     => \&Football::BenchTest::Spreadsheets::BenchTest_View::do_ou_points,
+        'Goal Expects'	=> sub { my $self = shift; $self->do_expects (@_) },
+        'Goal Diffs'	=> sub { my $self = shift; $self->do_expects (@_) },
+        'Over Unders'	=> sub { my $self = shift; $self->do_expects (@_) },
+        'OU Points'     => sub { my $self = shift; $self->do_ou_points (@_) },
     };
 }
 

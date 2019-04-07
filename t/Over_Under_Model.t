@@ -10,6 +10,7 @@ use Data::Dumper;
 use lib "C:/Mine/perl/Football";
 use Football::Model;
 use Football::Game_Prediction_Models;
+use Football::Spreadsheets::Over_Under_View;
 use MyJSON qw(read_json);
 
 my $ou_model;
@@ -58,6 +59,10 @@ subtest 'over under' => sub {
 	is ($game->{home_team}, 'Reading', 'home team');
 	is ($game->{away_team}, 'Sheffield Weds', 'away team');
 	is ($game->{ou_points}, 5, 'ou points');
+
+	print "\nWriting spreadsheet..\n";
+	my $view = Football::Spreadsheets::Over_Under_View->new (filename => 'c:/mine/perl/football/t/reports/over_under_test.xlsx');
+	$view = $view->view ($sorted->{over_under});
 };
 
 subtest 'unders' => sub {

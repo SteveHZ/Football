@@ -22,15 +22,23 @@ sub BUILD {
 		ou_home_away	=> sub { my $self = shift; $self->get_over_under_rows (@_) },
 		ou_last_six 	=> sub { my $self = shift; $self->get_over_under_rows (@_) },
 		ou_odds 		=> sub { my $self = shift; $self->get_over_under_rows (@_) },
-		ou_points 		=> sub { my $self = shift; $self->get_over_under_points_rows (@_) },
+		ou_points 		=> sub { my $self = shift; $self->get_ou_points_rows (@_) },
 		ou_unders 		=> sub { my $self = shift; $self->get_unders_rows (@_) },
+	};
+
+	$self->{headers} = {
+		ou_home_away	=> sub { my $self = shift; $self->do_over_under_header (@_) },
+		ou_last_six 	=> sub { my $self = shift; $self->do_over_under_header (@_) },
+		ou_odds 		=> sub { my $self = shift; $self->do_over_under_header (@_) },
+		ou_points 		=> sub { my $self = shift; $self->do_ou_points_header (@_) },
+		ou_unders 		=> sub { my $self = shift; $self->do_unders_header (@_) },
 	};
 }
 
 sub create_sheet {
 	my $self = shift;
 	my $path = 'C:/Mine/perl/Football/reports/';
-	$self->{filename} = $path.'over_under.xlsx';
+	$self->{filename} = $path.'over_under.xlsx' unless defined $self->{filename};
 }
 
 after 'BUILD' => sub {
@@ -60,7 +68,7 @@ sub view {
 
 	while (my ($sheet_name, $sorted_by) = $iterator->() ) {
 		my $worksheet = $self->add_worksheet ($sheet_name);
-		do_over_under_header ($worksheet, $self->{format});
+		$self->{headers}->{$sorted_by}->($self, $worksheet, $self->{format});
 
 		my $row = 2;
 		for my $game (@{ $sorted->{$sorted_by} } ) {
@@ -72,6 +80,8 @@ sub view {
 		}
 	}
 }
+
+#	called by $self->{dispatch}
 
 sub get_over_under_rows {
 	my ($self, $game) = @_;
@@ -93,7 +103,7 @@ sub get_over_under_rows {
 	];
 }
 
-sub get_over_under_points_rows {
+sub get_ou_points_rows {
 	my ($self, $game) = @_;
 	return [
 		{ $game->{league} => $self->{format} },
@@ -113,13 +123,10 @@ sub get_unders_rows {
 	];
 }
 
-sub get_format {
-	my ($self, $goal_diff) = @_;
-	return ($goal_diff >= 0) ? $self->{float_format} : $self->{bold_float_format};
-}
+#	called by $self->{headers}
 
 sub do_over_under_header {
-	my ($worksheet, $format) = @_;
+	my ($self, $worksheet, $format) = @_;
 
 	$worksheet->set_column ($_, 20) for (qw (A:A C:C E:E));
 	$worksheet->set_column ($_, 10) for (qw (J:J O:O Q:R));
@@ -134,6 +141,37 @@ sub do_over_under_header {
 	$worksheet->merge_range ('Q1:R1', 'O/U ODDS', $format);
 
 	$worksheet->autofilter( 'A1:A100' );
+	$worksheet->freeze_panes (1,0);
+}
+
+sub do_ou_points_header {
+	my ($self, $worksheet, $format) = @_;
+
+	$worksheet->set_column ($_, 20) for (qw (A:A C:C E:E));
+	$worksheet->set_column ($_, 6) for (qw (F:F));
+	$worksheet->set_column ($_, 10) for (qw (G:G));
+	$worksheet->set_column ($_, 2.5) for (qw (B:B D:D));
+
+	$worksheet->write ('A1', 'League', $format);
+	$worksheet->write ('C1', 'Home', $format);
+	$worksheet->write ('E1', 'Away', $format);
+	$worksheet->write ('G1', 'Points', $format);
+
+	$worksheet->autofilter( 'A1:A100' );
+	$worksheet->freeze_panes (1,0);
+}
+
+sub do_unders_header {
+	my ($self, $worksheet, $format) = @_;
+
+	$worksheet->set_column ($_, 20) for (qw (A:A C:C E:E));
+	$worksheet->set_column ($_, 2.5) for (qw (B:B D:D));
+
+	$worksheet->write ('A1', 'League', $format);
+	$worksheet->write ('C1', 'Team', $format);
+	$worksheet->write ('E1', 'Goals', $format);
+
+	$worksheet->autofilter( 'A1:A160' );
 	$worksheet->freeze_panes (1,0);
 }
 

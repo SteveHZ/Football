@@ -97,16 +97,11 @@ sub do_unders {
 
 	for my $league ( @{ $self->{leagues} } ) {
 		for my $team ( @{ $league->team_list } ) {
-			my $total = 0;
 			my $games = $league->get_most_recent ($team, 4);
-			for my $game (@$games) {
-				my ($for, $ag) = split '-', $game->{score};
-				$total += ($for + $ag);
-			}
 			push @unders, {
-					league => $league->{name},
-					team => $team,
-					goals => $total,
+				league => $league->{name},
+				team => $team,
+				goals => _get_total_goals ($games),
 			};
 		}
 	}
@@ -116,6 +111,16 @@ sub do_unders {
 			or $a->{team} cmp $b->{team}
 		} @unders
 	];
+}
+
+sub _get_total_goals {
+	my $games = shift;
+	my $total = 0;
+	for my $game (@$games) {
+		my ($for, $ag) = split '-', $game->{score};
+		$total += ($for + $ag);
+	}
+	return $total;
 }
 
 =pod

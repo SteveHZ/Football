@@ -32,8 +32,8 @@ my $fixtures = $data->{model}->get_fixtures ();
 
 my %markets = (
 	"max_profit"	=> Football::Team_Hash->new (
-		func => \&straight_win,
-		fixtures => $fixtures
+		func 		=> \&straight_win,
+		fixtures	=> $fixtures
 	),
 #	"over_2pt5"		=> Football::Team_Hash->new ( func => \&over_2pt5 ),
 #	"under_2pt5"	=> Football::Team_Hash->new ( func => \&under_2pt5 ),
@@ -42,7 +42,7 @@ my %markets = (
 my $iterator = each_arrayref ($data->{leagues}, $data->{index});
 while (my ($csv_league, $lg_idx) = $iterator->()) {
 	my $file = $data->{in_path}.$csv_league.".csv";
-	my $results = $data->{read_func}->( undef, $file, $csv_league ); # no $self
+	my $results = $data->{read_func}->( undef, $file ); # no $self
 	for my $market (keys %markets) {
 		$markets{$market}->add_teams ($results, $lg_idx);
 	}

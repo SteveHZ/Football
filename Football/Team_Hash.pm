@@ -23,11 +23,11 @@ sub BUILD {
 
 	$self->{sheetnames} = [ "totals", "all homes", "all aways", "homes", "aways" ];
 	$self->{dispatch} = {
-		'totals'	=> \&Football::Team_Hash::sort_totals,
-		'all homes'	=> \&Football::Team_Hash::sort_all_homes,
-		'all aways'	=> \&Football::Team_Hash::sort_all_aways,
-		'homes'		=> \&Football::Team_Hash::sort_homes,
-		'aways'		=> \&Football::Team_Hash::sort_aways,
+		'totals'	=> sub { my $self = shift; $self->sort_totals () },
+		'all homes'	=> sub { my $self = shift; $self->sort_all_homes () },
+		'all aways'	=> sub { my $self = shift; $self->sort_all_aways () },
+		'homes'		=> sub { my $self = shift; $self->sort_homes () },
+		'aways'		=> sub { my $self = shift; $self->sort_aways () },
 	};
 }
 

@@ -8,23 +8,23 @@ use Football::Fixtures_Globals qw( football_rename rugby_rename );
 my @paths = (
 	{
 		in_file  => 'C:/Mine/perl/Football/data/Euro/scraped/fixtures_week_uk.csv',
-		out_file => 'C:/Mine/perl/Football/data/fixtures.csv',
-		func => \&Football::Fixtures_Globals::football_rename,
+		out_file => 'C:/Mine/perl/Football/data/fixtures_test.csv',
+		func 	 => sub { football_rename (@_) },
 	},
 	{
 		in_file  => 'C:/Mine/perl/Football/data/Euro/scraped/fixtures_week_euro.csv',
 		out_file => 'C:/Mine/perl/Football/data/Euro/fixtures.csv',
-		func => \&Football::Fixtures_Globals::football_rename,
+		func	 => sub { football_rename (@_) },
 	},
 	{
 		in_file  => 'C:/Mine/perl/Football/data/Euro/scraped/fixtures_week_summer.csv',
 		out_file => 'C:/Mine/perl/Football/data/Summer/fixtures.csv',
-		func => \&Football::Fixtures_Globals::football_rename,
+		func  	 => sub { football_rename (@_) },
 	},
 #	{
 #		in_file  => 'C:/Mine/perl/Football/data/Euro/scraped/fixtures_week_rugby.csv',
 #		out_file => 'C:/Mine/perl/Football/data/Rugby/fixtures.csv',
-#		func => \&Football::Fixtures_Globals::rugby_rename,
+#		func => sub { rugby_rename (@_) },
 #	},
 );
 

@@ -12,9 +12,9 @@ sub BUILD {
 	$self->create_sheet ($args->{filename});
 
 	$self->{dispatch} = {
-		'by_year'   => \&Football::Spreadsheets::Favourites::by_year,
-		'by_league' => \&Football::Spreadsheets::Favourites::by_league,
-		'current'   => \&Football::Spreadsheets::Favourites::current,
+		'by_year'   => sub { my $self = shift; $self->by_year (@_) },
+		'by_league' => sub { my $self = shift; $self->by_league (@_) },
+		'current'   => sub { my $self = shift; $self->current (@_) },
 	};
 }
 
