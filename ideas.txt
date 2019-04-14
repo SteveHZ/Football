@@ -1,0 +1,11 @@
+backtest ou_points
+do other ou_points strategy
+
+trends.pl ?
+be able to read csv files and return pertinent info :
+no goals concede =d in x games ?
+low scores ?
+scored > 3 last x games ?
+
+Dropbox ?? (prob not - too much trouble - API seems to be more for businesses)
+

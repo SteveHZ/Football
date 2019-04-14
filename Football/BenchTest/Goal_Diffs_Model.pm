@@ -10,7 +10,7 @@ sub BUILD {
     my $self = shift;
     $self->{keys} = [ qw(gd_home_away gd_last_six gd_ha_lsx) ];
     $self->{headings} = ['Home Away', 'Last Six', 'HA Last Six'];
-    $self->{range} = [ 0,0.5,1,1.5,2,2.5,3 ];
+    $self->{range} = [ 0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5 ];
     $self->{sheetname} = 'Goal Diffs';
 }
 

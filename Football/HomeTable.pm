@@ -37,6 +37,15 @@ sub do_goals {
 	$self->{table}->{ $game->{home_team} }->{against} += $game->{away_score};
 }
 
+sub home_position { my ($self, $team) = @_; return $self->_get ($team, 'position'); };
+sub home_played	{ my ($self, $team) = @_; return $self->_get ($team, 'played'); };
+sub home_won		{ my ($self, $team) = @_; return $self->_get ($team, 'won'); }
+sub home_lost 	{ my ($self, $team) = @_; return $self->_get ($team, 'lost'); }
+sub home_drawn 	{ my ($self, $team) = @_; return $self->_get ($team, 'drawn'); }
+sub home_for 	{ my ($self, $team) = @_; return $self->_get ($team, 'for'); }
+sub home_against { my ($self, $team) = @_; return $self->_get ($team, 'against'); }
+sub home_points 	{ my ($self, $team) = @_; return $self->_get ($team, 'points'); }
+
 =pod
 
 =head1 NAME

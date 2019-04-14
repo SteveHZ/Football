@@ -37,7 +37,7 @@ sub get_paths {
 
 sub fetch {
 	my ($self, $league, $home, $away) = @_;
-	return \@{ $self->{hash}->{$league}->{$home}->{$away} };
+	return $self->{hash}->{$league}->{$home}->{$away};
 }
 
 sub create {
@@ -89,7 +89,8 @@ sub create_hash {
 		for my $home (@ {$all_teams->{$league} }) {
 			for my $away (@ {$all_teams->{$league} }) {
 				for my $season (@{ $seasons->{h2h_seasons} }) {
-					@{ $teams->{$league}->{$home}->{$away} } = qw(X X X X X X) unless $home eq $away;
+					$teams->{$league}->{$home}->{$away} = [ qw(X X X X X X) ]
+						unless $home eq $away;
 				}
 			}
 		}

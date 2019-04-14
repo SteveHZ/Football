@@ -1,6 +1,6 @@
 #	create_teams.pl 28/03/16
 
-#	Team names to be used within predict.pl
+#	This file is for team names to be used within predict.pl
 #	To edit names from Football Data CSV files, use Euro::Rename
 #	To edit names from BBC fixtures files use Football::Fixtures_Globals
 

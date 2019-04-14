@@ -46,6 +46,7 @@ our $euro_teams = {
 	'TPS' => 'TPS Turku',
 	'VPS' => 'VPS Vaasa',
 	'KuPS' => 'KuPS Kuopio',
+	'HIFK' => 'HIFK Helsinki',
 
 #	American
 	'Los Angeles Galaxy' => 'LA Galaxy'

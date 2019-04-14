@@ -32,7 +32,8 @@ my $fixtures = $data->{model}->get_fixtures ();
 
 my %markets = (
 	"max_profit"	=> Football::Team_Hash->new (
-		func 		=> \&straight_win,
+		func 		=> sub { straight_win (@_) },
+#		func 		=> \&straight_win,
 		fixtures	=> $fixtures
 	),
 #	"over_2pt5"		=> Football::Team_Hash->new ( func => \&over_2pt5 ),

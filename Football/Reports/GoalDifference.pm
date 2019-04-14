@@ -51,7 +51,7 @@ sub update {
 	my $away_diff = $teams->{$away}->{goal_diff};
 	my $goal_diff = $home_diff - $away_diff;
 	$goal_diff = $self->do_limits ($goal_diff) if abs $goal_diff > $self->{max};
-	
+
 	if ($result eq 'H')		{ $self->{hash}->{$league}->{$goal_diff}->{home_win} ++; }
 	elsif ($result eq 'A')	{ $self->{hash}->{$league}->{$goal_diff}->{away_win} ++; }
 	else 					{ $self->{hash}->{$league}->{$goal_diff}->{draw} ++; }
@@ -59,7 +59,7 @@ sub update {
 
 sub write_report {
 	my ($self, $leagues) = @_;
-	
+
 	my $writer = Football::Spreadsheets::Reports->new (
 		report => "Goal Difference",
 		size => $self->{max},
@@ -81,7 +81,7 @@ sub fetch_array {
 sub fetch_hash {
 	my ($self, $league, $goal_diff) = @_;
 	$goal_diff = $self->do_limits ($goal_diff) if abs $goal_diff > $self->{max};
-	return \%{ $self->{hash}->{$league}->{$goal_diff} };
+	return $self->{hash}->{$league}->{$goal_diff};
 }
 
 sub do_limits {

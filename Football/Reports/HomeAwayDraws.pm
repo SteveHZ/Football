@@ -49,7 +49,7 @@ sub update {
 
 sub write_report {
 	my ($self, $leagues) = @_;
-	
+
 	my $writer = Football::Spreadsheets::Reports->new (report => "Homes Aways Draws");
 	$writer->do_homeawaydraws ($self->{hash}, $leagues);
 }
@@ -65,7 +65,7 @@ sub fetch_array {
 
 sub fetch_hash {
 	my ($self, $league, $season) = @_;
-	return \%{ $self->{hash}->{$league}->{$season} };
+	return $self->{hash}->{$league}->{$season};
 }
 
 1;

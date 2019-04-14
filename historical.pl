@@ -32,7 +32,7 @@ my $files = $file_list->get_historical ();
 my $season = Football::BenchTest::Season->new (
     models      => $models,
     files       => $files,
-    callback    => \&do_predict_models,
+    callback    => sub { do_predict_models (@_) },
 );
 $season->run ();
 

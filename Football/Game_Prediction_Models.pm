@@ -95,12 +95,14 @@ sub calc_over_under {
 		$game->{home_away} = ($game->{home_over_under} + $game->{away_over_under}) / $stat_size;
 		$game->{last_six} = ($game->{home_last_six_over_under} + $game->{away_last_six_over_under}) / $stat_size;
 		$game->{ou_points} = $over_under->do_ou_points ($game);
+		$game->{ou_points2} = $over_under->do_ou_points2 ($game);
 	}
 
 	$sorted->{ou_home_away} = $over_under->do_home_away ();
 	$sorted->{ou_last_six} = $over_under->do_last_six ();
 	$sorted->{ou_odds} = $over_under->do_over_under ();
 	$sorted->{ou_points} = $over_under->do_over_under_points ();
+	$sorted->{ou_points2} = $over_under->do_over_under_points2 ();  
 	$sorted->{ou_unders} = $over_under->do_unders ();
 
 	return $sorted;

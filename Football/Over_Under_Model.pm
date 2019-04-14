@@ -56,6 +56,17 @@ sub do_over_under_points {
 	];
 }
 
+sub do_over_under_points2 {
+	my $self = shift;
+
+	return [
+		sort {
+			$b->{ou_points2} <=> $a->{ou_points2}
+			or $a->{home_team} cmp $b->{home_team}
+		} @{ $self->{fixtures} }
+	];
+}
+
 sub do_ou_points {
 	my ($self, $game) = @_;
 	my $league_array = $self->{leagues};
@@ -121,6 +132,22 @@ sub _get_total_goals {
 		$total += ($for + $ag);
 	}
 	return $total;
+}
+
+sub do_ou_points2 {
+	my ($self, $game) = @_;
+
+    my $league = $self->{leagues} [$game->{league_idx}];
+    my $hplyd = $league->home_played ($game->{home_team});
+    my $aplyd = $league->away_played ($game->{away_team});
+
+    my $points = 0;
+    $points += ( $league->home_for ($game->{home_team}) / $hplyd );
+    $points += ( $league->home_against ($game->{home_team}) / $hplyd );
+    $points += ( $league->away_for ($game->{away_team}) / $aplyd );
+    $points += ( $league->away_against ($game->{away_team}) / $aplyd );
+
+	return $points / 2;
 }
 
 =pod

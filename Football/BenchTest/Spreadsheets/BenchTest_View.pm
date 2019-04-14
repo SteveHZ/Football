@@ -19,6 +19,7 @@ sub BUILD {
         'Goal Diffs'	=> sub { my $self = shift; $self->do_expects (@_) },
         'Over Unders'	=> sub { my $self = shift; $self->do_expects (@_) },
         'OU Points'     => sub { my $self = shift; $self->do_ou_points (@_) },
+        'OU Points2'    => sub { my $self = shift; $self->do_ou_points (@_) },
     };
 }
 

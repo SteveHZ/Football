@@ -3,6 +3,10 @@
 #	create_rugby_teams.pl 23/07/16
 #	2019 season done 04/12/18
 
+#	This file is for team names to be used within predict.pl
+#???To edit names from Football Data CSV files, use Euro::Rename
+#	To edit names from BBC fixtures files use Football::Fixtures_Globals
+
 use strict;
 use warnings;
 

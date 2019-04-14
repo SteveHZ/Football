@@ -12,26 +12,31 @@ TESTING { use Data::Dumper; }
 use lib 'C:/Mine/perl/Football';
 use MyLib qw(prompt);
 use Football::DBModel;
-use Football::Globals qw( @csv_leagues @euro_csv_lgs @summer_csv_leagues);
-
-my $output_dispatch = {
-	'h'  => \&print_homes,
-	'a'  => \&print_aways,
-	'ha' => \&print_all,
-};
+use Football::Globals qw( @csv_leagues @euro_csv_lgs @summer_csv_leagues );
 
 my $euro = 0;
 if (defined $ARGV [0]) {
 	$euro = 1 if $ARGV[0] eq '-e';
 	$euro = 2 if $ARGV[0] eq '-s';
 }
-my @funcs = (\&get_uk_data, \&get_euro_data, \&get_summer_data);
+
+my @funcs = (
+	sub { get_uk_data		(@_) },
+	sub { get_euro_data		(@_) },
+	sub { get_summer_data	(@_) },
+);
 my $data = $funcs[$euro]->();
 my $model = Football::DBModel->new (data => $data);
 
+my $output_dispatch = {
+	'h'  => sub { show_homes (@_) },
+	'a'  => sub { show_aways (@_) },
+	'ha' => sub { show_all   (@_) },
+};
+
 print "\n";
 while (my $cmd_line = prompt ("DB-$data->{model}")) {
-	last if $cmd_line eq 'x';
+	last if lc $cmd_line eq 'x';
 	get_results ($model, $cmd_line);
 }
 
@@ -58,17 +63,17 @@ sub get_results {
 
 #	called by $output_dispatch
 
-sub print_all {
+sub show_all {
 	my ($row, $team) = @_;
 
 	if ($row->{hometeam} =~ /$team.*/) {
-		print_homes ($row);
+		show_homes ($row);
 	} else {
-		print_aways ($row);
+		show_aways ($row);
 	}
 }
 
-sub print_homes {
+sub show_homes {
 	my $row = shift;
 	my $odds_column = $data->{column}.'h';
 
@@ -78,7 +83,7 @@ sub print_homes {
 	printf "%5.2f", $row->{$odds_column};
 }
 
-sub print_aways {
+sub show_aways {
 	my $row = shift;
 	my $odds_column = $data->{column}.'a';
 

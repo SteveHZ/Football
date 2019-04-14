@@ -1,11 +1,11 @@
 #	create_summer_teams.pl 26/06/16
 
-#	Team names to be used within predict.pl
+#	This file is for team names to be used within predict.pl
 #	To edit names from Football Data CSV files, use Euro::Rename
 #	To edit names from BBC fixtures files use Football::Fixtures_Globals, Football::Fixtures_Model
 
 #	Irish + USA teams updated 05.02 but need to check against Football Data site
-#	All done except Finnish 03/04
+#	All done except Finnish 03/04, Finnish 10/04
 
 use strict;
 use warnings;
@@ -99,11 +99,11 @@ my $leagues = {
 		'HJK Helsinki',
 		'KuPS Kuopio',
 		'Inter Turku',
-		'PS Kemi',
-		'TPS Turku',
 		'Ilves',
 		'Honka',
 		'Mariehamn',
+		'HIFK Helsinki',
+		'KPV Kokkola',
 	],
 };
 

@@ -11,6 +11,7 @@ use Football::BenchTest::FileList;
 use Football::BenchTest::Goal_Expect_Model;
 use Football::BenchTest::Goal_Diffs_Model;
 use Football::BenchTest::Over_Under_Model;
+use Football::BenchTest::OU_Points2_Model;
 use Football::BenchTest::OU_Points_Model;
 use Football::BenchTest::Goal_Expect_Override;
 use Football::BenchTest::Spreadsheets::BenchTest_View;
@@ -21,6 +22,7 @@ my $models = [
     Football::BenchTest::Goal_Diffs_Model->new (),
     Football::BenchTest::Over_Under_Model->new (),
     Football::BenchTest::OU_Points_Model->new (),
+    Football::BenchTest::OU_Points2_Model->new (),
 ];
 
 my $file_list = Football::BenchTest::FileList->new (
@@ -32,7 +34,7 @@ my $files = $file_list->get_current ();
 my $season = Football::BenchTest::Season->new (
     models      => $models,
     files       => $files,
-    callback    => \&do_predict_models,
+    callback    => sub { do_predict_models (@_) },
 );
 $season->run ();
 

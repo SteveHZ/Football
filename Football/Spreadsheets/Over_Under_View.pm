@@ -15,14 +15,15 @@ sub BUILD {
 	my $self = shift;
 
 	$self->create_sheet ();
-	$self->{sheet_names} = ['Home and Away', 'Last Six', 'Over Under', 'OU Points', 'OU Unders',];
-	$self->{sorted_by} = ['ou_home_away', 'ou_last_six', 'ou_odds', 'ou_points', 'ou_unders'];
+	$self->{sheet_names} = ['Home and Away', 'Last Six', 'Over Under', 'OU Points', 'OU Points2', 'OU Unders',];
+	$self->{sorted_by} = ['ou_home_away', 'ou_last_six', 'ou_odds', 'ou_points','ou_points2', 'ou_unders'];
 
 	$self->{dispatch} = {
 		ou_home_away	=> sub { my $self = shift; $self->get_over_under_rows (@_) },
 		ou_last_six 	=> sub { my $self = shift; $self->get_over_under_rows (@_) },
 		ou_odds 		=> sub { my $self = shift; $self->get_over_under_rows (@_) },
 		ou_points 		=> sub { my $self = shift; $self->get_ou_points_rows (@_) },
+		ou_points2 		=> sub { my $self = shift; $self->get_ou_points2_rows (@_) },
 		ou_unders 		=> sub { my $self = shift; $self->get_unders_rows (@_) },
 	};
 
@@ -31,6 +32,7 @@ sub BUILD {
 		ou_last_six 	=> sub { my $self = shift; $self->do_over_under_header (@_) },
 		ou_odds 		=> sub { my $self = shift; $self->do_over_under_header (@_) },
 		ou_points 		=> sub { my $self = shift; $self->do_ou_points_header (@_) },
+		ou_points2 		=> sub { my $self = shift; $self->do_ou_points_header (@_) },
 		ou_unders 		=> sub { my $self = shift; $self->do_unders_header (@_) },
 	};
 }
@@ -38,7 +40,8 @@ sub BUILD {
 sub create_sheet {
 	my $self = shift;
 	my $path = 'C:/Mine/perl/Football/reports/';
-	$self->{filename} = $path.'over_under.xlsx' unless defined $self->{filename};
+	$self->{filename} = $path.'over_under.xlsx'
+		unless defined $self->{filename};
 }
 
 after 'BUILD' => sub {
@@ -109,8 +112,17 @@ sub get_ou_points_rows {
 		{ $game->{league} => $self->{format} },
 		{ $game->{home_team} => $self->{format} },
 		{ $game->{away_team} => $self->{format} },
-
 		{ $game->{ou_points} => $self->{float_format} },
+	];
+}
+
+sub get_ou_points2_rows {
+	my ($self, $game) = @_;
+	return [
+		{ $game->{league} => $self->{format} },
+		{ $game->{home_team} => $self->{format} },
+		{ $game->{away_team} => $self->{format} },
+		{ $game->{ou_points2} => $self->{float_format} },
 	];
 }
 

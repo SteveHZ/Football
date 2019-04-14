@@ -35,7 +35,7 @@ sub create_sheet {
 	my ($self, $filename) = @_;
 
 	my $path = 'C:/Mine/perl/Football/reports/favourites/';
-	$self->{file} = $filename;
+	$self->{file} = $filename;	# used for dispatch
 	$self->{filename} = $path.$self->{file}.'.xlsx';
 }
 
