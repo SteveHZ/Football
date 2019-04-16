@@ -28,6 +28,26 @@ sub get_league_idx {
 	return $self->{league_idx}->{$league};
 }
 
+sub quick_predict {
+	my $self = shift;
+	my $data = $self->quick_build ();
+
+	$self->do_recent_goal_difference ($data->{by_league}, $self->leagues);
+	$self->do_goal_difference ($data->{by_league}, $self->leagues);
+	$self->do_league_places ($data->{by_league}, $self->leagues);
+	$self->do_head2head ($data->{by_league} );
+	$self->do_recent_draws ($data->{by_league} );
+
+	my ($teams, $sorted) = $self->do_predict_models ($data->{by_match}, $self->leagues);
+	return ($teams, $sorted);
+}
+
+sub quick_build {
+	my $self = shift;
+	$self->build_data ();
+	return $self->do_fixtures ($self->get_fixtures ());
+}
+
 sub build_data {
 	my ($self, $args) = @_;
 	my $games;

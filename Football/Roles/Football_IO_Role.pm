@@ -37,14 +37,13 @@ sub get_fixtures {
 
 	$fixtures_file //= $self->{fixtures_file};
 	TESTING { $fixtures_file = $self->{test_fixtures_file}; }
-	my @fixtures = ();
 
 	open my $fh, '<', $fixtures_file or die "\n\nCan't find $fixtures_file";
 	while (my $line = <$fh>) {
 		chomp ($line);
 		my ($date, $league, $home, $away) = split (',', $line); # my fixtures files
 		if ((my $idx = firstidx {$_ eq $league} @{ $self->{csv_leagues}} ) >= 0) {
-			push (@fixtures, {
+			push (@{ $self->fixtures }, {
 				league_idx => $idx,
 				league => $self->{league_names}[$idx],
 				date => $date,
@@ -54,7 +53,7 @@ sub get_fixtures {
 		}
 	}
 	close $fh;
-	return \@fixtures;
+	return $self->{fixtures};
 }
 
 1;

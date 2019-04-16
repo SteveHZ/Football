@@ -2,16 +2,13 @@ use strict;
 use warnings;
 
 use Football::Model;
-use Data::Dumper;
 
 my $model = Football::Model->new ();
-my $games = $model->build_data ();
-my $fixtures = $model->get_fixtures ();
-my $data = $model->do_fixtures ($fixtures);
+$model->quick_build ();
 
 my @ou_points = ();
-for my $game (@$fixtures) {
-    my $league = $games->{leagues} [$game->{league_idx}];
+for my $game (@{$model->fixtures}) {
+    my $league = $model->leagues->[$game->{league_idx}];
     my $hplyd = $league->home_played ($game->{home_team});
     my $aplyd = $league->away_played ($game->{away_team});
 

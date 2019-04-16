@@ -27,6 +27,7 @@ use namespace::clean;
 has 'leagues' => ( is => 'ro' );
 has 'league_names' => ( is => 'ro', default => sub { \@league_names } );
 has 'csv_leagues' => ( is => 'ro', default => sub { \@csv_leagues } );
+has 'fixtures' => ( is => 'ro', default => sub { [] } );
 has 'test_season_data' => ( is => 'ro' );
 
 # pre-declare these to use Football_IO role

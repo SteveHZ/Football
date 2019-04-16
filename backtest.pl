@@ -11,9 +11,8 @@ use Football::BenchTest::FileList;
 use Football::BenchTest::Goal_Expect_Model;
 use Football::BenchTest::Goal_Diffs_Model;
 use Football::BenchTest::Over_Under_Model;
-use Football::BenchTest::OU_Points2_Model;
 use Football::BenchTest::OU_Points_Model;
-use Football::BenchTest::Goal_Expect_Override;
+use Football::BenchTest::OU_Points2_Model;
 use Football::BenchTest::Spreadsheets::BenchTest_View;
 
 my $filename = 'C:/Mine/perl/Football/reports/backtest.xlsx';

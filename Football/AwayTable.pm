@@ -37,13 +37,13 @@ sub do_goals {
 	$self->{table}->{ $game->{away_team} }->{against} += $game->{home_score};
 }
 
-sub away_position { my ($self, $team) = @_; return $self->_get ($team, 'position'); };
-sub away_played	{ my ($self, $team) = @_; return $self->_get ($team, 'played'); };
+sub away_position	{ my ($self, $team) = @_; return $self->_get ($team, 'position'); };
+sub away_played		{ my ($self, $team) = @_; return $self->_get ($team, 'played'); };
 sub away_won		{ my ($self, $team) = @_; return $self->_get ($team, 'won'); }
-sub away_lost 	{ my ($self, $team) = @_; return $self->_get ($team, 'lost'); }
-sub away_drawn 	{ my ($self, $team) = @_; return $self->_get ($team, 'drawn'); }
-sub away_for 	{ my ($self, $team) = @_; return $self->_get ($team, 'for'); }
-sub away_against { my ($self, $team) = @_; return $self->_get ($team, 'against'); }
+sub away_lost		{ my ($self, $team) = @_; return $self->_get ($team, 'lost'); }
+sub away_drawn		{ my ($self, $team) = @_; return $self->_get ($team, 'drawn'); }
+sub away_for		{ my ($self, $team) = @_; return $self->_get ($team, 'for'); }
+sub away_against	{ my ($self, $team) = @_; return $self->_get ($team, 'against'); }
 sub away_points 	{ my ($self, $team) = @_; return $self->_get ($team, 'points'); }
 
 =pod

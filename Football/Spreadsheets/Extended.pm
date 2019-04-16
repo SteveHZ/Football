@@ -62,9 +62,6 @@ sub do_extended_header {
 	$worksheet->set_column ($_,5)  for (qw (C:D H:I));
 	$worksheet->set_column ($_,10) for (qw (A:A F:F));
 	$worksheet->set_column ($_,20) for (qw (B:B G:G));
-#	$worksheet->set_column ($_,5)  for ('C:D', 'H:I');
-#	$worksheet->set_column ($_,10) for ('A:A', 'F:F');
-#	$worksheet->set_column ($_,20) for ('B:B', 'G:G');
 }
 
 1;

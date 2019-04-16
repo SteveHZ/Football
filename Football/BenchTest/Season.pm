@@ -62,7 +62,7 @@ sub run {
 sub done_six_games {
     my ($game, $league) = @_;
     for my $team (@{ $league->team_list} ) {
-        return 0 unless $league->{table}->played ($team) >= 6;
+        return 0 unless $league->played ($team) >= 6;
     }
     return 1;
 }

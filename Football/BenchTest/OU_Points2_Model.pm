@@ -10,11 +10,11 @@ has 'under_range' => (is =>'ro');
 
 sub BUILD {
     my $self = shift;
-    $self->{keys} = [ qw(ou_overs ou_unders) ];
-    $self->{headings} = ['Overs', 'Unders'];
-    $self->{range} = [ 0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5 ];
-    $self->{over_range} = [ 2.5,3,3.5,4,4.5,5 ];
-    $self->{under_range} = [ 0,0.5,1,1.5,2 ];
+    $self->{keys} = [ qw(ou_unders ou_overs) ];
+    $self->{headings} = ['Unders', 'Overs'];
+    $self->{range} = [ 0,0.25,0.5,0.75,1,1.25,1.5,1.75,2,2.25,2.5,2.75,3,3.25,3.5,3.75,4,4.25,4.5,4.75,5 ];
+    $self->{under_range} = [ 0,0.25,0.5,0.75,1,1.25,1.5,1.75,2,2.25 ];
+    $self->{over_range} = [ 2.5,2.75,3,3.25,3.5,3.75,4,4.25,4.5,4.75,5 ];
     $self->{sheetname} = 'OU Points2';
 }
 
