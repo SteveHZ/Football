@@ -15,19 +15,20 @@ with 'Football::Roles::Football_IO_Role',
 
 sub BUILD {
 	my $self = shift;
+
+	$self->{model_name} = 'Summer';
 	$self->{leagues} = [];
 	$self->{csv_leagues} = \@summer_csv_leagues;
 	$self->{league_names} = \@summer_leagues;
 	$self->{league_idx} = $self->build_league_idx ($self->{league_names});
 
-	$self->{model_name} = 'Summer';
 	$self->{path} = 'C:/Mine/perl/Football/data/Summer/';
+	$self->{fixtures_file} = $self->{path}.'fixtures.csv';
 	$self->{season_data} = $self->{path}.'season.json';
 	$self->{teams_file} = $self->{path}.'teams.json';
-	$self->{fixtures_file} = $self->{path}.'fixtures.csv';
-#	$self->{results_file} = $self->{path}.'results.ods';
 #	$self->{test_season_data} = 'C:/Mine/perl/Football/t/test_data/euro_season.json';
-	$self->{predictions_file} = $self->{benchtest_path}.'goal_expect_summer.json';
+#	$self->{results_file} = $self->{path}.'results.ods';
+#	$self->{predictions_file} = $self->{benchtest_path}.'goal_expect_summer.json';
 }
 
 #	over-ride Football_IO_Role::update

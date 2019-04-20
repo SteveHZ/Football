@@ -49,7 +49,8 @@ our $euro_teams = {
 	'HIFK' => 'HIFK Helsinki',
 
 #	American
-	'Los Angeles Galaxy' => 'LA Galaxy'
+	'Los Angeles Galaxy' => 'LA Galaxy',
+	'Minnesota United' => 'Minnesota',
 };
 
 sub check_rename {

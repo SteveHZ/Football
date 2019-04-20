@@ -2,9 +2,16 @@ package Football::Goal_Expect_Model;
 
 use Moo;
 use namespace::clean;
+use MyKeyword qw(ZEROGAMES);
 
 has 'leagues' => (is => 'ro', default => sub { [] });
 has 'fixtures' => (is => 'ro', default => sub { [] } );
+
+sub BUILD {
+#	my $self = shift;
+#	$self->{home_die_msg} = "\n\n***ZERO HOME GAMES for $team\nEnable ZEROGAMES keyword in predict.pl and add '$team' to remove_teams array in fixtures2.pl\n";
+#	$self->{away_die_msg} = "\n\n***ZERO AWAY GAMES for $team\nEnable ZEROGAMES keyword in predict.pl and add '$team' to remove_teams array in fixtures2.pl\n";
+}
 
 sub calc_goal_expects {
 	my $self = shift;
@@ -54,6 +61,8 @@ sub grep_goal_diffs {
 sub calculate_homes {
 	my ($self, $team_hash, $league, $team) = @_;
 	my $played = $league->{home_table}->played ($team);
+#	die $self->{home_die_msg} if $played == 0;
+	ZEROGAMES { $played = 1 if $played == 0 }
 
 	$team_hash->{home_for} = $league->{home_table}->for ($team);
 	$team_hash->{home_against} = $league->{home_table}->against ($team);
@@ -64,6 +73,8 @@ sub calculate_homes {
 sub calculate_aways {
 	my ($self, $team_hash, $league, $team) = @_;
 	my $played = $league->{away_table}->played ($team);
+#	die $self->{away_die_msg} if $played == 0;
+	ZEROGAMES { $played = 1 if $played == 0 }
 
 	$team_hash->{away_for} = $league->{away_table}->for ($team);
 	$team_hash->{away_against} = $league->{away_table}->against ($team);

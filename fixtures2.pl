@@ -3,7 +3,14 @@
 use strict;
 use warnings;
 
+use List::Util qw(any);
 use Football::Fixtures_Globals qw( football_rename rugby_rename );
+
+my @remove_teams = (
+	'Portland Timbers',
+	'KPV Kokkola',
+	'Mariehamn',
+);
 
 my @paths = (
 	{
@@ -39,6 +46,10 @@ for my $path (@paths) {
 			$data[2] = $path->{func}->( $data[2] );	# home team
 			$data[3] = $path->{func}->( $data[3] );	# away team
 
+			if (scalar (@remove_teams)) {
+				next if any { $data[2] eq $_ } @remove_teams;
+				next if any { $data[3] eq $_ } @remove_teams;
+			}
 			print $fh_out $data[0].','.$data[1].','.$data[2].','.$data[3]."\n";
 		}
 		close $fh_in;

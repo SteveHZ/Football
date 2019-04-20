@@ -14,6 +14,7 @@ with 'Football::Roles::Football_IO_Role',
 
 sub BUILD {
 	my $self = shift;
+
 	$self->{model_name} = 'Euro';
 	$self->{leagues} = [];
 	$self->{csv_leagues} = \@euro_csv_lgs;

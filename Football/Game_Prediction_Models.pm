@@ -102,7 +102,7 @@ sub calc_over_under {
 	$sorted->{ou_last_six} = $over_under->do_last_six ();
 	$sorted->{ou_odds} = $over_under->do_over_under ();
 	$sorted->{ou_points} = $over_under->do_over_under_points ();
-	$sorted->{ou_points2} = $over_under->do_over_under_points2 ();  
+	$sorted->{ou_points2} = $over_under->do_over_under_points2 ();
 	$sorted->{ou_unders} = $over_under->do_unders ();
 
 	return $sorted;
@@ -113,6 +113,7 @@ sub get_data {
 	my ($self, $sorted) = @_;
 	return @{ $sorted->{expect} }[0];
 }
+
 =pod
 
 =head1 NAME

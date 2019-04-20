@@ -35,7 +35,7 @@ TESTING {
 	return {
 		uk      => \@csv_leagues,
 		euro    => \@euro_csv_lgs,
-#		summer  => \@summer_csv_leagues,
+		summer  => \@summer_csv_leagues,
 	};
 }
 
@@ -166,10 +166,11 @@ sub do_initial_chars {
 	$$dataref =~ s/SJK/SJk/g;
 	$$dataref =~ s/AIK/AIk/g;
 	$$dataref =~ s/MU/Mu/g;  # Welsh
-	$$dataref =~ s/IFK //g;  # Swedish
+	$$dataref =~ s/UCD/UCd/g; # Irish
+	$$dataref =~ s/(?<!H)IFK //g;  # Swedish - DON'T match with HIFK, only IFK
 	$$dataref =~ s/GIF //g;
 	$$dataref =~ s/ FF//g;
-	$$dataref =~ s/FK //g;
+	$$dataref =~ s/(?<!HI)FK //g; # NOT HIFK
 	$$dataref =~ s/ FK//g;
 	$$dataref =~ s/IF //g;
 	$$dataref =~ s/ IF//g;
@@ -203,6 +204,7 @@ sub revert {
 	$$dataref =~ s/KUPS/KuPS/g;
 	$$dataref =~ s/SJk/SJK/g;
 	$$dataref =~ s/SPAl/SPAL/g;
+	$$dataref =~ s/UCd/UCD/g;
 }
 
 #   transform a hash from key => value 'one-to-many' relationship

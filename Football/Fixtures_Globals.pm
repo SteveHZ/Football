@@ -70,6 +70,7 @@ New York City FC,New York City
 Seattle Sounders FC,Seattle Sounders
 Vancouver Whitecaps FC,Vancouver Whitecaps
 Los Angeles Football Club,Los Angeles FC
+FC Cincinnati,Cincinnati
 
 #	English
 Brighton & Hove Albion,Brighton
@@ -176,6 +177,9 @@ Dungannon Swifts,Dungannon
 Institute FC,Institute
 Newry City AFC,Newry City
 Warrenpoint Town,Warrenpoint
+
+#	Swedish
+Helsingborgs,Helsingborg
 
 #	Italian
 Inter Milan,Inter
