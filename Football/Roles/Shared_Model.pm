@@ -54,16 +54,10 @@ sub build_data {
 
 	if (exists $args->{json}) {
 		$games = read_json ($args->{json});
-#	} elsif (exists $args->{csv}) {
-#		my $data_model = Football::Football_Data_Model->new ();
-#		$games = $data_model->read_csv ($args->{csv});
 	} else {
 		$games = $self->read_games ();
 	}
 	my $leagues = $self->build_leagues ($games);
-
-#	$self->do_home_table ($games);
-#	$self->do_away_table ($games);
 
 	return {
 		games => $games,
@@ -144,6 +138,7 @@ sub get_unique_leagues {
 	}
 }
 
+=head
 sub do_predict_models {
 	my ($self, $fixtures, $leagues, $update) = @_;
 	my $predict_model = Football::Game_Prediction_Models->new (
@@ -156,6 +151,7 @@ sub do_predict_models {
 
 	return ($teams, $sorted);
 }
+=cut
 
 sub do_fixtures {
 	my ($self, $fixtures) = @_;
@@ -214,28 +210,5 @@ sub get_game_data_func {
 		$game->{draws} = $game->{home_draws} + $game->{away_draws};
 	};
 }
-=head
-sub do_home_table {
-	my ($self, $games) = @_;
-	my $league_array = $self->{leagues};
-
-	for my $idx (0..$#{ $self->{csv_leagues}} ) {
-		my $league = $self->{league_names}[$idx];
-		@$league_array[$idx]->{home_table} = @$league_array[$idx]->do_home_table ( $games->{$league} );
-	}
-	return $league_array;
-}
-
-sub do_away_table {
-	my ($self, $games) = @_;
-	my $league_array = $self->{leagues};
-
-	for my $idx (0..$#{ $self->{csv_leagues}} ) {
-		my $league = $self->{league_names}[$idx];
-		@$league_array[$idx]->{away_table} = @$league_array[$idx]->do_away_table ( $games->{$league} );
-	}
-	return $league_array;
-}
-=cut
 
 1;

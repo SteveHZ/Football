@@ -46,7 +46,7 @@ my $predict_model = Football::BenchTest::Adapter::Game_Prediction_Models->new (
     league  => $league,
 );
 
-game and league will convert to fixtures => [$game] and leagues => [$league] behinf the scenes
+game and league will convert to fixtures => [$game] and leagues => [$league] behind the scenes
 
 =head1 AUTHOR
 

@@ -23,6 +23,7 @@ sub dump {
 	my ($self, $games) = @_;
 	print Dumper $games->{$_} for keys %$games;
 }
+
 # might need this for Rugby - DO NOT DELETE !!
 #sub write_csv {
 #	my ($self, $filename, $games) = @_;

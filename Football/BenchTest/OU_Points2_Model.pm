@@ -51,7 +51,7 @@ sub ou_overs_win {
 sub ou_unders_game {
     my ($self, $data, $n) = @_;
     $n //= 0;
-    return 1 if $n < 2.5 && $data->{ou_points2} < $n;
+    return 1 if $n < 2.5 && $data->{ou_points2} <= $n;
     return 0;
 }
 

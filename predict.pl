@@ -22,6 +22,8 @@ use Summer::Model;
 use Summer::View;
 use Rugby::Model;
 use Rugby::View;
+use Football::Game_Prediction_Models;
+use Football::Game_Prediction_Views;
 
 my $options = get_cmdline ();
 my ($model, $view) = get_model_and_view ($options);
@@ -62,9 +64,12 @@ $view->do_league_places ( $model->do_league_places ($data->{by_league}, $leagues
 $view->do_head2head ( $model->do_head2head ($data->{by_league} ) );
 $view->do_recent_draws ( $model->do_recent_draws ($data->{by_league} ) );
 
-my ($teams, $sorted) = $model->do_predict_models ($data->{by_match}, $leagues, $options->{update});
-$view->do_predict_models ($leagues, $teams, $sorted);
+my $predict_model = Football::Game_Prediction_Models->new (
+	fixtures => $data->{by_match}, leagues => $leagues);
+my $predict_view = Football::Game_Prediction_Views->new ();
 
+my ($teams, $sorted) = $predict_model->do_predict_models ();
+$predict_view->do_predict_models ($leagues, $teams, $sorted);
 
 sub get_cmdline {
 	my ($uk, $euro, $summer, $update, $favs, $rugby) = (0,0,0,0,0,0);

@@ -9,8 +9,9 @@ has 'fixtures' => (is => 'ro', default => sub { [] } );
 
 sub BUILD {
 #	my $self = shift;
-#	$self->{home_die_msg} = "\n\n***ZERO HOME GAMES for $team\nEnable ZEROGAMES keyword in predict.pl and add '$team' to remove_teams array in fixtures2.pl\n";
-#	$self->{away_die_msg} = "\n\n***ZERO AWAY GAMES for $team\nEnable ZEROGAMES keyword in predict.pl and add '$team' to remove_teams array in fixtures2.pl\n";
+#	my $end_msg = "\nEnable ZEROGAMES keyword in predict.pl and add '$team' to remove_teams array in fixtures2.pl\n";
+#	$self->{home_die_msg} = "\n\n***ZERO HOME GAMES for $team".$end_msg;
+#	$self->{away_die_msg} = "\n\n***ZERO AWAY GAMES for $team".$end_msg;
 }
 
 sub calc_goal_expects {
@@ -177,7 +178,7 @@ sub _get_home_goals {
 	my $total = 0;
 
 	for my $team (@{ $league->{team_list} }) {
-		$total += $league->{home_table}->for ($team);
+		$total += $league->home_for ($team);
 	}
 	return $total;
 }
@@ -187,7 +188,7 @@ sub _get_away_goals {
 	my $total = 0;
 
 	for my $team (@{ $league->{team_list} }) {
-		$total += $league->{away_table}->for ($team);
+		$total += $league->away_for ($team);
 	}
 	return $total;
 }
@@ -197,7 +198,7 @@ sub _get_total_league_games {
 	my $total = 0;
 
 	for my $team (@{ $league->{team_list} }) {
-		$total += $league->{home_table}->played ($team);
+		$total += $league->home_played ($team);
 	}
 	return $total;
 }

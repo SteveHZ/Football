@@ -102,8 +102,6 @@ TESTING { # Do not touch these lines
 	our @summer_csv_leagues = qw(ROI MLS SWD NRW FN);
 	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN);
 } else { # Amend these lines as needed
-#our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League');
-#our @summer_csv_leagues = qw(ROI MLS SWD NRW);
 	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League');
 	our @summer_csv_leagues = qw(ROI MLS SWD NRW FN);
 	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN);

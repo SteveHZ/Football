@@ -8,8 +8,6 @@ use Football::Fixtures_Globals qw( football_rename rugby_rename );
 
 my @remove_teams = (
 	'Portland Timbers',
-	'KPV Kokkola',
-	'Mariehamn',
 );
 
 my @paths = (

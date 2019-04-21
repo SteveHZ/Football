@@ -43,6 +43,7 @@ sub do_teams {
 		$worksheet->freeze_panes (1,0);
 		print "Done";
 	}
+	print "\n";
 	$self->{workbook}->close ();
 }
 

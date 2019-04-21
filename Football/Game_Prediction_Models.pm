@@ -14,6 +14,17 @@ has 'models' => (is => 'ro', default => sub { {} });
 has 'fixtures' => (is => 'ro', default => sub { [] }, required => 1);
 has 'leagues' => (is => 'ro', default => sub { [] }, required => 1);
 
+sub do_predict_models {
+	my $self = shift;
+
+	my ($teams, $sorted) = $self->calc_goal_expect ();
+	$sorted->{match_odds} = $self->calc_match_odds ();
+	$sorted->{skellam} = $self->calc_skellam_dist ();
+	$sorted->{over_under} = $self->calc_over_under ();
+
+	return ($teams, $sorted);
+}
+
 sub calc_goal_expect {
 	my $self = shift;
 	my $sorted = {};
