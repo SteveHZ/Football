@@ -4,7 +4,7 @@ BEGIN { $ENV{PERL_KEYWORD_TESTING} = 1;}
 
 use strict;
 use warnings;
-use Test::More tests => 8;
+use Test::More tests => 7;
 use Test::Deep;
 use Data::Dumper;
 
@@ -88,13 +88,6 @@ subtest 'Team_Data access methods' => sub {
 	cmp_deeply ($league->{aways}->{Stoke}->{aways}, $league->get_aways ('Stoke'), 'get_aways');
 	cmp_deeply ($league->{homes}->{Stoke}->{full_homes}, $league->get_full_homes ('Stoke'), 'get_full_homes');
 	cmp_deeply ($league->{aways}->{Stoke}->{full_aways}, $league->get_full_aways ('Stoke'), 'get_full_aways');
-};
-
-# Football_IO_Role
-subtest 'append_prev' => sub {
-	plan tests => 1;
-	my $file = $model->append_prev ('C:/Mine/perl/Football/benchtest/history/results.json');
-	is ($file, 'C:/Mine/perl/Football/benchtest/history/results_prev.json', "append 'prev' to filename");
 };
 
 #	tests to do :

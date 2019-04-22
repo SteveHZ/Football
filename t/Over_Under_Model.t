@@ -9,8 +9,7 @@ use Data::Dumper;
 
 use lib "C:/Mine/perl/Football";
 use Football::Model;
-use Football::Game_Prediction_Models;
-use Football::Spreadsheets::Over_Under_View;
+use Football::Game_Predictions;
 use MyJSON qw(read_json);
 
 my $ou_model;
@@ -19,7 +18,7 @@ my $data = $model->build_data ();
 
 my $fixtures = $model->get_fixtures ();
 my $stats = $model->do_fixtures ($fixtures, $data->{homes}, $data->{aways}, $data->{last_six});
-my $predict_model = Football::Game_Prediction_Models->new (
+my $predict_model = Football::Game_Predictions->new (
 	fixtures => $stats->{by_match},
 	leagues => $data->{leagues},
 );
@@ -30,7 +29,7 @@ subtest 'constructor' => sub {
 	use_ok 'Football::Over_Under_Model';
 	$ou_model = Football::Over_Under_Model->new (leagues => $data->{leagues}, fixtures => $fixtures, stats => $stats);
 	isa_ok ($ou_model, 'Football::Over_Under_Model', '$ou_model');
-	isa_ok ($predict_model, 'Football::Game_Prediction_Models', '$predict_model');
+	isa_ok ($predict_model, 'Football::Game_Predictions', '$predict_model');
 };
 
 subtest 'do_calcs' => sub {
@@ -48,7 +47,7 @@ subtest 'do_calcs' => sub {
 
 subtest 'over under' => sub {
 	plan tests => 6;
-	my ($teams, $sorted) = $model->do_predict_models ($stats->{by_match}, $data->{leagues});
+	my ($teams, $sorted) = $predict_model->do_predict_models ($stats->{by_match}, $data->{leagues});
 
 	my $game = @{ $sorted->{over_under}->{ou_points} }[0];
 	is ($game->{home_team}, 'Aston Villa', 'home team');
@@ -59,10 +58,6 @@ subtest 'over under' => sub {
 	is ($game->{home_team}, 'Reading', 'home team');
 	is ($game->{away_team}, 'Sheffield Weds', 'away team');
 	is ($game->{ou_points}, 5, 'ou points');
-
-	print "\nWriting spreadsheet..\n";
-	my $view = Football::Spreadsheets::Over_Under_View->new (filename => 'c:/mine/perl/football/t/reports/over_under_test.xlsx');
-	$view = $view->view ($sorted->{over_under});
 };
 
 subtest 'unders' => sub {

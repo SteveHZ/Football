@@ -17,6 +17,11 @@ sub BUILD {
 	}
 }
 
+sub do_favourites {
+	my ($self, $hash) = @_;
+	$self->{current}->do_favourites ($hash);
+}
+
 sub show {
 	my ($self, $hash, $leagues, $seasons) = @_;
 
@@ -32,11 +37,11 @@ sub show {
 
 =head1 NAME
 
-Favourites_View.pm
+Football::Favourites_View.pm
 
 =head1 SYNOPSIS
 
-Used by predict.pl
+View for Favourites triad
 
 =head1 DESCRIPTION
 

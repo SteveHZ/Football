@@ -22,8 +22,9 @@ use Summer::Model;
 use Summer::View;
 use Rugby::Model;
 use Rugby::View;
-use Football::Game_Prediction_Models;
-use Football::Game_Prediction_Views;
+
+use Football::Favourites;
+use Football::Game_Predictions;
 
 my $options = get_cmdline ();
 my ($model, $view) = get_model_and_view ($options);
@@ -49,8 +50,6 @@ $view->last_six (
 	my $last_six = $model->do_last_six ($leagues)
 );
 
-$view->do_favourites ( $model->do_favourites ($season, $options->{update_favs}) );
-
 $view->fixture_list (
 	my $fixtures = $model->get_fixtures ()
 );
@@ -64,12 +63,12 @@ $view->do_league_places ( $model->do_league_places ($data->{by_league}, $leagues
 $view->do_head2head ( $model->do_head2head ($data->{by_league} ) );
 $view->do_recent_draws ( $model->do_recent_draws ($data->{by_league} ) );
 
-my $predict_model = Football::Game_Prediction_Models->new (
-	fixtures => $data->{by_match}, leagues => $leagues);
-my $predict_view = Football::Game_Prediction_Views->new ();
+my $favourites = Football::Favourites->new (
+	season => $season, update => $options->{update}, filename => 'uk');
+$favourites->do_favourites ();
 
-my ($teams, $sorted) = $predict_model->do_predict_models ();
-$predict_view->do_predict_models ($leagues, $teams, $sorted);
+my $predict = Football::Game_Predictions->new (fixtures => $data->{by_match}, leagues => $leagues);
+$predict->do_predictions ();
 
 sub get_cmdline {
 	my ($uk, $euro, $summer, $update, $favs, $rugby) = (0,0,0,0,0,0);

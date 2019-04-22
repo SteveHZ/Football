@@ -1,5 +1,7 @@
 #	Results_Model.t 04/08/18
 
+BEGIN { $ENV{PERL_KEYWORD_TESTING} = 1; }
+
 use strict;
 use warnings;
 use Test::More tests => 2;
@@ -12,11 +14,11 @@ while (my $line = <DATA>) {
 	push @games, $line;
 }
 close DATA;
-print Dumper @games;
+#print Dumper @games;
 
 my $model = Rugby::Results_Model->new;
 my $sorted = $model->sort_games (\@games);
-print Dumper [ $sorted ];
+#print Dumper [ $sorted ];
 
 subtest 'sort_games' => sub {
 	is (@$sorted[0], '07/07/18,Toronto Wolfpack,Sheffield,34,10', '07/07/18,Toronto Wolfpack,Sheffield,34,10');
@@ -26,7 +28,7 @@ subtest 'sort_games' => sub {
 
 subtest 'get_date_cmp' => sub {
 	my $date = '06/05/66';
-	is ($model->get_date_cmp (\$date), '660506', 'get_date_cmp 06/05/66'); 
+	is ($model->get_date_cmp (\$date), '660506', 'get_date_cmp 06/05/66');
 };
 
 __DATA__
@@ -53,32 +55,3 @@ __DATA__
 08/07/18,Batley,Leigh Centurions,12,30
 07/07/18,Toulouse Olympique,London Broncos,20,20
 07/07/18,Toronto Wolfpack,Sheffield,34,10
-
-=head
-sub first_sort_games {
-	my $games = shift;
-	my @new_games = ();
-	
-	for my $game (@$games) {
-		my @data = split ',', $game;
-		push @new_games, {
-			date => $data[0],
-			home_team => $data[1],
-			away_team => $data[2],
-			home_score => $data[3],
-			away_score => $data[4],
-			date_cmp => get_date_cmp ($data[0]),
-		};
-	}
-	my @temp = sort {
-		$a->{date_cmp} <=> $b->{date_cmp}
-		or $a->{home_team} cmp $b->{home_team}
-	} @new_games;
-	
-	my @sorted = ();
-	for my $game (@temp) {
-		push @sorted, "$game->{date},$game->{home_team},$game->{away_team},$game->{home_score},$game->{away_score}";
-	}
-	return \@sorted;
-}
-=cut

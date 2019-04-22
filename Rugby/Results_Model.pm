@@ -4,6 +4,8 @@ use Web::Query;
 use Rugby::Globals qw(@fixtures_leagues $results_season);
 use MyDate qw(@days_of_week $month_names);
 use MyRegX;
+use MyKeyword qw(TESTING);
+
 use Data::Dumper;
 use Moo;
 use namespace::clean;
@@ -65,6 +67,8 @@ sub after_prepare {
 sub sort_games {
 	my ($self, $games) = @_;
 
+    my $year = $results_season;
+    TESTING { $year = 18; }
 	return [
 		map { "$_->[1],$_->[2],$_->[3],$_->[4],$_->[5]" }
 		sort {
@@ -74,7 +78,7 @@ sub sort_games {
 		map {
 			[ $self->get_date_cmp (\$_), split (',', $_) ]
 		}
-		grep { $_ =~ /\/$results_season/ }
+        grep { $_ =~ /\/$year/ }
 		@$games
 	];
 }

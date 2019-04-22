@@ -5,7 +5,7 @@ package Football::Roles::Shared_Model;
 
 use Clone qw(clone);
 
-use Football::Game_Prediction_Models;
+use Football::Game_Predictions;
 use Football::Football_Data_Model;
 use Football::Globals qw( $default_stats_size );
 use MyKeyword qw(TESTING ANALYSIS); # for model.t
@@ -28,6 +28,7 @@ sub get_league_idx {
 	return $self->{league_idx}->{$league};
 }
 
+#=head
 sub quick_predict {
 	my $self = shift;
 	my $data = $self->quick_build ();
@@ -38,9 +39,11 @@ sub quick_predict {
 	$self->do_head2head ($data->{by_league} );
 	$self->do_recent_draws ($data->{by_league} );
 
-	my ($teams, $sorted) = $self->do_predict_models ($data->{by_match}, $self->leagues);
+	my $predict = Football::Game_Predictions->new (fixtures => $data->{by_match}, leagues => $self->leagues);
+	my ($teams, $sorted) = $predict->do_predict_models ($data->{by_match}, $self->leagues);
 	return ($teams, $sorted);
 }
+#=cut
 
 sub quick_build {
 	my $self = shift;
@@ -137,21 +140,6 @@ sub get_unique_leagues {
 		shift;	return _get_unique_leagues (shift);
 	}
 }
-
-=head
-sub do_predict_models {
-	my ($self, $fixtures, $leagues, $update) = @_;
-	my $predict_model = Football::Game_Prediction_Models->new (
-		fixtures => $fixtures, leagues => $leagues);
-
-	my ($teams, $sorted) = $predict_model->calc_goal_expect ();
-	$sorted->{match_odds} = $predict_model->calc_match_odds ();
-	$sorted->{skellam} = $predict_model->calc_skellam_dist ();
-	$sorted->{over_under} = $predict_model->calc_over_under ();
-
-	return ($teams, $sorted);
-}
-=cut
 
 sub do_fixtures {
 	my ($self, $fixtures) = @_;

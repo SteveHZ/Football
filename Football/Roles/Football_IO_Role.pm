@@ -57,36 +57,3 @@ sub get_fixtures {
 }
 
 1;
-
-=head
-sub write_predictions {
-	my ($self, $fixtures) = @_;
-	my $prev = $self->append_prev ($self->{predictions_file});
-	move $self->{predictions_file}, $prev if -e $self->{predictions_file};
-
-	my @list = ();
-	for my $game (@$fixtures) {
-		push @list, {
-			league => $game->{league},
-			home_team => $game->{home_team},
-			away_team => $game->{away_team},
-			expected_goal_diff => sprintf ("%0.2f", $game->{expected_goal_diff}),
-			expected_goal_diff_last_six => sprintf ("%0.2f", $game->{expected_goal_diff_last_six}),
-
-			ou_home_away => $game->{home_away},
-			ou_last_six => $game->{last_six},
-			ou_points => $game->{ou_points},
-
-			home_away_goal_diff => $game->{home_away_goal_diff},
-			last_six_goal_diff => $game->{last_six_goal_diff},
-		}
-	}
-	write_json ($self->{predictions_file}, \@list);
-}
-
-sub append_prev {
-	my ($self, $filename) = @_;
-	$filename =~ s/\.json$/_prev\.json/;
-    return $filename;
-}
-=cut

@@ -39,14 +39,6 @@ sub destroy_sheets {
 	$self->{xlsx_skellam}->{workbook}->close ();
 }
 
-sub do_predict_models {
-	my ($self, $leagues, $teams, $sorted) = @_;
-
-	$self->do_goal_expect ($leagues, $teams, $sorted);
-	$self->do_match_odds ($sorted);
-	$self->do_over_under ($sorted);
-}
-
 sub do_goal_expect {
 	my ($self, $leagues, $teams, $sorted) = @_;
 
@@ -65,5 +57,28 @@ sub do_over_under {
 	my ($self, $sorted) = @_;
 	$self->{xlsx_over_under}->view ($sorted->{over_under});
 }
+
+=pod
+
+=head1 NAME
+
+Football::Game_Prediction_Views.pm
+
+=head1 SYNOPSIS
+
+View for Game_Prediction triad
+
+=head1 DESCRIPTION
+
+=head1 AUTHOR
+
+Steve Hope
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
 
 1;

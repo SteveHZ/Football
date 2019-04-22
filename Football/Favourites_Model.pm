@@ -1,5 +1,9 @@
 package Football::Favourites_Model;
 
+use Football::Favourites_Data_Model;
+use Football::Globals qw( @league_names @csv_leagues );
+use List::MoreUtils qw(each_array);
+
 use Moo;
 use namespace::clean;
 
@@ -9,6 +13,7 @@ has 'hash' => ( is => 'ro' );
 has 'json_file' => ( is => 'ro' );
 
 my $path = 'C:/Mine/perl/Football/data/';
+my $fav_path = 'C:/Mine/perl/Football/data/favourites/';
 my $uk_file = $path.'favourites_history.json';
 my $euro_file = $path.'euro_favourites_history.json';
 
@@ -23,6 +28,29 @@ sub BUILD {
 		$uk_file : $euro_file;
 	$self->{history} = (-e $self->{json_file}) ?
 		$self->read_json ($self->{json_file}) : [];
+}
+
+sub do_favourites {
+	my ($self, $year) = @_;
+
+	my $data_model = Football::Favourites_Data_Model->new ();
+	my $iterator = each_array ( @league_names, @csv_leagues );
+
+	while ( my ($league, $csv_league) = $iterator->() ) {
+		my $file_from = $path.$csv_league.'.csv';
+		my $file_to = $fav_path.$league.'/'.$year.'.csv';
+
+		my $data = $data_model->update_current ($file_from);
+		$data_model->write_current ($file_to, $data);
+		$self->update ($league, $year, $data);
+	}
+
+	return {
+		data => $self->hash (),
+		history => $self->history (),
+		leagues => \@league_names,
+		year => $year,
+	};
 }
 
 sub setup {
@@ -47,7 +75,7 @@ sub update {
 	my ($self, $league, $year, $results) = @_;
 	$self->{hash}->{$league}->{$year} = $self->setup ();
 	my $hashref = $self->{hash}->{$league}->{$year};
-	
+
 	for my $game (@$results) {
 		$hashref->{stake} ++;
 		if ($game->{result} eq 'D') {
@@ -72,11 +100,11 @@ sub update {
 
 =head1 NAME
 
-Favourites_Model.pm
+Football::Favourites_Model.pm
 
 =head1 SYNOPSIS
 
-Used by predict.pl
+Model for Favourites triad
 
 =head1 DESCRIPTION
 
