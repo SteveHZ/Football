@@ -21,8 +21,8 @@ sub main {
 
 	for my $league (@$leagues) {
 		my $league_name = $league->{title};
-		my $teams  = \% {$league->{teams}};
-		my $team_list = \@ {$league->{team_list}};
+		my $teams  = $league->{teams};
+		my $team_list = $league->{team_list};
 
 		for my $team (@$team_list) {
 		my $next = $teams->{$team}->iterator ();

@@ -25,7 +25,7 @@ sub do_teams {
 	my ($self, $teams, $sorted) = @_;
 
 	for my $team (@$sorted) {
-		print "\nWriting data for $team...";
+#		print "\nWriting data for $team...";
 		my $worksheet = $self->add_worksheet ($team);
 		$self->do_teams_headers ($worksheet);
 
@@ -41,9 +41,9 @@ sub do_teams {
 			}
 		}
 		$worksheet->freeze_panes (1,0);
-		print "Done";
+#		print "Done";
 	}
-	print "\n";
+#	print "\n";
 	$self->{workbook}->close ();
 }
 

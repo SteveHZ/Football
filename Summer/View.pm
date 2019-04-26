@@ -22,25 +22,25 @@ sub create_sheets {
 
 	$self->{xlsx_predictions} = Summer::Spreadsheets::Predictions->new ();
 	$self->{xlsx_extended} = Summer::Spreadsheets::Extended->new ();
-	$self->{xlsx_goal_expect} = Summer::Spreadsheets::Goal_Expect_View->new ();
-	$self->{xlsx_goal_diffs} = Summer::Spreadsheets::Goal_Diffs_View->new ();
-	$self->{xlsx_match_odds} = Summer::Spreadsheets::Match_Odds_View->new ();
-	$self->{xlsx_over_under} = Summer::Spreadsheets::Over_Under_View->new ();
-	$self->{xlsx_skellam} = Summer::Spreadsheets::Skellam_Dist_View->new ();
+#	$self->{xlsx_goal_expect} = Summer::Spreadsheets::Goal_Expect_View->new ();
+#	$self->{xlsx_goal_diffs} = Summer::Spreadsheets::Goal_Diffs_View->new ();
+#	$self->{xlsx_match_odds} = Summer::Spreadsheets::Match_Odds_View->new ();
+#	$self->{xlsx_over_under} = Summer::Spreadsheets::Over_Under_View->new ();
+#	$self->{xlsx_skellam} = Summer::Spreadsheets::Skellam_Dist_View->new ();
 }
 
 sub destroy_sheets {
 	my $self = shift;
 
-	$self->{xlsx_teams}->{$_}->{workbook}->close () for keys %{ $self->{xlsx_teams}};	
-	$self->{xlsx_tables}->{$_}->{workbook}->close () for keys %{ $self->{xlsx_tables}};	
-	$self->{xlsx_predictions}->{workbook}->close ();
-	$self->{xlsx_extended}->{workbook}->close ();
-	$self->{xlsx_goal_expect}->{workbook}->close ();
-	$self->{xlsx_goal_diffs}->{workbook}->close ();
-	$self->{xlsx_match_odds}->{workbook}->close ();
-	$self->{xlsx_over_under}->{workbook}->close ();
-	$self->{xlsx_skellam}->{workbook}->close ();
+	$self->{xlsx_teams}->{$_}->{workbook}->close () for keys %{ $self->{xlsx_teams}};
+	$self->{xlsx_tables}->{$_}->{workbook}->close () for keys %{ $self->{xlsx_tables}};
+#	$self->{xlsx_predictions}->{workbook}->close ();
+#	$self->{xlsx_extended}->{workbook}->close ();
+#	$self->{xlsx_goal_expect}->{workbook}->close ();
+#	$self->{xlsx_goal_diffs}->{workbook}->close ();
+#	$self->{xlsx_match_odds}->{workbook}->close ();
+#	$self->{xlsx_over_under}->{workbook}->close ();
+#	$self->{xlsx_skellam}->{workbook}->close ();
 }
 
 sub create_new_teams_sheet {

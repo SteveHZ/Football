@@ -19,9 +19,9 @@ sub setup {
 
 	for my $league (@$leagues) {
 		my $league_name = $league->{title};
-		my $league_ref = \%{ $hash->{$league_name} };
+		my $league_ref = $hash->{$league_name};
 
-		 my $sorted = \@{ $league->{team_list} };
+		my $sorted = $league->{team_list};
 		for my $team (@$sorted) {
 			$league_ref->{$team} = $self->setup_handicaps ();
 		}
@@ -31,7 +31,7 @@ sub setup {
 
 sub setup_handicaps {
 	my $hash = {};
-	
+
 	for (my $margin = -50; $margin <= 50; $margin += 2) {
 		$hash->{$margin} = 0;
 	}
@@ -61,7 +61,7 @@ sub update {
 
 sub fetch_hash {
 	my ($self, $league, $team) = @_;
-	return \%{ $self->{hash}->{$league}->{$team} };
+	return $self->{hash}->{$league}->{$team};
 }
 
 1;

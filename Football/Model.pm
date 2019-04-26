@@ -5,7 +5,7 @@ package Football::Model;
 #	v2.06 Moo 01/10/16	v2.07 with Football::Shared_Model 18-19/01/17
 #	v2.08 refactored 19-21/12/18
 
-#use List::MoreUtils qw(each_array);
+use List::MoreUtils qw(each_array);
 
 use lib 'C:/Mine/perl/Football';
 use Football::League;
@@ -32,13 +32,16 @@ has 'fixtures_file' => ( is => 'rw' );
 has 'season_data' => ( is => 'ro' );
 has 'test_fixtures_file' => ( is => 'ro' );
 
+# HMVC
+has 'model_name' => ( is => 'ro' );
+
 with 'Roles::MyJSON',
 'Football::Roles::Shared_Model',
 'Football::Roles::Football_IO_Role';
 
 sub BUILD {
 	my $self = shift;
-	$self->{model_name} = "Football";
+	$self->{model_name} = "UK";
 	$self->{leagues} = [];
 	$self->{league_idx} = $self->build_league_idx ($self->{league_names});
 
@@ -172,6 +175,31 @@ sub do_recent_draws {
 			or $a->{game}->{home_team} cmp $b->{game}->{home_team}
 		} @temp
 	];
+}
+
+sub do_favourites {
+	my ($self, $year, $update) = @_;
+	my $fav_path = 'C:/Mine/perl/Football/data/favourites/';
+
+	my $fav_model = Football::Favourites_Model->new (update => $update, filename => 'uk');
+	my $data_model = Football::Favourites_Data_Model->new ();
+
+	my $iterator = each_array ( @league_names, @csv_leagues );
+	while ( my ($league, $csv_league) = $iterator->() ) {
+		my $file_from = $self->{path}.$csv_league.'.csv';
+		my $file_to = $fav_path.$league.'/'.$year.'.csv';
+
+		my $data = $data_model->update_current ($file_from);
+		$data_model->write_current ($file_to, $data);
+		$fav_model->update ($league, $year, $data);
+	}
+
+	return {
+		data => $fav_model->hash (),
+		history => $fav_model->history (),
+		leagues => \@league_names,
+		year => $year,
+	};
 }
 
 =pod

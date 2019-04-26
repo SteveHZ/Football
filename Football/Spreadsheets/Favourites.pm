@@ -57,7 +57,7 @@ sub by_year {
 
 		$row = 4;
 		for my $league (@$leagues) {
-			$hashref = \% { $hash->{$league}->{$year} };
+			$hashref = $hash->{$league}->{$year};
 
 			print "\nWriting favourites by year : $league $year ...";
 			$worksheet->write ($row, 0, $league, $self->{format});
@@ -78,7 +78,7 @@ sub by_league {
 
 		$row = 4;
 		for my $year (@$seasons) {
-			$hashref = \% { $hash->{$league}->{$year} };
+			$hashref = $hash->{$league}->{$year};
 
 			print "\nWriting favourites by league : $league $year ...";
 			$worksheet->write ($row, 0, $year, $self->{format});
@@ -100,7 +100,7 @@ sub current {
 
 	$row = 4;
 	for my $league (@$leagues) {
-		$hashref = \% { $hash->{$league}->{$year} };
+		$hashref = $hash->{$league}->{$year};
 
 		print "\nWriting favourites : $league $year ...";
 		$worksheet->write ($row, 0, $league, $self->{format});
@@ -122,13 +122,12 @@ sub do_favourites {
 	print "\n";
 
 	my $row = 4;
-	my $leagues = \@ { $hash->{leagues} };
+	my $leagues = $hash->{leagues};
 
 	for my $league (@$leagues) {
-		my $hashref = \% { $hash->{data}->{$league}->{$year} };
+		my $hashref = $hash->{data}->{$league}->{$year};
 
 		print "\nWriting favourites : $league $year ...";
-
 		$worksheet->write ($row, 0, $league, $self->{format});
 		$self->write_row ($worksheet, $hashref, $row);
 		$row += 2;
@@ -138,7 +137,7 @@ sub do_favourites {
 
 sub do_history {
 	my ($self, $hash) = @_;
-	my $leagues = \@ { $hash->{leagues} };
+	my $leagues = $hash->{leagues};
 	my $year = $hash->{year};
 	my $league_sheets = {};
 
@@ -150,7 +149,7 @@ sub do_history {
 	my $row = 4;
 	for my $week (@ { $hash->{history} } ) {
 		for my $league (keys %$week) {
-			my $hashref = \% { $week->{$league}->{$year} };
+			my $hashref = $week->{$league}->{$year};
 			$self->write_row ($league_sheets->{$league}, $hashref, $row);
 		}
 		$row ++;

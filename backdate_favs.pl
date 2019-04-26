@@ -40,7 +40,7 @@ sub main {
 	my $data = read_files ();
 	my $games = {};
 	my @results = ();
-	
+
 	for my $week (0..$num_weeks - 1) {
 		print "\nCalculating week no. ".($week + 1)." ...";
 		my $fav_model = Football::Favourites_Model->new ( filename => 'uk' );
@@ -50,7 +50,7 @@ sub main {
 
 			push ( @{ $games->{$league} }, @{ $data->{$league} }[$start..$end]);
 			$idxs->{$league} += $num_games->{$league}[$week];
-			$fav_model->update ($league, $year, \@{ $games->{$league} } );
+			$fav_model->update ($league, $year, $games->{$league} );
 		}
 
 		push (@results, $fav_model->hash);

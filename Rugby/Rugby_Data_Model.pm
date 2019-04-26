@@ -16,8 +16,10 @@ sub update {
 	my @sheetnames = $book->sheets;
 	my ($home_score, $away_score);
 
+
 	for my $sheet (1..scalar @sheetnames) {
 		my $league = $sheetnames [$sheet - 1];
+#print "\nleague = $league\n";<STDIN>;
 		my @rows = rows ($book->[$sheet]);
 		for my $row (@rows [1..$#rows]) {
 			die "\nRead error in $filename : $league" unless @$row[3] =~ /\d+[-.]\d+/;

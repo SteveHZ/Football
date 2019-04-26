@@ -59,14 +59,14 @@ sub BUILD {
 sub build_leagues {
 	my ($self, $games) = @_;
 	my $teams = $self->read_json ($self->{teams_file});
-	my $league_array = \@{ $self->{leagues} };
+	my $league_array = $self->{leagues};
 
 	for my $league (@league_names) {
 #		die "No games played in $league" if scalar (@ {$games->{$league}} == 0);
 		push (@$league_array, Rugby::League->new (
 			name		=> $league,
 			games		=> $games->{$league},
-			team_list	=> \@ { $teams->{$league} },
+			team_list	=> $teams->{$league},
 		));
 	}
 	return $league_array;

@@ -2,7 +2,10 @@ package Euro::Spreadsheets::Goal_Expect_View;
 
 #	Euro::Spreadsheets::Goal_Expect_View.pm 26/07/17
 
-use parent 'Football::Spreadsheets::Goal_Expect_View';
+use Moo;
+use namespace::clean;
+
+extends 'Football::Spreadsheets::Goal_Expect_View';
 
 sub create_sheet {
 	my $self = shift;

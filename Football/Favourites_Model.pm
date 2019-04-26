@@ -24,7 +24,7 @@ sub BUILD {
 
 	$self->{update} = ($update_favourites) ?
 		$args->{update} : $update_favourites;
-	$self->{json_file} = $args->{filename} eq "uk" ?
+	$self->{json_file} = $args->{filename} eq 'uk' ?
 		$uk_file : $euro_file;
 	$self->{history} = (-e $self->{json_file}) ?
 		$self->read_json ($self->{json_file}) : [];

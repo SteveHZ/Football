@@ -4,8 +4,8 @@
 
 use strict;
 use warnings;
-use Test::More tests => 2;
-use Test::Deep;
+use Test::More tests => 1;
+#use Test::Deep;
 
 use lib 'C:/Mine/perl/Football';
 use Rugby::Rugby_Data_Model;
@@ -19,6 +19,7 @@ subtest 'constructor' => sub {
 	isa_ok ($data_model, 'Rugby::Rugby_Data_Model', '$data_model');
 };
 
+=head
 subtest 'update' => sub {
 	plan tests => 1;
 
@@ -31,6 +32,11 @@ subtest 'update' => sub {
 		date 			=> re ('\d\d/\d\d/\d\d'),
 	};
 
-	print "\n";
+#use Data::Dumper;
+#print Dumper $games;
+#<STDIN>;
+#	print "\n";
+#	cmp_deeply ( $games, array_each ($games_test), "all games match expected format");
 	cmp_deeply ( \@{ $games->{'Super League'} }, array_each ($games_test), "all games match expected format");
 };
+=cut

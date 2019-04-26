@@ -58,6 +58,37 @@ sub do_over_under {
 	$self->{xlsx_over_under}->view ($sorted->{over_under});
 }
 
+=head
+sub create_uk_sheets {
+	my $self = shift;
+	$self->{xlsx_goal_expect} = Football::Spreadsheets::Goal_Expect_View->new ();
+	$self->{xlsx_goal_diffs} = Football::Spreadsheets::Goal_Diffs_View->new ();
+	$self->{xlsx_match_odds} = Football::Spreadsheets::Match_Odds_View->new ();
+	$self->{xlsx_over_under} = Football::Spreadsheets::Over_Under_View->new ();
+	$self->{xlsx_skellam} = Football::Spreadsheets::Skellam_Dist_View->new ();
+
+}
+
+sub create_euro_sheets {
+	my $self = shift;
+	$self->{xlsx_goal_expect} = Euro::Spreadsheets::Goal_Expect_View->new ();
+	$self->{xlsx_goal_diffs} = Euro::Spreadsheets::Goal_Diffs_View->new ();
+	$self->{xlsx_match_odds} = Euro::Spreadsheets::Match_Odds_View->new ();
+	$self->{xlsx_over_under} = Euro::Spreadsheets::Over_Under_View->new ();
+	$self->{xlsx_skellam} = Euro::Spreadsheets::Skellam_Dist_View->new ();
+
+}
+
+sub create_summer_sheets {
+	my $self = shift;
+	$self->{xlsx_goal_expect} = Summer::Spreadsheets::Goal_Expect_View->new ();
+	$self->{xlsx_goal_diffs} = Summer::Spreadsheets::Goal_Diffs_View->new ();
+	$self->{xlsx_match_odds} = Summer::Spreadsheets::Match_Odds_View->new ();
+	$self->{xlsx_over_under} = Summer::Spreadsheets::Over_Under_View->new ();
+	$self->{xlsx_skellam} = Summer::Spreadsheets::Skellam_Dist_View->new ();
+}
+=cut
+
 =pod
 
 =head1 NAME

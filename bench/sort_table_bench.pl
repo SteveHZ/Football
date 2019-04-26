@@ -42,11 +42,11 @@ sub sort_table1 {
 			or _goal_diff ($table->{$b}) <=> _goal_diff ($table->{$a})
 			or $table->{$b}->{for} <=> $table->{$a}->{for}
 			or $table->{$a}->{team} cmp $table->{$b}->{team}
-		} keys %{$table}
+		} keys %$table
 	) {
 		push (@ {$self->{sorted} }, $table->{$team} );
 	}
-	return \@ {$self->{sorted} };
+	return $self->{sorted};
 }
 
 sub sort_table2 {

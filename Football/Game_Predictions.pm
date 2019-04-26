@@ -1,13 +1,16 @@
 package Football::Game_Predictions;
 
 use Football::Game_Prediction_Models;
-use Football::Game_Prediction_Views;
+use Football::Game_Predictions::UK;
+use Football::Game_Predictions::Euro;
+use Football::Game_Predictions::Summer;
 
 use Moo;
 use namespace::clean;
 
 has 'fixtures' => (is => 'ro', required => 1);
 has 'leagues' => (is => 'ro', required => 1);
+has 'view_name' => (is => 'ro', required => 1);
 
 sub do_predictions {
     my $self = shift;
@@ -32,12 +35,24 @@ sub do_predict_models {
 
 sub do_predict_views {
 	my ($self, $teams, $sorted) = @_;
+#   define view here instead of in a constructor to avoid
+#   clobbering an existing spreadsheet during testing
+    my $view = $self->build_view ($self->{view_name});
 
-#   define view here instead of in a constructor to avoid clobbering an existing spreadsheet during testing
-    my $view = Football::Game_Prediction_Views->new ();
 	$view->do_goal_expect ($self->{leagues}, $teams, $sorted);
 	$view->do_match_odds ($sorted);
 	$view->do_over_under ($sorted);
+}
+
+sub build_view {
+    my ($self, $view_name) = @_;
+
+    my $dispatch = {
+        'UK'    => sub { return Football::Game_Predictions::UK->new     (); },
+        'Euro'  => sub { return Football::Game_Predictions::Euro->new   (); },
+        'Summer'=> sub { return Football::Game_Predictions::Summer->new (); },
+    };
+    return $dispatch->{$view_name}->();
 }
 
 =pod

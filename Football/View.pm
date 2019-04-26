@@ -8,6 +8,11 @@ use Football::Spreadsheets::Teams;
 use Football::Spreadsheets::Tables;
 use Football::Spreadsheets::Predictions;
 use Football::Spreadsheets::Extended;
+#use Football::Spreadsheets::Goal_Expect_View;
+#use Football::Spreadsheets::Goal_Diffs_View;
+#use Football::Spreadsheets::Match_Odds_View;
+#use Football::Spreadsheets::Over_Under_View;
+#use Football::Spreadsheets::Skellam_Dist_View;
 
 use Moo;
 use namespace::clean;
@@ -28,6 +33,12 @@ sub create_sheets {
 
 	$self->{xlsx_predictions} = Football::Spreadsheets::Predictions->new ();
 	$self->{xlsx_extended} = Football::Spreadsheets::Extended->new ();
+#	$self->{xlsx_favourites} = Football::Spreadsheets::Favourites->new (filename => 'current');
+#	$self->{xlsx_goal_expect} = Football::Spreadsheets::Goal_Expect_View->new ();
+#	$self->{xlsx_goal_diffs} = Football::Spreadsheets::Goal_Diffs_View->new ();
+#	$self->{xlsx_match_odds} = Football::Spreadsheets::Match_Odds_View->new ();
+#	$self->{xlsx_over_under} = Football::Spreadsheets::Over_Under_View->new ();
+#	$self->{xlsx_skellam} = Football::Spreadsheets::Skellam_Dist_View->new ();
 }
 
 sub destroy_sheets {
@@ -35,8 +46,14 @@ sub destroy_sheets {
 
 	$self->{xlsx_teams}->{$_}->{workbook}->close () for keys %{ $self->{xlsx_teams}};
 	$self->{xlsx_tables}->{$_}->{workbook}->close () for keys %{ $self->{xlsx_tables}};
-	$self->{xlsx_predictions}->{workbook}->close ();
-	$self->{xlsx_extended}->{workbook}->close ();
+#	$self->{xlsx_predictions}->{workbook}->close ();
+#	$self->{xlsx_extended}->{workbook}->close ();
+#	$self->{xlsx_favourites}->{workbook}->close ();
+#	$self->{xlsx_goal_expect}->{workbook}->close ();
+#	$self->{xlsx_goal_diffs}->{workbook}->close ();
+#	$self->{xlsx_match_odds}->{workbook}->close ();
+#	$self->{xlsx_over_under}->{workbook}->close ();
+#	$self->{xlsx_skellam}->{workbook}->close ();
 }
 
 sub create_new_teams_sheet {
@@ -54,8 +71,9 @@ sub do_teams {
 
 	for my $league (@$leagues) {
 		my $league_name = $league->{name};
-		my $teams  = \% {$league->{teams}};
-		my $sorted = \@ {$league->{team_list}};
+		my $teams  = $league->{teams};
+		my $sorted = $league->{team_list};
+		print "\nWriting data for $league_name...";
 
 #		for my $team (@$sorted) {
 #			print "\n\n$team : ".$league->position ($team)." ( $league->{name} )";
@@ -68,6 +86,7 @@ sub do_teams {
 #		}
 		$self->{xlsx_teams}->{$league_name} = $self->create_new_teams_sheet ($league_name);
 		$self->{xlsx_teams}->{$league_name}->do_teams ($teams, $sorted);
+		print "Done";
 	}
 }
 
@@ -346,6 +365,40 @@ sub do_recent_draws {
 	print "\n";
 	$self->{xlsx_predictions}->do_recent_draws ($draws);
 }
+
+=head
+sub do_favourites {
+	my ($self, $hash) = @_;
+	$self->{xlsx_favourites}->do_favourites ($hash);
+}
+
+sub do_predict_models {
+	my ($self, $leagues, $teams, $sorted) = @_;
+
+	$self->do_goal_expect ($leagues, $teams, $sorted);
+	$self->do_match_odds ($sorted);
+	$self->do_over_under ($sorted);
+}
+
+sub do_goal_expect {
+	my ($self, $leagues, $teams, $sorted) = @_;
+
+	$self->{xlsx_goal_expect}->view ($leagues, $teams, $sorted->{expect});
+	$self->{xlsx_goal_diffs}->view ($sorted);
+}
+
+sub do_match_odds {
+	my ($self, $sorted) = @_;
+
+	$self->{xlsx_skellam}->view ($sorted->{skellam});
+	$self->{xlsx_match_odds}->view ($sorted->{match_odds});
+}
+
+sub do_over_under {
+	my ($self, $sorted) = @_;
+	$self->{xlsx_over_under}->view ($sorted->{over_under});
+}
+=cut
 
 sub get_formats {
 	my $self = shift;
