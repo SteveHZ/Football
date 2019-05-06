@@ -23,8 +23,8 @@ use Summer::View;
 use Rugby::Model;
 use Rugby::View;
 
-use Football::Favourites;
-use Football::Game_Predictions;
+use Football::Favourites::Controller;
+use Football::Game_Predictions::Controller;
 
 my $options = get_cmdline ();
 my ($model, $view) = get_model_and_view ($options);
@@ -63,18 +63,19 @@ $view->do_league_places ( $model->do_league_places ($data->{by_league}, $leagues
 $view->do_head2head ( $model->do_head2head ($data->{by_league} ) );
 $view->do_recent_draws ( $model->do_recent_draws ($data->{by_league} ) );
 
-#$view->do_favourites ( $model->do_favourites ($season, $options->{update_favs}) );
+if ($model->model_name eq 'UK') {
+	my $favourites = Football::Favourites::Controller->new (
+		season => $season,
+		update => $options->{update},
+		filename => 'uk'
+	);
+	$favourites->do_favourites ();
+}
 
-#my ($teams, $sorted) = $model->do_predict_models ($data->{by_match}, $leagues, $options->{update});
-#$view->do_predict_models ($leagues, $teams, $sorted);
-
-my $favourites = Football::Favourites->new (
-	season => $season, update => $options->{update}, filename => 'uk'
-);
-$favourites->do_favourites ();
-
-my $predict = Football::Game_Predictions->new (
-	fixtures => $data->{by_match}, leagues => $leagues, view_name => $model->model_name
+my $predict = Football::Game_Predictions::Controller->new (
+	fixtures => $data->{by_match},
+	leagues => $leagues,
+	view_name => $model->model_name
 );
 $predict->do_predictions ();
 
@@ -105,13 +106,18 @@ sub get_cmdline {
 
 sub get_model_and_view {
 	my $options = shift;
-#this should be a dispatch table ?
+
 	return (Football::Model->new (), Football::View->new ()) if $options->{uk};
 	return (Euro::Model->new (), Euro::View->new ()) if $options->{euro};
 	return (Summer::Model->new (), Summer::View->new ()) if $options->{summer};
 	return (Rugby::Model->new (), Rugby::View->new ()) if $options->{rugby};
 	die "Unknown error in get_model_and_view";
 }
+
+#$view->do_favourites ( $model->do_favourites ($season, $options->{update_favs}) );
+
+#my ($teams, $sorted) = $model->do_predict_models ($data->{by_match}, $leagues, $options->{update});
+#$view->do_predict_models ($leagues, $teams, $sorted);
 
 =pod
 

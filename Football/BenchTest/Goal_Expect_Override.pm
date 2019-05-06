@@ -3,7 +3,7 @@ package Football::BenchTest::Goal_Expect_Override;
 use Moo;
 use namespace::clean;
 
-extends 'Football::Goal_Expect_Model';
+extends 'Football::Game_Predictions::Goal_Expect_Model';
 
 sub calc_expected_scores {
     my ($self, $teams, $game) = @_;

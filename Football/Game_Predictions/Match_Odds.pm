@@ -1,10 +1,10 @@
-package Football::Match_Odds;
+package Football::Game_Predictions::Match_Odds;
 
 #	Football::Match_Odds.pm 02-03/07/17
 
 use Math::Round qw(nearest);
 use List::Util qw(min);
-use Football::MyPoisson;
+use Football::Game_Predictions::MyPoisson;
 
 use Moo;
 use namespace::clean;
@@ -19,7 +19,7 @@ sub BUILD {
 
 sub calc {
 	my ($self, $home_expect, $away_expect) = @_;
-	my $p = Football::MyPoisson->new ();
+	my $p = Football::Game_Predictions::MyPoisson->new ();
 	my %cache_p;
 
 	for my $home_score (0..$self->{max}) {

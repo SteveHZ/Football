@@ -1,4 +1,4 @@
-package Football::Skellam_Dist_Model;
+package Football::Game_Predictions::Skellam_Dist_Model;
 
 #	MyBessel.pm 08-14/08/17, 29/09/17
 #	Football::Skellam_Dist_Model 06/10/17
@@ -22,7 +22,7 @@ sub calc {
 	my ($self, $home_expect, $away_expect) = @_;
 	my $results = {};
 
-	unless ( $home_expect == 0 or $away_expect == 0) {	
+	unless ( $home_expect == 0 or $away_expect == 0) {
 		my $constant = exp ( -1 * ($home_expect + $away_expect) );
 		my $root_ratio = sqrt ($home_expect / $away_expect);
 		my $harmonic_mean = sqrt ($home_expect * $away_expect);
@@ -68,7 +68,7 @@ sub get_draw {
 
 sub schwartz_sort {
 	my ($self, $games) = @_;
-	
+
 	return [
 		map	 { $_->[0] }
 		sort { $b->[1] <=> $a->[1] }
@@ -83,7 +83,7 @@ sub schwartz_sort {
 
 sub simple_sort {
 	my ($self, $games) = @_;
-	
+
 	return [
 		sort {
 			max ($b->{skellam}->{home_win}, $b->{skellam}->{draw}, $b->{skellam}->{away_win})
@@ -95,7 +95,7 @@ sub simple_sort {
 sub cache_sort {
 	my ($self, $games) = @_;
 	my %cache;
-	
+
 	return [
 		sort {
 			($cache {$b} ||= max (
@@ -115,7 +115,7 @@ sub cache_sort {
 #use MyTransform qw(schwartz);
 #sub transform_sort {
 #	my ($self, $games) = @_;
-	
+
 #	return schwartz (
 #		sortfunc => sub { $b->[1] <=> $a->[1] },
 #		toSort => $games,

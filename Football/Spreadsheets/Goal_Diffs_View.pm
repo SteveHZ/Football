@@ -1,13 +1,13 @@
 package Football::Spreadsheets::Goal_Diffs_View;
 
 use List::MoreUtils qw(each_arrayref);
-use Football::Utils qw(_show_signed);
 
 use Moo;
 use namespace::clean;
 
 has 'filename' => ( is => 'ro' );
-with 'Roles::Spreadsheet';
+with 'Roles::Spreadsheet',
+'Football::Roles::Signed'; # _show_signed
 
 sub BUILD {
 	my ($self, $args) = @_;

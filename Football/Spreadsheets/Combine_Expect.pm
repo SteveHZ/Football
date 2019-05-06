@@ -45,6 +45,7 @@ sub do_formats {
     }
 
 #   get formats for Home Team, Away Team, Home/Away and Last Six
+    @$data[10] = 0 if @$data[10] eq '';
 	$row_data [3]  = { @$data [3]  => $self->get_format ( @$data [10] * -1 ) };
 	$row_data [5]  = { @$data [5]  => $self->get_format ( @$data [10] ) };
 	$row_data [10] = { @$data [10] => $self->get_format ( @$data [10] ) };

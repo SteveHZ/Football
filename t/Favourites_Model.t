@@ -5,11 +5,11 @@ use warnings;
 use Test::More tests => 1;
 
 use lib "C:/Mine/perl/Football";
-use Football::Favourites_Model;
+use Football::Favourites::Model;
 
-my $model = Football::Favourites_Model->new (update => 0, filename => 'uk');
+my $model = Football::Favourites::Model->new (update => 0, filename => 'uk');
 
 subtest 'constructor' => sub {
 	plan tests => 1;
-	isa_ok ($model, 'Football::Favourites_Model', '$model');
+	isa_ok ($model, 'Football::Favourites::Model', '$model');
 };

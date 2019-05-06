@@ -8,8 +8,8 @@ use Test::More tests => 3;
 
 use lib "C:/Mine/perl/Football";
 use Football::Model;
-use Football::Game_Prediction_Models;
-use Football::Goal_Expect_Model;
+use Football::Game_Predictions::Model;
+use Football::Game_Predictions::Goal_Expect_Model;
 use Data::Dumper;
 
 my $model = Football::Model->new ();
@@ -17,12 +17,12 @@ my $data = $model->build_data ();
 my $fixtures = $model->get_fixtures ();
 my $stats = $model->do_fixtures ($fixtures, $data->{homes}, $data->{aways}, $data->{last_six});
 
-my $predict_model = Football::Game_Prediction_Models->new (
+my $predict_model = Football::Game_Predictions::Model->new (
 	fixtures => $stats->{by_match},
  	leagues => $data->{leagues},
 # 	filename => 'C://Mine/perl/Football/data/benchtest/goal_expect_testing.json',
 );
-my $expect_model = Football::Goal_Expect_Model->new (
+my $expect_model = Football::Game_Predictions::Goal_Expect_Model->new (
 	fixtures => $stats->{by_match},
 	leagues => $data->{leagues},
 );
@@ -30,8 +30,8 @@ my $expect_model = Football::Goal_Expect_Model->new (
 subtest 'Constructors' => sub {
 	plan tests => 3;
 	isa_ok ($model, 'Football::Model', '$model');
-	isa_ok ($predict_model, 'Football::Game_Prediction_Models', '$predict_model');
-	isa_ok ($expect_model, 'Football::Goal_Expect_Model', '$expect_model');
+	isa_ok ($predict_model, 'Football::Game_Predictions::Model', '$predict_model');
+	isa_ok ($expect_model, 'Football::Game_Predictions::Goal_Expect_Model', '$expect_model');
 };
 
 subtest 'get_average' => sub {

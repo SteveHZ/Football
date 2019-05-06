@@ -1,9 +1,9 @@
-package Football::Game_Prediction_Models;
+package Football::Game_Predictions::Model;
 
-use Football::Goal_Expect_Model;
-use Football::Match_Odds;
-use Football::Skellam_Dist_Model;
-use Football::Over_Under_Model;
+use Football::Game_Predictions::Goal_Expect_Model;
+use Football::Game_Predictions::Match_Odds;
+use Football::Game_Predictions::Skellam_Dist_Model;
+use Football::Game_Predictions::Over_Under_Model;
 use Football::Globals qw( $default_stats_size );
 
 use Moo;
@@ -18,7 +18,7 @@ sub calc_goal_expect {
 	my $self = shift;
 	my $sorted = {};
 
-	$self->{models}->{expect_model} = Football::Goal_Expect_Model->new (
+	$self->{models}->{expect_model} = Football::Game_Predictions::Goal_Expect_Model->new (
 		fixtures => $self->{fixtures},
 		leagues => $self->{leagues},
 	) unless defined $self->{models}->{expect_model};
@@ -41,7 +41,7 @@ sub calc_goal_expect {
 sub calc_match_odds {
 	my $self = shift;
 
-	$self->{models}->{odds_model} = Football::Match_Odds->new ()
+	$self->{models}->{odds_model} = Football::Game_Predictions::Match_Odds->new ()
 		unless defined $self->{models}->{odds_model};
 	my $odds = $self->{models}->{odds_model};
 
@@ -62,7 +62,7 @@ sub calc_match_odds {
 sub calc_skellam_dist {
 	my $self = shift;
 
-	$self->{models}->{skellam_model} = Football::Skellam_Dist_Model->new ()
+	$self->{models}->{skellam_model} = Football::Game_Predictions::Skellam_Dist_Model->new ()
 		unless defined $self->{models}->{skellam_model};
 	my $skellam = $self->{models}->{skellam_model};
 
@@ -77,7 +77,7 @@ sub calc_over_under {
 	my $stat_size = $default_stats_size * 2;
 
 	my $sorted = {};
-	$self->{models}->{over_under_model} = Football::Over_Under_Model->new (
+	$self->{models}->{over_under_model} = Football::Game_Predictions::Over_Under_Model->new (
 		fixtures => $self->{fixtures},
 		leagues => $self->{leagues},
 	) unless defined $self->{models}->{over_under_model};

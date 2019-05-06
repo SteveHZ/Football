@@ -13,7 +13,7 @@ my $path = 'c:/mine/perl/Football/reports';
 my $expect_files = [
     { name => 'UK Expect', file => "$path/goal_expect.xlsx", sheet => 1, },
     { name => 'Euro Expect', file => "$path/Euro/goal_expect.xlsx", sheet => 1, },
-#   { name => 'Summer Expect', file => "$path/Summer/goal_expect.xlsx" },
+    { name => 'Summer Expect', file => "$path/Summer/goal_expect.xlsx", sheet => 1 },
 ];
 
 my $maxp_files = [
@@ -21,8 +21,8 @@ my $maxp_files = [
     { name => 'UK Aways', file => "$path/max_profit_uk.xlsx", sheet => 5, },
     { name => 'Euro Homes', file => "$path/Euro/max_profit_euro.xlsx", sheet => 4, },
     { name => 'Euro Aways', file => "$path/Euro/max_profit_euro.xlsx", sheet => 5, },
-#   { name => 'Summer Homes', file => "$path/Summer/max_profit_summer.xlsx", sheet => 4, },
-#   { name => 'Summer Aways', file => "$path/Summer/max_profit_summer.xlsx", sheet => 5, },
+#    { name => 'Summer Homes', file => "$path/Summer/max_profit_summer.xlsx", sheet => 4, },
+#    { name => 'Summer Aways', file => "$path/Summer/max_profit_summer.xlsx", sheet => 5, },
 ];
 
 my $out_file = "$path/combined.xlsx";

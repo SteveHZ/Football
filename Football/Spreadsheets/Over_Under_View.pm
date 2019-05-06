@@ -3,13 +3,14 @@ package Football::Spreadsheets::Over_Under_View;
 #	Football::Spreadsheets::Over_Under_View.pm 26/07/17
 
 use List::MoreUtils qw(each_arrayref);
-use Football::Utils qw(_show_signed);
 
 use Moo;
 use namespace::clean;
 
 has 'filename' => ( is => 'ro' );
-with 'Roles::Spreadsheet';
+with 'Roles::Spreadsheet',
+'Football::Roles::Signed'; # _show_signed
+
 
 sub BUILD {
 	my $self = shift;

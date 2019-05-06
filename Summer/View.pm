@@ -6,11 +6,11 @@ use Summer::Spreadsheets::Teams;
 use Summer::Spreadsheets::Tables;
 use Summer::Spreadsheets::Predictions;
 use Summer::Spreadsheets::Extended;
-use Summer::Spreadsheets::Goal_Expect_View;
-use Summer::Spreadsheets::Goal_Diffs_View;
-use Summer::Spreadsheets::Match_Odds_View;
-use Summer::Spreadsheets::Over_Under_View;
-use Summer::Spreadsheets::Skellam_Dist_View;
+#use Summer::Spreadsheets::Goal_Expect_View;
+#use Summer::Spreadsheets::Goal_Diffs_View;
+#use Summer::Spreadsheets::Match_Odds_View;
+#use Summer::Spreadsheets::Over_Under_View;
+#use Summer::Spreadsheets::Skellam_Dist_View;
 
 use Moo;
 use namespace::clean;
@@ -29,6 +29,16 @@ sub create_sheets {
 #	$self->{xlsx_skellam} = Summer::Spreadsheets::Skellam_Dist_View->new ();
 }
 
+sub create_new_teams_sheet {
+	my ($self, $filename) = @_;
+	return Summer::Spreadsheets::Teams->new (filename => $filename);
+}
+
+sub create_new_tables_sheet {
+	my ($self, $filename) = @_;
+	return Summer::Spreadsheets::Tables->new (filename => $filename);
+}
+
 sub destroy_sheets {
 	my $self = shift;
 
@@ -41,16 +51,6 @@ sub destroy_sheets {
 #	$self->{xlsx_match_odds}->{workbook}->close ();
 #	$self->{xlsx_over_under}->{workbook}->close ();
 #	$self->{xlsx_skellam}->{workbook}->close ();
-}
-
-sub create_new_teams_sheet {
-	my ($self, $filename) = @_;
-	return Summer::Spreadsheets::Teams->new (filename => $filename);
-}
-
-sub create_new_tables_sheet {
-	my ($self, $filename) = @_;
-	return Summer::Spreadsheets::Tables->new (filename => $filename);
 }
 
 #	Not implemented by Summer::View

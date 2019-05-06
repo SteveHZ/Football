@@ -4,7 +4,7 @@ use List::Util qw(any);
 use Moo;
 use namespace::clean;
 
-extends 'Football::Game_Prediction_Models';
+extends 'Football::Game_Predictions::Model';
 has 'game' => (is => 'ro', required => 1);
 has 'league' => (is => 'ro', required => 1);
 

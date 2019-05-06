@@ -11,7 +11,7 @@ use List::MoreUtils qw(each_arrayref);
 
 use lib 'C:/Mine/perl/Football';
 use Football::Team_Hash;
-use Football::Favourites_Data_Model;
+use Football::Favourites::Data_Model;
 use Summer::Summer_Data_Model;
 use Football::Spreadsheets::Max_Profit;
 use Football::Globals qw( @csv_leagues @euro_csv_lgs @summer_csv_leagues );
@@ -97,7 +97,7 @@ sub get_uk_data {
 	return {
 		model		=> Football::Model->new (),
 		model_type	=> 'uk',
-		read_func 	=> \&Football::Favourites_Data_Model::update_current,
+		read_func 	=> \&Football::Favourites::Data_Model::update_current,
 		in_path 	=> 'C:/Mine/perl/Football/data/',
 		out_path 	=> 'C:/Mine/perl/Football/reports/',
 		leagues 	=> \@csv_leagues,
@@ -109,7 +109,7 @@ sub get_euro_data {
 	return {
 		model		=> Euro::Model->new (),
 		model_type	=> 'euro',
-		read_func 	=> \&Football::Favourites_Data_Model::update_current,
+		read_func 	=> \&Football::Favourites::Data_Model::update_current,
 		in_path 	=> 'C:/Mine/perl/Football/data/Euro/',
 		out_path 	=> 'C:/Mine/perl/Football/reports/Euro/',
 		leagues 	=> \@euro_csv_lgs,

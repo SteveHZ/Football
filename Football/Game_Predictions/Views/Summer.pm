@@ -1,6 +1,4 @@
-package Football::Game_Predictions::Summer;
-
-#	Summer::View.pm 27/06/17
+package Football::Game_Predictions::Views::Summer;
 
 use Summer::Spreadsheets::Goal_Expect_View;
 use Summer::Spreadsheets::Goal_Diffs_View;
@@ -11,7 +9,7 @@ use Summer::Spreadsheets::Skellam_Dist_View;
 use Moo;
 use namespace::clean;
 
-extends 'Football::Game_Predictions::UK';
+extends 'Football::Game_Predictions::Views::UK';
 
 sub create_sheets {
 	my $self = shift;
@@ -23,10 +21,27 @@ sub create_sheets {
 	$self->{xlsx_skellam} = Summer::Spreadsheets::Skellam_Dist_View->new ();
 }
 
-#	Not implemented by Summer::View
+=pod
 
-#sub do_favourites {};
-#sub do_head2head {}
-#sub do_league_places {}
+=head1 NAME
+
+Football::Game_Predictions::Summer.pm
+
+=head1 SYNOPSIS
+
+View for Game_Prediction triad
+
+=head1 DESCRIPTION
+
+=head1 AUTHOR
+
+Steve Hope
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
 
 1;

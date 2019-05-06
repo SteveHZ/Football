@@ -6,11 +6,11 @@ use Euro::Spreadsheets::Teams;
 use Euro::Spreadsheets::Tables;
 use Euro::Spreadsheets::Predictions;
 use Euro::Spreadsheets::Extended;
-use Euro::Spreadsheets::Goal_Expect_View;
-use Euro::Spreadsheets::Goal_Diffs_View;
-use Euro::Spreadsheets::Match_Odds_View;
-use Euro::Spreadsheets::Over_Under_View;
-use Euro::Spreadsheets::Skellam_Dist_View;
+#use Euro::Spreadsheets::Goal_Expect_View;
+#use Euro::Spreadsheets::Goal_Diffs_View;
+#use Euro::Spreadsheets::Match_Odds_View;
+#use Euro::Spreadsheets::Over_Under_View;
+#use Euro::Spreadsheets::Skellam_Dist_View;
 
 use Moo;
 use namespace::clean;
@@ -29,6 +29,16 @@ sub create_sheets {
 #	$self->{xlsx_skellam} = Euro::Spreadsheets::Skellam_Dist_View->new ();
 }
 
+sub create_new_teams_sheet {
+	my ($self, $filename) = @_;
+	return Euro::Spreadsheets::Teams->new (filename => $filename);
+}
+
+sub create_new_tables_sheet {
+	my ($self, $filename) = @_;
+	return Euro::Spreadsheets::Tables->new (filename => $filename);
+}
+
 sub destroy_sheets {
 	my $self = shift;
 
@@ -41,16 +51,6 @@ sub destroy_sheets {
 #	$self->{xlsx_match_odds}->{workbook}->close ();
 #	$self->{xlsx_over_under}->{workbook}->close ();
 #	$self->{xlsx_skellam}->{workbook}->close ();
-}
-
-sub create_new_teams_sheet {
-	my ($self, $filename) = @_;
-	return Euro::Spreadsheets::Teams->new (filename => $filename);
-}
-
-sub create_new_tables_sheet {
-	my ($self, $filename) = @_;
-	return Euro::Spreadsheets::Tables->new (filename => $filename);
 }
 
 #	Not implemented by Euro::View

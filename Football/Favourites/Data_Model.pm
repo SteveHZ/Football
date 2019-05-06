@@ -1,11 +1,10 @@
-package Football::Favourites_Data_Model;
+package Football::Favourites::Data_Model;
 
 use List::MoreUtils qw(any);
+
 use Moo;
 use namespace::clean;
-
-use lib "C:/Mine/perl/Football";
-use Football::Utils qw(get_odds_cols get_over_under_cols);
+with 'Football::Roles::Odds_Cols'; # get_odds_cols, get_over_under_cols
 
 sub update {
 	my ($self, $file) = @_;

@@ -4,13 +4,13 @@ package Football::Spreadsheets::Reports;
 #	v1.1 08/05/17, 29/06/17
 
 use List::MoreUtils qw (each_arrayref);
-use Football::Utils qw(_show_signed);
 
 use Moo;
 use namespace::clean;
 
 has 'filename' => ( is => 'ro' );
-with 'Roles::Spreadsheet';
+with 'Roles::Spreadsheet',
+'Football::Roles::Signed'; # _show_signed
 
 sub BUILD {
 	my ($self, $args) = @_;

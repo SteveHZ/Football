@@ -1,4 +1,4 @@
-package Football::Game_Predictions::UK;
+package Football::Game_Predictions::Views::UK;
 
 use Football::Spreadsheets::Goal_Expect_View;
 use Football::Spreadsheets::Goal_Diffs_View;
@@ -17,7 +17,6 @@ sub BUILD {
 sub create_sheets {
 	my $self = shift;
 
-#print "\nBuilding sheets in UK !!";<STDIN>;
 	$self->{xlsx_goal_expect} = Football::Spreadsheets::Goal_Expect_View->new ();
 	$self->{xlsx_goal_diffs} = Football::Spreadsheets::Goal_Diffs_View->new ();
 	$self->{xlsx_match_odds} = Football::Spreadsheets::Match_Odds_View->new ();

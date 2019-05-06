@@ -205,9 +205,9 @@ sub last_six {
 sub full_homes {
 	my ($self, $leagues) = @_;
 
-	for my $league (@$leagues) {
-		my $league_name = $league->{name};
-		my $list = $league->{homes};
+#	for my $league (@$leagues) {
+#		my $league_name = $league->{name};
+#		my $list = $league->{homes};
 
 #		for my $team (keys %$list) {
 #			print "\n\n$list->{$team}->{name} :";
@@ -217,15 +217,15 @@ sub full_homes {
 #					$game->{result}, $game->{score};
 #			}
 #		}
-	}
+#	}
 }
 
 sub full_aways {
 	my ($self, $leagues) = @_;
 
-	for my $league (@$leagues) {
-		my $league_name = $league->{name};
-		my $list = $league->{aways};
+#	for my $league (@$leagues) {
+#		my $league_name = $league->{name};
+#		my $list = $league->{aways};
 
 #		for my $team (keys %$list) {
 #			print "\n\n$list->{$team}->{name} :";
@@ -235,7 +235,7 @@ sub full_aways {
 #					$game->{result}, $game->{score};
 #			}
 #		}
-	}
+#	}
 }
 
 sub fixture_list {

@@ -32,7 +32,6 @@ has 'fixtures_file' => ( is => 'rw' );
 has 'season_data' => ( is => 'ro' );
 has 'test_fixtures_file' => ( is => 'ro' );
 
-# HMVC
 has 'model_name' => ( is => 'ro' );
 
 with 'Roles::MyJSON',

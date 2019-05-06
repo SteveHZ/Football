@@ -4,13 +4,14 @@ package Rugby::Spreadsheets::Tables;
 #	v1.1 06/05/17
 
 use List::MoreUtils qw(each_arrayref);
-use Football::Utils qw(_show_signed);
 
 use Moo;
 use namespace::clean;
 
 has 'filename' => ( is => 'ro' );
-with 'Roles::Spreadsheet';
+with 'Roles::Spreadsheet',
+'Football::Roles::Signed'; # _show_signed
+
 
 extends 'Football::Spreadsheets::Tables';
 

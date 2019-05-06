@@ -1,4 +1,4 @@
-package Football::Over_Under_Model;
+package Football::Game_Predictions::Over_Under_Model;
 
 #	Football::Over_Under_Model.pm 21/12/17, 26/05/18
 #	https://www.online-betting.me.uk/strategies/vincent.php

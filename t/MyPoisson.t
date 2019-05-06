@@ -5,16 +5,16 @@ use warnings;
 use Test::More tests => 3;
 
 use lib 'C:/Mine/perl/Football';
-use Football::MyPoisson;
-use Football::Match_Odds;
+use Football::Game_Predictions::MyPoisson;
+use Football::Game_Predictions::Match_Odds;
 
-my $p = Football::MyPoisson->new ();
-my $game = Football::Match_Odds->new ( max => 10 );
+my $p = Football::Game_Predictions::MyPoisson->new ();
+my $game = Football::Game_Predictions::Match_Odds->new ( max => 10 );
 
 subtest 'constructors' => sub {
 	plan tests => 2;
-	isa_ok ($p, 'Football::MyPoisson', '$p');
-	isa_ok ($game, 'Football::Match_Odds', '$game');
+	isa_ok ($p, 'Football::Game_Predictions::MyPoisson', '$p');
+	isa_ok ($game, 'Football::Game_Predictions::Match_Odds', '$game');
 };
 
 my $home_score = 7;

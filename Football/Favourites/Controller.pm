@@ -1,10 +1,9 @@
-package Football::Favourites;
+package Football::Favourites::Controller;
 
 use List::MoreUtils qw(each_array);
 use Football::Globals qw( @league_names @csv_leagues );
-use Football::Favourites_Model;
-use Football::Favourites_Data_Model;
-use Football::Favourites_View;
+use Football::Favourites::Model;
+use Football::Favourites::View;
 
 use Moo;
 use namespace::clean;
@@ -15,8 +14,8 @@ has 'filename' => (is => 'ro', required => 1);
 
 sub BUILD {
     my $self = shift;
-    $self->{fav_model} = Football::Favourites_Model->new (update => $self->{update}, filename => $self->{filename});
-    $self->{view} = Football::Favourites_View->new (state => 'current');
+    $self->{fav_model} = Football::Favourites::Model->new (update => $self->{update}, filename => $self->{filename});
+    $self->{view} = Football::Favourites::View->new (state => 'current');
 }
 
 sub do_favourites {
@@ -30,7 +29,7 @@ sub do_favourites {
 
 =head1 NAME
 
-Football::Favourites.pm
+Football::Favourites::Controller.pm
 
 =head1 SYNOPSIS
 

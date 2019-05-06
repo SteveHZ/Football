@@ -1,4 +1,4 @@
-package Football::MyPoisson;
+package Football::Game_Predictions::MyPoisson;
 
 #	Football::MyPoisson.pm 02-05/07/17, 18/08/17
 
@@ -20,7 +20,7 @@ sub poisson_game {
 
 sub poisson {
 	my ($self, $expect, $score) = @_;
-	return	power ($expect, $score) * 
+	return	power ($expect, $score) *
 			power ($self->{euler}, $expect * -1) /
 			factorial ($score);
 }

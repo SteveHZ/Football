@@ -9,7 +9,7 @@ use Data::Dumper;
 
 use lib "C:/Mine/perl/Football";
 use Football::Model;
-use Football::Game_Predictions;
+use Football::Game_Predictions::Controller;
 use MyJSON qw(read_json);
 
 my $ou_model;
@@ -18,18 +18,19 @@ my $data = $model->build_data ();
 
 my $fixtures = $model->get_fixtures ();
 my $stats = $model->do_fixtures ($fixtures, $data->{homes}, $data->{aways}, $data->{last_six});
-my $predict_model = Football::Game_Predictions->new (
+my $predict_model = Football::Game_Predictions::Controller->new (
 	fixtures => $stats->{by_match},
 	leagues => $data->{leagues},
+	view_name => $model->model_name,
 );
 
 subtest 'constructor' => sub {
 	plan tests => 3;
 
-	use_ok 'Football::Over_Under_Model';
-	$ou_model = Football::Over_Under_Model->new (leagues => $data->{leagues}, fixtures => $fixtures, stats => $stats);
-	isa_ok ($ou_model, 'Football::Over_Under_Model', '$ou_model');
-	isa_ok ($predict_model, 'Football::Game_Predictions', '$predict_model');
+	use_ok 'Football::Game_Predictions::Over_Under_Model';
+	$ou_model = Football::Game_Predictions::Over_Under_Model->new (leagues => $data->{leagues}, fixtures => $fixtures, stats => $stats);
+	isa_ok ($ou_model, 'Football::Game_Predictions::Over_Under_Model', '$ou_model');
+	isa_ok ($predict_model, 'Football::Game_Predictions::Controller', '$predict_model');
 };
 
 subtest 'do_calcs' => sub {

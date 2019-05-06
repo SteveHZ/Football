@@ -1,4 +1,4 @@
-package Football::Favourites_View;
+package Football::Favourites::View;
 
 use Moo;
 use namespace::clean;

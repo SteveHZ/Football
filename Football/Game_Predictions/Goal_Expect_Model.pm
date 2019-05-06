@@ -1,4 +1,4 @@
-package Football::Goal_Expect_Model;
+package Football::Game_Predictions::Goal_Expect_Model;
 
 use Moo;
 use namespace::clean;

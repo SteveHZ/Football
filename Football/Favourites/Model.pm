@@ -1,12 +1,11 @@
-package Football::Favourites_Model;
+package Football::Favourites::Model;
 
-use Football::Favourites_Data_Model;
+use Football::Favourites::Data_Model;
 use Football::Globals qw( @league_names @csv_leagues );
 use List::MoreUtils qw(each_array);
 
 use Moo;
 use namespace::clean;
-
 with 'Roles::MyJSON';
 
 has 'hash' => ( is => 'ro' );
@@ -33,7 +32,7 @@ sub BUILD {
 sub do_favourites {
 	my ($self, $year) = @_;
 
-	my $data_model = Football::Favourites_Data_Model->new ();
+	my $data_model = Football::Favourites::Data_Model->new ();
 	my $iterator = each_array ( @league_names, @csv_leagues );
 
 	while ( my ($league, $csv_league) = $iterator->() ) {
