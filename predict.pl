@@ -2,6 +2,7 @@
 
 #	predict.pl 31/01/16 - 14/03/16
 #	v3.0 12/03/18 v3.02 22/08/18 v3.03 22/09/18
+#	v4.0 06/05/19
 
 BEGIN {
 # $ENV{PERL_KEYWORD_DEVELOPMENT} = 1;
@@ -113,11 +114,6 @@ sub get_model_and_view {
 	return (Rugby::Model->new (), Rugby::View->new ()) if $options->{rugby};
 	die "Unknown error in get_model_and_view";
 }
-
-#$view->do_favourites ( $model->do_favourites ($season, $options->{update_favs}) );
-
-#my ($teams, $sorted) = $model->do_predict_models ($data->{by_match}, $leagues, $options->{update});
-#$view->do_predict_models ($leagues, $teams, $sorted);
 
 =pod
 

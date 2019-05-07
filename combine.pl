@@ -17,12 +17,12 @@ my $expect_files = [
 ];
 
 my $maxp_files = [
-    { name => 'UK Homes', file => "$path/max_profit_uk.xlsx", sheet => 4, },
-    { name => 'UK Aways', file => "$path/max_profit_uk.xlsx", sheet => 5, },
-    { name => 'Euro Homes', file => "$path/Euro/max_profit_euro.xlsx", sheet => 4, },
-    { name => 'Euro Aways', file => "$path/Euro/max_profit_euro.xlsx", sheet => 5, },
-#    { name => 'Summer Homes', file => "$path/Summer/max_profit_summer.xlsx", sheet => 4, },
-#    { name => 'Summer Aways', file => "$path/Summer/max_profit_summer.xlsx", sheet => 5, },
+    { name => 'UK Homes', file => "$path/max_profit.xlsx", sheet => 4, },
+    { name => 'UK Aways', file => "$path/max_profit.xlsx", sheet => 5, },
+    { name => 'Euro Homes', file => "$path/Euro/max_profit.xlsx", sheet => 4, },
+    { name => 'Euro Aways', file => "$path/Euro/max_profit.xlsx", sheet => 5, },
+    { name => 'Summer Homes', file => "$path/Summer/max_profit.xlsx", sheet => 4, },
+    { name => 'Summer Aways', file => "$path/Summer/max_profit.xlsx", sheet => 5, },
 ];
 
 my $out_file = "$path/combined.xlsx";

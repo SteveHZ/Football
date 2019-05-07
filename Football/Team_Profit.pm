@@ -57,6 +57,7 @@ sub away_percent {
 
 sub _percent_gain {
 	my ($initial_amount, $closing_amount) = @_;
+	return 0 if $initial_amount == 0;
 	return (($closing_amount - $initial_amount) / $initial_amount);
 }
 
@@ -77,6 +78,7 @@ sub total_win_rate {
 
 sub _win_rate {
 	my ($wins, $stake) = @_;
+	return 0 if $stake == 0;
 	return $wins / $stake;
 }
 

@@ -6,11 +6,12 @@ use Football::Model;
 
 use Keyword::DEVELOPMENT;
 DEVELOPMENT { use Data::Dumper; }
+use Data::Dumper;
 
 use Mu;
 use namespace::clean;
 
-ro 'func', default => sub {};
+#ro 'func', default => sub {};
 ro 'fixtures', default => sub { [] };
 
 ro 'hash', default => sub { {} };
@@ -39,7 +40,7 @@ sub team {
 sub add_teams {
 	my ($self, $results, $lg_idx) = @_;
 
-	my $teams = _get_all_teams ($results, 'home_team');
+	my $teams = _get_all_teams ($results, 'away_team');
 	for my $team (@$teams) {
 		$self->{hash}->{$team} = Football::Team_Profit->new (team => $team);
 		$self->{hash}->{$team}->{lg_idx} = $lg_idx;
