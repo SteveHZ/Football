@@ -4,6 +4,7 @@ use Data::Dumper;
 
 use lib 'C:/Mine/perl/Football';
 use Football::DBModel;
+use Football::Globals qw( @csv_leagues );
 use SQL::Abstract;
 use Test::More tests => 2;
 
@@ -14,8 +15,9 @@ subtest 'constructor' => sub {
 	isa_ok ($sqla, 'SQL::Abstract', '$sqla');
 };
 
-subtest 'wtf' => sub {
-	my $model = Football::DBModel->new ();
+subtest 'options' => sub {
+	my $data = get_uk_data ();
+	my $model = Football::DBModel->new (data => $data);
 
 	my $cmd_line = 'Stoke -ha -wd';
 	my ($team, $options) = $model->do_cmd_line ($cmd_line);
@@ -30,4 +32,13 @@ subtest 'wtf' => sub {
 	print "\nBind values = \n".Dumper @bind2;
 
 	print "\nMy Query = \n".Dumper %$qhash;
+
+	sub get_uk_data {
+		return {
+			leagues	=> \@csv_leagues,
+			column	=> 'b365',
+			path	=> 'C:/Mine/perl/Football/data',
+			model	=> 'UK',
+		}
+	}
 };

@@ -11,9 +11,7 @@ use Data::Dumper;
 use Mu;
 use namespace::clean;
 
-#ro 'func', default => sub {};
 ro 'fixtures', default => sub { [] };
-
 ro 'hash', default => sub { {} };
 ro 'teams', default => sub { [] };
 ro 'min_profit', default => 0.50;
@@ -50,7 +48,7 @@ sub add_teams {
 
 sub place_stakes {
 	my ($self, $home_team, $away_team) = @_;
-#print "\n$home_team v $away_team";
+	DEVELOPMENT { print "\n$home_team v $away_team"; }
 	$self->{hash}->{$home_team}->home_staked ();
 	$self->{hash}->{$away_team}->away_staked ();
 }

@@ -52,9 +52,9 @@ $view->write ($sorted);
 sub sort_by_position {
     my ($players, $position) = @_;
     return [
-        sort { $b->{total_points} <=> $a->{total_points} }
+#        sort { $b->{total_points} <=> $a->{total_points} }
         sort { $b->{points_per_game} <=> $a->{points_per_game} }
-        grep { $_->{points_per_game} > 4.5 }
+        grep { $_->{points_per_game} > 4 }
         grep { $_->{selected_by} > 5 }
         grep { $_->{position} eq $position }
         @$players

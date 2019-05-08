@@ -9,10 +9,10 @@ use MyKeyword qw(TESTING); # for model.t
 use Moo::Role;
 
 requires qw(
-	read_json write_json
+	write_json path
 	league_names csv_leagues
-	path fixtures_file season_data
-	test_fixtures_file
+	fixtures fixtures_file
+	test_fixtures_file season_data
 );
 
 sub update {

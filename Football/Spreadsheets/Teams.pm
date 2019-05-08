@@ -9,7 +9,6 @@ use namespace::clean;
 has 'filename' => ( is => 'ro' );
 with 'Roles::Spreadsheet';
 
-
 sub BUILD {
 	my ($self, $args) = @_;
 	$self->create_sheet ($args->{filename});
@@ -25,7 +24,6 @@ sub do_teams {
 	my ($self, $teams, $sorted) = @_;
 
 	for my $team (@$sorted) {
-#		print "\nWriting data for $team...";
 		my $worksheet = $self->add_worksheet ($team);
 		$self->do_teams_headers ($worksheet);
 
@@ -41,9 +39,7 @@ sub do_teams {
 			}
 		}
 		$worksheet->freeze_panes (1,0);
-#		print "Done";
 	}
-#	print "\n";
 	$self->{workbook}->close ();
 }
 

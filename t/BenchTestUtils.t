@@ -15,9 +15,12 @@ subtest 'get_league' => sub {
     my $fixture_list = $model->get_fixtures ();
     my $fixtures = get_league ($fixture_list, 'Championship');
 
-    isa_ok ($fixtures, 'ARRAY', '@$fixtures is an array');
-    isa_ok (@$fixtures[0], 'HASH', '@$fixtures[0] is a hash');
-    is (@$fixtures[0]->{league}, 'Championship', 'league is Championship');
+    SKIP : {
+        skip 'No Championship fixtures found', 3 unless scalar @$fixtures > 0;
+        isa_ok ($fixtures, 'ARRAY', '@$fixtures is an array');
+        isa_ok (@$fixtures[0], 'HASH', '@$fixtures[0] is a hash');
+        is (@$fixtures[0]->{league}, 'Championship', 'league is Championship');
+    }
 };
 
 subtest 'make_csv_file_list' => sub {

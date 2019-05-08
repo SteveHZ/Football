@@ -3,7 +3,7 @@ package Football::Model;
 #	Football::Model.pm 03/02/16 - 14/03/16
 # 	v2.0 23-28/03/16, v2.01 Mouse 04/05/16, v2.02 Football_Data_Model 27/05/16 v2.03 26-27/07/16
 #	v2.06 Moo 01/10/16	v2.07 with Football::Shared_Model 18-19/01/17
-#	v2.08 refactored 19-21/12/18
+#	v2.08 refactored 19-21/12/18, v2.09 Mu 07/05/19
 
 use List::MoreUtils qw(each_array);
 
@@ -16,23 +16,23 @@ use Football::Reports::Head2Head;
 use Football::Globals qw( @league_names @csv_leagues );
 use MyKeyword qw(TESTING); # for model.t
 
-use Moo;
+use Mu;
 use namespace::clean;
 
 # pre-declare these to use Shared_Model role
-has 'leagues' => ( is => 'ro' );
-has 'league_names' => ( is => 'ro', default => sub { \@league_names } );
-has 'csv_leagues' => ( is => 'ro', default => sub { \@csv_leagues } );
-has 'fixtures' => ( is => 'ro', default => sub { [] } );
-has 'test_season_data' => ( is => 'ro' );
+ro 'league_names', default => sub { \@league_names };
+ro 'csv_leagues', default => sub { \@csv_leagues };
+ro 'leagues', default => sub { [] };
+ro 'season_data', default => '';
+ro 'test_season_data', default => '';
 
 # pre-declare these to use Football_IO role
-has 'path' => ( is => 'ro' );
-has 'fixtures_file' => ( is => 'rw' );
-has 'season_data' => ( is => 'ro' );
-has 'test_fixtures_file' => ( is => 'ro' );
+ro 'fixtures', default => sub { [] };
+ro 'path', default => '';
+rw 'fixtures_file', default => '';
+ro 'test_fixtures_file', default => '';
 
-has 'model_name' => ( is => 'ro' );
+ro 'model_name', default => '';
 
 with 'Roles::MyJSON',
 'Football::Roles::Shared_Model',
@@ -60,15 +60,15 @@ sub build_leagues {
 	my $teams = $self->read_json ( $self->{teams_file} );
 	TESTING { $teams = $self->read_json ( $self->{test_teams_file} ); }
 
-	for my $league (@{ $self->{league_names} } ) {
+	for my $league (@{ $self->league_names } ) {
 #		die "No games played in $league" if scalar (@ {$games->{$league}} == 0);
-		push (@{ $self->{leagues} }, Football::League->new (
+		push (@{ $self->leagues }, Football::League->new (
 			name		=> $league,
 			games 		=> $games->{$league},
 			team_list	=> $teams->{$league},
 		));
 	}
-	return $self->{leagues};
+	return $self->leagues;
 }
 
 sub do_goal_difference {
@@ -78,7 +78,7 @@ sub do_goal_difference {
 	for my $league_fixtures (@$fixtures) {
 		my $league_name = $league_fixtures->{league};
 		my $idx = $self->get_league_idx ($league_name);
-		my $league = $self->{leagues}[$idx];
+		my $league = $self->leagues->[$idx];
 
 		for my $game (@{ $league_fixtures->{games} } ) {
 			my $home_diff = $league->goal_diff ($game->{home_team});
@@ -98,7 +98,7 @@ sub do_recent_goal_difference {
 	for my $league_fixtures (@$fixtures) {
 		my $league_name = $league_fixtures->{league};
 		my $idx = $self->get_league_idx ($league_name);
-		my $league = $self->{leagues}[$idx];
+		my $league = $self->leagues->[$idx];
 
 		for my $game (@{ $league_fixtures->{games} } ) {
 			my $home_diff = $league->recent_goal_diff ($game->{home_team});
@@ -123,7 +123,7 @@ sub do_league_places {
 	for my $league_fixtures (@$fixtures) {
 		my $league_name = $league_fixtures->{league};
 		my $idx = $self->get_league_idx ($league_name);
-		my $league = $self->{leagues}[$idx];
+		my $league = $self->leagues->[$idx];
 
 		for my $game (@{ $league_fixtures->{games} } ) {
 			$game->{home_pos} = $league->position ($game->{home_team});
@@ -174,31 +174,6 @@ sub do_recent_draws {
 			or $a->{game}->{home_team} cmp $b->{game}->{home_team}
 		} @temp
 	];
-}
-
-sub do_favourites {
-	my ($self, $year, $update) = @_;
-	my $fav_path = 'C:/Mine/perl/Football/data/favourites/';
-
-	my $fav_model = Football::Favourites_Model->new (update => $update, filename => 'uk');
-	my $data_model = Football::Favourites_Data_Model->new ();
-
-	my $iterator = each_array ( @league_names, @csv_leagues );
-	while ( my ($league, $csv_league) = $iterator->() ) {
-		my $file_from = $self->{path}.$csv_league.'.csv';
-		my $file_to = $fav_path.$league.'/'.$year.'.csv';
-
-		my $data = $data_model->update_current ($file_from);
-		$data_model->write_current ($file_to, $data);
-		$fav_model->update ($league, $year, $data);
-	}
-
-	return {
-		data => $fav_model->hash (),
-		history => $fav_model->history (),
-		leagues => \@league_names,
-		year => $year,
-	};
 }
 
 =pod

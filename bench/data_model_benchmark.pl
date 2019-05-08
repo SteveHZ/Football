@@ -13,12 +13,12 @@ use Benchmark qw(:all);
 my $data_model = Football_Data_Model_Ex->new ();
 
 my $t = timethese ( -10, {
-	"dbi" => sub {
-		my $games = $data_model->update_dbi ("E0");
+	'dbi' => sub {
+		my $games = $data_model->update_dbi ('E0');
 		return $games;
 	},
-	"csv" => sub {
-		my $games = $data_model->update ("C:/Mine/perl/Football/data/E0.csv");
+	'csv' => sub {
+		my $games = $data_model->update ('C:/Mine/perl/Football/data/E0.csv');
 		return $games;
 	},
 });

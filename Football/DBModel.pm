@@ -7,10 +7,10 @@ use MyLib qw(wordcase);
 use MyKeyword qw(TESTING);
 TESTING { use Data::Dumper; }
 
-use Moo;
+use Mu;
 use namespace::clean;
 
-has 'data' => (is => 'ro' );
+ro 'data';
 
 sub BUILD {
 	my $self = shift;

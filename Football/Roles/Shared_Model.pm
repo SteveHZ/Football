@@ -13,7 +13,7 @@ use MyJSON qw(read_json);
 
 use Moo::Role;
 
-requires qw( read_json update leagues league_names csv_leagues test_season_data );
+requires qw( read_json update leagues league_names csv_leagues season_data test_season_data );
 
 sub build_league_idx {
 	my ($self, $leagues) = @_;
@@ -79,22 +79,22 @@ sub read_games {
 	my $games;
 
 	TESTING {
-		print "*** Reading test data from $self->{test_season_data}\n\n";
-		$games = $self->read_json ($self->{test_season_data});
+		print "*** Reading test data from $self->test_season_data\n\n";
+		$games = $self->read_json ($self->test_season_data);
 	} elsif ($update) {
 		$games = $self->update ();
 	} else {
-		$games = (-e $self->{season_data}) ?
-			$self->read_json ($self->{season_data}) : {};
+		$games = (-e $self->season_data) ?
+			$self->read_json ($self->season_data) : {};
 	}
 	return $games;
 }
 
 sub do_homes {
 	my ($self, $games) = @_;
-	my $league_array = $self->{leagues};
+	my $league_array = $self->leagues;
 
-	for my $idx (0..$#{ $self->{csv_leagues}} ) {
+	for my $idx (0..$#{ $self->csv_leagues } ) {
 		@$league_array[$idx]->{homes} = @$league_array[$idx]->do_homes ( @$league_array[$idx]->{teams} );
 	}
 	return $league_array;
@@ -102,9 +102,9 @@ sub do_homes {
 
 sub do_aways {
 	my ($self, $games) = @_;
-	my $league_array = $self->{leagues};
+	my $league_array = $self->leagues;
 
-	for my $idx (0..$#{ $self->{csv_leagues}} ) {
+	for my $idx (0..$#{ $self->csv_leagues } ) {
 		@$league_array[$idx]->{aways} = @$league_array[$idx]->do_aways ( @$league_array[$idx]->{teams} );
 	}
 	return $league_array;
@@ -112,9 +112,9 @@ sub do_aways {
 
 sub do_last_six {
 	my ($self, $games) = @_;
-	my $league_array = $self->{leagues};
+	my $league_array = $self->leagues;
 
-	for my $idx (0..$#{ $self->{csv_leagues}} ) {
+	for my $idx (0..$#{ $self->csv_leagues } ) {
 		@$league_array[$idx]->{last_six} = @$league_array[$idx]->do_last_six ( @$league_array[$idx]->{teams} );
 	}
 	return $league_array;
@@ -141,19 +141,6 @@ sub get_unique_leagues {
 	TESTNG { # shift $self from @_first
 		shift;	return _get_unique_leagues (shift);
 	}
-}
-
-sub do_predict_models {
-	my ($self, $fixtures, $leagues, $update) = @_;
-	my $predict_model = Football::Game_Prediction_Models->new (
-		fixtures => $fixtures, leagues => $leagues);
-
-	my ($teams, $sorted) = $predict_model->calc_goal_expect ();
-	$sorted->{match_odds} = $predict_model->calc_match_odds ();
-	$sorted->{skellam} = $predict_model->calc_skellam_dist ();
-	$sorted->{over_under} = $predict_model->calc_over_under ();
-
-	return ($teams, $sorted);
 }
 
 sub do_fixtures {

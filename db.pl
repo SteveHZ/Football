@@ -55,7 +55,7 @@ sub get_results {
 				$output_dispatch->{$ha}->($row, $team);
 			}
 		} catch {
-			print "\nUsage : (team name) -[ha] -[wld]";
+			print "Usage : (team name) -[ha] -[wld]";
 		}
 	}
 	print "\n";
