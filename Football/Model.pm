@@ -111,6 +111,7 @@ sub do_recent_goal_difference {
 	return $fixtures;
 }
 
+#	Euro and Summer models override this using Football::Roles::Fetch_Goal_Diff
 sub fetch_goal_difference {
 	my ($self, $goal_diff_obj, $league_name, $goal_difference) = @_;
 	return $goal_diff_obj->fetch_array ($league_name, $goal_difference);

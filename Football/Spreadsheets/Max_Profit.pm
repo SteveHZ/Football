@@ -13,13 +13,14 @@ with 'Roles::Spreadsheet';
 
 my $path = 'C:/Mine/perl/Football/reports/';
 my $default_filename = $path."max_profit.xlsx";
+my $blank_filename = $path."xlsx_blank.xlsx"; # work-around to construct Combine_View
 my @all_leagues = ( \@league_names, \@euro_lgs, \@summer_leagues );
 
 sub BUILD {
 	my ($self, $args) = @_;
 	$self->{filename} = ( exists $args->{filename} )
 		? $args->{filename}
-		: $default_filename;
+		: $blank_filename;
 	$self->{euro} //= 0; # work-around to construct Combine_View
 	$self->{leagues} = $all_leagues [ $self->{euro} ];
 	$self->{sheetnames} = [ 'totals', 'all homes', 'all aways', 'homes', 'aways' ];

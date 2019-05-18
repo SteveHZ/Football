@@ -34,6 +34,7 @@ sub get_maxp_format {
     return [
         map { $formats [$_] } @formats_idx
     ];
+
 }
 
 sub get_row_data {

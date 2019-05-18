@@ -1,11 +1,12 @@
 package Football::Game_Predictions::Goal_Expect_Model;
 
-use Moo;
-use namespace::clean;
 use MyKeyword qw(ZEROGAMES);
 
-has 'leagues' => (is => 'ro', default => sub { [] });
-has 'fixtures' => (is => 'ro', default => sub { [] } );
+use Moo;
+use namespace::clean;
+
+has 'leagues' 	=> (is => 'ro', default => sub { [] });
+has 'fixtures' 	=> (is => 'ro', default => sub { [] } );
 
 sub BUILD {
 #	my $self = shift;
@@ -24,8 +25,8 @@ sub calc_goal_expects {
 		$league->{av_away_goals} = 1;
 
 		if (( my $total_games = _get_total_league_games ($league)) > 0 ) {
-			$league->{av_home_goals} = sprintf "%0.2f", _get_home_goals ($league) / $total_games;
-			$league->{av_away_goals} = sprintf "%0.2f", _get_away_goals ($league) / $total_games;
+			$league->{av_home_goals} = _format ( _get_home_goals ($league) / $total_games );
+			$league->{av_away_goals} = _format ( _get_away_goals ($league) / $total_games );
 			for my $team ( @{ $league->{team_list} } ) {
 				$teams->{$team} = {};
 				$self->calculate_homes ($teams->{$team}, $league, $team);
@@ -65,10 +66,10 @@ sub calculate_homes {
 #	die $self->{home_die_msg} if $played == 0;
 	ZEROGAMES { $played = 1 if $played == 0 }
 
-	$team_hash->{home_for} = $league->{home_table}->for ($team);
-	$team_hash->{home_against} = $league->{home_table}->against ($team);
-	$team_hash->{av_home_for} = sprintf "%0.2f", $team_hash->{home_for} / $played;
-	$team_hash->{av_home_against} = sprintf "%0.2f", $team_hash->{home_against} / $played;
+	$team_hash->{home_for} 			= $league->{home_table}->for ($team);
+	$team_hash->{home_against} 		= $league->{home_table}->against ($team);
+	$team_hash->{av_home_for} 		= _format ( $team_hash->{home_for} / $played );
+	$team_hash->{av_home_against} 	= _format ( $team_hash->{home_against} / $played );
 }
 
 sub calculate_aways {
@@ -77,37 +78,33 @@ sub calculate_aways {
 #	die $self->{away_die_msg} if $played == 0;
 	ZEROGAMES { $played = 1 if $played == 0 }
 
-	$team_hash->{away_for} = $league->{away_table}->for ($team);
-	$team_hash->{away_against} = $league->{away_table}->against ($team);
-	$team_hash->{av_away_for} = sprintf "%0.2f", $team_hash->{away_for} / $played;
-	$team_hash->{av_away_against} = sprintf "%0.2f", $team_hash->{away_against} / $played;
+	$team_hash->{away_for} 			= $league->{away_table}->for ($team);
+	$team_hash->{away_against} 		= $league->{away_table}->against ($team);
+	$team_hash->{av_away_for} 		= _format ( $team_hash->{away_for} / $played );
+	$team_hash->{av_away_against} 	= _format ( $team_hash->{away_against} / $played );
 }
 
 sub calculate_last_six {
 	my ($self, $team_hash, $league, $team) = @_;
 
-	$team_hash->{last_six_for} = $league->get_last_six_for ($team);
-	$team_hash->{last_six_against} = $league->get_last_six_against ($team);
-	$team_hash->{av_last_six_for} = $team_hash->{last_six_for} / 6;
-	$team_hash->{av_last_six_against} = $team_hash->{last_six_against} / 6;
+	$team_hash->{last_six_for} 			= $league->get_last_six_for ($team);
+	$team_hash->{last_six_against} 		= $league->get_last_six_against ($team);
+	$team_hash->{av_last_six_for} 		= $team_hash->{last_six_for} / 6;
+	$team_hash->{av_last_six_against} 	= $team_hash->{last_six_against} / 6;
 }
 
 sub calculate_expects {
 	my ($self, $team_hash, $league, $team) = @_;
 
-	$team_hash->{expect_home_for} = sprintf "%0.2f", $team_hash->{av_home_for} / $league->{av_home_goals};
-	$team_hash->{expect_home_against} = sprintf "%0.2f", $team_hash->{av_home_against} / $league->{av_away_goals};
-	$team_hash->{expect_away_for} = sprintf "%0.2f", $team_hash->{av_away_for} / $league->{av_away_goals};
-	$team_hash->{expect_away_against} = sprintf "%0.2f", $team_hash->{av_away_against} / $league->{av_home_goals};
+	$team_hash->{expect_home_for} 		= _format ( $team_hash->{av_home_for} 		/ $league->{av_home_goals} );
+	$team_hash->{expect_home_against}	= _format ( $team_hash->{av_home_against} 	/ $league->{av_away_goals} );
+	$team_hash->{expect_away_for} 		= _format ( $team_hash->{av_away_for} 		/ $league->{av_away_goals} );
+	$team_hash->{expect_away_against}	= _format ( $team_hash->{av_away_against} 	/ $league->{av_home_goals} );
 
-	$team_hash->{expect_last_six_home_for} = sprintf "%0.2f", $team_hash->{av_last_six_for}
-		/ $league->{av_home_goals};
-	$team_hash->{expect_last_six_home_against} = sprintf "%0.2f", $team_hash->{av_last_six_against}
-		/ $league->{av_away_goals};
-	$team_hash->{expect_last_six_away_for} = sprintf "%0.2f", $team_hash->{av_last_six_for}
-		/ $league->{av_away_goals};
-	$team_hash->{expect_last_six_away_against} = sprintf "%0.2f", $team_hash->{av_last_six_against}
-		/ $league->{av_home_goals};
+	$team_hash->{expect_last_six_home_for} 		= _format ( $team_hash->{av_last_six_for} 		/ $league->{av_home_goals} );
+	$team_hash->{expect_last_six_home_against} 	= _format ( $team_hash->{av_last_six_against} 	/ $league->{av_away_goals} );
+	$team_hash->{expect_last_six_away_for} 		= _format ( $team_hash->{av_last_six_for} 		/ $league->{av_away_goals} );
+	$team_hash->{expect_last_six_away_against} 	= _format ( $team_hash->{av_last_six_against} 	/ $league->{av_home_goals} );
 }
 
 sub calc_expected_scores {
@@ -147,7 +144,7 @@ sub calc_goal_diffs {
 #	May be less than six games played at start of season
 	$game->{home_goal_diff} = _get_average ($home_gd, $league->get_homes ($home));
 	$game->{away_goal_diff} = _get_average ($away_gd, $league->get_aways ($away));
-	$game->{home_away_goal_diff} = sprintf ("%0.2f", $game->{home_goal_diff} - $game->{away_goal_diff} );
+	$game->{home_away_goal_diff} = _format ( $game->{home_goal_diff} - $game->{away_goal_diff} );
 
 	my $home_last_six_gd = $league->get_last_six_goal_diff ($home);
 	my $away_last_six_gd = $league->get_last_six_goal_diff ($away);
@@ -155,7 +152,7 @@ sub calc_goal_diffs {
 #	May be less than six games played at start of season
 	$game->{home_last_six_goal_diff} = _get_average ($home_last_six_gd, $league->get_last_six ($home));
 	$game->{away_last_six_goal_diff} = _get_average ($away_last_six_gd, $league->get_last_six ($away));
-	$game->{last_six_goal_diff} = sprintf ("%0.2f", $game->{home_last_six_goal_diff} - $game->{away_last_six_goal_diff} );
+	$game->{last_six_goal_diff} = _format ( $game->{home_last_six_goal_diff} - $game->{away_last_six_goal_diff} );
 };
 
 #	private methods
@@ -164,13 +161,18 @@ sub _get_average {
 	my ($value, $list) = @_;
 	my $elems = scalar @$list;
 	return 0 if $elems == 0;
-	return sprintf "%.02f", $value / $elems;
+	return _format ( $value / $elems );
 }
 
 # wrapper for testing
 sub get_average {
 	my $self = shift;
 	return _get_average @_;
+}
+
+sub _format {
+	my $value = shift;
+	return sprintf "%.02f", $value;
 }
 
 sub _get_home_goals {

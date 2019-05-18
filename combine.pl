@@ -8,6 +8,8 @@ use Spreadsheet::Read qw(ReadData);
 use lib 'C:/Mine/perl/Football';
 use Football::Spreadsheets::Combine_View;
 
+#use MyJSON qw (write_json);
+
 my $path = 'c:/mine/perl/Football/reports';
 
 my $expect_files = [
@@ -33,6 +35,7 @@ read_files ($maxp_files, $data);
 
 say "\nWriting $out_file ...";
 my $view = Football::Spreadsheets::Combine_View->new ();
+
 $view->do_goal_expect ($data, $expect_files);
 $view->do_maxp ($data, $maxp_files);
 
@@ -42,6 +45,7 @@ sub read_files {
     for my $in_file (@$files) {
         say "Reading $in_file->{file} - $in_file->{name}";
         my $book = Spreadsheet::Read->new ($in_file->{file});
+#        if (defined $in_file->{sheet}) {
         my $sheet = $book->sheet($in_file->{sheet});
         my @rows = $sheet->rows ();
 
@@ -54,5 +58,6 @@ sub read_files {
         for my $row (@{ $data->{$name} } ) {
             map { $_ = '' unless $_ } @$row; # amend all undef cells to blank
         }
+#}
     }
 }

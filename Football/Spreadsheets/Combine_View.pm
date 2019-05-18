@@ -6,7 +6,7 @@ use Football::Spreadsheets::Combine_Maxp;
 use Moo;
 use namespace::clean;
 
-use parent qw (
+extends qw(
     Football::Spreadsheets::Goal_Expect_View
     Football::Spreadsheets::Max_Profit
 );
@@ -16,6 +16,7 @@ use parent qw (
 with 'Football::Spreadsheets::Combine_Expect';
 with 'Football::Spreadsheets::Combine_Maxp';
 
+#sub BUILD {}
 sub create_sheet {
     my $self = shift;
     my $path = 'C:/Mine/perl/Football/reports/';
@@ -36,7 +37,7 @@ sub write_row {
 		}
 	}
 }
-#
+
 =pod
 
 =head1 NAME

@@ -2,6 +2,7 @@
 #   recent_draws.pl 07/05/19
 #   Model::recent draws is much faster than either
 #   recent_draws2 or recent_draws3
+#   recent_draws4 fails with got array of 0 elements ??
 
 use strict;
 use warnings;
@@ -18,10 +19,12 @@ my $data = $model->quick_build ();
 my $draws = $model->do_recent_draws ($data->{by_league});
 my $draws2 = do_recent_draws2 ($data->{by_league});
 my $draws3 = do_recent_draws3 ($data->{by_league});
+#my $draws4 = do_recent_draws4 ($data->{by_league});
 
 #print Dumper $draws3;
 cmp_deeply ($draws2, $draws,'$draws2 ok');
 cmp_deeply ($draws3, $draws,'$draws3 ok');
+#cmp_deeply ($draws4, $draws,'$draws4 ok');
 do_benchmarks ();
 
 sub do_recent_draws3 {
@@ -85,6 +88,26 @@ sub do_benchmarks {
     });
 
     cmpthese $t;
+}
+
+sub do_recent_draws4 {
+	my ($self, $fixtures) = @_;
+
+	my @temp = ();
+	for my $league (@$fixtures) {
+		push (@temp, {
+			league => $league->{league},
+			game => $_,
+		}) for @{ $league->{games}};
+	}
+
+	return [
+		sort {
+			$b->{game}->{draws} <=> $a->{game}->{draws}
+			or $b->{game}->{home_draws} <=> $a->{game}->{home_draws}
+			or $a->{game}->{home_team} cmp $b->{game}->{home_team}
+		} @temp
+	];
 }
 
 =head
