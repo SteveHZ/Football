@@ -1,8 +1,9 @@
-package Football::Spreadsheets::Combine_View;
+package Football::Spreadsheets::Combine_View2;
 
 use Football::Spreadsheets::Combine_Expect;
 use Football::Spreadsheets::Combine_Maxp;
 
+use List::Util qw(any);
 use Moo;
 use namespace::clean;
 
@@ -13,8 +14,8 @@ extends qw(
 
 #   do_goal_expect and do_maxp
 #   These two roles do most of the work for this module
-with 'Football::Spreadsheets::Combine_Expect';
-with 'Football::Spreadsheets::Combine_Maxp';
+with 'Football::Spreadsheets::Combine_Expect2';
+with 'Football::Spreadsheets::Combine_Maxp2';
 
 #sub BUILD {}
 sub create_sheet {
@@ -26,7 +27,7 @@ sub create_sheet {
 #   override Roles::Spreadsheet::write_row
 #   to eliminate adding blank columns
 
-#=head
+=head
 sub write_row {
 	my ($self, $worksheet, $row, $row_data) = @_;
 
@@ -38,7 +39,7 @@ sub write_row {
 		}
 	}
 }
-#=cut
+=cut
 =pod
 
 =head1 NAME

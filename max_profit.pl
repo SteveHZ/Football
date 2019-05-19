@@ -8,6 +8,7 @@ use strict;
 use warnings;
 use MyKeyword qw(DEVELOPMENT);
 use List::MoreUtils qw(each_arrayref);
+use Data::Dumper;
 
 use lib 'C:/Mine/perl/Football';
 use Football::Team_Hash;
@@ -15,6 +16,8 @@ use Football::Favourites::Data_Model;
 use Summer::Summer_Data_Model;
 use Football::Spreadsheets::Max_Profit;
 use Football::Globals qw( @csv_leagues @euro_csv_lgs @summer_csv_leagues );
+use Football::Globals qw( @league_names @euro_lgs @summer_leagues );
+use MyJSON qw(write_json);
 
 use Football::Model;
 use Euro::Model;
@@ -32,6 +35,7 @@ my $fixtures = $data->{model}->get_fixtures ();
 
 my $team_hash = Football::Team_Hash->new (
 	fixtures	=> $fixtures,
+	leagues		=> $data->{league_names},
 );
 
 my $iterator = each_arrayref ($data->{leagues}, $data->{index});
@@ -50,8 +54,12 @@ my $filename = "$data->{out_path}max_profit.xlsx";
 print "\nWriting $filename...";
 
 my $sorted = $team_hash->sort ();
+
 my $writer = Football::Spreadsheets::Max_Profit->new ( filename => $filename, euro => $euro );
 $writer->show ($team_hash, $sorted);
+
+my $datafile_name = "C:/Mine/perl/Football/data/combine data/maxp $data->{model_type}.json";
+write_json ($datafile_name, $team_hash->get_combine_file_data ($sorted));
 
 sub do_straight_win {
 	my ($team_hash, $game) = @_;
@@ -71,6 +79,7 @@ sub get_uk_data {
 		in_path 	=> 'C:/Mine/perl/Football/data/',
 		out_path 	=> 'C:/Mine/perl/Football/reports/',
 		leagues 	=> \@csv_leagues,
+		league_names=> \@league_names,
 		index 		=> [ 0...$#csv_leagues ],
 	}
 }
@@ -83,6 +92,7 @@ sub get_euro_data {
 		in_path 	=> 'C:/Mine/perl/Football/data/Euro/',
 		out_path 	=> 'C:/Mine/perl/Football/reports/Euro/',
 		leagues 	=> \@euro_csv_lgs,
+		league_names=> \@euro_lgs,
 		index 		=> [ 0...$#euro_csv_lgs ],
 	}
 }
@@ -95,6 +105,7 @@ sub get_summer_data {
 		in_path 	=> 'C:/Mine/perl/Football/data/Summer/',
 		out_path 	=> 'C:/Mine/perl/Football/reports/Summer/',
 		leagues 	=> \@summer_csv_leagues,
+		league_names=> \@summer_leagues,
 		index 		=> [ 0...$#summer_csv_leagues ],
 	}
 }

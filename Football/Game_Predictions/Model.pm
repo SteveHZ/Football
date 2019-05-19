@@ -1,10 +1,13 @@
 package Football::Game_Predictions::Model;
 
+use v5.10; # $state
 use Football::Game_Predictions::Goal_Expect_Model;
 use Football::Game_Predictions::Match_Odds;
 use Football::Game_Predictions::Skellam_Dist_Model;
 use Football::Game_Predictions::Over_Under_Model;
 use Football::Globals qw( $default_stats_size );
+use Football::Rules;
+use MyJSON qw(write_json);
 
 use Moo;
 use namespace::clean;
@@ -31,8 +34,8 @@ sub calc_goal_expect {
 	}
 
 	$sorted->{expect}    = $expect->sort_expect_data ('expected_goal_diff');
-	$sorted->{home_away} = $expect->sort_expect_data ('home_away_goal_diff');
-	$sorted->{last_six}  = $expect->sort_expect_data ('last_six_goal_diff');
+#	$sorted->{home_away} = $expect->sort_expect_data ('home_away_goal_diff');
+#	$sorted->{last_six}  = $expect->sort_expect_data ('last_six_goal_diff');
 	$sorted->{grepped}   = $expect->grep_goal_diffs ();
 
 	return ($teams, $sorted);
@@ -106,6 +109,42 @@ sub calc_over_under {
 	$sorted->{ou_unders} = $over_under->do_unders ();
 
 	return $sorted;
+}
+
+sub build_expect_data {
+	my ($self, $sorted) = @_;
+	my @data = ();
+
+	for my $game (@$sorted) {
+		push @data, $self->get_expect_line_data ($game);
+	}
+	return \@data;
+}
+
+sub get_expect_line_data {
+	my ($self, $game) = @_;
+	state $rules = Football::Rules->new ();
+
+	return [
+		$game->{league}, $game->{date}, $game->{home_team}, $game->{away_team},
+		$game->{home_goals}, $game->{away_goals}, $game->{expected_goal_diff},
+		$game->{home_last_six}, $game->{away_last_six}, $game->{expected_goal_diff_last_six},
+
+		$rules->points_rule ( $game->{home_points}, $game->{away_points} ),
+		$rules->points_rule ( $game->{last_six_home_points}, $game->{last_six_away_points} ),
+		$rules->goal_diffs_rule ( $game->{rgd_results} ),
+		$rules->goal_diffs_rule ( $game->{gd_results} ),
+
+		$rules->home_away_rule ( $game ),
+		$rules->last_six_rule ( $game ),
+
+		$rules->match_odds_rule ( $game ),
+		$rules->ou_points_rule ($game),
+		$rules->ou_home_away_rule ( $game ),
+		$rules->ou_last_six_rule ( $game ),
+		$rules->over_odds_rule ( $game ),
+		$rules->under_odds_rule ( $game ),
+	];
 }
 
 #	helper method for benchtest scripts

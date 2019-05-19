@@ -1,5 +1,6 @@
 package Football::Spreadsheets::Combine_Expect;
 
+use v5.10;
 use MyIterators qw(make_circular_iterator);
 use Moo::Role;
 use namespace::clean;
@@ -8,15 +9,15 @@ requires qw(get_all_formats add_worksheet do_goal_expect_header write_row);
 
 sub do_goal_expect {
     my ($self, $data, $files) = @_;
-    my $formats = $self->get_all_formats ();
 
     for my $file (@$files) {
         my $worksheet = $self->add_worksheet ($file->{name});
+        $self->blank_columns ( [ qw( 2 4 6 9 11 14 16 19 22 25 27 28 29 31 ) ] );
         $self->do_goal_expect_header ($worksheet);
 
         my $row = 2;
         for my $game (@{ $data->{ $file->{name} } } ) {
-            my $row_data = $self->do_formats ($game, $formats);
+            my $row_data = $self->do_formats ($game);
             $self->write_row ($worksheet, $row, $row_data);
             $row ++;
         }
@@ -24,7 +25,8 @@ sub do_goal_expect {
 }
 
 sub do_formats {
-	my ($self, $data, $formats, $game) = @_;
+	my ($self, $data) = @_;
+    state $formats = $self->get_all_formats ();
     my @row_data = ();
 	my ($col_idx, $fmt_idx) = (0,0);
 

@@ -8,8 +8,6 @@ use Spreadsheet::Read qw(ReadData);
 use lib 'C:/Mine/perl/Football';
 use Football::Spreadsheets::Combine_View;
 
-#use MyJSON qw (write_json);
-
 my $path = 'c:/mine/perl/Football/reports';
 
 my $expect_files = [
@@ -36,6 +34,17 @@ read_files ($maxp_files, $data);
 say "\nWriting $out_file ...";
 my $view = Football::Spreadsheets::Combine_View->new ();
 
+# hopfully sorted
+# This always clobbers UK expect because max profit spreadsheet
+# module will always create a new sheet and euro is set to 0 as default
+# as a work-around, need a better way !!
+
+# Might have to $self->create_sheet for UK,Euro,Summer and for combine view (blank_file.xlsx)??
+# NEXT IDEA - to write out as HTML using Template Toolkit ??
+# OR to write out CSV from GE Model and MXP Model using TT
+# then read back in here instead of using Spreadsheet Read ??
+# would not keep formats but could maybe be worked around in HTML ??
+
 $view->do_goal_expect ($data, $expect_files);
 $view->do_maxp ($data, $maxp_files);
 
@@ -45,7 +54,6 @@ sub read_files {
     for my $in_file (@$files) {
         say "Reading $in_file->{file} - $in_file->{name}";
         my $book = Spreadsheet::Read->new ($in_file->{file});
-#        if (defined $in_file->{sheet}) {
         my $sheet = $book->sheet($in_file->{sheet});
         my @rows = $sheet->rows ();
 
@@ -58,6 +66,5 @@ sub read_files {
         for my $row (@{ $data->{$name} } ) {
             map { $_ = '' unless $_ } @$row; # amend all undef cells to blank
         }
-#}
     }
 }

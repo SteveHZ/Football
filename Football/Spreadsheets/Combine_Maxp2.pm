@@ -1,4 +1,4 @@
-package Football::Spreadsheets::Combine_Maxp;
+package Football::Spreadsheets::Combine_Maxp2;
 
 use MyIterators qw(make_circular_iterator);
 use Moo::Role;
@@ -9,17 +9,21 @@ requires qw(add_worksheet write_row);
 
 sub do_maxp {
 	my ($self, $data, $files) = @_;
+    my @keys = qw(homes aways);
     my $iterator = make_circular_iterator ($self->get_maxp_format ());
 
     for my $file (@$files) {
-        my $worksheet = $self->add_worksheet ($file->{name});
-        $self->do_header ($worksheet, $self->{bold_format});
+        for my $key (@keys) {
+            my $sheetname = $file->{name}.' '.ucfirst $key;
+            my $worksheet = $self->add_worksheet ($sheetname);
+            $self->do_header ($worksheet, $self->{bold_format});
 
-        my $row = 2;
-        for my $team (@{ $data->{ $file->{name} } } ) {
-            my $row_data = get_row_data ($team, $iterator);
-            $self->write_row ($worksheet, $row, $row_data);
-            $row ++;
+            my $row = 2;
+            for my $team (@{ $data->{ $file->{name} }->{$key} } ) {
+                my $row_data = get_row_data ($team, $iterator);
+                $self->write_row ($worksheet, $row, $row_data);
+                $row ++;
+            }
         }
     }
 }

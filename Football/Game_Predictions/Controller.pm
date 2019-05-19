@@ -4,6 +4,7 @@ use Football::Game_Predictions::Model;
 use Football::Game_Predictions::Views::UK;
 use Football::Game_Predictions::Views::Euro;
 use Football::Game_Predictions::Views::Summer;
+use MyJSON qw(write_json);
 
 use Moo;
 use namespace::clean;
@@ -30,6 +31,10 @@ sub do_predict_models {
 	$sorted->{match_odds} = $model->calc_match_odds ();
 	$sorted->{skellam} = $model->calc_skellam_dist ();
 	$sorted->{over_under} = $model->calc_over_under ();
+    $sorted->{data} = $model->build_expect_data ( $sorted->{expect});
+
+    my $filename = "C:/Mine/perl/Football/data/combine data/expect $self->{view_name}.json";
+    write_json ($filename, $sorted->{data});
 
 	return ($teams, $sorted);
 }

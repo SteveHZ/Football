@@ -3,7 +3,6 @@ package Football::Spreadsheets::Goal_Expect_View;
 #	Football::Spreadsheets::Goal_Expect_View.pm 30/08/17
 
 use parent 'Football::Spreadsheets::Goal_Expect_View_Base';
-use Football::Rules;
 
 use Moo;
 use namespace::clean;
@@ -11,11 +10,8 @@ use namespace::clean;
 sub create_sheet {
 	my $self = shift;
 	my $path = 'C:/Mine/perl/Football/reports/';
-	$self->{filename} = $path.'goal_expect.xlsx';
-}
-
-sub get_rules {
-	return Football::Rules->new ();
+	$self->{filename} = $path.'goal_expect.xlsx'
+		unless $self->{filename};
 }
 
 after 'do_goal_expect_header' => sub {

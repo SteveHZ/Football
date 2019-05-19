@@ -16,6 +16,7 @@ ro 'hash', default => sub { {} };
 ro 'teams', default => sub { [] };
 ro 'min_profit', default => 0.50;
 ro 'min_win_rate', default => 0.50;
+ro 'leagues' , default => sub { [] };
 
 sub BUILD {
 	my $self = shift;
@@ -167,6 +168,57 @@ sub sort_aways {
 		}
 		map  { $_->{away_team} }
 		@{ $self->{fixtures} }
+	];
+}
+
+sub get_combine_file_data {
+	my ($self, $sorted_hash) = @_;
+	my %sorted = (
+		homes => $sorted_hash->{homes},
+		aways => $sorted_hash->{aways}
+	);
+	my $dispatch = {
+		'homes'		=> sub { $self->get_homes (@_) },
+		'aways'		=> sub { $self->get_aways (@_) },
+	};
+	my %hash = ();
+
+	for my $key (keys %sorted) {
+		my @data = ();
+		for my $team (@{ $sorted{$key} }) {
+			push @data, $dispatch->{$key}->($team);
+		}
+		$hash{$key} = \@data;
+	}
+	return \%hash;
+}
+
+sub get_homes {
+	my ($self, $team) = @_;
+
+	return [
+		$self->{leagues}->[ $self->{hash}->{$team}->{lg_idx} ],
+		$team,
+		$self->{hash}->{$team}->home_stake,
+		$self->{hash}->{$team}->home,
+		$self->{hash}->{$team}->away,
+		$self->{hash}->{$team}->total,
+		$self->{hash}->{$team}->home_percent,
+		$self->{hash}->{$team}->home_win_rate,
+	];
+}
+
+sub get_aways {
+	my ($self, $team) = @_;
+	return [
+		$self->{leagues}->[ $self->{hash}->{$team}->{lg_idx} ],
+		$team,
+		$self->{hash}->{$team}->away_stake,
+		$self->{hash}->{$team}->home,
+		$self->{hash}->{$team}->away,
+		$self->{hash}->{$team}->total,
+		$self->{hash}->{$team}->away_percent,
+		$self->{hash}->{$team}->away_win_rate,
 	];
 }
 
