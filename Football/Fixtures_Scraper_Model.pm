@@ -34,6 +34,27 @@ sub get_football_pages {
 }
 
 sub get_rugby_pages {
+	my ($self, $site, $week) = @_;
+
+	for my $date (@$week) {
+		my $q = wq ("$site/$date->{date}");
+		if ($q) {
+			$q->find ('abbr')
+			  ->filter ( sub { $_->text ne 'FT' } )
+			  ->replace_with ( '<b></b>' );
+
+			print "\nDownloading $date->{date}";
+			print "\n$date->{date} : ";
+			$self->do_rugby_write ($date->{date}, $q->text);
+			print "Done - character length : ".length ($q->text);
+            sleep 1;
+		} else {
+			print "\nUnable to create object : $site/$date->{date}";
+		}
+	}
+	print "\n";
+}
+sub get_rugby_pagesx {
 	my ($self, $sites, $week) = @_;
 
 	for my $site (@$sites) {
@@ -69,8 +90,10 @@ sub do_football_write {
 }
 
 sub do_rugby_write {
-	my ($self, $league, $txt) = @_;
-	my $filename = "C:/Mine/perl/Football/data/Euro/scraped/$league.txt";
+    my ($self, $date, $txt) = @_;
+#	my ($self, $league, $txt) = @_;
+    my $filename = "C:/Mine/perl/Football/data/Euro/scraped/rugby $date.txt";
+#	my $filename = "C:/Mine/perl/Football/data/Euro/scraped/$league.txt";
 
 	open my $fh, '>:utf8', $filename or die "Can't open $filename";
 	print $fh $txt;

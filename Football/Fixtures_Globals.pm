@@ -303,11 +303,24 @@ Greek,X
 Asian,X
 END_FOOTBALL_LEAGUES
 
-Super League,SL
-Championship,CH
+Betfred Super League,SL
+Betfred Championship,CH
+Betfred League One,L1
+Australian National Rugby League Telstra Premiership,NRL
+National Conference Premier,X
+National Conference Division 1,X
+National Conference Division 2,X
+Conference Premier Division,X
+Conference Division One,X
+Conference Division Two,X
+Coral Challenge Cup,X
 League 1,L1
 Qualifiers,M8
-Shield,SH
+Shield,SH#
+Australian,AL
+Round,X
+Quarter,X
+Semi,X
 END_RUGBY_LEAGUES
 
 =pod

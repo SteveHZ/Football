@@ -1,49 +1,45 @@
 package Football::Spreadsheets::Combine_Maxp;
 
-use MyIterators qw(make_circular_iterator);
-use Moo::Role;
-use namespace::clean;
+use MyRole;
+use MyLib qw(build_aoh);
 
-#requires qw(add_worksheet do_header write_row);
-requires qw(add_worksheet write_row);
+requires qw(add_worksheet do_header write_row);
 
-sub do_maxp {
-	my ($self, $data, $files) = @_;
-    my $iterator = make_circular_iterator ($self->get_maxp_format ());
+sub do_maxp ($self, $data, $files) {
+    my @keys = qw(homes aways);
+	$self->blank_columns ( [ qw(1 3 5 7 9 11 13) ] );
 
     for my $file (@$files) {
-        my $worksheet = $self->add_worksheet ($file->{name});
-        $self->do_header ($worksheet, $self->{bold_format});
+        for my $key (@keys) {
+			my $sheetname = $file->{name}.' '.ucfirst $key;
+            my $worksheet = $self->add_worksheet ($sheetname);
+			my $formats = $self->get_maxp_formats ();
+            $self->do_header ($worksheet, $self->{bold_format});
 
-        my $row = 2;
-        for my $team (@{ $data->{ $file->{name} } } ) {
-            my $row_data = get_row_data ($team, $iterator);
-            $self->write_row ($worksheet, $row, $row_data);
-            $row ++;
+            my $row = 2;
+            for my $team_data ( $data->{$sheetname}->@* ) {
+				my $row_data = $self->do_maxp_formats ($team_data, $formats);
+                $self->write_row ($worksheet, $row, $row_data);
+                $row ++;
+            }
         }
     }
 }
 
-sub get_maxp_format {
-    my $self = shift;
-    my @formats = (
-        $self->{format}, $self->{blank_text_format2},
-        $self->{currency_format}, $self->{percent_format},
+sub get_maxp_formats ($self) {
+	my @formats = (
+        $self->{format}, $self->{currency_format}, $self->{percent_format},
     );
-    my @formats_idx = qw(0 1 0 1 2 1 2 1 2 1 2 1 3 1 3);
+	my @formats_idx = qw(0 0 1 1 1 1 2 2);
 
     return [
         map { $formats [$_] } @formats_idx
     ];
-
 }
 
-sub get_row_data {
-    my ($row, $iterator) = @_;
-
-    return [
-        map { { $_ => $iterator->() } } @$row
-    ];
+sub do_maxp_formats ($self, $data, $formats) {
+	my $idx = 0;
+    return build_aoh ($data, $formats)
 }
 
 1;

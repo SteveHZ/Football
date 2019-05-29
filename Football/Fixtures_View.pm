@@ -21,23 +21,23 @@ sub write_csv {
 
 sub dump {
 	my ($self, $games) = @_;
-	print Dumper $games->{$_} for keys %$games;
+	print Dumper $games;
 }
 
 # might need this for Rugby - DO NOT DELETE !!
-#sub write_csv {
-#	my ($self, $filename, $games) = @_;
-#
-#	print "\nWriting $filename...";
-#	open my $fh, '>', $filename or die "Can't open $filename";
-#	for my $game (@$games) {
-#		next if $game =~ /<LEAGUE>/; 	# for fixtures.pl
-#		next if $game =~ /,X,/;
-#		next if $game =~ /<DATE>/;
-#		print $fh $game."\n";
-#	}
-#	close $fh;
-#}
+sub write_rugby_csv {
+	my ($self, $filename, $games) = @_;
+
+	print "\nWriting $filename...";
+	open my $fh, '>', $filename or die "Can't open $filename";
+	for my $game (@$games) {
+		next if $game =~ /<LEAGUE>/; 	# for fixtures.pl
+		next if $game =~ /,X,/;
+		next if $game =~ /<DATE>/;
+		print $fh $game."\n";
+	}
+	close $fh;
+}
 
 =pod
 

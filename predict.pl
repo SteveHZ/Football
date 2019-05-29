@@ -90,7 +90,7 @@ sub get_cmdline {
 		'update|u' => \$update,
 		'update_favs|f' => \$favs,
 		'rugby|r' => \$rugby,
-	) or die "Usage perl predict.pl -u -uf -r -ru -e -eu";
+	) or die "Usage perl predict.pl -u -uf -r -ru -e -eu -s -su";
 
 	my $update_favs = ($update && (! $favs)) ? 1 : 0; # do NOT update favourites if set
 	$uk = 1 unless ($euro or $summer or $rugby);

@@ -4,7 +4,7 @@ use Football::Team_Profit;
 use Football::Utils qw(_get_all_teams);
 use Football::Model;
 
-use Keyword::DEVELOPMENT;
+use MyKeyword qw(DEVELOPMENT);
 DEVELOPMENT { use Data::Dumper; }
 use Data::Dumper;
 

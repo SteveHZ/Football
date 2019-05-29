@@ -4,13 +4,15 @@
 
 #BEGIN { $ENV{PERL_KEYWORD_DEVELOPMENT} = 1; }
 
-use strict;
-use warnings;
+use MyHeader;
 use MyKeyword qw(DEVELOPMENT);
 use List::MoreUtils qw(each_arrayref);
-use Data::Dumper;
 
 use lib 'C:/Mine/perl/Football';
+use Football::Model;
+use Euro::Model;
+use Summer::Model;
+
 use Football::Team_Hash;
 use Football::Favourites::Data_Model;
 use Summer::Summer_Data_Model;
@@ -18,11 +20,6 @@ use Football::Spreadsheets::Max_Profit;
 use Football::Globals qw( @csv_leagues @euro_csv_lgs @summer_csv_leagues );
 use Football::Globals qw( @league_names @euro_lgs @summer_leagues );
 use MyJSON qw(write_json);
-
-use Football::Model;
-use Euro::Model;
-use Summer::Model;
-DEVELOPMENT { use Data::Dumper; }
 
 my $euro = 0;
 if (defined $ARGV [0]) {

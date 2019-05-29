@@ -112,6 +112,28 @@ sub get_aways {
 	];
 }
 
+=head
+sub get_maxp_format {
+    my $self = shift;
+	my @formats = (
+        $self->{format}, $self->{currency_format}, $self->{percent_format},
+    );
+	my @formats_idx = qw(0 0 1 1 1 1 2 2);
+
+    return [
+        map { $formats [$_] } @formats_idx
+    ];
+}
+
+sub do_maxp_formats {
+    my ($self, $data, $formats) = @_;
+	my $idx = 0;
+
+	return [
+        map { { $_ => @$formats [$idx++] } } @$data
+    ];
+}
+=cut
 sub get_maxp_columns {
 	my $self = shift;
 

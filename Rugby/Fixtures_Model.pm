@@ -7,6 +7,9 @@ use MyRegX;
 use MyDate qw( $month_names );
 use Data::Dumper;
 
+use Time::Piece qw(localtime);
+use Time::Seconds qw(ONE_DAY);
+
 use utf8;
 use Moo;
 use namespace::clean;
@@ -22,28 +25,41 @@ sub BUILD {
 }
 
 sub get_pages {
-	my ($self, $sites) = @_;
-	$self->{scraper}->get_rugby_pages ($sites);
+	my ($self, $sites, $week) = @_;
+	for my $site (@$sites) {
+		$self->{scraper}->get_rugby_pages ($site, $week);
+	}
 }
 
 sub prepare {
-	my ($self, $dataref) = @_;
+	my ($self, $dataref, $day, $date) = @_;
+	return [] unless $$dataref =~ /[Betfred|Australian]/;
+
 	my $team = $rx->team;
 	my $time = $rx->time;
+	my $lower = $rx->lower;
+	my $upper = $rx->upper;
 	my $date_parser = $rx->date_parser;
 
 #	Remove beginning and end of data
-	$$dataref =~ s/^.*Betfred//;
-	$$dataref =~ s/Please.*$//g;
-	$$dataref =~ s/\n//g;
-	$$dataref =~ s/($leagues)/\n<LEAGUE>$1/g;
+	$$dataref =~ s/^.*Content//;
+	$$dataref =~ s/All times are UK.*$//g;
+	$self->clean_up ($dataref);
 
-	$$dataref =~ s/($date_parser)(\s+)/\n<DATE>$1\n/g;
-	$$dataref =~ s/($team+?)\s+($time)\s+($team+?)\s{2,}/$2-$1,$3\n/g;
+	$$dataref =~ s/($leagues)/\n<LEAGUE>$1/g;
+	$$dataref =~ s/($lower)($upper)/$1\n$2/g; # find where team names meet
+	$$dataref =~ s/($team+?)($time)($team+?)/$day-$date-$2-$1-$3/g;
 
 	my @lines = split '\n', $$dataref;
 	shift @lines;
 	return \@lines;
+}
+
+sub clean_up {
+	my ($self, $dataref) = @_;
+	$$dataref =~ s/League 1/League One/g;
+	$$dataref =~ s/ [A-Z]+C//g; # remove RLFC,ARLFC etc (ARL,SARLC,RLC in Conference leagues)
+	$$dataref =~ s/ XIII//g; # Toulouse
 }
 
 sub after_prepare {
@@ -51,7 +67,7 @@ sub after_prepare {
 	my $date_parser = $rx->date_parser;
 	my $csv_league = '';
 	my $date = '';
-#print Dumper $lines;<STDIN>;
+
 	for my $line (@$lines) {
 		if ($line =~ /^<LEAGUE>(.*)$/) {
 			my $temp = $1;
@@ -61,12 +77,17 @@ sub after_prepare {
 		} elsif ($line =~ /^<DATE>$date_parser/) {
 			$date = do_dates (\%+);
 		} else {
-			my ($time, $teams) = split '-', $line;
-			$line =~ s/.*/$date $time,$csv_league,$teams/;
-#			$line =~ s/(.*)/$date$csv_league,$date $1/;
+			my ($day, $date, $time, $home, $away) = split '-', $line;
+			$line =~ s/.*/$day $date $time,$csv_league,$home,$away/;
 		}
 	}
+#	print Dumper $lines;<STDIN>;
 	return $lines;
+}
+
+sub as_date_month {
+	my ($self, $date) = @_;
+	return $rx->as_date_month ($date);
 }
 
 sub do_dates {
@@ -80,8 +101,29 @@ sub do_dates {
 sub delete_all {
 	my ($self, $path, $week) = @_;
 	for my $day (@$week) {
-		unlink "$path/fixtures $day->{date}.txt"
+		unlink "$path/rugby $day->{date}.txt"
 	}
+}
+
+sub get_week {
+	my ($self, $days, $forwards) = @_;
+	$days //= 10;
+	$forwards //= 1;
+
+	my @week = ();
+	my $today = localtime;
+
+#	for my $day_count (0..$days) {
+	for my $day_count (1..$days) {
+		my $day = ($forwards) ?
+			$today + ($day_count * ONE_DAY):
+			$today - ($day_count * ONE_DAY);
+		push @week, {
+			day	 => substr ($day->wdayname, 0, 2),
+			date => $day->ymd,
+		};
+	}
+	return \@week;
 }
 
 =pod

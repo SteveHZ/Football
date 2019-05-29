@@ -20,17 +20,17 @@ use MyJSON qw(write_json);
 FOOTBALL {
 	use Football::Fixtures_Model;
 }
-RUGBY {
-	use Rugby::Fixtures_Model;
-	use Rugby::Globals qw(@league_names);
-}
+#RUGBY {
+#	use Rugby::Fixtures_Model;
+#	use Rugby::Globals qw(@league_names);
+#}
 
 my $data = get_data ();
 my $view = Football::Fixtures_View->new ();
 my $path = "C:/Mine/perl/Football/data/Euro/scraped";
 
 FOOTBALL { do_football (); }
-RUGBY 	 { do_rugby (); }
+#RUGBY 	 { do_rugby (); }
 
 sub do_football {
 	my $model = Football::Fixtures_Model->new ();
@@ -68,6 +68,55 @@ sub do_football {
 
 sub do_rugby {
 	my $model = Rugby::Fixtures_Model->new ();
+	my $week = $model->get_week (14);
+	my $all_games = [];
+#	PRODUCTION {
+#		$model->get_pages ($data->{rugby}->{sites}, $week);
+#	}
+
+	for my $day (@$week) {
+		my $filename = "$path/rugby $day->{date}.txt";
+		open my $fh, '<', $filename or die "Can't open $filename";
+		chomp ( my $data = <$fh> );
+		close $fh;
+
+		my $date = $model->as_date_month ($day->{date});
+		my $games = $model->after_prepare (
+			$model->prepare (\$data, $day->{day}, $date)
+		);
+		push $all_games->@*, @$games;
+	}
+
+	$view->dump ($all_games);
+	my $fname = "$path/fixtures_rugby.csv";
+	$view->write_rugby_csv ($fname, $all_games);
+
+#	DELETEALL {
+#		$model->delete_all ($path, $week);
+#	}
+}
+
+sub get_data {
+	return {
+		football => {
+			sites => [
+				'https://www.bbc.co.uk/sport/football/scores-fixtures',
+			],
+		},
+		rugby => {
+			sites => [
+				'https://www.bbc.co.uk/sport/rugby-league/scores-fixtures',
+#				'https://www.bbc.co.uk/sport/rugby-league/super-league/fixtures',
+#				'https://www.bbc.co.uk/sport/rugby-league/championship/fixtures',
+#				'https://www.bbc.co.uk/sport/rugby-league/league-one/fixtures',
+			],
+		},
+	};
+}
+
+=head
+sub do_rugbyx {
+	my $model = Rugby::Fixtures_Model->new ();
 	my @all_games = ();
 	PRODUCTION {
 		$model->get_pages ($data->{rugby}->{sites});
@@ -95,23 +144,7 @@ sub do_rugby {
 #		$model->delete_all ($path, $week);
 #	}
 }
-
-sub get_data {
-	return {
-		football => {
-			sites => [
-				'https://www.bbc.co.uk/sport/football/scores-fixtures',
-			],
-		},
-		rugby => {
-			sites => [
-				'https://www.bbc.co.uk/sport/rugby-league/super-league/fixtures',
-				'https://www.bbc.co.uk/sport/rugby-league/championship/fixtures',
-				'https://www.bbc.co.uk/sport/rugby-league/league-one/fixtures',
-			],
-		},
-	};
-}
+=cut
 
 =pod
 
