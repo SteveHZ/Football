@@ -71,8 +71,7 @@ sub splice_array {
 	my $start = max (0, $last - $num_games);
 	my $games = ($start == 0) ? $last : $num_games;
 
-	my @spliced = splice (@$arrayref, $start, $games);
-	return \@spliced;
+	return [ splice (@$arrayref, $start, $games) ];
 }
 
 =pod

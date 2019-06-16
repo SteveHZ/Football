@@ -6,6 +6,7 @@ package Football::Model;
 #	v2.08 refactored 19-21/12/18, v2.09 Mu 07/05/19
 
 use List::MoreUtils qw(each_array);
+use Syntax::Keyword::Gather;
 
 use lib 'C:/Mine/perl/Football';
 use Football::League;
@@ -158,22 +159,22 @@ sub do_head2head {
 sub do_recent_draws {
 	my ($self, $fixtures) = @_;
 
-	my @temp = ();
-	for my $league (@$fixtures) {
-		for my $game (@{ $league->{games} } ) {
-			push (@temp, {
-				league => $league->{league},
-				game => $game,
-			});
-		}
-	}
-
 	return [
 		sort {
 			$b->{game}->{draws} <=> $a->{game}->{draws}
 			or $b->{game}->{home_draws} <=> $a->{game}->{home_draws}
 			or $a->{game}->{home_team} cmp $b->{game}->{home_team}
-		} @temp
+		}
+		gather {
+        	for my $league (@$fixtures) {
+    			for my $game ($league->{games}->@* ) {
+    				take {
+    					league => $league->{league},
+    					game => $game,
+    				}
+    			}
+    		}
+    	}
 	];
 }
 

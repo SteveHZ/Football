@@ -4,6 +4,7 @@ package Football::Game_Predictions::Over_Under_Model;
 #	https://www.online-betting.me.uk/strategies/vincent.php
 #	https://www.online-betting.me.uk/strategies/ben.php
 
+use Syntax::Keyword::Gather;
 use Moo;
 use namespace::clean;
 
@@ -104,23 +105,24 @@ sub do_calcs {
 
 sub do_unders {
 	my $self = shift;
-	my @unders = ();
 
-	for my $league ( @{ $self->{leagues} } ) {
-		for my $team ( @{ $league->team_list } ) {
-			my $games = $league->get_most_recent ($team, 4);
-			push @unders, {
-				league => $league->{name},
-				team => $team,
-				goals => _get_total_goals ($games),
-			};
-		}
-	}
 	return [
 		sort {
 			$a->{goals} <=> $b->{goals}
 			or $a->{team} cmp $b->{team}
-		} @unders
+		}
+		gather {
+			for my $league ( $self->{leagues}->@* ) {
+				for my $team ( $league->team_list->@* ) {
+					my $games = $league->get_most_recent ($team, 4);
+					take {
+						league => $league->{name},
+						team => $team,
+						goals => _get_total_goals ($games),
+					}
+				}
+			}
+		}
 	];
 }
 

@@ -13,7 +13,7 @@ my $euro_dir = 'C:/Mine/perl/Football/data/Euro';
 
 for my $league (@csv_leagues) {
 	my $url = "http://www.football-data.co.uk/$id/$season_years/$league.csv";
-print "\nAttempting to fetch $url...";
+
 	my $ff = File::Fetch->new (uri => $url);
 	my $file = $ff->fetch (to => $dir) or die $ff->error;
 	print "\nDownloading $file...";
@@ -22,7 +22,7 @@ print "\nAttempting to fetch $url...";
 
 for my $league (@euro_fetch_lgs) {
 	my $url = "http://www.football-data.co.uk/$id/$season_years/$league.csv";
-print "\nAttempting to fetch $url...";
+
 	my $ff = File::Fetch->new (uri => $url);
 	my $file = $ff->fetch (to => $euro_dir) or die $ff->error;
 	print "\nDownloading $file...";

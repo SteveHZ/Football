@@ -44,7 +44,7 @@ sub prepare {
 #	Remove beginning and end of data
 	$$dataref =~ s/^.*Content//;
 	$$dataref =~ s/All times are UK.*$//g;
-	$self->clean_up ($dataref);
+	$self->data_clean ($dataref);
 
 	$$dataref =~ s/($leagues)/\n<LEAGUE>$1/g;
 	$$dataref =~ s/($lower)($upper)/$1\n$2/g; # find where team names meet
@@ -55,7 +55,7 @@ sub prepare {
 	return \@lines;
 }
 
-sub clean_up {
+sub data_clean {
 	my ($self, $dataref) = @_;
 	$$dataref =~ s/League 1/League One/g;
 	$$dataref =~ s/ [A-Z]+C//g; # remove RLFC,ARLFC etc (ARL,SARLC,RLC in Conference leagues)

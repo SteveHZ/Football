@@ -13,7 +13,7 @@ sub read_data {
 	my ($self, $file) = @_;
 	my $league_games = [];
 
-	open (my $fh, '<', $file) or die ("Can't find $file");
+	open my $fh, '<', $file or die "Can't find $file";
 	my $line = <$fh>;
 	my @odds_cols = get_euro_odds_cols ($line);
 
@@ -45,7 +45,7 @@ sub read_data {
 
 sub write_csv {
 	my ($self, $file, $data) = @_;
-	open (my $fh, '>', $file) or die ("Unable to open $file");
+	open my $fh, '>', $file or die "Unable to open $file";
 
 	print $fh 'Date,HomeTeam,AwayTeam,FTHG,FTAG,FTR,AvgH,AvgD,AvgA';
 	for my $line (@$data) {

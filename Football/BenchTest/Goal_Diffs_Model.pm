@@ -58,7 +58,7 @@ sub last_six_win {
     my ($self, $data, $n) = @_;
     $n //= 0;
     return 1 if ($data->{home_score} > $data->{away_score} && $data->{last_six_goal_diff} > $n )
-    or ($data->{away_score} > $data->{home_score} && $data->{last_six_goal_diff} < ($n * -1) );
+             or ($data->{away_score} > $data->{home_score} && $data->{last_six_goal_diff} < ($n * -1) );
     return 0;
 }
 

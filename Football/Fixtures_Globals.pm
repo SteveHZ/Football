@@ -301,6 +301,7 @@ Australian,X
 Austrian,X
 Greek,X
 Asian,X
+UEFA,Xs
 END_FOOTBALL_LEAGUES
 
 Betfred Super League,SL
