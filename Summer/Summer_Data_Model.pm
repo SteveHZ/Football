@@ -1,11 +1,12 @@
 package Summer::Summer_Data_Model;
 
-use Moo;
-use namespace::clean;
-
+use Template;
 use lib "C:/Mine/perl/Football";
 use Football::Utils qw(get_euro_odds_cols);
 use Euro::Rename qw( check_rename );
+
+use Moo;
+use namespace::clean;
 
 # Read Football Data csv files
 
@@ -58,6 +59,25 @@ sub write_csv {
 						$line->{home_odds} .','. $line->{draw_odds} .','. $line->{away_odds};
 	}
 	close $fh;
+}
+
+# Write my csv files using Template
+
+sub write_csv_tt {
+	my ($self, $file, $data) = @_;
+
+	for my $line (@$data) {
+		$line->{home_team} = check_rename ( $line->{home_team} );
+		$line->{away_team} = check_rename ( $line->{away_team} );
+	}
+	print "\nWriting $file...";
+	open my $out_fh, '>:raw', $file or die "$file: $!\n";
+
+	my $tt = Template->new ({ ABSOLUTE => 1, });
+#	$tt->process ('c:/mine/perl/Football/Template/summer_csv.tt', { data => $data })
+	$tt->process ('c:/mine/perl/Football/Template/summer_csv.tt', { data => $data }, $out_fh)
+		or die $tt->error;
+
 }
 
 # Read my csv files created by write_csv method

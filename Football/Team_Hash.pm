@@ -47,6 +47,17 @@ sub add_teams {
 	}
 }
 
+sub add_teams6 {
+	my ($self, $teams, $lg_idx) = @_;
+	$lg_idx //= 0;
+
+	for my $team (@$teams) {
+		$self->{hash}->{$team} = Football::Team_Profit->new (team => $team);
+		$self->{hash}->{$team}->{lg_idx} = $lg_idx;
+		push (@{ $self->{teams} }, $team);
+	}
+}
+
 sub place_stakes {
 	my ($self, $home_team, $away_team) = @_;
 	DEVELOPMENT { print "\n$home_team v $away_team"; }

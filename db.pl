@@ -1,10 +1,11 @@
 #	db.pl 24-25/02/18, 02/03/18, 16/03/18, 27/04-03/05/18
-#	v1.1 07-09/01/19
+#	v1.1 07-09/01/19, v1.2 28/06/19
 
 #BEGIN { $ENV{PERL_KEYWORD_TESTING} = 1;}
 use strict;
 use warnings;
 use TryCatch;
+use List::Util qw(reduce min);
 
 use MyKeyword qw(TESTING);
 TESTING { use Data::Dumper; }
@@ -28,12 +29,6 @@ my @funcs = (
 my $data = $funcs[$euro]->();
 my $model = Football::DBModel->new (data => $data);
 
-my $output_dispatch = {
-	'h'  => sub { show_homes (@_) },
-	'a'  => sub { show_aways (@_) },
-	'ha' => sub { show_all   (@_) },
-};
-
 print "\n";
 while (my $cmd_line = prompt ("DB-$data->{model}")) {
 	last if lc $cmd_line eq 'x';
@@ -51,9 +46,8 @@ sub get_results {
 	} else {
 		try {
 			my $sth = $model->do_query ($league, $team, $options);
-			while (my $row = $sth->fetchrow_hashref) {
-				$output_dispatch->{$ha}->($row, $team);
-			}
+			my $games = $sth->fetchall_arrayref ({});
+			show_all ($team, $games, $data);
 		} catch {
 			print "Usage : (team name) -[ha] -[wld]";
 		}
@@ -61,36 +55,36 @@ sub get_results {
 	print "\n";
 }
 
-#	called by $output_dispatch
-
 sub show_all {
-	my ($row, $team) = @_;
-
-	if ($row->{hometeam} =~ /$team.*/) {
-		show_homes ($row);
-	} else {
-		show_aways ($row);
+	my ($team, $games, $data) = @_;
+	for my $game (@$games) {
+		if ($game->{hometeam} =~ /$team.*/) {
+			show_homes ($game);
+		} else {
+			show_aways ($game);
+		}
 	}
+	show_info ($team, $games, $data);
 }
 
 sub show_homes {
-	my $row = shift;
+	my $game = shift;
 	my $odds_column = $data->{column}.'h';
 
-	print "\n$row->{date} ";
-	printf "%-20s H  ", $row->{awayteam};
-	print "$row->{fthg}-$row->{ftag}  ";
-	printf "%5.2f", $row->{$odds_column};
+	print "\n$game->{date} ";
+	printf "%-20s H  ", $game->{awayteam};
+	print "$game->{fthg}-$game->{ftag}  ";
+	printf "%5.2f", $game->{$odds_column};
 }
 
 sub show_aways {
-	my $row = shift;
+	my $game = shift;
 	my $odds_column = $data->{column}.'a';
 
-	print "\n$row->{date} ";
-	printf "%-20s A  ", $row->{hometeam};
-	print "$row->{ftag}-$row->{fthg}  ";
-	printf "%5.2f", $row->{$odds_column};
+	print "\n$game->{date} ";
+	printf "%-20s A  ", $game->{hometeam};
+	print "$game->{ftag}-$game->{fthg}  ";
+	printf "%5.2f", $game->{$odds_column};
 }
 
 #	data functions
@@ -120,6 +114,71 @@ sub get_summer_data {
 		path	=> 'data/Summer',
 		model	=> 'Summer',
 	}
+}
+
+# functional analysis
+
+sub show_info {
+	my ($team, $games, $data) = @_;
+	my $num_games = scalar @$games;
+	my $wins = total_wins ($team, $games);
+	my $return = total_return ($team, $games, $data);
+
+	print "\n\nGames = ". $num_games;
+	print "\nTotal Wins = ". $wins;
+	print "\nPercentage Wins = ". percentage ($wins, $num_games);
+	print "\nTotal Return = ".chr(156). $return;
+	print "\nPercentage Return = ". returns ($return, $num_games)
+}
+
+sub total_return {
+	my ($team, $games, $data) = @_;
+	my $odds_cols = { h => $data->{column}.'h', a => $data->{column}.'a' };
+	return sprintf "%.2f",
+		reduce { $a + $b }
+		map { get_return ($team, $_, $odds_cols) }
+		@$games;
+}
+
+sub get_return {
+	my ($team, $game, $odds_cols) = @_;
+	return $game->{ $odds_cols->{h} } if $team eq $game->{hometeam} && $game->{ftr} eq 'H';
+	return $game->{ $odds_cols->{a} } if $team eq $game->{awayteam} && $game->{ftr} eq 'A';
+	return 0;
+}
+
+sub total_wins {
+	my ($team, $games) = @_;
+	reduce { $a + $b }
+	map { is_win ($team, $_) }
+	@$games;
+}
+
+sub is_win {
+	my ($team, $game) = @_;
+	return 1 if $team eq $game->{hometeam} && $game->{ftr} eq 'H';
+	return 1 if $team eq $game->{awayteam} && $game->{ftr} eq 'A';
+	return 0;
+}
+
+sub percent {
+	my $val = shift;
+	return sprintf "%.*f%%", zero_precision ($val), $val;
+}
+
+sub percentage	{ percent (( $_[0]/$_[1] ) * 100) };
+sub returns		{ percent  ( $_[0]/$_[1] ) };
+
+#	Allow a variable-length precision for floating point numbers, removing unwanted zeros
+
+sub zero_precision {
+    my ($num, $max) = @_;
+    $max //= 2;
+
+    return 0 if index ($num,'.') == -1;						# no decimal point, use zero precision
+    $num =~ s/.*\.//;										# remove everything before and including decimal point
+	$num =~ s/0.*$//;										# remove trailing zeros
+	return min (length ($num), $max);						# return number of non-zero digits found, up to $max
 }
 
 =pod

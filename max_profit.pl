@@ -41,10 +41,7 @@ while (my ($csv_league, $lg_idx) = $iterator->()) {
 	my $results = $data->{read_func}->( undef, $file ); # no $self
 
 	$team_hash->add_teams ($results, $lg_idx);
-	for my $game (@$results) {
-#		DEVELOPMENT { print "\n$game->{home_team} v $game->{away_team}"; }
-		do_straight_win ( $team_hash, $game );
-	}
+	do_straight_win ( $team_hash, $results );
 }
 
 my $filename = "$data->{out_path}max_profit.xlsx";
@@ -59,12 +56,15 @@ my $datafile_name = "C:/Mine/perl/Football/data/combine data/maxp $data->{model_
 write_json ($datafile_name, $team_hash->get_combine_file_data ($sorted));
 
 sub do_straight_win {
-	my ($team_hash, $game) = @_;
-	$team_hash->place_stakes ( $game->{home_team}, $game->{away_team} );
-	if ($game->{result} eq 'H') {
-		$team_hash->home_win ( $game->{home_team}, $game->{home_odds} );
-	} elsif ($game->{result} eq 'A') {
-		$team_hash->away_win ( $game->{away_team}, $game->{away_odds} );
+	my ($team_hash, $results) = @_;
+	for my $game (@$results) {
+#		DEVELOPMENT { print "\n$game->{home_team} v $game->{away_team}"; }
+		$team_hash->place_stakes ( $game->{home_team}, $game->{away_team} );
+		if ($game->{result} eq 'H') {
+			$team_hash->home_win ( $game->{home_team}, $game->{home_odds} );
+		} elsif ($game->{result} eq 'A') {
+			$team_hash->away_win ( $game->{away_team}, $game->{away_odds} );
+		}
 	}
 }
 

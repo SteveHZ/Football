@@ -123,7 +123,7 @@ sub build_query {
 	for my $ha (@home_or_away) {
 		my @results = map { $self->{results_hash}->{uc $ha}->{$_} } @options;
 		push @query, {
-			FTR 					=> [ @results ],			# (FTR = ? OR FTR = ?)...
+			FTR => [ @results ],								# (FTR = ? OR FTR = ?)...
 			$self->{ha_team}->{$ha} => { -like => "%$team%" },	# HomeTeam/AwayTeam LIKE ?
 		};
 	}
