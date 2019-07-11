@@ -6,6 +6,7 @@ use strict;
 use warnings;
 use TryCatch;
 use List::Util qw(reduce min);
+use MyLib qw(var_precision);
 
 use MyKeyword qw(TESTING);
 TESTING { use Data::Dumper; }
@@ -136,11 +137,11 @@ sub total_return {
 	my $odds_cols = { h => $data->{column}.'h', a => $data->{column}.'a' };
 	return sprintf "%.2f",
 		reduce { $a + $b }
-		map { get_return ($team, $_, $odds_cols) }
+		map { calc_return ($team, $_, $odds_cols) }
 		@$games;
 }
 
-sub get_return {
+sub calc_return {
 	my ($team, $game, $odds_cols) = @_;
 	return $game->{ $odds_cols->{h} } if $team eq $game->{hometeam} && $game->{ftr} eq 'H';
 	return $game->{ $odds_cols->{a} } if $team eq $game->{awayteam} && $game->{ftr} eq 'A';
@@ -150,8 +151,8 @@ sub get_return {
 sub total_wins {
 	my ($team, $games) = @_;
 	reduce { $a + $b }
-	map { is_win ($team, $_) }
-	@$games;
+		map { is_win ($team, $_) }
+		@$games;
 }
 
 sub is_win {
@@ -161,24 +162,12 @@ sub is_win {
 	return 0;
 }
 
-sub percent {
-	my $val = shift;
-	return sprintf "%.*f%%", zero_precision ($val), $val;
-}
-
 sub percentage	{ percent (( $_[0]/$_[1] ) * 100) };
 sub returns		{ percent  ( $_[0]/$_[1] ) };
 
-#	Allow a variable-length precision for floating point numbers, removing unwanted zeros
-
-sub zero_precision {
-    my ($num, $max) = @_;
-    $max //= 2;
-
-    return 0 if index ($num,'.') == -1;						# no decimal point, use zero precision
-    $num =~ s/.*\.//;										# remove everything before and including decimal point
-	$num =~ s/0.*$//;										# remove trailing zeros
-	return min (length ($num), $max);						# return number of non-zero digits found, up to $max
+sub percent {
+	my $val = shift;
+	return sprintf "%.*f%%", var_precision ($val), $val;
 }
 
 =pod

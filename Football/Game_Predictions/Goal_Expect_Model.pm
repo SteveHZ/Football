@@ -5,7 +5,7 @@ use MyKeyword qw(ZEROGAMES);
 use Moo;
 use namespace::clean;
 
-has 'leagues' 	=> (is => 'ro', default => sub { [] });
+has 'leagues' 	=> (is => 'ro', default => sub { [] } );
 has 'fixtures' 	=> (is => 'ro', default => sub { [] } );
 
 sub BUILD {
