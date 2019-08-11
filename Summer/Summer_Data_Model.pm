@@ -4,6 +4,7 @@ use Template;
 use lib "C:/Mine/perl/Football";
 use Football::Utils qw(get_euro_odds_cols);
 use Euro::Rename qw( check_rename );
+use MyTemplate;
 
 use Moo;
 use namespace::clean;
@@ -20,6 +21,7 @@ sub read_data {
 
 	while ($line = <$fh>) {
 		chomp $line;
+		$line =~ s/'//; # Remove any apostrophes eg Nott'm Forest
 		my @data = split (',', $line);
 		last if $data [0] eq ''; # don't remove !!!
 
@@ -62,7 +64,6 @@ sub write_csv {
 }
 
 # Write my csv files using Template
-
 sub write_csv_tt {
 	my ($self, $file, $data) = @_;
 
@@ -71,13 +72,11 @@ sub write_csv_tt {
 		$line->{away_team} = check_rename ( $line->{away_team} );
 	}
 	print "\nWriting $file...";
-	open my $out_fh, '>:raw', $file or die "$file: $!\n";
 
-	my $tt = Template->new ({ ABSOLUTE => 1, });
-#	$tt->process ('c:/mine/perl/Football/Template/summer_csv.tt', { data => $data })
-	$tt->process ('c:/mine/perl/Football/Template/summer_csv.tt', { data => $data }, $out_fh)
+	my $tt = MyTemplate->new (filename => $file);
+	my $out_fh = $tt->open_file ();
+	$tt->process ('Template/summer_csv.tt', { data => $data }, $out_fh)
 		or die $tt->error;
-
 }
 
 # Read my csv files created by write_csv method

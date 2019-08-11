@@ -5,12 +5,15 @@ package Summer::View;
 use Summer::Spreadsheets::Teams;
 use Summer::Spreadsheets::Tables;
 use Summer::Spreadsheets::Predictions;
+#use Football::Spreadsheets::Predictions2;
 use Summer::Spreadsheets::Extended;
 #use Summer::Spreadsheets::Goal_Expect_View;
 #use Summer::Spreadsheets::Goal_Diffs_View;
 #use Summer::Spreadsheets::Match_Odds_View;
 #use Summer::Spreadsheets::Over_Under_View;
 #use Summer::Spreadsheets::Skellam_Dist_View;
+use MyKeyword qw(DEV);
+use Football::Spreadsheets::Predictions2;
 
 use Moo;
 use namespace::clean;
@@ -20,8 +23,17 @@ extends 'Football::View';
 sub create_sheets {
 	my $self = shift;
 
+#	DEV {
+#		$self->{xlsx_predictions} = Football::Spreadsheets::Predictions2->new ();
+#	}
+#	else {
+#		$self->{xlsx_predictions} = Summer::Spreadsheets::Predictions->new ();
+#	}
+#	$self->{xlsx_extended} = Summer::Spreadsheets::Extended->new ();
+
 	$self->{xlsx_predictions} = Summer::Spreadsheets::Predictions->new ();
 	$self->{xlsx_extended} = Summer::Spreadsheets::Extended->new ();
+
 #	$self->{xlsx_goal_expect} = Summer::Spreadsheets::Goal_Expect_View->new ();
 #	$self->{xlsx_goal_diffs} = Summer::Spreadsheets::Goal_Diffs_View->new ();
 #	$self->{xlsx_match_odds} = Summer::Spreadsheets::Match_Odds_View->new ();

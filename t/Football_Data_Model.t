@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use Test::More tests => 4;
+use Test::More tests => 5;
 use Test::Deep;
 
 use lib "C:/Mine/perl/Football";
@@ -33,8 +33,8 @@ subtest 'update' => sub {
 	my $games_rx = {
 		home_team		=> re ('\w+'),
 		away_team 		=> re ('\w+'),
-		home_score 		=> re ('\d'),
-		away_score 		=> re ('\d'),
+		home_score 		=> re ('\d\d?'),
+		away_score 		=> re ('\d\d?'),
 		date 			=> re ('\d\d/\d\d/\d\d'),
 	};
 	cmp_deeply ($games, array_each ($games_rx), "$test_file - all games match expected format");
@@ -54,8 +54,8 @@ subtest 'read_csv' => sub {
 	my $games_rx = {
 		home_team		=> re ('\w+'),
 		away_team 		=> re ('\w+'),
-		home_score 		=> re ('\d'),
-		away_score 		=> re ('\d'),
+		home_score 		=> re ('\d\d?'),
+		away_score 		=> re ('\d\d?'),
 		date 			=> re ('\d\d/\d\d/\d\d'),
 	};
 	cmp_deeply ($games, array_each ($games_rx), "$test_file - all games match expected format");
@@ -70,4 +70,17 @@ subtest 'dbi' => sub {
 	is (@$results[1]->{awayteam}, 'Southampton', 'away team');
 	is (@$results[2]->{fthg}, '2', 'home score');
 	is (@$results[3]->{ftag}, '1', 'away score');
+};
+
+subtest 'remove apostrophes' => sub {
+	plan tests => 1;
+	my $test_file2 = "$test_path/E1.csv";
+	my $games = $csv_data_model->read_csv ($test_file2);
+	my $check = 1;
+
+	for my $game (@$games) {
+		$check = 0 if $game->{home_team} =~ /'/;
+		$check = 0 if $game->{away_team} =~ /'/;
+	}
+	is ($check, 1, "removed apostrophes from $test_file2 ok");
 };

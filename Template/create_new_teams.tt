@@ -1,0 +1,8 @@
+my $leagues = {
+[% FOREACH league IN leagues -%]
+    '[% league %]' => [
+        [% FOREACH team IN sorted.$league %]'[% team %]',
+        [% END -%]
+],
+[% END -%]
+};

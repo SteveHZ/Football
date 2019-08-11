@@ -87,7 +87,7 @@ Stoke City,Stoke
 Tottenham Hotspur,Tottenham
 Birmingham City,Birmingham
 Ipswich Town,Ipswich
-Nottingham Forest,Nott'm Forest
+Nottingham Forest,Nottm Forest
 Hull City,Hull
 Cardiff City,Cardiff
 Burton Albion,Burton
@@ -144,6 +144,7 @@ Ebbsfleet United,Ebbsfleet
 Maidenhead United,Maidenhead
 Sutton United,Sutton
 Salford City,Salford
+Stockport County, Stockport
 
 #	Scottish
 Partick Thistle,Partick

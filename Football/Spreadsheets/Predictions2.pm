@@ -1,4 +1,4 @@
-package Football::Spreadsheets::Predictions;
+package Football::Spreadsheets::Predictions2;
 
 #	Predictions.pm 07/02/16 - 15/03/16
 #	v2 14/03/16, v2.1 02/04/17
@@ -15,6 +15,7 @@ with 'Roles::Spreadsheet',
 
 sub BUILD {
 	my $self = shift;
+#print "\nIn Football::Spreadsheets::Predictions2 !!!";
 	$self->create_sheet ();
 }
 
@@ -68,6 +69,7 @@ sub do_last_six {
 	my ($col, $result);
 	my $row = 1;
 
+#
 	my $worksheet = $self->add_worksheet (' Last Six Games ');
 	do_fixtures_header ($worksheet, $self->{bold_format});
 
@@ -78,6 +80,7 @@ sub do_last_six {
 
 		for my $game (@{ $league->{games} } ) {
 			$col = 0;
+#
 			my $iterator = each_arrayref ( $game->{home_last_six}, $game->{full_home_last_six} );
 			while ( my ($result, $full_result) = $iterator->() ) {
 				$worksheet->write ($row, $col, $result, $self->{format});
@@ -88,13 +91,16 @@ sub do_last_six {
 			$worksheet->write ($row, $col ++, $game->{away_team}, $self->{format});
 
 			$col ++;
+#
 			$iterator = each_arrayref ( $game->{away_last_six}, $game->{full_away_last_six} );
 			while ( my ($result, $full_result) = $iterator->() ) {
 				$worksheet->write ($row, $col, $result, $self->{format});
 				$worksheet->write_comment ($row, $col++, "$full_result->{date} $full_result->{opponent} \n($full_result->{home_away}) $full_result->{score}");
 			}
 			$col = 17;
+#
 			$worksheet->write ($row, $col ++, $game->{last_six_home_points}, $self->{format});
+#
 			$worksheet->write ($row, $col ++, $game->{last_six_away_points}, $self->{format});
 			$row ++;
 		}
@@ -106,6 +112,7 @@ sub do_head2head {
 	my ($self, $fixtures) = @_;
 	my $row = 1;
 
+#
 	my $worksheet = $self->add_worksheet (' Head To Head ');
 	do_head2head_header ($worksheet, $self->{bold_format});
 
@@ -184,8 +191,10 @@ sub do_goal_difference {
 			$worksheet->write ($row, $col ++, $game->{home_team}, $self->{format});
 			$worksheet->write ($row, $col ++, $game->{away_team}, $self->{format});
 			$col += 2;
+#
 			$worksheet->write ($row, $col ++, $game->{goal_difference}, $self->{format});
 			$col += 2;
+#
 			for my $result ( @{$game->{gd_results}} ) {
 				$worksheet->write ($row, $col ++, $result, $self->{format});
 				$col ++;
