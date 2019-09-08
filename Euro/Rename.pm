@@ -17,9 +17,6 @@ our @EXPORT = qw( $euro_teams );
 sub new { return bless {}, shift; }
 
 our $euro_teams = {
-#	English
-#	"Nott'm Forest" => 'Nottm Forest',
-
 #	Welsh
 	'Druids' => 'Cefn Druids',
 	'Connahs Q.' => 'Connahs Quay',

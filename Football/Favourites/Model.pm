@@ -76,20 +76,22 @@ sub update {
 	my $hashref = $self->{hash}->{$league}->{$year};
 
 	for my $game (@$results) {
-		$hashref->{stake} ++;
-		if ($game->{result} eq 'D') {
-			$hashref->{draw_winnings} += $game->{draw_odds};
-		} elsif ($game->{home_odds} > $game->{away_odds}) {
-			if ($game->{result} eq 'H'){
-				$hashref->{under_winnings} += $game->{home_odds};
+		if ($game->{home_odds}) {
+			$hashref->{stake} ++;
+			if ($game->{result} eq 'D') {
+				$hashref->{draw_winnings} += $game->{draw_odds};
+			} elsif ($game->{home_odds} > $game->{away_odds}) {
+				if ($game->{result} eq 'H'){
+					$hashref->{under_winnings} += $game->{home_odds};
+				} else {
+					$hashref->{fav_winnings} += $game->{away_odds};
+				}
 			} else {
-				$hashref->{fav_winnings} += $game->{away_odds};
-			}
-		} else {
-			if ($game->{result} eq 'A'){
-				$hashref->{under_winnings} += $game->{away_odds};
-			} else {
-				$hashref->{fav_winnings} += $game->{home_odds};
+				if ($game->{result} eq 'A'){
+					$hashref->{under_winnings} += $game->{away_odds};
+				} else {
+					$hashref->{fav_winnings} += $game->{home_odds};
+				}
 			}
 		}
 	}

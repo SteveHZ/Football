@@ -59,11 +59,13 @@ sub do_straight_win {
 	my ($team_hash, $results) = @_;
 	for my $game (@$results) {
 #		DEVELOPMENT { print "\n$game->{home_team} v $game->{away_team}"; }
-		$team_hash->place_stakes ( $game->{home_team}, $game->{away_team} );
-		if ($game->{result} eq 'H') {
-			$team_hash->home_win ( $game->{home_team}, $game->{home_odds} );
-		} elsif ($game->{result} eq 'A') {
-			$team_hash->away_win ( $game->{away_team}, $game->{away_odds} );
+		if ( $game->{home_odds} && $game->{away_odds} ) {
+			$team_hash->place_stakes ( $game->{home_team}, $game->{away_team} );
+			if ($game->{result} eq 'H') {
+				$team_hash->home_win ( $game->{home_team}, $game->{home_odds} );
+			} elsif ($game->{result} eq 'A') {
+				$team_hash->away_win ( $game->{away_team}, $game->{away_odds} );
+			}
 		}
 	}
 }

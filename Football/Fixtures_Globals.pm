@@ -144,7 +144,8 @@ Ebbsfleet United,Ebbsfleet
 Maidenhead United,Maidenhead
 Sutton United,Sutton
 Salford City,Salford
-Stockport County, Stockport
+Stockport County,Stockport
+Torquay United,Torquay
 
 #	Scottish
 Partick Thistle,Partick
@@ -171,6 +172,8 @@ Llanelli Town,Llanelli
 Aberystwyth Town,Aberystwyth
 Connah's Quay Nomads,Connahs Quay
 The New Saints,TNS
+Airbus UK Broughton,Airbus
+Barry Town United,Barry Town
 
 #	N Irish
 Ballymena United,Ballymena
@@ -201,7 +204,7 @@ Hertha Berlin,Hertha
 FC Nuremberg,Nurnberg
 FC Schalke,Schalke 04
 Mainz 05,Mainz
-Borussia Monchengladbach,M'gladbach
+Borussia Monchengladbach,Mgladbach
 Bayer Leverkusen,Leverkusen
 Borussia Dortmund,Dortmund
 Eintracht Frankfurt,Ein Frankfurt
@@ -248,7 +251,8 @@ Canterbury Bankstown Bulldogs,Canterbury Bulldogs
 Manly Warringah Sea Eagles,Manly Sea Eagles
 END_RUGBY_TEAMS
 
-Welsh Premier League,WL
+#Welsh Premier League,WL
+Cymru Premier,WL
 Irish Premiership,NI
 Premier League,E0
 Championship,E1

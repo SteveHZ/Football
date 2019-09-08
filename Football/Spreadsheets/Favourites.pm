@@ -127,7 +127,7 @@ sub do_favourites {
 	for my $league (@$leagues) {
 		my $hashref = $hash->{data}->{$league}->{$year};
 
-		print "\nWriting favourites : $league $year ...";
+		print "\nWriting favourites : $league $year ...\n";
 		$worksheet->write ($row, 0, $league, $self->{format});
 		$self->write_row ($worksheet, $hashref, $row);
 		$row += 2;

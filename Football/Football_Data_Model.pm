@@ -11,7 +11,7 @@ has 'connect' => (is => 'ro', default => 'csv');
 has 'keys' => (is => 'ro', default => sub { [ qw(div date hometeam awayteam fthg ftag) ] } );
 #   for CSV
 has 'my_keys' => (is => 'ro', default => sub { [ qw(date home_team away_team home_score away_score) ] } );
-has 'my_cols' => (is => 'ro', default => sub { [ qw(1 2 3 4 5) ] } );
+has 'my_cols' => (is => 'ro', default => sub { [ qw(1 3 4 5 6) ] } );
 #	for update (older version)
 has 'full_data' => (is => 'rw', default => '0');
 
@@ -83,6 +83,7 @@ sub update {
 	open my $fh, '<', $file or die "Can't find $file";
 	my $line = <$fh>;	# skip first line
 	while ($line = <$fh>) {
+		$line =~ s/'//; # remove any apostrophes eg Nott'm Forest
 		my @data = split (',', $line);
 		last if $data [0] eq ""; # don't remove !!!
 		next if any {$_ eq ""} ( $data[4], $data[5] );

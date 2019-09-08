@@ -4,113 +4,137 @@
 #	To edit names from Football Data CSV files, use Euro::Rename
 #	To edit names from BBC fixtures files use Football::Fixtures_Globals
 
+
+# 12/08/19 Updated promoted/relegated teams for all leagues
+# but NOT checked against Football Data
+
 use strict;
 use warnings;
 
 use MyJSON qw(write_json);
 use MyLib qw(sort_HoA);
+#use MyTemplate;
+use Football::Globals qw(@euro_lgs);
+use Football::TeamsList;
 
 my $path = 'C:/Mine/perl/Football/data/Euro/';
 my $json_file = $path.'teams.json';
 
 my $leagues = {
 	'Welsh' => [
-		'Bala Town',
-		'Cefn Druids',
-		'Llandudno',
-		'Barry Town',
-		'Newtown',
-		'TNS',
-		'Connahs Quay',
-		'Cardiff MU',
-		'Carmarthen Town',
-		'Aberystwyth',
-		'Caernarfon Town',
-		'Llanelli',
-	],
-	'N Irish' => [
-		'Ballymena',
-		'Cliftonville',
-		'Dungannon',
-		'Linfield',
-		'Warrenpoint',
-		'Crusaders',
-		'Glentoran',
-		'Ards',
-		'Coleraine',
-		'Glenavon',
-		'Institute',
-		'Newry City',
-	],
-	'German' => [
-		'Bayern Munich',
-		'Leverkusen',
-		'Augsburg',
-		'Hertha',
-		'Stuttgart',
-		'Hoffenheim',
-		'Werder Bremen',
-		'Mainz',
-		'Hannover',
-		'Schalke 04',
-		'RB Leipzig',
-		'Wolfsburg',
-		'Dortmund',
-		'Freiburg',
-		'Ein Frankfurt',
-		"M'gladbach",
-		'Fortuna Dusseldorf',
-		'Nurnberg',
-	],
-	'Italian' => [
-		'Juventus',
-		'Cagliari',
-		'Napoli',
-		'Atalanta',
-		'Roma',
-		'Bologna',
-		'Torino',
-		'Milan',
-		'Inter',
-		'Fiorentina',
-		'Lazio',
-		'Spal',
-		'Sampdoria',
-		'Sassuolo',
-		'Genoa',
-		'Udinese',
-		'Chievo',
-		'Frosinone',
-		'Empoli',
-		'Parma',
-	],
-	'Spanish' => [
-		'Leganes',
-		'Alaves',
-		'Valencia',
-		'Celta',
-		'Sociedad',
-		'Girona',
-		'Ath Madrid',
-		'Sevilla',
-		'Espanol',
-		'Ath Bilbao',
-		'Getafe',
-		'Barcelona',
-		'Betis',
-		'Real Madrid',
-		'Levante',
-		'Villarreal',
-		'Eibar',
-		'Valladolid',
-		'Huesca',
-		'Vallecano',
-	],
+        'Aberystwyth',
+        'Airbus',
+        'Bala Town',
+        'Barry Town',
+        'Caernarfon Town',
+        'Cardiff MU',
+        'Carmarthen Town',
+        'Cefn Druids',
+        'Connahs Quay',
+        'Newtown',
+        'Penybont',
+        'TNS',
+    ],
+    'N Irish' => [
+        'Ballymena',
+        'Carrick Rangers',
+        'Cliftonville',
+        'Coleraine',
+        'Crusaders',
+        'Dungannon',
+        'Glenavon',
+        'Glentoran',
+        'Institute',
+        'Larne',
+        'Linfield',
+        'Warrenpoint',
+    ],
+    'German' => [
+        'Augsburg',
+        'Bayern Munich',
+        'Dortmund',
+        'Ein Frankfurt',
+        'FC Koln',
+        'Fortuna Dusseldorf',
+        'Freiburg',
+        'Hertha',
+        'Hoffenheim',
+        'Leverkusen',
+        'Mainz',
+        'Mgladbach',
+        'Paderborn',
+        'RB Leipzig',
+        'Schalke 04',
+        'Union Berlin',
+        'Werder Bremen',
+        'Wolfsburg',
+    ],
+    'Spanish' => [
+        'Alaves',
+        'Ath Bilbao',
+        'Ath Madrid',
+        'Barcelona',
+        'Betis',
+        'Celta',
+        'Eibar',
+        'Espanol',
+        'Getafe',
+        'Granada',
+        'Leganes',
+        'Levante',
+        'Mallorca',
+        'Osasuna',
+        'Real Madrid',
+        'Sevilla',
+        'Sociedad',
+        'Valencia',
+        'Valladolid',
+        'Villarreal',
+    ],
+    'Italian' => [
+        'Atalanta',
+        'Bologna',
+        'Brescia',
+        'Cagliari',
+        'Fiorentina',
+        'Genoa',
+        'Inter',
+        'Juventus',
+        'Lazio',
+        'Lecce',
+        'Milan',
+        'Napoli',
+        'Parma',
+        'Roma',
+        'Sampdoria',
+        'Sassuolo',
+        'Spal',
+        'Torino',
+        'Udinese',
+        'Verona',
+    ],
 };
 
+print "\nWriting $json_file...";
 my $sorted = sort_HoA ($leagues);
 write_json ($json_file, $sorted);
-print "\nDone";
+print " Done";
+
+my $out_file = 'data/teams/euro_teams.pl';
+print "\nWriting new sorted team list to $out_file...";
+
+my $team_list = Football::TeamsList->new (
+	leagues => \@euro_lgs,
+	sorted => $sorted,
+	filename => $out_file,
+);
+$team_list->create ();
+
+#my $tt = MyTemplate->new (filename => $out_file);
+#my $out_fh = $tt->open_file ();
+#$tt->process ('Template/create_new_teams.tt', { leagues => \@euro_lgs, sorted => $sorted }, $out_fh)
+#    or die $tt->error;
+#print " Done";
 
 =head
 'German 2' => [

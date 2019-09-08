@@ -27,6 +27,9 @@ use Rugby::View;
 use Football::Favourites::Controller;
 use Football::Game_Predictions::Controller;
 
+use MyKeyword qw(ZEROGAMES);
+ZEROGAMES { print "\nZEROGAMES pragma in place !!"; <STDIN>; }
+
 my $options = get_cmdline ();
 my ($model, $view) = get_model_and_view ($options);
 
@@ -131,9 +134,18 @@ predict.pl
  Also add -f to NOT update the favourites spreadsheets
  update_rugby
 
+ Alternatively, run batch file predict
+
 =head1 DESCRIPTION
 
 Football predictions
+
+=head1 ZEROGAMES
+
+ At the start of a season, if ZEROGAMES pragma is off, the script will die in Goal Expect Model.
+ Enable ZEROGAMES in predict.pl and enable ZERGAMES lines in Goal Expect Model.
+ Once no messages appear for any teams, disable pragma here and in Goal Expect Model,
+ Should not need to amend any code in Over Under Model
 
 =head1 AUTHOR
 

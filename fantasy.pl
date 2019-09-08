@@ -1,16 +1,12 @@
 #   fantasy.pl 01/12/18
 
-use strict;
-use warnings;
-use v5.010;
-
-use File::Fetch;
-use File::Copy qw(move);
-use Data::Dumper;
-
+use MyHeader;
 use MyJSON qw(read_json);
 use Savings qw(fmt);
 use Football::Spreadsheets::Fantasy;
+
+use File::Fetch;
+use File::Copy qw(move);
 
 my $json_file = "C:/Mine/perl/Football/data/fantasy.json";
 my $teams_file = "C:/Mine/perl/Football/data/teams.json";
@@ -64,7 +60,8 @@ sub sort_by_position {
 sub update {
     my $json_file = shift;
     my $dir = "C:/Mine/perl/Football/data";
-    my $url = "https://fantasy.premierleague.com/drf/bootstrap-static";
+    my $url = "https://fantasy.premierleague.com/api/bootstrap-static/";
+    # previously https://fantasy.premierleague.com/drf/bootstrap-static
 
     say "\nDownloading $json_file...";
     my $ff = File::Fetch->new (uri => $url);

@@ -8,8 +8,8 @@ use warnings;
 use HTML::Strip;
 
 use lib 'C:/Mine/perl/Football';
-use Euro::Rename qw(check_rename);
 use MyDate qw($short_month_names month_number get_year);
+use Euro::Rename qw(check_rename);
 use MyRegX;
 
 my $rx = MyRegX->new ();

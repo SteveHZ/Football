@@ -6,7 +6,6 @@ use Football::Model;
 
 use MyKeyword qw(DEVELOPMENT);
 DEVELOPMENT { use Data::Dumper; }
-use Data::Dumper;
 
 use Mu;
 use namespace::clean;

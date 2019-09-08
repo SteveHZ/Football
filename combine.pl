@@ -10,13 +10,13 @@ use MyJSON qw (read_json);
 my $path = 'c:/mine/perl/Football/data/combine data';
 
 my $expect_files = [
-#    { name => 'UK Expect', file => "$path/expect UK.json" },
-#    { name => 'Euro Expect', file => "$path/expect Euro.json" },
+    { name => 'UK Expect', file => "$path/expect UK.json" },
+    { name => 'Euro Expect', file => "$path/expect Euro.json" },
     { name => 'Summer Expect', file => "$path/expect Summer.json" },
 ];
 
 my $maxp_files = [
-#    { name => 'UK', file => "$path/maxp uk.json", },
+    { name => 'UK', file => "$path/maxp uk.json", },
 #    { name => 'Euro', file => "$path/maxp euro.json", },
     { name => 'Summer', file => "$path/maxp summer.json", },
 ];

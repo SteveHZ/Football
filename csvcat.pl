@@ -24,7 +24,7 @@ for my $file_count (1..$#ARGV) {
 	for my $game (@games) {
 		chomp $game;
 		my @line = split ',', $game;
-		print $fh2 	$line[0].','.$line[1].','.$line[2],','. $line[3].',',
+		print $fh2 	$line[0].','.$line[1].',,'.$line[2],','. $line[3].',',
 					$line[4].','. $line[5].','.$line[6].',,,,,,,,,,,,,,,,'.
 					$line[22].','. $line[23].','. $line[24].",0,0\n";
 	}

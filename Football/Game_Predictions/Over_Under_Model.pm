@@ -4,6 +4,7 @@ package Football::Game_Predictions::Over_Under_Model;
 #	https://www.online-betting.me.uk/strategies/vincent.php
 #	https://www.online-betting.me.uk/strategies/ben.php
 
+use MyKeyword qw(ZEROGAMES);
 use Syntax::Keyword::Gather;
 use Moo;
 use namespace::clean;
@@ -142,6 +143,11 @@ sub do_ou_points2 {
     my $league = $self->{leagues} [$game->{league_idx}];
     my $hplyd = $league->home_played ($game->{home_team});
     my $aplyd = $league->away_played ($game->{away_team});
+
+	ZEROGAMES {
+		$hplyd = 1 if $hplyd == 0;
+		$aplyd = 1 if $aplyd == 0;
+	}
 
     my $points = 0;
     $points += ( $league->home_for ($game->{home_team}) / $hplyd );

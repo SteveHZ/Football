@@ -1,5 +1,5 @@
 Date,HomeTeam,AwayTeam,FTHG,FTAG,FTR,AvgH,AvgD,AvgA
-[%- FOREACH game = data %]
+[%- FOREACH game IN data %]
 [% game.date %],[% game.home_team %],[% game.away_team %],
 [%- game.home_score %],[% game.away_score %],[% game.result %],
 [%- game.home_odds %],[% game.draw_odds %],[% game.away_odds %]

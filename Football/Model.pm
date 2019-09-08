@@ -36,6 +36,7 @@ ro 'test_fixtures_file', default => '';
 ro 'model_name', default => '';
 
 with 'Roles::MyJSON',
+'Football::Roles::Quick_Model',
 'Football::Roles::Shared_Model',
 'Football::Roles::Football_IO_Role';
 

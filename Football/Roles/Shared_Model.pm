@@ -5,7 +5,6 @@ package Football::Roles::Shared_Model;
 
 use Clone qw(clone);
 
-use Football::Game_Predictions::Controller;
 use Football::Football_Data_Model;
 use Football::Globals qw( $default_stats_size );
 use MyKeyword qw(TESTING ANALYSIS); # for model.t
@@ -13,7 +12,7 @@ use MyJSON qw(read_json);
 
 use Moo::Role;
 
-requires qw( read_json update leagues league_names csv_leagues season_data test_season_data );
+requires qw( leagues league_names csv_leagues season_data test_season_data );
 
 sub build_league_idx {
 	my ($self, $leagues) = @_;
@@ -26,51 +25,6 @@ sub build_league_idx {
 sub get_league_idx {
 	my ($self, $league) = @_;
 	return $self->{league_idx}->{$league};
-}
-
-sub quick_predict {
-	my $self = shift;
-	my $data = $self->quick_build ();
-
-	$self->do_recent_goal_difference ($data->{by_league}, $self->leagues);
-	$self->do_goal_difference ($data->{by_league}, $self->leagues);
-	$self->do_league_places ($data->{by_league}, $self->leagues);
-	$self->do_head2head ($data->{by_league} );
-	$self->do_recent_draws ($data->{by_league} );
-
-	my $predict = Football::Game_Predictions::Controller->new (
-		fixtures => $data->{by_match},
-		leagues => $self->leagues,
-		view_name => $self->model_name
-	);
-	my ($teams, $sorted) = $predict->do_predict_models ($data->{by_match}, $self->leagues);
-	return ($teams, $sorted);
-}
-
-sub quick_build {
-	my $self = shift;
-	$self->build_data ();
-	return $self->do_fixtures ($self->get_fixtures ());
-}
-
-sub build_data {
-	my ($self, $args) = @_;
-	my $games;
-
-	if (exists $args->{json}) {
-		$games = read_json ($args->{json});
-	} else {
-		$games = $self->read_games ();
-	}
-	my $leagues = $self->build_leagues ($games);
-
-	return {
-		games => $games,
-		leagues => $leagues,
-		homes => $self->do_homes ($leagues),
-		aways => $self->do_aways ($leagues),
-		last_six => $self->do_last_six ($leagues),
-	};
 }
 
 sub read_games {
@@ -200,5 +154,28 @@ sub get_game_data_func {
 		$game->{draws} = $game->{home_draws} + $game->{away_draws};
 	};
 }
+
+=pod
+
+=head1 NAME
+
+Football::Roles::Shared_Model.pm
+
+=head1 SYNOPSIS
+
+Role used by Model.pm to factor out routines common to both Football and Rugby models.
+
+=head1 DESCRIPTION
+
+=head1 AUTHOR
+
+Steve Hope
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
 
 1;
