@@ -41,7 +41,6 @@ sub read_files {
 	my ($hash, $half_times) = @_;
 	my $data_model = Football::Football_Data_Model->new (
 		my_keys => [ qw(date home_team away_team home_score away_score half_time_home half_time_away) ],
-		my_cols => [ qw(1 2 3 4 5 7 8) ],
 	);
 	my ($half_time, $full_time);
 
@@ -114,7 +113,7 @@ perl half_full.pl
 
 =head1 DESCRIPTION
 
- Half and full time scores
+Half and full time scores
 
 =head1 AUTHOR
 

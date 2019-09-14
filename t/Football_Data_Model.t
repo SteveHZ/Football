@@ -2,7 +2,9 @@
 
 use strict;
 use warnings;
-use Test::More tests => 5;
+use List::MoreUtils qw(each_array);
+
+use Test::More tests => 7;
 use Test::Deep;
 
 use lib "C:/Mine/perl/Football";
@@ -84,3 +86,27 @@ subtest 'remove apostrophes' => sub {
 	}
 	is ($check, 1, "removed apostrophes from $test_file2 ok");
 };
+
+subtest 'get_file_cols' => sub {
+	my @files = (
+		'c:/mine/perl/football/data/E0.csv',
+		'c:/mine/perl/football/data/historical/Premier League/2018.csv',
+	);
+	my @expect = (
+		[1,3,4,5,6],
+		[1,2,3,4,5],
+	);
+	my $ea = each_array (@files, @expect);
+	while (my ($file, $expect) = $ea->() ) {
+		open my $fh, $file or die "Can't open $file";
+		my $line = <$fh>;
+		cmp_deeply ($expect, $csv_data_model->get_csv_cols ($line), "$file ok");
+		close $fh;
+	}
+};
+
+subtest 'get_csv_keys' => sub {
+	my $my_keys = [ qw(date home_team away_team home_score away_score half_time_home half_time_away) ];
+	my $expect = [ qw(Date HomeTeam AwayTeam FTHG FTAG HTHG HTAG) ];
+	cmp_deeply ($expect, $csv_data_model->get_csv_keys ($my_keys), 'get_csv_keys ok');
+}

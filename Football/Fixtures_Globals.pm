@@ -188,6 +188,7 @@ Helsingborgs,Helsingborg
 #	Italian
 Inter Milan,Inter
 AC Milan,Milan
+Hellas Verona,Verona
 
 #	Spanish
 Celta Vigo,Celta
@@ -209,6 +210,7 @@ Bayer Leverkusen,Leverkusen
 Borussia Dortmund,Dortmund
 Eintracht Frankfurt,Ein Frankfurt
 FC Augsburg,Augsburg
+FC Union Berlin,Union Berlin
 #SC Freiburg,Freiburg
 #RB Leipzig,Leipzig
 

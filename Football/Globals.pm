@@ -32,6 +32,7 @@ our @EXPORT = qw(
 	@summer_fetch_leagues
 	$max_skellam
 	$min_skellam
+	$csvkeys
 );
 
 %EXPORT_TAGS = (all => \@EXPORT);
@@ -106,6 +107,17 @@ TESTING { # Do not touch these lines
 	our @summer_csv_leagues = qw(ROI MLS SWD NRW FN);
 	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN);
 }
+
+our $csvkeys = {
+	date => 'Date',
+	home_team => 'HomeTeam',
+	away_team => 'AwayTeam',
+	home_score => 'FTHG',
+	away_score => 'FTAG',
+	half_time_home => 'HTHG',
+	half_time_away => 'HTAG',
+	result => 'FTR',
+};
 
 =pod
 

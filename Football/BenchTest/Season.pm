@@ -27,7 +27,6 @@ sub run {
         for my $file (@$file_list) {
             print "\nReading $file->{tag}...";
             my $games = $self->{data_model}->read_csv ($file->{name});
-
             my $league = Football::League->new (
                 name		=> $league_name,
                 games 		=> [],

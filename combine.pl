@@ -17,7 +17,7 @@ my $expect_files = [
 
 my $maxp_files = [
     { name => 'UK', file => "$path/maxp uk.json", },
-#    { name => 'Euro', file => "$path/maxp euro.json", },
+    { name => 'Euro', file => "$path/maxp euro.json", },
     { name => 'Summer', file => "$path/maxp summer.json", },
 ];
 

@@ -1,7 +1,7 @@
 package Football::Team_Hash;
 
 use Football::Team_Profit;
-use Football::Utils qw(_get_all_teams);
+#use Football::Utils qw(_get_all_teams);
 use Football::Model;
 
 use MyKeyword qw(DEVELOPMENT);
@@ -35,10 +35,10 @@ sub team {
 	return $self->{hash}->{$team};
 }
 
-sub add_teams {
-	my ($self, $results, $lg_idx) = @_;
 
-	my $teams = _get_all_teams ($results, 'away_team');
+sub add_teams {
+	my ($self, $results, $teams, $lg_idx) = @_;
+
 	for my $team (@$teams) {
 		$self->{hash}->{$team} = Football::Team_Profit->new (team => $team);
 		$self->{hash}->{$team}->{lg_idx} = $lg_idx;
@@ -58,10 +58,11 @@ sub add_teams6 {
 }
 
 sub place_stakes {
-	my ($self, $home_team, $away_team) = @_;
-	DEVELOPMENT { print "\n$home_team v $away_team"; }
-	$self->{hash}->{$home_team}->home_staked ();
-	$self->{hash}->{$away_team}->away_staked ();
+	my ($self, $game) = @_;
+	DEVELOPMENT { print "\n$game->{home_team} v $game->{away_team}"; }
+	strip_team_names ($game);
+	$self->{hash}->{$game->{home_team}}->home_staked ();
+	$self->{hash}->{$game->{away_team}}->away_staked ();
 }
 
 sub home_win {
@@ -230,6 +231,13 @@ sub get_aways {
 		$self->{hash}->{$team}->away_percent,
 		$self->{hash}->{$team}->away_win_rate,
 	];
+}
+
+# strip apostrophe from Nott'm Forest etc
+sub strip_team_names {
+	my $game = shift;
+	$game->{home_team} =~ s/'//;
+	$game->{away_team} =~ s/'//;
 }
 
 =pod

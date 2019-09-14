@@ -1,8 +1,8 @@
 package Football::Football_Data_Model;
 
 use DBI;
-use List::MoreUtils qw(any pairwise);
-
+use List::MoreUtils qw(any pairwise firstidx);
+use Football::Globals qw($csvkeys);
 use Moo;
 use namespace::clean;
 
@@ -11,7 +11,6 @@ has 'connect' => (is => 'ro', default => 'csv');
 has 'keys' => (is => 'ro', default => sub { [ qw(div date hometeam awayteam fthg ftag) ] } );
 #   for CSV
 has 'my_keys' => (is => 'ro', default => sub { [ qw(date home_team away_team home_score away_score) ] } );
-has 'my_cols' => (is => 'ro', default => sub { [ qw(1 3 4 5 6) ] } );
 #	for update (older version)
 has 'full_data' => (is => 'rw', default => '0');
 
@@ -28,6 +27,7 @@ sub BUILD {
             RaiseError => 1,
         })	or die "Couldn't connect to database : ".DBI->errstr;
     }
+	$self->{csv_keys} = $self->get_csv_keys ($self->{my_keys});
 }
 
 sub do_query {
@@ -51,7 +51,9 @@ sub read_csv {
 	my @league_games = ();
 
 	open my $fh, '<', $file or die "Can't find $file";
-	my $line = <$fh>;	# skip first line
+	my $line = <$fh>; # header line
+	my $cols = $self->get_csv_cols ($line);
+
 	while ($line = <$fh>) {
 		$line =~ s/'//; # remove any apostrophes eg Nott'm Forest
 		my @data = split ',', $line;
@@ -60,11 +62,27 @@ sub read_csv {
 
         push @league_games, {
             pairwise { $a => $data[$b] }
-                @{ $self->{my_keys} }, @{ $self->{my_cols} }
+                @{ $self->{my_keys} }, @$cols
         };
 	}
 	close $fh;
 	return \@league_games;
+}
+
+sub get_csv_keys {
+	my ($self, $my_keys) = @_;
+	return [ map { $csvkeys->{$_} } @$my_keys ];
+}
+
+sub get_csv_cols {
+	my ($self, $line) = @_;
+
+	my @headers = split ',', $line;
+	my @idxs = ();
+	for my $key (@{ $self->{csv_keys} }) {
+		push @idxs, firstidx { $_ eq $key } @headers;
+	}
+	return \@idxs;
 }
 
 sub DESTROY {
