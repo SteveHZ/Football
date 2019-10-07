@@ -19,7 +19,7 @@ use namespace::clean;
 has 'name' => ( is => 'ro' );
 has 'games' => ( is => 'ro' );
 has 'team_list' => ( is => 'ro' );
-has 'auto_build' => ( is => 'ro', default => 1);	# for backtest.#!/usr/bin/env perl
+has 'auto_build' => ( is => 'ro', default => 1);	# for backtest.pl
 
 #	other object data
 has 'teams' => ( is => 'ro', default => sub { {} }, );

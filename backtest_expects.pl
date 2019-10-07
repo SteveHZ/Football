@@ -1,5 +1,5 @@
 
-#   backtest.pl 01-23/03/19
+#   backtest_expects.pl 01-23/03/19
 
 use strict;
 use warnings;
@@ -10,19 +10,19 @@ use Football::BenchTest::Adapter::Game_Prediction_Models;
 use Football::BenchTest::Season;
 use Football::BenchTest::FileList;
 use Football::BenchTest::Goal_Expect_Model;
-use Football::BenchTest::Goal_Diffs_Model;
-use Football::BenchTest::Over_Under_Model;
-use Football::BenchTest::OU_Points_Model;
-use Football::BenchTest::OU_Points2_Model;
-use Football::BenchTest::Spreadsheets::BenchTest_View;
+#use Football::BenchTest::Goal_Diffs_Model;
+#use Football::BenchTest::Over_Under_Model;
+#use Football::BenchTest::OU_Points_Model;
+#use Football::BenchTest::OU_Points2_Model;
+#use Football::BenchTest::Spreadsheets::BenchTest_View;
 
 my $filename = 'C:/Mine/perl/Football/reports/backtest.xlsx';
 my $models = [
     Football::BenchTest::Goal_Expect_Model->new (),
-    Football::BenchTest::Goal_Diffs_Model->new (),
-    Football::BenchTest::Over_Under_Model->new (),
-    Football::BenchTest::OU_Points_Model->new (),
-    Football::BenchTest::OU_Points2_Model->new (),
+#    Football::BenchTest::Goal_Diffs_Model->new (),
+#    Football::BenchTest::Over_Under_Model->new (),
+#    Football::BenchTest::OU_Points_Model->new (),
+#    Football::BenchTest::OU_Points2_Model->new (),
 ];
 
 my $file_list = Football::BenchTest::FileList->new (
@@ -30,7 +30,6 @@ my $file_list = Football::BenchTest::FileList->new (
     csv_leagues => \@csv_leagues,
 );
 my $files = $file_list->get_current ();
-#print Dumper $files;<STDIN>;
 
 my $season = Football::BenchTest::Season->new (
     models      => $models,
@@ -53,18 +52,7 @@ sub do_predict_models {
     );
 
 	my ($teams, $sorted) = $predict_model->calc_goal_expect ();
-    $sorted->{over_under} = $predict_model->calc_over_under ();
-#my $data = $predict_model->get_data ($sorted);
-#print "\n$data->{home_team} v $data->{away_team}";
-
-#if ($data->{home_team} eq 'Chelsea' && $data->{away_team} eq 'Liverpool') {
-#print "\n$data->{home_team} v $data->{away_team}";
-#print "\nExpected Goal Diff : $data->{expected_goal_diff}";
-#print "\nLast Six : $data->{expected_goal_diff_last_six}";
-#<STDIN>;
-#}
-# print Dumper $data;<STDIN>;
-#return $data;
+#    $sorted->{over_under} = $predict_model->calc_over_under ();
     return $predict_model->get_data ($sorted);
 }
 #expected_goal_diff
@@ -73,11 +61,11 @@ sub do_predict_models {
 
 =head1 NAME
 
-Football/backtest.pl
+Football/backtest_expects.pl
 
 =head1 SYNOPSIS
 
-perl backtest.pl
+perl backtest_expects.pl
 
 =head1 DESCRIPTION
 

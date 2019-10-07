@@ -32,7 +32,7 @@ our @EXPORT = qw(
 	@summer_fetch_leagues
 	$max_skellam
 	$min_skellam
-	$csvkeys
+	$csv_fields
 );
 
 %EXPORT_TAGS = (all => \@EXPORT);
@@ -108,7 +108,7 @@ TESTING { # Do not touch these lines
 	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN);
 }
 
-our $csvkeys = {
+our $csv_fields = {
 	date => 'Date',
 	home_team => 'HomeTeam',
 	away_team => 'AwayTeam',

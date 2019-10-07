@@ -2,19 +2,19 @@ package Football::Football_Data_Model;
 
 use DBI;
 use List::MoreUtils qw(any pairwise firstidx);
-use Football::Globals qw($csvkeys);
+use Football::Globals qw($csv_fields);
 use Moo;
 use namespace::clean;
 
-#   for DBI
 has 'connect' => (is => 'ro', default => 'csv');
+has 'path' => (is => 'ro', default => 'C:/Mine/perl/Football/data');
+
+#   for DBI
 has 'keys' => (is => 'ro', default => sub { [ qw(div date hometeam awayteam fthg ftag) ] } );
 #   for CSV
 has 'my_keys' => (is => 'ro', default => sub { [ qw(date home_team away_team home_score away_score) ] } );
 #	for update (older version)
 has 'full_data' => (is => 'rw', default => '0');
-
-has 'path' => (is => 'ro', default => 'C:/Mine/perl/Football/data');
 
 sub BUILD {
 	my $self = shift;
@@ -26,8 +26,9 @@ sub BUILD {
             csv_eol => "\n",
             RaiseError => 1,
         })	or die "Couldn't connect to database : ".DBI->errstr;
-    }
-	$self->{csv_keys} = $self->get_csv_keys ($self->{my_keys});
+    } else {	# $self->{connect} eq 'csv'
+		$self->{csv_keys} = $self->get_csv_keys ($self->{my_keys});
+	}
 }
 
 sub do_query {
@@ -52,7 +53,7 @@ sub read_csv {
 
 	open my $fh, '<', $file or die "Can't find $file";
 	my $line = <$fh>; # header line
-	my $cols = $self->get_csv_cols ($line);
+	my $cols = $self->get_csv_cols (\$line);
 
 	while ($line = <$fh>) {
 		$line =~ s/'//; # remove any apostrophes eg Nott'm Forest
@@ -71,13 +72,13 @@ sub read_csv {
 
 sub get_csv_keys {
 	my ($self, $my_keys) = @_;
-	return [ map { $csvkeys->{$_} } @$my_keys ];
+	return [ map { $csv_fields->{$_} } @$my_keys ];
 }
 
 sub get_csv_cols {
-	my ($self, $line) = @_;
+	my ($self, $lineref) = @_;
 
-	my @headers = split ',', $line;
+	my @headers = split ',', $$lineref;
 	my @idxs = ();
 	for my $key (@{ $self->{csv_keys} }) {
 		push @idxs, firstidx { $_ eq $key } @headers;

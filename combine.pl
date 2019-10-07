@@ -2,7 +2,6 @@
 
 use MyHeader;
 
-use Spreadsheet::Read qw(ReadData);
 use lib 'C:/Mine/perl/Football';
 use Football::Spreadsheets::Combine_View;
 use MyJSON qw (read_json);

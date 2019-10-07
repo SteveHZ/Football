@@ -25,6 +25,19 @@ my $upper = $rx->upper;
 my $lower = $rx->lower;
 my $dm_date = $rx->dm_date;
 
+sub BUILD {
+	my $self = shift;
+	$self->{scraper} = Football::Fixtures_Scraper_Model->new ();
+	$self->{files} = _transform_hash (get_league_hash ());
+}
+
+sub get_pages {
+	my ($self, $sites, $week) = @_;
+	for my $site (@$sites) {
+		$self->{scraper}->get_football_pages ($site, $week);
+	}
+}
+
 sub get_league_hash {
 TESTING {
 	return {
@@ -37,19 +50,6 @@ TESTING {
 		euro    => \@euro_csv_lgs,
 		summer  => \@summer_csv_leagues,
 	};
-}
-
-sub BUILD {
-	my $self = shift;
-	$self->{scraper} = Football::Fixtures_Scraper_Model->new ();
-	$self->{files} = _transform_hash (get_league_hash ());
-}
-
-sub get_pages {
-	my ($self, $sites, $week) = @_;
-	for my $site (@$sites) {
-		$self->{scraper}->get_football_pages ($site, $week);
-	}
 }
 
 sub prepare {
@@ -119,7 +119,7 @@ sub as_dmy {
 
 sub get_week {
 	my ($self, $days, $forwards) = @_;
-	$days //= 10;
+	$days //= 7;
 	$forwards //= 1;
 
 	my @week = ();
@@ -222,7 +222,7 @@ sub _transform_hash {
 
 #	wrapper for testing
 sub transform_hash {
-	TESTNG { # shift $self from @_first
+	TESTNG {
 		my ($self, $hash) = @_;
 		return _transform_hash ($hash);
 	}

@@ -16,6 +16,8 @@ sub get_current {
     my $iterator = each_arrayref ($self->{leagues}, $self->{csv_leagues});
     while (my ($league, $csv_league) = $iterator->()) {
 #       create array of hashrefs for each league, containing another arrayref of hashrefs
+#       only one hashref per arrayref for this sub, but get_historical will have a hashref
+#       for each season, so done this way to be compatible in Season.pm
         push @list, {
             $league => [{
                 tag => $league,

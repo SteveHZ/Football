@@ -1,6 +1,6 @@
 package Football::Game_Predictions::Goal_Expect_Model;
 
-use MyKeyword qw(ZEROGAMES);
+#use MyKeyword qw(ZEROGAMES);
 use v5.10;
 
 use Moo;
@@ -10,8 +10,8 @@ has 'leagues' 	=> (is => 'ro', default => sub { [] } );
 has 'fixtures' 	=> (is => 'ro', default => sub { [] } );
 
 sub BUILD {
-	my $self = shift;
-	$self->{end_msg} = "\nEnable ZEROGAMES keyword in predict.pl and add team name to remove_teams array in fixtures2.pl\n";
+#	my $self = shift;
+#	$self->{end_msg} = "\nEnable ZEROGAMES pragma in predict.pl and add team name to remove_teams array in fixtures2.pl\n";
 }
 
 sub calc_goal_expects {
@@ -64,9 +64,9 @@ sub calculate_homes {
 	my $played = $league->{home_table}->played ($team);
 
 #	die "\n\n***ZERO HOME GAMES for $team".$self->{end_msg} if $played == 0;
-	ZEROGAMES { if ($played == 0) {
-		$played = 1; print "\nZero home games : $team"; <STDIN>;
-	} }
+#	ZEROGAMES { if ($played == 0) {
+#		$played = 1; print "\nZero home games : $team"; <STDIN>;
+#	} }
 
 	$team_hash->{home_for} 			= $league->{home_table}->for ($team);
 	$team_hash->{home_against} 		= $league->{home_table}->against ($team);
@@ -79,9 +79,9 @@ sub calculate_aways {
 	my $played = $league->{away_table}->played ($team);
 
 #	die "\n\n***ZERO AWAY GAMES for $team".$self->{end_msg} if $played == 0;
-	ZEROGAMES { if ($played == 0) {
-		 $played = 1; print "\nZero away games : $team"; <STDIN>;
-	 } }
+#	ZEROGAMES { if ($played == 0) {
+#		 $played = 1; print "\nZero away games : $team"; <STDIN>;
+#	 } }
 
 	$team_hash->{away_for} 			= $league->{away_table}->for ($team);
 	$team_hash->{away_against} 		= $league->{away_table}->against ($team);

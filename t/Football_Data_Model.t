@@ -87,20 +87,20 @@ subtest 'remove apostrophes' => sub {
 	is ($check, 1, "removed apostrophes from $test_file2 ok");
 };
 
-subtest 'get_file_cols' => sub {
+subtest 'get_csv_cols' => sub {
 	my @files = (
 		'c:/mine/perl/football/data/E0.csv',
 		'c:/mine/perl/football/data/historical/Premier League/2018.csv',
 	);
 	my @expect = (
-		[1,3,4,5,6],
+		[1,3,4,5,6], # from 2019, column 2 = time
 		[1,2,3,4,5],
 	);
-	my $ea = each_array (@files, @expect);
-	while (my ($file, $expect) = $ea->() ) {
+	my $iterator = each_array (@files, @expect);
+	while (my ($file, $expect) = $iterator->() ) {
 		open my $fh, $file or die "Can't open $file";
 		my $line = <$fh>;
-		cmp_deeply ($expect, $csv_data_model->get_csv_cols ($line), "$file ok");
+		cmp_deeply ($expect, $csv_data_model->get_csv_cols (\$line), "$file ok");
 		close $fh;
 	}
 };

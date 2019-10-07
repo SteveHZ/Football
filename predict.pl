@@ -6,7 +6,7 @@
 
 BEGIN {
 #$ENV{PERL_KEYWORD_DEVELOPMENT} = 1;
-$ENV{PERL_KEYWORD_ZEROGAMES} = 1;
+#$ENV{PERL_KEYWORD_ZEROGAMES} = 1;
 }
 
 use strict;
@@ -21,8 +21,8 @@ use Euro::Model;
 use Euro::View;
 use Summer::Model;
 use Summer::View;
-use Rugby::Model;
-use Rugby::View;
+#use Rugby::Model;
+#use Rugby::View;
 
 use Football::Favourites::Controller;
 use Football::Game_Predictions::Controller;
@@ -38,8 +38,8 @@ my $leagues = $model->build_leagues ($games);
 
 $view->do_teams ($leagues);
 $view->do_table ($leagues);
-$view->do_home_table ( $leagues );
-$view->do_away_table ( $leagues );
+$view->do_home_table ($leagues);
+$view->do_away_table ($leagues);
 
 $view->homes (
 	my $homes = $model->do_homes ($leagues)
@@ -48,8 +48,8 @@ $view->aways (
 	my $aways = $model->do_aways ($leagues)
 );
 
-$view->full_homes ( $homes );
-$view->full_aways ( $aways );
+$view->full_homes ($homes);
+$view->full_aways ($aways);
 $view->last_six (
 	my $last_six = $model->do_last_six ($leagues)
 );
@@ -114,7 +114,7 @@ sub get_model_and_view {
 	return (Football::Model->new (), Football::View->new ()) if $options->{uk};
 	return (Euro::Model->new (), Euro::View->new ()) if $options->{euro};
 	return (Summer::Model->new (), Summer::View->new ()) if $options->{summer};
-	return (Rugby::Model->new (), Rugby::View->new ()) if $options->{rugby};
+#	return (Rugby::Model->new (), Rugby::View->new ()) if $options->{rugby};
 	die "Unknown error in get_model_and_view";
 }
 

@@ -30,7 +30,9 @@ sub run {
             my $league = Football::League->new (
                 name		=> $league_name,
                 games 		=> [],
+            # teams will be different each season for historical.pm so can't just read teams.json file
                 team_list	=> _get_all_teams ($games, 'home_team'),
+            # don't build all data for current season - we'll do it game by game further down
                 auto_build  => 0,
             );
             my $datafunc = $self->{football_model}->get_game_data_func ();
@@ -50,6 +52,7 @@ sub run {
                         $model->do_counts ($data);
                     }
                 }
+#print "\n$game->{home_team} v $game->{away_team}";
                 $league->update_teams ($league->teams, $game);
                 $league->update_tables ($game);
             }
