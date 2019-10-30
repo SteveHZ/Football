@@ -103,13 +103,17 @@ TESTING { # Do not touch these lines
 	our @summer_csv_leagues = qw(ROI MLS SWD NRW FN);
 	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN);
 } else { # Amend these lines as needed
-	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League');
-	our @summer_csv_leagues = qw(ROI MLS SWD NRW FN);
-	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN);
+	our @summer_leagues = ('Swedish League', 'Norwegian League', 'Finnish League');
+	our @summer_csv_leagues = qw(SWD NRW FN);
+	our @summer_fetch_leagues = qw(SWE NOR FIN);
+#	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League');
+#	our @summer_csv_leagues = qw(ROI MLS SWD NRW FN);
+#	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN);
 }
 
 our $csv_fields = {
 	date => 'Date',
+	league => 'Div',
 	home_team => 'HomeTeam',
 	away_team => 'AwayTeam',
 	home_score => 'FTHG',
@@ -117,6 +121,11 @@ our $csv_fields = {
 	half_time_home => 'HTHG',
 	half_time_away => 'HTAG',
 	result => 'FTR',
+	home_win => 'B365H',
+	away_win => 'B365A',
+	draw => 'B365D',
+	over_2pt5 => 'B365>2.5',
+	under_2pt5 => 'B365<2.5',
 };
 
 =pod

@@ -59,7 +59,11 @@ sub calc_match_odds {
 		$game->{under_2pt5} = $odds->under_2pt5_odds ();
 		$game->{over_2pt5} = $odds->over_2pt5_odds ();
 	}
-	return $odds->schwartz_sort ($self->{fixtures});
+	my $sorted = $odds->schwartz_sort ($self->{fixtures});
+	my $save_odds = $odds->save_match_odds ($sorted);
+
+	return ($sorted, $save_odds);
+#	return $odds->schwartz_sort ($self->{fixtures});
 }
 
 sub calc_skellam_dist {

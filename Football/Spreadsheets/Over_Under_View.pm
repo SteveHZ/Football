@@ -16,22 +16,22 @@ sub BUILD {
 	my $self = shift;
 
 	$self->create_sheet ();
-	$self->{sheet_names} = ['Home and Away', 'Last Six', 'Over Under', 'OU Points', 'OU Points2', 'OU Unders',];
-	$self->{sorted_by} = ['ou_home_away', 'ou_last_six', 'ou_odds', 'ou_points','ou_points2', 'ou_unders'];
+	$self->{sheet_names} = ['Over Under', 'Home and Away', 'Last Six', 'OU Points', 'OU Points2', 'OU Unders',];
+	$self->{sorted_by} = ['ou_odds', 'ou_home_away', 'ou_last_six', 'ou_points','ou_points2', 'ou_unders'];
 
 	$self->{dispatch} = {
+		ou_odds 		=> sub { my $self = shift; $self->get_over_under_rows (@_) },
 		ou_home_away	=> sub { my $self = shift; $self->get_over_under_rows (@_) },
 		ou_last_six 	=> sub { my $self = shift; $self->get_over_under_rows (@_) },
-		ou_odds 		=> sub { my $self = shift; $self->get_over_under_rows (@_) },
 		ou_points 		=> sub { my $self = shift; $self->get_ou_points_rows (@_) },
 		ou_points2 		=> sub { my $self = shift; $self->get_ou_points2_rows (@_) },
 		ou_unders 		=> sub { my $self = shift; $self->get_unders_rows (@_) },
 	};
 
 	$self->{headers} = {
+		ou_odds 		=> sub { my $self = shift; $self->do_over_under_header (@_) },
 		ou_home_away	=> sub { my $self = shift; $self->do_over_under_header (@_) },
 		ou_last_six 	=> sub { my $self = shift; $self->do_over_under_header (@_) },
-		ou_odds 		=> sub { my $self = shift; $self->do_over_under_header (@_) },
 		ou_points 		=> sub { my $self = shift; $self->do_ou_points_header (@_) },
 		ou_points2 		=> sub { my $self = shift; $self->do_ou_points_header (@_) },
 		ou_unders 		=> sub { my $self = shift; $self->do_unders_header (@_) },

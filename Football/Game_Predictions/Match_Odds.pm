@@ -57,6 +57,24 @@ sub print_all {
 	}
 }
 
+sub save_match_odds {
+	my ($self, $sorted) = @_;
+	return [
+		map { {
+			league => $_->{league},
+			home_team => $_->{home_team},
+			away_team => $_->{away_team},
+			home_win => $_->{home_win},
+			away_win => $_->{away_win},
+			draw => $_->{draw},
+			both_sides_yes => $_->{both_sides_yes},
+			both_sides_no => $_->{both_sides_no},
+			over_2pt5 => $_->{over_2pt5},
+			under_2pt5 => $_->{under_2pt5},
+		} } @$sorted
+	];
+}
+
 sub home_win {
 	my $self = shift;
 	my $total = 0;
@@ -72,7 +90,8 @@ sub home_win {
 sub home_win_odds {
 	my $self = shift;
 
-	return 0 if ( my $stats = $self->home_win () ) == 0;
+	my $stats = $self->home_win ();
+	return 0 if $stats == 0;
 	return nearest (0.01, 100 / $stats);
 }
 
@@ -91,7 +110,8 @@ sub away_win {
 sub away_win_odds {
 	my $self = shift;
 
-	return 0 if ( my $stats = $self->away_win () ) == 0;
+	my $stats = $self->away_win ();
+	return 0 if $stats == 0;
 	return nearest (0.01, 100 / $stats);
 }
 
@@ -108,7 +128,8 @@ sub draw {
 sub draw_odds {
 	my $self = shift;
 
-	return 0 if ( my $stats = $self->draw () ) == 0;
+	my $stats = $self->draw ();
+	return 0 if $stats == 0;
 	return nearest (0.01, 100 / $stats);
 }
 
@@ -127,7 +148,8 @@ sub both_sides_yes {
 sub both_sides_yes_odds {
 	my $self = shift;
 
-	return 0 if ( my $stats = $self->both_sides_yes () ) == 0;
+	my $stats = $self->both_sides_yes ();
+	return 0 if $stats == 0;
 	return nearest (0.01, 100 / $stats);
 }
 
@@ -146,7 +168,8 @@ sub both_sides_no {
 sub both_sides_no_odds {
 	my $self = shift;
 
-	return 0 if ( my $stats = $self->both_sides_no () ) == 0;
+	my $stats = $self->both_sides_no ();
+	return 0 if $stats == 0;
 	return nearest (0.01, 100 / $stats);
 }
 
@@ -167,7 +190,8 @@ sub under_2pt5 {
 sub under_2pt5_odds {
 	my $self = shift;
 
-	return 0 if ( my $stats = $self->under_2pt5 () ) == 0;
+	my $stats = $self->under_2pt5 ();
+	return 0 if $stats == 0;
 	return nearest (0.01, 100 / $stats);
 }
 
@@ -188,7 +212,8 @@ sub over_2pt5 {
 sub over_2pt5_odds {
 	my $self = shift;
 
-	return 0 if ( my $stats = $self->over_2pt5 () ) == 0;
+	my $stats = $self->over_2pt5 ();
+	return 0 if $stats == 0;
 	return nearest (0.01, 100 / $stats);
 }
 

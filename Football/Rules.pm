@@ -95,7 +95,7 @@ sub ou_last_six_rule {
 sub over_odds_rule {
 	my ($self, $game) = @_;
 	return sprintf "+ %0.2f", $game->{over_2pt5}
-		if $game->{over_2pt5} < 2.00;
+		if $game->{over_2pt5} < 1.75;
 	return "";
 }
 

@@ -13,6 +13,7 @@ has 'path' => (is => 'ro', default => 'C:/Mine/perl/Football/data');
 has 'keys' => (is => 'ro', default => sub { [ qw(div date hometeam awayteam fthg ftag) ] } );
 #   for CSV
 has 'my_keys' => (is => 'ro', default => sub { [ qw(date home_team away_team home_score away_score) ] } );
+has 'skip_blanks' => (is => 'ro', default => 1);
 #	for update (older version)
 has 'full_data' => (is => 'rw', default => '0');
 
@@ -59,8 +60,9 @@ sub read_csv {
 		$line =~ s/'//; # remove any apostrophes eg Nott'm Forest
 		my @data = split ',', $line;
 		last if $data [0] eq ''; # don't remove !!!
-		next if any {$_ eq ''} ( $data[4], $data[5] );
-
+		if ($self->skip_blanks) {
+			next if any {$_ eq ''} ( $data[4], $data[5] );
+		}
         push @league_games, {
             pairwise { $a => $data[$b] }
                 @{ $self->{my_keys} }, @$cols

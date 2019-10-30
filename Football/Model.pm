@@ -20,19 +20,18 @@ use MyKeyword qw(TESTING); # for model.t
 use Mu;
 use namespace::clean;
 
-# pre-declare these to use Shared_Model role
+# pre-declare these with default values to use Shared_Model role
 ro 'league_names', default => sub { \@league_names };
 ro 'csv_leagues', default => sub { \@csv_leagues };
 ro 'leagues', default => sub { [] };
 ro 'season_data', default => '';
 ro 'test_season_data', default => '';
-
-# pre-declare these to use Football_IO role
 ro 'fixtures', default => sub { [] };
+
+# pre-declare these with default values to use Football_IO role
 ro 'path', default => '';
 rw 'fixtures_file', default => '';
 ro 'test_fixtures_file', default => '';
-
 ro 'model_name', default => '';
 
 with 'Roles::MyJSON',

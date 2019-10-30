@@ -253,7 +253,6 @@ Canterbury Bankstown Bulldogs,Canterbury Bulldogs
 Manly Warringah Sea Eagles,Manly Sea Eagles
 END_RUGBY_TEAMS
 
-#Welsh Premier League,WL
 Cymru Premier,WL
 Irish Premiership,NI
 Premier League,E0

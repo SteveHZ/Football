@@ -1,9 +1,9 @@
-package Football::Fixtures_Model;
+package Football::Fixtures::Model;
 
 use Football::Globals qw(@csv_leagues @summer_csv_leagues @euro_csv_lgs);
 use Football::Fixtures_Globals qw(%football_fixtures_leagues %rugby_fixtures_leagues);
-use Football::Fixtures_Scraper_Model;
-use MyRegX;
+use Football::Fixtures::Scraper_Model;
+use Football::Fixtures::RegX;
 use MyDate qw( $month_names );
 use MyKeyword qw(TESTING);
 
@@ -19,7 +19,7 @@ use namespace::clean;
 my $str = join '|', keys %football_fixtures_leagues;
 my $leagues = qr/$str/;
 
-my $rx = MyRegX->new ();
+my $rx = Football::Fixtures::RegX->new ();
 my $time = $rx->time;
 my $upper = $rx->upper;
 my $lower = $rx->lower;
@@ -27,15 +27,13 @@ my $dm_date = $rx->dm_date;
 
 sub BUILD {
 	my $self = shift;
-	$self->{scraper} = Football::Fixtures_Scraper_Model->new ();
+	$self->{scraper} = Football::Fixtures::Scraper_Model->new ();
 	$self->{files} = _transform_hash (get_league_hash ());
 }
 
 sub get_pages {
-	my ($self, $sites, $week) = @_;
-	for my $site (@$sites) {
-		$self->{scraper}->get_football_pages ($site, $week);
-	}
+	my ($self, $site, $week) = @_;
+	$self->{scraper}->get_football_pages ($site, $week);
 }
 
 sub get_league_hash {
@@ -48,7 +46,7 @@ TESTING {
 	return {
 		uk      => \@csv_leagues,
 		euro    => \@euro_csv_lgs,
-		summer  => \@summer_csv_leagues,
+#		summer  => \@summer_csv_leagues,
 	};
 }
 
@@ -70,7 +68,7 @@ sub prepare {
 #	Remove beginning and end of data
 	$$dataref =~ s/^.*Content//;
 	$$dataref =~ s/All times are UK .*$//g;
-	$rx->remove_postponed ($dataref);
+#	$rx->remove_postponed ($dataref);
 
 #	Identify known leagues
 	$$dataref =~ s/($leagues)/\n<LEAGUE>$1/g;
@@ -81,7 +79,7 @@ sub prepare {
 
 #	Find where team names start
 	$$dataref =~ s/($lower)($upper)/$1\n$day $date,$2/g;
-	$rx->remove_postponed_chars ($dataref);
+#	$rx->remove_postponed_chars ($dataref);
 
 #	Undo SOME workarounds
 	$self->revert ($dataref);
@@ -132,9 +130,9 @@ sub as_dmy {
 }
 
 sub get_week {
-	my ($self, $days, $forwards) = @_;
-	$days //= 7;
-	$forwards //= 1;
+	my ($self, $args) = @_;
+	my $days = $args->{days} // 7;
+	my $forwards = $args->{forwards} // 1;
 
 	my @week = ();
 	my $today = localtime;
@@ -150,12 +148,6 @@ sub get_week {
 		};
 	}
 	return \@week;
-}
-
-sub get_reverse_week {
-	my ($self, $days) = @_;
-	$days //= 10;
-	$self->get_week ($days, 0);
 }
 
 sub do_foreign_chars {

@@ -4,20 +4,20 @@ BEGIN { $ENV{PERL_KEYWORD_TESTING} = 1; } # for Fixtures_Model:transform_hash
 
 use strict;
 use warnings;
-use Test::More tests => 6;
+use Test::More tests => 7;
 use Test::Deep;
 
 use lib "C:/Mine/perl/Football";
-use Football::Fixtures_Model;
+use Football::Fixtures::Model;
 use Football::Globals qw(@csv_leagues @summer_csv_leagues @euro_csv_lgs);
 use MyJSON qw(read_json write_json);
 
-my $model = Football::Fixtures_Model->new ();
+my $model = Football::Fixtures::Model->new ();
 my $date = '2018-06-16';
 
 subtest 'constructor' => sub {
 	plan tests => 1;
-	isa_ok ($model, 'Football::Fixtures_Model', '$model');
+	isa_ok ($model, 'Football::Fixtures::Model', '$model');
 };
 
 subtest 'as_dmy' => sub {
@@ -25,6 +25,7 @@ subtest 'as_dmy' => sub {
 	is ($model->as_dmy ($date), '16/06/18', '16/06/18 is');
 	isnt ($model->as_dmy ($date), '16/6/18', "16/6/18 isn't");
 };
+
 
 subtest 'as_date_month' => sub {
 	plan tests => 2;
@@ -53,6 +54,7 @@ subtest 'transform_hash' => sub {
     is ($files->{WL}, 'euro', 'euro ok');
 };
 
+=head
 TODO: {
 subtest 'prepare' => sub {
 	plan tests => 1;
@@ -82,4 +84,25 @@ subtest 'prepare' => sub {
 	write_json ('c:/mine/perl/football/t/test data/fixtures/actual.json', $all_games);
 	cmp_deeply ($all_games, $after, 'compare data');
 };
+}
+=cut
+
+subtest 'postponed chars' => sub {
+    plan tests => 1;
+    my $filename = "C:/Mine/perl/Football/t/test data/fixtures/fixtures 2019-10-12 MATCH POSTPONED INTERNATIONAL CALL UPS2.txt";
+    my $day = {
+        day => 'Sa',
+        date => '2019-10-12',
+    };
+    my $games = $model->read_file ($filename, $day);
+ use Data::Dumper; print Dumper $games->{uk};
+# is(1,1,'dummy');
+    unlike ($games->{uk}->[2], qr/POxford/, 'postponed chars removed');
+};
+
+subtest 'get_week' => sub {
+	plan tests => 1;
+	my $week = $model->get_week ({ days => 7, forwards => 1 });
+#	use Data::Dumper; print Dumper $week;
+	is (scalar @$week, 7, 'get_week');
 }
