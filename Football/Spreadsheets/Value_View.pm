@@ -19,7 +19,7 @@ sub BUILD {
     $self->{dispatch} = {
 		home_win      => sub { my $self = shift; $self->get_1x2_rows (@_) },
 		away_win      => sub { my $self = shift; $self->get_1x2_rows (@_) },
-		draw          => sub { my $self = shift; $self->get_get_1x2_rows (@_) },
+		draw          => sub { my $self = shift; $self->get_1x2_rows (@_) },
 		over_2pt5     => sub { my $self = shift; $self->get_over_under_rows (@_) },
 		under_2pt5    => sub { my $self = shift; $self->get_over_under_rows (@_) },
 	};
@@ -33,8 +33,8 @@ sub BUILD {
 	};
 
     $self->{blank_cols} = {
-        1x2         => [ qw( 1 3 5 9 ) ],
-        over_under  => [ qw ( 1 3 5 8 11 ) ],
+        1x2         => [ qw( 1 3 5 9 13 ) ],
+        over_under  => [ qw( 1 3 5 8 11 14 ) ],
     };
 }
 
@@ -54,7 +54,8 @@ sub view {
 
 		my $row = 2;
 		for my $game (@{ $sorted->{$sorted_by} } ) {
-			my $row_data = $self->{dispatch}->{$sorted_by}->($self, $game);
+#			my $row_data = $self->{dispatch}->{$sorted_by}->($self, $game);
+			my $row_data = $self->{dispatch}->{$sorted_by}->($self, $game, $row + 1);
 			$self->write_row ($worksheet, $row, $row_data);
 			$row ++;
 		}
@@ -64,8 +65,9 @@ sub view {
 #	called by $self->{dispatch}
 
 sub get_1x2_rows {
-	my ($self, $game) = @_;
+	my ($self, $game, $row) = @_;
     $self->blank_columns ($self->{blank_cols}->{1x2});
+	my $formulas = build_1x2_formulae ($row);
 
 	return [
 		{ $game->{league} => $self->{format} },
@@ -79,12 +81,17 @@ sub get_1x2_rows {
         { $game->{fdata}->{home_win} => $self->{float_format} },
         { $game->{fdata}->{draw} => $self->{float_format} },
         { $game->{fdata}->{away_win} => $self->{float_format} },
+
+		{ @$formulas [0] => $self->{float_format} },
+		{ @$formulas [1] => $self->{float_format} },
+		{ @$formulas [2] => $self->{float_format} },
 	];
 }
 
 sub get_over_under_rows {
-	my ($self, $game) = @_;
+	my ($self, $game, $row) = @_;
     $self->blank_columns ($self->{blank_cols}->{over_under});
+	my $formulas = build_over_under_formulae ($row);
 
 	return [
 		{ $game->{league} => $self->{format} },
@@ -97,8 +104,25 @@ sub get_over_under_rows {
         { $game->{fdata}->{over_2pt5} => $self->{float_format} },
 		{ $game->{fdata}->{under_2pt5} => $self->{float_format} },
 
-        { $game->{over_2pt5} * $self->{overround} => $self->{float_format} },
-		{ $game->{under_2pt5} * $self->{overround} => $self->{float_format} },
+		{ @$formulas [0] => $self->{float_format} },
+		{ @$formulas [1] => $self->{float_format} },
+	];
+}
+
+sub build_1x2_formulae {
+	my $row = shift;
+	return [
+		qq(=(K$row-G$row)/K$row),
+		qq(=(L$row-H$row)/L$row),
+		qq(=(M$row-I$row)/M$row),
+	];
+}
+
+sub build_over_under_formulae {
+	my $row = shift;
+	return [
+		qq(=(J$row-G$row)/J$row),
+		qq(=(K$row-H$row)/K$row),
 	];
 }
 
@@ -109,8 +133,8 @@ sub do_1x2_header {
     $self->blank_columns ($self->{blank_cols}->{1x2});
 
 	$worksheet->set_column ($_, 20) for (qw (A:A C:C E:E));
-	$worksheet->set_column ($_, 6) for (qw (F:F));
-	$worksheet->set_column ($_, 10) for (qw (G:I K:M));
+	$worksheet->set_column ($_, 8) for (qw (G:I K:M O:Q));
+	$worksheet->set_column ($_, 6) for (qw (F:F J:J N:N));
 	$worksheet->set_column ($_, 2.5) for (qw (B:B D:D));
 
 	$worksheet->write ('A1', 'League', $format);
@@ -118,6 +142,7 @@ sub do_1x2_header {
 	$worksheet->write ('E1', 'Away', $format);
     $worksheet->merge_range ('G1:I1', 'MINE', $format);
     $worksheet->merge_range ('K1:M1', 'FOOTBALL DATA', $format);
+	$worksheet->merge_range ('O1:Q1', 'RATIO', $format);
 
 	$worksheet->autofilter( 'A1:A100' );
 	$worksheet->freeze_panes (1,0);
@@ -129,6 +154,7 @@ sub do_over_under_header {
 
 	$worksheet->set_column ($_, 20) for (qw (A:A C:C E:E));
 	$worksheet->set_column ($_, 10) for (qw (G:H J:K M:N));
+	$worksheet->set_column ($_, 6) for (qw (L:L));
 	$worksheet->set_column ($_, 2.5) for (qw (B:B D:D F:F I:I));
 
 	$worksheet->write ('A1', 'League', $format);
@@ -136,7 +162,7 @@ sub do_over_under_header {
 	$worksheet->write ('E1', 'Away', $format);
     $worksheet->merge_range ('G1:H1', 'MINE', $format);
     $worksheet->merge_range ('J1:K1', 'FOOTBALL DATA', $format);
-    $worksheet->merge_range ('M1:N1', 'FOOTBALL DATA', $format);
+    $worksheet->merge_range ('M1:N1', 'RATIO', $format);
 
 	$worksheet->autofilter( 'A1:A100' );
 	$worksheet->freeze_panes (1,0);

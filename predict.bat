@@ -9,8 +9,8 @@ REM perl oddsp.pl ni welsh
 REM perl oddsp.pl ni
 REM perl oddsp.pl welsh
 
-perl csvcat.pl ni ni
-perl csvcat.pl wl welsh
+REM perl csvcat.pl ni ni
+REM perl csvcat.pl wl welsh
 
 perl predict.pl -u
 perl predict.pl -eu

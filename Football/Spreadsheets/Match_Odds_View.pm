@@ -80,10 +80,10 @@ sub get_match_odds_rows {
 		{ $game->{draw} => $self->{float_format} },
 		{ $game->{away_win} => $self->{float_format} },
 
-		{ $game->{both_sides_yes} => $self->{float_format} },
-		{ $game->{both_sides_no} => $self->{float_format} },
 		{ $game->{over_2pt5} => $self->{float_format} },
 		{ $game->{under_2pt5} => $self->{float_format} },
+		{ $game->{both_sides_yes} => $self->{float_format} },
+		{ $game->{both_sides_no} => $self->{float_format} },
 	];
 }
 
@@ -107,10 +107,10 @@ sub do_goal_diffs_header {
 	$worksheet->write ('H1', 'Draw', $format);
 	$worksheet->write ('I1', 'Away Win', $format);
 
-	$worksheet->write ('K1', 'BSTS Yes', $format);
-	$worksheet->write ('L1', 'BSTS No', $format);
-	$worksheet->write ('N1', 'Over 2.5', $format);
-	$worksheet->write ('O1', 'Under 2.5', $format);
+	$worksheet->write ('K1', 'Over 2.5', $format);
+	$worksheet->write ('L1', 'Under 2.5', $format);
+	$worksheet->write ('N1', 'BSTS Yes', $format);
+	$worksheet->write ('O1', 'BSTS No', $format);
 
 	$worksheet->autofilter( 'A1:A100' );
 	$worksheet->freeze_panes (1,0);

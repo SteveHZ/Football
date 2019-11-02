@@ -1,9 +1,8 @@
 #	value.pl 27-30/10/19
 
 BEGIN {
-#$ENV{PERL_KEYWORD_PRODUCTION} = 1;
+$ENV{PERL_KEYWORD_PRODUCTION} = 1;
 }
-use MyKeyword qw(PRODUCTION);
 
 use strict;
 use warnings;
@@ -12,6 +11,7 @@ use List::MoreUtils qw(each_arrayref);
 
 use Football::Value::Model;
 use Football::Spreadsheets::Value_View;
+use MyKeyword qw(PRODUCTION);
 use MyJSON qw(read_json write_json);
 
 my $dir = 'C:/Mine/perl/Football/data/value';
@@ -27,10 +27,10 @@ write_json ("$dir/data.json", $fdata);
 my $mine = read_json ('C:/Mine/perl/Football/data/match odds UK.json');
 
 my $odds = $model->collate_data ($mine, $fdata);
-my $hash = $model->calc_data ($odds);
+my $value = $model->calc_data ($odds);
 
 print "\nWriting C:/Mine/perl/Football/reports/value.xlsx...";
-$view->view ($hash);
+$view->view ($value);
 
 =pod
 

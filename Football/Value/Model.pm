@@ -82,8 +82,7 @@ sub get_draw {
         sort {
             $a->{draw} <=> $b->{draw}
         } grep {
-            $_->{draw} < $_->{home_win}
-            && $_->{draw} < $_->{away_win}
+            $_->{draw} * $self->{overround} < $_->{fdata}->{draw}
         } @$mine
     ];
 }
