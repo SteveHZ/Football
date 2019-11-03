@@ -131,17 +131,15 @@ sub as_dmy {
 
 sub get_week {
 	my ($self, $args) = @_;
-	my $days = $args->{days} // 7;
-	my $forwards = $args->{forwards} // 1;
+	my $days = $args->{days};
+	my $start_date = $args->{include_today};
+#	0 includes today, 1 will start from tomorrow
 
 	my @week = ();
 	my $today = localtime;
 
-#	for my $day_count (0..$days) {
-	for my $day_count (1..$days) {
-		my $day = ($forwards) ?
-			$today + ($day_count * ONE_DAY):
-			$today - ($day_count * ONE_DAY);
+	for my $day_count ($start_date..$days) {
+		my $day = $today + ($day_count * ONE_DAY);
 		push @week, {
 			day	 => substr ($day->wdayname, 0, 2),
 			date => $day->ymd,

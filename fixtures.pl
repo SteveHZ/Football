@@ -1,7 +1,6 @@
 #	fixtures_new.pl 05-14/05/18
-#	v1.1 29/07-12/08/18
-#	v1.2 20-22/09/18
-#   v1.3 08-14/10/19
+#	v1.1 29/07-12/08/18, v1.2 20-22/09/18
+#   v1.3 08-14/10/19, v1.4 03/11/19
 
 BEGIN { $ENV{PERL_KEYWORD_PRODUCTION} = 1;}
 BEGIN { $ENV{PERL_KEYWORD_TESTING} = 0; }
@@ -9,6 +8,7 @@ BEGIN { $ENV{PERL_KEYWORD_DELETEALL} = 1;}
 
 use strict;
 use warnings;
+use Getopt::Long qw(GetOptions);
 #use utf8;
 
 use MyKeyword qw(PRODUCTION DELETEALL);
@@ -23,7 +23,9 @@ do_football ();
 sub do_football {
 	my $model = Football::Fixtures::Model->new ();
 	my $view = Football::Fixtures::View->new ();
-	my $week = $model->get_week ();
+
+	my $args = get_cmdline ();
+	my $week = $model->get_week ($args);
 	my $all_games = {};
 
 	PRODUCTION {
@@ -48,15 +50,35 @@ sub do_football {
 	}
 }
 
+sub get_cmdline {
+    my $days = 7;
+	my $today = 0;
+
+	GetOptions (
+        "days|d=i"=> \$days,
+		"today|t=i" => \$today,
+	) or die "Usage perl fixtures.pl -days 7 -today 1 (to include today)";
+
+	return {
+		days => $days,
+		include_today => $today ^ 1,
+		#	0 includes today, 1 will start from tomorrow
+		#	but default value to enter is 1 to include today, hence exclusive OR $today
+	};
+}
+
 =pod
 
 =head1 NAME
 
-fixtures.pl
+ fixtures.pl
 
 =head1 SYNOPSIS
 
-perl fixtures.pl
+ perl fixtures.pl -days 7 -today 0
+ perl fixtures.pl -d 7 -t 0
+ Default options : days 7 today 0 (do NOT include todays fixtures),
+ Use -today 1 to include todays fixtures
 
 =head1 DESCRIPTION
 
@@ -66,11 +88,11 @@ perl fixtures.pl
 
 =head1 AUTHOR
 
-Steve Hope 2018
+ Steve Hope 2018
 
 =head1 LICENSE
 
-This library is free software. You can redistribute it and/or modify
-it under the same terms as Perl itself.
+ This library is free software. You can redistribute it and/or modify
+ it under the same terms as Perl itself.
 
 =cut

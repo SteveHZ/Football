@@ -3,7 +3,7 @@ package Football::Fixtures::Scraper_Model;
 use Web::Query;
 use MyLib qw(wordcase);
 use utf8;
-#use Data::Dumper;
+
 use Moo;
 use namespace::clean;
 
@@ -91,9 +91,7 @@ sub do_football_write {
 
 sub do_rugby_write {
     my ($self, $date, $txt) = @_;
-#	my ($self, $league, $txt) = @_;
     my $filename = "C:/Mine/perl/Football/data/Euro/scraped/rugby $date.txt";
-#	my $filename = "C:/Mine/perl/Football/data/Euro/scraped/$league.txt";
 
 	open my $fh, '>:utf8', $filename or die "Can't open $filename";
 	print $fh $txt;

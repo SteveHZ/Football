@@ -10,26 +10,26 @@ has 'overround' => (is => 'ro', default => 1.05);
 with 'Roles::Spreadsheet';
 
 sub BUILD {
-	my ($self, $args) = @_;
+	my $self = shift;
 
 	$self->create_sheet ();
 	$self->{sheet_names} = ['Home Win', 'Away Win', 'Draw', 'Over 2.5', 'Under 2.5'];
 	$self->{sorted_by} = ['home_win', 'away_win', 'draw', 'over_2pt5', 'under_2pt5'];
 
     $self->{dispatch} = {
-		home_win      => sub { my $self = shift; $self->get_1x2_rows (@_) },
-		away_win      => sub { my $self = shift; $self->get_1x2_rows (@_) },
-		draw          => sub { my $self = shift; $self->get_1x2_rows (@_) },
-		over_2pt5     => sub { my $self = shift; $self->get_over_under_rows (@_) },
-		under_2pt5    => sub { my $self = shift; $self->get_over_under_rows (@_) },
+		home_win	=> sub { my $self = shift; $self->get_1x2_rows (@_) },
+		away_win	=> sub { my $self = shift; $self->get_1x2_rows (@_) },
+		draw		=> sub { my $self = shift; $self->get_1x2_rows (@_) },
+		over_2pt5	=> sub { my $self = shift; $self->get_over_under_rows (@_) },
+		under_2pt5	=> sub { my $self = shift; $self->get_over_under_rows (@_) },
 	};
 
 	$self->{headers} = {
-		home_win      => sub { my $self = shift; $self->do_1x2_header (@_) },
-		away_win      => sub { my $self = shift; $self->do_1x2_header (@_) },
-		draw          => sub { my $self = shift; $self->do_1x2_header (@_) },
-		over_2pt5     => sub { my $self = shift; $self->do_over_under_header (@_) },
-		under_2pt5    => sub { my $self = shift; $self->do_over_under_header (@_) },
+		home_win	=> sub { my $self = shift; $self->do_1x2_header (@_) },
+		away_win	=> sub { my $self = shift; $self->do_1x2_header (@_) },
+		draw		=> sub { my $self = shift; $self->do_1x2_header (@_) },
+		over_2pt5	=> sub { my $self = shift; $self->do_over_under_header (@_) },
+		under_2pt5	=> sub { my $self = shift; $self->do_over_under_header (@_) },
 	};
 
     $self->{blank_cols} = {
@@ -47,14 +47,12 @@ sub create_sheet {
 sub view {
 	my ($self, $sorted) = @_;
 	my $iterator = each_arrayref ($self->{sheet_names}, $self->{sorted_by});
-
 	while (my ($sheet_name, $sorted_by) = $iterator->() ) {
 		my $worksheet = $self->add_worksheet ($sheet_name);
 		$self->{headers}->{$sorted_by}->($self, $worksheet, $self->{format});
 
 		my $row = 2;
 		for my $game (@{ $sorted->{$sorted_by} } ) {
-#			my $row_data = $self->{dispatch}->{$sorted_by}->($self, $game);
 			my $row_data = $self->{dispatch}->{$sorted_by}->($self, $game, $row + 1);
 			$self->write_row ($worksheet, $row, $row_data);
 			$row ++;
@@ -66,7 +64,6 @@ sub view {
 
 sub get_1x2_rows {
 	my ($self, $game, $row) = @_;
-    $self->blank_columns ($self->{blank_cols}->{1x2});
 	my $formulas = build_1x2_formulae ($row);
 
 	return [
@@ -90,7 +87,6 @@ sub get_1x2_rows {
 
 sub get_over_under_rows {
 	my ($self, $game, $row) = @_;
-    $self->blank_columns ($self->{blank_cols}->{over_under});
 	my $formulas = build_over_under_formulae ($row);
 
 	return [

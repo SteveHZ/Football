@@ -1,7 +1,7 @@
 #	value.pl 27-30/10/19
 
 BEGIN {
-$ENV{PERL_KEYWORD_PRODUCTION} = 1;
+#$ENV{PERL_KEYWORD_PRODUCTION} = 1;
 }
 
 use strict;
