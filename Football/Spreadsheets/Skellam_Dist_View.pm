@@ -81,9 +81,12 @@ sub get_skellam_rows {
 		{ $game->{away_team} => $self->get_format ( $game->{expected_goal_diff} ) },
 	);
 	push (@rows,
-		{ $game->{skellam}->{home_win} => $self->{percent_format} },
-		{ $game->{skellam}->{draw} => $self->{percent_format} },
-		{ $game->{skellam}->{away_win} => $self->{percent_format} },
+		{ $game->{skellam}->{home_win} => $self->{float_format} },
+		{ $game->{skellam}->{draw} => $self->{float_format} },
+		{ $game->{skellam}->{away_win} => $self->{float_format} },
+#		{ $game->{skellam}->{home_win} => $self->{percent_format} },
+#		{ $game->{skellam}->{draw} => $self->{percent_format} },
+#		{ $game->{skellam}->{away_win} => $self->{percent_format} },
 	);
 	if ( defined $game->{skellam}->{0} ) {
 		for my $count ( reverse $self->{show_min}..$self->{show_max} ) {

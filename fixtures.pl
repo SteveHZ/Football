@@ -54,16 +54,15 @@ sub get_cmdline {
     my $days = 7;
 	my $today = 0;
 
+	Getopt::Long::Configure ("bundling");
 	GetOptions (
         "days|d=i"=> \$days,
 		"today|t=i" => \$today,
-	) or die "Usage perl fixtures.pl -days 7 -today 1 (to include today)";
+	) or die "\nUsage : perl fixtures.pl -d7 -t1 \n[d = days t = today ]\nt1 will include today, default is 0\n";
 
 	return {
 		days => $days,
-		include_today => $today ^ 1,
-		#	0 includes today, 1 will start from tomorrow
-		#	but default value to enter is 1 to include today, hence exclusive OR $today
+		include_today => $today,
 	};
 }
 
@@ -75,8 +74,7 @@ sub get_cmdline {
 
 =head1 SYNOPSIS
 
- perl fixtures.pl -days 7 -today 0
- perl fixtures.pl -d 7 -t 0
+ perl fixtures.pl -d7 -t0
  Default options : days 7 today 0 (do NOT include todays fixtures),
  Use -today 1 to include todays fixtures
 

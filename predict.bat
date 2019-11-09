@@ -5,12 +5,13 @@ cd c:/mine/perl/football
 perl fetch.pl
 REM perl fetch_summer.pl
 
-REM perl oddsp.pl ni welsh
+REM Uncommemt either first line or next two ONLY !!!
+perl oddsp.pl ni welsh
 REM perl oddsp.pl ni
 REM perl oddsp.pl welsh
 
-REM perl csvcat.pl ni ni
-REM perl csvcat.pl wl welsh
+perl csvcat.pl ni ni
+perl csvcat.pl wl welsh
 
 perl predict.pl -u
 perl predict.pl -eu
@@ -23,3 +24,4 @@ REM perl max_profit.pl -s
 perl form.pl
 perl combine.pl
 perl backtest.pl
+perl over_under_count.pl

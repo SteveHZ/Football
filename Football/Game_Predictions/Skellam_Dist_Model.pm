@@ -2,6 +2,7 @@ package Football::Game_Predictions::Skellam_Dist_Model;
 
 #	MyBessel.pm 08-14/08/17, 29/09/17
 #	Football::Skellam_Dist_Model 06/10/17
+#	https://stats.stackexchange.com/questions/47749/how-to-calculate-cumulative-poisson-probabilities-without-adding-each-one-if-no/47758
 
 use Math::Round qw(nearest);
 use List::Util qw(max);
@@ -46,7 +47,7 @@ sub get_home_win {
 	for my $i (1..$self->{max_calc}) {
 		$total += $results->{$i};
 	}
-	return $total;
+	return 1 / $total;
 }
 
 sub get_away_win {
@@ -57,13 +58,13 @@ sub get_away_win {
 	for my $i ($self->{min_calc}..-1) {
 		$total += $results->{$i};
 	}
-	return $total;
+	return 1 / $total;
 }
 
 sub get_draw {
 	my ($self, $results) = @_;
 	return 0 unless defined $results->{0};
-	return $results->{0};
+	return 1 / $results->{0};
 }
 
 sub schwartz_sort {

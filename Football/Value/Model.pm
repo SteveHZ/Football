@@ -9,7 +9,7 @@ use Football::Football_Data_Model;
 use Moo;
 use namespace::clean;
 
-has 'overround' => (is => 'ro', default => 1.05);
+has 'overround' => (is => 'rw', default => 1.05);
 
 sub download_fdata {
     my $self = shift;
@@ -71,6 +71,8 @@ sub get_home_win {
         sort {
             $a->{home_win} <=> $b->{home_win}
         } grep {
+            $_->{home_win} < 2
+            &&
             $_->{home_win} * $self->{overround} < $_->{fdata}->{home_win}
         } @$mine
     ];
@@ -82,7 +84,9 @@ sub get_draw {
         sort {
             $a->{draw} <=> $b->{draw}
         } grep {
-            $_->{draw} * $self->{overround} < $_->{fdata}->{draw}
+            $_->{draw} < 3
+            && $_->{draw} < $_->{home_win}
+            && $_->{draw} < $_->{away_win}
         } @$mine
     ];
 }
@@ -93,6 +97,8 @@ sub get_away_win {
         sort {
             $a->{away_win} <=> $b->{away_win}
         } grep {
+            $_->{away_win} < 2
+            &&
             $_->{away_win} * $self->{overround} < $_->{fdata}->{away_win}
         } @$mine
     ];

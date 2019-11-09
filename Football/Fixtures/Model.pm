@@ -132,8 +132,9 @@ sub as_dmy {
 sub get_week {
 	my ($self, $args) = @_;
 	my $days = $args->{days};
-	my $start_date = $args->{include_today};
+	my $start_date = $args->{include_today} ^ 1;
 #	0 includes today, 1 will start from tomorrow
+#	Default value to to include today is 1 , hence exclusive OR $today to start from day 0
 
 	my @week = ();
 	my $today = localtime;
