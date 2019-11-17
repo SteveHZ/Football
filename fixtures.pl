@@ -1,4 +1,4 @@
-#	fixtures_new.pl 05-14/05/18
+#	fixtures.pl 05-14/05/18
 #	v1.1 29/07-12/08/18, v1.2 20-22/09/18
 #   v1.3 08-14/10/19, v1.4 03/11/19
 
@@ -37,7 +37,8 @@ sub do_football {
         my $games = $model->read_file ($filename, $day);
 
 		for my $key (keys %$games) {
-			push @{ $all_games->{$key} }, $_ for (@{ $games->{$key} });
+			push $all_games->{$key}->@*, $_ for $games->{$key}->@*;
+#			push @{ $all_games->{$key} }, $_ for (@{ $games->{$key} });
 		}
 	}
 

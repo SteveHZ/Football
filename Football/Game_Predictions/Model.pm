@@ -17,6 +17,15 @@ has 'models' => (is => 'ro', default => sub { {} });
 has 'fixtures' => (is => 'ro', default => sub { [] }, required => 1);
 has 'leagues' => (is => 'ro', default => sub { [] }, required => 1);
 
+sub BUILD {
+	my $self = shift;
+	$self->{path} = {
+		'UK' => 'C:/Mine/perl/Football/data',
+		'Euro' => 'C:/Mine/perl/Football/data/Euro',
+		'Summer' => 'C:/Mine/perl/Football/data/Summer',
+	};
+}
+
 sub calc_goal_expect {
 	my $self = shift;
 	my $sorted = {};
@@ -42,7 +51,7 @@ sub calc_goal_expect {
 }
 
 sub calc_match_odds {
-	my $self = shift;
+	my ($self, $model_name) = @_;
 
 	$self->{models}->{odds_model} = Football::Game_Predictions::Match_Odds->new ()
 		unless defined $self->{models}->{odds_model};
@@ -59,11 +68,9 @@ sub calc_match_odds {
 		$game->{under_2pt5} = $odds->under_2pt5_odds ();
 		$game->{over_2pt5} = $odds->over_2pt5_odds ();
 	}
-	my $sorted = $odds->schwartz_sort ($self->{fixtures});
-	my $save_odds = $odds->save_match_odds ($sorted);
-
-	return ($sorted, $save_odds);
-#	return $odds->schwartz_sort ($self->{fixtures});
+	my $sorted = $odds->sort_sheets ($self->{fixtures});
+	$odds->save_match_odds ($sorted->{home_win}, $self->{path}->{$model_name});
+	return $sorted;
 }
 
 sub calc_skellam_dist {
@@ -116,12 +123,14 @@ sub calc_over_under {
 }
 
 sub build_expect_data {
-	my ($self, $sorted) = @_;
+	my ($self, $sorted, $model_name) = @_;
+	my $filename = "C:/Mine/perl/Football/data/combine data/expect $model_name.json";
 	my @data = ();
 
 	for my $game (@$sorted) {
 		push @data, $self->get_expect_line_data ($game);
 	}
+    write_json ($filename, \@data);
 	return \@data;
 }
 

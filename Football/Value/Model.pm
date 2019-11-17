@@ -72,8 +72,7 @@ sub get_home_win {
             $a->{home_win} <=> $b->{home_win}
         } grep {
             $_->{home_win} < 2
-            &&
-            $_->{home_win} * $self->{overround} < $_->{fdata}->{home_win}
+            && $_->{home_win} * $self->{overround} < $_->{fdata}->{home_win}
         } @$mine
     ];
 }
@@ -98,8 +97,7 @@ sub get_away_win {
             $a->{away_win} <=> $b->{away_win}
         } grep {
             $_->{away_win} < 2
-            &&
-            $_->{away_win} * $self->{overround} < $_->{fdata}->{away_win}
+            && $_->{away_win} * $self->{overround} < $_->{fdata}->{away_win}
         } @$mine
     ];
 }

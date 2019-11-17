@@ -108,17 +108,17 @@ sub get_over_under_rows {
 sub build_1x2_formulae {
 	my $row = shift;
 	return [
-		qq(=(K$row-G$row)/K$row),
-		qq(=(L$row-H$row)/L$row),
-		qq(=(M$row-I$row)/M$row),
+		qq(=(K$row-G$row)/G$row),
+		qq(=(L$row-H$row)/H$row),
+		qq(=(M$row-I$row)/I$row),
 	];
 }
 
 sub build_over_under_formulae {
 	my $row = shift;
 	return [
-		qq(=(J$row-G$row)/J$row),
-		qq(=(K$row-H$row)/K$row),
+		qq(=(J$row-G$row)/G$row),
+		qq(=(K$row-H$row)/H$row),
 	];
 }
 

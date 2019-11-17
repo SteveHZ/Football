@@ -5,6 +5,7 @@ package Football::Game_Predictions::Match_Odds;
 use Math::Round qw(nearest);
 use List::Util qw(min);
 use Football::Game_Predictions::MyPoisson;
+use MyJSON qw(write_json);
 
 use Moo;
 use namespace::clean;
@@ -15,6 +16,7 @@ sub BUILD {
 	$self->{max} = $args->{max};
 	$self->{max} //= 5;
 	$self->{stats} = ( [] );
+	$self->{sheet_names} = [ qw(home_win away_win draw over_2pt5 under_2pt5 both_sides_yes both_sides_no) ];
 }
 
 sub calc {
@@ -47,6 +49,24 @@ sub schwartz_sort {
 	];
 }
 
+sub sort_sheets {
+	my ($self, $fixtures) = @_;
+	my $sorted = {};
+	for my $sheet ($self->{sheet_names}->@*) {
+		$sorted->{$sheet} = $self->sort_by_sheet_name ($fixtures, $sheet);
+	}
+	return $sorted;
+}
+
+sub sort_by_sheet_name {
+	my ($self, $games, $sorted_by) = @_;
+
+	return [
+		sort { $a->{$sorted_by} <=> $b->{$sorted_by} }
+		@$games
+	];
+}
+
 sub print_all {
 	my $self = shift;
 	for my $home_score (0..$self->{max}) {
@@ -58,6 +78,12 @@ sub print_all {
 }
 
 sub save_match_odds {
+	my ($self, $sorted, $path) = @_;
+	my $filename = "$path/match odds.json";
+	write_json ($filename, $self->get_match_odds ($sorted));
+}
+
+sub get_match_odds {
 	my ($self, $sorted) = @_;
 	return [
 		map { {

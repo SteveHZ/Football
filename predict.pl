@@ -77,7 +77,7 @@ if ($model->model_name eq 'UK') {
 my $predict = Football::Game_Predictions::Controller->new (
 	fixtures => $data->{by_match},
 	leagues => $leagues,
-	view_name => $model->model_name
+	model_name => $model->model_name
 );
 $predict->do_predictions ();
 

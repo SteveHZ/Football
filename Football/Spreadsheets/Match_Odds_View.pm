@@ -1,5 +1,7 @@
 package Football::Spreadsheets::Match_Odds_View;
 
+use List::MoreUtils qw(each_arrayref);
+
 use Moo;
 use namespace::clean;
 
@@ -9,6 +11,8 @@ with 'Roles::Spreadsheet';
 sub BUILD {
 	my ($self, $args) = @_;
 	$self->create_sheet ();
+	$self->{sheet_names} = ['Home Win', 'Away Win', 'Draw', 'Over 2.5', 'Under 2.5', 'BSTS Yes', 'BSTS No'];
+	$self->{sorted_by} = ['home_win', 'away_win', 'draw', 'over_2pt5', 'under_2pt5', 'both_sides_yes', 'both_sides_no'];
 }
 
 sub create_sheet {
@@ -40,8 +44,7 @@ after 'BUILD' => sub {
 
 sub view {
 	my ($self, $fixtures) = @_;
-
-	for my $game (@$fixtures) {
+	for my $game ($fixtures->{home_win}->@*) {
 		print "\n\n$game->{home_team} v $game->{away_team}";
 		print "\nHome Win : ".$game->{home_win};
 		print ' Away Win : '. $game->{away_win};
@@ -56,16 +59,20 @@ sub view {
 
 sub do_match_odds {
 	my ($self, $fixtures) = @_;
-	my $worksheet = $self->add_worksheet ('Match Odds');
-	do_goal_diffs_header ($worksheet, $self->{format});
 
-	my $row = 2;
-	for my $game (@$fixtures) {
-		$self->blank_columns ( [ qw( 1 3 5 9 12 15 ) ] );
+	my $iterator = each_arrayref ($self->{sheet_names}, $self->{sorted_by});
+	while (my ($sheet_name, $sorted_by) = $iterator->() ) {
+		my $worksheet = $self->add_worksheet ($sheet_name);
+		do_goal_diffs_header ($worksheet, $self->{format});
 
-		my $row_data = $self->get_match_odds_rows ($game);
-		$self->write_row ($worksheet, $row, $row_data);
-		$row ++;
+		my $row = 2;
+		for my $game ($fixtures->{$sorted_by}->@*) {
+			$self->blank_columns ( [ qw( 1 3 5 9 12 15 ) ] );
+
+			my $row_data = $self->get_match_odds_rows ($game);
+			$self->write_row ($worksheet, $row, $row_data);
+			$row ++;
+		}
 	}
 }
 

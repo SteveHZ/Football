@@ -5,7 +5,7 @@ cd c:/mine/perl/football
 perl fetch.pl
 REM perl fetch_summer.pl
 
-REM Uncommemt either first line or next two ONLY !!!
+REM Uncomment either first line or next two ONLY !!!
 perl oddsp.pl ni welsh
 REM perl oddsp.pl ni
 REM perl oddsp.pl welsh
