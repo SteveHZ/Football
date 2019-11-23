@@ -28,7 +28,6 @@ sub do_goal_expect {
 	my ($self, $leagues, $teams, $sorted) = @_;
 
 	$self->{xlsx_goal_expect}->view ($leagues, $teams, $sorted->{data});
-#	$self->{xlsx_goal_expect}->view ($leagues, $teams, $sorted->{expect});
 	$self->{xlsx_goal_diffs}->view ($sorted);
 }
 

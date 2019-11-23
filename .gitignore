@@ -21,7 +21,7 @@
 /HMVC
 v3.pl
 *.xlsx
-*.ods
+*.ods*
 *.json
 .precomp
 /.precomp

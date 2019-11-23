@@ -1,6 +1,7 @@
 package Football::Value::Model;
 
 use List::MoreUtils qw(each_arrayref);
+use Scalar::Util qw(looks_like_number);
 use File::Fetch;
 
 use Football::Globals qw(@league_names @csv_leagues);
@@ -108,7 +109,8 @@ sub get_over_2pt5 {
         sort {
             $a->{over_2pt5} <=> $b->{over_2pt5}
         } grep {
-            $_->{over_2pt5} * $self->{overround} < $_->{fdata}->{over_2pt5}
+            looks_like_number ($_)
+            && $_->{over_2pt5} * $self->{overround} < $_->{fdata}->{over_2pt5}
         } @$mine
     ];
 }
@@ -119,7 +121,8 @@ sub get_under_2pt5 {
         sort {
             $a->{under_2pt5} <=> $b->{under_2pt5}
         } grep {
-            $_->{under_2pt5} * $self->{overround} < $_->{fdata}->{under_2pt5}
+            looks_like_number ($_)
+            && $_->{under_2pt5} * $self->{overround} < $_->{fdata}->{under_2pt5}
         } @$mine
     ];
 }

@@ -1,7 +1,7 @@
 #	value.pl 27-30/10/19
 
 BEGIN {
-$ENV{PERL_KEYWORD_PRODUCTION} = 1;
+#$ENV{PERL_KEYWORD_PRODUCTION} = 1;
 }
 
 use strict;
@@ -24,7 +24,7 @@ PRODUCTION {
 }
 my $fdata = $model->get_fdata ($csv_file);
 write_json ("$dir/data.json", $fdata);
-my $mine = read_json ('C:/Mine/perl/Football/data/match odds UK.json');
+my $mine = read_json ('C:/Mine/perl/Football/data/match odds.json');
 
 my $odds = $model->collate_data ($mine, $fdata);
 my $value = $model->calc_data ($odds);

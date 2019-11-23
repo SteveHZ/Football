@@ -47,18 +47,6 @@ sub sort_expect_data {
 	];
 }
 
-sub grep_goal_diffs {
-	my $self = shift;
-	return [
-		sort {
-			abs $b->{home_away_goal_diff} <=> $a->{home_away_goal_diff}
-		} grep {
-			abs $_->{home_away_goal_diff} > 2 or
-			abs $_->{last_six_goal_diff}  > 2
-		} @{ $self->{fixtures} }
-	];
-}
-
 sub calculate_homes {
 	my ($self, $team_hash, $league, $team) = @_;
 	my $played = $league->{home_table}->played ($team);

@@ -22,16 +22,19 @@ sub do_predictions {
 
 sub do_predict_models {
 	my $self = shift;
+    my $sorted = {};
     my $model = Football::Game_Predictions::Model->new (
         fixtures => $self->{fixtures},
         leagues  => $self->{leagues}
     );
 
-	my ($teams, $sorted) = $model->calc_goal_expect ();
+	my ($teams, $expect_data) = $model->calc_goal_expect ();
+
+    $sorted->{expect} = $expect_data;
     $sorted->{match_odds} = $model->calc_match_odds ($self->{model_name});
 	$sorted->{skellam} = $model->calc_skellam_dist ();
 	$sorted->{over_under} = $model->calc_over_under ();
-    $sorted->{data} = $model->build_expect_data ( $sorted->{expect}, $self->{model_name});
+    $sorted->{data} = $model->save_expect_data ( $sorted->{expect}, $self->{model_name});
 
 	return ($teams, $sorted);
 }

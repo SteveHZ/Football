@@ -28,7 +28,6 @@ sub BUILD {
 
 sub calc_goal_expect {
 	my $self = shift;
-	my $sorted = {};
 
 	$self->{models}->{expect_model} = Football::Game_Predictions::Goal_Expect_Model->new (
 		fixtures => $self->{fixtures},
@@ -42,11 +41,7 @@ sub calc_goal_expect {
 		$expect->calc_goal_diffs ($teams, $game);
 	}
 
-	$sorted->{expect}    = $expect->sort_expect_data ('expected_goal_diff');
-#	$sorted->{home_away} = $expect->sort_expect_data ('home_away_goal_diff');
-#	$sorted->{last_six}  = $expect->sort_expect_data ('last_six_goal_diff');
-	$sorted->{grepped}   = $expect->grep_goal_diffs ();
-
+	my $sorted = $expect->sort_expect_data ('expected_goal_diff');
 	return ($teams, $sorted);
 }
 
@@ -122,7 +117,7 @@ sub calc_over_under {
 	return $sorted;
 }
 
-sub build_expect_data {
+sub save_expect_data {
 	my ($self, $sorted, $model_name) = @_;
 	my $filename = "C:/Mine/perl/Football/data/combine data/expect $model_name.json";
 	my @data = ();
