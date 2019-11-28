@@ -9,8 +9,8 @@ use MyJSON qw(write_json);
 use Moo;
 use namespace::clean;
 
-has 'fixtures' => (is => 'ro', required => 1);
 has 'leagues' => (is => 'ro', required => 1);
+has 'fixtures' => (is => 'ro', required => 1);
 has 'model_name' => (is => 'ro', required => 1);
 
 sub do_predictions {
@@ -29,7 +29,6 @@ sub do_predict_models {
     );
 
 	my ($teams, $expect_data) = $model->calc_goal_expect ();
-
     $sorted->{expect} = $expect_data;
     $sorted->{match_odds} = $model->calc_match_odds ($self->{model_name});
 	$sorted->{skellam} = $model->calc_skellam_dist ();

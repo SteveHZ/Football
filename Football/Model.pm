@@ -32,7 +32,7 @@ ro 'fixtures', default => sub { [] };
 ro 'path', default => '';
 rw 'fixtures_file', default => '';
 ro 'test_fixtures_file', default => '';
-ro 'model_name', default => '';
+ro 'model_name', default => 'uk';
 
 with 'Roles::MyJSON',
 'Football::Roles::Quick_Model',

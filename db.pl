@@ -1,9 +1,10 @@
 #	db.pl 24-25/02/18, 02/03/18, 16/03/18, 27/04-03/05/18
-#	v1.1 07-09/01/19, v1.2 28/06/19
+#	v1.1 07-09/01/19, v1.2 28/06/19, v1.21 25/11/19
 
 #BEGIN { $ENV{PERL_KEYWORD_TESTING} = 1;}
 use strict;
 use warnings;
+
 use TryCatch;
 use List::Util qw(reduce min);
 use MyLib qw(var_precision);
@@ -124,12 +125,14 @@ sub show_info {
 	my $num_games = scalar @$games;
 	my $wins = total_wins ($team, $games);
 	my $return = total_return ($team, $games, $data);
+	my $overs = do_overs ($team, $games);
 
 	print "\n\nGames = ". $num_games;
 	print "\nTotal Wins = ". $wins;
 	print "\nPercentage Wins = ". percentage ($wins, $num_games);
 	print "\nTotal Return = ".chr(156). $return;
-	print "\nPercentage Return = ". returns ($return, $num_games)
+	print "\nPercentage Return = ". returns ($return, $num_games);
+	print "\nOver 2.5 = ".$overs;
 }
 
 sub total_return {
@@ -150,15 +153,29 @@ sub calc_return {
 
 sub total_wins {
 	my ($team, $games) = @_;
-	reduce { $a + $b }
-		map { is_win ($team, $_) }
-		@$games;
+	return reduce { $a + $b }
+		   map { is_win ($team, $_) }
+		   @$games;
 }
 
 sub is_win {
 	my ($team, $game) = @_;
 	return 1 if $team eq $game->{hometeam} && $game->{ftr} eq 'H';
 	return 1 if $team eq $game->{awayteam} && $game->{ftr} eq 'A';
+	return 0;
+}
+
+sub do_overs {
+	my ($team, $games) = @_;
+	my $overs = reduce { $a + $b }
+				map { is_over ($team, $_) }
+				@$games;
+	return percentage ($overs, scalar @$games);
+}
+
+sub is_over {
+	my ($team, $game) = @_;
+	return 1 if $game->{fthg} + $game->{ftag} > 2;
 	return 0;
 }
 

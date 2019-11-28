@@ -13,18 +13,16 @@ use Football::Game_Predictions::Goal_Expect_Model;
 use Data::Dumper;
 
 my $model = Football::Model->new ();
-my $data = $model->build_data ();
-my $fixtures = $model->get_fixtures ();
-my $stats = $model->do_fixtures ($fixtures, $data->{homes}, $data->{aways}, $data->{last_six});
+my ($data, $stats) = $model->quick_build ();
 
 my $predict_model = Football::Game_Predictions::Model->new (
-	fixtures => $stats->{by_match},
- 	leagues => $data->{leagues},
-# 	filename => 'C://Mine/perl/Football/data/benchtest/goal_expect_testing.json',
-);
-my $expect_model = Football::Game_Predictions::Goal_Expect_Model->new (
-	fixtures => $stats->{by_match},
 	leagues => $data->{leagues},
+	fixtures => $stats->{by_match},
+);
+
+my $expect_model = Football::Game_Predictions::Goal_Expect_Model->new (
+	leagues => $data->{leagues},
+	fixtures => $stats->{by_match},
 );
 
 subtest 'Constructors' => sub {
@@ -41,11 +39,9 @@ subtest 'get_average' => sub {
 };
 
 subtest 'goal_expect' => sub {
-	plan tests => 16;
-
+	plan tests => 12;
 	my ($teams, $sorted) = $predict_model->calc_goal_expect ();
 
-#	print Dumper $teams->{Stoke};
 	is ($teams->{Stoke}->{av_home_for}, 1.33, 'av home for');
 	is ($teams->{Stoke}->{av_home_against}, 1.83, 'av home against');
 	is ($teams->{Stoke}->{av_away_for}, 1.17, 'av away for');
@@ -60,12 +56,4 @@ subtest 'goal_expect' => sub {
 	is ($teams->{Stoke}->{last_six_against}, 14, 'last_six against');
 	is ($teams->{Stoke}->{av_last_six_for}, 1.66666666666667, 'av last_six for');
 	is ($teams->{Stoke}->{av_last_six_against}, 2.33333333333333, 'av last_six against');
-
-#	print Dumper $game;
-	my $game = $sorted->{last_six}[0];
-
-	is ($game->{expected_goal_diff}, -2.065696, 'expected_goal_diff');
-	is ($game->{expected_goal_diff_last_six}, -6.215068, 'expected_goal_diff_last_six');
-	is ($game->{home_away_goal_diff}, -2.34, 'home_away_goal_diff');
-	is ($game->{last_six_goal_diff}, -4.16, 'last six goal diff');
 };

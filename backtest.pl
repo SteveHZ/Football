@@ -47,28 +47,18 @@ $bt_view->write ();
 
 sub do_predict_models {
 	my ($self, $game, $league) = @_;
+    my $sorted = {};
     my $predict_model = Football::BenchTest::Adapter::Game_Prediction_Models->new (
         game    => $game,
         league  => $league,
     );
 
-	my ($teams, $sorted) = $predict_model->calc_goal_expect ();
+	my ($teams, $expect_data) = $predict_model->calc_goal_expect ();
+    $sorted->{expect} = $expect_data;
     $sorted->{over_under} = $predict_model->calc_over_under ();
-#my $data = $predict_model->get_data ($sorted);
-#print "\n$data->{home_team} v $data->{away_team}";
-
-#if ($data->{home_team} eq 'Chelsea' && $data->{away_team} eq 'Liverpool') {
-#print "\n$data->{home_team} v $data->{away_team}";
-#print "\nExpected Goal Diff : $data->{expected_goal_diff}";
-#print "\nLast Six : $data->{expected_goal_diff_last_six}";
-#<STDIN>;
-#}
-# print Dumper $data;<STDIN>;
-#return $data;
     return $predict_model->get_data ($sorted);
 }
-#expected_goal_diff
-#expected_goal_diff_last_six
+
 =pod
 
 =head1 NAME

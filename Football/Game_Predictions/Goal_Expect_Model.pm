@@ -18,7 +18,7 @@ sub calc_goal_expects {
 	my $self = shift;
 	my $teams = {};
 
-	for my $league (@{ $self->{leagues} }) {
+	for my $league ( $self->{leagues}->@* ) {
 		my $league_name = $league->{name};
 		$league->{av_home_goals} = 1;
 		$league->{av_away_goals} = 1;
@@ -26,7 +26,7 @@ sub calc_goal_expects {
 		if (( my $total_games = _get_total_league_games ($league)) > 0 ) {
 			$league->{av_home_goals} = _format ( _get_home_goals ($league) / $total_games );
 			$league->{av_away_goals} = _format ( _get_away_goals ($league) / $total_games );
-			for my $team ( @{ $league->{team_list} } ) {
+			for my $team ( $league->{team_list}->@* ) {
 				$teams->{$team} = {};
 				$self->calculate_homes ($teams->{$team}, $league, $team);
 				$self->calculate_aways ($teams->{$team}, $league, $team);
@@ -43,7 +43,7 @@ sub sort_expect_data {
 	return [
 		sort {
 			abs $b->{$sort_by}  <=> abs $a->{$sort_by}
-		} @{ $self->{fixtures} }
+		} $self->{fixtures}->@*
 	];
 }
 
@@ -172,7 +172,8 @@ sub _get_home_goals {
 	my $league = shift;
 	my $total = 0;
 
-	for my $team (@{ $league->{team_list} }) {
+#	return reduce {$a + $b} map {$league->{home_for ($_)} $league->{team_list}->@*}
+	for my $team ( $league->{team_list}->@* ) {
 		$total += $league->home_for ($team);
 	}
 	return $total;
@@ -182,7 +183,7 @@ sub _get_away_goals {
 	my $league = shift;
 	my $total = 0;
 
-	for my $team (@{ $league->{team_list} }) {
+	for my $team ( $league->{team_list}->@* ) {
 		$total += $league->away_for ($team);
 	}
 	return $total;
@@ -192,7 +193,7 @@ sub _get_total_league_games {
 	my $league = shift;
 	my $total = 0;
 
-	for my $team (@{ $league->{team_list} }) {
+	for my $team ( $league->{team_list}->@* ) {
 		$total += $league->home_played ($team);
 	}
 	return $total;

@@ -56,14 +56,14 @@ $view->fixture_list (
 	my $fixtures = $model->get_fixtures ()
 );
 
-my $data = $model->do_fixtures ($fixtures);
-$view->fixtures ( $data->{by_league} );
+my $stats = $model->do_fixtures ($fixtures);
+$view->fixtures ( $stats->{by_league} );
 
-$view->do_recent_goal_difference ( $model->do_recent_goal_difference ($data->{by_league}, $leagues) );
-$view->do_goal_difference ( $model->do_goal_difference ($data->{by_league}, $leagues) );
-$view->do_league_places ( $model->do_league_places ($data->{by_league}, $leagues) );
-$view->do_head2head ( $model->do_head2head ($data->{by_league} ) );
-$view->do_recent_draws ( $model->do_recent_draws ($data->{by_league} ) );
+$view->do_recent_goal_difference ( $model->do_recent_goal_difference ($stats->{by_league}, $leagues) );
+$view->do_goal_difference ( $model->do_goal_difference ($stats->{by_league}, $leagues) );
+$view->do_league_places ( $model->do_league_places ($stats->{by_league}, $leagues) );
+$view->do_head2head ( $model->do_head2head ($stats->{by_league} ) );
+$view->do_recent_draws ( $model->do_recent_draws ($stats->{by_league} ) );
 
 if ($model->model_name eq 'UK') {
 	my $favourites = Football::Favourites::Controller->new (
@@ -75,7 +75,7 @@ if ($model->model_name eq 'UK') {
 }
 
 my $predict = Football::Game_Predictions::Controller->new (
-	fixtures => $data->{by_match},
+	fixtures => $stats->{by_match},
 	leagues => $leagues,
 	model_name => $model->model_name
 );

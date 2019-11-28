@@ -31,7 +31,7 @@ sub remove_postponed_chars {
 	//gx;
 # THIS DOESN'T WORK !!
 	$$dataref =~ s/
-		(?<![S]>) # negative look-behind, do not match SPAL, doesnt need to not match QPR as full name on BBC 
+		(?<![S]>) # negative look-behind, do not match SPAL, doesnt need to not match QPR as full name on BBC
 		P([A-Z]) # after away team, before start of next home team, keep next home team
 	/$1/gx;
 }

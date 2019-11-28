@@ -102,7 +102,7 @@ subtest 'postponed chars' => sub {
 
 subtest 'get_week' => sub {
 	plan tests => 1;
-	my $week = $model->get_week ({ days => 7, forwards => 1 });
+	my $week = $model->get_week ({ days => 7, forwards => 1, include_today => 0 });
 #	use Data::Dumper; print Dumper $week;
 	is (scalar @$week, 7, 'get_week');
 }

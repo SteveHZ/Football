@@ -13,7 +13,7 @@ sub BUILD {
 	$self->{euler} = 2.71828;
 }
 
-sub poisson_game {
+sub poisson_result {
 	my ($self, $home, $away) = @_;
 	return nearest (0.001, $home * $away * 100);
 }

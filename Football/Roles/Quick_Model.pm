@@ -27,22 +27,23 @@ sub build_data {
 
 sub quick_build {
 	my $self = shift;
-	$self->build_data ();
-	return $self->do_fixtures ($self->get_fixtures ());
+	my $data = $self->build_data ();
+	my $stats = $self->do_fixtures ($self->get_fixtures ());
+
+	$self->do_recent_goal_difference ($stats->{by_league}, $self->leagues);
+	$self->do_goal_difference ($stats->{by_league}, $self->leagues);
+	$self->do_league_places ($stats->{by_league}, $self->leagues);
+	$self->do_head2head ($stats->{by_league} );
+	$self->do_recent_draws ($stats->{by_league} );
+	return ($data, $stats);
 }
 
 sub quick_predict {
 	my $self = shift;
-	my $data = $self->quick_build ();
-
-	$self->do_recent_goal_difference ($data->{by_league}, $self->leagues);
-	$self->do_goal_difference ($data->{by_league}, $self->leagues);
-	$self->do_league_places ($data->{by_league}, $self->leagues);
-	$self->do_head2head ($data->{by_league} );
-	$self->do_recent_draws ($data->{by_league} );
+	my ($data, $stats) = $self->quick_build ();
 
 	my $predict = Football::Game_Predictions::Controller->new (
-		fixtures => $data->{by_match},
+		fixtures => $stats->{by_match},
 		leagues => $self->leagues,
 		view_name => $self->model_name
 	);

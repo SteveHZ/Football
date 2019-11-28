@@ -32,9 +32,9 @@ subtest 'MyPoisson Test' => sub {
 
 	my $home = $p->poisson ($home_expect, $home_score);
 	my $away = $p->poisson ($away_expect, $away_score);
-	my $result = $p->poisson_game ($home, $away);
+	my $result = $p->poisson_result ($home, $away);
 
-	is ($result, 0.213, 'poisson_game 0.213');
+	is ($result, 0.213, 'poisson_result 0.213');
 };
 
 subtest 'Match Odds Test' => sub {

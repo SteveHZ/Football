@@ -141,19 +141,19 @@ sub do_ou_points2 {
 	my ($self, $game) = @_;
 
     my $league = $self->{leagues} [$game->{league_idx}];
-    my $hplyd = $league->home_played ($game->{home_team});
-    my $aplyd = $league->away_played ($game->{away_team});
+    my $hplayed = $league->home_played ($game->{home_team});
+    my $aplayed = $league->away_played ($game->{away_team});
 
 	ZEROGAMES {
-		$hplyd = 1 if $hplyd == 0;
-		$aplyd = 1 if $aplyd == 0;
+		$hplayed = 1 if $hplayed == 0;
+		$aplayed = 1 if $aplayed == 0;
 	}
 
     my $points = 0;
-    $points += ( $league->home_for ($game->{home_team}) / $hplyd );
-    $points += ( $league->home_against ($game->{home_team}) / $hplyd );
-    $points += ( $league->away_for ($game->{away_team}) / $aplyd );
-    $points += ( $league->away_against ($game->{away_team}) / $aplyd );
+    $points += ( $league->home_for ($game->{home_team}) / $hplayed );
+    $points += ( $league->home_against ($game->{home_team}) / $hplayed );
+    $points += ( $league->away_for ($game->{away_team}) / $aplayed );
+    $points += ( $league->away_against ($game->{away_team}) / $aplayed );
 
 	return $points / 2;
 }

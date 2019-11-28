@@ -36,7 +36,7 @@ sub calc_goal_expect {
 	my $expect = $self->{models}->{expect_model};
 
 	my $teams = $expect->calc_goal_expects ();
-	for my $game (@{ $self->{fixtures} } ) {
+	for my $game ( $self->{fixtures}->@* ) {
 		$expect->calc_expected_scores ($teams, $game);
 		$expect->calc_goal_diffs ($teams, $game);
 	}
@@ -48,11 +48,11 @@ sub calc_goal_expect {
 sub calc_match_odds {
 	my ($self, $model_name) = @_;
 
-	$self->{models}->{odds_model} = Football::Game_Predictions::Match_Odds->new ()
+	$self->{models}->{odds_model} = Football::Game_Predictions::Match_Odds->new (max => 10)
 		unless defined $self->{models}->{odds_model};
 	my $odds = $self->{models}->{odds_model};
 
-	for my $game (@{ $self->{fixtures} } ) {
+	for my $game ( $self->{fixtures}->@* ) {
 		$odds->calc ($game->{home_goals}, $game->{away_goals});
 
 		$game->{home_win} = $odds->home_win_odds ();
@@ -75,7 +75,7 @@ sub calc_skellam_dist {
 		unless defined $self->{models}->{skellam_model};
 	my $skellam = $self->{models}->{skellam_model};
 
-	for my $game (@{ $self->{fixtures} } ) {
+	for my $game ( $self->{fixtures}->@* ) {
 		$game->{skellam} = $skellam->calc ($game->{home_goals}, $game->{away_goals});
 	}
 	return $skellam->schwartz_sort ($self->{fixtures});
@@ -92,7 +92,7 @@ sub calc_over_under {
 	) unless defined $self->{models}->{over_under_model};
 	my $over_under = $self->{models}->{over_under_model};
 
-	for my $game (@{ $self->{fixtures} } ) {
+	for my $game ( $self->{fixtures}->@* ) {
 		my $home = $game->{home_team};
 		my $away = $game->{away_team};
 		my $league = @{ $self->{leagues} }[$game->{league_idx}];
@@ -158,7 +158,8 @@ sub get_expect_line_data {
 #	helper method for benchtest scripts
 sub get_data {
 	my ($self, $sorted) = @_;
-	return @{ $sorted->{expect} }[0];
+	return $sorted->{expect}->[0];
+#	return @{ $sorted->{expect} }[0];
 }
 
 =pod

@@ -14,23 +14,24 @@ use MyJSON qw(read_json);
 
 my $ou_model;
 my $model = Football::Model->new ();
-my $data = $model->build_data ();
+my ($data, $stats) = $model->quick_build ();
 
-my $fixtures = $model->get_fixtures ();
-my $stats = $model->do_fixtures ($fixtures, $data->{homes}, $data->{aways}, $data->{last_six});
-my $predict_model = Football::Game_Predictions::Controller->new (
-	fixtures => $stats->{by_match},
+my $predict = Football::Game_Predictions::Controller->new (
 	leagues => $data->{leagues},
-	view_name => $model->model_name,
+	fixtures => $stats->{by_match},
+	model_name => $model->model_name,
 );
 
 subtest 'constructor' => sub {
 	plan tests => 3;
 
 	use_ok 'Football::Game_Predictions::Over_Under_Model';
-	$ou_model = Football::Game_Predictions::Over_Under_Model->new (leagues => $data->{leagues}, fixtures => $fixtures, stats => $stats);
+	$ou_model = Football::Game_Predictions::Over_Under_Model->new (
+		leagues => $data->{leagues},
+		fixtures => $stats->{by_match}
+	);
 	isa_ok ($ou_model, 'Football::Game_Predictions::Over_Under_Model', '$ou_model');
-	isa_ok ($predict_model, 'Football::Game_Predictions::Controller', '$predict_model');
+	isa_ok ($predict, 'Football::Game_Predictions::Controller', '$predict_model');
 };
 
 subtest 'do_calcs' => sub {
@@ -48,7 +49,7 @@ subtest 'do_calcs' => sub {
 
 subtest 'over under' => sub {
 	plan tests => 6;
-	my ($teams, $sorted) = $predict_model->do_predict_models ($stats->{by_match}, $data->{leagues});
+	my ($teams, $sorted) = $predict->do_predict_models ($stats->{by_match}, $data->{leagues});
 
 	my $game = @{ $sorted->{over_under}->{ou_points} }[0];
 	is ($game->{home_team}, 'Aston Villa', 'home team');
