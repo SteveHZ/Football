@@ -71,9 +71,9 @@ sub get_home_win {
         sort {
             $a->{home_win} <=> $b->{home_win}
         } grep {
-            $_->{home_win} < 2
-            && defined $_->{fdata}
-            && $_->{fdata}->{home_win} ne ""
+            $_->{home_win} < 2                  #   are we interested ?
+            && defined $_->{fdata}              #   do we have football-data info ?
+            && $_->{fdata}->{home_win} ne ''
             && $_->{home_win} * $self->{overround} < $_->{fdata}->{home_win}
         } @$mine
     ];
@@ -85,8 +85,7 @@ sub get_draw {
         sort {
             $a->{draw} <=> $b->{draw}
         } grep {
-            $_->{draw} ne ""
-            && $_->{draw} < 3
+            $_->{draw} < 3
             && $_->{draw} < $_->{home_win}
             && $_->{draw} < $_->{away_win}
         } @$mine
@@ -101,7 +100,7 @@ sub get_away_win {
         } grep {
             $_->{away_win} < 2
             && defined $_->{fdata}
-            && $_->{fdata}->{away_win} ne ""
+            && $_->{fdata}->{away_win} ne ''
             && $_->{away_win} * $self->{overround} < $_->{fdata}->{away_win}
         } @$mine
     ];
