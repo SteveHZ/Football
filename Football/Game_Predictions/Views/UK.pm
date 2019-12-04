@@ -34,8 +34,8 @@ sub do_goal_expect {
 sub do_match_odds {
 	my ($self, $sorted) = @_;
 
-	$self->{xlsx_skellam}->view ($sorted->{skellam});
 	$self->{xlsx_match_odds}->view ($sorted->{match_odds});
+	$self->{xlsx_skellam}->view ($sorted->{skellam});
 }
 
 sub do_over_under {

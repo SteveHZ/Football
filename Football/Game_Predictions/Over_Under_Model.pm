@@ -20,7 +20,7 @@ sub do_home_away {
 			$b->{home_away} <=> $a->{home_away}
 			or $b->{last_six} <=> $a->{last_six}
 			or $a->{home_team} cmp $b->{home_team}
-		} @{ $self->{fixtures} }
+		} $self->{fixtures}->@*
 	];
 }
 
@@ -32,7 +32,7 @@ sub do_last_six {
 			$b->{last_six} <=> $a->{last_six}
 			or $b->{home_away} <=> $a->{home_away}
 			or $a->{home_team} cmp $b->{home_team}
-		} @{ $self->{fixtures} }
+		} $self->{fixtures}->@*
 	];
 }
 
@@ -43,7 +43,7 @@ sub do_over_under {
 		sort {
 			$a->{over_2pt5} <=> $b->{over_2pt5}
 			or $a->{home_team} cmp $b->{home_team}
-		} @{ $self->{fixtures} }
+		} $self->{fixtures}->@*
 	];
 }
 
@@ -54,7 +54,7 @@ sub do_over_under_points {
 		sort {
 			$b->{ou_points} <=> $a->{ou_points}
 			or $a->{home_team} cmp $b->{home_team}
-		} @{ $self->{fixtures} }
+		} $self->{fixtures}->@*
 	];
 }
 
@@ -65,7 +65,7 @@ sub do_over_under_points2 {
 		sort {
 			$b->{ou_points2} <=> $a->{ou_points2}
 			or $a->{home_team} cmp $b->{home_team}
-		} @{ $self->{fixtures} }
+		} $self->{fixtures}->@*
 	];
 }
 

@@ -61,9 +61,9 @@ sub build_leagues {
 	my $teams = $self->read_json ( $self->{teams_file} );
 	TESTING { $teams = $self->read_json ( $self->{test_teams_file} ); }
 
-	for my $league (@{ $self->league_names } ) {
+	for my $league ($self->league_names->@*) {
 #		die "No games played in $league" if scalar (@ {$games->{$league}} == 0);
-		push (@{ $self->leagues }, Football::League->new (
+		push ( $self->leagues->@*, Football::League->new (
 			name		=> $league,
 			games 		=> $games->{$league},
 			team_list	=> $teams->{$league},
@@ -81,7 +81,7 @@ sub do_goal_difference {
 		my $idx = $self->get_league_idx ($league_name);
 		my $league = $self->leagues->[$idx];
 
-		for my $game (@{ $league_fixtures->{games} } ) {
+		for my $game ($league_fixtures->{games}->@*) {
 			my $home_diff = $league->goal_diff ($game->{home_team});
 			my $away_diff = $league->goal_diff ($game->{away_team});
 
@@ -101,7 +101,7 @@ sub do_recent_goal_difference {
 		my $idx = $self->get_league_idx ($league_name);
 		my $league = $self->leagues->[$idx];
 
-		for my $game (@{ $league_fixtures->{games} } ) {
+		for my $game ($league_fixtures->{games}->@*) {
 			my $home_diff = $league->recent_goal_diff ($game->{home_team});
 			my $away_diff = $league->recent_goal_diff ($game->{away_team});
 
@@ -127,7 +127,7 @@ sub do_league_places {
 		my $idx = $self->get_league_idx ($league_name);
 		my $league = $self->leagues->[$idx];
 
-		for my $game (@{ $league_fixtures->{games} } ) {
+		for my $game ($league_fixtures->{games}->@*) {
 			$game->{home_pos} = $league->position ($game->{home_team});
 			$game->{away_pos} = $league->position ($game->{away_team});
 			$game->{results} = $league_places->fetch_array ($league_name, $game->{home_pos}, $game->{away_pos});
@@ -143,7 +143,7 @@ sub do_head2head {
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};
 
-		for my $game (@{ $league->{games}}) {
+		for my $game ($league->{games}->@*) {
 			my $home = $game->{home_team};
 			my $away = $game->{away_team};
 			$game->{head2head} = $h2h->fetch ($league_name, $home, $away);
@@ -167,7 +167,7 @@ sub do_recent_draws {
 		}
 		gather {
         	for my $league (@$fixtures) {
-    			for my $game ($league->{games}->@* ) {
+    			for my $game ($league->{games}->@*) {
     				take {
     					league => $league->{league},
     					game => $game,

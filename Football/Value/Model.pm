@@ -71,8 +71,9 @@ sub get_home_win {
         sort {
             $a->{home_win} <=> $b->{home_win}
         } grep {
-            $_->{home_win} ne ""
-            && $_->{home_win} < 2
+            $_->{home_win} < 2
+            && defined $_->{fdata}
+            && $_->{fdata}->{home_win} ne ""
             && $_->{home_win} * $self->{overround} < $_->{fdata}->{home_win}
         } @$mine
     ];
@@ -98,8 +99,9 @@ sub get_away_win {
         sort {
             $a->{away_win} <=> $b->{away_win}
         } grep {
-            $_->{away_win} ne ""
-            && $_->{away_win} < 2
+            $_->{away_win} < 2
+            && defined $_->{fdata}
+            && $_->{fdata}->{away_win} ne ""
             && $_->{away_win} * $self->{overround} < $_->{fdata}->{away_win}
         } @$mine
     ];
@@ -111,7 +113,8 @@ sub get_over_2pt5 {
         sort {
             $a->{over_2pt5} <=> $b->{over_2pt5}
         } grep {
-            $_->{over_2pt5} ne ""
+            defined $_->{fdata}
+            && $_->{fdata}->{over_2pt5} ne ''
             && $_->{over_2pt5} * $self->{overround} < $_->{fdata}->{over_2pt5}
         } @$mine
     ];
@@ -123,7 +126,8 @@ sub get_under_2pt5 {
         sort {
             $a->{under_2pt5} <=> $b->{under_2pt5}
         } grep {
-            $_->{under_2pt5} ne ""
+            defined $_->{fdata}
+            && $_->{fdata}->{under_2pt5} ne ''
             && $_->{under_2pt5} * $self->{overround} < $_->{fdata}->{under_2pt5}
         } @$mine
     ];

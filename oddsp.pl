@@ -10,9 +10,9 @@ use HTML::Strip;
 use lib 'C:/Mine/perl/Football';
 use MyDate qw($short_month_names month_number get_year);
 use Euro::Rename qw(check_rename);
-use MyRegX;
+use Football::MyRegX;
 
-my $rx = MyRegX->new ();
+my $rx = Football::MyRegX->new ();
 my $time = $rx->time;
 my $score = $rx->score;
 my $team = $rx->team;

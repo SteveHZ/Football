@@ -15,7 +15,7 @@ has 'games' => ( is => 'ro' );
 
 sub add {
 	my ($self, $game) = @_;
-	push @{ $self->{games} }, $game;
+	push $self->{games}->@*, $game;
 }
 
 sub iterator {
@@ -46,7 +46,7 @@ sub get_stats {
 	my ($self, $home_away, $num_games) = @_;
 	my @results = ();
 
-	my @list = grep {$_->{home_away} eq $home_away} @{ $self->{games} };
+	my @list = grep {$_->{home_away} eq $home_away} $self->{games}->@*;
 	my $full_stats = $self->splice_array (\@list, $num_games);
 
 	push @results, $_->{result} for @$full_stats;

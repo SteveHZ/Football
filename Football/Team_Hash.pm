@@ -110,7 +110,7 @@ sub sort {
 	my $self = shift;
 	my %hash = ();
 
-	for my $sheetname ( @{ $self->{sheetnames} } ) {
+	for my $sheetname ($self->{sheetnames}->@*) {
 		$hash{$sheetname} = $self->{dispatch}->{ $sheetname }->($self);
 	}
 	return \%hash;
@@ -196,7 +196,7 @@ sub get_combine_file_data {
 
 	for my $key (keys %sorted) {
 		my @data = ();
-		for my $team (@{ $sorted{$key} }) {
+		for my $team ($sorted{$key}->@*) {
 			push @data, $dispatch->{$key}->($team);
 		}
 		$hash{$key} = \@data;

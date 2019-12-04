@@ -170,7 +170,7 @@ sub do_head2head {
 	print "\n\nWriting head to head predictions...\n";
 	for my $league (@$fixtures) {
 		print "\n\n$league->{league} :";
-		for my $game (@{ $league->{games} }) {
+		for my $game ($league->{games}->@*) {
 			print "\n";
 			printf $self->{league_places_format}, $game->{home_team}, $game->{away_team};
 			print " $_"  for (@{ $game->{head2head}} );
@@ -189,7 +189,7 @@ sub do_league_places {
 		my $league_name = $league->{league};
 		print "\n$league_name";
 
-		for my $game (@{ $league->{games}}) {
+		for my $game ($league->{games}->@*) {
 			print "\n";
 			printf $self->{league_places_format}, $game->{home_team}, $game->{away_team};
 			printf $self->{league_places_format2},
@@ -212,7 +212,7 @@ sub do_recent_goal_difference {
 		my $league_name = $league->{league};
 		print "\n$league_name";
 
-		for my $game (@{ $league->{games}}) {
+		for my $game ($league->{games}->@*) {
 			print "\n";
 			printf $self->{league_places_format}, $game->{home_team}, $game->{away_team};
 			printf $self->{goal_diff_format},
@@ -234,7 +234,7 @@ sub do_goal_difference {
 		my $league_name = $league->{league};
 		print "\n$league_name";
 
-		for my $game (@{ $league->{games}}) {
+		for my $game ($league->{games}->@*) {
 			print "\n";
 			printf $self->{league_places_format}, $game->{home_team}, $game->{away_team};
 			printf $self->{goal_diff_format},

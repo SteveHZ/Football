@@ -71,12 +71,12 @@ sub build_teams {
 	$self->{home_table} = $self->create_new_home_table ();
 	$self->{away_table} = $self->create_new_away_table ();
 
-	for my $team (@ {$self->{team_list} } ) {
+	for my $team ($self->{team_list}->@*) {
 		$self->{teams}->{$team} = Football::Team->new ();
 	}
 
 	if ($self->{auto_build}) {
-		for my $game ( @{ $self->{games} } ) {
+		for my $game ($self->{games}->@*) {
 			$self->update_teams ($self->{teams}, $game);
 			$self->update_tables ($game);
 		}
@@ -144,7 +144,7 @@ sub update_away {
 sub do_homes {
 	my ($self, $teams) = @_;
 	my $list = {};
-	for my $team (@{ $self->{team_list} }) {
+	for my $team ($self->{team_list}->@*) {
 		my ( $homes, $full_homes ) = $teams->{$team}->get_homes ();
 		$list->{$team} = {
  			name => $team,
@@ -163,7 +163,7 @@ sub do_aways {
 	my ($self, $teams) = @_;
 	my $list = {};
 
-	for my $team (@{ $self->{team_list} }) {
+	for my $team ($self->{team_list}->@*) {
 		my ( $aways, $full_aways ) = $teams->{$team}->get_aways ();
 		$list->{$team} = {
  			name => $team,
@@ -182,7 +182,7 @@ sub do_last_six {
 	my ($self, $teams) = @_;
 	my $list = {};
 
-	for my $team (@{ $self->{team_list} }) {
+	for my $team ($self->{team_list}->@*) {
 		my ( $last_six, $full_last_six ) = $teams->{$team}->most_recent ();
 		my ($last_six_for, $last_six_against) = $self->_get_last_six_scores ($full_last_six);
 		$list->{$team} = {

@@ -33,7 +33,7 @@ sub do_predict_models {
     $sorted->{match_odds} = $model->calc_match_odds ($self->{model_name});
 	$sorted->{skellam} = $model->calc_skellam_dist ();
 	$sorted->{over_under} = $model->calc_over_under ();
-    $sorted->{data} = $model->save_expect_data ( $sorted->{expect}, $self->{model_name});
+    $sorted->{data} = $model->save_expect_data ( $sorted->{expect}, $self->{model_name} );
 
 	return ($teams, $sorted);
 }

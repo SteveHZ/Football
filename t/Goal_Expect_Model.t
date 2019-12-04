@@ -10,7 +10,6 @@ use lib "C:/Mine/perl/Football";
 use Football::Model;
 use Football::Game_Predictions::Model;
 use Football::Game_Predictions::Goal_Expect_Model;
-use Data::Dumper;
 
 my $model = Football::Model->new ();
 my ($data, $stats) = $model->quick_build ();

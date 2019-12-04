@@ -21,8 +21,8 @@ sub create_list {
 	my $self = shift;
 	my @list = ();
 
-	for my $league (@{ $self->{leagues} }) {
-		for my $team (@{ $league->team_list} ) {
+	for my $league ($self->{leagues}->@*) {
+		for my $team ($league->team_list->@*) {
 			push (@list, {
 				league => $league->{name},
 				team => $team,

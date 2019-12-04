@@ -13,7 +13,7 @@ has 'sorted' => ( is => 'ro' );
 sub BUILD {
 	my ($self, $args) = @_;
 
-	for my $team (@{ $args->{teams} }) {
+	for my $team ($args->{teams}->@*) {
 		$self->{table}->{$team} = set_up_team ($team);
 	}
 }
