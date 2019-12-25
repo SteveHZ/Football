@@ -1,23 +1,19 @@
-#!	C:/Strawberry/perl/bin
+#	Rules.t 13/01/18, 21/12/19
 
-#	Rules.t 13/01/18
-
-use strict;
-use warnings;
-use Test::More tests => 2;
-use lib "C:/Mine/perl/Football";
+use Test2::V0;
+plan 2;
+use Football::Rules;
 
 my $rules;
 
 subtest 'constructor' => sub {
-	plan tests => 2;
-	use_ok 'Football::Rules';
+	plan 1;
 	$rules = Football::Rules->new ();
-	isa_ok ($rules, 'Football::Rules', '$rules')
+	isa_ok ($rules, ['Football::Rules'], '$rules')
 };
 
 subtest 'points' => sub {
-	plan tests => 1;
+	plan 1;
 	my $val = $rules->points_rule (16,0);
-	is ($val, '16.0', "points = $val"); 
+	is ($val, '16.0', "points = $val");
 };

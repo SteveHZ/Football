@@ -2,10 +2,8 @@
 
 BEGIN { $ENV{PERL_KEYWORD_TESTING} = 1; } # for Fixtures_Model:transform_hash
 
-use strict;
-use warnings;
-use Test::More tests => 7;
-use Test::Deep;
+use Test2::V0;
+plan 7;
 
 use lib "C:/Mine/perl/Football";
 use Football::Fixtures::Model;
@@ -16,32 +14,33 @@ my $model = Football::Fixtures::Model->new ();
 my $date = '2018-06-16';
 
 subtest 'constructor' => sub {
-	plan tests => 1;
-	isa_ok ($model, 'Football::Fixtures::Model', '$model');
+	plan 1;
+	isa_ok ($model, ['Football::Fixtures::Model'], '$model');
 };
 
 subtest 'as_dmy' => sub {
-	plan tests => 2;
+	plan 2;
 	is ($model->as_dmy ($date), '16/06/18', '16/06/18 is');
 	isnt ($model->as_dmy ($date), '16/6/18', "16/6/18 isn't");
 };
 
 
 subtest 'as_date_month' => sub {
-	plan tests => 2;
+	plan 2;
 	is ($model->as_date_month ($date), '16/06', '16/06 is');
 	isnt ($model->as_dmy ($date), '16/6', "16/6 isn't");
 };
 
 subtest 'do_foreign chars' => sub {
-	plan tests => 1;
+	plan 1;
+	no utf8;
     my $str = 'äåöøÖéüæ';
 	$model->do_foreign_chars (\$str);
-    is ($str, 'aaooOeuae', 'foreign chars ok');
+    is ($str, "aaooOeuae", 'foreign chars ok');
 };
 
 subtest 'transform_hash' => sub {
-    plan tests => 4;
+	plan 4;
 	my $files = $model->transform_hash ({
 	    uk      => \@csv_leagues,
 	    euro    => \@euro_csv_lgs,
@@ -52,6 +51,26 @@ subtest 'transform_hash' => sub {
 	is ($files->{NRW}, 'summer', 'summer ok');
     isnt ($files->{EC}, 'summer', 'EC not summer ok');
     is ($files->{WL}, 'euro', 'euro ok');
+};
+
+subtest 'postponed chars' => sub {
+	plan 1;
+    my $filename = "C:/Mine/perl/Football/t/test data/fixtures/fixtures 2019-10-12 MATCH POSTPONED INTERNATIONAL CALL UPS2.txt";
+    my $day = {
+        day => 'Sa',
+        date => '2019-10-12',
+    };
+    my $games = $model->read_file ($filename, $day);
+	use Data::Dumper; print Dumper $games->{uk};
+# is(1,1,'dummy');
+    unlike ($games->{uk}->[2], qr/POxford/, 'postponed chars removed');
+};
+
+subtest 'get_week' => sub {
+	plan 1;
+	my $week = $model->get_week ({ days => 7, forwards => 1, include_today => 0 });
+#	use Data::Dumper; print Dumper $week;
+	is (scalar @$week, 7, 'get_week');
 };
 
 =head
@@ -86,23 +105,3 @@ subtest 'prepare' => sub {
 };
 }
 =cut
-
-subtest 'postponed chars' => sub {
-    plan tests => 1;
-    my $filename = "C:/Mine/perl/Football/t/test data/fixtures/fixtures 2019-10-12 MATCH POSTPONED INTERNATIONAL CALL UPS2.txt";
-    my $day = {
-        day => 'Sa',
-        date => '2019-10-12',
-    };
-    my $games = $model->read_file ($filename, $day);
- use Data::Dumper; print Dumper $games->{uk};
-# is(1,1,'dummy');
-    unlike ($games->{uk}->[2], qr/POxford/, 'postponed chars removed');
-};
-
-subtest 'get_week' => sub {
-	plan tests => 1;
-	my $week = $model->get_week ({ days => 7, forwards => 1, include_today => 0 });
-#	use Data::Dumper; print Dumper $week;
-	is (scalar @$week, 7, 'get_week');
-}

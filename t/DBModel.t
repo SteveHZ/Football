@@ -1,21 +1,22 @@
-use strict;
-use warnings;
+use Test2::V0;
+plan 2;
 use Data::Dumper;
 
 use lib 'C:/Mine/perl/Football';
 use Football::DBModel;
 use Football::Globals qw( @csv_leagues );
 use SQL::Abstract;
-use Test::More tests => 2;
 
 my $sqla;
 
 subtest 'constructor' => sub {
+	plan 1;
 	$sqla = SQL::Abstract->new ();
-	isa_ok ($sqla, 'SQL::Abstract', '$sqla');
+	isa_ok ($sqla, ['SQL::Abstract'], '$sqla');
 };
 
 subtest 'options' => sub {
+	plan 3;
 	my $data = get_uk_data ();
 	my $model = Football::DBModel->new (data => $data);
 

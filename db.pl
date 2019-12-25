@@ -126,6 +126,7 @@ sub show_info {
 	my $wins = total_wins ($team, $games);
 	my $return = total_return ($team, $games, $data);
 	my $overs = do_overs ($team, $games);
+	my $last_six_overs = do_last_six_overs ($team, $games, $num_games);
 
 	print "\n\nGames = ". $num_games;
 	print "\nTotal Wins = ". $wins;
@@ -133,6 +134,7 @@ sub show_info {
 	print "\nTotal Return = ".chr(156). $return;
 	print "\nPercentage Return = ". returns ($return, $num_games);
 	print "\nOver 2.5 = ".$overs;
+	print "\nLast Six Overs = ".$last_six_overs;
 }
 
 sub total_return {
@@ -171,6 +173,15 @@ sub do_overs {
 				map { is_over ($team, $_) }
 				@$games;
 	return percentage ($overs, scalar @$games);
+}
+
+sub do_last_six_overs {
+	my ($team, $games, $num_games) = @_;
+	my $offset = min (6, $num_games);
+	my $overs = reduce { $a + $b }
+				map { is_over ($team, $_) }
+				splice @$games, $offset * -1;
+	return percentage ($overs, $offset);
 }
 
 sub is_over {

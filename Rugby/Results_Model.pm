@@ -3,7 +3,7 @@ package Rugby::Results_Model;
 use Web::Query;
 use Rugby::Globals qw(@fixtures_leagues $results_season);
 use MyDate qw(@days_of_week $month_names);
-use MyRegX;
+use Football::MyRegX;
 use MyKeyword qw(TESTING);
 
 use Data::Dumper;
@@ -17,7 +17,7 @@ $Web::Query::UserAgent = LWP::UserAgent->new (
 my $weekdays = join '|', @days_of_week;
 my $leagues = join '|', @fixtures_leagues;
 
-my $rx = MyRegX->new ();
+my $rx = Football::MyRegX->new ();
 my $date_parser = $rx->rugby_results_date_parser;
 
 sub prepare {

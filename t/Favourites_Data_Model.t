@@ -1,8 +1,7 @@
 #	Favourites_Data_Model.t 14/09/16
 
-use strict;
-use warnings;
-use Test::More tests => 2;
+use Test2::V0;
+plan 2;
 
 use lib "C:/Mine/perl/Football";
 use Football::Favourites::Data_Model;
@@ -12,14 +11,14 @@ my $file2 = 'test data/EC.csv';
 my $data_model = Football::Favourites::Data_Model->new ();
 
 subtest 'constructor' => sub {
-	plan tests => 1;
-	isa_ok ($data_model, 'Football::Favourites::Data_Model', '$data_model');
+	plan 1;
+	isa_ok ($data_model, ['Football::Favourites::Data_Model'], '$data_model');
 };
 
 subtest 'update current' => sub {
 #	tests get_odds_cols in Odds_Cols role by testing
 #	two files with odds in different columns
-	plan tests => 6;
+	plan 6;
 
 	my $games = $data_model->update_current ($file);
 	is (@$games[0]->{home_odds}, 1.53, 'home odds ok');

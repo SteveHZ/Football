@@ -36,12 +36,29 @@ sub calc {
 	return $self->{stats};
 }
 
+sub calc_weighted {
+	my ($self, $home_expect, $away_expect) = @_;
+	my $p = Football::Game_Predictions::MyPoisson->new ();
+	my %cache_p;
+
+	for my $home_score (0..$self->{max}) {
+		my $home_p = $p->poisson_weighted ($home_expect, $home_score);
+		for my $away_score (0..$self->{max}) {
+			unless (exists $cache_p{$away_score}) {
+				$cache_p{$away_score} = $p->poisson_weighted ($away_expect, $away_score);
+			}
+			$self->{stats}[$home_score][$away_score] = $p->poisson_result ($home_p, $cache_p{$away_score});
+		}
+	}
+	return $self->{stats};
+}
+
 sub print_all {
 	my $self = shift;
 	for my $home_score (0..$self->{max}) {
 		for my $away_score (0..$self->{max}) {
 			print "\n$home_score - $away_score = ".
-			$self->{stats}[$home_score][$away_score];
+				$self->{stats}[$home_score][$away_score];
 		}
 	}
 }

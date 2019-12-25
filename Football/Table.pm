@@ -103,7 +103,7 @@ sub sort_table {
 	$self->{sorted} = [
 		map  {
 			$table->{$_}->{position} = $idx++;
-			$table->{$_}->{recent_goal_diff} = sum @{ $table->{$_}->{rgd_list} };
+			$table->{$_}->{recent_goal_diff} = sum $table->{$_}->{rgd_list}->@*;
  			$table->{$_};
 		}
 		sort {

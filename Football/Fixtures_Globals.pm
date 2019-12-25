@@ -277,7 +277,7 @@ Cup,X
 The FA,X
 FA Cup,X
 EFL,X
-Spanish Copa del Ray,X
+Spanish Copa del Rey,X
 Italian Coppa Italia,X
 #Trophy,X
 FA Women,X

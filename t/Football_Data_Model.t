@@ -4,6 +4,8 @@ use strict;
 use warnings;
 use List::MoreUtils qw(each_array);
 
+#use Test2::V0;
+#plan 2;
 use Test::More tests => 7;
 use Test::Deep;
 
@@ -16,12 +18,16 @@ my $csv_data_model = Football::Football_Data_Model->new ();
 my $dbi_data_model = Football::Football_Data_Model->new (connect => 'dbi', path => $test_path);
 
 subtest 'constructors' => sub {
+#plan 2;
 	plan tests => 2;
+#	isa_ok ($csv_data_model, ['Football::Football_Data_Model'], '$csv_data_model');
+#	isa_ok ($dbi_data_model, ['Football::Football_Data_Model'], '$dbi_data_model');
 	isa_ok ($csv_data_model, 'Football::Football_Data_Model', '$csv_data_model');
 	isa_ok ($dbi_data_model, 'Football::Football_Data_Model', '$dbi_data_model');
 };
 
 subtest 'update' => sub {
+#plan 6;
 	plan tests => 6;
 
 	my $games = $csv_data_model->update ($test_file);
@@ -33,6 +39,12 @@ subtest 'update' => sub {
 	is (@$games[4]->{date}, '12/08/17', 'date');
 
 	my $games_rx = {
+#		home_team		=> qr/\w+/,
+#		away_team 		=> qr/\w+/,
+#		home_score 		=> qr/\d\d?/,
+#		away_score 		=> qr/\d\d?/,
+#		date 			=> qr/\d\d\/\d\d\/\d\d/,
+
 		home_team		=> re ('\w+'),
 		away_team 		=> re ('\w+'),
 		home_score 		=> re ('\d\d?'),
@@ -41,7 +53,7 @@ subtest 'update' => sub {
 	};
 	cmp_deeply ($games, array_each ($games_rx), "$test_file - all games match expected format");
 };
-
+#=head
 subtest 'read_csv' => sub {
 	plan tests => 6;
 
@@ -110,3 +122,4 @@ subtest 'get_csv_keys' => sub {
 	my $expect = [ qw(Date HomeTeam AwayTeam FTHG FTAG HTHG HTAG) ];
 	cmp_deeply ($expect, $csv_data_model->get_csv_keys ($my_keys), 'get_csv_keys ok');
 }
+#=cut

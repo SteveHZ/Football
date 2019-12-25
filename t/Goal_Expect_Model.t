@@ -2,9 +2,8 @@
 
 BEGIN { $ENV{PERL_KEYWORD_TESTING} = 1; }
 
-use strict;
-use warnings;
-use Test::More tests => 3;
+use Test2::V0;
+plan 3;
 
 use lib "C:/Mine/perl/Football";
 use Football::Model;
@@ -25,20 +24,20 @@ my $expect_model = Football::Game_Predictions::Goal_Expect_Model->new (
 );
 
 subtest 'Constructors' => sub {
-	plan tests => 3;
-	isa_ok ($model, 'Football::Model', '$model');
-	isa_ok ($predict_model, 'Football::Game_Predictions::Model', '$predict_model');
-	isa_ok ($expect_model, 'Football::Game_Predictions::Goal_Expect_Model', '$expect_model');
+	plan 3;
+	isa_ok ($model, ['Football::Model'], '$model');
+	isa_ok ($predict_model, ['Football::Game_Predictions::Model'], '$predict_model');
+	isa_ok ($expect_model, ['Football::Game_Predictions::Goal_Expect_Model'], '$expect_model');
 };
 
 subtest 'get_average' => sub {
-	plan tests => 1;
+	plan 1;
 	my $list = [ qw( Stoke Vale Crewe Leek ) ];
 	is ($expect_model->get_average (24, $list), '6.00', 'get_average');
 };
 
 subtest 'goal_expect' => sub {
-	plan tests => 12;
+	plan 12;
 	my ($teams, $sorted) = $predict_model->calc_goal_expect ();
 
 	is ($teams->{Stoke}->{av_home_for}, 1.33, 'av home for');

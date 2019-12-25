@@ -37,8 +37,8 @@ sub do_football {
         my $games = $model->read_file ($filename, $day);
 
 		for my $key (keys %$games) {
-			push $all_games->{$key}->@*, $_ for $games->{$key}->@*;
-#			push @{ $all_games->{$key} }, $_ for (@{ $games->{$key} });
+#			push $all_games->{$key}->@*, $_ for $games->{$key}->@*;
+			push @{ $all_games->{$key} }, $_ for (@{ $games->{$key} });
 		}
 	}
 

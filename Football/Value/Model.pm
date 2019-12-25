@@ -73,7 +73,7 @@ sub get_home_win {
         } grep {
             $_->{home_win} < 2                  #   are we interested ?
             && defined $_->{fdata}              #   do we have football-data info ?
-            && $_->{fdata}->{home_win} ne ''
+            && $_->{fdata}->{home_win} ne ''    #   -------------""----------------
             && $_->{home_win} * $self->{overround} < $_->{fdata}->{home_win}
         } @$mine
     ];
