@@ -11,7 +11,7 @@ use namespace::clean;
 sub BUILD {
 	my $self = shift;
 	$self->{euler} = 2.71828;
-	$self->{weighted} = [ 1.05,1,1,1,1,1,1,1,1,1,1 ];
+	$self->{weighted} = [ 1.05,0.99,0.99,0.99,0.99,0.99,0.98,0.96,0.95,0.95,0.95 ];
 }
 
 sub poisson_result {
@@ -21,16 +21,22 @@ sub poisson_result {
 
 sub poisson {
 	my ($self, $expect, $score) = @_;
-	return	power ($expect, $score)
-	 		* power ($self->{euler}, $expect * -1)
-			/ factorial ($score);
+	return	power ($expect, $score) *
+	 		power ($self->{euler}, $expect * -1) /
+			factorial ($score);
 }
-#/ for syntax highlighting
 
 sub poisson_weighted {
 	my ($self, $expect, $score) = @_;
-	return 	$self->poisson ($expect, $score)
-			* $self->{weighted}->[$score];
+	return	$self->poisson ($expect, $score) *
+			$self->{weighted}->[$score];
+}
+
+sub get_calc_func {
+	my ($self, $weighted) = @_;
+	return ($weighted == 0)
+		? \&Football::Game_Predictions::MyPoisson::poisson
+		: \&Football::Game_Predictions::MyPoisson::poisson_weighted;
 }
 
 =pod

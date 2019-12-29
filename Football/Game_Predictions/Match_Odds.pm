@@ -15,6 +15,10 @@ sub BUILD {
 
 	$self->{max} = $args->{max};
 	$self->{max} //= 5;
+
+	$self->{weighted} = $args->{weighted};
+	$self->{weighted} //= 0;
+
 	$self->{stats} = ( [] );
 	$self->{sheet_names} = [ qw(home_win away_win draw over_2pt5 under_2pt5 both_sides_yes both_sides_no) ];
 }
@@ -22,30 +26,14 @@ sub BUILD {
 sub calc {
 	my ($self, $home_expect, $away_expect) = @_;
 	my $p = Football::Game_Predictions::MyPoisson->new ();
+	my $p_func = $p->get_calc_func ($self->{weighted});
 	my %cache_p;
 
 	for my $home_score (0..$self->{max}) {
-		my $home_p = $p->poisson ($home_expect, $home_score);
+		my $home_p = $p_func->($p, $home_expect, $home_score);
 		for my $away_score (0..$self->{max}) {
 			unless (exists $cache_p{$away_score}) {
-				$cache_p{$away_score} = $p->poisson ($away_expect, $away_score);
-			}
-			$self->{stats}[$home_score][$away_score] = $p->poisson_result ($home_p, $cache_p{$away_score});
-		}
-	}
-	return $self->{stats};
-}
-
-sub calc_weighted {
-	my ($self, $home_expect, $away_expect) = @_;
-	my $p = Football::Game_Predictions::MyPoisson->new ();
-	my %cache_p;
-
-	for my $home_score (0..$self->{max}) {
-		my $home_p = $p->poisson_weighted ($home_expect, $home_score);
-		for my $away_score (0..$self->{max}) {
-			unless (exists $cache_p{$away_score}) {
-				$cache_p{$away_score} = $p->poisson_weighted ($away_expect, $away_score);
+				$cache_p{$away_score} = $p_func->($p, $away_expect, $away_score);
 			}
 			$self->{stats}[$home_score][$away_score] = $p->poisson_result ($home_p, $cache_p{$away_score});
 		}
@@ -258,6 +246,23 @@ sub get_match_odds {
 #					  $_->{away_win} )
 #		] } @$games
 #	];
+#}
+
+#sub calc_weighted {
+#	my ($self, $home_expect, $away_expect) = @_;
+#	my $p = Football::Game_Predictions::MyPoisson->new ();
+#	my %cache_p;
+#
+#	for my $home_score (0..$self->{max}) {
+#		my $home_p = $p->poisson_weighted ($home_expect, $home_score);
+#		for my $away_score (0..$self->{max}) {
+#			unless (exists $cache_p{$away_score}) {
+#				$cache_p{$away_score} = $p->poisson_weighted ($away_expect, $away_score);
+#			}
+#			$self->{stats}[$home_score][$away_score] = $p->poisson_result ($home_p, $cache_p{$away_score});
+#		}
+#	}
+#	return $self->{stats};
 #}
 
 =pod

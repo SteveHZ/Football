@@ -48,14 +48,13 @@ sub calc_goal_expect {
 sub calc_match_odds {
 	my ($self, $model_name) = @_;
 
-	$self->{models}->{odds_model} = Football::Game_Predictions::Match_Odds->new ()
+	$self->{models}->{odds_model} = Football::Game_Predictions::Match_Odds->new (weighted => 1)
 #	$self->{models}->{odds_model} = Football::Game_Predictions::Match_Odds->new (max => 6)
 		unless defined $self->{models}->{odds_model};
 	my $odds = $self->{models}->{odds_model};
 
 	for my $game ( $self->{fixtures}->@* ) {
-#		$odds->calc ($game->{home_goals}, $game->{away_goals});
-		$odds->calc_weighted ($game->{home_goals}, $game->{away_goals});
+		$odds->calc ($game->{home_goals}, $game->{away_goals});
 
 		$game->{home_win} = $odds->home_win_odds ();
 		$game->{away_win} = $odds->away_win_odds ();
