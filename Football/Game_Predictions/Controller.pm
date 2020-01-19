@@ -27,9 +27,9 @@ sub do_predict_models {
         fixtures => $self->{fixtures},
         leagues  => $self->{leagues}
     );
+    my $teams = $model->calc_goal_expect ();
 
-	my ($teams, $expect_data) = $model->calc_goal_expect ();
-    $sorted->{expect} = $expect_data;
+    $sorted->{expect} = $model->sort_expect_data ('expected_goal_diff');
     $sorted->{match_odds} = $model->calc_match_odds ($self->{model_name});
 	$sorted->{skellam} = $model->calc_skellam_dist ();
 	$sorted->{over_under} = $model->calc_over_under ();
@@ -37,6 +37,8 @@ sub do_predict_models {
 
 	return ($teams, $sorted);
 }
+#	my ($teams, $expect_data) = $model->calc_goal_expect ();
+#   $sorted->{expect} = $expect_data;
 
 sub do_predict_views {
 	my ($self, $teams, $sorted) = @_;

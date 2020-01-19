@@ -2,6 +2,7 @@ package Football::Game_Predictions::Match_Odds;
 
 #	Football::Match_Odds.pm 02-03/07/17
 
+use v5.10; # state
 use Math::Round qw(nearest);
 use List::Util qw(min);
 use Football::Game_Predictions::MyPoisson;
@@ -23,10 +24,25 @@ sub BUILD {
 	$self->{sheet_names} = [ qw(home_win away_win draw over_2pt5 under_2pt5 both_sides_yes both_sides_no) ];
 }
 
+sub calc_odds {
+	my ($self, $game) = @_;
+	$self->calc ($game->{home_goals}, $game->{away_goals});
+
+	return {
+		home_win => $self->home_win_odds (),
+		away_win => $self->away_win_odds (),
+		draw => $self->draw_odds (),
+		both_sides_yes => $self->both_sides_yes_odds (),
+		both_sides_no => $self->both_sides_no_odds (),
+		under_2pt5 => $self->under_2pt5_odds (),
+		over_2pt5 => $self->over_2pt5_odds (),
+	};
+}
+
 sub calc {
 	my ($self, $home_expect, $away_expect) = @_;
-	my $p = Football::Game_Predictions::MyPoisson->new ();
-	my $p_func = $p->get_calc_func ($self->{weighted});
+	state $p = Football::Game_Predictions::MyPoisson->new ();
+	state $p_func = $p->get_calc_func ($self->{weighted});
 	my %cache_p;
 
 	for my $home_score (0..$self->{max}) {
@@ -40,6 +56,25 @@ sub calc {
 	}
 	return $self->{stats};
 }
+
+sub sort_sheets {
+	my ($self, $fixtures) = @_;
+	my $sorted = {};
+	for my $sheet ($self->{sheet_names}->@*) {
+		$sorted->{$sheet} = $self->sort_by_sheet_name ($fixtures, $sheet);
+	}
+	return $sorted;
+}
+
+sub sort_by_sheet_name {
+	my ($self, $games, $sorted_by) = @_;
+
+	return [
+		sort { $a->{odds}->{$sorted_by} <=> $b->{odds}->{$sorted_by} }
+		@$games
+	];
+}
+
 
 sub print_all {
 	my $self = shift;
@@ -193,24 +228,7 @@ sub over_2pt5_odds {
 	return nearest (0.01, 100 / $stats);
 }
 
-sub sort_sheets {
-	my ($self, $fixtures) = @_;
-	my $sorted = {};
-	for my $sheet ($self->{sheet_names}->@*) {
-		$sorted->{$sheet} = $self->sort_by_sheet_name ($fixtures, $sheet);
-	}
-	return $sorted;
-}
-
-sub sort_by_sheet_name {
-	my ($self, $games, $sorted_by) = @_;
-
-	return [
-		sort { $a->{$sorted_by} <=> $b->{$sorted_by} }
-		@$games
-	];
-}
-
+#	used to write out data to then read from value.pl
 sub save_match_odds {
 	my ($self, $sorted, $path) = @_;
 	my $filename = "$path/match odds.json";
@@ -224,13 +242,13 @@ sub get_match_odds {
 			league => $_->{league},
 			home_team => $_->{home_team},
 			away_team => $_->{away_team},
-			home_win => $_->{home_win},
-			away_win => $_->{away_win},
-			draw => $_->{draw},
-			both_sides_yes => $_->{both_sides_yes},
-			both_sides_no => $_->{both_sides_no},
-			over_2pt5 => $_->{over_2pt5},
-			under_2pt5 => $_->{under_2pt5},
+			home_win => $_->{odds}->{home_win},
+			away_win => $_->{odds}->{away_win},
+			draw => $_->{odds}->{draw},
+			both_sides_yes => $_->{odds}->{both_sides_yes},
+			both_sides_no => $_->{odds}->{both_sides_no},
+			over_2pt5 => $_->{odds}->{over_2pt5},
+			under_2pt5 => $_->{odds}->{under_2pt5},
 		} } @$sorted
 	];
 }
@@ -246,23 +264,6 @@ sub get_match_odds {
 #					  $_->{away_win} )
 #		] } @$games
 #	];
-#}
-
-#sub calc_weighted {
-#	my ($self, $home_expect, $away_expect) = @_;
-#	my $p = Football::Game_Predictions::MyPoisson->new ();
-#	my %cache_p;
-#
-#	for my $home_score (0..$self->{max}) {
-#		my $home_p = $p->poisson_weighted ($home_expect, $home_score);
-#		for my $away_score (0..$self->{max}) {
-#			unless (exists $cache_p{$away_score}) {
-#				$cache_p{$away_score} = $p->poisson_weighted ($away_expect, $away_score);
-#			}
-#			$self->{stats}[$home_score][$away_score] = $p->poisson_result ($home_p, $cache_p{$away_score});
-#		}
-#	}
-#	return $self->{stats};
 #}
 
 =pod

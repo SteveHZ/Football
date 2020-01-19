@@ -46,13 +46,13 @@ sub view {
 	my ($self, $fixtures) = @_;
 	for my $game ($fixtures->{home_win}->@*) {
 		print "\n\n$game->{home_team} v $game->{away_team}";
-		print "\nHome Win : ".$game->{home_win};
-		print ' Away Win : '. $game->{away_win};
-		print ' Draw : '. $game->{draw};
-		print ' Both Sides Yes : '. $game->{both_sides_yes};
-		print ' Both Sides No : '. $game->{both_sides_no};
-		print ' Over 2.5 : '. $game->{over_2pt5};
-		print ' Under 2.5 : '. $game->{under_2pt5};
+		print "\nHome Win : ".$game->{odds}->{home_win};
+		print ' Away Win : '. $game->{odds}->{away_win};
+		print ' Draw : '. $game->{odds}->{draw};
+		print ' Both Sides Yes : '. $game->{odds}->{both_sides_yes};
+		print ' Both Sides No : '. $game->{odds}->{both_sides_no};
+		print ' Over 2.5 : '. $game->{odds}->{over_2pt5};
+		print ' Under 2.5 : '. $game->{odds}->{under_2pt5};
 	}
 	$self->do_match_odds ($fixtures);
 }
@@ -83,14 +83,14 @@ sub get_match_odds_rows {
 		{ $game->{home_team} => $self->get_format ( $game->{expected_goal_diff} * -1 ) },
 		{ $game->{away_team} => $self->get_format ( $game->{expected_goal_diff} ) },
 
-		{ $game->{home_win} => $self->{float_format} },
-		{ $game->{draw} => $self->{float_format} },
-		{ $game->{away_win} => $self->{float_format} },
+		{ $game->{odds}->{home_win} => $self->{float_format} },
+		{ $game->{odds}->{draw} => $self->{float_format} },
+		{ $game->{odds}->{away_win} => $self->{float_format} },
 
-		{ $game->{over_2pt5} => $self->{float_format} },
-		{ $game->{under_2pt5} => $self->{float_format} },
-		{ $game->{both_sides_yes} => $self->{float_format} },
-		{ $game->{both_sides_no} => $self->{float_format} },
+		{ $game->{odds}->{over_2pt5} => $self->{float_format} },
+		{ $game->{odds}->{under_2pt5} => $self->{float_format} },
+		{ $game->{odds}->{both_sides_yes} => $self->{float_format} },
+		{ $game->{odds}->{both_sides_no} => $self->{float_format} },
 	];
 }
 

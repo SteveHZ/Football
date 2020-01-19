@@ -56,13 +56,13 @@ sub collate_data {
 sub calc_data {
     my ($self, $mine) = @_;
 
-    my $hash = {};
-    $hash->{home_win} = $self->get_home_win ($mine);
-    $hash->{away_win} = $self->get_away_win ($mine);
-    $hash->{draw} = $self->get_draw ($mine);
-    $hash->{over_2pt5} = $self->get_over_2pt5 ($mine);
-    $hash->{under_2pt5} = $self->get_under_2pt5 ($mine);
-    return $hash;
+    return {
+        home_win => $self->get_home_win ($mine),
+        away_win => $self->get_away_win ($mine),
+        draw => $self->get_draw ($mine),
+        over_2pt5 => $self->get_over_2pt5 ($mine),
+        under_2pt5 => $self->get_under_2pt5 ($mine),
+    };
 }
 
 sub get_home_win {

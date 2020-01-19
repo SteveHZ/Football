@@ -33,7 +33,7 @@ sub read_games {
 	my $games;
 
 	TESTING {
-		print "*** Reading test data from $self->test_season_data\n\n";
+		print "*** Reading test data from \$self->test_season_data\n\n";
 		$games = $self->read_json ($self->test_season_data);
 	} elsif ($update) {
 		$games = $self->update ();

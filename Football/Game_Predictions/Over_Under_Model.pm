@@ -41,7 +41,7 @@ sub do_over_under {
 
 	return [
 		sort {
-			$a->{over_2pt5} <=> $b->{over_2pt5}
+			$a->{odds}->{over_2pt5} <=> $b->{odds}->{over_2pt5}
 			or $a->{home_team} cmp $b->{home_team}
 		} $self->{fixtures}->@*
 	];

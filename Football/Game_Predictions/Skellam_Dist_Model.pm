@@ -20,7 +20,9 @@ sub BUILD {
 }
 
 sub calc {
-	my ($self, $home_expect, $away_expect) = @_;
+	my ($self, $game) = @_;
+	my $home_expect = $game->{home_goals};
+	my $away_expect = $game->{away_goals};
 	my $results = {};
 
 	unless ( $home_expect == 0 or $away_expect == 0) {

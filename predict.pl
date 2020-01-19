@@ -19,8 +19,6 @@ use Euro::Model;
 use Euro::View;
 use Summer::Model;
 use Summer::View;
-#use Rugby::Model;
-#use Rugby::View;
 
 use Football::Favourites::Controller;
 use Football::Game_Predictions::Controller;
@@ -112,10 +110,13 @@ sub get_model_and_view {
 	return (Football::Model->new (), Football::View->new ()) if $options->{uk};
 	return (Euro::Model->new (), Euro::View->new ()) if $options->{euro};
 	return (Summer::Model->new (), Summer::View->new ()) if $options->{summer};
-#	return (Rugby::Model->new (), Rugby::View->new ()) if $options->{rugby};
 	die "Unknown error in get_model_and_view";
 }
 
+# https://perlmaven.com/use-theschwartz-2
+# my $log_file = "/var/tmp/send_email_worker.log";
+# open(LOG,">>$log_file") or die "Can not open $log_file!";
+# print LOG "sendmail: $sendmail\n";
 =pod
 
 =head1 NAME
@@ -130,7 +131,6 @@ predict.pl
  perl predict.pl -e OR -eu
  perl predict.pl -s OR -su
  Also add -f to NOT update the favourites spreadsheets
- update_rugby
 
  Alternatively, run batch file predict
 

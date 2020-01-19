@@ -35,8 +35,8 @@ sub poisson_weighted {
 sub get_calc_func {
 	my ($self, $weighted) = @_;
 	return ($weighted == 0)
-		? \&Football::Game_Predictions::MyPoisson::poisson
-		: \&Football::Game_Predictions::MyPoisson::poisson_weighted;
+		? sub { my $self = shift; $self->poisson (@_); }
+		: sub { my $self = shift; $self->poisson_weighted (@_); };
 }
 
 =pod

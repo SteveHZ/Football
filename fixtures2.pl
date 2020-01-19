@@ -7,8 +7,8 @@ use List::Util qw(any);
 use Football::Fixtures_Globals qw( football_rename rugby_rename );
 
 my @remove_teams = (
-	'Bolton',
-	'Eibar',
+#	'Bolton',
+#	'Eibar',
 );
 
 my @paths = (

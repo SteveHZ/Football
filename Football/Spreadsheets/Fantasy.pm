@@ -53,25 +53,4 @@ sub write {
     }
 }
 
-=head
-after 'BUILD' => sub {
-	my $self = shift;
-
-	$self->{bold_format}->set_color ('blue');
-	$self->{currency_format}->set_color ('black');
-	$self->{currency_format}->set_bg_color ('white');
-	$self->{percent_format}->set_color ('black');
-	$self->{percent_format}->set_bg_color ('white');
-
-	$self->{text_format} = $self->{workbook}->add_format (
-		align => 'center',
-		num_format => '@',
-	);
-	$self->{date_format} = $self->{workbook}->add_format (
-		align => 'center',
-		num_format => 'DD/MM/YY',
-	);
-};
-=cut
-
 1;
