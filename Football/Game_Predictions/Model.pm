@@ -41,8 +41,6 @@ sub calc_goal_expect {
 		$expect->calc_goal_diffs ($teams, $game);
 	}
 	return $teams;
-#	my $sorted = $expect->sort_expect_data ('expected_goal_diff');
-#	return ($teams, $sorted);
 }
 
 sub sort_expect_data {

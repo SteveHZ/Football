@@ -1,8 +1,6 @@
 package Football::Game_Predictions::Goal_Expect_Model;
 
 #use MyKeyword qw(ZEROGAMES);
-use v5.10;
-
 use Moo;
 use namespace::clean;
 
@@ -27,16 +25,25 @@ sub calc_goal_expects {
 			$league->{av_home_goals} = _format ( _get_home_goals ($league) / $total_games );
 			$league->{av_away_goals} = _format ( _get_away_goals ($league) / $total_games );
 			for my $team ( $league->{team_list}->@* ) {
-				$teams->{$team} = {};
-				$self->calculate_homes ($teams->{$team}, $league, $team);
-				$self->calculate_aways ($teams->{$team}, $league, $team);
-				$self->calculate_last_six ($teams->{$team}, $league, $team);
-				$self->calculate_expects ($teams->{$team}, $league, $team);
+				$teams->{$team} = $self->calc_team_expects ($league, $team);
 			}
 		}
 	}
 	return $teams;
 }
+
+sub calc_team_expects {
+	my ($self, $league, $team) = @_;
+	my $hash = {};
+
+	$self->calculate_homes ($hash, $league, $team);
+	$self->calculate_aways ($hash, $league, $team);
+	$self->calculate_last_six ($hash, $league, $team);
+	$self->calculate_expects ($hash, $league, $team);
+	return $hash;
+}
+
+
 
 sub sort_expect_data {
 	my ($self, $sort_by) = @_;
@@ -103,7 +110,7 @@ sub calculate_expects {
 sub calc_expected_scores {
 	my ($self, $teams, $game) = @_;
 
-	my $league = @{ $self->{leagues} }[ $game->{league_idx} ];
+	my $league = $self->{leagues}->[ $game->{league_idx} ];
 	my $home = $game->{home_team};
 	my $away = $game->{away_team};
 
@@ -127,7 +134,7 @@ sub calc_expected_scores {
 sub calc_goal_diffs {
 	my ($self, $teams, $game) = @_;
 
-	my $league = @{ $self->{leagues} }[ $game->{league_idx} ];
+	my $league = $self->{leagues}->[ $game->{league_idx} ];
 	my $home = $game->{home_team};
 	my $away = $game->{away_team};
 
@@ -172,7 +179,6 @@ sub _get_home_goals {
 	my $league = shift;
 	my $total = 0;
 
-#	return reduce {$a + $b} map {$league->{home_for ($_)} $league->{team_list}->@*}
 	for my $team ( $league->{team_list}->@* ) {
 		$total += $league->home_for ($team);
 	}

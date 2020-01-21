@@ -22,14 +22,36 @@ sub do_predictions {
 
 sub do_predict_models {
 	my $self = shift;
+    my $model = Football::Game_Predictions::Model->new (
+        fixtures => $self->{fixtures},
+        leagues  => $self->{leagues}
+    );
+
+    my $teams = $model->calc_goal_expect ();
+    my $sorted = {
+        expect => $model->sort_expect_data ('expected_goal_diff'),
+        match_odds => $model->calc_match_odds ($self->{model_name}),
+        skellam => $model->calc_skellam_dist (),
+        over_under => $model->calc_over_under (),
+    };
+    $sorted->{data} = $model->save_expect_data ( $sorted->{expect}, $self->{model_name} ); # for combine.pl
+	return ($teams, $sorted);
+}
+
+=head
+data => $model->save_expect_data (
+ $model->sort_expect_data ('expected_goal_diff'), $self->{model_name} ), # for combine.pl
+
+sub do_predict_models {
+	my $self = shift;
     my $sorted = {};
     my $model = Football::Game_Predictions::Model->new (
         fixtures => $self->{fixtures},
         leagues  => $self->{leagues}
     );
-    my $teams = $model->calc_goal_expect ();
 
-    $sorted->{expect} = $model->sort_expect_data ('expected_goal_diff');
+	my ($teams, $expect_data) = $model->calc_goal_expect ();
+    $sorted->{expect} = $expect_data;
     $sorted->{match_odds} = $model->calc_match_odds ($self->{model_name});
 	$sorted->{skellam} = $model->calc_skellam_dist ();
 	$sorted->{over_under} = $model->calc_over_under ();
@@ -37,8 +59,7 @@ sub do_predict_models {
 
 	return ($teams, $sorted);
 }
-#	my ($teams, $expect_data) = $model->calc_goal_expect ();
-#   $sorted->{expect} = $expect_data;
+=cut
 
 sub do_predict_views {
 	my ($self, $teams, $sorted) = @_;
