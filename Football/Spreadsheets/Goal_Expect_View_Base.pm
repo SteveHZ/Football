@@ -1,6 +1,6 @@
 package Football::Spreadsheets::Goal_Expect_View_Base;
 
-use v5.10;
+use v5.10; # state
 use Moo;
 use namespace::clean;
 

@@ -17,7 +17,6 @@ sub calc_goal_expects {
 	my $teams = {};
 
 	for my $league ( $self->{leagues}->@* ) {
-		my $league_name = $league->{name};
 		$league->{av_home_goals} = 1;
 		$league->{av_away_goals} = 1;
 
@@ -42,8 +41,6 @@ sub calc_team_expects {
 	$self->calculate_expects ($hash, $league, $team);
 	return $hash;
 }
-
-
 
 sub sort_expect_data {
 	my ($self, $sort_by) = @_;

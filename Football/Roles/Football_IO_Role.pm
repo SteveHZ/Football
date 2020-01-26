@@ -28,7 +28,6 @@ sub update {
 		}
 	}
 	$self->write_json ($self->{season_data}, $games);
-	print "\nWriting data...";
 	return $games;
 }
 
@@ -42,14 +41,14 @@ sub get_fixtures {
 	while (my $line = <$fh>) {
 		chomp ($line);
 		my ($date, $league, $home, $away) = split (',', $line); # my fixtures files
-		if ((my $idx = firstidx {$_ eq $league} @{ $self->{csv_leagues}} ) >= 0) {
-			push (@{ $self->fixtures }, {
+		if ((my $idx = firstidx { $_ eq $league } $self->{csv_leagues}->@* ) >= 0) {
+			push $self->fixtures->@*, {
 				league_idx => $idx,
 				league => $self->{league_names}[$idx],
 				date => $date,
 				home_team => $home,
 				away_team => $away,
-			});
+			};
 		}
 	}
 	close $fh;

@@ -35,6 +35,8 @@ sub do_predict_models {
         over_under => $model->calc_over_under (),
     };
     $sorted->{data} = $model->save_expect_data ( $sorted->{expect}, $self->{model_name} ); # for combine.pl
+#   also Football::Game_Predictions::Views::UK;
+
 	return ($teams, $sorted);
 }
 

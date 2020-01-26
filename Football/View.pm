@@ -50,7 +50,7 @@ sub create_new_tables_sheet {
 sub do_teams {
 	my ($self, $leagues) = @_;
 
-	print "\n";
+	print "\n\nWriting data...";
 	for my $league (@$leagues) {
 		my $league_name = $league->{name};
 		my $teams  = $league->{teams};

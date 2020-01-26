@@ -1,6 +1,6 @@
 package Football::Game_Predictions::Model;
 
-use v5.10; # $state
+use v5.10; # state
 use Football::Game_Predictions::Goal_Expect_Model;
 use Football::Game_Predictions::Match_Odds;
 use Football::Game_Predictions::Skellam_Dist_Model;

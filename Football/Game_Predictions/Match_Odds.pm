@@ -75,7 +75,6 @@ sub sort_by_sheet_name {
 	];
 }
 
-
 sub print_all {
 	my $self = shift;
 	for my $home_score (0..$self->{max}) {
