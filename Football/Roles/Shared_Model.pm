@@ -83,8 +83,8 @@ sub _get_unique_leagues {
 #	map to sorted array of hashrefs
 	return [
 		map { {
-			'league_idx' => $_,
-			'league_name' => $leagues{$_},
+			league_idx => $_,
+			league_name => $leagues{$_},
 		} }
 		sort { $a <=> $b } keys %leagues
 	];
@@ -92,8 +92,9 @@ sub _get_unique_leagues {
 
 #	wrapper for testing
 sub get_unique_leagues {
-	TESTNG { # shift $self from @_first
-		shift;	return _get_unique_leagues (shift);
+	TESTNG {
+		shift; # shift $self from @_first
+		return _get_unique_leagues (shift);
 	}
 }
 
@@ -128,7 +129,7 @@ sub get_game_data_func {
 
 	return sub {
 		my ($game, $league) = @_;
-		$league //= @{ $self->{leagues} }[$game->{league_idx}];
+		$league //= $self->{leagues}->[ $game->{league_idx} ];
 
 		my $home = $game->{home_team};
 		my $away = $game->{away_team};
@@ -153,6 +154,18 @@ sub get_game_data_func {
 
 		$game->{draws} = $game->{home_draws} + $game->{away_draws};
 	};
+}
+
+# Iterate each league in stats->{by_league} returned from Football::Model::do_fixtures
+sub iterate_stats_by_league {
+    my ($self, $stats) = @_;
+    my $size = scalar $stats->{by_league}->@*;
+    my $index = 0;
+
+    return sub {
+        return undef if $index == $size;
+		return $stats->{by_league}->[$index ++];
+    }
 }
 
 =pod

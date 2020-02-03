@@ -1,4 +1,4 @@
-package Football::BenchTest::Season;
+package Football::BackTest::Season;
 
 use Football::Model;
 use Football::Football_Data_Model;
@@ -9,9 +9,9 @@ use List::MoreUtils qw(each_arrayref);
 use Moo;
 use namespace::clean;
 
-has 'models' => (is => 'ro', required => 1);
-has 'files' => (is => 'ro', required => 1);
-has 'func' => (is => 'ro', init_arg => 'callback', required => 1);
+#has 'models' => (is => 'ro', required => 1);
+#has 'files' => (is => 'ro', required => 1);
+has 'callback_func' => (is => 'ro', init_arg => 'callback', required => 1);
 
 sub BUILD {
     my $self = shift;
@@ -20,12 +20,45 @@ sub BUILD {
 }
 
 sub run {
+    my ($self, $league_name, $file) = @_;
+
+    print "\nReading $file->{tag}...";
+    my $games = $self->{data_model}->read_csv ($file->{name});
+    my $league = Football::League->new (
+        name		=> $league_name,
+        games 		=> [],
+    # teams will be different each season for historical.pm so can't just read teams.json file
+        team_list	=> _get_all_teams ($games, 'home_team'),
+    # don't build all data for current season - we'll do it game by game further down
+        auto_build  => 0,
+    );
+    my $datafunc = $self->{football_model}->get_game_data_func ();
+    my $flag = 0;
+
+    for my $game (@$games) {
+        $game->{league_idx} = 0;
+        $league->{homes} = $league->do_homes ($league->teams);
+        $league->{aways} = $league->do_aways ($league->teams);
+        $league->{last_six} = $league->do_last_six ($league->teams);
+        $flag = done_six_games ($game, $league) unless $flag;
+
+        if ($flag) {
+            $datafunc->($game, $league);
+            $self->callback_func->($game, $league);
+        }
+        # update the league game by game
+        $league->update_teams ($league->teams, $game);
+        $league->update_tables ($game);
+    }
+}
+
+sub runx {
     my $self = shift;
 
     for my $league ( $self->{files}->@* ) {
         my ($league_name, $file_list) = each %$league;
         for my $file (@$file_list) {
-            print "\nReading $file->{tag}...\n";
+            print "\nReading $file->{tag}...";
             my $games = $self->{data_model}->read_csv ($file->{name});
             my $league = Football::League->new (
                 name		=> $league_name,
@@ -47,12 +80,9 @@ sub run {
 
                 if ($flag) {
                     $datafunc->($game, $league);
-                    my $data = $self->func->($self, $game, $league);
-                    for my $model ( $self->models->@* ) {
-                        $model->do_counts ($data);
-                    }
+                    $self->callback_func->($game, $league);
                 }
-#print "\n$game->{home_team} v $game->{away_team}";
+                # update the league game by game
                 $league->update_teams ($league->teams, $game);
                 $league->update_tables ($game);
             }
@@ -72,7 +102,7 @@ sub done_six_games {
 
 =head1 NAME
 
-Football/BenchTest/Season.pm
+Football/BackTest/Season.pm
 
 =head1 SYNOPSIS
 

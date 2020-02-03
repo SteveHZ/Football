@@ -22,7 +22,7 @@ sub BUILD {
     }
 }
 
-=pod
+z=pod
 
 =head1 NAME
 

@@ -1,6 +1,7 @@
 package Football::Spreadsheets::Match_Odds_View;
 
 use List::MoreUtils qw(each_arrayref);
+use List::Util qw (any);
 
 use Moo;
 use namespace::clean;
@@ -75,6 +76,24 @@ sub do_match_odds {
 		}
 	}
 }
+
+=head
+sub write_row {
+	my ($self, $worksheet, $row, $row_data) = @_;
+	my $col = 0;
+
+	for my $cell_data (@$row_data) {
+		while (my ($data, $fmt) = each %$cell_data) {
+			$col ++ while any { $col == $_ } $self->blank_columns->@*;
+			$worksheet->write ( $row, $col, $data, $fmt );
+			if ($col > 5) {
+				$worksheet->write_comment ($row, $col, sprintf "%.2f", 100/$data);
+			}
+			$col ++;
+		}
+	}
+}
+=cut
 
 sub get_match_odds_rows {
 	my ($self, $game) = @_;

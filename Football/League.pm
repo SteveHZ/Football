@@ -143,6 +143,7 @@ sub update_away {
 
 sub do_homes {
 	my ($self, $teams) = @_;
+#use Data::Dumper;print Dumper $self->{games};<STDIN>;
 	my $list = {};
 	for my $team ($self->{team_list}->@*) {
 		my ( $homes, $full_homes ) = $teams->{$team}->get_homes ();

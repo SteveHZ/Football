@@ -1,4 +1,4 @@
-package Football::BenchTest::FileList;
+package Football::BackTest::FileList;
 
 use List::MoreUtils qw(each_arrayref);
 use File::Find;
@@ -7,6 +7,7 @@ use Moo;
 use namespace::clean;
 
 has 'path' => (is => 'ro', default => 'C:/Mine/perl/Football/data');
+has 'return_iterator' => (is => 'ro', default => 0);
 has 'leagues' => (is => 'ro', required => 1);
 has 'csv_leagues' => (is => 'ro', required => 1);
 
@@ -25,7 +26,9 @@ sub get_current {
             }]
         };
     }
-    return \@list;
+    return ($self->return_iterator)
+        ? $self->make_iterator (\@list)
+        : \@list;
 }
 
 sub get_historical {
@@ -49,7 +52,24 @@ sub get_historical {
                 sort { $a cmp $b } @files
         ] };
     }
-    return \@list;
+    return ($self->return_iterator)
+        ? $self->make_iterator (\@list)
+        : \@list;
+}
+
+sub make_iterator {
+    my ($self, $list) = @_;
+    my $size = scalar @$list;
+    my $index = 0;
+
+    return sub {
+        return undef if $index == $size;
+        my ($league_name, $file_info) = each $list->[$index ++]->%*;
+        return {
+            league_name => $league_name,
+            file_info => $file_info,
+        };
+    }
 }
 
 sub historical_tag {
@@ -90,16 +110,16 @@ data_structure from get_historical
 {
     'Premier League' => [
         {
-            'name' => 'C:/Mine/perl/Football/data/historical/Premier League/2015.csv',
             'tag' => 'Premier League 2015'
+            'name' => 'C:/Mine/perl/Football/data/historical/Premier League/2015.csv',
         },
         {
-            'name' => 'C:/Mine/perl/Football/data/historical/Premier League/2016.csv',
             'tag' => 'Premier League 2016'
+            'name' => 'C:/Mine/perl/Football/data/historical/Premier League/2016.csv',
         },
         {
-            'name' => 'C:/Mine/perl/Football/data/historical/Premier League/2017.csv',
             'tag' => 'Premier League 2017'
+            'name' => 'C:/Mine/perl/Football/data/historical/Premier League/2017.csv',
         }
     ]
 };
