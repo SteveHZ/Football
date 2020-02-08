@@ -1,12 +1,10 @@
-League,Date,HomeTeam,AwayTeam,FTHG,FTAG,GXH,GXA,GXGD,B365H,B365A,B365D,B365>2.5,B365<2.5,HW,AW,D,OV2.5,U2.5
+Date,HomeTeam,AwayTeam,FTHG,FTAG,GXH,GXA,HW,AW,D,OV2.5,U2.5,B365H,B365A,B365D,B365>2.5,B365<2.5
 [%- FOREACH game IN data %]
 [% game.date %],[% game.home_team %],[% game.away_team %],
-[%- game.home_score %],[% game.away_score %],[% game.result %],
-[%- game.home_odds %],[% game.draw_odds %],[% game.away_odds %]
+[%- game.fthg %],[% game.ftag %],
+[%- game.home_expect %],[% game.away_expect %],
+[%- game.home_win %],[% game.draw %],[% game.away_win %],
+[%- game.over_2pt5 %],[% game.under_2pt5 %],
+[%- game.b365h %],[% game.b365a %],[% game.b365d %],
+[%- game.b365over %],[% game.b365under %],
 [%- END %]
-
-
-say "$league->{name} - $game->{date} - $game->{home_team} v $game->{away_team} $game->{home_score}-$game->{away_score}";
-say "home = $game->{home_goals} away = $game->{away_goals} expected goal diff = $game->{expected_goal_diff}";
-say "home win = $data->{match_odds}->{home_win} away_win = $data->{match_odds}->{away_win} draw = $data->{match_odds}->{draw}";
-say "over 2.5 = $data->{match_odds}->{over_2pt5} under 2.5 = $data->{match_odds}->{under_2pt5}";

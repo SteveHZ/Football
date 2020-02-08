@@ -79,10 +79,9 @@ sub get_csv_keys {
 
 sub get_csv_cols {
 	my ($self, $lineref) = @_;
-
 	my @headers = split ',', $$lineref;
 	my @idxs = ();
-	for my $key (@{ $self->{csv_keys} }) {
+	for my $key ( $self->{csv_keys}->@* ) {
 		push @idxs, firstidx { $_ eq $key } @headers;
 	}
 	return \@idxs;

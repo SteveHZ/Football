@@ -7,9 +7,9 @@ use Moo;
 use namespace::clean;
 
 has 'path' => (is => 'ro', default => 'C:/Mine/perl/Football/data');
-has 'return_iterator' => (is => 'ro', default => 0);
 has 'leagues' => (is => 'ro', required => 1);
 has 'csv_leagues' => (is => 'ro', required => 1);
+has 'func' => (is => 'ro');
 
 sub get_current {
     my $self = shift;
@@ -26,9 +26,7 @@ sub get_current {
             }]
         };
     }
-    return ($self->return_iterator)
-        ? $self->make_iterator (\@list)
-        : \@list;
+    return \@list;
 }
 
 sub get_historical {
@@ -39,7 +37,7 @@ sub get_historical {
         my @files = ();
         my $league_path = "$self->{path}/$league";
         find ( sub {
-            push @files, $_ if $_ =~ /\.csv$/
+            push @files, $_ if $self->{func}->($_)
         }, $league_path );
 
 #       map to sorted arrayref of hashrefs
@@ -52,9 +50,17 @@ sub get_historical {
                 sort { $a cmp $b } @files
         ] };
     }
-    return ($self->return_iterator)
-        ? $self->make_iterator (\@list)
-        : \@list;
+    return \@list;
+}
+
+sub get_current_asiterator {
+    my $self = shift;
+    return $self->make_iterator ($self->get_current ());
+}
+
+sub get_historical_asiterator {
+    my $self = shift;
+    return $self->make_iterator ($self->get_historical ());
 }
 
 sub make_iterator {

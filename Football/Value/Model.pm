@@ -71,7 +71,7 @@ sub get_home_win {
         sort {
             $a->{home_win} <=> $b->{home_win}
         } grep {
-            $_->{home_win} < 2                  #   are we interested ?
+            $_->{home_win} < 2.30               #   are we interested ?
             && defined $_->{fdata}              #   do we have football-data info ?
             && $_->{fdata}->{home_win} ne ''    #   -------------""----------------
             && $_->{home_win} * $self->{overround} < $_->{fdata}->{home_win}
@@ -98,7 +98,7 @@ sub get_away_win {
         sort {
             $a->{away_win} <=> $b->{away_win}
         } grep {
-            $_->{away_win} < 2
+            $_->{away_win} < 2.30
             && defined $_->{fdata}
             && $_->{fdata}->{away_win} ne ''
             && $_->{away_win} * $self->{overround} < $_->{fdata}->{away_win}

@@ -121,11 +121,11 @@ our $csv_fields = {
 	half_time_home => 'HTHG',
 	half_time_away => 'HTAG',
 	result => 'FTR',
-	home_win => 'B365H',
-	away_win => 'B365A',
-	draw => 'B365D',
-	over_2pt5 => 'B365>2.5',
-	under_2pt5 => 'B365<2.5',
+	b365h => 'B365H',
+	b365a => 'B365A',
+	b365d => 'B365D',
+	b365over => 'B365>2.5',
+	b365under => 'B365<2.5',
 };
 
 =pod
