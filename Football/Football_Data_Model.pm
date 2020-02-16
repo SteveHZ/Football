@@ -59,13 +59,14 @@ sub read_csv {
 	while ($line = <$fh>) {
 		$line =~ s/'//; # remove any apostrophes eg Nott'm Forest
 		my @data = split ',', $line;
+		chomp $_ for @data;
 		last if $data [0] eq ''; # don't remove !!!
 		if ($self->skip_blanks) {
 			next if any {$_ eq ''} ( $data[4], $data[5] );
 		}
         push @league_games, {
             pairwise { $a => $data[$b] }
-                @{ $self->{my_keys} }, @$cols
+                $self->{my_keys}->@*, @$cols
         };
 	}
 	close $fh;

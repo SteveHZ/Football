@@ -4,8 +4,8 @@
 #	To edit names from Football Data CSV files, use Euro::Rename
 #	To edit names from BBC fixtures files use Football::Fixtures_Globals, Football::Fixtures_Model
 
-#	Irish + USA teams updated 05.02 but need to check against Football Data site
-#	All done except Finnish 03/04, Finnish 10/04
+#	Irish + USA teams updated 15.02 but need to check against Football Data site
+##	All done except Finnish 03/04, Finnish 10/04
 
 use strict;
 use warnings;
@@ -29,8 +29,8 @@ my $leagues = {
         'Shamrock Rovers',
         'Sligo Rovers',
         'St Patricks',
-        'UCD',
         'Waterford',
+        'Shelbourne',
     ],
     'USA League' => [
         'Atlanta United',
@@ -57,6 +57,8 @@ my $leagues = {
         'Sporting Kansas City',
         'Toronto FC',
         'Vancouver Whitecaps',
+        'Inter Miami',
+        'Nashville',
     ],
     'Swedish League' => [
         'AFC Eskilstuna',

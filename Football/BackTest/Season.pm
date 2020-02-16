@@ -9,25 +9,21 @@ use List::MoreUtils qw(each_arrayref);
 use Moo;
 use namespace::clean;
 
-#has 'models' => (is => 'ro', required => 1);
-#has 'files' => (is => 'ro', required => 1);
 has 'callback_func' => (is => 'ro', init_arg => 'callback', required => 1);
 
 sub BUILD {
     my $self = shift;
     $self->{football_model} = Football::Model->new ();
     $self->{data_model} = Football::Football_Data_Model->new (
-        'my_keys' => [ qw(date home_team away_team home_score away_score b365h b365a b365d b365over b365under) ],
+        'my_keys' => [ qw(date home_team away_team home_score away_score result b365h b365a b365d b365over b365under) ],
     );
 }
 
-#sub run_by_game {
 sub run {
     my ($self, $league_name, $file, $my_data) = @_;
 
     print "\nReading $file->{tag}...";
     my $games = $self->{data_model}->read_csv ($file->{name});
-
     my $league = Football::League->new (
         name		=> $league_name,
         games 		=> [],
@@ -89,44 +85,6 @@ sub run_by_season {
         $league->update_tables ($game);
     }
     return \@data;
-}
-
-sub runx {
-    my $self = shift;
-
-    for my $league ( $self->{files}->@* ) {
-        my ($league_name, $file_list) = each %$league;
-        for my $file (@$file_list) {
-            print "\nReading $file->{tag}...";
-            my $games = $self->{data_model}->read_csv ($file->{name});
-            my $league = Football::League->new (
-                name		=> $league_name,
-                games 		=> [],
-            # teams will be different each season for historical.pm so can't just read teams.json file
-                team_list	=> _get_all_teams ($games, 'home_team'),
-            # don't build all data for current season - we'll do it game by game further down
-                auto_build  => 0,
-            );
-            my $datafunc = $self->{football_model}->get_game_data_func ();
-            my $flag = 0;
-
-            for my $game (@$games) {
-                $game->{league_idx} = 0;
-                $league->{homes} = $league->do_homes ($league->teams);
-                $league->{aways} = $league->do_aways ($league->teams);
-                $league->{last_six} = $league->do_last_six ($league->teams);
-                $flag = done_six_games ($game, $league) unless $flag;
-
-                if ($flag) {
-                    $datafunc->($game, $league);
-                    $self->callback_func->($game, $league);
-                }
-                # update the league game by game
-                $league->update_teams ($league->teams, $game);
-                $league->update_tables ($game);
-            }
-        }
-    }
 }
 
 sub done_six_games {

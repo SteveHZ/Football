@@ -26,7 +26,7 @@ sub get_fdata {
     my ($self, $csv_file) = @_;
 
     my $data_model = Football::Football_Data_Model->new (
-        'my_keys'       => [ qw(league home_team home_win away_win draw over_2pt5 under_2pt5) ],
+        'my_keys'       => [ qw(league home_team b365h b365a b365d b365over b365under) ],
         'skip_blanks'   => 0,
     );
     my $games = $data_model->read_csv ($csv_file);
@@ -73,8 +73,8 @@ sub get_home_win {
         } grep {
             $_->{home_win} < 2.30               #   are we interested ?
             && defined $_->{fdata}              #   do we have football-data info ?
-            && $_->{fdata}->{home_win} ne ''    #   -------------""----------------
-            && $_->{home_win} * $self->{overround} < $_->{fdata}->{home_win}
+            && $_->{fdata}->{b365h} ne ''    #   -------------""----------------
+            && $_->{home_win} * $self->{overround} < $_->{fdata}->{b365h}
         } @$mine
     ];
 }
@@ -100,8 +100,8 @@ sub get_away_win {
         } grep {
             $_->{away_win} < 2.30
             && defined $_->{fdata}
-            && $_->{fdata}->{away_win} ne ''
-            && $_->{away_win} * $self->{overround} < $_->{fdata}->{away_win}
+            && $_->{fdata}->{b365a} ne ''
+            && $_->{away_win} * $self->{overround} < $_->{fdata}->{b365a}
         } @$mine
     ];
 }
@@ -113,8 +113,8 @@ sub get_over_2pt5 {
             $a->{over_2pt5} <=> $b->{over_2pt5}
         } grep {
             defined $_->{fdata}
-            && $_->{fdata}->{over_2pt5} ne ''
-            && $_->{over_2pt5} * $self->{overround} < $_->{fdata}->{over_2pt5}
+            && $_->{fdata}->{b365over} ne ''
+            && $_->{over_2pt5} * $self->{overround} < $_->{fdata}->{b365over}
         } @$mine
     ];
 }
@@ -126,8 +126,8 @@ sub get_under_2pt5 {
             $a->{under_2pt5} <=> $b->{under_2pt5}
         } grep {
             defined $_->{fdata}
-            && $_->{fdata}->{under_2pt5} ne ''
-            && $_->{under_2pt5} * $self->{overround} < $_->{fdata}->{under_2pt5}
+            && $_->{fdata}->{b365under} ne ''
+            && $_->{under_2pt5} * $self->{overround} < $_->{fdata}->{b365under}
         } @$mine
     ];
 }

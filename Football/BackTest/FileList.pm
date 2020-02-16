@@ -53,12 +53,12 @@ sub get_historical {
     return \@list;
 }
 
-sub get_current_asiterator {
+sub get_current_as_iterator {
     my $self = shift;
     return $self->make_iterator ($self->get_current ());
 }
 
-sub get_historical_asiterator {
+sub get_historical_as_iterator {
     my $self = shift;
     return $self->make_iterator ($self->get_historical ());
 }

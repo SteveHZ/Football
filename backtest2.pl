@@ -1,4 +1,4 @@
-#   backtest2.pl 02-08/02/20
+#   backtest2.pl 02-15/02/20
 
 use MyHeader;
 use MyTemplate;
@@ -11,30 +11,32 @@ use Football::BackTest::Game_Predictions;
 my $season = Football::BackTest::Season->new (
     callback => sub { do_predicts (@_) },
 );
+
 my $file_list = Football::BackTest::FileList->new (
-    leagues => [ "Premier League", "Championship"],
-    csv_leagues => [ qw(E0 E1) ],
+    leagues => \@league_names,
+    csv_leagues => \@csv_leagues,
     path => 'C:/Mine/perl/Football/data/historical',
     func => sub {
         my $filename = shift;
-        return 1 if $filename =~ /\.csv$/ && substr ($filename, 0, -4) >= 2003; # earlier files don't have all fields
+        return 1 if $filename =~ /\.csv$/ && substr ($filename, 0, -4) >= 2005; # earlier files don't have all fields
         return 0;
     },
 );
 
-my $files_iterator = $file_list->get_historical_asiterator;
+my $files_iterator = $file_list->get_historical_as_iterator;
 while (my $league = $files_iterator->()) {
     my $league_name = $league->{league_name};
+    my $my_data = [];
     for my $file ( $league->{file_info}->@* ) {
-            my $my_data = [];
-            $season->run ($league_name, $file, $my_data);
-            write_data ($my_data, $file);
+        $season->run ($league_name, $file, $my_data);
     }
+    write_data ($my_data, $league_name);
 }
 
 sub do_predicts {
 	my ($league, $game, $my_data) = @_;
     my $data = get_predicts ($league, $game);
+    my $dd = get_data ($league, $game, $data);
     push @$my_data, get_data ($league, $game, $data);
 }
 
@@ -55,8 +57,9 @@ sub get_data {
         date => $game->{date},
         home_team => $game->{home_team},
         away_team => $game->{away_team},
-        fthg => $game->{home_score},
-        ftag => $game->{away_score},
+        home_score => $game->{home_score},
+        away_score => $game->{away_score},
+        result => $game->{result},
         home_expect => $data->{expect}->{$game->{home_team}}->{expect_home_for},
         away_expect => $data->{expect}->{$game->{away_team}}->{expect_away_for},
         home_win => $data->{match_odds}->{home_win},
@@ -73,15 +76,13 @@ sub get_data {
 }
 
 sub write_data {
-    my ($data, $file) = @_;
-    my $year = substr $file->{tag}, -4; # last four characters (year)
-    my $league = substr $file->{tag}, 0, -5; # all but the last five chars (space followed by four digits)
+    my ($data, $league_name) = @_;
 
-    my $tt = MyTemplate->new (filename => "C:/Mine/perl/Football/data/backtest/$league/$year.csv");
+    say "\nWriting $league_name...";
+    my $tt = MyTemplate->new (filename => "C:/Mine/perl/Football/data/backtest/$league_name.csv");
     my $out_fh = $tt->open_file ();
 
     $tt->process ('Template/backtest.tt', {
         data => $data,
-    }, $out_fh)
-    or die $tt->error;
+    }, $out_fh) or die $tt->error;
 }

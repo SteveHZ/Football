@@ -75,9 +75,9 @@ sub get_1x2_rows {
         { $game->{draw} => $self->{float_format} },
         { $game->{away_win} => $self->{float_format} },
 
-        { $game->{fdata}->{home_win} => $self->{float_format} },
-        { $game->{fdata}->{draw} => $self->{float_format} },
-        { $game->{fdata}->{away_win} => $self->{float_format} },
+		{ $game->{fdata}->{b365h} => $self->{float_format} },
+        { $game->{fdata}->{b365d} => $self->{float_format} },
+        { $game->{fdata}->{b365a} => $self->{float_format} },
 
 		{ @$formulas [0] => $self->{float_format} },
 		{ @$formulas [1] => $self->{float_format} },
@@ -97,8 +97,8 @@ sub get_over_under_rows {
 		{ $game->{over_2pt5} => $self->{float_format} },
 		{ $game->{under_2pt5} => $self->{float_format} },
 
-        { $game->{fdata}->{over_2pt5} => $self->{float_format} },
-		{ $game->{fdata}->{under_2pt5} => $self->{float_format} },
+		{ $game->{fdata}->{b365over} => $self->{float_format} },
+		{ $game->{fdata}->{b365under} => $self->{float_format} },
 
 		{ @$formulas [0] => $self->{float_format} },
 		{ @$formulas [1] => $self->{float_format} },

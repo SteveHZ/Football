@@ -10,7 +10,7 @@ my @list;
 
 while (my $league = $iterator->()) {
     print "\n$league->{league}";
-    for my $game ($league->{games}->@*) {
+    for my $game ( $league->{games}->@* ) {
         my $home = get_overs ($game->{full_homes});
         my $away = get_overs ($game->{full_aways});
         push @list, {
