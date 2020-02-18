@@ -12,8 +12,8 @@ with 'Roles::Spreadsheet';
 sub BUILD {
 	my ($self, $args) = @_;
 	$self->create_sheet ();
-	$self->{sheet_names} = ['Home Win', 'Away Win', 'Draw', 'Over 2.5', 'Under 2.5', 'BSTS Yes', 'BSTS No'];
-	$self->{sorted_by} = ['home_win', 'away_win', 'draw', 'over_2pt5', 'under_2pt5', 'both_sides_yes', 'both_sides_no'];
+	$self->{sheet_names} = ['Home Win', 'Away Win', 'Draw', 'Over 2.5', 'Under 2.5', 'Home Double', 'Away Double', 'BSTS Yes', 'BSTS No'];
+	$self->{sorted_by} = ['home_win', 'away_win', 'draw', 'over_2pt5', 'under_2pt5', 'home_double', 'away_double', 'both_sides_yes', 'both_sides_no'];
 }
 
 sub create_sheet {
@@ -52,6 +52,8 @@ sub view {
 		print ' Draw : '. $game->{odds}->{draw};
 		print ' Both Sides Yes : '. $game->{odds}->{both_sides_yes};
 		print ' Both Sides No : '. $game->{odds}->{both_sides_no};
+		print ' Home Double : '. $game->{odds}->{home_double};
+		print ' Away Double : '. $game->{odds}->{away_double};
 		print ' Over 2.5 : '. $game->{odds}->{over_2pt5};
 		print ' Under 2.5 : '. $game->{odds}->{under_2pt5};
 	}
@@ -68,7 +70,7 @@ sub do_match_odds {
 
 		my $row = 2;
 		for my $game ($fixtures->{$sorted_by}->@*) {
-			$self->blank_columns ( [ qw( 1 3 5 9 12 15 ) ] );
+			$self->blank_columns ( [ qw( 1 3 5 9 12 15 18) ] );
 
 			my $row_data = $self->get_match_odds_rows ($game);
 			$self->write_row ($worksheet, $row, $row_data);
@@ -76,24 +78,6 @@ sub do_match_odds {
 		}
 	}
 }
-
-=head
-sub write_row {
-	my ($self, $worksheet, $row, $row_data) = @_;
-	my $col = 0;
-
-	for my $cell_data (@$row_data) {
-		while (my ($data, $fmt) = each %$cell_data) {
-			$col ++ while any { $col == $_ } $self->blank_columns->@*;
-			$worksheet->write ( $row, $col, $data, $fmt );
-			if ($col > 5) {
-				$worksheet->write_comment ($row, $col, sprintf "%.2f", 100/$data);
-			}
-			$col ++;
-		}
-	}
-}
-=cut
 
 sub get_match_odds_rows {
 	my ($self, $game) = @_;
@@ -108,6 +92,10 @@ sub get_match_odds_rows {
 
 		{ $game->{odds}->{over_2pt5} => $self->{float_format} },
 		{ $game->{odds}->{under_2pt5} => $self->{float_format} },
+
+		{ $game->{odds}->{home_double} => $self->{float_format} },
+		{ $game->{odds}->{away_double} => $self->{float_format} },
+
 		{ $game->{odds}->{both_sides_yes} => $self->{float_format} },
 		{ $game->{odds}->{both_sides_no} => $self->{float_format} },
 	];
@@ -122,8 +110,9 @@ sub do_goal_diffs_header {
 	my ($worksheet, $format) = @_;
 
 	$worksheet->set_column ($_, 25) for (qw (A:A C:C E:E));
-	$worksheet->set_column ($_, 10) for (qw (G:I K:L N:O));
-	$worksheet->set_column ($_, 2.5) for (qw (B:B D:D F:F J:J M:M));
+	$worksheet->set_column ($_, 10) for (qw (G:I K:L));
+	$worksheet->set_column ($_, 12) for (qw (N:O));
+	$worksheet->set_column ($_, 2.5) for (qw (B:B D:D F:F J:J M:M P:P));
 
 	$worksheet->write ('A1', 'League', $format);
 	$worksheet->write ('C1', 'Home', $format);
@@ -135,8 +124,10 @@ sub do_goal_diffs_header {
 
 	$worksheet->write ('K1', 'Over 2.5', $format);
 	$worksheet->write ('L1', 'Under 2.5', $format);
-	$worksheet->write ('N1', 'BSTS Yes', $format);
-	$worksheet->write ('O1', 'BSTS No', $format);
+	$worksheet->write ('N1', 'Home Double', $format);
+	$worksheet->write ('O1', 'Away Double', $format);
+	$worksheet->write ('Q1', 'BSTS Yes', $format);
+	$worksheet->write ('R1', 'BSTS No', $format);
 
 	$worksheet->autofilter( 'A1:A100' );
 	$worksheet->freeze_panes (1,0);

@@ -1,4 +1,4 @@
-Date,Home_Team,Away_Team,Home_Score,Away_Score,Result,GXH,GXA,Home_Win,Draw,Away_Win,OV2.5,U2.5,B365H,B365D,B365A,BB>2.5,BB<2.5
+Date,Home_Team,Away_Team,Home_Score,Away_Score,Result,Home_Expect,Away_Expect,Home_Win,Draw,Away_Win,Over_2.5,Under_2.5,B365H,B365D,B365A,BB>2.5,BB<2.5
 [%- FOREACH game IN data %]
 [% game.date %],[% game.home_team %],[% game.away_team %],
 [%- game.home_score %],[% game.away_score %],[% game.result %],

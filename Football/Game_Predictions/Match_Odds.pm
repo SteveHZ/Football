@@ -21,7 +21,7 @@ sub BUILD {
 	$self->{weighted} //= 0;
 
 	$self->{stats} = ( [] );
-	$self->{sheet_names} = [ qw(home_win away_win draw over_2pt5 under_2pt5 both_sides_yes both_sides_no) ];
+	$self->{sheet_names} = [ qw(home_win away_win draw over_2pt5 under_2pt5 home_double away_double both_sides_yes both_sides_no) ];
 }
 
 sub calc_odds {
@@ -36,6 +36,8 @@ sub calc_odds {
 		both_sides_no => $self->both_sides_no_odds (),
 		under_2pt5 => $self->under_2pt5_odds (),
 		over_2pt5 => $self->over_2pt5_odds (),
+		home_double => $self->home_double_odds (),
+		away_double => $self->away_double_odds (),
 	};
 }
 
@@ -227,6 +229,22 @@ sub over_2pt5_odds {
 	return nearest (0.01, 100 / $stats);
 }
 
+sub home_double_odds {
+	my $self = shift;
+
+	my $stats = $self->home_win () + $self->draw ();
+	return 0 if $stats == 0;
+	return nearest (0.01, 100 / $stats);
+}
+
+sub away_double_odds {
+	my $self = shift;
+
+	my $stats = $self->away_win () + $self->draw ();
+	return 0 if $stats == 0;
+	return nearest (0.01, 100 / $stats);
+}
+
 #	used to write out data to then read from value.pl
 sub save_match_odds {
 	my ($self, $sorted, $path) = @_;
@@ -248,6 +266,8 @@ sub get_match_odds {
 			both_sides_no => $_->{odds}->{both_sides_no},
 			over_2pt5 => $_->{odds}->{over_2pt5},
 			under_2pt5 => $_->{odds}->{under_2pt5},
+#			home_double => $_->{odds}->{home_double},
+#			away_double => $_->{odds}->{away_double},
 		} } @$sorted
 	];
 }
