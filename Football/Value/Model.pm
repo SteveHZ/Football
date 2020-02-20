@@ -2,6 +2,7 @@ package Football::Value::Model;
 
 use List::MoreUtils qw(each_arrayref);
 use File::Fetch;
+use Math::Round qw(nearest);
 
 use Football::Globals qw(@league_names @csv_leagues);
 use Football::Football_Data_Model;
@@ -62,6 +63,8 @@ sub calc_data {
         draw => $self->get_draw ($mine),
         over_2pt5 => $self->get_over_2pt5 ($mine),
         under_2pt5 => $self->get_under_2pt5 ($mine),
+#        home_double => $self->get_home_double ($mine),
+#        away_double => $self->get_away_double ($mine),
     };
 }
 
@@ -130,6 +133,39 @@ sub get_under_2pt5 {
             && $_->{under_2pt5} * $self->{overround} < $_->{fdata}->{b365under}
         } @$mine
     ];
+}
+
+sub get_home_double {
+    my ($self, $mine) = @_;
+    return [
+        sort {
+            $a->{home_win} <=> $b->{home_win}
+        } grep {
+            defined $_->{fdata}              #   do we have football-data info ?
+            && $_->{fdata}->{b365h} ne ''    #   -------------""----------------
+            && calc_double_chance ($_->{home_win}, $_->{draw}) * $self->{overround}
+             < calc_double_chance ($_->{fdata}->{b365h}, $_->{fdata}->{b365d})
+        } @$mine
+    ];
+}
+
+sub get_away_double {
+    my ($self, $mine) = @_;
+    return [
+        sort {
+            $a->{away_win} <=> $b->{away_win}
+        } grep {
+            defined $_->{fdata}              #   do we have football-data info ?
+            && $_->{fdata}->{b365a} ne ''    #   -------------""----------------
+            && calc_double_chance ($_->{away_win}, $_->{draw}) * $self->{overround}
+             < calc_double_chance ($_->{fdata}->{b365a}, $_->{fdata}->{b365d})
+        } @$mine
+    ];
+}
+
+sub calc_double_chance {
+    my ($self, $win, $draw) = @_;
+    return nearest (0.01, 100 /(( 100/$win ) + (100/$draw)));
 }
 
 1;

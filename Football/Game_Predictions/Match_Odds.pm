@@ -27,6 +27,7 @@ sub BUILD {
 sub calc_odds {
 	my ($self, $game) = @_;
 	$self->calc ($game->{home_goals}, $game->{away_goals});
+#	$self->calc ($game->{home_last_six}, $game->{away_last_six});
 
 	return {
 		home_win => $self->home_win_odds (),

@@ -42,11 +42,7 @@ $dbh->disconnect;
 
 sub get_query {
     return [
-#        "Home_Win < Away_Win AND Away_Win >= 4",
-#        "Home_Win < Away_Win AND Away_Win >= 5",
-#        "Home_Win < Away_Win AND Away_Win >= 8",
         "gxa > gxh + 1",
         "gxa > gxh + 1.5",
-#        "GXA > GXH + 2",
     ];
 }

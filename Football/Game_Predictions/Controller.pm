@@ -30,6 +30,7 @@ sub do_predict_models {
     my $teams = $model->calc_goal_expect ();
     my $sorted = {
         expect => $model->sort_expect_data ('expected_goal_diff'),
+#        expect => $model->sort_expect_data ('expected_goal_diff_last_six'),
         match_odds => $model->calc_match_odds ($self->{model_name}),
         skellam => $model->calc_skellam_dist (),
         over_under => $model->calc_over_under (),

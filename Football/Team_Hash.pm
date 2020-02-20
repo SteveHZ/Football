@@ -1,7 +1,6 @@
 package Football::Team_Hash;
 
 use Football::Team_Profit;
-#use Football::Utils qw(_get_all_teams);
 use Football::Model;
 
 use MyKeyword qw(DEVELOPMENT);

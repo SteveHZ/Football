@@ -15,6 +15,8 @@ sub BUILD {
 	$self->create_sheet ();
 	$self->{sheet_names} = ['Home Win', 'Away Win', 'Draw', 'Over 2.5', 'Under 2.5'];
 	$self->{sorted_by} = ['home_win', 'away_win', 'draw', 'over_2pt5', 'under_2pt5'];
+#	$self->{sheet_names} = ['Home Win', 'Away Win', 'Draw', 'Over 2.5', 'Under 2.5', 'Home Double', 'Away Double'];
+#	$self->{sorted_by} = ['home_win', 'away_win', 'draw', 'over_2pt5', 'under_2pt5', 'home_double', 'away_double'];
 
     $self->{dispatch} = {
 		home_win	=> sub { my $self = shift; $self->get_1x2_rows (@_) },
@@ -22,6 +24,8 @@ sub BUILD {
 		draw		=> sub { my $self = shift; $self->get_1x2_rows (@_) },
 		over_2pt5	=> sub { my $self = shift; $self->get_over_under_rows (@_) },
 		under_2pt5	=> sub { my $self = shift; $self->get_over_under_rows (@_) },
+#		home_double	=> sub { my $self = shift; $self->get_double_chance_rows (@_) },
+#		away_double	=> sub { my $self = shift; $self->get_double_chance_rows (@_) },
 	};
 
 	$self->{headers} = {
@@ -30,11 +34,14 @@ sub BUILD {
 		draw		=> sub { my $self = shift; $self->do_1x2_header (@_) },
 		over_2pt5	=> sub { my $self = shift; $self->do_over_under_header (@_) },
 		under_2pt5	=> sub { my $self = shift; $self->do_over_under_header (@_) },
+#		home_double	=> sub { my $self = shift; $self->get_double_chance_header (@_) },
+#		away_double	=> sub { my $self = shift; $self->get_double_chance_header (@_) },
 	};
 
     $self->{blank_cols} = {
-        1x2         => [ qw( 1 3 5 9 13 ) ],
-        over_under  => [ qw( 1 3 5 8 11 14 ) ],
+        1x2         	=> [ qw( 1 3 5 9 13 ) ],
+        over_under  	=> [ qw( 1 3 5 8 11 14 ) ],
+#		double_chance  	=> [ qw( 1 3 5 8 11 14 ) ],
     };
 }
 
@@ -105,6 +112,27 @@ sub get_over_under_rows {
 	];
 }
 
+sub get_double_chance_rows {
+	my ($self, $game, $row) = @_;
+	my $formulas = build_double_chance_formulae ($row);
+
+	return [
+		{ $game->{league} => $self->{format} },
+		{ $game->{home_team} => $self->{format} },
+		{ $game->{away_team} => $self->{format} },
+
+		{ $game->{home_win} => $self->{float_format} },
+        { $game->{draw} => $self->{float_format} },
+        { $game->{away_win} => $self->{float_format} },
+
+		{ $game->{home_double} => $self->{float_format} },
+        { $game->{away_double} => $self->{float_format} },
+
+		{ @$formulas [0] => $self->{float_format} },
+		{ @$formulas [1] => $self->{float_format} },
+	];
+}
+
 sub build_1x2_formulae {
 	my $row = shift;
 	return [
@@ -119,6 +147,14 @@ sub build_over_under_formulae {
 	return [
 		qq(=(J$row-G$row)/G$row),
 		qq(=(K$row-H$row)/H$row),
+	];
+}
+
+sub build_double_chance_formulae {
+	my $row = shift;
+	return [
+		qq(=100/((100/E$row) +(100/F$row))),
+		qq(=100/((100/E$row) +(100/F$row))),
 	];
 }
 
@@ -159,6 +195,26 @@ sub do_over_under_header {
     $worksheet->merge_range ('G1:H1', 'MINE', $format);
     $worksheet->merge_range ('J1:K1', 'FOOTBALL DATA', $format);
     $worksheet->merge_range ('M1:N1', 'RATIO', $format);
+
+	$worksheet->autofilter( 'A1:A100' );
+	$worksheet->freeze_panes (1,0);
+}
+
+sub do_double_chance_header {
+	my ($self, $worksheet, $format) = @_;
+    $self->blank_columns ($self->{blank_cols}->{double_chance});
+
+	$worksheet->set_column ($_, 20) for (qw (A:A C:C E:E));
+	$worksheet->set_column ($_, 8) for (qw (G:I K:M O:Q));
+	$worksheet->set_column ($_, 6) for (qw (F:F J:J N:N));
+	$worksheet->set_column ($_, 2.5) for (qw (B:B D:D));
+
+	$worksheet->write ('A1', 'League', $format);
+	$worksheet->write ('C1', 'Home', $format);
+	$worksheet->write ('E1', 'Away', $format);
+    $worksheet->merge_range ('G1:I1', 'MINE', $format);
+    $worksheet->merge_range ('K1:M1', 'FOOTBALL DATA', $format);
+	$worksheet->merge_range ('O1:Q1', 'RATIO', $format);
 
 	$worksheet->autofilter( 'A1:A100' );
 	$worksheet->freeze_panes (1,0);

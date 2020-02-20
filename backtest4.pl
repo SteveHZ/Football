@@ -70,24 +70,3 @@ sub get_query {
 }
 #   say " $row->{date} $row->{home_team} $row->{away_team} $row->{home_score}-$row->{away_score}
 #         $row->{home_win} $row->{draw} $row->{away_win}";
-
-#        {
-#            query => "gxa > gxh + 1.5",
-#            callback => sub {
-#                my ($row, $league, $data) = @_;
-#                $data->{stake}->{$league} ++;
-#                if ($row->{b365a}) {
-#                    $data->{wins}->{$league} += $row->{b365a} if $row->{result} eq 'A';
-#                }
-#            },
-#        },
-#        {
-#            query => "gxa > gxh + 2",
-#            callback => sub {
-#                my ($row, $league, $data) = @_;
-#                $data->{stake}->{$league} ++;
-#                if ($row->{b365a}) {
-#                    $data->{wins}->{$league} += $row->{b365a} if $row->{result} eq 'A';
-#                }
-#            },
-#        },

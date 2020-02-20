@@ -45,7 +45,7 @@ sub quick_predict {
 	my $predict = Football::Game_Predictions::Controller->new (
 		fixtures => $stats->{by_match},
 		leagues => $self->leagues,
-		view_name => $self->model_name
+		model_name => $self->model_name,
 	);
 	my ($teams, $sorted) = $predict->do_predict_models ($data->{by_match}, $self->leagues);
 	return ($teams, $sorted);
