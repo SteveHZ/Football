@@ -15,7 +15,7 @@ sub BUILD {
     my $self = shift;
     $self->{football_model} = Football::Model->new ();
     $self->{data_model} = Football::Football_Data_Model->new (
-        'my_keys' => [ qw(date home_team away_team home_score away_score result b365h b365a b365d b365over b365under) ],
+        'my_keys' => [ qw(date home_team away_team home_score away_score result b365h b365a b365d av_over av_under) ],
     );
 }
 

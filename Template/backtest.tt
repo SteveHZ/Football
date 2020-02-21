@@ -1,10 +1,13 @@
-Date,Home_Team,Away_Team,Home_Score,Away_Score,Result,Home_Expect,Away_Expect,Home_Win,Draw,Away_Win,Over_2.5,Under_2.5,B365H,B365D,B365A,BB>2.5,BB<2.5
+Date,Home_Team,Away_Team,Home_Score,Away_Score,Result,Season_Home_Expect,Season_Away_Expect,Season_Home_Win,Season_Draw,Season_Away_Win,Season_Over_2.5,Season_Under_2.5,Recent_Home_Expect,Recent_Away_Expect,Recent_Home_Win,Recent_Draw,Recent_Away_Win,Recent_Over_2.5,Recent_Under_2.5,B365H,B365D,B365A,BB>2.5,BB<2.5
 [%- FOREACH game IN data %]
 [% game.date %],[% game.home_team %],[% game.away_team %],
 [%- game.home_score %],[% game.away_score %],[% game.result %],
-[%- game.home_expect %],[% game.away_expect %],
-[%- game.home_win %],[% game.draw %],[% game.away_win %],
-[%- game.over_2pt5 %],[% game.under_2pt5 %],
+[%- game.season_home_expect %],[% game.season_away_expect %],
+[%- game.season_home_win %],[% game.season_draw %],[% game.season_away_win %],
+[%- game.season_over_2pt5 %],[% game.season_under_2pt5 %],
+[%- game.recent_home_expect %],[% game.recent_away_expect %],
+[%- game.recent_home_win %],[% game.recent_draw %],[% game.recent_away_win %],
+[%- game.recent_over_2pt5 %],[% game.recent_under_2pt5 %],
 [%- game.b365h %],[% game.b365d %],[% game.b365a %],
 [%- game.b365over %],[% game.b365under %],
 [%- END %]

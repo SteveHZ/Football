@@ -124,8 +124,10 @@ our $csv_fields = {
 	b365h => 'B365H',
 	b365a => 'B365A',
 	b365d => 'B365D',
-	b365over => 'BbAv>2.5',
-	b365under => 'BbAv<2.5',
+	b365over => 'B365>2.5',
+	b365under => 'B365<2.5',
+	av_over => 'BbAv>2.5',
+	av_under => 'BbAv<2.5',
 };
 
 =pod

@@ -1,6 +1,7 @@
 package Football::Game_Predictions::Controller;
 
 use Football::Game_Predictions::Model;
+use Football::Game_Predictions::Recent_Model;
 use Football::Game_Predictions::Views::UK;
 use Football::Game_Predictions::Views::Euro;
 use Football::Game_Predictions::Views::Summer;
@@ -12,6 +13,22 @@ use namespace::clean;
 has 'leagues' => (is => 'ro', required => 1);
 has 'fixtures' => (is => 'ro', required => 1);
 has 'model_name' => (is => 'ro', required => 1);
+has 'type' => (is => 'ro', required => 1,
+    isa => sub { die "Invalid type : $_[0]" unless $_[0] =~ /season|recent/ },
+);
+has 'model' => (is => 'ro');
+
+sub BUILD {
+    my $self = shift;
+    my $dispatch = {
+        'season' => sub { Football::Game_Predictions::Model->new (@_) },
+        'recent' => sub { Football::Game_Predictions::Model_Recent->new (@_) },
+    };
+    $self->{model} = $dispatch->{ $self->{type} }->(
+        fixtures => $self->{fixtures},
+        leagues  => $self->{leagues},
+    );
+}
 
 sub do_predictions {
     my $self = shift;
@@ -22,47 +39,20 @@ sub do_predictions {
 
 sub do_predict_models {
 	my $self = shift;
-    my $model = Football::Game_Predictions::Model->new (
-        fixtures => $self->{fixtures},
-        leagues  => $self->{leagues}
-    );
+    my $model = $self->{model};
 
     my $teams = $model->calc_goal_expect ();
     my $sorted = {
-        expect => $model->sort_expect_data ('expected_goal_diff'),
-#        expect => $model->sort_expect_data ('expected_goal_diff_last_six'),
+        expect => $model->sort_expect_data (),
         match_odds => $model->calc_match_odds ($self->{model_name}),
         skellam => $model->calc_skellam_dist (),
         over_under => $model->calc_over_under (),
     };
     $sorted->{data} = $model->save_expect_data ( $sorted->{expect}, $self->{model_name} ); # for combine.pl
-#   also Football::Game_Predictions::Views::UK;
+#   also used by Football::Game_Predictions::Views::UK;
 
 	return ($teams, $sorted);
 }
-
-=head
-data => $model->save_expect_data (
- $model->sort_expect_data ('expected_goal_diff'), $self->{model_name} ), # for combine.pl
-
-sub do_predict_models {
-	my $self = shift;
-    my $sorted = {};
-    my $model = Football::Game_Predictions::Model->new (
-        fixtures => $self->{fixtures},
-        leagues  => $self->{leagues}
-    );
-
-	my ($teams, $expect_data) = $model->calc_goal_expect ();
-    $sorted->{expect} = $expect_data;
-    $sorted->{match_odds} = $model->calc_match_odds ($self->{model_name});
-	$sorted->{skellam} = $model->calc_skellam_dist ();
-	$sorted->{over_under} = $model->calc_over_under ();
-    $sorted->{data} = $model->save_expect_data ( $sorted->{expect}, $self->{model_name} );
-
-	return ($teams, $sorted);
-}
-=cut
 
 sub do_predict_views {
 	my ($self, $teams, $sorted) = @_;

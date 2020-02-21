@@ -1,4 +1,4 @@
-#	value.pl 27-30/10/19
+#	value.pl 27-30/10/19, v1.1 double_chance 21/02/20
 
 BEGIN {
 $ENV{PERL_KEYWORD_PRODUCTION} = 1;

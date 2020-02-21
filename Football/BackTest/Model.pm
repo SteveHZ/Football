@@ -34,6 +34,7 @@ method do_query (:$league, :$data, :$query, :$callback) {
 
     while (my $row = $sth->fetchrow_hashref) {
         $data->{stake}->{$league} ++;
+        $data->{totals}->{stake} ++;
         $callback->($row, $league, $data);
     }
 }

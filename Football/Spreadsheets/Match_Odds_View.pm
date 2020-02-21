@@ -175,7 +175,7 @@ sub double_rows {
 }
 
 sub bsts_rows {
-my ($self, $game) = @_;
+	my ($self, $game) = @_;
 	return
 		{ $game->{odds}->{both_sides_yes} => $self->{float_format} },
 		{ $game->{odds}->{both_sides_no} => $self->{float_format} },

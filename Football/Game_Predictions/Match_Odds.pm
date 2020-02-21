@@ -25,9 +25,8 @@ sub BUILD {
 }
 
 sub calc_odds {
-	my ($self, $game) = @_;
-	$self->calc ($game->{home_goals}, $game->{away_goals});
-#	$self->calc ($game->{home_last_six}, $game->{away_last_six});
+	my ($self, $home_expect, $away_expect) = @_;
+	$self->calc ($home_expect, $away_expect);
 
 	return {
 		home_win => $self->home_win_odds (),
@@ -267,8 +266,8 @@ sub get_match_odds {
 			both_sides_no => $_->{odds}->{both_sides_no},
 			over_2pt5 => $_->{odds}->{over_2pt5},
 			under_2pt5 => $_->{odds}->{under_2pt5},
-#			home_double => $_->{odds}->{home_double},
-#			away_double => $_->{odds}->{away_double},
+			home_double => $_->{odds}->{home_double},
+			away_double => $_->{odds}->{away_double},
 		} } @$sorted
 	];
 }

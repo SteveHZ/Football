@@ -12,10 +12,9 @@ use MyJSON qw(write_json);
 use Moo;
 use namespace::clean;
 
-#	models can be defined by Football::BenchTest::Adapter::Game_Prediction_Models
-has 'models' => (is => 'ro', default => sub { {} });
 has 'fixtures' => (is => 'ro', default => sub { [] }, required => 1);
 has 'leagues' => (is => 'ro', default => sub { [] }, required => 1);
+has 'expect_model' => (is => 'ro', default => sub { {} });
 
 sub BUILD {
 	my $self = shift;
@@ -29,12 +28,10 @@ sub BUILD {
 sub calc_goal_expect {
 	my $self = shift;
 
-	$self->{models}->{expect_model} = Football::Game_Predictions::Goal_Expect_Model->new (
+	my $expect = $self->{expect_model} = Football::Game_Predictions::Goal_Expect_Model->new (
 		fixtures => $self->{fixtures},
 		leagues => $self->{leagues},
-	) unless defined $self->{models}->{expect_model};
-	my $expect = $self->{models}->{expect_model};
-
+	);
 	my $teams = $expect->calc_goal_expects ();
 	for my $game ( $self->{fixtures}->@* ) {
 		$expect->calc_expected_scores ($teams, $game);
@@ -44,20 +41,17 @@ sub calc_goal_expect {
 }
 
 sub sort_expect_data {
-	my ($self, $sorted_by) = @_;
-	die "No model defined !!" unless defined $self->{models}->{expect_model};
-	return $self->{models}->{expect_model}->sort_expect_data ($sorted_by);
+	my $self = shift;
+	die "No model defined !!" unless defined $self->{expect_model};
+	return $self->{expect_model}->sort_expect_data ('expected_goal_diff');
 }
 
 sub calc_match_odds {
 	my ($self, $model_name) = @_;
-
-	$self->{models}->{odds_model} = Football::Game_Predictions::Match_Odds->new (weighted => 1)
-		unless defined $self->{models}->{odds_model};
-	my $odds = $self->{models}->{odds_model};
+	my $odds = Football::Game_Predictions::Match_Odds->new (weighted => 1);
 
 	for my $game ( $self->{fixtures}->@* ) {
-		$game->{odds} = $odds->calc_odds ($game)
+		$game->{odds} = $self->get_odds ($odds, $game);
 	}
 
 	my $sorted = $odds->sort_sheets ($self->{fixtures});
@@ -66,12 +60,14 @@ sub calc_match_odds {
 	return $sorted;
 }
 
+sub get_odds {
+	my ($self, $odds, $game) = @_;
+	return $odds->calc_odds ($game->{home_goals}, $game->{away_goals});
+}
+
 sub calc_skellam_dist {
 	my $self = shift;
-
-	$self->{models}->{skellam_model} = Football::Game_Predictions::Skellam_Dist_Model->new ()
-		unless defined $self->{models}->{skellam_model};
-	my $skellam = $self->{models}->{skellam_model};
+	my $skellam = Football::Game_Predictions::Skellam_Dist_Model->new ();
 
 	for my $game ( $self->{fixtures}->@* ) {
 		$game->{skellam} = $skellam->calc ($game);
@@ -81,14 +77,12 @@ sub calc_skellam_dist {
 
 sub calc_over_under {
 	my $self = shift;
-	my $stat_size = $default_stats_size * 2;
-
-	my $sorted = {};
-	$self->{models}->{over_under_model} = Football::Game_Predictions::Over_Under_Model->new (
+	my $over_under = Football::Game_Predictions::Over_Under_Model->new (
 		fixtures => $self->{fixtures},
 		leagues => $self->{leagues},
-	) unless defined $self->{models}->{over_under_model};
-	my $over_under = $self->{models}->{over_under_model};
+	);
+	my $stat_size = $default_stats_size * 2;
+	my $sorted = {};
 
 	for my $game ( $self->{fixtures}->@* ) {
 		my $home = $game->{home_team};
@@ -157,47 +151,7 @@ sub get_expect_line_data {
 sub get_data {
 	my ($self, $sorted) = @_;
 	return $sorted->{expect}->[0];
-#	return @{ $sorted->{expect} }[0];
 }
-
-=head
-sub calc_match_odds {
-	my ($self, $model_name) = @_;
-
-	$self->{models}->{odds_model} = Football::Game_Predictions::Match_Odds->new (weighted => 1)
-		unless defined $self->{models}->{odds_model};
-	my $odds = $self->{models}->{odds_model};
-
-	for my $game ( $self->{fixtures}->@* ) {
-		$odds->calc ($game->{home_goals}, $game->{away_goals});
-
-		$game->{home_win} = $odds->home_win_odds ();
-		$game->{away_win} = $odds->away_win_odds ();
-		$game->{draw} = $odds->draw_odds ();
-		$game->{both_sides_yes} = $odds->both_sides_yes_odds ();
-		$game->{both_sides_no} = $odds->both_sides_no_odds ();
-		$game->{under_2pt5} = $odds->under_2pt5_odds ();
-		$game->{over_2pt5} = $odds->over_2pt5_odds ();
-	}
-	my $sorted = $odds->sort_sheets ($self->{fixtures});
-#	Write out data to then read from value.pl
-	$odds->save_match_odds ($sorted->{home_win}, $self->{path}->{$model_name});
-	return $sorted;
-}
-
-sub calc_skellam_dist {
-	my $self = shift;
-
-	$self->{models}->{skellam_model} = Football::Game_Predictions::Skellam_Dist_Model->new ()
-		unless defined $self->{models}->{skellam_model};
-	my $skellam = $self->{models}->{skellam_model};
-
-	for my $game ( $self->{fixtures}->@* ) {
-		$game->{skellam} = $skellam->calc ($game->{home_goals}, $game->{away_goals});
-	}
-	return $skellam->schwartz_sort ($self->{fixtures});
-}
-=data
 
 =pod
 

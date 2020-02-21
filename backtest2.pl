@@ -6,7 +6,11 @@ use MyTemplate;
 use Football::Globals qw(@league_names @csv_leagues);
 use Football::BackTest::FileList;
 use Football::BackTest::Season;
-use Football::BackTest::Game_Predictions;
+use Football::BackTest::Season_Predictions;
+use Football::BackTest::Recent_Predictions;
+
+#my $start_year = 2005;  # earlier files don't have all fields
+my $start_year = 2015;  # for testing
 
 my $season = Football::BackTest::Season->new (
     callback => sub { do_predicts (@_) },
@@ -18,7 +22,7 @@ my $file_list = Football::BackTest::FileList->new (
     path => 'C:/Mine/perl/Football/data/historical',
     func => sub {
         my $filename = shift;
-        return 1 if $filename =~ /\.csv$/ && substr ($filename, 0, -4) >= 2005; # earlier files don't have all fields
+        return 1 if $filename =~ /\.csv$/ && substr ($filename, 0, -4) >= $start_year;
         return 0;
     },
 );
@@ -43,10 +47,14 @@ sub do_predicts {
 sub get_predicts {
 	my ($league, $game) = @_;
 
-    my $predict_model = Football::BackTest::Game_Predictions->new ();
+    my $season_model = Football::BackTest::Season_Predictions->new ();
+    my $recent_model = Football::BackTest::Recent_Predictions->new ();
+    $season_model->calc_goal_expect ($game, $league),
+    $recent_model->calc_goal_expect ($game, $league),
+
     return {
-        expect => $predict_model->calc_goal_expect ($game, $league),
-        match_odds => $predict_model->calc_match_odds ($game),
+        season_match_odds => $season_model->calc_match_odds ($game),
+        recent_match_odds => $recent_model->calc_match_odds ($game),
     };
 }
 
@@ -60,18 +68,28 @@ sub get_data {
         home_score => $game->{home_score},
         away_score => $game->{away_score},
         result => $game->{result},
-        home_expect => $data->{expect}->{$game->{home_team}}->{expect_home_for},
-        away_expect => $data->{expect}->{$game->{away_team}}->{expect_away_for},
-        home_win => $data->{match_odds}->{home_win},
-        away_win => $data->{match_odds}->{away_win},
-        draw => $data->{match_odds}->{draw},
-        over_2pt5 => $data->{match_odds}->{over_2pt5},
-        under_2pt5 => $data->{match_odds}->{under_2pt5},
+
+        season_home_expect => sprintf ("%.2f", $game->{home_goals}),
+        season_away_expect => sprintf ("%.2f", $game->{away_goals}),
+        season_home_win => $data->{season_match_odds}->{home_win},
+        season_away_win => $data->{season_match_odds}->{away_win},
+        season_draw => $data->{season_match_odds}->{draw},
+        season_over_2pt5 => $data->{season_match_odds}->{over_2pt5},
+        season_under_2pt5 => $data->{season_match_odds}->{under_2pt5},
+
+        recent_home_expect => sprintf ("%.2f", $game->{home_last_six}),
+        recent_away_expect => sprintf ("%.2f", $game->{away_last_six}),
+        recent_home_win => $data->{recent_match_odds}->{home_win},
+        recent_away_win => $data->{recent_match_odds}->{away_win},
+        recent_draw => $data->{recent_match_odds}->{draw},
+        recent_over_2pt5 => $data->{recent_match_odds}->{over_2pt5},
+        recent_under_2pt5 => $data->{recent_match_odds}->{under_2pt5},
+
         b365h => $game->{b365h},
         b365a => $game->{b365a},
         b365d => $game->{b365d},
-        b365over => $game->{b365over},
-        b365under => $game->{b365under},
+        b365over => $game->{av_over},
+        b365under => $game->{av_under},
     };
 }
 
