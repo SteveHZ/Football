@@ -1,85 +1,118 @@
+# backtest.pl 16/02/20
 
-#   backtest.pl 01-23/03/19
+use MyHeader;
+use Football::Globals qw(@league_names);
+use Football::BackTest::Model;
+use DBI;
 
-use strict;
-use warnings;
-use Data::Dumper;
+my $model = Football::BackTest::Model->new ();
+my $dbh = $model->connect (dir => 'C:/Mine/perl/Football/data/backtest');
+my $totals = {};
 
-use Football::Globals qw(@league_names @csv_leagues);
-use Football::BenchTest::Adapter::Game_Prediction_Models;
-use Football::BenchTest::Season;
-use Football::BenchTest::FileList;
-use Football::BenchTest::Goal_Expect_Model;
-use Football::BenchTest::Goal_Diffs_Model;
-use Football::BenchTest::Over_Under_Model;
-use Football::BenchTest::OU_Points_Model;
-use Football::BenchTest::OU_Points2_Model;
-use Football::BenchTest::Spreadsheets::BenchTest_View;
+for my $query (get_query ()->@*) {
+    my $stake = {};
+    my $wins = {};
+    $totals->{stake} = 0;
+    $totals->{wins} = 0;
 
-my $filename = 'C:/Mine/perl/Football/reports/backtest.xlsx';
-my $models = [
-    Football::BenchTest::Goal_Expect_Model->new (),
-    Football::BenchTest::Goal_Diffs_Model->new (),
-    Football::BenchTest::Over_Under_Model->new (),
-    Football::BenchTest::OU_Points_Model->new (),
-    Football::BenchTest::OU_Points2_Model->new (),
-];
+    say "\n\n$query->{query} :";
+    for my $league (@league_names) {
+        $stake->{$league} = 0;
+        $wins->{$league} = 0;
 
-my $file_list = Football::BenchTest::FileList->new (
-    leagues     => \@league_names,
-    csv_leagues => \@csv_leagues,
-);
-my $files = $file_list->get_current ();
-#print Dumper $files;<STDIN>;
-
-my $season = Football::BenchTest::Season->new (
-    models      => $models,
-    files       => $files,
-    callback    => sub { do_predict_models (@_) },
-);
-$season->run ();
-
-my $bt_view = Football::BenchTest::Spreadsheets::BenchTest_View->new (
-    models      => $models,
-    filename    => $filename,
-);
-$bt_view->write ();
-
-sub do_predict_models {
-	my ($self, $game, $league) = @_;
-    my $sorted = {};
-    my $predict_model = Football::BenchTest::Adapter::Game_Prediction_Models->new (
-        game    => $game,
-        league  => $league,
-    );
-
-	my ($teams, $expect_data) = $predict_model->calc_goal_expect ();
-    $sorted->{expect} = $expect_data;
-    $sorted->{over_under} = $predict_model->calc_over_under ();
-    return $predict_model->get_data ($sorted);
+        $model->do_query (
+            league => $league,
+            data => { stake => $stake, wins => $wins, totals => $totals },
+            query => $query->{query},
+            callback => sub { $query->{callback}->(@_) },
+        );
+    }
+    for my $league (@league_names) {
+        if ($stake->{$league}) {
+            printf "\nLeague = %-20s Stake = %4d \tWins = %8.2f \tRatio = %0.2f",
+                $league, $stake->{$league}, $wins->{$league}, $wins->{$league} / $stake->{$league};
+        }
+    }
+    printf "\nTotal Stake = %4d \tTotal Wins = %8.2f \tRatio = %0.2f",
+        $totals->{stake}, $totals->{wins}, $totals->{wins} / $totals->{stake};
 }
 
-=pod
+say "";
+$model->disconnect ();
 
-=head1 NAME
+sub get_query {
+    return [
+        {
+            query => "season_home_expect > season_away_expect + 2",
+            callback => sub {
+                my ($row, $league, $data) = @_;
+                if ($row->{result} eq 'H' && $row->{b365h}) {
+                    $data->{wins}->{$league} += $row->{b365h};
+                    $data->{totals}->{wins} += $row->{b365h};
+                }
+            },
+        },
+        {
+            query => "season_home_expect + 2 < season_away_expect",
+            callback => sub {
+                my ($row, $league, $data) = @_;
+                if ($row->{result} eq 'A' && $row->{b365a}) {
+                    $data->{wins}->{$league} += $row->{b365a};
+                    $data->{totals}->{wins} += $row->{b365a};
+                }
+            },
+        },
+        {
+            query => "recent_home_expect > recent_away_expect + 2",
+            callback => sub {
+                my ($row, $league, $data) = @_;
+                if ($row->{result} eq 'H' && $row->{b365h}) {
+                    $data->{wins}->{$league} += $row->{b365h};
+                    $data->{totals}->{wins} += $row->{b365h};
+                }
+            },
+        },
+    {
+            query => "recent_home_expect + 2 < recent_away_expect",
+            callback => sub {
+                my ($row, $league, $data) = @_;
+                if ($row->{result} eq 'A' && $row->{b365a}) {
+                    $data->{wins}->{$league} += $row->{b365a};
+                    $data->{totals}->{wins} += $row->{b365a};
+                }
+            },
+        },
+    {
+            query => "season_draw <= 2 and season_draw < season_home_win and season_draw < season_away_win",
+            callback => sub {
+                my ($row, $league, $data) = @_;
+                if ($row->{result} eq 'D' && $row->{b365d}) {
+                    $data->{wins}->{$league} += $row->{b365d};
+                    $data->{totals}->{wins} += $row->{b365d};
+                }
+            },
+        },
+        {
+            query => "recent_draw <= 2 and recent_draw < recent_home_win and recent_draw < recent_away_win",
+            callback => sub {
+                my ($row, $league, $data) = @_;
+                if ($row->{result} eq 'D' && $row->{b365d}) {
+                    $data->{wins}->{$league} += $row->{b365d};
+                    $data->{totals}->{wins} += $row->{b365d};
+                }
+            },
+        },
+##        {
+#            query => "draw <= 2.3 and draw < home_win and draw < away_win",
+#            callback => sub {
+#                my ($row, $league, $data) = @_;
+#                if ($row->{b365d}) {
+#                    $data->{wins}->{$league} += $row->{b365d} if $row->{result} eq 'D';
+#                }
+#            },
+#        },
 
-Football/backtest.pl
-
-=head1 SYNOPSIS
-
-perl backtest.pl
-
-=head1 DESCRIPTION
-
-Stand-alone script to backtest full season data with chosen models
-
-=head1 AUTHOR
-
-Steve Hope
-
-=head1 LICENSE
-
-This library is free software. You can redistribute it and/or modify
-it under the same terms as Perl itself.
-
-=cut
+    ];
+}
+#   say " $row->{date} $row->{home_team} $row->{away_team} $row->{home_score}-$row->{away_score}
+#         $row->{home_win} $row->{draw} $row->{away_win}";

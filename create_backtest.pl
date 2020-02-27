@@ -1,4 +1,4 @@
-#   backtest2.pl 02-15/02/20
+#   create_backtest.pl 02-15/02/20
 
 use MyHeader;
 use MyTemplate;

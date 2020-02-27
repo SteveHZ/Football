@@ -1,13 +1,10 @@
-package Football::BackTest::Game_Predictions;
+package Football::BackTest::Roles::Game_Predictions;
 
-use List::Util qw(any);
 use Football::Game_Predictions::Goal_Expect_Model;
 use Football::Game_Predictions::Match_Odds;
 
-use Moo;
+use Moo::Role;
 use namespace::clean;
-
-extends 'Football::Game_Predictions::Model';
 
 sub calc_goal_expect {
     my ($self, $game, $league) = @_;
@@ -24,27 +21,17 @@ sub calc_goal_expect {
 
 sub calc_match_odds {
 	my ($self, $game) = @_;
-	my $odds = Football::Game_Predictions::Match_Odds->new (weighted => 1);
 
-    return $game->{odds} = $self->get_odds ($odds, $game);
+    my $odds = Football::Game_Predictions::Match_Odds->new (weighted => 1);
+    return $self->get_odds ($odds, $game);
 }
 
-#has 'game' => (is => 'ro', required => 1);
-#has 'league' => (is => 'ro', required => 1);
-
-#sub BUILD {
-#    my $self = shift;
-#    $self->{fixtures}    = [ $self->{game} ];
-#    $self->{leagues}     = [ $self->{league} ];
-#
-#    my @expects_args = qw( expect_model over_under_model );
-#	for my $name (keys %{$self->{models}} ) {
-#        if (any { $_ eq $name} @expects_args) {
-#       		$self->{models}->{$name}->{fixtures} = $self->{fixtures};
-#    		$self->{models}->{$name}->{leagues} = $self->{leagues};
-#        }
-#    }
-#}
+# temporary sub to allow hash to br returned from Match_Odds version
+sub get_odds {
+	my ($self, $odds, $game) = @_;
+#	return $odds->calc_odds ($game->{home_last_six}, $game->{away_last_six});
+	return $odds->calc_odds ($game->{home_goals}, $game->{away_goals});
+}
 
 =pod
 

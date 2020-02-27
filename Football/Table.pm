@@ -89,10 +89,15 @@ sub do_goals {
 sub do_recent_goal_diff {
 	my ($self, $game) = @_;
 
-	shift  @{ $self->{table}->{ $game->{home_team} }->{rgd_list} };
-	shift  @{ $self->{table}->{ $game->{away_team} }->{rgd_list} };
-	push ( @{ $self->{table}->{ $game->{home_team} }->{rgd_list} }, $game->{home_score} - $game->{away_score} );
-	push ( @{ $self->{table}->{ $game->{away_team} }->{rgd_list} }, $game->{away_score} - $game->{home_score} );
+	shift  $self->{table}->{ $game->{home_team} }->{rgd_list}->@*;
+	shift  $self->{table}->{ $game->{away_team} }->{rgd_list}->@*;
+	push   $self->{table}->{ $game->{home_team} }->{rgd_list}->@*, $game->{home_score} - $game->{away_score};
+	push   $self->{table}->{ $game->{away_team} }->{rgd_list}->@*, $game->{away_score} - $game->{home_score};
+
+#	shift  @{ $self->{table}->{ $game->{home_team} }->{rgd_list} };
+#	shift  @{ $self->{table}->{ $game->{away_team} }->{rgd_list} };
+#	push ( @{ $self->{table}->{ $game->{home_team} }->{rgd_list} }, $game->{home_score} - $game->{away_score} );
+#	push ( @{ $self->{table}->{ $game->{away_team} }->{rgd_list} }, $game->{away_score} - $game->{home_score} );
 }
 
 sub sort_table {

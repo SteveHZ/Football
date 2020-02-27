@@ -57,7 +57,7 @@ sub get_most_recent {
 	my ($self, $num_games) = @_;
 	my @results = ();
 
-	my @list = @{ $self->{games} };
+	my @list = $self->{games}->@*;
 	my $full_stats = $self->splice_array (\@list, $num_games);
 
 	push @results, $_->{result} for @$full_stats;
@@ -69,9 +69,9 @@ sub splice_array {
 
 	my $last = scalar @$arrayref;
 	my $start = max (0, $last - $num_games);
-	my $games = ($start == 0) ? $last : $num_games;
+	my $end = ($start == 0) ? $last : $num_games;
 
-	return [ splice (@$arrayref, $start, $games) ];
+	return [ splice (@$arrayref, $start, $end) ];
 }
 
 =pod

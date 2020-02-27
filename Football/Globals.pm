@@ -128,6 +128,8 @@ our $csv_fields = {
 	b365under => 'B365<2.5',
 	av_over => 'BbAv>2.5',
 	av_under => 'BbAv<2.5',
+	home_shots => 'HS',
+	away_shots => 'AS',
 };
 
 =pod

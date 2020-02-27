@@ -10,19 +10,21 @@ use MyJSON qw(write_json);
 use Moo;
 use namespace::clean;
 
+my $valid_types = sub { qr/season|recent/ };
+has 'type' => (is => 'ro', required => 1,
+    isa => sub { die "Invalid type : $_[0]" unless $_[0] =~ $valid_types->() },
+);
+
 has 'leagues' => (is => 'ro', required => 1);
 has 'fixtures' => (is => 'ro', required => 1);
 has 'model_name' => (is => 'ro', required => 1);
-has 'type' => (is => 'ro', required => 1,
-    isa => sub { die "Invalid type : $_[0]" unless $_[0] =~ /season|recent/ },
-);
 has 'model' => (is => 'ro');
 
 sub BUILD {
     my $self = shift;
     my $dispatch = {
         'season' => sub { Football::Game_Predictions::Model->new (@_) },
-        'recent' => sub { Football::Game_Predictions::Model_Recent->new (@_) },
+        'recent' => sub { Football::Game_Predictions::Recent_Model->new (@_) },
     };
     $self->{model} = $dispatch->{ $self->{type} }->(
         fixtures => $self->{fixtures},
@@ -48,8 +50,8 @@ sub do_predict_models {
         skellam => $model->calc_skellam_dist (),
         over_under => $model->calc_over_under (),
     };
-    $sorted->{data} = $model->save_expect_data ( $sorted->{expect}, $self->{model_name} ); # for combine.pl
 #   also used by Football::Game_Predictions::Views::UK;
+    $sorted->{data} = $model->save_expect_data ( $sorted->{expect}, $self->{model_name} ); # for combine.pl
 
 	return ($teams, $sorted);
 }

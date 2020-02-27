@@ -62,6 +62,7 @@ sub calc_match_odds {
 
 sub get_odds {
 	my ($self, $odds, $game) = @_;
+#	return $odds->calc_odds ($game->{home_last_six}, $game->{away_last_six});
 	return $odds->calc_odds ($game->{home_goals}, $game->{away_goals});
 }
 

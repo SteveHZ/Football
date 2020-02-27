@@ -109,9 +109,9 @@ sub get_cmdline {
 sub get_model_and_view {
 	my $options = shift;
 
-	return (Football::Model->new (), Football::View->new ()) if $options->{uk};
-	return (Euro::Model->new (), Euro::View->new ()) if $options->{euro};
-	return (Summer::Model->new (), Summer::View->new ()) if $options->{summer};
+	return ( Football::Model->new (), Football::View->new () ) if $options->{uk};
+	return ( Euro::Model->new (), Euro::View->new () ) if $options->{euro};
+	return ( Summer::Model->new (), Summer::View->new () ) if $options->{summer};
 	die "Unknown error in get_model_and_view";
 }
 

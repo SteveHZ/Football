@@ -84,10 +84,21 @@ sub calculate_aways {
 sub calculate_last_six {
 	my ($self, $team_hash, $league, $team) = @_;
 
-	$team_hash->{last_six_for} 			= $league->get_last_six_for ($team);
-	$team_hash->{last_six_against} 		= $league->get_last_six_against ($team);
-	$team_hash->{av_last_six_for} 		= $team_hash->{last_six_for} / 6;
-	$team_hash->{av_last_six_against} 	= $team_hash->{last_six_against} / 6;
+	my $home_last_six_for = $league->get_home_last_six_for ($team);
+	my $home_last_six_against = $league->get_home_last_six_against ($team);
+	my $away_last_six_for = $league->get_away_last_six_for ($team);
+	my $away_last_six_against = $league->get_away_last_six_against ($team);
+
+	my $homes = $league->get_homes ($team);
+	my $aways = $league->get_aways ($team);
+	$team_hash->{av_home_last_six_for} = _get_average ($home_last_six_for, $homes);
+	$team_hash->{av_home_last_six_against} = _get_average ($home_last_six_against, $homes);
+	$team_hash->{av_away_last_six_for} = _get_average ($away_last_six_for, $aways);
+	$team_hash->{av_away_last_six_against} = _get_average ($home_last_six_against, $aways);
+#	$team_hash->{last_six_for} 			= $league->get_last_six_for ($team);
+#	$team_hash->{last_six_against} 		= $league->get_last_six_against ($team);
+#	$team_hash->{av_last_six_for} 		= $team_hash->{last_six_for} / 6;
+#	$team_hash->{av_last_six_against} 	= $team_hash->{last_six_against} / 6;
 }
 
 sub calculate_expects {
@@ -98,10 +109,14 @@ sub calculate_expects {
 	$team_hash->{expect_away_for} 		= _format ( $team_hash->{av_away_for} 		/ $league->{av_away_goals} );
 	$team_hash->{expect_away_against}	= _format ( $team_hash->{av_away_against} 	/ $league->{av_home_goals} );
 
-	$team_hash->{expect_last_six_home_for} 		= _format ( $team_hash->{av_last_six_for} 		/ $league->{av_home_goals} );
-	$team_hash->{expect_last_six_home_against} 	= _format ( $team_hash->{av_last_six_against} 	/ $league->{av_away_goals} );
-	$team_hash->{expect_last_six_away_for} 		= _format ( $team_hash->{av_last_six_for} 		/ $league->{av_away_goals} );
-	$team_hash->{expect_last_six_away_against} 	= _format ( $team_hash->{av_last_six_against} 	/ $league->{av_home_goals} );
+	$team_hash->{expect_last_six_home_for} 		= _format ( $team_hash->{av_home_last_six_for} 		/ $league->{av_home_goals} );
+	$team_hash->{expect_last_six_home_against} 	= _format ( $team_hash->{av_home_last_six_against} 	/ $league->{av_away_goals} );
+	$team_hash->{expect_last_six_away_for} 		= _format ( $team_hash->{av_away_last_six_for} 		/ $league->{av_away_goals} );
+	$team_hash->{expect_last_six_away_against} 	= _format ( $team_hash->{av_away_last_six_against} 	/ $league->{av_home_goals} );
+#	$team_hash->{expect_last_six_home_for} 		= _format ( $team_hash->{av_last_six_for} 		/ $league->{av_home_goals} );
+#	$team_hash->{expect_last_six_home_against} 	= _format ( $team_hash->{av_last_six_against} 	/ $league->{av_away_goals} );
+#	$team_hash->{expect_last_six_away_for} 		= _format ( $team_hash->{av_last_six_for} 		/ $league->{av_away_goals} );
+#	$team_hash->{expect_last_six_away_against} 	= _format ( $team_hash->{av_last_six_against} 	/ $league->{av_home_goals} );
 }
 
 sub calc_expected_scores {

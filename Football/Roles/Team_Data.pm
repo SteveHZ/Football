@@ -51,6 +51,16 @@ sub get_home_goal_diff {
 	return $self->{homes}->{$team}->{goal_difference};
 }
 
+sub get_home_last_six_for {
+	my ($self, $team) = @_;
+	return $self->{homes}->{$team}->{home_last_six_for};
+}
+
+sub get_home_last_six_against {
+	my ($self, $team) = @_;
+	return $self->{homes}->{$team}->{home_last_six_against};
+}
+
 # Aways
 
 sub get_aways {
@@ -83,7 +93,17 @@ sub get_away_goal_diff {
 	return $self->{aways}->{$team}->{goal_difference};
 }
 
-# Last Six
+sub get_away_last_six_for {
+	my ($self, $team) = @_;
+	return $self->{aways}->{$team}->{away_last_six_for};
+}
+
+sub get_away_last_six_against {
+	my ($self, $team) = @_;
+	return $self->{aways}->{$team}->{away_last_six_against};
+}
+
+# Last Six Games
 
 sub get_last_six {
 	my ($self, $team) = @_;
@@ -105,6 +125,11 @@ sub get_last_six_over_under {
 	return $self->{last_six}->{$team}->{last_six_over_under};
 }
 
+sub get_last_six_goal_diff {
+	my ($self, $team) = @_;
+	return $self->{last_six}->{$team}->{goal_difference};
+}
+
 sub get_last_six_for {
 	my ($self, $team) = @_;
 	return $self->{last_six}->{$team}->{last_six_for};
@@ -113,11 +138,6 @@ sub get_last_six_for {
 sub get_last_six_against {
 	my ($self, $team) = @_;
 	return $self->{last_six}->{$team}->{last_six_against};
-}
-
-sub get_last_six_goal_diff {
-	my ($self, $team) = @_;
-	return $self->{last_six}->{$team}->{goal_difference};
 }
 
 # Get Most Recent

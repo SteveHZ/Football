@@ -143,10 +143,10 @@ sub update_away {
 
 sub do_homes {
 	my ($self, $teams) = @_;
-#use Data::Dumper;print Dumper $self->{games};<STDIN>;
 	my $list = {};
 	for my $team ($self->{team_list}->@*) {
-		my ( $homes, $full_homes ) = $teams->{$team}->get_homes ();
+		my ( $homes, $full_homes ) = $teams->{$team}->get_homes (); # last six homes
+		my ( $home_last_six_for, $home_last_six_against ) = $self->_get_last_six_scores ($full_homes);
 		$list->{$team} = {
  			name => $team,
 			homes => $homes,
@@ -155,6 +155,8 @@ sub do_homes {
 			draws => $self->_get_draws ($homes),
 			goal_difference => $self->{table}->calc_goal_difference ($full_homes),
 			home_over_under => $self->_get_over_under ($full_homes),
+			home_last_six_for => $home_last_six_for,
+			home_last_six_against => $home_last_six_against,
 		};
 	}
 	return $list;
@@ -165,7 +167,8 @@ sub do_aways {
 	my $list = {};
 
 	for my $team ($self->{team_list}->@*) {
-		my ( $aways, $full_aways ) = $teams->{$team}->get_aways ();
+		my ( $aways, $full_aways ) = $teams->{$team}->get_aways (); # last six aways
+		my ( $away_last_six_for, $away_last_six_against ) = $self->_get_last_six_scores ($full_aways);
 		$list->{$team} = {
  			name => $team,
 			aways => $aways,
@@ -174,6 +177,8 @@ sub do_aways {
 			draws => $self->_get_draws ($aways),
 			goal_difference => $self->{table}->calc_goal_difference ($full_aways),
 			away_over_under => $self->_get_over_under ($full_aways),
+			away_last_six_for => $away_last_six_for,
+			away_last_six_against => $away_last_six_against,
 		};
 	}
 	return $list;

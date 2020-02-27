@@ -148,10 +148,14 @@ sub get_write_data_rows {
 		{ $teams->{$team}->{expect_away_for} => $self->{float_format} },
 		{ $teams->{$team}->{expect_away_against} => $self->{float_format} },
 
-		{ $teams->{$team}->{last_six_for} => $self->{format} },
-		{ $teams->{$team}->{av_last_six_for} => $self->{float_format} },
-		{ $teams->{$team}->{last_six_against} => $self->{format} },
-		{ $teams->{$team}->{av_last_six_against} => $self->{float_format} },
+		{ $teams->{$team}->{expect_last_six_home_for} => $self->{format} },
+		{ $teams->{$team}->{expect_last_six_home_against} => $self->{float_format} },
+		{ $teams->{$team}->{expect_last_six_away_for} => $self->{format} },
+		{ $teams->{$team}->{expect_last_six_away_against} => $self->{float_format} },
+#		{ $teams->{$team}->{last_six_for} => $self->{format} },
+#		{ $teams->{$team}->{av_last_six_for} => $self->{float_format} },
+#		{ $teams->{$team}->{last_six_against} => $self->{format} },
+#		{ $teams->{$team}->{av_last_six_against} => $self->{float_format} },
 	];
 }
 
@@ -205,8 +209,8 @@ sub do_write_data_header {
 	$worksheet->merge_range ('L1:M1', "Away Ag", $format);
 	$worksheet->merge_range ('O1:P1', "Home F/A", $format);
 	$worksheet->merge_range ('R1:S1', "Away F/A", $format);
-	$worksheet->merge_range ('U1:V1', "Last Six For", $format);
-	$worksheet->merge_range ('X1:Y1', "Last Six Ag", $format);
+	$worksheet->merge_range ('U1:V1', "L6 Home F/A", $format);
+	$worksheet->merge_range ('X1:Y1', "L6 Ag F/A", $format);
 }
 
 sub get_all_formats {
