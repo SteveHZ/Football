@@ -11,7 +11,7 @@ use Football::Game_Predictions::MyPoisson;
 use Football::Game_Predictions::Match_Odds;
 
 my $p = Football::Game_Predictions::MyPoisson->new ();
-my $game = Football::Game_Predictions::Match_Odds->new ( max => 10 );
+my $game = Football::Game_Predictions::Match_Odds->new ( max => 10, weighted => 0 );
 
 subtest 'constructors' => sub {
 	plan 2;

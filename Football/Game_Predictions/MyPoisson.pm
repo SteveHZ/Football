@@ -1,6 +1,7 @@
 package Football::Game_Predictions::MyPoisson;
 
 #	Football::MyPoisson.pm 02-05/07/17, 18/08/17
+#	pure perl version
 
 use Math::Round qw(nearest);
 use MyMath qw(power factorial);

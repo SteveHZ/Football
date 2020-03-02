@@ -20,6 +20,7 @@ my $predict = Football::Game_Predictions::Controller->new (
 	leagues => $data->{leagues},
 	fixtures => $stats->{by_match},
 	model_name => $model->model_name,
+	type => 'season',
 );
 
 subtest 'constructor' => sub {

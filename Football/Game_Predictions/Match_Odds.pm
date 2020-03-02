@@ -6,27 +6,28 @@ use v5.10; # state
 use Math::Round qw(nearest);
 use List::Util qw(min);
 use Football::Game_Predictions::MyPoisson;
+#use Football::Game_Predictions::Poisson;
 use MyJSON qw(write_json);
 
 use Moo;
 use namespace::clean;
 
+has 'max' => (is => 'ro', default => 5);
+has 'weighted' => (is => 'ro', default => 0);
+
 sub BUILD {
 	my ($self, $args) = @_;
 
-	$self->{max} = $args->{max};
-	$self->{max} //= 5;
-
-	$self->{weighted} = $args->{weighted};
-	$self->{weighted} //= 0;
-
-	$self->{stats} = ( [] );
+	$self->{stats} = [];
 	$self->{sheet_names} = [ qw(home_win away_win draw over_2pt5 under_2pt5 home_double away_double both_sides_yes both_sides_no) ];
 }
 
 sub calc_odds {
 	my ($self, $home_expect, $away_expect) = @_;
 	$self->calc ($home_expect, $away_expect);
+#	use Football::Game_Predictions::Poisson ( uses Math::CDF library C routines)
+#	my $p = Football::Game_Predictions::Poisson->new (weighted => $self->{weighted}, max => $self->{max});
+#	$self->{stats} = $p->calc_poisson ($home_expect, $away_expect);
 
 	return {
 		home_win => $self->home_win_odds (),
@@ -41,6 +42,7 @@ sub calc_odds {
 	};
 }
 
+#	use Football::Game_Predictions::MyPoisson ( pure perl version )
 sub calc {
 	my ($self, $home_expect, $away_expect) = @_;
 	state $p = Football::Game_Predictions::MyPoisson->new ();

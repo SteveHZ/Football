@@ -145,7 +145,7 @@ sub get_home_double {
             && $_->{fdata}->{b365h} ne ''    #   -------------""----------------
             && $_->{fdata}->{b365d} ne ''
             && $_->{home_double} * $self->{overround}
-             < calc_double_chance ($_->{fdata}->{b365h}, $_->{fdata}->{b365d})
+             < _calc_double_chance ($_->{fdata}->{b365h}, $_->{fdata}->{b365d})
         } @$mine
     ];
 }
@@ -160,14 +160,20 @@ sub get_away_double {
             && $_->{fdata}->{b365a} ne ''    #   -------------""----------------
             && $_->{fdata}->{b365d} ne ''
             && $_->{away_double} * $self->{overround}
-             < calc_double_chance ($_->{fdata}->{b365a}, $_->{fdata}->{b365d})
+             < _calc_double_chance ($_->{fdata}->{b365a}, $_->{fdata}->{b365d})
         } @$mine
     ];
 }
 
-sub calc_double_chance {
+sub _calc_double_chance {
     my ($win, $draw) = @_;
     return nearest (0.01, 100 /(( 100/$win ) + (100/$draw)));
+}
+
+#   for testing
+sub calc_double_chance {
+    my $self = shift;
+    return _calc_double_chance (@_);
 }
 
 1;

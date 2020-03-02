@@ -29,6 +29,7 @@ sub _show_signed {
 
 sub _get_all_teams {
 	my ($games, $field) = @_;
+	$field //= 'home_team';
 	my @array = unique (
 		db => $games,
 		field => $field,
