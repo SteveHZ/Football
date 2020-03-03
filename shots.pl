@@ -6,6 +6,7 @@ use warnings;
 use Football::Football_Data_Model;
 use Football::Utils qw(_get_all_teams);
 use Text::Table;
+use MyStats qw(binomial_coeff binomial_prob);
 #use Math::CDF;
 #use Data::Dumper;
 
@@ -19,6 +20,8 @@ my $teams = _get_all_teams ($games,'home_team');
 my $totals = {};
 $totals->{home_goals} = 0;
 $totals->{away_goals} = 0;
+$totals->{home_shots} = 0;
+$totals->{away_shots} = 0;
 
 my $data = {};
 my @data_keys = ( qw(home_shots home_goals away_shots away_goals) );
@@ -29,26 +32,47 @@ for my $team (@$teams) {
 for my $game (@$games) {
     $data->{$game->{home_team}}->{home_shots} += $game->{home_shots};
     $data->{$game->{home_team}}->{home_goals} += $game->{home_score};
+    $totals->{home_shots} += $game->{home_shots};
     $totals->{home_goals} += $game->{home_score};
 
     $data->{$game->{away_team}}->{away_shots} += $game->{away_shots};
     $data->{$game->{away_team}}->{away_goals} += $game->{away_score};
+    $totals->{away_shots} += $game->{away_shots};
     $totals->{away_goals} += $game->{away_score};
 }
 
-my $table = Text::Table->new ('Team','Home Shots','Home Goals','Home Ratio','Away Shots','Away Goals','Away Ratio');
+my $av_home_shots = $totals->{home_shots} / scalar @$teams;
+my $av_away_shots = $totals->{away_shots} / scalar @$teams;
+
+for my $team (@$teams) {
+    $data->{$team}->{home_shots_ratio} = _format ($data->{$team}->{home_shots} / $av_home_shots);
+    $data->{$team}->{away_shots_ratio} = _format ($data->{$team}->{away_shots} / $av_away_shots);
+}
+
+my $table = Text::Table->new ('Team','Home Shots','Home Goals','Home Ratio','Away Shots','Away Goals','Away Ratio','HShotsRatio','AShotsRatio');
 for my $team (@$teams) {
     my $home_ratio = _format ($data->{$team}->{home_goals} / $data->{$team}->{home_shots});
     my $away_ratio = _format ($data->{$team}->{away_goals} / $data->{$team}->{away_shots});
 
     $table->add ($team, $data->{$team}->{home_shots}, $data->{$team}->{home_goals}, $home_ratio,
-                        $data->{$team}->{away_shots}, $data->{$team}->{away_goals}, $away_ratio
+                        $data->{$team}->{away_shots}, $data->{$team}->{away_goals}, $away_ratio,
+                        $data->{$team}->{home_shots_ratio}, $data->{$team}->{away_shots_ratio},
     );
 }
 print $table;
 
-print "\n".binomial ($data->{Liverpool}->{home_shots}, $data->{Liverpool}->{home_goals});
-print "\n".binomial2 ($data->{Liverpool}->{home_shots}, $data->{Liverpool}->{home_goals});
+print "\nAverage Home Shots = $av_home_shots";
+print "\nAverage Away Shots = $av_away_shots";
+print "\nbinomial = ".binomial ($data->{Liverpool}->{home_shots}, $data->{Liverpool}->{home_goals});
+print "\nbinomial2 = ".binomial2 ($data->{Liverpool}->{home_shots}, $data->{Liverpool}->{home_goals});
+print "\nhome ratio = ".$data->{Liverpool}->{home_goals} / $data->{Liverpool}->{home_shots};
+print "\nhome goals = ". $data->{Liverpool}->{home_goals};
+print "\nhome shots ratio = ".$data->{Liverpool}->{home_shots_ratio};
+<STDIN>;
+print "\nbinomial_prob = ",binomial_prob ($data->{Liverpool}->{home_goals} / $data->{Liverpool}->{home_shots}, $data->{Liverpool}->{home_goals},$data->{Liverpool}->{home_shots_ratio});
+print "\n3 out of 5 = ".binomial_coeff (5,3);
+print "\nLottery = ". binomial_coeff (49,6);
+print "\nLottery = ". binomial_coeff (59,6);
 
 sub _format {
     my $value = shift;

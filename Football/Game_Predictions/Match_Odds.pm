@@ -6,7 +6,6 @@ use v5.10; # state
 use Math::Round qw(nearest);
 use List::Util qw(min);
 use Football::Game_Predictions::MyPoisson;
-#use Football::Game_Predictions::Poisson;
 use MyJSON qw(write_json);
 
 use Moo;
@@ -25,9 +24,6 @@ sub BUILD {
 sub calc_odds {
 	my ($self, $home_expect, $away_expect) = @_;
 	$self->calc ($home_expect, $away_expect);
-#	use Football::Game_Predictions::Poisson ( uses Math::CDF library C routines)
-#	my $p = Football::Game_Predictions::Poisson->new (weighted => $self->{weighted}, max => $self->{max});
-#	$self->{stats} = $p->calc_poisson ($home_expect, $away_expect);
 
 	return {
 		home_win => $self->home_win_odds (),
@@ -98,7 +94,7 @@ sub home_win {
 			$total += $self->{stats}[$home_score][$away_score];
 		}
 	}
-	return nearest (0.01, $total);
+	return $total;
 }
 
 sub home_win_odds {
@@ -118,7 +114,7 @@ sub away_win {
 			$total += $self->{stats}[$home_score][$away_score];
 		}
 	}
-	return nearest (0.01, $total);
+	return $total;
 }
 
 sub away_win_odds {
@@ -136,7 +132,7 @@ sub draw {
 	for my $score (0..$self->{max}) {
 		$total += $self->{stats}[$score][$score];
 	}
-	return nearest (0.01, $total);
+	return $total;
 }
 
 sub draw_odds {
@@ -156,7 +152,7 @@ sub both_sides_yes {
 			$total += $self->{stats}[$home_score][$away_score];
 		}
 	}
-	return nearest (0.01, $total);
+	return $total;
 }
 
 sub both_sides_yes_odds {
@@ -176,7 +172,7 @@ sub both_sides_no {
 		$total += $self->{stats}[$score][0];
 		$total += $self->{stats}[0][$score];
 	}
-	return nearest (0.01, $total);
+	return $total;
 }
 
 sub both_sides_no_odds {
@@ -198,7 +194,7 @@ sub under_2pt5 {
 			}
 		}
 	}
-	return nearest (0.01, $total);
+	return $total;
 }
 
 sub under_2pt5_odds {
@@ -220,7 +216,7 @@ sub over_2pt5 {
 			}
 		}
 	}
-	return nearest (0.01, $total);
+	return $total;
 }
 
 sub over_2pt5_odds {
@@ -274,6 +270,28 @@ sub get_match_odds {
 	];
 }
 
+=head
+
+#use Football::Game_Predictions::Poisson; # uses Math::CDF::ppois
+sub calc_odds {
+	my ($self, $home_expect, $away_expect) = @_;
+	use Football::Game_Predictions::Poisson ( uses Math::CDF library C routines)
+	my $p = Football::Game_Predictions::Poisson->new (weighted => $self->{weighted}, max => $self->{max});
+	$self->{stats} = $p->calc_poisson ($home_expect, $away_expect);
+
+	return {
+		home_win => $self->home_win_odds (),
+		away_win => $self->away_win_odds (),
+		draw => $self->draw_odds (),
+		both_sides_yes => $self->both_sides_yes_odds (),
+		both_sides_no => $self->both_sides_no_odds (),
+		under_2pt5 => $self->under_2pt5_odds (),
+		over_2pt5 => $self->over_2pt5_odds (),
+		home_double => $self->home_double_odds (),
+		away_double => $self->away_double_odds (),
+	};
+}
+=cut
 #sub schwartz_sort {
 #	my ($self, $games) = @_;
 #
