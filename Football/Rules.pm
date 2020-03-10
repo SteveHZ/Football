@@ -45,9 +45,11 @@ sub goal_diffs_rule {
 
 sub match_odds_rule {
 	my ($self, $game) = @_;
+#	return "H ".sprintf "%0.2f", $game->{odds}->{away_win} if $game->{odds}->{away_win} >= $self->{min_odds};
+#	return "A ".sprintf "%0.2f", $game->{odds}->{home_win} if $game->{odds}->{home_win} >= $self->{min_odds};
 
-	return "H ".sprintf "%0.2f", $game->{odds}->{away_win} if $game->{odds}->{away_win} >= $self->{min_odds};
-	return "A ".sprintf "%0.2f", $game->{odds}->{home_win} if $game->{odds}->{home_win} >= $self->{min_odds};
+	return "H ".sprintf "%0.2f", $game->{odds}->{season}->{away_win} if $game->{odds}->{season}->{away_win} >= $self->{min_odds};
+	return "A ".sprintf "%0.2f", $game->{odds}->{season}->{home_win} if $game->{odds}->{season}->{home_win} >= $self->{min_odds};
 	return "";
 }
 
@@ -94,15 +96,19 @@ sub ou_last_six_rule {
 
 sub over_odds_rule {
 	my ($self, $game) = @_;
-	return sprintf "+ %0.2f", $game->{odds}->{over_2pt5}
-		if $game->{odds}->{over_2pt5} < 1.75;
+	return sprintf "+ %0.2f", $game->{odds}->{last_six}->{over_2pt5}
+		if $game->{odds}->{last_six}->{over_2pt5} < 1.75;
+#	return sprintf "+ %0.2f", $game->{odds}->{over_2pt5}
+#		if $game->{odds}->{over_2pt5} < 1.75;
 	return "";
 }
 
 sub under_odds_rule {
 	my ($self, $game) = @_;
-	return sprintf "- %0.2f", $game->{odds}->{under_2pt5}
-		if $game->{odds}->{under_2pt5} >= 4.00;
+	return sprintf "- %0.2f", $game->{odds}->{last_six}->{last_six}->{under_2pt5}
+		if $game->{odds}->{last_six}->{under_2pt5} >= 4.00;
+#	return sprintf "- %0.2f", $game->{odds}->{under_2pt5}
+#		if $game->{odds}->{under_2pt5} >= 4.00;
 	return "";
 }
 

@@ -46,10 +46,10 @@ after 'BUILD' => sub {
 sub view {
 	my ($self, $fixtures) = @_;
 
-	for my $game (@$fixtures) {
-		print "\n$game->{home_team} v $game->{away_team}";
-		print " [ $game->{home_goals} - $game->{away_goals} ]";
-	}
+#	for my $game (@$fixtures) {
+#		print "\n$game->{home_team} v $game->{away_team}";
+#		print " [ $game->{home_goals} - $game->{away_goals} ]";
+#	}
 	$self->do_skellam ($fixtures);
 }
 
@@ -79,8 +79,8 @@ sub get_skellam_rows {
 		{ $game->{league} => $self->{format} },
 		{ $game->{home_team} => $self->get_format ( $game->{expected_goal_diff} * -1 ) },
 		{ $game->{away_team} => $self->get_format ( $game->{expected_goal_diff} ) },
-	);
-	push (@rows,
+#	);
+#	push (@rows,
 		{ $game->{skellam}->{home_win} => $self->{float_format} },
 		{ $game->{skellam}->{draw} => $self->{float_format} },
 		{ $game->{skellam}->{away_win} => $self->{float_format} },

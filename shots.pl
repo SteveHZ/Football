@@ -7,8 +7,7 @@ use Football::Football_Data_Model;
 use Football::Utils qw(_get_all_teams);
 use Text::Table;
 use MyStats qw(binomial_coeff binomial_prob);
-#use Math::CDF;
-#use Data::Dumper;
+use Data::Dumper;
 
 my $data_model = Football::Football_Data_Model->new (
     'my_keys' => [ qw(date home_team away_team home_score away_score result home_shots away_shots) ],
@@ -17,14 +16,11 @@ my $data_model = Football::Football_Data_Model->new (
 my $games = $data_model->read_csv ('C:/Mine/perl/Football/data/E0.csv');
 my $teams = _get_all_teams ($games,'home_team');
 
+my @data_keys = ( qw(home_shots home_goals away_shots away_goals) );
 my $totals = {};
-$totals->{home_goals} = 0;
-$totals->{away_goals} = 0;
-$totals->{home_shots} = 0;
-$totals->{away_shots} = 0;
+$totals->{$_} = 0 for @data_keys;
 
 my $data = {};
-my @data_keys = ( qw(home_shots home_goals away_shots away_goals) );
 for my $team (@$teams) {
     $data->{$team}->{$_} = 0 for @data_keys;
 }
@@ -68,8 +64,8 @@ print "\nbinomial2 = ".binomial2 ($data->{Liverpool}->{home_shots}, $data->{Live
 print "\nhome ratio = ".$data->{Liverpool}->{home_goals} / $data->{Liverpool}->{home_shots};
 print "\nhome goals = ". $data->{Liverpool}->{home_goals};
 print "\nhome shots ratio = ".$data->{Liverpool}->{home_shots_ratio};
-<STDIN>;
-print "\nbinomial_prob = ",binomial_prob ($data->{Liverpool}->{home_goals} / $data->{Liverpool}->{home_shots}, $data->{Liverpool}->{home_goals},$data->{Liverpool}->{home_shots_ratio});
+#print "\nbinomial_prob = ",binomial_prob ($data->{Liverpool}->{home_goals} / $data->{Liverpool}->{home_shots}, $data->{Liverpool}->{home_goals},$data->{Liverpool}->{home_shots_ratio});
+
 print "\n3 out of 5 = ".binomial_coeff (5,3);
 print "\nLottery = ". binomial_coeff (49,6);
 print "\nLottery = ". binomial_coeff (59,6);
@@ -92,6 +88,7 @@ sub binomial {
 sub binomial2 {
     use bigint; # only use locally
     my($n,$k) = @_;
+#   print Dumper (0+$n); # bigint object
     return _format ((0+$n)->bnok($k));
 }
 

@@ -63,12 +63,13 @@ sub calc_match_odds {
 
 sub get_odds {
 	my ($self, $odds, $game) = @_;
-#	return {
-#		season => $odds->calc_odds ($game->{home_goals}, $game->{away_goals})
-#		last_six => $odds->calc_odds ($game->{home_last_six}, $game->{away_last_six}).
-#	};
+	return {
+		season => $odds->calc_odds ($game->{home_goals}, $game->{away_goals}),
+		last_six => $odds->calc_odds ($game->{home_last_six}, $game->{away_last_six}),
+	};
 #	return $odds->calc_odds ($game->{home_last_six}, $game->{away_last_six});
-	return $odds->calc_odds ($game->{home_goals}, $game->{away_goals});
+#	return $odds->calc_odds ($game->{home_goals}, $game->{away_goals});
+#return $odds->calc_odds ($game);
 }
 
 sub calc_skellam_dist {
@@ -88,12 +89,11 @@ sub calc_over_under {
 		leagues => $self->{leagues},
 	);
 	my $stat_size = $default_stats_size * 2;
-	my $sorted = {};
 
 	for my $game ( $self->{fixtures}->@* ) {
 		my $home = $game->{home_team};
 		my $away = $game->{away_team};
-		my $league = @{ $self->{leagues} }[$game->{league_idx}];
+		my $league = $self->{leagues}[$game->{league_idx}];
 
 		$game->{home_over_under} = $league->get_home_over_under ($home);
 		$game->{away_over_under} = $league->get_away_over_under ($away);
@@ -105,14 +105,14 @@ sub calc_over_under {
 		$game->{ou_points2} = $over_under->do_ou_points2 ($game);
 	}
 
-	$sorted->{ou_home_away} = $over_under->do_home_away ();
-	$sorted->{ou_last_six} = $over_under->do_last_six ();
-	$sorted->{ou_odds} = $over_under->do_over_under ();
-	$sorted->{ou_points} = $over_under->do_over_under_points ();
-	$sorted->{ou_points2} = $over_under->do_over_under_points2 ();
-	$sorted->{ou_unders} = $over_under->do_unders ();
-
-	return $sorted;
+	return {
+		ou_home_away => $over_under->do_home_away (),
+		ou_last_six => $over_under->do_last_six (),
+		ou_odds => $over_under->do_over_under (),
+		ou_points => $over_under->do_over_under_points (),
+		ou_points2 => $over_under->do_over_under_points2 (),
+		ou_unders => $over_under->do_unders (),
+	};
 }
 
 sub save_expect_data {

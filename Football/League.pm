@@ -245,8 +245,8 @@ sub _get_over_under {
 	my $over = 0;
 
 	for my $game (@$stats) {
-		my ($game_for, $game_against) = split ('-', $game->{score});
-		$over ++ if $game_for + $game_against > 2;
+		my ($for, $against) = split ('-', $game->{score});
+		$over ++ if $for + $against > 2;
 	}
 	return $over;
 }

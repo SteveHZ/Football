@@ -76,15 +76,15 @@ sub view {
 	my ($self, $fixtures) = @_;
 	for my $game ($fixtures->{home_win}->@*) {
 		print "\n\n$game->{home_team} v $game->{away_team}";
-		print "\nHome Win : ".$game->{odds}->{home_win};
-		print ' Away Win : '. $game->{odds}->{away_win};
-		print ' Draw : '. $game->{odds}->{draw};
-		print ' Both Sides Yes : '. $game->{odds}->{both_sides_yes};
-		print ' Both Sides No : '. $game->{odds}->{both_sides_no};
-		print ' Home Double : '. $game->{odds}->{home_double};
-		print ' Away Double : '. $game->{odds}->{away_double};
-		print ' Over 2.5 : '. $game->{odds}->{over_2pt5};
-		print ' Under 2.5 : '. $game->{odds}->{under_2pt5};
+		print "\nHome Win : ".$game->{odds}->{season}->{home_win};
+		print ' Away Win : '. $game->{odds}->{season}->{away_win};
+		print ' Draw : '. $game->{odds}->{season}->{draw};
+		print ' Both Sides Yes : '. $game->{odds}->{season}->{both_sides_yes};
+		print ' Both Sides No : '. $game->{odds}->{season}->{both_sides_no};
+		print ' Home Double : '. $game->{odds}->{season}->{home_double};
+		print ' Away Double : '. $game->{odds}->{season}->{away_double};
+		print ' Over 2.5 : '. $game->{odds}->{last_six}->{over_2pt5};
+		print ' Under 2.5 : '. $game->{odds}->{last_six}->{under_2pt5};
 	}
 	$self->do_match_odds ($fixtures);
 }
@@ -155,30 +155,39 @@ sub match_rows {
 sub hwd_rows {
 	my ($self, $game) = @_;
 	return
-		{ $game->{odds}->{home_win} => $self->{float_format} },
-		{ $game->{odds}->{draw} => $self->{float_format} },
-		{ $game->{odds}->{away_win} => $self->{float_format} },
+		{ $game->{odds}->{season}->{home_win} => $self->{float_format} },
+		{ $game->{odds}->{season}->{draw} => $self->{float_format} },
+		{ $game->{odds}->{season}->{away_win} => $self->{float_format} },
+#		{ $game->{odds}->{home_win} => $self->{float_format} },
+#		{ $game->{odds}->{draw} => $self->{float_format} },
+#		{ $game->{odds}->{away_win} => $self->{float_format} },
 }
 
 sub over_under_rows {
 	my ($self, $game) = @_;
 	return
-		{ $game->{odds}->{over_2pt5} => $self->{float_format} },
-		{ $game->{odds}->{under_2pt5} => $self->{float_format} },
+		{ $game->{odds}->{last_six}->{over_2pt5} => $self->{float_format} },
+		{ $game->{odds}->{last_six}->{under_2pt5} => $self->{float_format} },
+#		{ $game->{odds}->{over_2pt5} => $self->{float_format} },
+#		{ $game->{odds}->{under_2pt5} => $self->{float_format} },
 }
 
 sub double_rows {
 	my ($self, $game) = @_;
 	return
-		{ $game->{odds}->{home_double} => $self->{float_format} },
-		{ $game->{odds}->{away_double} => $self->{float_format} },
+		{ $game->{odds}->{season}->{home_double} => $self->{float_format} },
+		{ $game->{odds}->{season}->{away_double} => $self->{float_format} },
+#		{ $game->{odds}->{home_double} => $self->{float_format} },
+#		{ $game->{odds}->{away_double} => $self->{float_format} },
 }
 
 sub bsts_rows {
 	my ($self, $game) = @_;
 	return
-		{ $game->{odds}->{both_sides_yes} => $self->{float_format} },
-		{ $game->{odds}->{both_sides_no} => $self->{float_format} },
+#		{ $game->{odds}->{both_sides_yes} => $self->{float_format} },
+#		{ $game->{odds}->{both_sides_no} => $self->{float_format} },
+		{ $game->{odds}->{season}->{both_sides_yes} => $self->{float_format} },
+		{ $game->{odds}->{season}->{both_sides_no} => $self->{float_format} },
 }
 
 sub get_format {

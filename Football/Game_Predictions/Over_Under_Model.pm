@@ -6,6 +6,7 @@ package Football::Game_Predictions::Over_Under_Model;
 
 use MyKeyword qw(ZEROGAMES);
 use Syntax::Keyword::Gather;
+use List::Util qw(sum);
 use Moo;
 use namespace::clean;
 
@@ -41,7 +42,7 @@ sub do_over_under {
 
 	return [
 		sort {
-			$a->{odds}->{over_2pt5} <=> $b->{odds}->{over_2pt5}
+			$a->{odds}->{last_six}->{over_2pt5} <=> $b->{odds}->{last_six}->{over_2pt5}
 			or $a->{home_team} cmp $b->{home_team}
 		} $self->{fixtures}->@*
 	];
@@ -130,10 +131,7 @@ sub do_unders {
 sub _get_total_goals {
 	my $games = shift;
 	my $total = 0;
-	for my $game (@$games) {
-		my ($for, $ag) = split '-', $game->{score};
-		$total += ($for + $ag);
-	}
+	$total += sum split '-', $_->{score} for @$games;
 	return $total;
 }
 

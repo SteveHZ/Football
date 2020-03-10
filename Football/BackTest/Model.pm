@@ -2,7 +2,7 @@ package Football::BackTest::Model;
 
 use MyHeader;
 use DBI;
-use Function::Parameters qw(method);
+#use Function::Parameters qw(method);
 
 use Moo;
 use namespace::clean;
@@ -27,15 +27,18 @@ sub disconnect {
     return $self->{dbh}->disconnect;
 }
 
-method do_query (:$league, :$data, :$query, :$callback) {
-    my $sql = "SELECT * FROM '$league' WHERE $query";
-    my $sth = $self->{dbh}->prepare ($sql);
-    $sth->execute ();
+{
+    use Function::Parameters qw(method);
+    method do_query (:$league, :$data, :$query, :$callback) {
+        my $sql = "SELECT * FROM '$league' WHERE $query";
+        my $sth = $self->{dbh}->prepare ($sql);
+        $sth->execute ();
 
-    while (my $row = $sth->fetchrow_hashref) {
-        $data->{stake}->{$league} ++;
-        $data->{totals}->{stake} ++;
-        $callback->($row, $league, $data);
+        while (my $row = $sth->fetchrow_hashref) {
+            $data->{stake}->{$league} ++;
+            $data->{totals}->{stake} ++;
+            $callback->($row, $league, $data);
+        }
     }
 }
 

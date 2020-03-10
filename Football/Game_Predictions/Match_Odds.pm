@@ -18,12 +18,16 @@ sub BUILD {
 	my ($self, $args) = @_;
 
 	$self->{stats} = [];
+#	$self->{recent_stats} = [];
 	$self->{sheet_names} = [ qw(home_win away_win draw over_2pt5 under_2pt5 home_double away_double both_sides_yes both_sides_no) ];
 }
 
 sub calc_odds {
+#	my ($self, $game) = @_;
 	my ($self, $home_expect, $away_expect) = @_;
 	$self->calc ($home_expect, $away_expect);
+#	$self->{stats} = $self->calc ($game->{home_goals}, $game->{away_goals});
+#	$self->{recent_stats} =$self->calc ($game->{home_last_six}, $game->{away_last_six});
 
 	return {
 		home_win => $self->home_win_odds (),
@@ -44,6 +48,7 @@ sub calc {
 	state $p = Football::Game_Predictions::MyPoisson->new ();
 	state $p_func = $p->get_calc_func ($self->{weighted});
 	my %cache_p;
+	#my @stats = ();
 
 	for my $home_score (0..$self->{max}) {
 		my $home_p = $p_func->($p, $home_expect, $home_score);
@@ -51,10 +56,12 @@ sub calc {
 			unless (exists $cache_p{$away_score}) {
 				$cache_p{$away_score} = $p_func->($p, $away_expect, $away_score);
 			}
+#			$stats[$home_score][$away_score] = $p->poisson_result ($home_p, $cache_p{$away_score});
 			$self->{stats}[$home_score][$away_score] = $p->poisson_result ($home_p, $cache_p{$away_score});
 		}
 	}
 	return $self->{stats};
+	#return \@stats;
 }
 
 sub sort_sheets {
@@ -68,9 +75,10 @@ sub sort_sheets {
 
 sub sort_by_sheet_name {
 	my ($self, $games, $sorted_by) = @_;
-
+	my $select = ($sorted_by =~ /[over|under]_2pt5/) ? 'last_six' : 'season';
 	return [
-		sort { $a->{odds}->{$sorted_by} <=> $b->{odds}->{$sorted_by} }
+#		sort { $a->{odds}->{$sorted_by} <=> $b->{odds}->{$sorted_by} }
+		sort { $a->{odds}->{$select}->{$sorted_by} <=> $b->{odds}->{$select}->{$sorted_by} }
 		@$games
 	];
 }
@@ -183,28 +191,6 @@ sub both_sides_no_odds {
 	return nearest (0.01, 100 / $stats);
 }
 
-sub under_2pt5 {
-	my $self = shift;
-	my $total = 0;
-
-	for my $home_score (0..2) {
-		for my $away_score (0..2) {
-			if (($home_score + $away_score) < 3) {
-				$total += $self->{stats}[$home_score][$away_score];
-			}
-		}
-	}
-	return $total;
-}
-
-sub under_2pt5_odds {
-	my $self = shift;
-
-	my $stats = $self->under_2pt5 ();
-	return 0 if $stats == 0;
-	return nearest (0.01, 100 / $stats);
-}
-
 sub over_2pt5 {
 	my $self = shift;
 	my $total = 0;
@@ -212,6 +198,7 @@ sub over_2pt5 {
 	for my $home_score (0..$self->{max}) {
 		for my $away_score (0..$self->{max}) {
 			if ($home_score + $away_score > 2) {
+#				$total += $self->{recent_stats}[$home_score][$away_score];
 				$total += $self->{stats}[$home_score][$away_score];
 			}
 		}
@@ -223,6 +210,29 @@ sub over_2pt5_odds {
 	my $self = shift;
 
 	my $stats = $self->over_2pt5 ();
+	return 0 if $stats == 0;
+	return nearest (0.01, 100 / $stats);
+}
+
+sub under_2pt5 {
+	my $self = shift;
+	my $total = 0;
+
+	for my $home_score (0..2) {
+		for my $away_score (0..2) {
+			if (($home_score + $away_score) < 3) {
+#				$total += $self->{recent_stats}[$home_score][$away_score];
+				$total += $self->{stats}[$home_score][$away_score];
+			}
+		}
+	}
+	return $total;
+}
+
+sub under_2pt5_odds {
+	my $self = shift;
+
+	my $stats = $self->under_2pt5 ();
 	return 0 if $stats == 0;
 	return nearest (0.01, 100 / $stats);
 }
