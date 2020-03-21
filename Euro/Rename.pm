@@ -52,6 +52,12 @@ our $euro_teams = {
 	'Los Angeles Galaxy' => 'LA Galaxy',
 	'Minnesota United' => 'Minnesota',
 	'FC Cincinnati' => 'Cincinnati',
+
+#	Australian
+	'Western Sydney Wanderers FC' => 'Western Sydney Wdrs',
+	'Melbourne City FC' => 'Melbourne City',
+	'Western United FC' => 'Western United',
+	'Brisbane Roar FC' => 'Brisbane Roar',
 };
 
 sub check_rename {

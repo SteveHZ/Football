@@ -79,8 +79,7 @@ sub get_skellam_rows {
 		{ $game->{league} => $self->{format} },
 		{ $game->{home_team} => $self->get_format ( $game->{expected_goal_diff} * -1 ) },
 		{ $game->{away_team} => $self->get_format ( $game->{expected_goal_diff} ) },
-#	);
-#	push (@rows,
+
 		{ $game->{skellam}->{home_win} => $self->{float_format} },
 		{ $game->{skellam}->{draw} => $self->{float_format} },
 		{ $game->{skellam}->{away_win} => $self->{float_format} },

@@ -92,23 +92,23 @@ our @euro_csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 D1 D2 SP1 SP2 I1 I2 F
 
 # for max_profit.pl, db.pl and fetch.pl
 
-our @euro_lgs = ('German', 'Spanish', 'Italian', 'Welsh', 'N Irish');
-our @euro_csv_lgs = qw( D1 SP1 I1 WL NI);
+our @euro_lgs = ('German', 'Spanish', 'Italian', 'Welsh', 'N Irish', 'Australian');
+our @euro_csv_lgs = qw( D1 SP1 I1 WL NI AUS);
 our @euro_fetch_lgs = qw( D1 SP1 I1);
 
 # enable TESTING/else blocks to reduce number of leagues used at start/end of season_data
 # while still ensuring test scripts will pass
 TESTING { # Do not touch these lines
-	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League');
-	our @summer_csv_leagues = qw(ROI MLS SWD NRW FN);
-	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN);
+	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League', 'Brazilian League');
+	our @summer_csv_leagues = qw(ROI MLS SWD NRW FN BRZ);
+	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN BRZ);
 } else { # Amend these lines as needed
 	our @summer_leagues = ('Swedish League', 'Norwegian League', 'Finnish League');
 	our @summer_csv_leagues = qw(SWD NRW FN);
 	our @summer_fetch_leagues = qw(SWE NOR FIN);
-#	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League');
-#	our @summer_csv_leagues = qw(ROI MLS SWD NRW FN);
-#	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN);
+#	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League', 'Brazilian League');
+#	our @summer_csv_leagues = qw(ROI MLS SWD NRW FN BRZ);
+#	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN BRZ);
 }
 
 our $csv_fields = {
@@ -130,6 +130,12 @@ our $csv_fields = {
 	av_under => 'BbAv<2.5',
 	home_shots => 'HS',
 	away_shots => 'AS',
+# Australian
+	aus_home_team => 'Home Team',
+	aus_away_team => 'Away Team',
+	round => 'Round Number',
+	location => 'Location',
+	score => 'Result',
 };
 
 =pod

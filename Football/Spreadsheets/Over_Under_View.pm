@@ -104,8 +104,6 @@ sub get_over_under_rows {
 
 		{ $game->{odds}->{last_six}->{over_2pt5} => $self->{float_format} },
 		{ $game->{odds}->{last_six}->{under_2pt5} => $self->{float_format} },
-#		{ $game->{odds}->{over_2pt5} => $self->{float_format} },
-#		{ $game->{odds}->{under_2pt5} => $self->{float_format} },
 	];
 }
 

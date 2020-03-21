@@ -18,16 +18,12 @@ sub BUILD {
 	my ($self, $args) = @_;
 
 	$self->{stats} = [];
-#	$self->{recent_stats} = [];
 	$self->{sheet_names} = [ qw(home_win away_win draw over_2pt5 under_2pt5 home_double away_double both_sides_yes both_sides_no) ];
 }
 
 sub calc_odds {
-#	my ($self, $game) = @_;
 	my ($self, $home_expect, $away_expect) = @_;
 	$self->calc ($home_expect, $away_expect);
-#	$self->{stats} = $self->calc ($game->{home_goals}, $game->{away_goals});
-#	$self->{recent_stats} =$self->calc ($game->{home_last_six}, $game->{away_last_six});
 
 	return {
 		home_win => $self->home_win_odds (),
@@ -48,7 +44,6 @@ sub calc {
 	state $p = Football::Game_Predictions::MyPoisson->new ();
 	state $p_func = $p->get_calc_func ($self->{weighted});
 	my %cache_p;
-	#my @stats = ();
 
 	for my $home_score (0..$self->{max}) {
 		my $home_p = $p_func->($p, $home_expect, $home_score);
@@ -56,12 +51,10 @@ sub calc {
 			unless (exists $cache_p{$away_score}) {
 				$cache_p{$away_score} = $p_func->($p, $away_expect, $away_score);
 			}
-#			$stats[$home_score][$away_score] = $p->poisson_result ($home_p, $cache_p{$away_score});
 			$self->{stats}[$home_score][$away_score] = $p->poisson_result ($home_p, $cache_p{$away_score});
 		}
 	}
 	return $self->{stats};
-	#return \@stats;
 }
 
 sub sort_sheets {
@@ -75,9 +68,8 @@ sub sort_sheets {
 
 sub sort_by_sheet_name {
 	my ($self, $games, $sorted_by) = @_;
-	my $select = ($sorted_by =~ /[over|under]_2pt5/) ? 'last_six' : 'season';
+	my $select = ($sorted_by =~ /.*_2pt5$/) ? 'last_six' : 'season';
 	return [
-#		sort { $a->{odds}->{$sorted_by} <=> $b->{odds}->{$sorted_by} }
 		sort { $a->{odds}->{$select}->{$sorted_by} <=> $b->{odds}->{$select}->{$sorted_by} }
 		@$games
 	];
@@ -198,7 +190,6 @@ sub over_2pt5 {
 	for my $home_score (0..$self->{max}) {
 		for my $away_score (0..$self->{max}) {
 			if ($home_score + $away_score > 2) {
-#				$total += $self->{recent_stats}[$home_score][$away_score];
 				$total += $self->{stats}[$home_score][$away_score];
 			}
 		}
@@ -221,7 +212,6 @@ sub under_2pt5 {
 	for my $home_score (0..2) {
 		for my $away_score (0..2) {
 			if (($home_score + $away_score) < 3) {
-#				$total += $self->{recent_stats}[$home_score][$away_score];
 				$total += $self->{stats}[$home_score][$away_score];
 			}
 		}
@@ -267,15 +257,15 @@ sub get_match_odds {
 			league => $_->{league},
 			home_team => $_->{home_team},
 			away_team => $_->{away_team},
-			home_win => $_->{odds}->{home_win},
-			away_win => $_->{odds}->{away_win},
-			draw => $_->{odds}->{draw},
-			both_sides_yes => $_->{odds}->{both_sides_yes},
-			both_sides_no => $_->{odds}->{both_sides_no},
-			over_2pt5 => $_->{odds}->{over_2pt5},
-			under_2pt5 => $_->{odds}->{under_2pt5},
-			home_double => $_->{odds}->{home_double},
-			away_double => $_->{odds}->{away_double},
+			home_win => $_->{odds}->{season}->{home_win},
+			away_win => $_->{odds}->{season}->{away_win},
+			draw => $_->{odds}->{season}->{draw},
+			both_sides_yes => $_->{odds}->{season}->{both_sides_yes},
+			both_sides_no => $_->{odds}->{season}->{both_sides_no},
+			over_2pt5 => $_->{odds}->{last_six}->{over_2pt5},
+			under_2pt5 => $_->{odds}->{last_six}->{under_2pt5},
+			home_double => $_->{odds}->{season}->{home_double},
+			away_double => $_->{odds}->{season}->{away_double},
 		} } @$sorted
 	];
 }

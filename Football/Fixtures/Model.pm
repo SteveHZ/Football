@@ -105,7 +105,7 @@ sub after_prepare {
 		next if $csv_league eq 'X';
 		if ($line =~ /\d:\d/) { # valid lines will have a time eg 15:00
 			$line =~ s/($dm_date),(.*),($time),(.*)/$1 $3,$csv_league,$2,$4/;
-			push $fixed_lines->{ $files->{$csv_league}}->@*, $line;
+			push $fixed_lines->{ $files->{$csv_league} }->@*, $line;
 		}
 	}
 	return $fixed_lines;
@@ -223,7 +223,6 @@ sub _transform_hash {
     for my $key (keys %$old_hash) {
 		map {
 			$new_hash{$_} = $key
-#		} @{ $old_hash->{$key} };
 		} $old_hash->{$key}->@*;
     }
     return \%new_hash;

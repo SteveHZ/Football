@@ -218,6 +218,13 @@ FC Union Berlin,Union Berlin
 SPAL,Spal
 Inter Milan,Inter
 Milan,Milan
+
+#	Australian
+Melbourne City FC,Melbourne City
+Brisbane Roar FC,Brisbane Roar
+Western United FC,Western United
+Western Sydney Wanderers FC,Western Sydney Wdrs
+
 END_FOOTBALL_TEAMS
 
 #	Rugby League
@@ -253,7 +260,7 @@ Canterbury Bankstown Bulldogs,Canterbury Bulldogs
 Manly Warringah Sea Eagles,Manly Sea Eagles
 END_RUGBY_TEAMS
 
-FA Women,X
+The FA Women's Championship,X
 Cymru Premier,WL
 Irish Premiership,NI
 Premier League,E0
@@ -273,6 +280,7 @@ United States Major League Soccer,MLS
 German Bundesliga,D1
 Italian Serie A,I1
 Spanish La Liga,SP1
+Australian A-League,AUS
 
 Cup,X
 The FA,X
@@ -303,7 +311,6 @@ Argentine,X
 Portuguese,X
 Turkish,X
 Dutch,X
-Australian,X
 Austrian,X
 Greek,X
 Asian,X

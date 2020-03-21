@@ -1,0 +1,5 @@
+Div,Date,HomeTeam,AwayTeam,FTHG,FTAG,FTR,
+[%- FOREACH game IN data %]
+[% game.league %],[% game.date %],[% game.home_team %],[% game.away_team %],
+[%- game.home_score %],[% game.away_score %],[% game.result %],
+[%- END %]

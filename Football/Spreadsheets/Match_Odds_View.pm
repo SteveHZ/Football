@@ -12,13 +12,13 @@ with 'Roles::Spreadsheet';
 sub BUILD {
 	my ($self, $args) = @_;
 	$self->create_sheet ();
-	$self->{sheet_names} = ['Home Win', 'Away Win', 'Draw', 'Over 2.5', 'Under 2.5', 'Home Double', 'Away Double', 'BSTS Yes', 'BSTS No'];
-	$self->{sorted_by} = ['home_win', 'away_win', 'draw', 'over_2pt5', 'under_2pt5', 'home_double', 'away_double', 'both_sides_yes', 'both_sides_no'];
+	$self->{sheet_names} = ['Home Win', 'Draw', 'Away Win', 'Over 2.5', 'Under 2.5', 'Home Double', 'Away Double', 'BSTS Yes', 'BSTS No'];
+	$self->{sorted_by} = ['home_win', 'draw', 'away_win', 'over_2pt5', 'under_2pt5', 'home_double', 'away_double', 'both_sides_yes', 'both_sides_no'];
 
 	$self->{dispatch} = {
 		home_win		=> sub { my $self = shift; $self->get_1x2_rows (@_) },
-		away_win		=> sub { my $self = shift; $self->get_1x2_rows (@_) },
 		draw			=> sub { my $self = shift; $self->get_1x2_rows (@_) },
+		away_win		=> sub { my $self = shift; $self->get_1x2_rows (@_) },
 		over_2pt5		=> sub { my $self = shift; $self->get_over_under_rows (@_) },
 		under_2pt5		=> sub { my $self = shift; $self->get_over_under_rows (@_) },
 		home_double		=> sub { my $self = shift; $self->get_double_chance_rows (@_) },
@@ -29,8 +29,8 @@ sub BUILD {
 
 	$self->{headers} = {
 		home_win	=> sub { my $self = shift; $self->do_1x2_header (@_) },
-		away_win	=> sub { my $self = shift; $self->do_1x2_header (@_) },
 		draw		=> sub { my $self = shift; $self->do_1x2_header (@_) },
+		away_win	=> sub { my $self = shift; $self->do_1x2_header (@_) },
 		over_2pt5	=> sub { my $self = shift; $self->do_over_under_header (@_) },
 		under_2pt5	=> sub { my $self = shift; $self->do_over_under_header (@_) },
 		home_double	=> sub { my $self = shift; $self->do_double_chance_header (@_) },
@@ -158,9 +158,6 @@ sub hwd_rows {
 		{ $game->{odds}->{season}->{home_win} => $self->{float_format} },
 		{ $game->{odds}->{season}->{draw} => $self->{float_format} },
 		{ $game->{odds}->{season}->{away_win} => $self->{float_format} },
-#		{ $game->{odds}->{home_win} => $self->{float_format} },
-#		{ $game->{odds}->{draw} => $self->{float_format} },
-#		{ $game->{odds}->{away_win} => $self->{float_format} },
 }
 
 sub over_under_rows {
@@ -168,8 +165,6 @@ sub over_under_rows {
 	return
 		{ $game->{odds}->{last_six}->{over_2pt5} => $self->{float_format} },
 		{ $game->{odds}->{last_six}->{under_2pt5} => $self->{float_format} },
-#		{ $game->{odds}->{over_2pt5} => $self->{float_format} },
-#		{ $game->{odds}->{under_2pt5} => $self->{float_format} },
 }
 
 sub double_rows {
@@ -177,22 +172,19 @@ sub double_rows {
 	return
 		{ $game->{odds}->{season}->{home_double} => $self->{float_format} },
 		{ $game->{odds}->{season}->{away_double} => $self->{float_format} },
-#		{ $game->{odds}->{home_double} => $self->{float_format} },
-#		{ $game->{odds}->{away_double} => $self->{float_format} },
 }
 
 sub bsts_rows {
 	my ($self, $game) = @_;
 	return
-#		{ $game->{odds}->{both_sides_yes} => $self->{float_format} },
-#		{ $game->{odds}->{both_sides_no} => $self->{float_format} },
 		{ $game->{odds}->{season}->{both_sides_yes} => $self->{float_format} },
 		{ $game->{odds}->{season}->{both_sides_no} => $self->{float_format} },
 }
 
 sub get_format {
 	my ($self, $goal_diff) = @_;
-	return ($goal_diff >= 0) ? $self->{float_format} : $self->{bold_float_format};
+	return ($goal_diff >= 0) ? $self->{float_format}
+							 : $self->{bold_float_format};
 }
 
 sub do_1x2_header {

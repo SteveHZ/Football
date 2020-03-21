@@ -65,57 +65,6 @@ qr/
 	(?<month>[A-Z][a-z]+)		# month
 /x;
 }
-#(?<year>\d\d\d\d)			# year
-
-#sub rugby_results_date_parser {
-#qr/
-#	[A-Z][a-z]+\s				# day
-#	(?<date>\d\d?)				# date
-#	\w\w\s						# date end (st,nd,rd,th)
-#	(?<month>[A-Z][a-z]+)\s		# month
-#	(?<year>\d\d\d\d)			# year
-#/x;
-#}
-
-#with 'Roles::MyRegXRole';
-
-=head
-sub upper { qr/[A-Z]/; }
-sub lower {	qr/[a-z]/; }
-sub alpha { qr/[A-Za-z]/; }
-sub numeric { qr/\d/; }
-
-sub time { qr/\d{2}:\d{2}/; }
-sub dmy_date { qr/\d{2}\/\d{2}\/\d{2}/; }
-sub dm_date { qr/\d{2}\/\d{2}/; }
-=cut
-
-=head
-# fixtures.pl
-sub as_date_month {
-	my ($self, $val) = @_;
-	$val =~ s/\d{4}-(\d{2})-(\d{2})/$2\/$1/;
-	return $val;
-};
-
-sub as_dmy {
-	my ($self, $val) = @_;
-	$val =~ s/\d{2}(\d{2})-(\d{2})-(\d{2})/$3\/$2\/$1/;
-	return $val;
-}
-
-sub remove_postponed {
-	my ($self, $dataref) = @_;
-	$$dataref =~ s/Match postponed - International call-ups//g;
-	$$dataref =~ s/Match postponed - Other//g;
-}
-
-sub remove_postponed_chars {
-	my ($self, $dataref) = @_;
-	$$dataref =~ s/[a-z]P[A-Z]//g; # after home team
-	$$dataref =~ s/P([A-Z])/$1/g; # after away team, before start of next home team
-}
-=cut
 
 =pod
 

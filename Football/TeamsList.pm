@@ -20,4 +20,26 @@ sub create {
     or die $tt->error;
 }
 
+=head
+Shou;d have a seperate modulr for
+opening a TT module (forget this he he)
+also goal expect ?? <-- IMPORTANT !!
+
+Comments
+Top
+
+The # character is used to indicate comments within a directive. When placed immediately inside the opening directive tag, it causes the entire directive to be ignored.
+
+[%# this entire directive is ignored no
+    matter how many lines it wraps onto
+%]
+
+In any other position, it causes the remainder of the current line to be treated as a comment.
+
+[% # this is a comment
+   theta = 20      # so is this
+   rho   = 30      # <aol>me too!</aol>
+%]
+=cut
+
 1;

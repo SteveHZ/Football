@@ -13,7 +13,7 @@ use warnings;
 
 use MyJSON qw(write_json);
 use MyLib qw(sort_HoA);
-#use MyTemplate;
+use MyTemplate;
 use Football::Globals qw(@euro_lgs);
 use Football::TeamsList;
 
@@ -113,6 +113,19 @@ my $leagues = {
         'Udinese',
         'Verona',
     ],
+	'Australian' => [
+		'Adelaide United',
+		'Brisbane Roar',
+		'Central Coast Mariners',
+		'Melbourne City',
+		'Melbourne Victory',
+		'Newcastle Jets',
+		'Perth Glory',
+		'Sydney FC',
+		'Wellington Phoenix',
+		'Western Sydney Wdrs',
+		'Western United',
+	],
 };
 
 print "\nWriting $json_file...";
@@ -130,11 +143,11 @@ my $team_list = Football::TeamsList->new (
 );
 $team_list->create ();
 
-#my $tt = MyTemplate->new (filename => $out_file);
-#my $out_fh = $tt->open_file ();
-#$tt->process ('Template/create_new_teams.tt', { leagues => \@euro_lgs, sorted => $sorted }, $out_fh)
-#    or die $tt->error;
-#print " Done";
+my $tt = MyTemplate->new (filename => $out_file);
+my $out_fh = $tt->open_file ();
+$tt->process ('Template/create_new_teams.tt', { leagues => \@euro_lgs, sorted => $sorted }, $out_fh)
+    or die $tt->error;
+print " Done";
 
 =head
 'German 2' => [
