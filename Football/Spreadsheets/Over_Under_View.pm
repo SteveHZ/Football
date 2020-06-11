@@ -75,7 +75,7 @@ sub view {
 		$self->{headers}->{$sorted_by}->($self, $worksheet, $self->{format});
 
 		my $row = 2;
-		for my $game (@{ $sorted->{$sorted_by} } ) {
+		for my $game ( $sorted->{$sorted_by}->@* ) {
 			$self->blank_columns ( [ qw( 1 3 5 8 10 13 15) ] );
 
 			my $row_data = $self->{dispatch}->{$sorted_by}->($self, $game);

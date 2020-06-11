@@ -2,7 +2,6 @@ package Football::BackTest::Model;
 
 use MyHeader;
 use DBI;
-#use Function::Parameters qw(method);
 
 use Moo;
 use namespace::clean;

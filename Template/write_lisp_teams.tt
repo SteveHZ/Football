@@ -1,0 +1,10 @@
+(
+[%- FOREACH league IN data.keys -%]
+("[% league %]"
+(
+[% FOREACH team IN data.$league -%]
+  "[% team %]"
+[% END -%]
+))
+[% END -%]
+)

@@ -11,11 +11,11 @@
 use strict;
 use warnings;
 
+use MyTemplate;
 use MyJSON qw(write_json);
 use MyLib qw(sort_HoA);
-use MyTemplate;
+
 use Football::Globals qw(@euro_lgs);
-use Football::TeamsList;
 
 my $path = 'C:/Mine/perl/Football/data/Euro/';
 my $json_file = $path.'teams.json';
@@ -134,19 +134,17 @@ write_json ($json_file, $sorted);
 print " Done";
 
 my $out_file = 'data/teams/euro_teams.pl';
-print "\nWriting new sorted team list to $out_file...";
-
-my $team_list = Football::TeamsList->new (
-	leagues => \@euro_lgs,
-	sorted => $sorted,
-	filename => $out_file,
+my $tt = MyTemplate->new (
+    filename => $out_file,
+    template => 'Template/create_new_teams.tt',
+    data => {
+        leagues => \@euro_lgs,
+        sorted => $sorted,
+    },
 );
-$team_list->create ();
+print "\nWriting new sorted team list to $out_file...";
+$tt->write_file ();
 
-my $tt = MyTemplate->new (filename => $out_file);
-my $out_fh = $tt->open_file ();
-$tt->process ('Template/create_new_teams.tt', { leagues => \@euro_lgs, sorted => $sorted }, $out_fh)
-    or die $tt->error;
 print " Done";
 
 =head

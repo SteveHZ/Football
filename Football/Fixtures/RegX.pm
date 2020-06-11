@@ -12,7 +12,6 @@ sub as_date_month {
 		/$2\/$1/x;				#	14/03
 	return $val;
 };
-#	$val =~ s/\d{4}-(\d{2})-(\d{2})/$2\/$1/;
 
 sub as_dmy {
 	my ($self, $val) = @_;
@@ -21,7 +20,6 @@ sub as_dmy {
 		/$3\/$2\/$1/x;					#	14/03/19
 	return $val;
 }
-#	$val =~ s/\d{2}(\d{2})-(\d{2})-(\d{2})/$3\/$2\/$1/;
 
 sub remove_postponed {
 	my ($self, $dataref) = @_;

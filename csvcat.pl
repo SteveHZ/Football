@@ -11,13 +11,13 @@ my $to_file = "C:/Mine/perl/Football/data/Euro/$ARGV[0].csv";
 my $bak_file = "C:/Mine/perl/Football/data/backups/$ARGV[0].csv";
 
 for my $file_count (1..$#ARGV) {
-	my $from_file = "C:/Mine/perl/Football/data/Euro/cleaned/$ARGV[ $file_count ].csv";
+    my $from_file = "C:/Mine/perl/Football/data/Euro/cleaned/$ARGV[ $file_count ].csv";
 
-	print "\nReading $from_file..";
-	open my $fh, '<', $from_file or die "Can't find $from_file !!";
-	my $junk = <$fh>;
-	chomp ( my @games = <$fh> );
-	close $fh;
+    print "\nReading $from_file..";
+    open my $fh, '<', $from_file or die "Can't find $from_file !!";
+    my $junk = <$fh>;
+    chomp ( my @games = <$fh> );
+    close $fh;
 
 	print "\nAppending to $to_file..";
 	open my $fh2, '>>', $to_file or die "Can't open $to_file !!";

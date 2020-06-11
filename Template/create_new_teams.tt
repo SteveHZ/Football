@@ -1,7 +1,7 @@
 my $leagues = {
-[% FOREACH league IN leagues -%]
+[% FOREACH league IN data.leagues -%]
     '[% league %]' => [
-        [% FOREACH team IN sorted.$league %]'[% team %]',
+        [% FOREACH team IN data.sorted.$league %]'[% team %]',
         [% END -%]
 ],
 [% END -%]

@@ -33,7 +33,7 @@ our $euro_teams = {
 	'Bray' => 'Bray Wanderers',
 	'UC Dublin' => 'UCD',
 
-#  Swedish
+#	Swedish
 	'Malmo FF' => 'Malmo', # FF removed in Fixtures_Model ??
 	'Djurgarden' => 'Djurgardens',
 

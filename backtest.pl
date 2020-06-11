@@ -3,7 +3,6 @@
 use MyHeader;
 use Football::Globals qw(@league_names);
 use Football::BackTest::Model;
-use DBI;
 
 my $model = Football::BackTest::Model->new ();
 my $dbh = $model->connect (dir => 'C:/Mine/perl/Football/data/backtest');
@@ -102,17 +101,5 @@ sub get_query {
                 }
             },
         },
-##        {
-#            query => "draw <= 2.3 and draw < home_win and draw < away_win",
-#            callback => sub {
-#                my ($row, $league, $data) = @_;
-#                if ($row->{b365d}) {
-#                    $data->{wins}->{$league} += $row->{b365d} if $row->{result} eq 'D';
-#                }
-#            },
-#        },
-
     ];
 }
-#   say " $row->{date} $row->{home_team} $row->{away_team} $row->{home_score}-$row->{away_score}
-#         $row->{home_win} $row->{draw} $row->{away_win}";

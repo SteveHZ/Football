@@ -119,7 +119,6 @@ sub away_win {
 
 sub away_win_odds {
 	my $self = shift;
-
 	my $stats = $self->away_win ();
 	return 0 if $stats == 0;
 	return nearest (0.01, 100 / $stats);
@@ -136,11 +135,11 @@ sub draw {
 }
 
 sub draw_odds {
-	my $self = shift;
+    my $self = shift;
 
-	my $stats = $self->draw ();
-	return 0 if $stats == 0;
-	return nearest (0.01, 100 / $stats);
+    my $stats = $self->draw ();
+    return 0 if $stats == 0;
+    return nearest (0.01, 100 / $stats);
 }
 
 sub both_sides_yes {

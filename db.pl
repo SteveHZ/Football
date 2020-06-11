@@ -131,26 +131,10 @@ sub show_info {
 	print "\n\nGames = ". $num_games;
 	print "\nTotal Wins = ". $wins;
 	print "\nPercentage Wins = ". percentage ($wins, $num_games);
-	print "\nTotal Return = ".chr(156). $return;
+	print "\nTotal Return = ". chr(156). $return;
 	print "\nPercentage Return = ". returns ($return, $num_games);
-	print "\nOver 2.5 = ".$overs;
-	print "\nLast Six Overs = ".$last_six_overs;
-}
-
-sub total_return {
-	my ($team, $games, $data) = @_;
-	my $odds_cols = { h => $data->{column}.'h', a => $data->{column}.'a' };
-	return sprintf "%.2f",
-		reduce { $a + $b }
-		map { calc_return ($team, $_, $odds_cols) }
-		@$games;
-}
-
-sub calc_return {
-	my ($team, $game, $odds_cols) = @_;
-	return $game->{ $odds_cols->{h} } if $team eq $game->{hometeam} && $game->{ftr} eq 'H';
-	return $game->{ $odds_cols->{a} } if $team eq $game->{awayteam} && $game->{ftr} eq 'A';
-	return 0;
+	print "\nOver 2.5 = ". $overs;
+	print "\nLast Six Overs = ". $last_six_overs;
 }
 
 sub total_wins {
@@ -164,6 +148,25 @@ sub is_win {
 	my ($team, $game) = @_;
 	return 1 if $team eq $game->{hometeam} && $game->{ftr} eq 'H';
 	return 1 if $team eq $game->{awayteam} && $game->{ftr} eq 'A';
+	return 0;
+}
+
+sub total_return {
+	my ($team, $games, $data) = @_;
+	my $odds_cols = {
+		h => $data->{column}.'h',
+		a => $data->{column}.'a'
+	};
+	return sprintf "%.2f",
+		reduce { $a + $b }
+		map { calc_return ($team, $_, $odds_cols) }
+		@$games;
+}
+
+sub calc_return {
+	my ($team, $game, $odds_cols) = @_;
+	return $game->{ $odds_cols->{h} } if $team eq $game->{hometeam} && $game->{ftr} eq 'H';
+	return $game->{ $odds_cols->{a} } if $team eq $game->{awayteam} && $game->{ftr} eq 'A';
 	return 0;
 }
 

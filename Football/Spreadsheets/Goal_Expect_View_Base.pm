@@ -148,9 +148,9 @@ sub get_write_data_rows {
 		{ $teams->{$team}->{expect_away_for} => $self->{float_format} },
 		{ $teams->{$team}->{expect_away_against} => $self->{float_format} },
 
-		{ $teams->{$team}->{expect_last_six_home_for} => $self->{format} },
+		{ $teams->{$team}->{expect_last_six_home_for} => $self->{float_format} },
 		{ $teams->{$team}->{expect_last_six_home_against} => $self->{float_format} },
-		{ $teams->{$team}->{expect_last_six_away_for} => $self->{format} },
+		{ $teams->{$team}->{expect_last_six_away_for} => $self->{float_format} },
 		{ $teams->{$team}->{expect_last_six_away_against} => $self->{float_format} },
 #		{ $teams->{$team}->{last_six_for} => $self->{format} },
 #		{ $teams->{$team}->{av_last_six_for} => $self->{float_format} },

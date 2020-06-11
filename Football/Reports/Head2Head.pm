@@ -55,7 +55,7 @@ sub csv_to_json {
 	my $iterator = each_arrayref ($leagues, $league_size);
 
 	while ( my ($league, $size) = $iterator->() ) {
-		for my $season (@ { $seasons->{$league} }) {
+		for my $season ( $seasons->{$league}->@* ) {
 			print "\nCSV to JSON - Updating $league - $season...";
 			$csv_file = $self->{historical_path}.$league.'/'.$season.".csv";
 			my $week = 0;
@@ -86,9 +86,9 @@ sub create_hash {
 	print "\n";
 	for my $league (@$leagues) {
 		print "\nCreating hash for $league...";
-		for my $home (@ {$all_teams->{$league} }) {
-			for my $away (@ {$all_teams->{$league} }) {
-				for my $season (@{ $seasons->{h2h_seasons} }) {
+		for my $home ( $all_teams->{$league}->@* ) {
+			for my $away ( $all_teams->{$league}->@* ) {
+				for my $season ( $seasons->{h2h_seasons}->@* ) {
 					$teams->{$league}->{$home}->{$away} = [ qw(X X X X X X) ]
 						unless $home eq $away;
 				}
@@ -104,7 +104,7 @@ sub build_head2head {
 
 	print "\n";
 	for my $league (@$leagues) {
-		for my $season (@{ $seasons->{h2h_seasons} }) {
+		for my $season ( $seasons->{h2h_seasons}->@* ) {
 			print "\nHead To Head - Updating $league - $season...";
 			my $json_file = $self->{historical_path}.$league.'/'.$season.'.json';
 			my $games = $self->read_json ($json_file);

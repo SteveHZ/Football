@@ -30,7 +30,7 @@ sub setup {
 	my ($self, $leagues, $seasons) = @_;
 	my $hash = {};
 	for my $league (@$leagues) {
-		for my $season (@ { $seasons->{$league} }) {
+		for my $season ( $seasons->{$league}->@* ) {
 			$hash->{$league}->{$season} = $self->setup_results ();
 		}
 	}

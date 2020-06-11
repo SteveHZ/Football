@@ -5,24 +5,17 @@ use MyJSON qw(read_json);
 
 use Moo::Role;
 
-sub build_data {
-	my ($self, $args) = @_;
-	my $games;
+sub quick_predict {
+	my $self = shift;
+	my ($data, $stats) = $self->quick_build ();
 
-	if (exists $args->{json}) {
-		$games = read_json ($args->{json});
-	} else {
-		$games = $self->read_games ();
-	}
-	my $leagues = $self->build_leagues ($games);
-
-	return {
-		games => $games,
-		leagues => $leagues,
-		homes => $self->do_homes ($leagues),
-		aways => $self->do_aways ($leagues),
-		last_six => $self->do_last_six ($leagues),
-	};
+	my $predict = Football::Game_Predictions::Controller->new (
+		fixtures => $stats->{by_match},
+		leagues => $self->leagues,
+		model_name => $self->model_name,
+	);
+	my ($teams, $sorted) = $predict->do_predict_models ($data->{by_match}, $self->leagues);
+	return ($teams, $sorted);
 }
 
 sub quick_build {
@@ -38,18 +31,29 @@ sub quick_build {
 	return ($data, $stats);
 }
 
-sub quick_predict {
-	my $self = shift;
-	my ($data, $stats) = $self->quick_build ();
+sub build_data {
+	my ($self, $args) = @_;
 
-	my $predict = Football::Game_Predictions::Controller->new (
-		fixtures => $stats->{by_match},
-		leagues => $self->leagues,
-		model_name => $self->model_name,
-	);
-	my ($teams, $sorted) = $predict->do_predict_models ($data->{by_match}, $self->leagues);
-	return ($teams, $sorted);
+	my $games = (exists $args->{json})
+		? read_json ($args->{json})
+		: $self->read_games ();
+	my $leagues = $self->build_leagues ($games);
+
+	return {
+		games => $games,
+		leagues => $leagues,
+		homes => $self->do_homes ($leagues),
+		aways => $self->do_aways ($leagues),
+		last_six => $self->do_last_six ($leagues),
+	};
 }
+#	my $games;
+
+#	if (exists $args->{json}) {
+#		$games = read_json ($args->{json});
+#	} else {
+#		$games = $self->read_games ();
+#	}
 
 =pod
 

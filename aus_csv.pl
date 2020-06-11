@@ -1,9 +1,8 @@
 
-#	aus_csv.pl 16-17/03/20
+#	aus_csv.pl 16-17,24/03/20
 
 use strict;
 use warnings;
-
 use File::Fetch;
 
 use lib 'C:/Mine/perl/Football';
@@ -11,6 +10,7 @@ use Football::Football_Data_Model;
 use MyTemplate;
 use Football::Globals qw($season);
 use Euro::Rename qw(check_rename);
+use MyRegXBase qw(full_dmy_date);
 
 my $in_dir = "C:/Mine/perl/Football/data/Euro/scraped";
 my $in_file = "aleague-$season-UTC.csv";
@@ -30,38 +30,40 @@ my $data_model = Football::Football_Data_Model->new (
 );
 my $games = $data_model->read_csv ("$in_dir/$in_file");
 
-my $dmy = qr/
-    \d\d\/          # date
-    \d\d\/          # month
-    \d\d\d\d        # year
-/x;
+my $rx = MyRegXBase->new ();
+my $dmy = $rx->full_dmy_date;
 
 for my $game (@$games) {
     ( $game->{home_score}, $game->{away_score} ) = split ' - ', $game->{score};
     $game->{date} =~ s/($dmy).*/$1/;
 }
 
-my @data = map { {
-    league => 'AUS',
-    date => $_->{date},
-    home_team => check_rename ( $_->{aus_home_team} ),
-    away_team => check_rename ( $_->{aus_away_team} ),
-    home_score => $_->{home_score},
-    away_score => $_->{away_score},
-    result => get_result ($_->{home_score}, $_->{away_score}),
-} } grep {
-    $_->{score} ne ''
-} @$games;
+my @data =  map  { transform_game ($_) }
+            grep { $_->{score} ne '' }
+            @$games;
 
 print "\nWriting $out_dir/$out_file...";
-my $tt = MyTemplate->new (filename => "$out_dir/$out_file");
-my $out_fh = $tt->open_file ();
-
-$tt->process ('Template/write_aus.tt', {
-    data => \@data
-}, $out_fh) or die $tt->error;
+my $tt = MyTemplate->new (
+    filename => "$out_dir/$out_file",
+    template => 'Template/write_aus.tt',
+    data => \@data,
+);
+$tt->write_file ();
 
 print "Done";
+
+sub transform_game {
+    my $game = shift;
+    return {
+        league => 'AUS',
+        date => $game->{date},
+        home_team => check_rename ( $game->{aus_home_team} ),
+        away_team => check_rename ( $game->{aus_away_team} ),
+        home_score => $game->{home_score},
+        away_score => $game->{away_score},
+        result => get_result ( $game->{home_score}, $game->{away_score} ),
+    };
+}
 
 sub get_result {
     my ($home, $away) = @_;

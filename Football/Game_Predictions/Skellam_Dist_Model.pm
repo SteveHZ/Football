@@ -26,6 +26,7 @@ sub calc {
 	my $results = {};
 
 	unless ( $home_expect == 0 or $away_expect == 0) {
+		# exp returns euler raised to the power of its argument
 		my $constant = exp ( -1 * ($home_expect + $away_expect) );
 		my $root_ratio = sqrt ($home_expect / $away_expect);
 		my $harmonic_mean = sqrt ($home_expect * $away_expect);

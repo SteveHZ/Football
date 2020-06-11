@@ -9,11 +9,11 @@
 use strict;
 use warnings;
 
+use MyTemplate;
 use MyJSON qw(write_json);
 use MyLib qw(sort_HoA);
 
 use Football::Globals qw(@summer_leagues);
-use Football::TeamsList;
 
 my $path = 'C:/Mine/perl/Football/data/Summer/';
 my $json_file = $path.'teams.json';
@@ -139,11 +139,15 @@ write_json ($json_file, $sorted);
 print " Done";
 
 my $out_file = 'data/teams/summer_teams.pl';
-print "\nWriting new sorted team list to $out_file...";
-
-my $team_list = Football::TeamsList->new (
-	leagues => \@summer_leagues,
-	sorted => $sorted,
-	filename => $out_file,
+my $tt = MyTemplate->new (
+    filename => $out_file,
+    template => 'Template/create_new_teams.tt',
+    data => {
+        leagues => \@summer_leagues,
+        sorted => $sorted,
+    },
 );
-$team_list->create ();
+print "\nWriting new sorted team list to $out_file...";
+$tt->write_file ();
+
+print " Done";
