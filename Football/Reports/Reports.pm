@@ -77,7 +77,7 @@ sub run {
 						$teams->{$name}->{recent_goal_diff} = $table->recent_goal_diff ($name);
 					}
 				}
-				if ($week > 6) { # need to not update above lines as well ??
+				if ($week > 6) {
 					$_->update ($league, $teams, $game, $season) for values (%$self);
 				}
 				$table->update ($game);

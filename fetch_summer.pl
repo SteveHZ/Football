@@ -9,7 +9,7 @@ use List::MoreUtils qw(each_arrayref);
 
 use lib 'C:/Mine/perl/Football';
 use Summer::Summer_Data_Model;
-use Football::Globals qw( $euro_season @summer_fetch_leagues @summer_csv_leagues);
+use Football::Globals qw( $summer_season @summer_fetch_leagues @summer_csv_leagues);
 
 my $data_model = Summer::Summer_Data_Model->new ();
 my $summer_dir = 'C:/Mine/perl/Football/data/Summer';
@@ -31,7 +31,7 @@ while (my ($league, $file) = $iterator->()) {
 	my $out_file = "$summer_dir/$file.csv";
 
 	my $games = $data_model->read_data ($in_file);
-	my @data = grep { $_->{year} =~ $euro_season } @$games;
+	my @data = grep { $_->{year} =~ $summer_season } @$games;
 
 	print "\nWriting $out_file...";
 	$data_model->write_csv ($out_file, \@data);

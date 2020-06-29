@@ -46,7 +46,7 @@ TESTING {
 	return {
 		uk      => \@csv_leagues,
 		euro    => \@euro_csv_lgs,
-#		summer  => \@summer_csv_leagues,
+		summer  => \@summer_csv_leagues,
 	};
 }
 
@@ -198,6 +198,8 @@ sub do_initial_chars {
 	$$dataref =~ s/\// /g; # Norwegian (Bodo/Glimt)
 	$$dataref =~ s/jyskE/jyske/g; # Danish
 	$$dataref =~ s/ CF//g; # Inter Miami
+	$$dataref =~ s/ BoIS//g; # Varbergs
+	$$dataref =~ s/ AIF//g; # Mjallby
 }
 
 sub revert {

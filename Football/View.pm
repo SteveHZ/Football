@@ -33,8 +33,8 @@ sub create_sheets {
 sub destroy_sheets {
 	my $self = shift;
 
-	$self->{xlsx_teams}->{$_}->{workbook}->close () for keys %{ $self->{xlsx_teams}};
-	$self->{xlsx_tables}->{$_}->{workbook}->close () for keys %{ $self->{xlsx_tables}};
+	$self->{xlsx_teams}->{$_}->{workbook}->close () for keys $self->{xlsx_teams}->%*;
+	$self->{xlsx_tables}->{$_}->{workbook}->close () for keys $self->{xlsx_tables}->%*;
 }
 
 sub create_new_teams_sheet {
@@ -149,11 +149,11 @@ sub fixtures {
 	for my $league (@$fixtures) {
 		my $league_name = $league->{league};
 		print "\n\n$league_name :";
-		for my $game (@{ $league->{games} }) {
+		for my $game ( $league->{games}->@* ) {
 			print "\n";
-			print " $_"  for (@{ $game->{homes}} );
+			print " $_"  for ( $game->{homes}->@* );
 			printf $self->{fixtures_format}, $game->{home_team}, $game->{away_team};
-			print " $_"  for (@{ $game->{aways}} );
+			print " $_"  for ( $game->{aways}->@* );
 			printf $self->{fixtures_format2}, $game->{home_points}, $game->{away_points};
 			printf "  %2d-%d", $game->{last_six_home_points}, $game->{last_six_away_points};
 		}
@@ -170,10 +170,10 @@ sub do_head2head {
 	print "\n\nWriting head to head predictions...\n";
 	for my $league (@$fixtures) {
 		print "\n\n$league->{league} :";
-		for my $game ($league->{games}->@*) {
+		for my $game ( $league->{games}->@* ) {
 			print "\n";
 			printf $self->{league_places_format}, $game->{home_team}, $game->{away_team};
-			print " $_"  for (@{ $game->{head2head}} );
+			print " $_"  for ( $game->{head2head}->@* );
 			printf $self->{fixtures_format2}, $game->{home_h2h}, $game->{away_h2h};
 		}
 	}
@@ -189,7 +189,7 @@ sub do_league_places {
 		my $league_name = $league->{league};
 		print "\n$league_name";
 
-		for my $game ($league->{games}->@*) {
+		for my $game ( $league->{games}->@* ) {
 			print "\n";
 			printf $self->{league_places_format}, $game->{home_team}, $game->{away_team};
 			printf $self->{league_places_format2},
@@ -212,7 +212,7 @@ sub do_recent_goal_difference {
 		my $league_name = $league->{league};
 		print "\n$league_name";
 
-		for my $game ($league->{games}->@*) {
+		for my $game ( $league->{games}->@* ) {
 			print "\n";
 			printf $self->{league_places_format}, $game->{home_team}, $game->{away_team};
 			printf $self->{goal_diff_format},
@@ -234,7 +234,7 @@ sub do_goal_difference {
 		my $league_name = $league->{league};
 		print "\n$league_name";
 
-		for my $game ($league->{games}->@*) {
+		for my $game ( $league->{games}->@*) {
 			print "\n";
 			printf $self->{league_places_format}, $game->{home_team}, $game->{away_team};
 			printf $self->{goal_diff_format},

@@ -48,17 +48,17 @@ sub view {
 	for my $league (@$leagues) {
 		my $league_name = $league->name;
 		print "\n\n$league_name :";
-		for my $team ( @{ $league->team_list } ) {
+		for my $team ( $league->team_list->@* ) {
 			printf "\n%-25s", $team;
-			print "$teams->{$team}->{home_for} - ";
-			print "$teams->{$team}->{av_home_for} ";
-			print "$teams->{$team}->{home_against} - ";
-			print "$teams->{$team}->{av_home_against} ";
+			printf "%2d - %.2f ", $teams->{$team}->{home_for},
+				                  $teams->{$team}->{av_home_for};
+			printf "%2d - %.2f ", $teams->{$team}->{home_against},
+				                  $teams->{$team}->{av_home_against};
 
-			print "$teams->{$team}->{away_for} - ";
-			print "$teams->{$team}->{av_away_for} ";
-			print "$teams->{$team}->{away_against} - ";
-			print "$teams->{$team}->{av_away_against} ";
+			printf "%2d - %.2f ", $teams->{$team}->{away_for},
+			                      $teams->{$team}->{av_away_for};
+			printf "%2d - %.2f ", $teams->{$team}->{away_against},
+				                  $teams->{$team}->{av_away_against};
 
 			print "$teams->{$team}->{expect_home_for} - ";
 			print "$teams->{$team}->{expect_home_against} ";
@@ -102,7 +102,8 @@ sub do_formats {
 
 sub get_format {
 	my ($self, $goal_diff) = @_;
-	return ($goal_diff >= 0) ? $self->{float_format} : $self->{bold_float_format};
+	return ($goal_diff >= 0) ? $self->{float_format}
+	                         : $self->{bold_float_format};
 }
 
 sub write_data {
@@ -116,7 +117,7 @@ sub write_data {
 
 		$self->blank_columns ( [ qw(1 4 7 10 13 16 19 22) ] );
 		my $row = 2;
-		for my $team ( @{ $league->team_list } ) {
+		for my $team ( $league->team_list->@* ) {
 			my $row_data = $self->get_write_data_rows ($teams, $team);
 			$self->write_row ($worksheet, $row, $row_data);
 			$row ++;
@@ -152,10 +153,6 @@ sub get_write_data_rows {
 		{ $teams->{$team}->{expect_last_six_home_against} => $self->{float_format} },
 		{ $teams->{$team}->{expect_last_six_away_for} => $self->{float_format} },
 		{ $teams->{$team}->{expect_last_six_away_against} => $self->{float_format} },
-#		{ $teams->{$team}->{last_six_for} => $self->{format} },
-#		{ $teams->{$team}->{av_last_six_for} => $self->{float_format} },
-#		{ $teams->{$team}->{last_six_against} => $self->{format} },
-#		{ $teams->{$team}->{av_last_six_against} => $self->{float_format} },
 	];
 }
 

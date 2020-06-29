@@ -185,6 +185,9 @@ Warrenpoint Town,Warrenpoint
 #	Swedish
 Helsingborgs,Helsingborg
 
+#	Norwegian
+Aalesunds,Aalesund
+
 #	Italian
 Inter Milan,Inter
 AC Milan,Milan

@@ -37,12 +37,12 @@ sub show {
 	my ($self, $hash, $sorted) = @_;
 	$self->blank_columns ( [ qw(1 3 5 7 9 11 13) ] );
 
-	for my $sheet (@{ $self->{sheetnames} }) {
+	for my $sheet ( $self->{sheetnames}->@* ) {
 		my $worksheet = $self->add_worksheet (wordcase $sheet);
 		$self->do_header ($worksheet, $self->{bold_format});
 
 		my $row = 2;
-		for my $team (@{ $sorted->{$sheet} }) {
+		for my $team ( $sorted->{$sheet}->@* ) {
 			my $row_data = $self->{dispatch}->{$sheet}->($self, $hash, $team);
 			$self->write_row ($worksheet, $row, $row_data);
 			$row ++;

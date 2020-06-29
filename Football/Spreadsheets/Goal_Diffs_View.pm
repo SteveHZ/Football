@@ -54,7 +54,7 @@ sub view {
 		do_goal_diffs_header ($worksheet, $self->{format});
 
 		my $row = 2;
-		for my $game (@{ $fixtures->{$sorted_by} } ) {
+		for my $game ( $fixtures->{$sorted_by}->@* ) {
 			$self->blank_columns ( [ qw( 1 3 5 8 10 13 ) ] );
 
 			my $row_data = $self->get_goal_diffs_rows ($game);

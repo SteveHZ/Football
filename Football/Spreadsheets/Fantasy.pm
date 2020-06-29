@@ -33,12 +33,12 @@ sub do_header {
 
 sub write {
 	my ($self, $sorted) = @_;
-    for my $position (@{ $self->{sheets} } ) {
+    for my $position ( $self->{sheets}->@* ) {
         my $worksheet = $self->add_worksheet ($position);
     	$self->do_header ($worksheet, $self->{bold_format});
 
         my $row = 2;
-        for my $player (@{ $sorted->{$position} } ) {
+        for my $player ( $sorted->{$position}->@* ) {
             my $row_data = [
                 { $player->{name} => $self->{bold_format} },
                 { $player->{team} => $self->{bold_format} },

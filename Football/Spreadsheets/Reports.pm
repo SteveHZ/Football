@@ -125,7 +125,7 @@ sub do_homeawaydraws {
 		do_homeawaydraws_header ($worksheet, $self->{bold_format});
 
 		my $row = 3;
-		my @seasons = sort {$a <=> $b} keys %{ $hash->{$league} };
+		my @seasons = sort { $a <=> $b } keys %{ $hash->{$league} };
 		for my $season (@seasons) {
 			$worksheet->write ($row, 0, $season, $self->{format});
 			$worksheet->write ($row, 2, $hash->{$league}->{$season}->{home_win}, $self->{format});
@@ -206,13 +206,18 @@ sub do_homeawaydraws_header {
 sub do_homeawaydraws_footer {
 	my ($worksheet, $format, $bold_format) = @_;
 
-	$worksheet->write ('A26', 'Totals', $bold_format);
-	$worksheet->write ('C26', '=SUM(C4:C23)', $format);
-	$worksheet->write ('D26', '=SUM(D4:D23)', $format);
-	$worksheet->write ('E26', '=SUM(E4:E23)', $format);
-	$worksheet->write ('H26', '=(C26/SUM(C26:E26))*100', $bold_format);
-	$worksheet->write ('I26', '=(D26/SUM(C26:E26))*100', $bold_format);
-	$worksheet->write ('J26', '=(E26/SUM(C26:E26))*100', $bold_format);
+	$worksheet->write ('L8', 'Totals', $bold_format);
+	$worksheet->write ('L10', 'Homes', $bold_format);
+	$worksheet->write ('M10', 'Aways', $bold_format);
+	$worksheet->write ('N10', 'Draws', $bold_format);
+	$worksheet->merge_range ('P10:R10', 'Percentages', $bold_format);
+
+	$worksheet->write ('L12', '=SUM(C4:C31)', $bold_format);
+	$worksheet->write ('M12', '=SUM(D4:D31)', $bold_format);
+	$worksheet->write ('N12', '=SUM(E4:E31)', $bold_format);
+	$worksheet->write ('P12', '=(L12/SUM(L12:N12))*100', $bold_format);
+	$worksheet->write ('Q12', '=(M12/SUM(L12:N12))*100', $bold_format);
+	$worksheet->write ('R12', '=(N12/SUM(L12:N12))*100', $bold_format);
 }
 
 1;

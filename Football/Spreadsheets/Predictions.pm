@@ -37,7 +37,7 @@ sub do_fixtures {
 		$worksheet->merge_range (++$row, 0, $row, 15, uc $league_name, $self->{bold_format});
 		$row +=2;
 
-		for my $game (@{ $league->{games} } ) {
+		for my $game ( $league->{games}->@* ) {
 			$col = 0;
 			my $iterator = each_arrayref ( $game->{homes}, $game->{full_homes} );
 			while ( my ($result, $full_result) = $iterator->() ) {
@@ -76,7 +76,7 @@ sub do_last_six {
 		$worksheet->merge_range (++$row, 0, $row, 15, uc $league_name, $self->{bold_format});
 		$row +=2;
 
-		for my $game (@{ $league->{games} } ) {
+		for my $game ( $league->{games}->@* ) {
 			$col = 0;
 			my $iterator = each_arrayref ( $game->{home_last_six}, $game->{full_home_last_six} );
 			while ( my ($result, $full_result) = $iterator->() ) {
@@ -114,12 +114,12 @@ sub do_head2head {
 		$worksheet->merge_range (++$row, 0, $row, 8, uc $league_name, $self->{bold_format});
 		$row +=2;
 
-		for my $game (@{ $league->{games} } ) {
+		for my $game ( $league->{games}->@* ) {
 			my $col = 0;
 			$worksheet->write ($row, $col ++, $game->{home_team}, $self->{format});
 			$worksheet->write ($row, $col ++, $game->{away_team}, $self->{format});
 			$col ++;
-			for my $result (@ {$game->{head2head}} ) {
+			for my $result ( $game->{head2head}->@* ) {
 				$worksheet->write ($row, $col ++, $result, $self->{format});
 			}
 			$col ++;
@@ -144,14 +144,14 @@ sub do_recent_goal_difference {
 		$worksheet->merge_range (++$row, 0, $row, 11, uc $league_name, $self->{bold_format});
 		$row +=2;
 
-		for my $game (@{ $league->{games} } ) {
+		for my $game ( $league->{games}->@* ) {
 			my $col = 0;
 			$worksheet->write ($row, $col ++, $game->{home_team}, $self->{format});
 			$worksheet->write ($row, $col ++, $game->{away_team}, $self->{format});
 			$col += 2;
 			$worksheet->write ($row, $col ++, $game->{recent_goal_difference}, $self->{format});
 			$col += 2;
-			for my $result (@{ $game->{rgd_results}} ) {
+			for my $result ( $game->{rgd_results}->@* ) {
 				$worksheet->write ($row, $col ++, $result, $self->{format});
 				$col ++;
 			}
@@ -179,7 +179,7 @@ sub do_goal_difference {
 		$worksheet->merge_range (++$row, 0, $row, 11, uc $league_name, $self->{bold_format});
 		$row +=2;
 
-		for my $game ( @{$league->{games}} ) {
+		for my $game ( $league->{games}->@* ) {
 			my $col = 0;
 			$worksheet->write ($row, $col ++, $game->{home_team}, $self->{format});
 			$worksheet->write ($row, $col ++, $game->{away_team}, $self->{format});
@@ -213,7 +213,7 @@ sub do_league_places {
 		$worksheet->merge_range (++$row, 0, $row, 11, uc $league_name, $self->{bold_format});
 		$row +=2;
 
-		for my $game (@{ $league->{games} } ) {
+		for my $game ( $league->{games}->@* ) {
 			my $col = 0;
 			$worksheet->write ($row, $col ++, $game->{home_team}, $self->{format});
 			$worksheet->write ($row, $col ++, $game->{away_team}, $self->{format});
@@ -221,7 +221,7 @@ sub do_league_places {
 			$worksheet->write ($row, $col ++, $game->{home_pos}, $self->{format});
 			$worksheet->write ($row, $col ++, $game->{away_pos}, $self->{format});
 			$col += 2;
-			for my $result (@{ $game->{results}} ) {
+			for my $result ( $game->{results}->@* ) {
 				$worksheet->write ($row, $col ++, $result, $self->{format});
 				$col ++;
 			}

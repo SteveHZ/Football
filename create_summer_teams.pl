@@ -78,7 +78,7 @@ my $leagues = {
         'Varbergs',
     ],
     'Norwegian League' => [
-        'Aalesunds',
+        'Aalesund',
         'Bodo Glimt',
         'Brann',
         'Haugesund',

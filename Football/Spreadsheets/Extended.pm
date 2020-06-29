@@ -29,7 +29,7 @@ sub do_extended {
 		my $worksheet = $self->add_worksheet ($league_name);
 		do_extended_header ($worksheet, $self->{format});
 
-		for my $game (@{ $league->{games} } ) {
+		for my $game ( $league->{games}->@* ) {
 			$worksheet->merge_range ($row, 0, $row, 3, uc ($game->{home_team}). " ". $game->{home_points}, $self->{bold_format});
 			$worksheet->merge_range ($row, 5, $row, 8, uc ($game->{away_team}). " ". $game->{away_points}, $self->{bold_format});
 

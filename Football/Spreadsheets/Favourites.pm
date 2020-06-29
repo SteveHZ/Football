@@ -147,7 +147,7 @@ sub do_history {
 	}
 
 	my $row = 4;
-	for my $week (@ { $hash->{history} } ) {
+	for my $week ( $hash->{history}->@* ) {
 		for my $league (keys %$week) {
 			my $hashref = $week->{$league}->{$year};
 			$self->write_row ($league_sheets->{$league}, $hashref, $row);

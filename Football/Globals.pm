@@ -12,6 +12,7 @@ our @EXPORT = qw(
 	$season
 	$next_season
 	$euro_season
+	$summer_season
 	$season_years
 	$full_season_years
 	$last_season
@@ -41,6 +42,7 @@ sub new { return bless {}, shift; }
 
 our $season = 2019;
 our $euro_season = 2019;
+our $summer_season = 2020;
 
 our $next_season = $season + 1;
 our $season_years = ($season-2000).($next_season-2000);

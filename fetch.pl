@@ -11,7 +11,9 @@ my $id = 'mmz4281';
 my $dir = 'C:/Mine/perl/Football/data';
 my $euro_dir = 'C:/Mine/perl/Football/data/Euro';
 
-for my $league (@csv_leagues) {
+my @restart_leagues = qw(E0 E1);
+for my $league (@restart_leagues) {
+#for my $league (@csv_leagues) {
 	my $url = "http://www.football-data.co.uk/$id/$season_years/$league.csv";
 
 	my $ff = File::Fetch->new (uri => $url);

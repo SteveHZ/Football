@@ -57,7 +57,7 @@ sub view {
 		$self->{headers}->{$sorted_by}->($self, $worksheet, $self->{format});
 
 		my $row = 2;
-		for my $game (@{ $sorted->{$sorted_by} } ) {
+		for my $game ( $sorted->{$sorted_by}->@* ) {
 			my $row_data = $self->{dispatch}->{$sorted_by}->($self, $game, $row + 1);
 			$self->write_row ($worksheet, $row, $row_data);
 			$row ++;
