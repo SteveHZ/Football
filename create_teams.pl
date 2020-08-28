@@ -10,8 +10,8 @@ use warnings;
 use MyTemplate;
 use MyJSON qw(write_json);
 use MyLib qw(sort_HoA);
-
-use Football::Globals qw(@league_names);
+use Football::Globals qw(@league_names @csv_leagues);
+use List::MoreUtils qw(each_array);
 
 my $path = 'C:/Mine/perl/Football/data/';
 my $json_file = $path.'teams.json';
@@ -199,6 +199,8 @@ my $sorted = sort_HoA ($leagues);
 write_json ($json_file, $sorted);
 print " Done";
 
+# Write all data out to new sorted data structure to copy back into this file
+
 my $out_file = 'data/teams/uk_teams.pl';
 my $tt = MyTemplate->new (
     filename => $out_file,
@@ -210,6 +212,25 @@ my $tt = MyTemplate->new (
 );
 print "\nWriting new sorted team list to $out_file...";
 $tt->write_file ();
+
+print " Done";
+
+# Write all data out as a lisp list
+
+my $out_dir = "c:/mine/lisp/data";
+
+my $iterator = each_array (@league_names, @csv_leagues);
+while (my ($league, $csv) = $iterator->()) {
+    $lisp_hash->{$csv} = $sorted->{$league};
+}
+
+print "\nWriting data to $out_dir/uk-teams.dat...";
+my $tt2 = MyTemplate->new (
+    filename => "$out_dir/uk-teams.dat",
+    template => "template/write_lisp_teams.tt",
+    data => $lisp_hash,
+);
+$tt2->write_file ();
 
 print " Done";
 

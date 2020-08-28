@@ -48,7 +48,7 @@ subtest 'transform_hash' => sub {
 	});
 
     is ($files->{E0}, 'uk', 'uk ok');
-	is ($files->{NRW}, 'summer', 'summer ok');
+	is ($files->{NOR}, 'summer', 'summer ok');
     isnt ($files->{EC}, 'summer', 'EC not summer ok');
     is ($files->{WL}, 'euro', 'euro ok');
 };

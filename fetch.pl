@@ -11,10 +11,8 @@ my $id = 'mmz4281';
 my $dir = 'C:/Mine/perl/Football/data';
 my $euro_dir = 'C:/Mine/perl/Football/data/Euro';
 
-my @restart_leagues = qw(E0 E1);
-for my $league (@restart_leagues) {
-#for my $league (@csv_leagues) {
-	my $url = "http://www.football-data.co.uk/$id/$season_years/$league.csv";
+for my $league (@csv_leagues) {
+	my $url = "https://www.football-data.co.uk/$id/$season_years/$league.csv";
 
 	my $ff = File::Fetch->new (uri => $url);
 	my $file = $ff->fetch (to => $dir) or die $ff->error;
@@ -23,7 +21,7 @@ for my $league (@restart_leagues) {
 }
 
 for my $league (@euro_fetch_lgs) {
-	my $url = "http://www.football-data.co.uk/$id/$season_years/$league.csv";
+	my $url = "https://www.football-data.co.uk/$id/$season_years/$league.csv";
 
 	my $ff = File::Fetch->new (uri => $url);
 	my $file = $ff->fetch (to => $euro_dir) or die $ff->error;
@@ -31,7 +29,8 @@ for my $league (@euro_fetch_lgs) {
 	sleep 1;
 }
 
-my $url = "http://www.football-data.co.uk/$id/$season_years/all-euro-data-$full_season_years.xlsx";
+my $url = "https://www.football-data.co.uk/$id/$season_years/Latest_Results.xlsx";
+#my $url = "https://www.football-data.co.uk/$id/$season_years/all-euro-data-$full_season_years.xlsx";
 my $ff = File::Fetch->new (uri => $url);
 my $euro_file = $ff->fetch (to => $dir) or die $ff->error;
 print "\n\nDownloading $euro_file...";

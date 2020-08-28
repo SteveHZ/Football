@@ -59,7 +59,7 @@ sub csv_to_json {
 			print "\nCSV to JSON - Updating $league - $season...";
 			$csv_file = $self->{historical_path}.$league.'/'.$season.".csv";
 			my $week = 0;
-			my $games = $data_model->update ($csv_file);
+			my $games = $data_model->read_csv ($csv_file);
 
 			for my $game (@$games) {
 				if ($week == 0) {

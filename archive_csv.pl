@@ -29,7 +29,7 @@ say "\nDone";
 sub copy_files ($iterator) {
     while (my ($csv, $league) = $iterator->()) {
         say "Copying $from_path/$csv.csv to $to_path/$league/$reports_season.csv";
-#        copy ("$from_path/$csv.csv", "$to_path/$league/$reports_season.csv");
+        copy ("$from_path/$csv.csv", "$to_path/$league/$reports_season.csv");
     }
 }
 

@@ -71,6 +71,7 @@ Seattle Sounders FC,Seattle Sounders
 Vancouver Whitecaps FC,Vancouver Whitecaps
 Los Angeles Football Club,Los Angeles FC
 FC Cincinnati,Cincinnati
+Inter Miami CF,Inter Miami
 
 #	English
 Brighton & Hove Albion,Brighton
@@ -276,9 +277,9 @@ Scottish Championship,SC1
 Scottish League One,SC2
 Scottish League Two,SC3
 Irish Premier Division,ROI
-Norwegian Eliteserien,NRW
-Swedish Allsvenskan,SWD
-Finnish Veikkausliiga,FN
+Norwegian Eliteserien,NOR
+Swedish Allsvenskan,SWE
+Finnish Veikkausliiga,FIN
 United States Major League Soccer,MLS
 German Bundesliga,D1
 Italian Serie A,I1

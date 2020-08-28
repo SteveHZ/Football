@@ -77,8 +77,8 @@ sub view {
 	for my $game ( $fixtures->{home_win}->@* ) {
 		print "\n\n$game->{home_team} v $game->{away_team}";
 		print "\nHome Win : ".$game->{odds}->{season}->{home_win};
-		print ' Away Win : '. $game->{odds}->{season}->{away_win};
 		print ' Draw : '. $game->{odds}->{season}->{draw};
+		print ' Away Win : '. $game->{odds}->{season}->{away_win};
 		print ' Both Sides Yes : '. $game->{odds}->{season}->{both_sides_yes};
 		print ' Both Sides No : '. $game->{odds}->{season}->{both_sides_no};
 		print ' Home Double : '. $game->{odds}->{season}->{home_double};

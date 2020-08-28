@@ -77,7 +77,8 @@ sub get_cmdline {
  perl fixtures.pl -d7 -t0
  Default options : days 7 today 0 (do NOT include todays fixtures),
  Use -today 1 to include todays fixtures
-
+ To download 3 days INCLUDING today, use -d2 -t1
+ 
 =head1 DESCRIPTION
 
  Scrapes BBC Sport website for future fixtures

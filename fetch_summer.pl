@@ -1,5 +1,5 @@
 #	fetch_euro.pl 07/02/18
-#	fetch_summer.pl 12/03/18
+#	fetch_summer.pl 12/03/18 v2 02/08/20
 
 use strict;
 use warnings;
@@ -13,21 +13,26 @@ use Football::Globals qw( $summer_season @summer_fetch_leagues @summer_csv_leagu
 
 my $data_model = Summer::Summer_Data_Model->new ();
 my $summer_dir = 'C:/Mine/perl/Football/data/Summer';
-my $leagues = \@summer_fetch_leagues;
+my $summer_download_dir = 'C:/Mine/perl/Football/data/Summer/download';
+my $fetch_leagues = \@summer_fetch_leagues;
 my $csv_leagues = \@summer_csv_leagues;
 
-for my $league (@$leagues) {
-	my $url = "http://www.football-data.co.uk/new/$league.csv";
+for my $league (@$fetch_leagues) {
+	my $url = "https://www.football-data.co.uk/new/$league.csv";
 	my $ff = File::Fetch->new (uri => $url);
-	my $file = $ff->fetch (to => $summer_dir) or die $ff->error;
+	my $file = $ff->fetch (to => $summer_download_dir) or die $ff->error;
 	print "\nDownloading $file...";
 	sleep 1;
 }
 print "\n";
 
-my $iterator = each_arrayref ($leagues, $csv_leagues);
+# As the football-data summer files go back to 2012, saev the full file in a seperate directory,
+# then grep the full file for the current season and save on the correct directory, using the same name.
+# Saving the full file in the same directory caused problems when it came to delete the full file using the same names.
+
+my $iterator = each_arrayref ($fetch_leagues, $csv_leagues);
 while (my ($league, $file) = $iterator->()) {
-	my $in_file = "$summer_dir/$league.csv";
+	my $in_file = "$summer_download_dir/$league.csv";
 	my $out_file = "$summer_dir/$file.csv";
 
 	my $games = $data_model->read_data ($in_file);

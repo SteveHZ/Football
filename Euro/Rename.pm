@@ -52,6 +52,8 @@ our $euro_teams = {
 	'Los Angeles Galaxy' => 'LA Galaxy',
 	'Minnesota United' => 'Minnesota',
 	'FC Cincinnati' => 'Cincinnati',
+	'Atlanta Utd' => 'Atlanta United',
+	'Inter Miami CF' => 'Inter Miami',
 
 #	Australian
 	'Western Sydney Wanderers FC' => 'Western Sydney Wdrs',
