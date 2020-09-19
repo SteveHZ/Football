@@ -66,7 +66,8 @@ sub check_rename {
 	my $name = shift;
 	return unless defined $name;
 	return defined $euro_teams->{ $name }
-		? $euro_teams->{ $name } : $name;
+		? $euro_teams->{ $name }
+		: $name;
 }
 
 =head
