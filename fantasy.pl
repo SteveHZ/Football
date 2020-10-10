@@ -7,9 +7,11 @@ use Football::Spreadsheets::Fantasy;
 
 use File::Fetch;
 use File::Copy qw(move);
+use utf8;
 
 my $json_file = "C:/Mine/perl/Football/data/fantasy.json";
 my $teams_file = "C:/Mine/perl/Football/data/teams.json";
+
 my @players = ();
 my @positions = qw(Goalkeeper Defender Midfield Forward);
 my $price_format = chr(156)."%.1fm";
@@ -22,7 +24,11 @@ my $data = read_json ($json_file);
 my $teams = read_json ($teams_file)->{'Premier League'};
 
 for my $row ($data->{elements}) {
+#   error in Fantasy Football files 2020
     for my $player (@$row) {
+        if    ( $player->{team} ==  9 )  { $player->{team} = 10; }
+        elsif ( $player->{team} == 10 )  { $player->{team} =  9; }
+
         push @players, {
             name => "$player->{first_name} $player->{second_name}",
             team => @$teams [ $player->{team} - 1],
@@ -39,7 +45,8 @@ my $sorted = {};
 for my $position (@positions) {
     say "\n".uc $position." :";
     $sorted->{$position} = sort_by_position (\@players, $position);
-    say "$_->{name} $_->{team} $_->{position} $_->{price} $_->{total_points} $_->{points_per_game}" for @{ $sorted->{$position} };
+    say "$_->{name} $_->{team} $_->{position} $_->{price} $_->{total_points} $_->{points_per_game}"
+	  for $sorted->{$position}->@*;
 }
 
 my $view = Football::Spreadsheets::Fantasy->new (sheets => \@positions);

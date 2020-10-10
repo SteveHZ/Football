@@ -134,7 +134,7 @@ sub get_week {
 	my $days = $args->{days};
 	my $start_date = $args->{include_today} ^ 1;
 #	0 includes today, 1 will start from tomorrow
-#	Default value to to include today is 1 , hence exclusive OR $today to start from day 0
+#	Default value to include today is 1 , hence exclusive OR $today to start from day 0
 
 	my @week = ();
 	my $today = localtime;
@@ -166,6 +166,7 @@ sub do_initial_chars {
 	$$dataref =~ s/French Ligue 1/French Ligue 1x/g;
 
 #	Order is important here !
+	$$dataref =~ s/ CF//g; # Inter Miami - remove this first before amending FC !!!
 	$$dataref =~ s/FC/Fc/g;
 	$$dataref =~ s/AFC/Afc/g;
 	$$dataref =~ s/SJK/SJk/g;
@@ -197,7 +198,6 @@ sub do_initial_chars {
 	$$dataref =~ s/ fB/ fb/g;
 	$$dataref =~ s/\// /g; # Norwegian (Bodo/Glimt)
 	$$dataref =~ s/jyskE/jyske/g; # Danish
-	$$dataref =~ s/ CF//g; # Inter Miami
 	$$dataref =~ s/ BoIS//g; # Varbergs
 	$$dataref =~ s/ AIF//g; # Mjallby
 }

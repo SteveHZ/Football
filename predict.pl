@@ -3,8 +3,8 @@
 #	v3.10 06/05/19
 
 BEGIN {
-#$ENV{PERL_KEYWORD_DEVELOPMENT} = 1;
-#$ENV{PERL_KEYWORD_ZEROGAMES} = 1;
+$ENV{PERL_KEYWORD_DEVELOPMENT} = 1;
+$ENV{PERL_KEYWORD_ZEROGAMES} = 1;
 }
 
 use strict;
@@ -60,17 +60,17 @@ $view->fixtures ( $stats->{by_league} );
 $view->do_recent_goal_difference ( $model->do_recent_goal_difference ($stats->{by_league}, $leagues) );
 $view->do_goal_difference ( $model->do_goal_difference ($stats->{by_league}, $leagues) );
 $view->do_league_places ( $model->do_league_places ($stats->{by_league}, $leagues) );
-$view->do_head2head ( $model->do_head2head ($stats->{by_league} ) );
-$view->do_recent_draws ( $model->do_recent_draws ($stats->{by_league} ) );
+$view->do_head2head ( $model->do_head2head ( $stats->{by_league} ) );
+$view->do_recent_draws ( $model->do_recent_draws ( $stats->{by_league} ) );
 
-if ($model->model_name eq 'UK') {
-	my $favourites = Football::Favourites::Controller->new (
-		season => $season,
-		update => $options->{update},
-		filename => 'uk'
-	);
-	$favourites->do_favourites ();
-}
+#if ($model->model_name eq 'UK') {
+#	my $favourites = Football::Favourites::Controller->new (
+#		season => $season,
+#		update => $options->{update},
+#		filename => 'uk'
+#	);
+#	$favourites->do_favourites ();
+#}
 
 my $predict = Football::Game_Predictions::Controller->new (
 	fixtures => $stats->{by_match},

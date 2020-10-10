@@ -40,7 +40,7 @@ our @EXPORT = qw(
 
 sub new { return bless {}, shift; }
 
-our $season = 2019;
+our $season = 2020;
 our $euro_season = 2019;
 our $summer_season = 2020;
 
@@ -56,11 +56,11 @@ our @league_names = (
 	'Championship',
 	'League One',
 	'League Two',
-	'Conference',
+#	'Conference',
 	'Scots Premier',
-	'Scots Championship',
-	'Scots League One',
-	'Scots League Two',
+#	'Scots Championship',
+#	'Scots League One',
+#	'Scots League Two',
 );
 
 our @fixtures_leagues = (
@@ -68,16 +68,20 @@ our @fixtures_leagues = (
 	'Championship',
 	'League One',
 	'League Two',
-	'Conference',
+#	'Conference',
 	'Scots Premier',
-	'Scots Championship',
-	'Scots League One',
-	'Scots League Two',
+#	'Scots Championship',
+#	'Scots League One',
+#	'Scots League Two',
 );
 
-our @csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 );
-our @fixtures_csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 );
-our @league_size = qw( 20 24 24 24 24 12 10 10 10 ); # clubs in each league
+our @csv_leagues = qw( E0 E1 E2 E3 SC0 );
+our @fixtures_csv_leagues = qw( E0 E1 E2 E3 SC0 );
+our @league_size = qw( 20 24 24 24 12 ); # clubs in each league
+
+#our @csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 );
+#our @fixtures_csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 );
+#our @league_size = qw( 20 24 24 24 24 12 10 10 10 ); # clubs in each league
 
 # for euro.pl
 
