@@ -1,8 +1,9 @@
+
 #	value.pl 27-30/10/19, v1.1 add double_chance 21/02/20
 
-BEGIN {
-$ENV{PERL_KEYWORD_PRODUCTION} = 1;
-}
+#BEGIN {
+#$ENV{PERL_KEYWORD_PRODUCTION} = 1;
+#}
 
 use strict;
 use warnings;
@@ -19,9 +20,9 @@ my $csv_file = 'C:/Mine/perl/Football/data/value/fixtures.csv';
 my $model = Football::Value::Model->new ();
 my $view = Football::Spreadsheets::Value_View->new ();
 
-PRODUCTION {
-    $model->download_fdata ();
-}
+#PRODUCTION {
+$model->download_fdata ();
+#}
 
 my $fdata = $model->get_fdata ($csv_file);
 write_json ("$dir/data.json", $fdata);

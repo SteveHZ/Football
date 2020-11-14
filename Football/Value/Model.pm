@@ -15,7 +15,7 @@ has 'overround' => (is => 'rw', default => 1.05);
 sub download_fdata {
     my $self = shift;
     my $dir = 'C:/Mine/perl/Football/data/value';
-    my $url = "http://www.football-data.co.uk/fixtures.csv";
+    my $url = "https://www.football-data.co.uk/fixtures.csv";
 
     my $ff = File::Fetch->new (uri => $url);
     my $file = $ff->fetch (to => $dir) or die $ff->error;

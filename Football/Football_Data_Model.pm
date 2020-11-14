@@ -58,6 +58,7 @@ sub read_csv {
 
 	while ($line = <$fh>) {
 		$line =~ s/'//; # remove any apostrophes eg Nott'm Forest
+#		$line =~ s/King.*Lynn/Kings Lynn/; # remove backward apostrophe
 		my @data = split ',', $line;
 		chomp $_ for @data;
 		last if $data [0] eq ''; # don't remove !!!

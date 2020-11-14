@@ -43,7 +43,6 @@ sub do_favourites {
 		$data_model->write_current ($file_to, $data);
 		$self->update ($league, $year, $data);
 	}
-
 	return {
 		data => $self->hash (),
 		history => $self->history (),

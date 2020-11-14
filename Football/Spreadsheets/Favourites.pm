@@ -43,7 +43,7 @@ sub create_sheet {
 
 sub show {
 	my ($self, $hash, $leagues, $seasons) = @_;
-	$self->{dispatch}->{ $self->{file} }->($self, $hash, $leagues, $seasons);
+	$self->{dispatch}->{ $self->{file} }->( $self, $hash, $leagues, $seasons );
 }
 
 sub by_year {
@@ -120,7 +120,6 @@ sub do_favourites {
 
 	do_header ($worksheet, $self->{bold_format});
 	print "\n";
-
 	my $row = 4;
 	my $leagues = $hash->{leagues};
 
@@ -132,7 +131,10 @@ sub do_favourites {
 		$self->write_row ($worksheet, $hashref, $row);
 		$row += 2;
 	}
-	$self->do_history ($hash);
+use Data::Dumper;
+print Dumper $hash;<STDIN>;
+#	$self->do_history ($hash); # uncomment once all leagues included
+# 	see current with errors.xlsx sheet
 }
 
 sub do_history {

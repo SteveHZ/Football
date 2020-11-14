@@ -282,7 +282,9 @@ sub get_formats {
 	$self->{recent_draws_format2} = " Home : %2d Away : %2d : %s";
 }
 
-=head
+=begin comment
+
+
 sub do_favourites {
 	my ($self, $hash) = @_;
 	$self->{xlsx_favourites}->do_favourites ($hash);
@@ -296,25 +298,25 @@ sub do_predict_models {
 	$self->do_over_under ($sorted);
 }
 
-#use Football::Spreadsheets::Goal_Expect_View;
-#use Football::Spreadsheets::Goal_Diffs_View;
-#use Football::Spreadsheets::Match_Odds_View;
-#use Football::Spreadsheets::Over_Under_View;
-#use Football::Spreadsheets::Skellam_Dist_View;
-#	$self->{xlsx_favourites} = Football::Spreadsheets::Favourites->new (filename => 'current');
-#	$self->{xlsx_goal_expect} = Football::Spreadsheets::Goal_Expect_View->new ();
-#	$self->{xlsx_goal_diffs} = Football::Spreadsheets::Goal_Diffs_View->new ();
-#	$self->{xlsx_match_odds} = Football::Spreadsheets::Match_Odds_View->new ();
-#	$self->{xlsx_over_under} = Football::Spreadsheets::Over_Under_View->new ();
-#	$self->{xlsx_skellam} = Football::Spreadsheets::Skellam_Dist_View->new ();
-#	$self->{xlsx_predictions}->{workbook}->close ();
-#	$self->{xlsx_extended}->{workbook}->close ();
-#	$self->{xlsx_favourites}->{workbook}->close ();
-#	$self->{xlsx_goal_expect}->{workbook}->close ();
-#	$self->{xlsx_goal_diffs}->{workbook}->close ();
-#	$self->{xlsx_match_odds}->{workbook}->close ();
-#	$self->{xlsx_over_under}->{workbook}->close ();
-#	$self->{xlsx_skellam}->{workbook}->close ();
+use Football::Spreadsheets::Goal_Expect_View;
+use Football::Spreadsheets::Goal_Diffs_View;
+use Football::Spreadsheets::Match_Odds_View;
+use Football::Spreadsheets::Over_Under_View;
+use Football::Spreadsheets::Skellam_Dist_View;
+	$self->{xlsx_favourites} = Football::Spreadsheets::Favourites->new (filename => 'current');
+	$self->{xlsx_goal_expect} = Football::Spreadsheets::Goal_Expect_View->new ();
+	$self->{xlsx_goal_diffs} = Football::Spreadsheets::Goal_Diffs_View->new ();
+	$self->{xlsx_match_odds} = Football::Spreadsheets::Match_Odds_View->new ();
+	$self->{xlsx_over_under} = Football::Spreadsheets::Over_Under_View->new ();
+	$self->{xlsx_skellam} = Football::Spreadsheets::Skellam_Dist_View->new ();
+	$self->{xlsx_predictions}->{workbook}->close ();
+	$self->{xlsx_extended}->{workbook}->close ();
+	$self->{xlsx_favourites}->{workbook}->close ();
+	$self->{xlsx_goal_expect}->{workbook}->close ();
+	$self->{xlsx_goal_diffs}->{workbook}->close ();
+	$self->{xlsx_match_odds}->{workbook}->close ();
+	$self->{xlsx_over_under}->{workbook}->close ();
+	$self->{xlsx_skellam}->{workbook}->close ();
 
 sub do_goal_expect {
 	my ($self, $leagues, $teams, $sorted) = @_;
@@ -335,95 +337,98 @@ sub do_over_under {
 	$self->{xlsx_over_under}->view ($sorted->{over_under});
 }
 
-#do_teams
-#		for my $team (@$sorted) {
-#			print "\n\n$team : ".$league->position ($team)." ( $league->{name} )";
-#			if ( my $next = $teams->{$team}->iterator () ) {
-#				while ( my $list = $next->() ) {
-#					printf $self->{teams_format}, $list->{date}, $list->{opponent},
-#												  $list->{home_away}, $list->{result}, $list->{score};
-#				}
-#			}
-#		}
-#do_teams
-#		print "\n\n$league_name Full Table : \n\n";
-#		printf $self->{table_format}, @{ $self->{table_header} };
-#		for my $team (@$table) {
-#			printf $self->{main_table_format},
-#				$team->{team}, $team->{played}, $team->{won}, $team->{lost},
-#				$team->{drawn}, $team->{for}, $team->{against},
-#				$team->{for} - $team->{against},
-#				$team->{points};
-#		}
-#		print "\n";
-#do_home_table
-#		print "\n\n$league_name Home Table : \n\n";
-#		printf $self->{table_format}, @{ $self->{table_header} };
-#		for my $team (@$table) {
-#			printf $self->{main_table_format},
-#				$team->{team}, $team->{played}, $team->{won}, $team->{lost},
-#				$team->{drawn}, $team->{for}, $team->{against},
-#				$team->{for} - $team->{against},
-#				$team->{points};
-#		}
-#		print "\n";
-#do_away_table
-#		print "\n\n$league_name Away Table : \n\n";
-#		printf $self->{table_format}, @{ $self->{table_header} };
-#		for my $team (@$table) {
-#			printf $self->{main_table_format},
-#				$team->{team}, $team->{played}, $team->{won}, $team->{lost},
-#				$team->{drawn}, $team->{for}, $team->{against},
-#				$team->{for} - $team->{against},
-#				$team->{points};
-#		}
-#		print "\n";
-#homes
-#		print "\n\n$league_name Homes :\n";
-#		for my $team (keys %$list) {
-#			printf $self->{homes_format}, $list->{$team}->{name};
-#			print " $_"  for (@{ $list->{$team}->{homes}} );
-#		}
-#aways
-#		print "\n\n$league_name Aways :\n";
-#		for my $team (keys %$list) {
-#			printf $self->{homes_format}, $list->{$team}->{name};
-#			print " $_"  for (@{ $list->{$team}->{aways}} );
-#		}
-#last_six
-#		print "\n\n$league_name Last Six Games :\n";
-#		for my $team (keys %$list) {
-#			printf $self->{homes_format}, $list->{$team}->{name};
-#			print " $_"  for (@{ $list->{$team}->{last_six}} );
-#		}
-#full_homes
-#	for my $league (@$leagues) {
-#		my $league_name = $league->{name};
-#		my $list = $league->{homes};
+do_teams
+		for my $team (@$sorted) {
+			print "\n\n$team : ".$league->position ($team)." ( $league->{name} )";
+			if ( my $next = $teams->{$team}->iterator () ) {
+				while ( my $list = $next->() ) {
+					printf $self->{teams_format}, $list->{date}, $list->{opponent},
+												  $list->{home_away}, $list->{result}, $list->{score};
+				}
+			}
+		}
+do_teams
+		print "\n\n$league_name Full Table : \n\n";
+		printf $self->{table_format}, @{ $self->{table_header} };
+		for my $team (@$table) {
+			printf $self->{main_table_format},
+				$team->{team}, $team->{played}, $team->{won}, $team->{lost},
+				$team->{drawn}, $team->{for}, $team->{against},
+				$team->{for} - $team->{against},
+				$team->{points};
+		}
+		print "\n";
+do_home_table
+		print "\n\n$league_name Home Table : \n\n";
+		printf $self->{table_format}, @{ $self->{table_header} };
+		for my $team (@$table) {
+			printf $self->{main_table_format},
+				$team->{team}, $team->{played}, $team->{won}, $team->{lost},
+				$team->{drawn}, $team->{for}, $team->{against},
+				$team->{for} - $team->{against},
+				$team->{points};
+		}
+		print "\n";
+do_away_table
+		print "\n\n$league_name Away Table : \n\n";
+		printf $self->{table_format}, @{ $self->{table_header} };
+		for my $team (@$table) {
+			printf $self->{main_table_format},
+				$team->{team}, $team->{played}, $team->{won}, $team->{lost},
+				$team->{drawn}, $team->{for}, $team->{against},
+				$team->{for} - $team->{against},
+				$team->{points};
+		}
+		print "\n";
+homes
+		print "\n\n$league_name Homes :\n";
+		for my $team (keys %$list) {
+			printf $self->{homes_format}, $list->{$team}->{name};
+			print " $_"  for (@{ $list->{$team}->{homes}} );
+		}
+aways
+		print "\n\n$league_name Aways :\n";
+		for my $team (keys %$list) {
+			printf $self->{homes_format}, $list->{$team}->{name};
+			print " $_"  for (@{ $list->{$team}->{aways}} );
+		}
+last_six
+		print "\n\n$league_name Last Six Games :\n";
+		for my $team (keys %$list) {
+			printf $self->{homes_format}, $list->{$team}->{name};
+			print " $_"  for (@{ $list->{$team}->{last_six}} );
+		}
+full_homes
+	for my $league (@$leagues) {
+		my $league_name = $league->{name};
+		my $list = $league->{homes};
 
-#		for my $team (keys %$list) {
-#			print "\n\n$list->{$team}->{name} :";
-#			for my $game (@{ $list->{$team}->{full_homes}} ) {
-#				printf $self->{full_homes_format},
-#					$game->{date}, $game->{opponent},
-#					$game->{result}, $game->{score};
-#			}
-#		}
-#	}
-#full_aways
-#	for my $league (@$leagues) {
-#		my $league_name = $league->{name};
-#		my $list = $league->{aways};
+		for my $team (keys %$list) {
+			print "\n\n$list->{$team}->{name} :";
+			for my $game (@{ $list->{$team}->{full_homes}} ) {
+				printf $self->{full_homes_format},
+					$game->{date}, $game->{opponent},
+					$game->{result}, $game->{score};
+			}
+		}
+	}
+full_aways
+	for my $league (@$leagues) {
+		my $league_name = $league->{name};
+		my $list = $league->{aways};
 
-#		for my $team (keys %$list) {
-#			print "\n\n$list->{$team}->{name} :";
-#			for my $game (@{ $list->{$team}->{full_aways}} ) {
-#				printf $self->{full_aways_format},
-#					$game->{date}, $game->{opponent},
-#					$game->{result}, $game->{score};
-#			}
-#		}
-#	}
+		for my $team (keys %$list) {
+			print "\n\n$list->{$team}->{name} :";
+			for my $game (@{ $list->{$team}->{full_aways}} ) {
+				printf $self->{full_aways_format},
+					$game->{date}, $game->{opponent},
+					$game->{result}, $game->{score};
+			}
+		}
+	}
+
+=end comment
+
 =cut
 
 =pod

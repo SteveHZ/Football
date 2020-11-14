@@ -60,6 +60,9 @@ our $euro_teams = {
 	'Melbourne City FC' => 'Melbourne City',
 	'Western United FC' => 'Western United',
 	'Brisbane Roar FC' => 'Brisbane Roar',
+
+#	English
+	"King’s Lynn" => 'Kings Lynn'
 };
 
 sub check_rename {

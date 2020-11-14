@@ -147,6 +147,7 @@ Sutton United,Sutton
 Salford City,Salford
 Stockport County,Stockport
 Torquay United,Torquay
+King's Lynn Town,Kings Lynn
 
 #	Scottish
 Partick Thistle,Partick
