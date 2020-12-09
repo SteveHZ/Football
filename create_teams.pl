@@ -206,8 +206,8 @@ print " Done";
 
 my $out_file = 'data/teams/uk_teams.pl';
 my $tt = MyTemplate->new (
-    filename => $out_file,
     template => 'Template/create_new_teams.tt',
+    filename => $out_file,
     data => {
         leagues => \@league_names,
         sorted => $sorted,
@@ -230,8 +230,8 @@ while (my ($league, $csv) = $iterator->()) {
 
 print "\nWriting data to $out_dir/uk-teams.dat...";
 my $tt2 = MyTemplate->new (
-    filename => "$out_dir/uk-teams.dat",
     template => "template/write_lisp_teams.tt",
+    filename => "$out_dir/uk-teams.dat",
     data => $lisp_hash,
 );
 $tt2->write_file ();

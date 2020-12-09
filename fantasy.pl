@@ -14,7 +14,8 @@ my $teams_file = "C:/Mine/perl/Football/data/teams.json";
 
 my @players = ();
 my @positions = qw(Goalkeeper Defender Midfield Forward);
-my $price_format = chr(156)."%.1fm";
+my $price_format = "%.1fm";
+#my $price_format = chr(156)."%.1fm";
 
 if (defined $ARGV [0]) {
     update ($json_file) if $ARGV[0] eq '-u';
@@ -31,12 +32,12 @@ for my $row ($data->{elements}) {
 
         push @players, {
             name => "$player->{first_name} $player->{second_name}",
-            team => @$teams [ $player->{team} - 1],
+            team => @$teams [ $player->{team} - 1 ],
             total_points => $player->{total_points},
-            points_per_game => $player->{points_per_game},
-            position => $positions [ $player->{element_type} -1 ],
+			points_per_game => $player->{points_per_game},
+			position => $positions [ $player->{element_type} -1 ],						
             selected_by => $player->{selected_by_percent},
-            price => fmt ( $player->{now_cost} / 10, $price_format),
+            price => fmt ( $player->{now_cost} / 10, $price_format ),
         };
     }
 }
@@ -55,8 +56,8 @@ $view->write ($sorted);
 sub sort_by_position {
     my ($players, $position) = @_;
     return [
-#        sort { $b->{total_points} <=> $a->{total_points} }
-        sort { $b->{points_per_game} <=> $a->{points_per_game} }
+        sort { $b->{total_points} <=> $a->{total_points} }
+#        sort { $b->{points_per_game} <=> $a->{points_per_game} }
         grep { $_->{points_per_game} > 4 }
         grep { $_->{selected_by} > 5 }
         grep { $_->{position} eq $position }

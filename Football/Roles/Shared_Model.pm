@@ -4,7 +4,6 @@ package Football::Roles::Shared_Model;
 #	v1.3 01/12/18
 
 use Storable qw(dclone);
-#use Clone qw(clone);
 
 use Football::Football_Data_Model;
 use Football::Globals qw( $default_stats_size );
@@ -105,7 +104,6 @@ sub do_fixtures {
 	my $leagues = $self->get_unique_leagues ($fixtures);
 	my $datafunc = $self->get_game_data_func ();
 	my $fixtures_clone = dclone $fixtures;
-#	my $fixtures_clone = clone $fixtures;
 	my @fixture_list = ();
 
 	for my $league (@$leagues) {

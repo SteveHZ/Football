@@ -2,8 +2,8 @@ package Football::Spreadsheets::Fantasy;
 
 use strict;
 use warnings;
-
 use utf8;
+
 use Moo;
 use namespace::clean;
 
@@ -26,9 +26,12 @@ sub do_header {
     $worksheet->write ('E1', 'Total Points', $format);
     $worksheet->write ('F1', 'Points per Game', $format);
 
-	$worksheet->set_column ('A:A', 30, $self->{format} );
+	$worksheet->set_column ('A:A', 35, $self->{format} );
     $worksheet->set_column ('B:B', 20, $self->{format} );
-    $worksheet->set_column ('C:F', 10, $self->{format} );
+    $worksheet->set_column ('C:C', 12, $self->{format} );
+    $worksheet->set_column ('D:D', 10, $self->{format} );
+    $worksheet->set_column ('E:E', 10, $self->{format} );
+    $worksheet->set_column ('F:F', 15, $self->{format} );
 }
 
 sub write {
@@ -40,9 +43,9 @@ sub write {
         my $row = 2;
         for my $player ( $sorted->{$position}->@* ) {
             my $row_data = [
-                { $player->{name} => $self->{bold_format} },
-                { $player->{team} => $self->{bold_format} },
-                { $position => $self->{bold_format} },
+                { $player->{name} => $self->{format} },
+                { $player->{team} => $self->{format} },
+                { $position => $self->{format} },
                 { $player->{price} => $self->{curency_format} },
                 { $player->{total_points} => $self->{float_format} },
                 { $player->{points_per_game} => $self->{float_format} },
