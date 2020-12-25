@@ -47,13 +47,6 @@ sub build_data {
 		last_six => $self->do_last_six ($leagues),
 	};
 }
-#	my $games;
-
-#	if (exists $args->{json}) {
-#		$games = read_json ($args->{json});
-#	} else {
-#		$games = $self->read_games ();
-#	}
 
 =pod
 

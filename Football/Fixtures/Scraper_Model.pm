@@ -56,6 +56,7 @@ sub get_rugby_pages {
 	}
 	print "\n";
 }
+
 sub get_rugby_pagesx {
 	my ($self, $sites, $week) = @_;
 

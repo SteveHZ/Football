@@ -26,8 +26,8 @@ for my $league (@$fetch_leagues) {
 }
 print "\n";
 
-# As the football-data summer files go back to 2012, saev the full file in a seperate directory,
-# then grep the full file for the current season and save on the correct directory, using the same name.
+# As the football-data summer files go back to 2012, save the full file in a seperate directory,
+# then grep the full file for the current season and save to the correct directory, using the same name.
 # Saving the full file in the same directory caused problems when it came to delete the full file using the same names.
 
 my $iterator = each_arrayref ($fetch_leagues, $csv_leagues);

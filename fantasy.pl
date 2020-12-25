@@ -58,8 +58,8 @@ sub sort_by_position {
     return [
         sort { $b->{total_points} <=> $a->{total_points} }
 #        sort { $b->{points_per_game} <=> $a->{points_per_game} }
-        grep { $_->{points_per_game} > 4 }
-        grep { $_->{selected_by} > 5 }
+        grep { $_->{points_per_game} >= 3 }
+#        grep { $_->{selected_by} > 5 }
         grep { $_->{position} eq $position }
         @$players
     ];

@@ -82,7 +82,7 @@ my $leagues = {
         'Hull',
         'Ipswich',
         'Lincoln',
-        'Milton Keynes Dons',
+        'MK Dons',
         'Northampton',
         'Oxford',
         'Peterboro',

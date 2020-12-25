@@ -1,3 +1,4 @@
+
 #	fixtures.pl 05-14/05/18
 #	v1.1 29/07-12/08/18, v1.2 20-22/09/18
 #   v1.3 08-14/10/19, v1.4 03/11/19
@@ -8,7 +9,9 @@ BEGIN { $ENV{PERL_KEYWORD_DELETEALL} = 1;}
 
 use strict;
 use warnings;
-use Getopt::Long qw(GetOptions);
+use v5.10;
+use Term::Choose qw(choose);
+#use Getopt::Long qw(GetOptions);
 #use utf8;
 
 use MyKeyword qw(PRODUCTION DELETEALL);
@@ -24,7 +27,8 @@ sub do_football {
 	my $model = Football::Fixtures::Model->new ();
 	my $view = Football::Fixtures::View->new ();
 
-	my $args = get_cmdline ();
+	my $args = get_args ();
+#	my $args = get_cmdline ();
 	my $week = $model->get_week ($args);
 	my $all_games = {};
 
@@ -66,6 +70,21 @@ sub get_cmdline {
 	};
 }
 
+sub get_args {
+	my $days = choose (
+        [ qw ( 1 2 3 4 5 6 7 ) ],
+        { prompt => 'How many days ?' }
+    );
+    my $today = choose (
+    	[ qw ( n y ) ],
+        { prompt => 'Include today ?', index => 1 }
+    );
+    return {
+		days => $days,
+		include_today => $today,
+	};
+}
+
 =pod
 
 =head1 NAME
@@ -78,7 +97,7 @@ sub get_cmdline {
  Default options : days 7 today 0 (do NOT include todays fixtures),
  Use -today 1 to include todays fixtures
  To download 3 days INCLUDING today, use -d2 -t1
- 
+
 =head1 DESCRIPTION
 
  Scrapes BBC Sport website for future fixtures

@@ -9,6 +9,7 @@ use MyLib qw(read_file write_file);
 
 use File::Fetch;
 use File::Copy qw(copy);
+use List::MoreUtils qw(each_array);
 
 my $id = 'mmz4281';
 my $dir = 'C:/Mine/perl/Football/data';
@@ -41,6 +42,30 @@ print "\n\nDownloading $euro_file...";
 # Workaround for Kings Lynn
 # to remove Unicode backward apostrophe from dowloaded files
 # as lisp can't read that character in (update-csv-files)
+# Also amend Milton Keynes Dons to MK Dons
+
+my @files = qw(E2 EC);
+my @rgx = (
+	sub { $_[0] =~ s/M.*Dons/MK Dons/g },
+	sub { $_[0] =~ s/K.*nn/Kings Lynn/g },
+);
+
+my $iterator = each_array (@files, @rgx);
+while (my ($filename, $rx) = $iterator->()) {
+	my $file = "C:/Mine/perl/Football/data/$filename.csv";
+	my $temp_file = "C:/Mine/perl/Football/data/$filename-temp.csv";
+
+  	print "\nRewriting $file...";
+  	copy $file, $temp_file;
+
+  	my $lines = read_file ($temp_file);
+	$rx->($_) for @$lines; # run $rx on each game
+
+   	write_file ($file, $lines);
+   	unlink $temp_file;
+}
+
+=begin comment
 
 my $file = "C:/Mine/perl/Football/data/EC.csv";
 my $temp_file = "C:/Mine/perl/Football/data/EC temp.csv";
@@ -56,7 +81,9 @@ write_file ($file, $lines);
 unlink $temp_file;
 
 # End workaround for Kings Lynn
+=end comment
 
+=cut
 =begin comment
 
 sub read_data {
