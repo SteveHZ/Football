@@ -45,21 +45,20 @@ print "\n\nDownloading $euro_file...";
 # Also amend Milton Keynes Dons to MK Dons
 
 my @files = qw(E2 EC);
-my @rgx = (
+my @replace_rx = (
 	sub { $_[0] =~ s/M.*Dons/MK Dons/g },
 	sub { $_[0] =~ s/K.*nn/Kings Lynn/g },
 );
 
-my $iterator = each_array (@files, @rgx);
-while (my ($filename, $rx) = $iterator->()) {
+my $iterator = each_array (@files, @replace_rx);
+while (my ($filename, $replace) = $iterator->()) {
 	my $file = "C:/Mine/perl/Football/data/$filename.csv";
 	my $temp_file = "C:/Mine/perl/Football/data/$filename-temp.csv";
 
   	print "\nRewriting $file...";
   	copy $file, $temp_file;
-
   	my $lines = read_file ($temp_file);
-	$rx->($_) for @$lines; # run $rx on each game
+	$replace->($_) for @$lines; # run $replace on each game
 
    	write_file ($file, $lines);
    	unlink $temp_file;
