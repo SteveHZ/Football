@@ -5,8 +5,6 @@
 #	To edit names from Football Data CSV files, use Euro::Rename
 #	To edit names from BBC fixtures files use Football::Fixtures_Globals
 
-#   Updated all leagues 04/09/20 but not run
-
 use strict;
 use warnings;
 

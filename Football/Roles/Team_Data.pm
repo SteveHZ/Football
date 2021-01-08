@@ -172,8 +172,8 @@ Roles::Team_Data.pm
 
 =head1 SYNOPSIS
 
-Role used by Football::League.pm to return data
-for each team in the league
+DSL implemented as a role used by Football::League.pm
+to return data for each team in the league
 
 =head1 DESCRIPTION
 

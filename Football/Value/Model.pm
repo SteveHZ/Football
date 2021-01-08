@@ -1,6 +1,6 @@
 package Football::Value::Model;
 
-use List::MoreUtils qw(each_arrayref);
+use List::MoreUtils qw(each_array);
 use File::Fetch;
 use Math::Round qw(nearest);
 
@@ -33,7 +33,7 @@ sub get_fdata {
     my $games = $data_model->read_csv ($csv_file);
 
     my $fdata = {};
-    my $iterator = each_arrayref (\@league_names, \@csv_leagues);
+    my $iterator = each_array (@league_names, @csv_leagues);
     while (my ($league, $csv) = $iterator->()) {
         my @league_games = grep { $_->{league} eq $csv } @$games;
         for my $game (@league_games) {
@@ -89,6 +89,7 @@ sub get_draw {
             $a->{draw} <=> $b->{draw}
         } grep {
             $_->{draw} < 3
+            && defined $_->{fdata}
             && $_->{draw} < $_->{home_win}
             && $_->{draw} < $_->{away_win}
         } @$mine

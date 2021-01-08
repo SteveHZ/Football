@@ -62,7 +62,7 @@ our $euro_teams = {
 	'Brisbane Roar FC' => 'Brisbane Roar',
 
 #	English
-	"King’s Lynn" => 'Kings Lynn',
+#	"King’s Lynn" => 'Kings Lynn',
 #	"Milton Keynes Dons" => "MK Dons",
 };
 
