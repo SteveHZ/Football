@@ -40,7 +40,7 @@ sub get_row_data {
 	return [
 		{ $data[0] => $self->{format} },         # League
 		{ $data[1] => $self->{format} },         # Team Name
-		{ $data[2] => $self->{float_format} }    # Percentage
+		{ $data[2] => $self->{float_format} },    # Percentage
 	];
 }
 
