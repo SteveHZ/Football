@@ -5,8 +5,7 @@ use MyLib qw (read_file);
 use Football::Spreadsheets::Write_Returns;
 use Football::Spreadsheets::Write_Streaks;
 
-my $returns_rx =
-qr/
+my $returns_rx = qr/
     \w{2,3}\,           # League ID
     [\w\h]+\,           # Team
     \d+,                # Stake
