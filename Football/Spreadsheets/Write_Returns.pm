@@ -20,15 +20,15 @@ sub BUILD {
 sub write {
 	my ($self, $hash) = @_;
 
-	my $iterator = each_arrayref ($self->{sheet_names}, $self->{season_stats}, $self->{recent_stats});
-	while (my ($sheet_name, $season_data, $recent_data) = $iterator->()) {
+	my $sheet_iterator = each_arrayref ($self->{sheet_names}, $self->{season_stats}, $self->{recent_stats});
+	while (my ($sheet_name, $season_data, $recent_data) = $sheet_iterator->()) {
 		my $worksheet = $self->add_worksheet ($sheet_name);
 		$self->blank_columns ( [ qw( 5 6 7 ) ] );
 		$self->do_header ($worksheet, $self->{bold_format});
 
 		my $row = 2;
-		my $iterator2 = each_array ($hash->{$season_data}->@*, $hash->{$recent_data}->@*);
-		while (my ($season, $recent) = $iterator2->()) {
+		my $data_iterator = each_array ($hash->{$season_data}->@*, $hash->{$recent_data}->@*);
+		while (my ($season, $recent) = $data_iterator->()) {
 			my $row_data = $self->get_row_data ($season, $recent);
 			$self->write_row ($worksheet, $row, $row_data);
 			$row ++;
