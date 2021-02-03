@@ -157,30 +157,35 @@ sub _get {
 	return $self->{table}->{$team}->{$data};
 }
 
-sub position{ my ($self, $team) = @_; return $self->_get ($team, 'position'); };
-sub played	{ my ($self, $team) = @_; return $self->_get ($team, 'played'); };
-sub won		{ my ($self, $team) = @_; return $self->_get ($team, 'won'); }
-sub lost 	{ my ($self, $team) = @_; return $self->_get ($team, 'lost'); }
-sub drawn 	{ my ($self, $team) = @_; return $self->_get ($team, 'drawn'); }
-sub for 	{ my ($self, $team) = @_; return $self->_get ($team, 'for'); }
-sub against { my ($self, $team) = @_; return $self->_get ($team, 'against'); }
-sub points 	{ my ($self, $team) = @_; return $self->_get ($team, 'points'); }
+sub position { my ($self, $team) = @_; return $self->_get ($team, 'position'); };
+sub played	 { my ($self, $team) = @_; return $self->_get ($team, 'played'); };
+sub won		 { my ($self, $team) = @_; return $self->_get ($team, 'won'); }
+sub lost 	 { my ($self, $team) = @_; return $self->_get ($team, 'lost'); }
+sub drawn 	 { my ($self, $team) = @_; return $self->_get ($team, 'drawn'); }
+sub for 	 { my ($self, $team) = @_; return $self->_get ($team, 'for'); }
+sub against  { my ($self, $team) = @_; return $self->_get ($team, 'against'); }
+sub points 	 { my ($self, $team) = @_; return $self->_get ($team, 'points'); }
 
-#sub get_data {
-#	my $self = shift;
-#	return sub {
-#		my ($team, $data) = @_;
-#		return $self->{table}->{$team}->{$data};
-#	}
-#}
+=begin comment
 
-#sub played	{ my ($self, $team) = @_; return $self->get_data->($team, 'played'); };
-#sub won		{ my ($self, $team) = @_; return $self->get_data->($team, 'won'); }
-#sub lost 	{ my ($self, $team) = @_; return $self->get_data->($team, 'lost'); }
-#sub drawn 	{ my ($self, $team) = @_; return $self->get_data->($team, 'drawn'); }
-#sub for 	{ my ($self, $team) = @_; return $self->get_data->($team, 'for'); }
-#sub against { my ($self, $team) = @_; return $self->get_data->($team, 'against'); }
-#sub points 	{ my ($self, $team) = @_; return $self->get_data->($team, 'points'); }
+sub get_data {
+	my $self = shift;
+	return sub {
+		my ($team, $data) = @_;
+		return $self->{table}->{$team}->{$data};
+	}
+}
+
+sub played	{ my ($self, $team) = @_; return $self->get_data->($team, 'played'); };
+sub won		{ my ($self, $team) = @_; return $self->get_data->($team, 'won'); }
+sub lost 	{ my ($self, $team) = @_; return $self->get_data->($team, 'lost'); }
+sub drawn 	{ my ($self, $team) = @_; return $self->get_data->($team, 'drawn'); }
+sub for 	{ my ($self, $team) = @_; return $self->get_data->($team, 'for'); }
+sub against { my ($self, $team) = @_; return $self->get_data->($team, 'against'); }
+sub points 	{ my ($self, $team) = @_; return $self->get_data->($team, 'points'); }
+
+=end comment
+=cut
 
 =pod
 
