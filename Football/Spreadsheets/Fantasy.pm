@@ -25,13 +25,15 @@ sub do_header {
     $worksheet->write ('D1', 'Price', $format);
     $worksheet->write ('E1', 'Total Points', $format);
     $worksheet->write ('F1', 'Points per Game', $format);
-
+	$worksheet->write ('G1', 'News', $format);
+	
 	$worksheet->set_column ('A:A', 35, $self->{format} );
     $worksheet->set_column ('B:B', 20, $self->{format} );
     $worksheet->set_column ('C:C', 12, $self->{format} );
     $worksheet->set_column ('D:D', 10, $self->{format} );
     $worksheet->set_column ('E:E', 10, $self->{format} );
     $worksheet->set_column ('F:F', 15, $self->{format} );
+	$worksheet->set_column ('G:G', 50, $self->{format} );
 }
 
 sub write {
@@ -49,6 +51,7 @@ sub write {
                 { $player->{price} => $self->{curency_format} },
                 { $player->{total_points} => $self->{float_format} },
                 { $player->{points_per_game} => $self->{float_format} },
+				{ $player->{news} => $self->{format} },
             ];
             $self->write_row ($worksheet, $row, $row_data);
 			$row ++;

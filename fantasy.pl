@@ -35,9 +35,10 @@ for my $row ($data->{elements}) {
             team => @$teams [ $player->{team} - 1 ],
             total_points => $player->{total_points},
 			points_per_game => $player->{points_per_game},
-			position => $positions [ $player->{element_type} -1 ],						
+			position => $positions [ $player->{element_type} -1 ],
             selected_by => $player->{selected_by_percent},
             price => fmt ( $player->{now_cost} / 10, $price_format ),
+			news => $player->{news},
         };
     }
 }
@@ -46,8 +47,8 @@ my $sorted = {};
 for my $position (@positions) {
     say "\n".uc $position." :";
     $sorted->{$position} = sort_by_position (\@players, $position);
-    say "$_->{name} $_->{team} $_->{position} $_->{price} $_->{total_points} $_->{points_per_game}"
-	  for $sorted->{$position}->@*;
+    say "$_->{name} $_->{team} $_->{position} $_->{price} $_->{total_points} $_->{points_per_game} $_->{news}"
+	   for $sorted->{$position}->@*;
 }
 
 my $view = Football::Spreadsheets::Fantasy->new (sheets => \@positions);
@@ -57,9 +58,7 @@ sub sort_by_position {
     my ($players, $position) = @_;
     return [
         sort { $b->{total_points} <=> $a->{total_points} }
-#        sort { $b->{points_per_game} <=> $a->{points_per_game} }
         grep { $_->{points_per_game} >= 3 }
-#        grep { $_->{selected_by} > 5 }
         grep { $_->{position} eq $position }
         @$players
     ];
@@ -76,3 +75,18 @@ sub update {
     my $download = $ff->fetch (to => $dir) or die $ff->error;
     move $download, $json_file;
 }
+
+=begin comment
+sub sort_by_position {
+    my ($players, $position) = @_;
+    return [
+        sort { $b->{total_points} <=> $a->{total_points} }
+#        sort { $b->{points_per_game} <=> $a->{points_per_game} }
+        grep { $_->{points_per_game} >= 3 }
+#        grep { $_->{selected_by} > 5 }
+        grep { $_->{position} eq $position }
+        @$players
+    ];
+}
+=end comment
+=cut

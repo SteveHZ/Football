@@ -36,7 +36,7 @@ our @EXPORT = qw(
 	$csv_fields
 );
 
-%EXPORT_TAGS = (all => \@EXPORT);
+%EXPORT_TAGS = ( all => \@EXPORT );
 
 sub new { return bless {}, shift; }
 

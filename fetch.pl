@@ -9,7 +9,6 @@ use MyLib qw(read_file write_file);
 
 use File::Fetch;
 use File::Copy qw(copy);
-use List::MoreUtils qw(each_array);
 
 my $id = 'mmz4281';
 my $dir = 'C:/Mine/perl/Football/data';
@@ -39,11 +38,35 @@ my $ff = File::Fetch->new (uri => $url);
 my $euro_file = $ff->fetch (to => $dir) or die $ff->error;
 print "\n\nDownloading $euro_file...";
 
+# Amend team names
+
+my %replace = (
+	'E2' => [ sub { $_[0] =~ s/M.*Dons/MK Dons/g }, ],
+	'EC' => [ sub { $_[0] =~ s/K.*nn/Kings Lynn/g }, ],
+);
+
+while (my ($league, $teams_rx) = each %replace) {
+	my $file = "C:/Mine/perl/Football/data/$league.csv";
+	my $temp_file = "C:/Mine/perl/Football/data/$league-temp.csv";
+
+  	print "\nRewriting $file...";
+  	copy $file, $temp_file;
+  	my $lines = read_file ($temp_file);
+	for my $replace_rx (@$teams_rx) {
+		$replace_rx->($_) for @$lines;
+	}
+
+   	write_file ($file, $lines);
+   	unlink $temp_file;
+}
+
+=begin comment
 # Workaround for Kings Lynn
 # to remove Unicode backward apostrophe from dowloaded files
 # as lisp can't read that character in (update-csv-files)
 # Also amend Milton Keynes Dons to MK Dons
 
+use List::MoreUtils qw(each_array);
 my @files = qw(E2 EC);
 my @replace_rx = (
 	sub { $_[0] =~ s/M.*Dons/MK Dons/g },
@@ -64,8 +87,6 @@ while (my ($filename, $replace) = $iterator->()) {
    	unlink $temp_file;
 }
 
-=begin comment
-
 my $file = "C:/Mine/perl/Football/data/EC.csv";
 my $temp_file = "C:/Mine/perl/Football/data/EC temp.csv";
 
@@ -80,35 +101,8 @@ write_file ($file, $lines);
 unlink $temp_file;
 
 # End workaround for Kings Lynn
-=end comment
 
-=cut
-=begin comment
-
-sub read_data {
-	my $file = shift;
-	my @lines = ();
-	my $line;
-
-	open my $fh, '<', $file or die "Can't find $file";
-	while ($line = <$fh>) {
-		push @lines, $line;
-	}
-	close $fh;
-	return \@lines;
-}
-
-sub write_data {
-	my ($file, $lines) = @_;
-
-	open my $fh, '>', $file or die "Unable to open $file";
-	for my $line (@$lines) {
-		print $fh "$line";
-	}
-	close $fh;
-}
-
-=end comment
+end comment
 
 =cut
 
