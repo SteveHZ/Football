@@ -76,7 +76,8 @@ Inter Miami CF,Inter Miami
 #	English
 Brighton & Hove Albion,Brighton
 Manchester City,Man City
-Manchester United,Man United
+Manchester United,Man Utd
+Sheffield United,Sheff Utd
 Leicester City,Leicester
 Swansea City,Swansea
 Newcastle United,Newcastle
@@ -88,7 +89,7 @@ Stoke City,Stoke
 Tottenham Hotspur,Tottenham
 Birmingham City,Birmingham
 Ipswich Town,Ipswich
-Nottingham Forest,Nottm Forest
+Nottingham Forest,Notts Forest
 Hull City,Hull
 Cardiff City,Cardiff
 Burton Albion,Burton
@@ -96,7 +97,7 @@ Leeds United,Leeds
 Preston North End,Preston
 Bolton Wanderers,Bolton
 Norwich City,Norwich
-Sheffield Wednesday,Sheffield Weds
+Sheffield Wednesday,Sheff Wed
 Wolverhampton Wanderers,Wolves
 Queens Park Rangers,QPR
 Derby County,Derby

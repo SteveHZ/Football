@@ -5,6 +5,7 @@ use warnings;
 
 use lib 'C:/Mine/perl/Football';
 use Football::Globals qw(@csv_leagues @euro_fetch_lgs $season_years $full_season_years);
+use Football::Fetch_Amend;
 use MyLib qw(read_file write_file);
 
 use File::Fetch;
@@ -14,6 +15,7 @@ my $id = 'mmz4281';
 my $dir = 'C:/Mine/perl/Football/data';
 my $euro_dir = 'C:/Mine/perl/Football/data/Euro';
 
+#=begin comment
 for my $league (@csv_leagues) {
 	my $url = "https://www.football-data.co.uk/$id/$season_years/$league.csv";
 
@@ -22,7 +24,6 @@ for my $league (@csv_leagues) {
 	print "\nDownloading $file...";
 	sleep 1;
 }
-
 for my $league (@euro_fetch_lgs) {
 	my $url = "https://www.football-data.co.uk/$id/$season_years/$league.csv";
 
@@ -40,12 +41,17 @@ print "\n\nDownloading $euro_file...";
 
 # Amend team names
 
-my %replace = (
-	'E2' => [ sub { $_[0] =~ s/M.*Dons/MK Dons/g }, ],
-	'EC' => [ sub { $_[0] =~ s/K.*nn/Kings Lynn/g }, ],
-);
+my $amend = Football::Fetch_Amend->new ();
+my $replace = $amend->get_hash ();
 
-while (my ($league, $teams_rx) = each %replace) {
+$amend->amend_teams ($replace);
+
+=begin comment
+#use Data::Dumper;
+#print Dumper $replace;
+
+# Do this if Football::Fetch_Amend ??
+while (my ($league, $teams_rx) = each $replace->%*) {
 	my $file = "C:/Mine/perl/Football/data/$league.csv";
 	my $temp_file = "C:/Mine/perl/Football/data/$league-temp.csv";
 
@@ -59,6 +65,9 @@ while (my ($league, $teams_rx) = each %replace) {
    	write_file ($file, $lines);
    	unlink $temp_file;
 }
+=end comment
+=cut
+
 
 =begin comment
 # Workaround for Kings Lynn

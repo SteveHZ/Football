@@ -3,6 +3,7 @@ package Football::Football_Data_Model;
 use DBI;
 use List::MoreUtils qw(any pairwise firstidx);
 use Football::Globals qw($csv_fields);
+
 use Moo;
 use namespace::clean;
 
@@ -42,7 +43,8 @@ sub do_query {
     $sth->execute ();
     while (my $row = $sth->fetchrow_hashref) {
         push @rows, {
-            map { $_ => $row->{$_} } @{ $self->{keys} }
+            map { $_ => $row->{$_} } $self->{keys}->@*
+#            map { $_ => $row->{$_} } @{ $self->{keys} } # ****
         };
     }
     return \@rows;
@@ -57,7 +59,7 @@ sub read_csv {
 	my $cols = $self->get_csv_cols (\$line);
 
 	while ($line = <$fh>) {
-		$line =~ s/'//; # remove any apostrophes eg Nott'm Forest
+#		$line =~ s/'//; # remove any apostrophes eg Nott'm Forest
 #		$line =~ s/King.*Lynn/Kings Lynn/; # remove backward apostrophe
 		my @data = split ',', $line;
 		chomp $_ for @data;

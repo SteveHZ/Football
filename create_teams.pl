@@ -2,8 +2,14 @@
 #	create_teams.pl 28/03/16
 
 #	This file is for team names to be used within predict.pl
-#	To edit names from Football Data CSV files, use Euro::Rename
+##	To edit names from Football Data CSV files, use Euro::Rename (INCORRECT / OUTDATED ???)
+#	To edit names from Football Data CSV files, create an anonymous sub in Football::Fetch_Amend
 #	To edit names from BBC fixtures files use Football::Fixtures_Globals
+
+#	To edit team names through whole system, need to amend here,
+#	in Football::Fixtures_Globals, and in Football::Fetch_Amend
+
+#	Need to check Football::Fetch_Amend before the start of each season for promotion/relegation
 
 use strict;
 use warnings;
@@ -31,9 +37,9 @@ my $leagues = {
         'Leicester',
         'Liverpool',
         'Man City',
-        'Man United',
+        'Man Utd',
         'Newcastle',
-        'Sheffield United',
+        'Sheff Utd',
         'Southampton',
         'Tottenham',
         'West Brom',
@@ -55,12 +61,12 @@ my $leagues = {
         'Middlesbrough',
         'Millwall',
         'Norwich',
-        'Nottm Forest',
+        'Notts Forest',
         'Preston',
         'QPR',
         'Reading',
         'Rotherham',
-        'Sheffield Weds',
+        'Sheff Wed',
         'Stoke',
         'Swansea',
         'Watford',
