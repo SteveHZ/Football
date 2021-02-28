@@ -231,7 +231,6 @@ Melbourne City FC,Melbourne City
 Brisbane Roar FC,Brisbane Roar
 Western United FC,Western United
 Western Sydney Wanderers FC,Western Sydney Wdrs
-
 END_FOOTBALL_TEAMS
 
 #	Rugby League

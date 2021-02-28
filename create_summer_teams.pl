@@ -4,6 +4,8 @@
 #	To edit names from Football Data CSV files, use Euro::Rename
 #	To edit names from BBC fixtures files use Football::Fixtures_Globals, Football::Fixtures_Model
 
+#  Updated all leagues for 2021 except Brazilian 27/02/21
+
 use strict;
 use warnings;
 
@@ -19,15 +21,15 @@ my $json_file = $path.'teams.json';
 my $leagues = {
     'Irish League' => [
         'Bohemians',
-        'Cork City',
         'Derry City',
         'Dundalk',
         'Finn Harps',
         'Shamrock Rovers',
-        'Shelbourne',
         'Sligo Rovers',
         'St Patricks',
         'Waterford',
+		'Drogheda United',
+		'Longford Town',
     ],
     'USA League' => [
         'Atlanta United',
@@ -61,11 +63,9 @@ my $leagues = {
         'AIK',
         'Djurgardens',
         'Elfsborg',
-        'Falkenbergs',
         'Goteborg',
         'Hacken',
         'Hammarby',
-        'Helsingborg',
         'Kalmar',
         'Malmo',
         'Mjallby',
@@ -74,9 +74,10 @@ my $leagues = {
         'Ostersunds',
         'Sirius',
         'Varbergs',
+		'Degerfors',
+		'Halmstads',
     ],
     'Norwegian League' => [
-        'Aalesund',
         'Bodo Glimt',
         'Brann',
         'Haugesund',
@@ -88,10 +89,11 @@ my $leagues = {
         'Sandefjord',
         'Sarpsborg',
         'Stabaek',
-        'Start',
         'Stromsgodset',
         'Valerenga',
         'Viking',
+		'Lillestrom',
+		'Tromso',
     ],
     'Finnish League' => [
         'HIFK Helsinki',
@@ -103,9 +105,9 @@ my $leagues = {
         'KuPS Kuopio',
         'Lahti',
         'Mariehamn',
-        'Rovaniemi',
         'SJK',
-        'TPS Turku',
+		'KTP',
+		'Oulu',
     ],
     'Brazilian League' => [
         'Athletico Paranaense',

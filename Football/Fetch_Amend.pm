@@ -6,7 +6,7 @@ use File::Copy qw(copy);
 use Moo;
 use namespace::clean;
 
-sub get_hash {
+sub get_uk_hash {
 	return {
 		'E0' => [
 			sub { $_[0] =~ s/Man United/Man Utd/g },
@@ -25,9 +25,30 @@ sub get_hash {
 	};
 }
 
+sub get_euro_hash { return {}; }
+sub get_summer_hash { return {}; }
+
+sub amend_uk {
+	my $self = shift;
+	my $path = "C:/Mine/perl/Football/data";
+	amend_teams (get_uk_hash (), $path);
+}
+
+sub amend_euro {
+	my $self = shift;
+	my $path = "C:/Mine/perl/Football/data/Euro";
+	amend_teams (get_euro_hash (), $path);
+}
+
+sub amend_summer {
+	my $self = shift;
+	my $path = "C:/Mine/perl/Football/data/Summer";
+	amend_teams (get_summer_hash (), $path);
+}
+
+# private, no $self
 sub amend_teams {
-	my ($self, $replace, $path) = @_;
-	$path //= "C:/Mine/perl/Football/data";
+	my ($replace, $path) = @_;
 
 	while (my ($league, $teams_rx) = each $replace->%*) {
 		my $file = "$path/$league.csv";
@@ -44,5 +65,31 @@ sub amend_teams {
 		unlink $temp_file;
 	}
 }
+
+=pod
+
+=head1 NAME
+
+Fetch_Amend.pm
+
+=head1 SYNOPSIS
+
+Used by fetch.pl
+
+=head1 DESCRIPTION
+
+Use functions amend_uk, amend_euro or amend_summer
+to amend team names for the respective files.
+
+=head1 AUTHOR
+
+Steve Hope
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
 
 1;

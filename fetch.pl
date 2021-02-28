@@ -1,4 +1,4 @@
-#	fetch.pl 19-20/01/18
+#	fetch.pl 19-20/01/18, 27/02/21
 
 use strict;
 use warnings;
@@ -15,7 +15,6 @@ my $id = 'mmz4281';
 my $dir = 'C:/Mine/perl/Football/data';
 my $euro_dir = 'C:/Mine/perl/Football/data/Euro';
 
-#=begin comment
 for my $league (@csv_leagues) {
 	my $url = "https://www.football-data.co.uk/$id/$season_years/$league.csv";
 
@@ -24,6 +23,7 @@ for my $league (@csv_leagues) {
 	print "\nDownloading $file...";
 	sleep 1;
 }
+
 for my $league (@euro_fetch_lgs) {
 	my $url = "https://www.football-data.co.uk/$id/$season_years/$league.csv";
 
@@ -42,78 +42,7 @@ print "\n\nDownloading $euro_file...";
 # Amend team names
 
 my $amend = Football::Fetch_Amend->new ();
-my $replace = $amend->get_hash ();
-
-$amend->amend_teams ($replace);
-
-=begin comment
-#use Data::Dumper;
-#print Dumper $replace;
-
-# Do this if Football::Fetch_Amend ??
-while (my ($league, $teams_rx) = each $replace->%*) {
-	my $file = "C:/Mine/perl/Football/data/$league.csv";
-	my $temp_file = "C:/Mine/perl/Football/data/$league-temp.csv";
-
-  	print "\nRewriting $file...";
-  	copy $file, $temp_file;
-  	my $lines = read_file ($temp_file);
-	for my $replace_rx (@$teams_rx) {
-		$replace_rx->($_) for @$lines;
-	}
-
-   	write_file ($file, $lines);
-   	unlink $temp_file;
-}
-=end comment
-=cut
-
-
-=begin comment
-# Workaround for Kings Lynn
-# to remove Unicode backward apostrophe from dowloaded files
-# as lisp can't read that character in (update-csv-files)
-# Also amend Milton Keynes Dons to MK Dons
-
-use List::MoreUtils qw(each_array);
-my @files = qw(E2 EC);
-my @replace_rx = (
-	sub { $_[0] =~ s/M.*Dons/MK Dons/g },
-	sub { $_[0] =~ s/K.*nn/Kings Lynn/g },
-);
-
-my $iterator = each_array (@files, @replace_rx);
-while (my ($filename, $replace) = $iterator->()) {
-	my $file = "C:/Mine/perl/Football/data/$filename.csv";
-	my $temp_file = "C:/Mine/perl/Football/data/$filename-temp.csv";
-
-  	print "\nRewriting $file...";
-  	copy $file, $temp_file;
-  	my $lines = read_file ($temp_file);
-	$replace->($_) for @$lines; # run $replace on each game
-
-   	write_file ($file, $lines);
-   	unlink $temp_file;
-}
-
-my $file = "C:/Mine/perl/Football/data/EC.csv";
-my $temp_file = "C:/Mine/perl/Football/data/EC temp.csv";
-
-print "\nRewriting $file...";
-copy $file, $temp_file;
-
-my $lines = read_file ($temp_file);
-for my $game (@$lines) {
-	$game =~ s/K.*nn/Kings Lynn/g;
-}
-write_file ($file, $lines);
-unlink $temp_file;
-
-# End workaround for Kings Lynn
-
-end comment
-
-=cut
+$amend->amend_uk ();
 
 =pod
 
