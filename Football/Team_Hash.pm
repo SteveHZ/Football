@@ -34,14 +34,13 @@ sub team {
 	return $self->{hash}->{$team};
 }
 
-
 sub add_teams {
 	my ($self, $results, $teams, $lg_idx) = @_;
 
 	for my $team (@$teams) {
 		$self->{hash}->{$team} = Football::Team_Profit->new (team => $team);
 		$self->{hash}->{$team}->{lg_idx} = $lg_idx;
-		push (@{ $self->{teams} }, $team);
+		push $self->{teams}->@*, $team;
 	}
 }
 
@@ -52,7 +51,7 @@ sub add_teams6 {
 	for my $team (@$teams) {
 		$self->{hash}->{$team} = Football::Team_Profit->new (team => $team);
 		$self->{hash}->{$team}->{lg_idx} = $lg_idx;
-		push (@{ $self->{teams} }, $team);
+		push $self->{teams}->@*, $team;
 	}
 }
 
@@ -123,7 +122,7 @@ sub sort_totals {
 		sort {
 			$self->percent ($b) <=> $self->percent ($a)
 			or $a cmp $b
-		} @{ $self->{teams} }
+		} $self->{teams}->@*
 	];
 }
 
@@ -133,7 +132,7 @@ sub sort_all_homes {
 		sort {
 			$self->home ($b) <=> $self->home ($a)
 			or $a cmp $b
-		} @{ $self->{teams} }
+		} $self->{teams}->@*
 	];
 }
 
@@ -143,7 +142,7 @@ sub sort_all_aways {
 		sort {
 			$self->away ($b) <=> $self->away ($a)
 			or $a cmp $b
-		} @{ $self->{teams} }
+		} $self->{teams}->@*
 	];
 }
 
@@ -160,7 +159,7 @@ sub sort_homes {
 		 	&& $self->home_win_rate ($_) >= $self->{min_win_rate}
 		}
 		map  { $_->{home_team} }
-		@{ $self->{fixtures} }
+		$self->{fixtures}->@*
 	];
 }
 
@@ -177,7 +176,7 @@ sub sort_aways {
 		 	&& $self->away_win_rate ($_) >= $self->{min_win_rate}
 		}
 		map  { $_->{away_team} }
-		@{ $self->{fixtures} }
+		$self->{fixtures}->@*
 	];
 }
 

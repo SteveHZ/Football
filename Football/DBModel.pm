@@ -74,7 +74,7 @@ sub find_league {
 	my ($self, $team) = @_;
 	my $csv_leagues = $self->{data}->{leagues};
 	for my $league (@$csv_leagues) {
-		return $league if grep { $_ =~ /$team/ } @{ $self->{leagues}->{$league} };
+		return $league if grep { $_ =~ /$team/ } $self->{leagues}->{$league}->@*;
 	}
 	return 0;
 }
