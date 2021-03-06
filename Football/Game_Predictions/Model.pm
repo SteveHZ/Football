@@ -141,7 +141,7 @@ sub get_expect_line_data {
 		$rules->last_six_rule ( $game ),
 
 		$rules->match_odds_rule ( $game ),
-		$rules->ou_points_rule ($game),
+		$rules->ou_points_rule ( $game ),
 		$rules->ou_home_away_rule ( $game ),
 		$rules->ou_last_six_rule ( $game ),
 		$rules->over_odds_rule ( $game ),

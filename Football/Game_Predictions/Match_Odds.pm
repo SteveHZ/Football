@@ -71,7 +71,8 @@ sub sort_by_sheet_name {
 	my $select = ($sorted_by =~ /.*_2pt5$/) ? 'last_six' : 'season';
 	return [
 		sort {
-			$a->{odds}->{$select}->{$sorted_by} <=> $b->{odds}->{$select}->{$sorted_by}
+			$a->{odds}->{$select}->{$sorted_by}
+			<=> $b->{odds}->{$select}->{$sorted_by}
 		} @$games
 	];
 }

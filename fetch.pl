@@ -6,10 +6,8 @@ use warnings;
 use lib 'C:/Mine/perl/Football';
 use Football::Globals qw(@csv_leagues @euro_fetch_lgs $season_years $full_season_years);
 use Football::Fetch_Amend;
-use MyLib qw(read_file write_file);
 
 use File::Fetch;
-use File::Copy qw(copy);
 
 my $id = 'mmz4281';
 my $dir = 'C:/Mine/perl/Football/data';
