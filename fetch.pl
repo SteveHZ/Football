@@ -32,7 +32,7 @@ for my $league (@euro_fetch_lgs) {
 }
 
 my $url = "https://www.football-data.co.uk/$id/$season_years/Latest_Results.xlsx";
-#my $url = "https://www.football-data.co.uk/$id/$season_years/all-euro-data-$full_season_years.xlsx";
+##my $url = "https://www.football-data.co.uk/$id/$season_years/all-euro-data-$full_season_years.xlsx";
 my $ff = File::Fetch->new (uri => $url);
 my $euro_file = $ff->fetch (to => $dir) or die $ff->error;
 print "\n\nDownloading $euro_file...";
