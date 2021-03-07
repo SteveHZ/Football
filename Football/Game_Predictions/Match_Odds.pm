@@ -4,7 +4,6 @@ package Football::Game_Predictions::Match_Odds;
 
 use v5.10; # state
 use Math::Round qw(nearest);
-use List::Util qw(min);
 use Football::Game_Predictions::MyPoisson;
 use MyJSON qw(write_json);
 
@@ -292,19 +291,22 @@ sub calc_odds {
 		away_double => $self->away_double_odds (),
 	};
 }
+
+use List::Util qw(min);
+sub schwartz_sort {
+	my ($self, $games) = @_;
+
+	return [
+		map	 { $_->[0] }
+		sort { $a->[1] <=> $b->[1] }
+		map	 { [
+			$_, min ( $_->{home_win},
+					  $_->{away_win} )
+		] } @$games
+	];
+}
+
 =cut
-#sub schwartz_sort {
-#	my ($self, $games) = @_;
-#
-#	return [
-#		map	 { $_->[0] }
-#		sort { $a->[1] <=> $b->[1] }
-#		map	 { [
-#			$_, min ( $_->{home_win},
-#					  $_->{away_win} )
-#		] } @$games
-#	];
-#}
 
 =pod
 
