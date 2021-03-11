@@ -115,7 +115,7 @@ sub build_head2head {
 				my $result = $self->get_result ($game->{home_score}, $game->{away_score});
 				if (exists ($teams->{$league}->{$home_team}) &&
 					exists ($teams->{$league}->{$away_team} )) {
-					$idx = $season - @{ $seasons->{h2h_seasons} }[0];
+					$idx = $season - $seasons->{h2h_seasons}->@[0];
 					$teams->{$league}->{$home_team}->{$away_team}->[$idx] = $result;
 				}
 			}

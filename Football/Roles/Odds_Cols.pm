@@ -21,12 +21,16 @@ sub get_euro_odds_cols {
 }
 
 sub get_over_under_cols {
-	my $data = shift;
+	my ($data, $year) = @_;
 	my @header = split (',', $data);
 
+#	Over/Under column keys changed from 2019 onwards
+	my $over_key = ($year >= 2019) ? 'B365>2.5' : 'BbAv>2.5';
+	my $under_key = ($year >= 2019) ? 'B365<2.5' : 'BbAv<2.5';
+
 #	Need to assign these two variables first, then write to hash in scalar context (DON'T change !!)
-	my $over  = firstidx { $_ eq 'BbAv>2.5' } @header;
-	my $under = firstidx { $_ eq 'BbAv<2.5' } @header;
+	my $over  = firstidx { $_ eq $over_key } @header;
+	my $under = firstidx { $_ eq $under_key } @header;
 	return {
 		over  => $over,
 		under => $under,

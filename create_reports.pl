@@ -12,30 +12,8 @@ use lib 'C:/Mine/perl/Football';
 use Football::Reports::Head2Head;
 use Football::Reports::Favourites;
 use Football::Reports::Reports;
-use Football::Globals qw( @league_names @league_size $reports_season );
+use Football::Globals qw( @league_names @league_size $reports_season $reports_seasons );
 use MyJSON qw(read_json);
-
-my $last_season = $reports_season;
-my $english = [ 1995..$last_season ];
-my $conference = [ 2005..$last_season ];
-my $scottish = [ 2000..$last_season ];
-my $fav_seasons = [ 2010..$last_season ];
-
-my $h2h_start = $last_season - 5; # last six seasons
-
-my $seasons = {
-	'Premier League'	=> $english,
-	'Championship'    	=> $english,
-	'League One' 		=> $english,
-	'League Two' 		=> $english,
-	'Conference' 		=> $conference,
-	'Scots Premier' 	=> $scottish,
-	'Scots Championship'=> $scottish,
-	'Scots League One' 	=> $scottish,
-	'Scots League Two' 	=> $scottish,
-	h2h_seasons			=> [ $h2h_start...$last_season ],
-	all_seasons			=> [ 1995...$last_season ],
-};
 
 my $path = 'C:/Mine/perl/Football/data/';
 my $teams_file = $path.'teams.json';
@@ -43,12 +21,15 @@ my $teams_file = $path.'teams.json';
 my $teams = read_json ($teams_file);
 my $leagues = \@league_names;
 my $league_size = \@league_size;
-	
+
+my $fav_seasons = [ 2010..$reports_season ];
+my $h2h_start = $reports_season - 5; # last six seasons
+
 my $head2head = Football::Reports::Head2Head->new (
 	leagues => $leagues,
 	league_size => $league_size,
 	all_teams => $teams,
-	seasons => $seasons,
+	seasons => $reports_seasons,
 );
 
 my $favs = Football::Reports::Favourites->new (
@@ -59,10 +40,34 @@ my $favs = Football::Reports::Favourites->new (
 my $reports = Football::Reports::Reports->new (
 	leagues => $leagues,
 	league_size => $league_size,
-	seasons => $seasons,
+	seasons => $reports_seasons,
 );
-$reports->run ($leagues, $seasons);
+$reports->run ($leagues, $reports_seasons);
 
+=begin comment
+#my $last_season = $reports_season;
+#my $english = [ 1995..$reports_season ];
+#my $conference = [ 2005..$reports_season ];
+#my $scottish = [ 2000..$reports_season ];
+my $fav_seasons = [ 2010..$reports_season ];
+
+my $h2h_start = $reports_season - 5; # last six seasons
+
+#my $seasons = {
+#	'Premier League'	=> $english,
+#	'Championship'    	=> $english,
+#	'League One' 		=> $english,
+#	'League Two' 		=> $english,
+#	'Conference' 		=> $conference,
+#	'Scots Premier' 	=> $scottish,
+#	'Scots Championship'=> $scottish,
+#	'Scots League One' 	=> $scottish,
+#	'Scots League Two' 	=> $scottish,
+#	h2h_seasons			=> [ $h2h_start...$reports_season ],
+#	all_seasons			=> [ 1995...$reports_season ],
+#};
+=end comment
+=cut
 
 =pod
 

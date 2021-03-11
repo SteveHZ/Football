@@ -39,7 +39,7 @@ sub do_favourites {
 		my $file_from = $path.$csv_league.'.csv';
 		my $file_to = $fav_path.$league.'/'.$year.'.csv';
 
-		my $data = $data_model->update_current ($file_from);
+		my $data = $data_model->update_current ($file_from, $year);
 		$data_model->write_current ($file_to, $data);
 		$self->update ($league, $year, $data);
 	}

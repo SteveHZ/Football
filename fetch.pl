@@ -39,8 +39,10 @@ print "\n\nDownloading $euro_file...";
 
 # Amend team names
 
-my $amend = Football::Fetch_Amend->new ();
-$amend->amend_uk ();
+unless (defined $ARGV[0] && $ARGV[0] eq '-n') {
+	my $amend = Football::Fetch_Amend->new ();
+	$amend->amend_uk ();
+}
 
 =pod
 
@@ -56,6 +58,8 @@ perl fetch.pl
 
 Stand-alone script to download csv files from wwww.football-data.co.uk
 then download and extract Euro zip files.
+
+Run perl fetch.pl -n to download files without amendment
 
 =head1 AUTHOR
 

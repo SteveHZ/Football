@@ -5,6 +5,9 @@
 #   before running create_reports.pl
 
 #   Ensure that $reports_season is updated in Football::Globals first !!!
+#   then run perl fetch.pl -n to fetch original csv sheets
+#   Run perl amend_historical.pl afterwards, before perl create_reports.
+
 
 use MyHeader;
 
@@ -20,7 +23,7 @@ copy_files ($iterator);
 say "\n";
 
 $from_path = 'c:/mine/perl/football/data/Euro';
-$to_path = "$from_path/historical";
+$to_path = "$from_path/Football data files";
 
 $iterator = each_array (@euro_csv_lgs, @euro_lgs);
 copy_files ($iterator);

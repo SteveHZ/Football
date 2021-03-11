@@ -9,6 +9,7 @@ with 'Football::Roles::Odds_Cols'; # get_odds_cols, get_over_under_cols
 sub update {
 	my ($self, $file) = @_;
 	my $league_games = [];
+return [{}] if $file =~ /2019/; # temporary fix
 
 	open (my $fh, '<', $file) or die ("Can't find $file");
 	my $line = <$fh>;	# skip first line
@@ -29,19 +30,18 @@ sub update {
 }
 
 sub update_current {
-	my ($self, $file) = @_;
+	my ($self, $file, $year) = @_;
 	my $league_games = [];
 
 	open my $fh, '<', $file or die "Can't find $file";
 	my $line = <$fh>;
 	my @odds_cols = get_odds_cols ($line);
-	my $over_under_cols = get_over_under_cols ($line);
+	my $over_under_cols = get_over_under_cols ($line, $year);
 
 	while ($line = <$fh>) {
 		my @data = split (',', $line);
 		last if $data [0] eq ''; # don't remove !!!
-		next if any {$_ eq ''} ( $data[4], $data[5] );
-
+		next if any {$_ eq ''} ( $data[5], $data[6] );
 		push ( @$league_games, {
 			league => $data [0],
 			date => $data [1],
@@ -63,7 +63,7 @@ sub update_current {
 
 sub write_current {
 	my ($self, $file, $data) = @_;
-	open (my $fh, '>', $file) or die ("Unable to open $file");
+	open (my $fh, '>', $file) or die "Unable to open $file";
 
 	print $fh 'Div ,Date ,Home Team, Away Team, FTHG, ATHG, FTR, B365H, B365D, B365A, Over, Under';
 	for my $line (@$data) {

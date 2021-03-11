@@ -53,7 +53,7 @@ sub run {
 
 	print "\n\n";
 	for my $league (@$leagues) {
-		for my $season (@{ $seasons->{$league} }) {
+		for my $season ( $seasons->{$league}->@* ) {
 			print "\nReports - Updating $league - $season...";
 
 			my $json_file = $historical_path.$league.'/'.$season.'.json';

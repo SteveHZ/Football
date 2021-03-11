@@ -17,7 +17,7 @@ sub get_uk_hash {
 			sub { $_[0] =~ s/Nott'm Forest/Notts Forest/g },
 		],
 		'E2' => [
-			sub { $_[0] =~ s/Mil.*Dons/MK Dons/g },
+			sub { $_[0] =~ s/Milton.*Dons/MK Dons/g },
 		],
 		'EC' => [
 			sub { $_[0] =~ s/Kin.*nn/Kings Lynn/g },
@@ -31,24 +31,32 @@ sub get_summer_hash { return {}; }
 sub amend_uk {
 	my $self = shift;
 	my $path = "C:/Mine/perl/Football/data";
-	amend_teams (get_uk_hash (), $path);
+	$self->amend_teams (get_uk_hash (), $path);
 }
 
 sub amend_euro {
 	my $self = shift;
 	my $path = "C:/Mine/perl/Football/data/Euro";
-	amend_teams (get_euro_hash (), $path);
+	$self->amend_teams (get_euro_hash (), $path);
 }
 
 sub amend_summer {
 	my $self = shift;
 	my $path = "C:/Mine/perl/Football/data/Summer";
-	amend_teams (get_summer_hash (), $path);
+	$self->amend_teams (get_summer_hash (), $path);
 }
 
-# private, no $self
+sub amend_array {
+	my ($self, $lines, $rx_array) = @_;
+	for my $line (@$lines) {
+		for my $rx ($rx_array->@*) {
+			$rx->($line);
+		}
+	}
+}
+
 sub amend_teams {
-	my ($replace, $path) = @_;
+	my ($self, $replace, $path) = @_;
 
 	while (my ($league, $teams_rx) = each $replace->%*) {
 		my $file = "$path/$league.csv";
@@ -57,9 +65,7 @@ sub amend_teams {
 		print "\nRewriting $file...";
 		copy $file, $temp_file;
 		my $lines = read_file ($temp_file);
-		for my $replace_rx (@$teams_rx) {
-			$replace_rx->($_) for @$lines;
-		}
+		$self->amend_array ($lines, $teams_rx);
 
 		write_file ($file, $lines);
 		unlink $temp_file;

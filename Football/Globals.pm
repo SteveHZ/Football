@@ -17,6 +17,7 @@ our @EXPORT = qw(
 	$full_season_years
 	$last_season
 	$reports_season
+	$reports_seasons
 	$default_stats_size
 	@league_names
 	@fixtures_leagues
@@ -143,6 +144,26 @@ our $csv_fields = {
 	round => 'Round Number',
 	location => 'Location',
 	score => 'Result',
+};
+
+# for create_reports.pl and amend_historical.pl
+
+my $english = [ 1995..$reports_season ];
+my $conference = [ 2005..$reports_season ];
+my $scottish = [ 2000..$reports_season ];
+my $fav_seasons = [ 2010..$reports_season ];
+my $h2h_start = $reports_season - 5; # last six seasons
+
+our $reports_seasons = {
+	'Premier League'	=> $english,
+	'Championship'    	=> $english,
+	'League One' 		=> $english,
+	'League Two' 		=> $english,
+	'Conference' 		=> $conference,
+	'Scots Premier' 	=> $scottish,
+	'Scots Championship'=> $scottish,
+	'Scots League One' 	=> $scottish,
+	'Scots League Two' 	=> $scottish,
 };
 
 =pod
