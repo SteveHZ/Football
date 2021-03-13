@@ -9,21 +9,26 @@ with 'Football::Roles::Odds_Cols'; # get_odds_cols, get_over_under_cols
 sub update {
 	my ($self, $file) = @_;
 	my $league_games = [];
-return [{}] if $file =~ /2019/; # temporary fix
 
-	open (my $fh, '<', $file) or die ("Can't find $file");
+##return [{}] if $file =~ /2019/; # temporary fix
+##	Need to write script to correct data/favourites/$league/2019.csv
+##	create_reports.pl should then work without above line and by-league.xlsx/by_xlsx should be ok
+#	Next need to find out why Football::Spreadsheets::do_history doesn't work -> v 3.20 !!!
+#	maybe to do with team names again ?? oh fuck !! but maybe/hopefully not.
+
+	open my $fh, '<', $file or die "Can't find $file";
 	my $line = <$fh>;	# skip first line
 	while ($line = <$fh>) {
 		my @data = (split ',', $line)[4..9];
 		last if $data [0] eq ''; # don't remove !!!
-		push ( @$league_games, {
+		push @$league_games, {
 			home_score => $data [0],
 			away_score => $data [1],
 			result => $data [2],
 			home_odds => $data [3],
 			draw_odds => $data [4],
 			away_odds => $data [5],
-		});
+		};
 	}
 	close $fh;
 	return $league_games;
@@ -42,7 +47,7 @@ sub update_current {
 		my @data = split (',', $line);
 		last if $data [0] eq ''; # don't remove !!!
 		next if any {$_ eq ''} ( $data[5], $data[6] );
-		push ( @$league_games, {
+		push @$league_games, {
 			league => $data [0],
 			date => $data [1],
 			home_team => $data [3],
@@ -55,7 +60,7 @@ sub update_current {
 			away_odds => $data [ $odds_cols[2] ],
 			over_odds => $data [ $over_under_cols->{over} ],
 			under_odds=> $data [ $over_under_cols->{under}],
-		});
+		};
 	}
 	close $fh;
 	return $league_games;
@@ -63,7 +68,7 @@ sub update_current {
 
 sub write_current {
 	my ($self, $file, $data) = @_;
-	open (my $fh, '>', $file) or die "Unable to open $file";
+	open my $fh, '>', $file or die "Unable to open $file";
 
 	print $fh 'Div ,Date ,Home Team, Away Team, FTHG, ATHG, FTR, B365H, B365D, B365A, Over, Under';
 	for my $line (@$data) {
