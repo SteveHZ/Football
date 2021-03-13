@@ -10,12 +10,6 @@ sub update {
 	my ($self, $file) = @_;
 	my $league_games = [];
 
-##return [{}] if $file =~ /2019/; # temporary fix
-##	Need to write script to correct data/favourites/$league/2019.csv
-##	create_reports.pl should then work without above line and by-league.xlsx/by_xlsx should be ok
-#	Next need to find out why Football::Spreadsheets::do_history doesn't work -> v 3.20 !!!
-#	maybe to do with team names again ?? oh fuck !! but maybe/hopefully not.
-
 	open my $fh, '<', $file or die "Can't find $file";
 	my $line = <$fh>;	# skip first line
 	while ($line = <$fh>) {

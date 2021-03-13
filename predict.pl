@@ -1,6 +1,6 @@
 #	predict.pl 31/01/16 - 14/03/16
 #	v3.0 12/03/18 v3.02 22/08/18 v3.03 22/09/18
-#	v3.10 06/05/19
+#	v3.10 06/05/19 v3.20 13/03/21
 
 BEGIN {
 #$ENV{PERL_KEYWORD_DEVELOPMENT} = 1;
@@ -115,10 +115,6 @@ sub get_model_and_view {
 	die "Unknown error in get_model_and_view";
 }
 
-# https://perlmaven.com/use-theschwartz-2
-# my $log_file = "/var/tmp/send_email_worker.log";
-# open(LOG,">>$log_file") or die "Can not open $log_file!";
-# print LOG "sendmail: $sendmail\n";
 =pod
 
 =head1 NAME

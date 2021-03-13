@@ -32,6 +32,13 @@ has 'last_six' => ( is => 'ro', default => sub { {} }, );
 
 with 'Football::Roles::Team_Data';
 
+my $log;
+DEVELOPMENT {
+	use Log::Log4perl;
+	Log::Log4perl->init ("log.conf");
+	$log = Log::Log4perl->get_logger ('football');
+}
+
 sub BUILD {
 	my $self = shift;
 	$self->{points} = { W => 3, D => 1, L => 0, };
@@ -106,7 +113,8 @@ sub update_teams {
 	my ($home_result, $away_result) = get_result ($game->{home_score}, $game->{away_score});
 
 	DEVELOPMENT {
-		print "\n$home_team v $away_team";
+		$log->debug ("$home_team v $away_team");
+#		print "\n$home_team v $away_team";
 	}
 	$teams->{$home_team}->add ( update_home ($game, $home_result));
 	$teams->{$away_team}->add ( update_away ($game, $away_result));

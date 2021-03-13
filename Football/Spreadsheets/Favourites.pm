@@ -131,10 +131,7 @@ sub do_favourites {
 		$self->write_row ($worksheet, $hashref, $row);
 		$row += 2;
 	}
-#use Data::Dumper;
-#print Dumper $hash;<STDIN>;
-#	$self->do_history ($hash); # uncomment once all leagues included
-# 	see current with errors.xlsx sheet
+	$self->do_history ($hash); # uncomment once all leagues included
 }
 
 sub do_history {

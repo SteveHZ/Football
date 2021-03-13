@@ -62,7 +62,7 @@ sub build_leagues {
 	TESTING { $teams = $self->read_json ( $self->{test_teams_file} ); }
 
 	for my $league ($self->league_names->@*) {
-#		die "No games played in $league" if scalar (@ {$games->{$league}} == 0);
+#		die "No games played in $league" if scalar $games->{$league}->@* == 0);
 		push ( $self->leagues->@*, Football::League->new (
 			name		=> $league,
 			games 		=> $games->{$league},

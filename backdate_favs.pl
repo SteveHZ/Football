@@ -48,12 +48,13 @@ sub main {
 			my $start = $idxs->{$league};
 			my $end = $start + $num_games->{$league}[$week] - 1;
 
-			push ( @{ $games->{$league} }, @{ $data->{$league} }[$start..$end]);
+			push $games->{$league}->@*, $data->{$league}->@[$start..$end]);
+#			push ( @{ $games->{$league} }, @{ $data->{$league} }[$start..$end]);
 			$idxs->{$league} += $num_games->{$league}[$week];
 			$fav_model->update ($league, $year, $games->{$league} );
 		}
 
-		push (@results, $fav_model->hash);
+		push @results, $fav_model->hash;
 	}
 	print "\n\nWriting out JSON file ...\n";
 	write_json ($json_file, \@results);
