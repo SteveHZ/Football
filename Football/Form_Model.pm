@@ -43,7 +43,7 @@ sub sort_list {
 		sort {
 			$b->{$sort_by}->{points} <=> $a->{$sort_by}->{points}
 			or $a->{team} cmp $b->{team}
-		} @{ $self->{all_teams} }
+		} $self->{all_teams}->@*
 	];
 }
 

@@ -8,14 +8,13 @@
 #   then run perl fetch.pl -n to fetch original csv sheets
 #   Run perl amend_historical.pl afterwards, before perl create_reports.
 
-
 use MyHeader;
 
 use File::Copy qw(copy);
 use List::MoreUtils qw(each_array);
 use Football::Globals qw(@league_names @csv_leagues @euro_lgs @euro_csv_lgs $reports_season);
 
-my $from_path = 'c:/mine/perl/football/data';
+my $from_path = 'C:/Mine/perl/Football/data';
 my $to_path = "$from_path/historical";
 
 my $iterator = each_array (@csv_leagues, @league_names);

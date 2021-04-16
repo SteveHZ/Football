@@ -13,17 +13,17 @@ my $returns_rx = qr/
     \d+\.?\d+?          # Percentage Return
 /x;
 
-my $returns_filename = "c:/mine/perl/Football/reports/returns.xlsx";
-my $streaks_filename = "c:/mine/perl/Football/reports/streaks.xlsx";
+my $returns_filename = "C:/Mine/perl/Football/reports/returns.xlsx";
+my $streaks_filename = "C:/Mine/perl/Football/reports/streaks.xlsx";
 
 my @files = (
     {
-        in_file => "c:/mine/lisp/data/returns.csv",
+        in_file => "C:/Mine/lisp/data/returns.csv",
         out_file => $returns_filename,
         writer => Football::Spreadsheets::Write_Returns->new (filename => $returns_filename),
     },
     {
-        in_file => "c:/mine/lisp/data/streaks.csv",
+        in_file => "C:/Mine/lisp/data/streaks.csv",
         out_file => $streaks_filename,
         writer => Football::Spreadsheets::Write_Streaks->new (filename => $streaks_filename),
     },
@@ -54,33 +54,3 @@ for my $file (@files) {
 
     print "Done";
 }
-
-=begin comment
-
-v 1.0
-
-my $filename = "c:/mine/lisp/data/returns.csv";
-my $lines = read_file ($filename);
-my $hash = {};
-my $key = "";
-
-for my $line (@$lines) {
-	chomp $line;
-	if ($line !~ $returns_rx) {
-		$key = $line unless $line eq "";
-	} else {
-		push $hash->{$key}->@*, $line;
-	}
-}
-
-my $xlsx_filename = "c:/mine/perl/Football/reports/returns.xlsx";
-print "\nWriting $xlsx_filename...";
-
-my $writer = Football::Spreadsheets::Write_Returns->new (filename => $xlsx_filename);
-$writer->write ($hash);
-
-print "\nDone";
-
-=end comment
-
-=cut

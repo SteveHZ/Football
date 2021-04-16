@@ -1,12 +1,11 @@
 # amend_historical.pl 08-10/03/21
 
-# copy original historical data to another folder
-# then use this script to amend as required - maybe as part of create_reports ??
+# copy original historical data to to 'Football Data files' folder
+# then use this script to amend team names as per Football::Fetch_Amend
 
 use strict;
 use warnings;
 use Time::HiRes qw (usleep);
-use Data::Dumper;
 
 use Football::Fetch_Amend;
 use MyLib qw(read_file write_file);
@@ -52,27 +51,27 @@ for my $league (@league_names) {
 
 =head1 NAME
 
-Football/amend_historical.pl
+ Football/amend_historical.pl
 
 =head1 SYNOPSIS
 
-perl amend_historical.pl
+ perl amend_historical.pl
 
 =head1 DESCRIPTION
 
-Stand-alone script to amend original historical data from Football data
-to data/historical folder using regex defined in Football::Fetch_Amend
+ Stand-alone script to amend original historical data from Football data
+ to data/historical folder using regex defined in Football::Fetch_Amend
 
-Always run this when regex has been updated, before running perl create_reports.pl
+ Always run this when regex has been updated, before running perl create_reports.pl
 
 =head1 AUTHOR
 
-Steve Hope
+ Steve Hope
 
 =head1 LICENSE
 
-This library is free software. You can redistribute it and/or modify
-it under the same terms as Perl itself.
+ This library is free software. You can redistribute it and/or modify
+ it under the same terms as Perl itself.
 
 =cut
 

@@ -246,23 +246,23 @@ print " Done";
 
 =head1 NAME
 
-perl create_teams.pl
+ perl create_teams.pl
 
 =head1 SYNOPSIS
 
-perl create_teams.pl
+ perl create_teams.pl
 
 =head1 DESCRIPTION
 
-Create Football/teams.json file
+ Create Football/teams.json file
 
 =head1 AUTHOR
 
-Steve Hope 2016
+ Steve Hope 2016
 
 =head1 LICENSE
 
-This library is free software. You can redistribute it and/or modify
-it under the same terms as Perl itself.
+ This library is free software. You can redistribute it and/or modify
+ it under the same terms as Perl itself.
 
 =cut

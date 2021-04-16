@@ -76,25 +76,25 @@ sub amend_teams {
 
 =head1 NAME
 
-Fetch_Amend.pm
+ Fetch_Amend.pm
 
 =head1 SYNOPSIS
 
-Used by fetch.pl
+ Used by fetch.pl
 
 =head1 DESCRIPTION
 
-Use functions amend_uk, amend_euro or amend_summer
-to amend team names for the respective files.
+ Use functions amend_uk, amend_euro or amend_summer
+ to amend team names for the respective files.
 
 =head1 AUTHOR
 
-Steve Hope
+ Steve Hope
 
 =head1 LICENSE
 
-This library is free software. You can redistribute it and/or modify
-it under the same terms as Perl itself.
+ This library is free software. You can redistribute it and/or modify
+ it under the same terms as Perl itself.
 
 =cut
 

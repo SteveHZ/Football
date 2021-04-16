@@ -24,7 +24,7 @@ $log->error ("testing $year ok");
 # print LOG "sendmail: $sendmail\n";
 
 my $log_file = "C:/Mine/perl/Football/football2.log";
-open my $log, '>', $log_file or die "Can't open $log_file";
+open my $log, '>>', $log_file or die "Can't open $log_file";
 
 my $next_year = 2022;
 print $log "testing $next_year ok\n";

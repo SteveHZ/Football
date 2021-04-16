@@ -1,9 +1,9 @@
 package Football::Spreadsheets::Write_Returns;
 
-#	Football::Spreadsheets::Write_Returns.pm 07-09/01/21
+#	Football::Spreadsheets::Write_Returns.pm 07-09/01/21, 05/04/22
 
-use Moo;
 use List::MoreUtils qw(each_array each_arrayref);
+use Moo;
 use namespace::clean;
 
 has 'filename' => (is => 'ro');
@@ -12,9 +12,21 @@ with 'Roles::Spreadsheet';
 sub BUILD {
 	my $self = shift;
 
-	$self->{sheet_names} = [ "Wins", "Draws", "Defeats", "Overs", "Unders", ];
-	$self->{season_stats} = [ "Wins", "Draws", "Defeats", "Overs", "Unders", ];
-	$self->{recent_stats} = [ "Last Six Wins", "Last Six Draws", "Last Six Defeats", "Last Six Overs", "Last Six Unders", ];
+	$self->{sheet_names}  = [ "Wins", "Home Wins", "Away Wins",
+							  "Draws", "Home Draws", "Away Draws",
+							  "Defeats", "Home Defeats", "Away Defeats",
+							  "Overs", "Home Overs", "Away Overs",
+							  "Unders", "Home Unders", "Away Unders", ];
+	$self->{season_stats} = [ "Wins", "Home Wins", "Away Wins",
+  							  "Draws", "Home Draws", "Away Draws",
+							  "Defeats", "Home Defeats", "Away Defeats",
+  							  "Overs", "Home Overs", "Away Overs",
+							  "Unders", "Home Unders", "Away Unders", ];
+	$self->{recent_stats} = [ "Last Six Wins",  "Last Six Home Wins", "Last Six Away Wins",
+							  "Last Six Draws", "Last Six Home Draws", "Last Six Away Draws",
+							  "Last Six Defeats", "Last Six Home Defeats", "Last Six Away Defeats",
+							  "Last Six Overs", "Last Six Home Overs", "Last Six Away Overs",
+							  "Last Six Unders", "Last Six Home Unders", "Last Six Away Unders", ];
 }
 
 sub write {
@@ -77,30 +89,28 @@ sub do_header {
 	$worksheet->write ('M1', 'Percent', $format);
 }
 
-1;
-
 =pod
 
 =head1 NAME
 
-Write_Returns.pm
+ Write_Returns.pm
 
 =head1 SYNOPSIS
 
-Used by series.pl
+ Used by series.pl
 
 =head1 DESCRIPTION
 
-Writes out spreadsheets from data provided by returns.pl
+ Writes out spreadsheets from data provided by returns.pl
 
 =head1 AUTHOR
 
-Steve Hope
+ Steve Hope
 
 =head1 LICENSE
 
-This library is free software. You can redistribute it and/or modify
-it under the same terms as Perl itself.
+ This library is free software. You can redistribute it and/or modify
+ it under the same terms as Perl itself.
 
 =cut
 

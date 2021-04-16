@@ -46,8 +46,10 @@ sub goal_diffs_rule {
 sub match_odds_rule {
 	my ($self, $game) = @_;
 
-	return "H ".sprintf "%0.2f", $game->{odds}->{season}->{away_win} if $game->{odds}->{season}->{away_win} >= $self->{min_odds};
-	return "A ".sprintf "%0.2f", $game->{odds}->{season}->{home_win} if $game->{odds}->{season}->{home_win} >= $self->{min_odds};
+	return "H ".sprintf "%0.2f", $game->{odds}->{season}->{away_win}
+		if $game->{odds}->{season}->{away_win} >= $self->{min_odds};
+	return "A ".sprintf "%0.2f", $game->{odds}->{season}->{home_win}
+	 	if $game->{odds}->{season}->{home_win} >= $self->{min_odds};
 	return "";
 }
 

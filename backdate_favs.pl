@@ -1,5 +1,3 @@
-#!	C:/Strawberry/perl/bin
-
 #	backdate_favs.pl 15/11/16 - 20/11/16
 #	v1.1 18/06/17, 22/08/17
 
@@ -16,9 +14,9 @@ use MyJSON qw(write_json);
 
 my $year = 2017;
 my $num_weeks = 3;
-my $in_path = 'C:/Mine/perl/Football/data/favourites/';
-my $out_path = 'C:/Mine/perl/Football/data/';
-my $json_file = $out_path.'favourites_history.json';
+my $in_path = 'C:/Mine/perl/Football/data/favourites';
+my $out_path = 'C:/Mine/perl/Football/data';
+my $json_file = "$out_path/favourites_history.json";
 
 #	Number of games to read for each week
 my $num_games = {
@@ -33,32 +31,28 @@ my $num_games = {
 	'Scots League Two' 	=> [ 5, 5, 5],
 };
 
-main ();
+my $idxs = init ();
+my $data = read_files ();
+my $games = {};
+my @results = ();
 
-sub main {
-	my $idxs = init ();
-	my $data = read_files ();
-	my $games = {};
-	my @results = ();
+for my $week (0..$num_weeks - 1) {
+	print "\nCalculating week no. ".($week + 1)." ...";
+	my $fav_model = Football::Favourites_Model->new ( filename => 'uk' );
+	for my $league (@league_names) {
+		my $start = $idxs->{$league};
+		my $end = $start + $num_games->{$league}[$week] - 1;
 
-	for my $week (0..$num_weeks - 1) {
-		print "\nCalculating week no. ".($week + 1)." ...";
-		my $fav_model = Football::Favourites_Model->new ( filename => 'uk' );
-		for my $league (@league_names){
-			my $start = $idxs->{$league};
-			my $end = $start + $num_games->{$league}[$week] - 1;
-
-			push $games->{$league}->@*, $data->{$league}->@[$start..$end]);
-#			push ( @{ $games->{$league} }, @{ $data->{$league} }[$start..$end]);
-			$idxs->{$league} += $num_games->{$league}[$week];
-			$fav_model->update ($league, $year, $games->{$league} );
-		}
-
-		push @results, $fav_model->hash;
+		push $games->{$league}->@*, $data->{$league}->@[$start..$end]);
+#		push ( @{ $games->{$league} }, @{ $data->{$league} }[$start..$end]);
+		$idxs->{$league} += $num_games->{$league}[$week];
+		$fav_model->update ($league, $year, $games->{$league} );
 	}
-	print "\n\nWriting out JSON file ...\n";
-	write_json ($json_file, \@results);
+
+	push @results, $fav_model->hash;
 }
+print "\n\nWriting out JSON file ...\n";
+write_json ($json_file, \@results);
 
 sub init {
 	my $start = {};
@@ -73,7 +67,7 @@ sub read_files {
 	my $data = {};
 
 	for my $league (@league_names) {
-		my $file = $in_path.$league."/".$year.".csv";
+		my $file = "$in_path/$league/$year.csv";
 		$data->{$league} = $data_model->update ($file);
 	}
 	return $data;
