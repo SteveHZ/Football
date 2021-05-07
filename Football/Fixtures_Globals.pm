@@ -61,6 +61,10 @@ sub _rename {
 __DATA__
 #	Irish
 St Patrick's Athletic,St Patricks
+Longford Town,Longford
+Sligo Rovers,Sligo Rvs
+Shamrock Rovers,Shamrock Rvs
+Drogheda United,Drogheda
 
 #	American
 D.C. United,DC United

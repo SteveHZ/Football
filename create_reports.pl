@@ -1,4 +1,3 @@
-#!	C:/Strawberry/perl/bin
 
 # 	create_head2head.pl 09-24/02/16
 #	renamed create_reports.pl 05/03/16

@@ -4,7 +4,7 @@
 
 BEGIN {
 ##$ENV{PERL_KEYWORD_DEVELOPMENT} = 1;
-#$ENV{PERL_KEYWORD_ZEROGAMES} = 1;
+$ENV{PERL_KEYWORD_ZEROGAMES} = 1;
 }
 
 use strict;
@@ -26,8 +26,8 @@ use Football::Game_Predictions::Controller;
 use MyKeyword qw(ZEROGAMES);
 ZEROGAMES { print "\nZEROGAMES pragma in place !!"; <STDIN>; }
 
-#use Log::Log4perl;
-#Log::Log4perl->init ("log.conf");
+use Log::Log4perl;
+Log::Log4perl->init ("log.conf");
 
 my $options = get_cmdline ();
 my ($model, $view) = get_model_and_view ($options);

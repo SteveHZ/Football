@@ -42,8 +42,8 @@ our @EXPORT = qw(
 sub new { return bless {}, shift; }
 
 our $season = 2020;
-our $euro_season = 2019;
-our $summer_season = 2020;
+our $euro_season = 2020;
+our $summer_season = 2021;
 
 our $next_season = $season + 1;
 our $season_years = ($season-2000).($next_season-2000);
@@ -110,9 +110,9 @@ TESTING { # Do not touch these lines
 	our @summer_csv_leagues = qw(ROI MLS SWE NOR FIN BRZ);
 	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN BRZ);
 } else { # Amend these lines as needed
-	our @summer_leagues = ('Irish League', 'Swedish League', 'Norwegian League', 'Finnish League');
-	our @summer_csv_leagues = qw(ROI SWE NOR FIN);
-	our @summer_fetch_leagues = qw(IRL SWE NOR FIN);
+	our @summer_leagues = ('Irish League', 'Swedish League',);
+	our @summer_csv_leagues = qw(ROI SWE);
+	our @summer_fetch_leagues = qw(IRL SWE);
 
 #	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League', 'Brazilian League');
 #	our @summer_csv_leagues = qw(ROI MLS SWE NOR FIN BRZ);

@@ -32,10 +32,13 @@ our $euro_teams = {
 	'St. Patricks' => 'St Patricks',
 	'Bray' => 'Bray Wanderers',
 	'UC Dublin' => 'UCD',
+	'Shamrock Rovers' => 'Shamrock Rvs',
+	'Sligo Rovers' => 'Sligo Rvs',
 
 #	Swedish
 	'Malmo FF' => 'Malmo', # FF removed in Fixtures_Model ??
 	'Djurgarden' => 'Djurgardens',
+	'Halmstad' => 'Halmstads',
 
 #	Norwegian
 	'Bodo/Glimt' => 'Bodo Glimt',
@@ -54,7 +57,8 @@ our $euro_teams = {
 	'FC Cincinnati' => 'Cincinnati',
 	'Atlanta Utd' => 'Atlanta United',
 	'Inter Miami CF' => 'Inter Miami',
-
+	'Club de Foot Montreal' => 'Montreal',
+	
 #	Australian
 	'Western Sydney Wanderers FC' => 'Western Sydney Wdrs',
 	'Melbourne City FC' => 'Melbourne City',

@@ -39,6 +39,8 @@ for my $row ($data->{elements}) {
             selected_by => $player->{selected_by_percent},
             price => fmt ( $player->{now_cost} / 10, $price_format ),
 			news => $player->{news},
+			ict_index_rank_type => $player->{ict_index_rank_type},
+			ict_index_rank => $player->{ict_index_rank},
         };
     }
 }
@@ -68,25 +70,10 @@ sub update {
     my $json_file = shift;
     my $dir = "C:/Mine/perl/Football/data";
     my $url = "https://fantasy.premierleague.com/api/bootstrap-static/";
-    # previously https://fantasy.premierleague.com/drf/bootstrap-static
+#	previously https://fantasy.premierleague.com/drf/bootstrap-static
 
     say "\nDownloading $json_file...";
     my $ff = File::Fetch->new (uri => $url);
     my $download = $ff->fetch (to => $dir) or die $ff->error;
     move $download, $json_file;
 }
-
-=begin comment
-sub sort_by_position {
-    my ($players, $position) = @_;
-    return [
-        sort { $b->{total_points} <=> $a->{total_points} }
-#        sort { $b->{points_per_game} <=> $a->{points_per_game} }
-        grep { $_->{points_per_game} >= 3 }
-#        grep { $_->{selected_by} > 5 }
-        grep { $_->{position} eq $position }
-        @$players
-    ];
-}
-=end comment
-=cut
