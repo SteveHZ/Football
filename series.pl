@@ -4,17 +4,15 @@ use MyHeader;
 use MyLib qw (read_file);
 use Football::Spreadsheets::Write_Series;
 
-my @series_name = qw(s1 s2 s3 s4 s5);
-my $series_rx =
-qr/
+my @series_name = qw(s1 s2 s3 s4 s5 s6);
+my $series_rx = qr/
     \w{2,3}\,   # League ID,
     [\w\h]+\,   # Team,
     \d+         # Return
 /x;
 
 for my $series (@series_name) {
-	my $filename = "c:/mine/lisp/data/series $series.csv";
-	my $lines = read_file ($filename);
+	my $lines = read_file ("c:/mine/lisp/data/series $series.csv");
 	my $hash = {};
 	my $key = "";
 

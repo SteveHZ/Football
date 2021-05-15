@@ -5,6 +5,8 @@
 #	To edit names from BBC fixtures files use Football::Fixtures_Globals, Football::Fixtures_Model
 
 #  Updated all leagues for 2021 except USA ?? and Brazilian 27/02/21
+#  FIN - Haka first home game 10/6/21
+#  MLS - Austin Utd first home game 20/6/21
 
 use strict;
 use warnings;
@@ -46,7 +48,7 @@ my $leagues = {
         'Los Angeles FC',
         'Minnesota',
         'Montreal',
-        'Nashville SC',
+        'Nashville',
         'New England Revolution',
         'New York City',
         'New York Red Bulls',

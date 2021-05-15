@@ -50,15 +50,17 @@ our $euro_teams = {
 	'VPS' => 'VPS Vaasa',
 	'KuPS' => 'KuPS Kuopio',
 	'HIFK' => 'HIFK Helsinki',
+	'AC Oulu' => 'Oulu',
 
 #	American
 	'Los Angeles Galaxy' => 'LA Galaxy',
 	'Minnesota United' => 'Minnesota',
 	'FC Cincinnati' => 'Cincinnati',
 	'Atlanta Utd' => 'Atlanta United',
-	'Inter Miami CF' => 'Inter Miami',
+#	'Inter Miami CF' => 'Inter Miami',
 	'Club de Foot Montreal' => 'Montreal',
-	
+	'Nashville SC' => 'Nashville',
+
 #	Australian
 	'Western Sydney Wanderers FC' => 'Western Sydney Wdrs',
 	'Melbourne City FC' => 'Melbourne City',

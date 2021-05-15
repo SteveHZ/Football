@@ -67,7 +67,10 @@ Shamrock Rovers,Shamrock Rvs
 Drogheda United,Drogheda
 
 #	American
+Chicago Fire FC,Chicago Fire
+Columbus,Columbus Crew
 D.C. United,DC United
+Houston Dynamo FC,Houston Dynamo
 Minnesota United FC,Minnesota
 Atlanta United FC,Atlanta United
 New York City FC,New York City
@@ -75,7 +78,9 @@ Seattle Sounders FC,Seattle Sounders
 Vancouver Whitecaps FC,Vancouver Whitecaps
 Los Angeles Football Club,Los Angeles FC
 FC Cincinnati,Cincinnati
+Orlando City SC,Orlando City
 Inter Miami CF,Inter Miami
+CF Montreal,Montreal
 
 #	English
 Brighton & Hove Albion,Brighton
@@ -195,6 +200,9 @@ Helsingborgs,Helsingborg
 
 #	Norwegian
 Aalesunds,Aalesund
+
+#	Finnish
+AC Oulu,Oulu
 
 #	Italian
 Inter Milan,Inter

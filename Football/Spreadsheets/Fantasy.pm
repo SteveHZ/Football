@@ -39,13 +39,11 @@ sub do_header {
     $worksheet->set_column ('B:B', 20, $self->{format} );
 	$worksheet->set_column ('C:C',  2, $self->{blank_text_format} );
 
-    $worksheet->set_column ('D:D', 10, $self->{format} );
-    $worksheet->set_column ('E:E', 10, $self->{format} );
+    $worksheet->set_column ('D:E', 10, $self->{format} );
     $worksheet->set_column ('F:F', 15, $self->{format} );
 	$worksheet->set_column ('G:G',  2, $self->{blank_text_format} );
 
-    $worksheet->set_column ('H:H',  8, $self->{format} );
-    $worksheet->set_column ('I:I',  8, $self->{format} );
+    $worksheet->set_column ('H:I',  8, $self->{format} );
 	$worksheet->set_column ('J:J',  2, $self->{blank_text_format} );
 	$worksheet->set_column ('K:K', 50, $self->{format} );
 }
