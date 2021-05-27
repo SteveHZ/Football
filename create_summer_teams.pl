@@ -1,7 +1,7 @@
 #	create_summer_teams.pl 26/06/16
 
 #	This file is for team names to be used within predict.pl
-#	To edit names from Football Data CSV files, use Euro::Rename
+#	To edit names from Football Data CSV files, use Euro::Rename or Football::Fetch_Amend for UK teams
 #	To edit names from BBC fixtures files use Football::Fixtures_Globals, Football::Fixtures_Model
 
 #  Updated all leagues for 2021 except USA ?? and Brazilian 27/02/21

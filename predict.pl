@@ -4,7 +4,7 @@
 
 BEGIN {
 ##$ENV{PERL_KEYWORD_DEVELOPMENT} = 1;
-$ENV{PERL_KEYWORD_ZEROGAMES} = 1;
+$ENV{PERL_KEYWORD_ZEROGAMES} = 1; # remove after 20/06/21 - also see fixtures2.pl
 }
 
 use strict;
@@ -143,7 +143,9 @@ Football predictions
 
  At the start of a season, if ZEROGAMES pragma is off, the script will die in Goal Expect Model.
  Enable ZEROGAMES in predict.pl and enable ZERGAMES lines in Goal Expect Model.
+ Also add ZEROGAMES teams to remove_teams array in fixtures2.pl
  Once no messages appear for any teams, disable pragma here and in Goal Expect Model,
+ and remove teams from remove_teams array.
  Should not need to amend any code in Over Under Model
 
 =head1 AUTHOR

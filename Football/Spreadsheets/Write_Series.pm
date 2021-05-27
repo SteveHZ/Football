@@ -14,7 +14,9 @@ sub BUILD {
 	$self->{sheet_names} = [
 		"Wins", "Home Wins", "Away Wins",
 		"Draws", "Home Draws", "Away Draws",
-		"Defeats", "Home Defeats", "Away Defeats"
+		"Defeats", "Home Defeats", "Away Defeats",
+		"Overs", "Home Overs", "Away Overs",
+		"Unders", "Home Unders", "Away Unders",
    ];
 }
 
