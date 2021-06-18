@@ -41,8 +41,8 @@ our @EXPORT = qw(
 
 sub new { return bless {}, shift; }
 
-our $season = 2020;
-our $euro_season = 2020;
+our $season = 2021;
+our $euro_season = 2021;
 our $summer_season = 2021;
 
 our $next_season = $season + 1;

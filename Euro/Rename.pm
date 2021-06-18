@@ -60,16 +60,18 @@ our $euro_teams = {
 #	'Inter Miami CF' => 'Inter Miami',
 	'Club de Foot Montreal' => 'Montreal',
 	'Nashville SC' => 'Nashville',
+	'New England Revolution' => 'New England Rev',
+	'Philadelphia Union' => 'Philadelphia',
+	'San Jose Earthquakes' => 'San Jose',
+	'Sporting Kansas City' => 'Sporting Kansas',
+	'Vancouver Whitecaps' => 'Vancouver',
+	'New York Red Bulls' => 'New York RB',
 
 #	Australian
 	'Western Sydney Wanderers FC' => 'Western Sydney Wdrs',
 	'Melbourne City FC' => 'Melbourne City',
 	'Western United FC' => 'Western United',
 	'Brisbane Roar FC' => 'Brisbane Roar',
-
-#	English
-#	"King’s Lynn" => 'Kings Lynn',
-#	"Milton Keynes Dons" => "MK Dons",
 };
 
 sub check_rename {

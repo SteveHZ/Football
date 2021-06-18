@@ -8,8 +8,9 @@
 
 #	To edit team names through whole system, need to amend here,
 #	in Football::Fixtures_Globals, and in Football::Fetch_Amend
+#	Also need to check Football::Fetch_Amend before the start of each season for promotion/relegation
 
-#	Need to check Football::Fetch_Amend before the start of each season for promotion/relegation
+# 	Scots leagues done 15/06/21
 
 use strict;
 use warnings;
@@ -153,27 +154,27 @@ my $leagues = {
         'Aberdeen',
         'Celtic',
         'Dundee United',
-        'Hamilton',
         'Hibernian',
-        'Kilmarnock',
         'Livingston',
         'Motherwell',
         'Rangers',
         'Ross County',
         'St Johnstone',
         'St Mirren',
+        'Dundee',
+        'Hearts',
     ],
     'Scots Championship' => [
-        'Alloa',
         'Arbroath',
         'Ayr',
-        'Dundee',
         'Dunfermline',
-        'Hearts',
         'Inverness C',
-        'Morton',
         'Queen of Sth',
         'Raith Rvs',
+        'Hamilton',
+        'Kilmarnock',
+        'Partick',
+        'Morton',
     ],
     'Scots League One' => [
         'Airdrie Utd',
@@ -182,22 +183,22 @@ my $leagues = {
         'Dumbarton',
         'East Fife',
         'Falkirk',
-        'Forfar',
         'Montrose',
-        'Partick',
         'Peterhead',
+        'Alloa',
+        'Queens Park',
     ],
     'Scots League Two' => [
         'Albion Rvs',
         'Annan Athletic',
-        'Brechin',
         'Cowdenbeath',
         'Edinburgh City',
         'Elgin',
-        'Queens Park',
         'Stenhousemuir',
         'Stirling',
         'Stranraer',
+        'Forfar',
+		'Kelty Hearts',
     ],
 };
 

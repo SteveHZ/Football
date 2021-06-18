@@ -4,8 +4,7 @@
 #	To edit names from Football Data CSV files, use Euro::Rename or Football::Fetch_Amend for UK teams
 #	To edit names from BBC fixtures files use Football::Fixtures_Globals, Football::Fixtures_Model
 
-#  Updated all leagues for 2021 except USA ?? and Brazilian 27/02/21
-#  FIN - Haka first home game 10/6/21
+#  Updated all leagues for 2021 except Brazilian 27/02/21
 #  MLS - Austin Utd first home game 20/6/21
 
 use strict;
@@ -49,18 +48,18 @@ my $leagues = {
         'Minnesota',
         'Montreal',
         'Nashville',
-        'New England Revolution',
+        'New England Rev',
         'New York City',
-        'New York Red Bulls',
+        'New York RB',
         'Orlando City',
-        'Philadelphia Union',
+        'Philadelphia',
         'Portland Timbers',
         'Real Salt Lake',
-        'San Jose Earthquakes',
+        'San Jose',
         'Seattle Sounders',
-        'Sporting Kansas City',
+        'Sporting Kansas',
         'Toronto FC',
-        'Vancouver Whitecaps',
+        'Vancouver',
     ],
     'Swedish League' => [
         'AIK',

@@ -75,12 +75,17 @@ Minnesota United FC,Minnesota
 Atlanta United FC,Atlanta United
 New York City FC,New York City
 Seattle Sounders FC,Seattle Sounders
-Vancouver Whitecaps FC,Vancouver Whitecaps
+Vancouver Whitecaps FC,Vancouver
 Los Angeles Football Club,Los Angeles FC
 FC Cincinnati,Cincinnati
 Orlando City SC,Orlando City
 Inter Miami CF,Inter Miami
 CF Montreal,Montreal
+New England Revolution,New England Rev
+Philadelphia Union,Philadelphia
+San Jose Earthquakes,San Jose
+New York Red Bulls,New York RB
+Sporting Kansas City,Sporting Kansas
 
 #	English
 Brighton & Hove Albion,Brighton
@@ -348,7 +353,7 @@ Conference Division Two,X
 Coral Challenge Cup,X
 League 1,L1
 Qualifiers,M8
-Shield,SH#
+Shield,SH
 Australian,AL
 Round,X
 Quarter,X

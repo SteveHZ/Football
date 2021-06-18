@@ -1,10 +1,10 @@
 #   perl archive_csv.pl 21/05/19
 
 #   Archive all csv sheets by copying from football/data directory
-#   to football/data/historical/(league name) directory
+#   to football/data/historical/$league name directory
 #   before running create_reports.pl
 
-#   Ensure that $reports_season is updated in Football::Globals first !!!
+#   Ensure that $reports_season is updated in Football::Globals first !!! ($season -> NEXT season)
 #   then run perl fetch.pl -n to fetch original csv sheets
 #   Run perl amend_historical.pl afterwards, before perl create_reports.
 
@@ -52,6 +52,8 @@ to football/data/historical/(league name) directory
 before running create_reports.pl
 
 Ensure that $reports_season is updated in Football::Globals first !!!
+then run perl fetch.pl -n to fetch original csv sheets
+Run perl amend_historical.pl afterwards, before perl create_reports.
 
 =head1 AUTHOR
 

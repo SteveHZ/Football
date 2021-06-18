@@ -35,7 +35,7 @@ my @paths = (
 
 for my $path (@paths) {
 	if (-e $path->{in_file}) {
-		open my $fh_in, '<', $path->{in_file}  or die "Can't find $path->{in_file}";
+		open my $fh_in, '<', $path->{in_file}  or die "Can't find $path->{in_file} for reading";
 		open my $fh_out, '>', $path->{out_file} or die "Can't open $path->{out_file} for writing";
 
 		while (my $line = <$fh_in>) {

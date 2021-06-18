@@ -6898,3 +6898,1911 @@
 [2021/05/25 17:20:06 DEBUG League.pm 110] - Ilves v KuPS Kuopio
 [2021/05/25 17:20:06 DEBUG League.pm 110] - Oulu v HIFK Helsinki
 [2021/05/25 17:20:06 DEBUG League.pm 110] - Mariehamn v Haka
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Drogheda v Waterford
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Shamrock Rvs v St Patricks
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Finn Harps v Bohemians
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Longford v Derry City
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Sligo Rvs v Dundalk
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Dundalk v Finn Harps
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Waterford v Sligo Rvs
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Bohemians v Longford
+[2021/05/29 09:18:27 DEBUG League.pm 110] - St Patricks v Drogheda
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Longford v Sligo Rvs
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Shamrock Rvs v Dundalk
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Bohemians v St Patricks
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Derry City v Waterford
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Drogheda v Finn Harps
+[2021/05/29 09:18:27 DEBUG League.pm 110] - St Patricks v Derry City
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Dundalk v Bohemians
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Finn Harps v Waterford
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Longford v Drogheda
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Sligo Rvs v Shamrock Rvs
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Derry City v Shamrock Rvs
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Waterford v Bohemians
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Derry City v Drogheda
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Dundalk v St Patricks
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Shamrock Rvs v Longford
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Sligo Rvs v Finn Harps
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Bohemians v Sligo Rvs
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Derry City v Dundalk
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Drogheda v Shamrock Rvs
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Longford v Finn Harps
+[2021/05/29 09:18:27 DEBUG League.pm 110] - St Patricks v Waterford
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Finn Harps v St Patricks
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Shamrock Rvs v Bohemians
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Dundalk v Drogheda
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Sligo Rvs v Derry City
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Waterford v Longford
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Drogheda v Sligo Rvs
+[2021/05/29 09:18:27 DEBUG League.pm 110] - St Patricks v Longford
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Bohemians v Derry City
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Finn Harps v Shamrock Rvs
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Waterford v Dundalk
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Drogheda v Bohemians
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Shamrock Rvs v Waterford
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Longford v Dundalk
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Sligo Rvs v St Patricks
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Derry City v Finn Harps
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Derry City v Longford
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Dundalk v Sligo Rvs
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Bohemians v Finn Harps
+[2021/05/29 09:18:27 DEBUG League.pm 110] - St Patricks v Shamrock Rvs
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Waterford v Drogheda
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Finn Harps v Dundalk
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Drogheda v St Patricks
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Longford v Bohemians
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Shamrock Rvs v Derry City
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Sligo Rvs v Waterford
+[2021/05/29 09:18:27 DEBUG League.pm 110] - St Patricks v Bohemians
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Waterford v Derry City
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Dundalk v Shamrock Rvs
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Finn Harps v Drogheda
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Sligo Rvs v Longford
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Bohemians v Dundalk
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Derry City v St Patricks
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Drogheda v Longford
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Shamrock Rvs v Sligo Rvs
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Waterford v Finn Harps
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Houston Dynamo v San Jose Earthquakes
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Seattle Sounders v Minnesota
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Montreal v Toronto FC
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Orlando City v Atlanta United
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Los Angeles FC v Austin FC
+[2021/05/29 09:18:27 DEBUG League.pm 110] - DC United v New York City
+[2021/05/29 09:18:27 DEBUG League.pm 110] - FC Dallas v Colorado Rapids
+[2021/05/29 09:18:27 DEBUG League.pm 110] - New York Red Bulls v Sporting Kansas City
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Chicago Fire v New England Revolution
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Nashville v Cincinnati
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Inter Miami v LA Galaxy
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Columbus Crew v Philadelphia Union
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Vancouver Whitecaps v Portland Timbers
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Sporting Kansas City v Orlando City
+[2021/05/29 09:18:27 DEBUG League.pm 110] - New York City v Cincinnati
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Nashville v Montreal
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Toronto FC v Vancouver Whitecaps
+[2021/05/29 09:18:27 DEBUG League.pm 110] - San Jose Earthquakes v FC Dallas
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Los Angeles FC v Seattle Sounders
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Atlanta United v Chicago Fire
+[2021/05/29 09:18:27 DEBUG League.pm 110] - Minnesota v Real Salt Lake
+[2021/05/29 09:18:27 DEBUG League.pm 110] - New England Revolution v DC United
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Philadelphia Union v Inter Miami
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Colorado Rapids v Austin FC
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Portland Timbers v Houston Dynamo
+[2021/05/29 09:18:28 DEBUG League.pm 110] - LA Galaxy v New York Red Bulls
+[2021/05/29 09:18:28 DEBUG League.pm 110] - New York Red Bulls v Chicago Fire
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Real Salt Lake v Sporting Kansas City
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Montreal v Columbus Crew
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Houston Dynamo v Los Angeles FC
+[2021/05/29 09:18:28 DEBUG League.pm 110] - New England Revolution v Atlanta United
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Orlando City v Cincinnati
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Philadelphia Union v New York City
+[2021/05/29 09:18:28 DEBUG League.pm 110] - FC Dallas v Portland Timbers
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Minnesota v Austin FC
+[2021/05/29 09:18:28 DEBUG League.pm 110] - San Jose Earthquakes v DC United
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Nashville v Inter Miami
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Seattle Sounders v LA Galaxy
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Vancouver Whitecaps v Colorado Rapids
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Real Salt Lake v San Jose Earthquakes
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Chicago Fire v Philadelphia Union
+[2021/05/29 09:18:28 DEBUG League.pm 110] - New York Red Bulls v Toronto FC
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Columbus Crew v DC United
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Nashville v New England Revolution
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Vancouver Whitecaps v Montreal
+[2021/05/29 09:18:28 DEBUG League.pm 110] - FC Dallas v Houston Dynamo
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Orlando City v New York City
+[2021/05/29 09:18:28 DEBUG League.pm 110] - LA Galaxy v Los Angeles FC
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Colorado Rapids v Minnesota
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Inter Miami v Atlanta United
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Portland Timbers v Seattle Sounders
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Sporting Kansas City v Austin FC
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Toronto FC v Columbus Crew
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Inter Miami v Montreal
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Philadelphia Union v New England Revolution
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Houston Dynamo v Sporting Kansas City
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Minnesota v Vancouver Whitecaps
+[2021/05/29 09:18:28 DEBUG League.pm 110] - San Jose Earthquakes v Seattle Sounders
+[2021/05/29 09:18:28 DEBUG League.pm 110] - DC United v Chicago Fire
+[2021/05/29 09:18:28 DEBUG League.pm 110] - New York City v Toronto FC
+[2021/05/29 09:18:28 DEBUG League.pm 110] - LA Galaxy v Austin FC
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Atlanta United v Montreal
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Philadelphia Union v New York Red Bulls
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Minnesota v FC Dallas
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Colorado Rapids v Houston Dynamo
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Real Salt Lake v Nashville
+[2021/05/29 09:18:28 DEBUG League.pm 110] - San Jose Earthquakes v Portland Timbers
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Sporting Kansas City v Vancouver Whitecaps
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Cincinnati v Inter Miami
+[2021/05/29 09:18:28 DEBUG League.pm 110] - New England Revolution v Columbus Crew
+[2021/05/29 09:18:28 DEBUG League.pm 110] - DC United v Orlando City
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Seattle Sounders v Los Angeles FC
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Montreal v Cincinnati
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Portland Timbers v LA Galaxy
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Chicago Fire v Inter Miami
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Orlando City v Toronto FC
+[2021/05/29 09:18:28 DEBUG League.pm 110] - New York City v Columbus Crew
+[2021/05/29 09:18:28 DEBUG League.pm 110] - FC Dallas v Real Salt Lake
+[2021/05/29 09:18:28 DEBUG League.pm 110] - New England Revolution v New York Red Bulls
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Houston Dynamo v Vancouver Whitecaps
+[2021/05/29 09:18:28 DEBUG League.pm 110] - San Jose Earthquakes v Sporting Kansas City
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Los Angeles FC v Colorado Rapids
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Seattle Sounders v Atlanta United
+[2021/05/29 09:18:28 DEBUG League.pm 110] - DC United v Philadelphia Union
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Nashville v Austin FC
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Malmo v Hammarby
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Orebro v Goteborg
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Halmstads v Hacken
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Mjallby v Varbergs
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Elfsborg v Djurgardens
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Norrkoping v Sirius
+[2021/05/29 09:18:28 DEBUG League.pm 110] - AIK v Degerfors
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Kalmar v Ostersunds
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Hammarby v Mjallby
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Degerfors v Kalmar
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Hacken v Malmo
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Ostersunds v Orebro
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Djurgardens v Norrkoping
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Sirius v Halmstads
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Goteborg v AIK
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Varbergs v Elfsborg
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Hacken v Sirius
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Kalmar v Orebro
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Norrkoping v Halmstads
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Varbergs v Djurgardens
+[2021/05/29 09:18:28 DEBUG League.pm 110] - AIK v Hammarby
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Malmo v Ostersunds
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Elfsborg v Mjallby
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Goteborg v Degerfors
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Sirius v Kalmar
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Hammarby v Hacken
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Halmstads v Goteborg
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Orebro v Norrkoping
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Ostersunds v Varbergs
+[2021/05/29 09:18:28 DEBUG League.pm 110] - AIK v Elfsborg
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Djurgardens v Malmo
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Mjallby v Degerfors
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Goteborg v Hacken
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Hammarby v Sirius
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Elfsborg v Kalmar
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Orebro v Halmstads
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Degerfors v Djurgardens
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Mjallby v Ostersunds
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Malmo v Varbergs
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Norrkoping v AIK
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Djurgardens v Ostersunds
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Hacken v Orebro
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Kalmar v Goteborg
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Sirius v Elfsborg
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Varbergs v Hammarby
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Halmstads v Mjallby
+[2021/05/29 09:18:28 DEBUG League.pm 110] - AIK v Malmo
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Norrkoping v Degerfors
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Hammarby v Djurgardens
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Elfsborg v Halmstads
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Goteborg v Sirius
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Malmo v Kalmar
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Mjallby v Hacken
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Ostersunds v AIK
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Varbergs v Norrkoping
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Degerfors v Orebro
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Malmo v Elfsborg
+[2021/05/29 09:18:28 DEBUG League.pm 110] - AIK v Mjallby
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Ostersunds v Sirius
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Halmstads v Degerfors
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Kalmar v Hammarby
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Djurgardens v Goteborg
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Hacken v Varbergs
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Elfsborg v Norrkoping
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Orebro v Malmo
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Bodo Glimt v Tromso
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Molde v Kristiansund
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Viking v Brann
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Valerenga v Rosenborg
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Kristiansund v Bodo Glimt
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Brann v Valerenga
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Tromso v Molde
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Rosenborg v Viking
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Sarpsborg v Haugesund
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Valerenga v Kristiansund
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Viking v Tromso
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Bodo Glimt v Rosenborg
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Sandefjord v Mjondalen
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Stromsgodset v Lillestrom
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Molde v Brann
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Stabaek v Odd
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Rosenborg v Brann
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Odd v Sarpsborg
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Brann v Bodo Glimt
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Haugesund v Stabaek
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Kristiansund v Stromsgodset
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Lillestrom v Viking
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Mjondalen v Valerenga
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Tromso v Sandefjord
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Rosenborg v Molde
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Bodo Glimt v Haugesund
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Lillestrom v Odd
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Sandefjord v Rosenborg
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Sarpsborg v Kristiansund
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Stabaek v Brann
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Stromsgodset v Tromso
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Viking v Mjondalen
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Molde v Valerenga
+[2021/05/29 09:18:28 DEBUG League.pm 110] - HJK Helsinki v Honka
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Inter Turku v KuPS Kuopio
+[2021/05/29 09:18:28 DEBUG League.pm 110] - KuPS Kuopio v HJK Helsinki
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Oulu v Ilves
+[2021/05/29 09:18:28 DEBUG League.pm 110] - HIFK Helsinki v Haka
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Honka v Mariehamn
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Lahti v Inter Turku
+[2021/05/29 09:18:28 DEBUG League.pm 110] - SJK v KTP
+[2021/05/29 09:18:28 DEBUG League.pm 110] - KTP v Honka
+[2021/05/29 09:18:28 DEBUG League.pm 110] - SJK v HIFK Helsinki
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Inter Turku v Haka
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Mariehamn v Oulu
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Ilves v HJK Helsinki
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Lahti v KuPS Kuopio
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Haka v KTP
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Honka v Inter Turku
+[2021/05/29 09:18:28 DEBUG League.pm 110] - KuPS Kuopio v Mariehamn
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Oulu v SJK
+[2021/05/29 09:18:28 DEBUG League.pm 110] - HIFK Helsinki v Ilves
+[2021/05/29 09:18:28 DEBUG League.pm 110] - HJK Helsinki v Lahti
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Inter Turku v KTP
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Lahti v Honka
+[2021/05/29 09:18:28 DEBUG League.pm 110] - SJK v HJK Helsinki
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Ilves v KuPS Kuopio
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Oulu v HIFK Helsinki
+[2021/05/29 09:18:28 DEBUG League.pm 110] - Mariehamn v Haka
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Drogheda v Waterford
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Shamrock Rvs v St Patricks
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Finn Harps v Bohemians
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Longford v Derry City
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Sligo Rvs v Dundalk
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Dundalk v Finn Harps
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Waterford v Sligo Rvs
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Bohemians v Longford
+[2021/06/07 17:58:01 DEBUG League.pm 110] - St Patricks v Drogheda
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Longford v Sligo Rvs
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Shamrock Rvs v Dundalk
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Bohemians v St Patricks
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Derry City v Waterford
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Drogheda v Finn Harps
+[2021/06/07 17:58:01 DEBUG League.pm 110] - St Patricks v Derry City
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Dundalk v Bohemians
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Finn Harps v Waterford
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Longford v Drogheda
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Sligo Rvs v Shamrock Rvs
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Derry City v Shamrock Rvs
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Waterford v Bohemians
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Derry City v Drogheda
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Dundalk v St Patricks
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Shamrock Rvs v Longford
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Sligo Rvs v Finn Harps
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Bohemians v Sligo Rvs
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Derry City v Dundalk
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Drogheda v Shamrock Rvs
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Longford v Finn Harps
+[2021/06/07 17:58:01 DEBUG League.pm 110] - St Patricks v Waterford
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Finn Harps v St Patricks
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Shamrock Rvs v Bohemians
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Dundalk v Drogheda
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Sligo Rvs v Derry City
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Waterford v Longford
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Drogheda v Sligo Rvs
+[2021/06/07 17:58:01 DEBUG League.pm 110] - St Patricks v Longford
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Bohemians v Derry City
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Finn Harps v Shamrock Rvs
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Waterford v Dundalk
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Drogheda v Bohemians
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Shamrock Rvs v Waterford
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Longford v Dundalk
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Sligo Rvs v St Patricks
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Derry City v Finn Harps
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Derry City v Longford
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Dundalk v Sligo Rvs
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Bohemians v Finn Harps
+[2021/06/07 17:58:01 DEBUG League.pm 110] - St Patricks v Shamrock Rvs
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Waterford v Drogheda
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Finn Harps v Dundalk
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Drogheda v St Patricks
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Longford v Bohemians
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Shamrock Rvs v Derry City
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Sligo Rvs v Waterford
+[2021/06/07 17:58:01 DEBUG League.pm 110] - St Patricks v Bohemians
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Waterford v Derry City
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Dundalk v Shamrock Rvs
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Finn Harps v Drogheda
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Sligo Rvs v Longford
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Bohemians v Dundalk
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Derry City v St Patricks
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Drogheda v Longford
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Shamrock Rvs v Sligo Rvs
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Waterford v Finn Harps
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Finn Harps v Sligo Rvs
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Drogheda v Derry City
+[2021/06/07 17:58:01 DEBUG League.pm 110] - St Patricks v Dundalk
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Bohemians v Waterford
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Longford v Shamrock Rvs
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Houston Dynamo v San Jose
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Seattle Sounders v Minnesota
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Montreal v Toronto FC
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Orlando City v Atlanta United
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Los Angeles FC v Austin FC
+[2021/06/07 17:58:01 DEBUG League.pm 110] - DC United v New York City
+[2021/06/07 17:58:01 DEBUG League.pm 110] - FC Dallas v Colorado Rapids
+[2021/06/07 17:58:01 DEBUG League.pm 110] - New York RB v Sporting Kansas
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Chicago Fire v New England Rev
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Nashville v Cincinnati
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Inter Miami v LA Galaxy
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Columbus Crew v Philadelphia
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Vancouver v Portland Timbers
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Sporting Kansas v Orlando City
+[2021/06/07 17:58:01 DEBUG League.pm 110] - New York City v Cincinnati
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Nashville v Montreal
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Toronto FC v Vancouver
+[2021/06/07 17:58:01 DEBUG League.pm 110] - San Jose v FC Dallas
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Los Angeles FC v Seattle Sounders
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Atlanta United v Chicago Fire
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Minnesota v Real Salt Lake
+[2021/06/07 17:58:01 DEBUG League.pm 110] - New England Rev v DC United
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Philadelphia v Inter Miami
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Colorado Rapids v Austin FC
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Portland Timbers v Houston Dynamo
+[2021/06/07 17:58:01 DEBUG League.pm 110] - LA Galaxy v New York RB
+[2021/06/07 17:58:01 DEBUG League.pm 110] - New York RB v Chicago Fire
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Real Salt Lake v Sporting Kansas
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Montreal v Columbus Crew
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Houston Dynamo v Los Angeles FC
+[2021/06/07 17:58:01 DEBUG League.pm 110] - New England Rev v Atlanta United
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Orlando City v Cincinnati
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Philadelphia v New York City
+[2021/06/07 17:58:01 DEBUG League.pm 110] - FC Dallas v Portland Timbers
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Minnesota v Austin FC
+[2021/06/07 17:58:01 DEBUG League.pm 110] - San Jose v DC United
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Nashville v Inter Miami
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Seattle Sounders v LA Galaxy
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Vancouver v Colorado Rapids
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Real Salt Lake v San Jose
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Chicago Fire v Philadelphia
+[2021/06/07 17:58:01 DEBUG League.pm 110] - New York RB v Toronto FC
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Columbus Crew v DC United
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Nashville v New England Rev
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Vancouver v Montreal
+[2021/06/07 17:58:01 DEBUG League.pm 110] - FC Dallas v Houston Dynamo
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Orlando City v New York City
+[2021/06/07 17:58:01 DEBUG League.pm 110] - LA Galaxy v Los Angeles FC
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Colorado Rapids v Minnesota
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Inter Miami v Atlanta United
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Portland Timbers v Seattle Sounders
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Sporting Kansas v Austin FC
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Toronto FC v Columbus Crew
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Inter Miami v Montreal
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Philadelphia v New England Rev
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Houston Dynamo v Sporting Kansas
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Minnesota v Vancouver
+[2021/06/07 17:58:01 DEBUG League.pm 110] - San Jose v Seattle Sounders
+[2021/06/07 17:58:01 DEBUG League.pm 110] - DC United v Chicago Fire
+[2021/06/07 17:58:01 DEBUG League.pm 110] - New York City v Toronto FC
+[2021/06/07 17:58:01 DEBUG League.pm 110] - LA Galaxy v Austin FC
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Atlanta United v Montreal
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Philadelphia v New York RB
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Minnesota v FC Dallas
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Colorado Rapids v Houston Dynamo
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Real Salt Lake v Nashville
+[2021/06/07 17:58:01 DEBUG League.pm 110] - San Jose v Portland Timbers
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Sporting Kansas v Vancouver
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Cincinnati v Inter Miami
+[2021/06/07 17:58:01 DEBUG League.pm 110] - New England Rev v Columbus Crew
+[2021/06/07 17:58:01 DEBUG League.pm 110] - DC United v Orlando City
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Seattle Sounders v Los Angeles FC
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Montreal v Cincinnati
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Portland Timbers v LA Galaxy
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Chicago Fire v Inter Miami
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Orlando City v Toronto FC
+[2021/06/07 17:58:01 DEBUG League.pm 110] - New York City v Columbus Crew
+[2021/06/07 17:58:01 DEBUG League.pm 110] - FC Dallas v Real Salt Lake
+[2021/06/07 17:58:01 DEBUG League.pm 110] - New England Rev v New York RB
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Houston Dynamo v Vancouver
+[2021/06/07 17:58:01 DEBUG League.pm 110] - San Jose v Sporting Kansas
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Los Angeles FC v Colorado Rapids
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Seattle Sounders v Atlanta United
+[2021/06/07 17:58:01 DEBUG League.pm 110] - DC United v Philadelphia
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Nashville v Austin FC
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Chicago Fire v Montreal
+[2021/06/07 17:58:01 DEBUG League.pm 110] - New York RB v Orlando City
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Columbus Crew v Toronto FC
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Cincinnati v New England Rev
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Atlanta United v Nashville
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Los Angeles FC v New York City
+[2021/06/07 17:58:01 DEBUG League.pm 110] - LA Galaxy v San Jose
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Inter Miami v DC United
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Sporting Kansas v Houston Dynamo
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Colorado Rapids v FC Dallas
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Real Salt Lake v Minnesota
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Philadelphia v Portland Timbers
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Seattle Sounders v Austin FC
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Malmo v Hammarby
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Orebro v Goteborg
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Halmstads v Hacken
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Mjallby v Varbergs
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Elfsborg v Djurgardens
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Norrkoping v Sirius
+[2021/06/07 17:58:01 DEBUG League.pm 110] - AIK v Degerfors
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Kalmar v Ostersunds
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Hammarby v Mjallby
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Degerfors v Kalmar
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Hacken v Malmo
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Ostersunds v Orebro
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Djurgardens v Norrkoping
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Sirius v Halmstads
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Goteborg v AIK
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Varbergs v Elfsborg
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Hacken v Sirius
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Kalmar v Orebro
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Norrkoping v Halmstads
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Varbergs v Djurgardens
+[2021/06/07 17:58:01 DEBUG League.pm 110] - AIK v Hammarby
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Malmo v Ostersunds
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Elfsborg v Mjallby
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Goteborg v Degerfors
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Sirius v Kalmar
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Hammarby v Hacken
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Halmstads v Goteborg
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Orebro v Norrkoping
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Ostersunds v Varbergs
+[2021/06/07 17:58:01 DEBUG League.pm 110] - AIK v Elfsborg
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Djurgardens v Malmo
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Mjallby v Degerfors
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Goteborg v Hacken
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Hammarby v Sirius
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Elfsborg v Kalmar
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Orebro v Halmstads
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Degerfors v Djurgardens
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Mjallby v Ostersunds
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Malmo v Varbergs
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Norrkoping v AIK
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Djurgardens v Ostersunds
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Hacken v Orebro
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Kalmar v Goteborg
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Sirius v Elfsborg
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Varbergs v Hammarby
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Halmstads v Mjallby
+[2021/06/07 17:58:01 DEBUG League.pm 110] - AIK v Malmo
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Norrkoping v Degerfors
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Hammarby v Djurgardens
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Elfsborg v Halmstads
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Goteborg v Sirius
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Malmo v Kalmar
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Mjallby v Hacken
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Ostersunds v AIK
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Varbergs v Norrkoping
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Degerfors v Orebro
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Malmo v Elfsborg
+[2021/06/07 17:58:01 DEBUG League.pm 110] - AIK v Mjallby
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Ostersunds v Sirius
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Halmstads v Degerfors
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Kalmar v Hammarby
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Djurgardens v Goteborg
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Hacken v Varbergs
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Elfsborg v Norrkoping
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Orebro v Malmo
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Bodo Glimt v Tromso
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Molde v Kristiansund
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Viking v Brann
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Valerenga v Rosenborg
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Kristiansund v Bodo Glimt
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Brann v Valerenga
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Tromso v Molde
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Rosenborg v Viking
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Sarpsborg v Haugesund
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Valerenga v Kristiansund
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Viking v Tromso
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Bodo Glimt v Rosenborg
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Sandefjord v Mjondalen
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Stromsgodset v Lillestrom
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Molde v Brann
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Stabaek v Odd
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Rosenborg v Brann
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Odd v Sarpsborg
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Brann v Bodo Glimt
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Haugesund v Stabaek
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Kristiansund v Stromsgodset
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Lillestrom v Viking
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Mjondalen v Valerenga
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Tromso v Sandefjord
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Rosenborg v Molde
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Bodo Glimt v Haugesund
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Lillestrom v Odd
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Sandefjord v Rosenborg
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Sarpsborg v Kristiansund
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Stabaek v Brann
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Stromsgodset v Tromso
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Viking v Mjondalen
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Molde v Valerenga
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Mjondalen v Molde
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Brann v Stromsgodset
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Kristiansund v Lillestrom
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Odd v Bodo Glimt
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Rosenborg v Stabaek
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Tromso v Sarpsborg
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Valerenga v Sandefjord
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Haugesund v Viking
+[2021/06/07 17:58:01 DEBUG League.pm 110] - HJK Helsinki v Honka
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Inter Turku v KuPS Kuopio
+[2021/06/07 17:58:01 DEBUG League.pm 110] - KuPS Kuopio v HJK Helsinki
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Oulu v Ilves
+[2021/06/07 17:58:01 DEBUG League.pm 110] - HIFK Helsinki v Haka
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Honka v Mariehamn
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Lahti v Inter Turku
+[2021/06/07 17:58:01 DEBUG League.pm 110] - SJK v KTP
+[2021/06/07 17:58:01 DEBUG League.pm 110] - KTP v Honka
+[2021/06/07 17:58:01 DEBUG League.pm 110] - SJK v HIFK Helsinki
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Inter Turku v Haka
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Mariehamn v Oulu
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Ilves v HJK Helsinki
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Lahti v KuPS Kuopio
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Haka v KTP
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Honka v Inter Turku
+[2021/06/07 17:58:01 DEBUG League.pm 110] - KuPS Kuopio v Mariehamn
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Oulu v SJK
+[2021/06/07 17:58:01 DEBUG League.pm 110] - HIFK Helsinki v Ilves
+[2021/06/07 17:58:01 DEBUG League.pm 110] - HJK Helsinki v Lahti
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Inter Turku v KTP
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Lahti v Honka
+[2021/06/07 17:58:01 DEBUG League.pm 110] - SJK v HJK Helsinki
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Ilves v KuPS Kuopio
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Oulu v HIFK Helsinki
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Mariehamn v Haka
+[2021/06/07 17:58:01 DEBUG League.pm 110] - HJK Helsinki v Oulu
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Ilves v KTP
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Honka v SJK
+[2021/06/07 17:58:01 DEBUG League.pm 110] - HIFK Helsinki v Inter Turku
+[2021/06/07 17:58:01 DEBUG League.pm 110] - KuPS Kuopio v Haka
+[2021/06/07 17:58:01 DEBUG League.pm 110] - Mariehamn v Lahti
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Drogheda v Waterford
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Shamrock Rvs v St Patricks
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Finn Harps v Bohemians
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Longford v Derry City
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Sligo Rvs v Dundalk
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Dundalk v Finn Harps
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Waterford v Sligo Rvs
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Bohemians v Longford
+[2021/06/17 19:26:48 DEBUG League.pm 110] - St Patricks v Drogheda
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Longford v Sligo Rvs
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Shamrock Rvs v Dundalk
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Bohemians v St Patricks
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Derry City v Waterford
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Drogheda v Finn Harps
+[2021/06/17 19:26:48 DEBUG League.pm 110] - St Patricks v Derry City
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Dundalk v Bohemians
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Finn Harps v Waterford
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Longford v Drogheda
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Sligo Rvs v Shamrock Rvs
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Derry City v Shamrock Rvs
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Waterford v Bohemians
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Derry City v Drogheda
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Dundalk v St Patricks
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Shamrock Rvs v Longford
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Sligo Rvs v Finn Harps
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Bohemians v Sligo Rvs
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Derry City v Dundalk
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Drogheda v Shamrock Rvs
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Longford v Finn Harps
+[2021/06/17 19:26:48 DEBUG League.pm 110] - St Patricks v Waterford
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Finn Harps v St Patricks
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Shamrock Rvs v Bohemians
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Dundalk v Drogheda
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Sligo Rvs v Derry City
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Waterford v Longford
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Drogheda v Sligo Rvs
+[2021/06/17 19:26:48 DEBUG League.pm 110] - St Patricks v Longford
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Bohemians v Derry City
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Finn Harps v Shamrock Rvs
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Waterford v Dundalk
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Drogheda v Bohemians
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Shamrock Rvs v Waterford
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Longford v Dundalk
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Sligo Rvs v St Patricks
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Derry City v Finn Harps
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Derry City v Longford
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Dundalk v Sligo Rvs
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Bohemians v Finn Harps
+[2021/06/17 19:26:48 DEBUG League.pm 110] - St Patricks v Shamrock Rvs
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Waterford v Drogheda
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Finn Harps v Dundalk
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Drogheda v St Patricks
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Longford v Bohemians
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Shamrock Rvs v Derry City
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Sligo Rvs v Waterford
+[2021/06/17 19:26:48 DEBUG League.pm 110] - St Patricks v Bohemians
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Waterford v Derry City
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Dundalk v Shamrock Rvs
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Finn Harps v Drogheda
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Sligo Rvs v Longford
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Bohemians v Dundalk
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Derry City v St Patricks
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Drogheda v Longford
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Shamrock Rvs v Sligo Rvs
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Waterford v Finn Harps
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Finn Harps v Sligo Rvs
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Drogheda v Derry City
+[2021/06/17 19:26:48 DEBUG League.pm 110] - St Patricks v Dundalk
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Bohemians v Waterford
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Longford v Shamrock Rvs
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Derry City v Bohemians
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Dundalk v Waterford
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Shamrock Rvs v Finn Harps
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Longford v St Patricks
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Sligo Rvs v Drogheda
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Houston Dynamo v San Jose
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Seattle Sounders v Minnesota
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Montreal v Toronto FC
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Orlando City v Atlanta United
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Los Angeles FC v Austin FC
+[2021/06/17 19:26:48 DEBUG League.pm 110] - DC United v New York City
+[2021/06/17 19:26:48 DEBUG League.pm 110] - FC Dallas v Colorado Rapids
+[2021/06/17 19:26:48 DEBUG League.pm 110] - New York RB v Sporting Kansas
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Chicago Fire v New England Rev
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Nashville v Cincinnati
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Inter Miami v LA Galaxy
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Columbus Crew v Philadelphia
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Vancouver v Portland Timbers
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Sporting Kansas v Orlando City
+[2021/06/17 19:26:48 DEBUG League.pm 110] - New York City v Cincinnati
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Nashville v Montreal
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Toronto FC v Vancouver
+[2021/06/17 19:26:48 DEBUG League.pm 110] - San Jose v FC Dallas
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Los Angeles FC v Seattle Sounders
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Atlanta United v Chicago Fire
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Minnesota v Real Salt Lake
+[2021/06/17 19:26:48 DEBUG League.pm 110] - New England Rev v DC United
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Philadelphia v Inter Miami
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Colorado Rapids v Austin FC
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Portland Timbers v Houston Dynamo
+[2021/06/17 19:26:48 DEBUG League.pm 110] - LA Galaxy v New York RB
+[2021/06/17 19:26:48 DEBUG League.pm 110] - New York RB v Chicago Fire
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Real Salt Lake v Sporting Kansas
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Montreal v Columbus Crew
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Houston Dynamo v Los Angeles FC
+[2021/06/17 19:26:48 DEBUG League.pm 110] - New England Rev v Atlanta United
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Orlando City v Cincinnati
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Philadelphia v New York City
+[2021/06/17 19:26:48 DEBUG League.pm 110] - FC Dallas v Portland Timbers
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Minnesota v Austin FC
+[2021/06/17 19:26:48 DEBUG League.pm 110] - San Jose v DC United
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Nashville v Inter Miami
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Seattle Sounders v LA Galaxy
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Vancouver v Colorado Rapids
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Real Salt Lake v San Jose
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Chicago Fire v Philadelphia
+[2021/06/17 19:26:48 DEBUG League.pm 110] - New York RB v Toronto FC
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Columbus Crew v DC United
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Nashville v New England Rev
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Vancouver v Montreal
+[2021/06/17 19:26:48 DEBUG League.pm 110] - FC Dallas v Houston Dynamo
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Orlando City v New York City
+[2021/06/17 19:26:48 DEBUG League.pm 110] - LA Galaxy v Los Angeles FC
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Colorado Rapids v Minnesota
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Inter Miami v Atlanta United
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Portland Timbers v Seattle Sounders
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Sporting Kansas v Austin FC
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Toronto FC v Columbus Crew
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Inter Miami v Montreal
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Philadelphia v New England Rev
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Houston Dynamo v Sporting Kansas
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Minnesota v Vancouver
+[2021/06/17 19:26:48 DEBUG League.pm 110] - San Jose v Seattle Sounders
+[2021/06/17 19:26:48 DEBUG League.pm 110] - DC United v Chicago Fire
+[2021/06/17 19:26:48 DEBUG League.pm 110] - New York City v Toronto FC
+[2021/06/17 19:26:48 DEBUG League.pm 110] - LA Galaxy v Austin FC
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Atlanta United v Montreal
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Philadelphia v New York RB
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Minnesota v FC Dallas
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Colorado Rapids v Houston Dynamo
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Real Salt Lake v Nashville
+[2021/06/17 19:26:48 DEBUG League.pm 110] - San Jose v Portland Timbers
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Sporting Kansas v Vancouver
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Cincinnati v Inter Miami
+[2021/06/17 19:26:48 DEBUG League.pm 110] - New England Rev v Columbus Crew
+[2021/06/17 19:26:48 DEBUG League.pm 110] - DC United v Orlando City
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Seattle Sounders v Los Angeles FC
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Montreal v Cincinnati
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Portland Timbers v LA Galaxy
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Chicago Fire v Inter Miami
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Orlando City v Toronto FC
+[2021/06/17 19:26:48 DEBUG League.pm 110] - New York City v Columbus Crew
+[2021/06/17 19:26:48 DEBUG League.pm 110] - FC Dallas v Real Salt Lake
+[2021/06/17 19:26:48 DEBUG League.pm 110] - New England Rev v New York RB
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Houston Dynamo v Vancouver
+[2021/06/17 19:26:48 DEBUG League.pm 110] - San Jose v Sporting Kansas
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Los Angeles FC v Colorado Rapids
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Seattle Sounders v Atlanta United
+[2021/06/17 19:26:48 DEBUG League.pm 110] - DC United v Philadelphia
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Nashville v Austin FC
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Chicago Fire v Montreal
+[2021/06/17 19:26:48 DEBUG League.pm 110] - New York RB v Orlando City
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Columbus Crew v Toronto FC
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Cincinnati v New England Rev
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Atlanta United v Nashville
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Los Angeles FC v New York City
+[2021/06/17 19:26:48 DEBUG League.pm 110] - LA Galaxy v San Jose
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Inter Miami v DC United
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Sporting Kansas v Houston Dynamo
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Colorado Rapids v FC Dallas
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Real Salt Lake v Minnesota
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Philadelphia v Portland Timbers
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Seattle Sounders v Austin FC
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Sporting Kansas v Austin FC
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Malmo v Hammarby
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Orebro v Goteborg
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Halmstads v Hacken
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Mjallby v Varbergs
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Elfsborg v Djurgardens
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Norrkoping v Sirius
+[2021/06/17 19:26:48 DEBUG League.pm 110] - AIK v Degerfors
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Kalmar v Ostersunds
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Hammarby v Mjallby
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Degerfors v Kalmar
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Hacken v Malmo
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Ostersunds v Orebro
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Djurgardens v Norrkoping
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Sirius v Halmstads
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Goteborg v AIK
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Varbergs v Elfsborg
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Hacken v Sirius
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Kalmar v Orebro
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Norrkoping v Halmstads
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Varbergs v Djurgardens
+[2021/06/17 19:26:48 DEBUG League.pm 110] - AIK v Hammarby
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Malmo v Ostersunds
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Elfsborg v Mjallby
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Goteborg v Degerfors
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Sirius v Kalmar
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Hammarby v Hacken
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Halmstads v Goteborg
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Orebro v Norrkoping
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Ostersunds v Varbergs
+[2021/06/17 19:26:48 DEBUG League.pm 110] - AIK v Elfsborg
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Djurgardens v Malmo
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Mjallby v Degerfors
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Goteborg v Hacken
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Hammarby v Sirius
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Elfsborg v Kalmar
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Orebro v Halmstads
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Degerfors v Djurgardens
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Mjallby v Ostersunds
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Malmo v Varbergs
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Norrkoping v AIK
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Djurgardens v Ostersunds
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Hacken v Orebro
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Kalmar v Goteborg
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Sirius v Elfsborg
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Varbergs v Hammarby
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Halmstads v Mjallby
+[2021/06/17 19:26:48 DEBUG League.pm 110] - AIK v Malmo
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Norrkoping v Degerfors
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Hammarby v Djurgardens
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Elfsborg v Halmstads
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Goteborg v Sirius
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Malmo v Kalmar
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Mjallby v Hacken
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Ostersunds v AIK
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Varbergs v Norrkoping
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Degerfors v Orebro
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Malmo v Elfsborg
+[2021/06/17 19:26:48 DEBUG League.pm 110] - AIK v Mjallby
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Ostersunds v Sirius
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Halmstads v Degerfors
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Kalmar v Hammarby
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Djurgardens v Goteborg
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Hacken v Varbergs
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Elfsborg v Norrkoping
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Orebro v Malmo
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Bodo Glimt v Tromso
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Molde v Kristiansund
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Viking v Brann
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Valerenga v Rosenborg
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Kristiansund v Bodo Glimt
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Brann v Valerenga
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Tromso v Molde
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Rosenborg v Viking
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Sarpsborg v Haugesund
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Valerenga v Kristiansund
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Viking v Tromso
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Bodo Glimt v Rosenborg
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Sandefjord v Mjondalen
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Stromsgodset v Lillestrom
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Molde v Brann
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Stabaek v Odd
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Rosenborg v Brann
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Odd v Sarpsborg
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Brann v Bodo Glimt
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Haugesund v Stabaek
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Kristiansund v Stromsgodset
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Lillestrom v Viking
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Mjondalen v Valerenga
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Tromso v Sandefjord
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Rosenborg v Molde
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Bodo Glimt v Haugesund
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Lillestrom v Odd
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Sandefjord v Rosenborg
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Sarpsborg v Kristiansund
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Stabaek v Brann
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Stromsgodset v Tromso
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Viking v Mjondalen
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Molde v Valerenga
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Mjondalen v Molde
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Brann v Stromsgodset
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Kristiansund v Lillestrom
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Odd v Bodo Glimt
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Rosenborg v Stabaek
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Tromso v Sarpsborg
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Valerenga v Sandefjord
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Haugesund v Viking
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Kristiansund v Odd
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Sandefjord v Molde
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Bodo Glimt v Mjondalen
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Lillestrom v Haugesund
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Sarpsborg v Brann
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Stromsgodset v Rosenborg
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Viking v Valerenga
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Stabaek v Tromso
+[2021/06/17 19:26:48 DEBUG League.pm 110] - HJK Helsinki v Honka
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Inter Turku v KuPS Kuopio
+[2021/06/17 19:26:48 DEBUG League.pm 110] - KuPS Kuopio v HJK Helsinki
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Oulu v Ilves
+[2021/06/17 19:26:48 DEBUG League.pm 110] - HIFK Helsinki v Haka
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Honka v Mariehamn
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Lahti v Inter Turku
+[2021/06/17 19:26:48 DEBUG League.pm 110] - SJK v KTP
+[2021/06/17 19:26:48 DEBUG League.pm 110] - KTP v Honka
+[2021/06/17 19:26:48 DEBUG League.pm 110] - SJK v HIFK Helsinki
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Inter Turku v Haka
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Mariehamn v Oulu
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Ilves v HJK Helsinki
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Lahti v KuPS Kuopio
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Haka v KTP
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Honka v Inter Turku
+[2021/06/17 19:26:48 DEBUG League.pm 110] - KuPS Kuopio v Mariehamn
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Oulu v SJK
+[2021/06/17 19:26:48 DEBUG League.pm 110] - HIFK Helsinki v Ilves
+[2021/06/17 19:26:48 DEBUG League.pm 110] - HJK Helsinki v Lahti
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Inter Turku v KTP
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Lahti v Honka
+[2021/06/17 19:26:48 DEBUG League.pm 110] - SJK v HJK Helsinki
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Ilves v KuPS Kuopio
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Oulu v HIFK Helsinki
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Mariehamn v Haka
+[2021/06/17 19:26:48 DEBUG League.pm 110] - HJK Helsinki v Oulu
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Ilves v KTP
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Honka v SJK
+[2021/06/17 19:26:48 DEBUG League.pm 110] - HIFK Helsinki v Inter Turku
+[2021/06/17 19:26:48 DEBUG League.pm 110] - KuPS Kuopio v Haka
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Mariehamn v Lahti
+[2021/06/17 19:26:48 DEBUG League.pm 110] - SJK v KuPS Kuopio
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Lahti v Ilves
+[2021/06/17 19:26:48 DEBUG League.pm 110] - KTP v HIFK Helsinki
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Inter Turku v Mariehamn
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Haka v HJK Helsinki
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Oulu v Honka
+[2021/06/17 19:26:48 DEBUG League.pm 110] - KuPS Kuopio v Inter Turku
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Mariehamn v HJK Helsinki
+[2021/06/17 19:26:48 DEBUG League.pm 110] - SJK v Ilves
+[2021/06/17 19:26:48 DEBUG League.pm 110] - HIFK Helsinki v Honka
+[2021/06/17 19:26:48 DEBUG League.pm 110] - Haka v Lahti
+[2021/06/17 19:26:48 DEBUG League.pm 110] - KTP v Oulu
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Drogheda v Waterford
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Shamrock Rvs v St Patricks
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Finn Harps v Bohemians
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Longford v Derry City
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Sligo Rvs v Dundalk
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Dundalk v Finn Harps
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Waterford v Sligo Rvs
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Bohemians v Longford
+[2021/06/17 19:46:57 DEBUG League.pm 110] - St Patricks v Drogheda
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Longford v Sligo Rvs
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Shamrock Rvs v Dundalk
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Bohemians v St Patricks
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Derry City v Waterford
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Drogheda v Finn Harps
+[2021/06/17 19:46:57 DEBUG League.pm 110] - St Patricks v Derry City
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Dundalk v Bohemians
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Finn Harps v Waterford
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Longford v Drogheda
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Sligo Rvs v Shamrock Rvs
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Derry City v Shamrock Rvs
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Waterford v Bohemians
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Derry City v Drogheda
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Dundalk v St Patricks
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Shamrock Rvs v Longford
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Sligo Rvs v Finn Harps
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Bohemians v Sligo Rvs
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Derry City v Dundalk
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Drogheda v Shamrock Rvs
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Longford v Finn Harps
+[2021/06/17 19:46:57 DEBUG League.pm 110] - St Patricks v Waterford
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Finn Harps v St Patricks
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Shamrock Rvs v Bohemians
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Dundalk v Drogheda
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Sligo Rvs v Derry City
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Waterford v Longford
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Drogheda v Sligo Rvs
+[2021/06/17 19:46:57 DEBUG League.pm 110] - St Patricks v Longford
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Bohemians v Derry City
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Finn Harps v Shamrock Rvs
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Waterford v Dundalk
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Drogheda v Bohemians
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Shamrock Rvs v Waterford
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Longford v Dundalk
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Sligo Rvs v St Patricks
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Derry City v Finn Harps
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Derry City v Longford
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Dundalk v Sligo Rvs
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Bohemians v Finn Harps
+[2021/06/17 19:46:57 DEBUG League.pm 110] - St Patricks v Shamrock Rvs
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Waterford v Drogheda
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Finn Harps v Dundalk
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Drogheda v St Patricks
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Longford v Bohemians
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Shamrock Rvs v Derry City
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Sligo Rvs v Waterford
+[2021/06/17 19:46:57 DEBUG League.pm 110] - St Patricks v Bohemians
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Waterford v Derry City
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Dundalk v Shamrock Rvs
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Finn Harps v Drogheda
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Sligo Rvs v Longford
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Bohemians v Dundalk
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Derry City v St Patricks
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Drogheda v Longford
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Shamrock Rvs v Sligo Rvs
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Waterford v Finn Harps
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Finn Harps v Sligo Rvs
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Drogheda v Derry City
+[2021/06/17 19:46:57 DEBUG League.pm 110] - St Patricks v Dundalk
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Bohemians v Waterford
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Longford v Shamrock Rvs
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Derry City v Bohemians
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Dundalk v Waterford
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Shamrock Rvs v Finn Harps
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Longford v St Patricks
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Sligo Rvs v Drogheda
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Houston Dynamo v San Jose
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Seattle Sounders v Minnesota
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Montreal v Toronto FC
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Orlando City v Atlanta United
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Los Angeles FC v Austin FC
+[2021/06/17 19:46:57 DEBUG League.pm 110] - DC United v New York City
+[2021/06/17 19:46:57 DEBUG League.pm 110] - FC Dallas v Colorado Rapids
+[2021/06/17 19:46:57 DEBUG League.pm 110] - New York RB v Sporting Kansas
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Chicago Fire v New England Rev
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Nashville v Cincinnati
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Inter Miami v LA Galaxy
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Columbus Crew v Philadelphia
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Vancouver v Portland Timbers
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Sporting Kansas v Orlando City
+[2021/06/17 19:46:57 DEBUG League.pm 110] - New York City v Cincinnati
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Nashville v Montreal
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Toronto FC v Vancouver
+[2021/06/17 19:46:57 DEBUG League.pm 110] - San Jose v FC Dallas
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Los Angeles FC v Seattle Sounders
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Atlanta United v Chicago Fire
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Minnesota v Real Salt Lake
+[2021/06/17 19:46:57 DEBUG League.pm 110] - New England Rev v DC United
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Philadelphia v Inter Miami
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Colorado Rapids v Austin FC
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Portland Timbers v Houston Dynamo
+[2021/06/17 19:46:57 DEBUG League.pm 110] - LA Galaxy v New York RB
+[2021/06/17 19:46:57 DEBUG League.pm 110] - New York RB v Chicago Fire
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Real Salt Lake v Sporting Kansas
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Montreal v Columbus Crew
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Houston Dynamo v Los Angeles FC
+[2021/06/17 19:46:57 DEBUG League.pm 110] - New England Rev v Atlanta United
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Orlando City v Cincinnati
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Philadelphia v New York City
+[2021/06/17 19:46:57 DEBUG League.pm 110] - FC Dallas v Portland Timbers
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Minnesota v Austin FC
+[2021/06/17 19:46:57 DEBUG League.pm 110] - San Jose v DC United
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Nashville v Inter Miami
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Seattle Sounders v LA Galaxy
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Vancouver v Colorado Rapids
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Real Salt Lake v San Jose
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Chicago Fire v Philadelphia
+[2021/06/17 19:46:57 DEBUG League.pm 110] - New York RB v Toronto FC
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Columbus Crew v DC United
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Nashville v New England Rev
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Vancouver v Montreal
+[2021/06/17 19:46:57 DEBUG League.pm 110] - FC Dallas v Houston Dynamo
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Orlando City v New York City
+[2021/06/17 19:46:57 DEBUG League.pm 110] - LA Galaxy v Los Angeles FC
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Colorado Rapids v Minnesota
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Inter Miami v Atlanta United
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Portland Timbers v Seattle Sounders
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Sporting Kansas v Austin FC
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Toronto FC v Columbus Crew
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Inter Miami v Montreal
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Philadelphia v New England Rev
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Houston Dynamo v Sporting Kansas
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Minnesota v Vancouver
+[2021/06/17 19:46:57 DEBUG League.pm 110] - San Jose v Seattle Sounders
+[2021/06/17 19:46:57 DEBUG League.pm 110] - DC United v Chicago Fire
+[2021/06/17 19:46:57 DEBUG League.pm 110] - New York City v Toronto FC
+[2021/06/17 19:46:57 DEBUG League.pm 110] - LA Galaxy v Austin FC
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Atlanta United v Montreal
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Philadelphia v New York RB
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Minnesota v FC Dallas
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Colorado Rapids v Houston Dynamo
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Real Salt Lake v Nashville
+[2021/06/17 19:46:57 DEBUG League.pm 110] - San Jose v Portland Timbers
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Sporting Kansas v Vancouver
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Cincinnati v Inter Miami
+[2021/06/17 19:46:57 DEBUG League.pm 110] - New England Rev v Columbus Crew
+[2021/06/17 19:46:57 DEBUG League.pm 110] - DC United v Orlando City
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Seattle Sounders v Los Angeles FC
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Montreal v Cincinnati
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Portland Timbers v LA Galaxy
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Chicago Fire v Inter Miami
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Orlando City v Toronto FC
+[2021/06/17 19:46:57 DEBUG League.pm 110] - New York City v Columbus Crew
+[2021/06/17 19:46:57 DEBUG League.pm 110] - FC Dallas v Real Salt Lake
+[2021/06/17 19:46:57 DEBUG League.pm 110] - New England Rev v New York RB
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Houston Dynamo v Vancouver
+[2021/06/17 19:46:57 DEBUG League.pm 110] - San Jose v Sporting Kansas
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Los Angeles FC v Colorado Rapids
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Seattle Sounders v Atlanta United
+[2021/06/17 19:46:57 DEBUG League.pm 110] - DC United v Philadelphia
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Nashville v Austin FC
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Chicago Fire v Montreal
+[2021/06/17 19:46:57 DEBUG League.pm 110] - New York RB v Orlando City
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Columbus Crew v Toronto FC
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Cincinnati v New England Rev
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Atlanta United v Nashville
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Los Angeles FC v New York City
+[2021/06/17 19:46:57 DEBUG League.pm 110] - LA Galaxy v San Jose
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Inter Miami v DC United
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Sporting Kansas v Houston Dynamo
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Colorado Rapids v FC Dallas
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Real Salt Lake v Minnesota
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Philadelphia v Portland Timbers
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Seattle Sounders v Austin FC
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Sporting Kansas v Austin FC
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Malmo v Hammarby
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Orebro v Goteborg
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Halmstads v Hacken
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Mjallby v Varbergs
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Elfsborg v Djurgardens
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Norrkoping v Sirius
+[2021/06/17 19:46:57 DEBUG League.pm 110] - AIK v Degerfors
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Kalmar v Ostersunds
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Hammarby v Mjallby
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Degerfors v Kalmar
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Hacken v Malmo
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Ostersunds v Orebro
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Djurgardens v Norrkoping
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Sirius v Halmstads
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Goteborg v AIK
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Varbergs v Elfsborg
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Hacken v Sirius
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Kalmar v Orebro
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Norrkoping v Halmstads
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Varbergs v Djurgardens
+[2021/06/17 19:46:57 DEBUG League.pm 110] - AIK v Hammarby
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Malmo v Ostersunds
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Elfsborg v Mjallby
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Goteborg v Degerfors
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Sirius v Kalmar
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Hammarby v Hacken
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Halmstads v Goteborg
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Orebro v Norrkoping
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Ostersunds v Varbergs
+[2021/06/17 19:46:57 DEBUG League.pm 110] - AIK v Elfsborg
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Djurgardens v Malmo
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Mjallby v Degerfors
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Goteborg v Hacken
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Hammarby v Sirius
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Elfsborg v Kalmar
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Orebro v Halmstads
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Degerfors v Djurgardens
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Mjallby v Ostersunds
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Malmo v Varbergs
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Norrkoping v AIK
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Djurgardens v Ostersunds
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Hacken v Orebro
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Kalmar v Goteborg
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Sirius v Elfsborg
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Varbergs v Hammarby
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Halmstads v Mjallby
+[2021/06/17 19:46:57 DEBUG League.pm 110] - AIK v Malmo
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Norrkoping v Degerfors
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Hammarby v Djurgardens
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Elfsborg v Halmstads
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Goteborg v Sirius
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Malmo v Kalmar
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Mjallby v Hacken
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Ostersunds v AIK
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Varbergs v Norrkoping
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Degerfors v Orebro
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Malmo v Elfsborg
+[2021/06/17 19:46:57 DEBUG League.pm 110] - AIK v Mjallby
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Ostersunds v Sirius
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Halmstads v Degerfors
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Kalmar v Hammarby
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Djurgardens v Goteborg
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Hacken v Varbergs
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Elfsborg v Norrkoping
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Orebro v Malmo
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Bodo Glimt v Tromso
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Molde v Kristiansund
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Viking v Brann
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Valerenga v Rosenborg
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Kristiansund v Bodo Glimt
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Brann v Valerenga
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Tromso v Molde
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Rosenborg v Viking
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Sarpsborg v Haugesund
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Valerenga v Kristiansund
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Viking v Tromso
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Bodo Glimt v Rosenborg
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Sandefjord v Mjondalen
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Stromsgodset v Lillestrom
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Molde v Brann
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Stabaek v Odd
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Rosenborg v Brann
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Odd v Sarpsborg
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Brann v Bodo Glimt
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Haugesund v Stabaek
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Kristiansund v Stromsgodset
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Lillestrom v Viking
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Mjondalen v Valerenga
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Tromso v Sandefjord
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Rosenborg v Molde
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Bodo Glimt v Haugesund
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Lillestrom v Odd
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Sandefjord v Rosenborg
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Sarpsborg v Kristiansund
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Stabaek v Brann
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Stromsgodset v Tromso
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Viking v Mjondalen
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Molde v Valerenga
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Mjondalen v Molde
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Brann v Stromsgodset
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Kristiansund v Lillestrom
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Odd v Bodo Glimt
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Rosenborg v Stabaek
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Tromso v Sarpsborg
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Valerenga v Sandefjord
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Haugesund v Viking
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Kristiansund v Odd
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Sandefjord v Molde
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Bodo Glimt v Mjondalen
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Lillestrom v Haugesund
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Sarpsborg v Brann
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Stromsgodset v Rosenborg
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Viking v Valerenga
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Stabaek v Tromso
+[2021/06/17 19:46:57 DEBUG League.pm 110] - HJK Helsinki v Honka
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Inter Turku v KuPS Kuopio
+[2021/06/17 19:46:57 DEBUG League.pm 110] - KuPS Kuopio v HJK Helsinki
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Oulu v Ilves
+[2021/06/17 19:46:57 DEBUG League.pm 110] - HIFK Helsinki v Haka
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Honka v Mariehamn
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Lahti v Inter Turku
+[2021/06/17 19:46:57 DEBUG League.pm 110] - SJK v KTP
+[2021/06/17 19:46:57 DEBUG League.pm 110] - KTP v Honka
+[2021/06/17 19:46:57 DEBUG League.pm 110] - SJK v HIFK Helsinki
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Inter Turku v Haka
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Mariehamn v Oulu
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Ilves v HJK Helsinki
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Lahti v KuPS Kuopio
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Haka v KTP
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Honka v Inter Turku
+[2021/06/17 19:46:57 DEBUG League.pm 110] - KuPS Kuopio v Mariehamn
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Oulu v SJK
+[2021/06/17 19:46:57 DEBUG League.pm 110] - HIFK Helsinki v Ilves
+[2021/06/17 19:46:57 DEBUG League.pm 110] - HJK Helsinki v Lahti
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Inter Turku v KTP
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Lahti v Honka
+[2021/06/17 19:46:57 DEBUG League.pm 110] - SJK v HJK Helsinki
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Ilves v KuPS Kuopio
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Oulu v HIFK Helsinki
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Mariehamn v Haka
+[2021/06/17 19:46:57 DEBUG League.pm 110] - HJK Helsinki v Oulu
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Ilves v KTP
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Honka v SJK
+[2021/06/17 19:46:57 DEBUG League.pm 110] - HIFK Helsinki v Inter Turku
+[2021/06/17 19:46:57 DEBUG League.pm 110] - KuPS Kuopio v Haka
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Mariehamn v Lahti
+[2021/06/17 19:46:57 DEBUG League.pm 110] - SJK v KuPS Kuopio
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Lahti v Ilves
+[2021/06/17 19:46:57 DEBUG League.pm 110] - KTP v HIFK Helsinki
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Inter Turku v Mariehamn
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Haka v HJK Helsinki
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Oulu v Honka
+[2021/06/17 19:46:57 DEBUG League.pm 110] - KuPS Kuopio v Inter Turku
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Mariehamn v HJK Helsinki
+[2021/06/17 19:46:57 DEBUG League.pm 110] - SJK v Ilves
+[2021/06/17 19:46:57 DEBUG League.pm 110] - HIFK Helsinki v Honka
+[2021/06/17 19:46:57 DEBUG League.pm 110] - Haka v Lahti
+[2021/06/17 19:46:57 DEBUG League.pm 110] - KTP v Oulu
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Drogheda v Waterford
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Shamrock Rvs v St Patricks
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Finn Harps v Bohemians
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Longford v Derry City
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Sligo Rvs v Dundalk
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Dundalk v Finn Harps
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Waterford v Sligo Rvs
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Bohemians v Longford
+[2021/06/17 19:50:32 DEBUG League.pm 110] - St Patricks v Drogheda
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Longford v Sligo Rvs
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Shamrock Rvs v Dundalk
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Bohemians v St Patricks
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Derry City v Waterford
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Drogheda v Finn Harps
+[2021/06/17 19:50:32 DEBUG League.pm 110] - St Patricks v Derry City
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Dundalk v Bohemians
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Finn Harps v Waterford
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Longford v Drogheda
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Sligo Rvs v Shamrock Rvs
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Derry City v Shamrock Rvs
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Waterford v Bohemians
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Derry City v Drogheda
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Dundalk v St Patricks
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Shamrock Rvs v Longford
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Sligo Rvs v Finn Harps
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Bohemians v Sligo Rvs
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Derry City v Dundalk
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Drogheda v Shamrock Rvs
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Longford v Finn Harps
+[2021/06/17 19:50:32 DEBUG League.pm 110] - St Patricks v Waterford
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Finn Harps v St Patricks
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Shamrock Rvs v Bohemians
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Dundalk v Drogheda
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Sligo Rvs v Derry City
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Waterford v Longford
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Drogheda v Sligo Rvs
+[2021/06/17 19:50:32 DEBUG League.pm 110] - St Patricks v Longford
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Bohemians v Derry City
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Finn Harps v Shamrock Rvs
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Waterford v Dundalk
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Drogheda v Bohemians
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Shamrock Rvs v Waterford
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Longford v Dundalk
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Sligo Rvs v St Patricks
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Derry City v Finn Harps
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Derry City v Longford
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Dundalk v Sligo Rvs
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Bohemians v Finn Harps
+[2021/06/17 19:50:32 DEBUG League.pm 110] - St Patricks v Shamrock Rvs
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Waterford v Drogheda
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Finn Harps v Dundalk
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Drogheda v St Patricks
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Longford v Bohemians
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Shamrock Rvs v Derry City
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Sligo Rvs v Waterford
+[2021/06/17 19:50:32 DEBUG League.pm 110] - St Patricks v Bohemians
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Waterford v Derry City
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Dundalk v Shamrock Rvs
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Finn Harps v Drogheda
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Sligo Rvs v Longford
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Bohemians v Dundalk
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Derry City v St Patricks
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Drogheda v Longford
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Shamrock Rvs v Sligo Rvs
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Waterford v Finn Harps
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Finn Harps v Sligo Rvs
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Drogheda v Derry City
+[2021/06/17 19:50:32 DEBUG League.pm 110] - St Patricks v Dundalk
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Bohemians v Waterford
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Longford v Shamrock Rvs
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Derry City v Bohemians
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Dundalk v Waterford
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Shamrock Rvs v Finn Harps
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Longford v St Patricks
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Sligo Rvs v Drogheda
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Houston Dynamo v San Jose
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Seattle Sounders v Minnesota
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Montreal v Toronto FC
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Orlando City v Atlanta United
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Los Angeles FC v Austin FC
+[2021/06/17 19:50:32 DEBUG League.pm 110] - DC United v New York City
+[2021/06/17 19:50:32 DEBUG League.pm 110] - FC Dallas v Colorado Rapids
+[2021/06/17 19:50:32 DEBUG League.pm 110] - New York RB v Sporting Kansas
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Chicago Fire v New England Rev
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Nashville v Cincinnati
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Inter Miami v LA Galaxy
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Columbus Crew v Philadelphia
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Vancouver v Portland Timbers
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Sporting Kansas v Orlando City
+[2021/06/17 19:50:32 DEBUG League.pm 110] - New York City v Cincinnati
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Nashville v Montreal
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Toronto FC v Vancouver
+[2021/06/17 19:50:32 DEBUG League.pm 110] - San Jose v FC Dallas
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Los Angeles FC v Seattle Sounders
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Atlanta United v Chicago Fire
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Minnesota v Real Salt Lake
+[2021/06/17 19:50:32 DEBUG League.pm 110] - New England Rev v DC United
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Philadelphia v Inter Miami
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Colorado Rapids v Austin FC
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Portland Timbers v Houston Dynamo
+[2021/06/17 19:50:32 DEBUG League.pm 110] - LA Galaxy v New York RB
+[2021/06/17 19:50:32 DEBUG League.pm 110] - New York RB v Chicago Fire
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Real Salt Lake v Sporting Kansas
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Montreal v Columbus Crew
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Houston Dynamo v Los Angeles FC
+[2021/06/17 19:50:32 DEBUG League.pm 110] - New England Rev v Atlanta United
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Orlando City v Cincinnati
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Philadelphia v New York City
+[2021/06/17 19:50:32 DEBUG League.pm 110] - FC Dallas v Portland Timbers
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Minnesota v Austin FC
+[2021/06/17 19:50:32 DEBUG League.pm 110] - San Jose v DC United
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Nashville v Inter Miami
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Seattle Sounders v LA Galaxy
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Vancouver v Colorado Rapids
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Real Salt Lake v San Jose
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Chicago Fire v Philadelphia
+[2021/06/17 19:50:32 DEBUG League.pm 110] - New York RB v Toronto FC
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Columbus Crew v DC United
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Nashville v New England Rev
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Vancouver v Montreal
+[2021/06/17 19:50:32 DEBUG League.pm 110] - FC Dallas v Houston Dynamo
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Orlando City v New York City
+[2021/06/17 19:50:32 DEBUG League.pm 110] - LA Galaxy v Los Angeles FC
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Colorado Rapids v Minnesota
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Inter Miami v Atlanta United
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Portland Timbers v Seattle Sounders
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Sporting Kansas v Austin FC
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Toronto FC v Columbus Crew
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Inter Miami v Montreal
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Philadelphia v New England Rev
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Houston Dynamo v Sporting Kansas
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Minnesota v Vancouver
+[2021/06/17 19:50:32 DEBUG League.pm 110] - San Jose v Seattle Sounders
+[2021/06/17 19:50:32 DEBUG League.pm 110] - DC United v Chicago Fire
+[2021/06/17 19:50:32 DEBUG League.pm 110] - New York City v Toronto FC
+[2021/06/17 19:50:32 DEBUG League.pm 110] - LA Galaxy v Austin FC
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Atlanta United v Montreal
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Philadelphia v New York RB
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Minnesota v FC Dallas
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Colorado Rapids v Houston Dynamo
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Real Salt Lake v Nashville
+[2021/06/17 19:50:32 DEBUG League.pm 110] - San Jose v Portland Timbers
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Sporting Kansas v Vancouver
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Cincinnati v Inter Miami
+[2021/06/17 19:50:32 DEBUG League.pm 110] - New England Rev v Columbus Crew
+[2021/06/17 19:50:32 DEBUG League.pm 110] - DC United v Orlando City
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Seattle Sounders v Los Angeles FC
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Montreal v Cincinnati
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Portland Timbers v LA Galaxy
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Chicago Fire v Inter Miami
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Orlando City v Toronto FC
+[2021/06/17 19:50:32 DEBUG League.pm 110] - New York City v Columbus Crew
+[2021/06/17 19:50:32 DEBUG League.pm 110] - FC Dallas v Real Salt Lake
+[2021/06/17 19:50:32 DEBUG League.pm 110] - New England Rev v New York RB
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Houston Dynamo v Vancouver
+[2021/06/17 19:50:32 DEBUG League.pm 110] - San Jose v Sporting Kansas
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Los Angeles FC v Colorado Rapids
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Seattle Sounders v Atlanta United
+[2021/06/17 19:50:32 DEBUG League.pm 110] - DC United v Philadelphia
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Nashville v Austin FC
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Chicago Fire v Montreal
+[2021/06/17 19:50:32 DEBUG League.pm 110] - New York RB v Orlando City
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Columbus Crew v Toronto FC
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Cincinnati v New England Rev
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Atlanta United v Nashville
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Los Angeles FC v New York City
+[2021/06/17 19:50:32 DEBUG League.pm 110] - LA Galaxy v San Jose
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Inter Miami v DC United
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Sporting Kansas v Houston Dynamo
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Colorado Rapids v FC Dallas
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Real Salt Lake v Minnesota
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Philadelphia v Portland Timbers
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Seattle Sounders v Austin FC
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Sporting Kansas v Austin FC
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Malmo v Hammarby
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Orebro v Goteborg
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Halmstads v Hacken
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Mjallby v Varbergs
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Elfsborg v Djurgardens
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Norrkoping v Sirius
+[2021/06/17 19:50:32 DEBUG League.pm 110] - AIK v Degerfors
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Kalmar v Ostersunds
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Hammarby v Mjallby
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Degerfors v Kalmar
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Hacken v Malmo
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Ostersunds v Orebro
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Djurgardens v Norrkoping
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Sirius v Halmstads
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Goteborg v AIK
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Varbergs v Elfsborg
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Hacken v Sirius
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Kalmar v Orebro
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Norrkoping v Halmstads
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Varbergs v Djurgardens
+[2021/06/17 19:50:32 DEBUG League.pm 110] - AIK v Hammarby
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Malmo v Ostersunds
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Elfsborg v Mjallby
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Goteborg v Degerfors
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Sirius v Kalmar
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Hammarby v Hacken
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Halmstads v Goteborg
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Orebro v Norrkoping
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Ostersunds v Varbergs
+[2021/06/17 19:50:32 DEBUG League.pm 110] - AIK v Elfsborg
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Djurgardens v Malmo
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Mjallby v Degerfors
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Goteborg v Hacken
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Hammarby v Sirius
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Elfsborg v Kalmar
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Orebro v Halmstads
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Degerfors v Djurgardens
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Mjallby v Ostersunds
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Malmo v Varbergs
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Norrkoping v AIK
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Djurgardens v Ostersunds
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Hacken v Orebro
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Kalmar v Goteborg
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Sirius v Elfsborg
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Varbergs v Hammarby
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Halmstads v Mjallby
+[2021/06/17 19:50:32 DEBUG League.pm 110] - AIK v Malmo
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Norrkoping v Degerfors
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Hammarby v Djurgardens
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Elfsborg v Halmstads
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Goteborg v Sirius
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Malmo v Kalmar
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Mjallby v Hacken
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Ostersunds v AIK
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Varbergs v Norrkoping
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Degerfors v Orebro
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Malmo v Elfsborg
+[2021/06/17 19:50:32 DEBUG League.pm 110] - AIK v Mjallby
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Ostersunds v Sirius
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Halmstads v Degerfors
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Kalmar v Hammarby
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Djurgardens v Goteborg
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Hacken v Varbergs
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Elfsborg v Norrkoping
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Orebro v Malmo
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Bodo Glimt v Tromso
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Molde v Kristiansund
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Viking v Brann
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Valerenga v Rosenborg
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Kristiansund v Bodo Glimt
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Brann v Valerenga
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Tromso v Molde
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Rosenborg v Viking
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Sarpsborg v Haugesund
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Valerenga v Kristiansund
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Viking v Tromso
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Bodo Glimt v Rosenborg
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Sandefjord v Mjondalen
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Stromsgodset v Lillestrom
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Molde v Brann
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Stabaek v Odd
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Rosenborg v Brann
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Odd v Sarpsborg
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Brann v Bodo Glimt
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Haugesund v Stabaek
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Kristiansund v Stromsgodset
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Lillestrom v Viking
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Mjondalen v Valerenga
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Tromso v Sandefjord
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Rosenborg v Molde
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Bodo Glimt v Haugesund
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Lillestrom v Odd
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Sandefjord v Rosenborg
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Sarpsborg v Kristiansund
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Stabaek v Brann
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Stromsgodset v Tromso
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Viking v Mjondalen
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Molde v Valerenga
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Mjondalen v Molde
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Brann v Stromsgodset
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Kristiansund v Lillestrom
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Odd v Bodo Glimt
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Rosenborg v Stabaek
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Tromso v Sarpsborg
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Valerenga v Sandefjord
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Haugesund v Viking
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Kristiansund v Odd
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Sandefjord v Molde
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Bodo Glimt v Mjondalen
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Lillestrom v Haugesund
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Sarpsborg v Brann
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Stromsgodset v Rosenborg
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Viking v Valerenga
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Stabaek v Tromso
+[2021/06/17 19:50:32 DEBUG League.pm 110] - HJK Helsinki v Honka
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Inter Turku v KuPS Kuopio
+[2021/06/17 19:50:32 DEBUG League.pm 110] - KuPS Kuopio v HJK Helsinki
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Oulu v Ilves
+[2021/06/17 19:50:32 DEBUG League.pm 110] - HIFK Helsinki v Haka
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Honka v Mariehamn
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Lahti v Inter Turku
+[2021/06/17 19:50:32 DEBUG League.pm 110] - SJK v KTP
+[2021/06/17 19:50:32 DEBUG League.pm 110] - KTP v Honka
+[2021/06/17 19:50:32 DEBUG League.pm 110] - SJK v HIFK Helsinki
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Inter Turku v Haka
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Mariehamn v Oulu
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Ilves v HJK Helsinki
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Lahti v KuPS Kuopio
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Haka v KTP
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Honka v Inter Turku
+[2021/06/17 19:50:32 DEBUG League.pm 110] - KuPS Kuopio v Mariehamn
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Oulu v SJK
+[2021/06/17 19:50:32 DEBUG League.pm 110] - HIFK Helsinki v Ilves
+[2021/06/17 19:50:32 DEBUG League.pm 110] - HJK Helsinki v Lahti
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Inter Turku v KTP
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Lahti v Honka
+[2021/06/17 19:50:32 DEBUG League.pm 110] - SJK v HJK Helsinki
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Ilves v KuPS Kuopio
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Oulu v HIFK Helsinki
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Mariehamn v Haka
+[2021/06/17 19:50:32 DEBUG League.pm 110] - HJK Helsinki v Oulu
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Ilves v KTP
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Honka v SJK
+[2021/06/17 19:50:32 DEBUG League.pm 110] - HIFK Helsinki v Inter Turku
+[2021/06/17 19:50:32 DEBUG League.pm 110] - KuPS Kuopio v Haka
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Mariehamn v Lahti
+[2021/06/17 19:50:32 DEBUG League.pm 110] - SJK v KuPS Kuopio
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Lahti v Ilves
+[2021/06/17 19:50:32 DEBUG League.pm 110] - KTP v HIFK Helsinki
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Inter Turku v Mariehamn
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Haka v HJK Helsinki
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Oulu v Honka
+[2021/06/17 19:50:32 DEBUG League.pm 110] - KuPS Kuopio v Inter Turku
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Mariehamn v HJK Helsinki
+[2021/06/17 19:50:32 DEBUG League.pm 110] - SJK v Ilves
+[2021/06/17 19:50:32 DEBUG League.pm 110] - HIFK Helsinki v Honka
+[2021/06/17 19:50:32 DEBUG League.pm 110] - Haka v Lahti
+[2021/06/17 19:50:32 DEBUG League.pm 110] - KTP v Oulu
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Drogheda v Waterford
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Shamrock Rvs v St Patricks
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Finn Harps v Bohemians
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Longford v Derry City
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Sligo Rvs v Dundalk
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Dundalk v Finn Harps
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Waterford v Sligo Rvs
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Bohemians v Longford
+[2021/06/17 19:55:10 DEBUG League.pm 110] - St Patricks v Drogheda
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Longford v Sligo Rvs
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Shamrock Rvs v Dundalk
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Bohemians v St Patricks
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Derry City v Waterford
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Drogheda v Finn Harps
+[2021/06/17 19:55:10 DEBUG League.pm 110] - St Patricks v Derry City
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Dundalk v Bohemians
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Finn Harps v Waterford
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Longford v Drogheda
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Sligo Rvs v Shamrock Rvs
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Derry City v Shamrock Rvs
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Waterford v Bohemians
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Derry City v Drogheda
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Dundalk v St Patricks
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Shamrock Rvs v Longford
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Sligo Rvs v Finn Harps
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Bohemians v Sligo Rvs
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Derry City v Dundalk
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Drogheda v Shamrock Rvs
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Longford v Finn Harps
+[2021/06/17 19:55:10 DEBUG League.pm 110] - St Patricks v Waterford
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Finn Harps v St Patricks
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Shamrock Rvs v Bohemians
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Dundalk v Drogheda
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Sligo Rvs v Derry City
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Waterford v Longford
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Drogheda v Sligo Rvs
+[2021/06/17 19:55:10 DEBUG League.pm 110] - St Patricks v Longford
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Bohemians v Derry City
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Finn Harps v Shamrock Rvs
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Waterford v Dundalk
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Drogheda v Bohemians
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Shamrock Rvs v Waterford
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Longford v Dundalk
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Sligo Rvs v St Patricks
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Derry City v Finn Harps
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Derry City v Longford
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Dundalk v Sligo Rvs
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Bohemians v Finn Harps
+[2021/06/17 19:55:10 DEBUG League.pm 110] - St Patricks v Shamrock Rvs
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Waterford v Drogheda
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Finn Harps v Dundalk
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Drogheda v St Patricks
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Longford v Bohemians
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Shamrock Rvs v Derry City
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Sligo Rvs v Waterford
+[2021/06/17 19:55:10 DEBUG League.pm 110] - St Patricks v Bohemians
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Waterford v Derry City
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Dundalk v Shamrock Rvs
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Finn Harps v Drogheda
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Sligo Rvs v Longford
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Bohemians v Dundalk
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Derry City v St Patricks
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Drogheda v Longford
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Shamrock Rvs v Sligo Rvs
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Waterford v Finn Harps
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Finn Harps v Sligo Rvs
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Drogheda v Derry City
+[2021/06/17 19:55:10 DEBUG League.pm 110] - St Patricks v Dundalk
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Bohemians v Waterford
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Longford v Shamrock Rvs
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Derry City v Bohemians
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Dundalk v Waterford
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Shamrock Rvs v Finn Harps
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Longford v St Patricks
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Sligo Rvs v Drogheda
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Houston Dynamo v San Jose
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Seattle Sounders v Minnesota
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Montreal v Toronto FC
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Orlando City v Atlanta United
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Los Angeles FC v Austin FC
+[2021/06/17 19:55:10 DEBUG League.pm 110] - DC United v New York City
+[2021/06/17 19:55:10 DEBUG League.pm 110] - FC Dallas v Colorado Rapids
+[2021/06/17 19:55:10 DEBUG League.pm 110] - New York RB v Sporting Kansas
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Chicago Fire v New England Rev
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Nashville v Cincinnati
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Inter Miami v LA Galaxy
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Columbus Crew v Philadelphia
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Vancouver v Portland Timbers
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Sporting Kansas v Orlando City
+[2021/06/17 19:55:10 DEBUG League.pm 110] - New York City v Cincinnati
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Nashville v Montreal
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Toronto FC v Vancouver
+[2021/06/17 19:55:10 DEBUG League.pm 110] - San Jose v FC Dallas
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Los Angeles FC v Seattle Sounders
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Atlanta United v Chicago Fire
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Minnesota v Real Salt Lake
+[2021/06/17 19:55:10 DEBUG League.pm 110] - New England Rev v DC United
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Philadelphia v Inter Miami
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Colorado Rapids v Austin FC
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Portland Timbers v Houston Dynamo
+[2021/06/17 19:55:10 DEBUG League.pm 110] - LA Galaxy v New York RB
+[2021/06/17 19:55:10 DEBUG League.pm 110] - New York RB v Chicago Fire
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Real Salt Lake v Sporting Kansas
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Montreal v Columbus Crew
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Houston Dynamo v Los Angeles FC
+[2021/06/17 19:55:10 DEBUG League.pm 110] - New England Rev v Atlanta United
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Orlando City v Cincinnati
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Philadelphia v New York City
+[2021/06/17 19:55:10 DEBUG League.pm 110] - FC Dallas v Portland Timbers
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Minnesota v Austin FC
+[2021/06/17 19:55:10 DEBUG League.pm 110] - San Jose v DC United
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Nashville v Inter Miami
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Seattle Sounders v LA Galaxy
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Vancouver v Colorado Rapids
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Real Salt Lake v San Jose
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Chicago Fire v Philadelphia
+[2021/06/17 19:55:10 DEBUG League.pm 110] - New York RB v Toronto FC
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Columbus Crew v DC United
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Nashville v New England Rev
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Vancouver v Montreal
+[2021/06/17 19:55:10 DEBUG League.pm 110] - FC Dallas v Houston Dynamo
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Orlando City v New York City
+[2021/06/17 19:55:10 DEBUG League.pm 110] - LA Galaxy v Los Angeles FC
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Colorado Rapids v Minnesota
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Inter Miami v Atlanta United
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Portland Timbers v Seattle Sounders
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Sporting Kansas v Austin FC
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Toronto FC v Columbus Crew
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Inter Miami v Montreal
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Philadelphia v New England Rev
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Houston Dynamo v Sporting Kansas
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Minnesota v Vancouver
+[2021/06/17 19:55:10 DEBUG League.pm 110] - San Jose v Seattle Sounders
+[2021/06/17 19:55:10 DEBUG League.pm 110] - DC United v Chicago Fire
+[2021/06/17 19:55:10 DEBUG League.pm 110] - New York City v Toronto FC
+[2021/06/17 19:55:10 DEBUG League.pm 110] - LA Galaxy v Austin FC
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Atlanta United v Montreal
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Philadelphia v New York RB
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Minnesota v FC Dallas
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Colorado Rapids v Houston Dynamo
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Real Salt Lake v Nashville
+[2021/06/17 19:55:10 DEBUG League.pm 110] - San Jose v Portland Timbers
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Sporting Kansas v Vancouver
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Cincinnati v Inter Miami
+[2021/06/17 19:55:10 DEBUG League.pm 110] - New England Rev v Columbus Crew
+[2021/06/17 19:55:10 DEBUG League.pm 110] - DC United v Orlando City
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Seattle Sounders v Los Angeles FC
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Montreal v Cincinnati
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Portland Timbers v LA Galaxy
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Chicago Fire v Inter Miami
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Orlando City v Toronto FC
+[2021/06/17 19:55:10 DEBUG League.pm 110] - New York City v Columbus Crew
+[2021/06/17 19:55:10 DEBUG League.pm 110] - FC Dallas v Real Salt Lake
+[2021/06/17 19:55:10 DEBUG League.pm 110] - New England Rev v New York RB
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Houston Dynamo v Vancouver
+[2021/06/17 19:55:10 DEBUG League.pm 110] - San Jose v Sporting Kansas
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Los Angeles FC v Colorado Rapids
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Seattle Sounders v Atlanta United
+[2021/06/17 19:55:10 DEBUG League.pm 110] - DC United v Philadelphia
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Nashville v Austin FC
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Chicago Fire v Montreal
+[2021/06/17 19:55:10 DEBUG League.pm 110] - New York RB v Orlando City
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Columbus Crew v Toronto FC
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Cincinnati v New England Rev
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Atlanta United v Nashville
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Los Angeles FC v New York City
+[2021/06/17 19:55:10 DEBUG League.pm 110] - LA Galaxy v San Jose
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Inter Miami v DC United
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Sporting Kansas v Houston Dynamo
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Colorado Rapids v FC Dallas
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Real Salt Lake v Minnesota
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Philadelphia v Portland Timbers
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Seattle Sounders v Austin FC
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Sporting Kansas v Austin FC
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Malmo v Hammarby
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Orebro v Goteborg
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Halmstads v Hacken
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Mjallby v Varbergs
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Elfsborg v Djurgardens
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Norrkoping v Sirius
+[2021/06/17 19:55:10 DEBUG League.pm 110] - AIK v Degerfors
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Kalmar v Ostersunds
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Hammarby v Mjallby
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Degerfors v Kalmar
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Hacken v Malmo
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Ostersunds v Orebro
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Djurgardens v Norrkoping
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Sirius v Halmstads
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Goteborg v AIK
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Varbergs v Elfsborg
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Hacken v Sirius
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Kalmar v Orebro
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Norrkoping v Halmstads
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Varbergs v Djurgardens
+[2021/06/17 19:55:10 DEBUG League.pm 110] - AIK v Hammarby
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Malmo v Ostersunds
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Elfsborg v Mjallby
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Goteborg v Degerfors
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Sirius v Kalmar
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Hammarby v Hacken
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Halmstads v Goteborg
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Orebro v Norrkoping
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Ostersunds v Varbergs
+[2021/06/17 19:55:10 DEBUG League.pm 110] - AIK v Elfsborg
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Djurgardens v Malmo
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Mjallby v Degerfors
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Goteborg v Hacken
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Hammarby v Sirius
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Elfsborg v Kalmar
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Orebro v Halmstads
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Degerfors v Djurgardens
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Mjallby v Ostersunds
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Malmo v Varbergs
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Norrkoping v AIK
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Djurgardens v Ostersunds
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Hacken v Orebro
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Kalmar v Goteborg
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Sirius v Elfsborg
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Varbergs v Hammarby
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Halmstads v Mjallby
+[2021/06/17 19:55:10 DEBUG League.pm 110] - AIK v Malmo
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Norrkoping v Degerfors
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Hammarby v Djurgardens
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Elfsborg v Halmstads
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Goteborg v Sirius
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Malmo v Kalmar
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Mjallby v Hacken
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Ostersunds v AIK
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Varbergs v Norrkoping
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Degerfors v Orebro
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Malmo v Elfsborg
+[2021/06/17 19:55:10 DEBUG League.pm 110] - AIK v Mjallby
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Ostersunds v Sirius
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Halmstads v Degerfors
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Kalmar v Hammarby
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Djurgardens v Goteborg
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Hacken v Varbergs
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Elfsborg v Norrkoping
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Orebro v Malmo
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Bodo Glimt v Tromso
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Molde v Kristiansund
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Viking v Brann
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Valerenga v Rosenborg
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Kristiansund v Bodo Glimt
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Brann v Valerenga
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Tromso v Molde
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Rosenborg v Viking
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Sarpsborg v Haugesund
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Valerenga v Kristiansund
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Viking v Tromso
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Bodo Glimt v Rosenborg
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Sandefjord v Mjondalen
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Stromsgodset v Lillestrom
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Molde v Brann
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Stabaek v Odd
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Rosenborg v Brann
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Odd v Sarpsborg
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Brann v Bodo Glimt
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Haugesund v Stabaek
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Kristiansund v Stromsgodset
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Lillestrom v Viking
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Mjondalen v Valerenga
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Tromso v Sandefjord
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Rosenborg v Molde
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Bodo Glimt v Haugesund
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Lillestrom v Odd
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Sandefjord v Rosenborg
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Sarpsborg v Kristiansund
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Stabaek v Brann
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Stromsgodset v Tromso
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Viking v Mjondalen
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Molde v Valerenga
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Mjondalen v Molde
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Brann v Stromsgodset
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Kristiansund v Lillestrom
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Odd v Bodo Glimt
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Rosenborg v Stabaek
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Tromso v Sarpsborg
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Valerenga v Sandefjord
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Haugesund v Viking
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Kristiansund v Odd
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Sandefjord v Molde
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Bodo Glimt v Mjondalen
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Lillestrom v Haugesund
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Sarpsborg v Brann
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Stromsgodset v Rosenborg
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Viking v Valerenga
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Stabaek v Tromso
+[2021/06/17 19:55:10 DEBUG League.pm 110] - HJK Helsinki v Honka
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Inter Turku v KuPS Kuopio
+[2021/06/17 19:55:10 DEBUG League.pm 110] - KuPS Kuopio v HJK Helsinki
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Oulu v Ilves
+[2021/06/17 19:55:10 DEBUG League.pm 110] - HIFK Helsinki v Haka
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Honka v Mariehamn
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Lahti v Inter Turku
+[2021/06/17 19:55:10 DEBUG League.pm 110] - SJK v KTP
+[2021/06/17 19:55:10 DEBUG League.pm 110] - KTP v Honka
+[2021/06/17 19:55:10 DEBUG League.pm 110] - SJK v HIFK Helsinki
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Inter Turku v Haka
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Mariehamn v Oulu
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Ilves v HJK Helsinki
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Lahti v KuPS Kuopio
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Haka v KTP
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Honka v Inter Turku
+[2021/06/17 19:55:10 DEBUG League.pm 110] - KuPS Kuopio v Mariehamn
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Oulu v SJK
+[2021/06/17 19:55:10 DEBUG League.pm 110] - HIFK Helsinki v Ilves
+[2021/06/17 19:55:10 DEBUG League.pm 110] - HJK Helsinki v Lahti
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Inter Turku v KTP
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Lahti v Honka
+[2021/06/17 19:55:10 DEBUG League.pm 110] - SJK v HJK Helsinki
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Ilves v KuPS Kuopio
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Oulu v HIFK Helsinki
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Mariehamn v Haka
+[2021/06/17 19:55:10 DEBUG League.pm 110] - HJK Helsinki v Oulu
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Ilves v KTP
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Honka v SJK
+[2021/06/17 19:55:10 DEBUG League.pm 110] - HIFK Helsinki v Inter Turku
+[2021/06/17 19:55:10 DEBUG League.pm 110] - KuPS Kuopio v Haka
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Mariehamn v Lahti
+[2021/06/17 19:55:10 DEBUG League.pm 110] - SJK v KuPS Kuopio
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Lahti v Ilves
+[2021/06/17 19:55:10 DEBUG League.pm 110] - KTP v HIFK Helsinki
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Inter Turku v Mariehamn
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Haka v HJK Helsinki
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Oulu v Honka
+[2021/06/17 19:55:10 DEBUG League.pm 110] - KuPS Kuopio v Inter Turku
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Mariehamn v HJK Helsinki
+[2021/06/17 19:55:10 DEBUG League.pm 110] - SJK v Ilves
+[2021/06/17 19:55:10 DEBUG League.pm 110] - HIFK Helsinki v Honka
+[2021/06/17 19:55:10 DEBUG League.pm 110] - Haka v Lahti
+[2021/06/17 19:55:10 DEBUG League.pm 110] - KTP v Oulu
