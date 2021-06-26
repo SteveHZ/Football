@@ -77,6 +77,8 @@ sub prepare {
 	$self->do_initial_chars ($dataref);
 	$self->do_foreign_chars ($dataref);
 
+# print Dumper $dataref;<STDIN>;
+
 #	Find where team names start
 	$$dataref =~ s/($lower)($upper)/$1\n$day $date,$2/g;
 #	$rx->remove_postponed_chars ($dataref);
@@ -196,6 +198,7 @@ sub do_initial_chars {
 	$$dataref =~ s/KuPS/KUPS/g; # Finnish
 	$$dataref =~ s/RoPS //g;
 	$$dataref =~ s/ fB/ fb/g;
+	$$dataref =~ s/KTP/KTp/g;
 	$$dataref =~ s/\// /g; # Norwegian (Bodo/Glimt)
 	$$dataref =~ s/jyskE/jyske/g; # Danish
 	$$dataref =~ s/ BoIS//g; # Varbergs
@@ -213,6 +216,7 @@ sub revert {
 	$$dataref =~ s/SJk/SJK/g;
 	$$dataref =~ s/SPAl/SPAL/g;
 	$$dataref =~ s/UCd/UCD/g;
+	$$dataref =~ s/KTp/KTP/g;
 }
 
 #   transform a hash from key => value 'one-to-many' relationship

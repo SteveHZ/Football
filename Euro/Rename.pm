@@ -57,7 +57,6 @@ our $euro_teams = {
 	'Minnesota United' => 'Minnesota',
 	'FC Cincinnati' => 'Cincinnati',
 	'Atlanta Utd' => 'Atlanta United',
-#	'Inter Miami CF' => 'Inter Miami',
 	'Club de Foot Montreal' => 'Montreal',
 	'Nashville SC' => 'Nashville',
 	'New England Revolution' => 'New England Rev',

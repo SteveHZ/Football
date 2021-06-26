@@ -3,8 +3,8 @@
 #	v3.10 06/05/19 v3.20 13/03/21
 
 BEGIN {
-##$ENV{PERL_KEYWORD_DEVELOPMENT} = 1;
-$ENV{PERL_KEYWORD_ZEROGAMES} = 1; # remove after 20/06/21 - also see fixtures2.pl
+#$ENV{PERL_KEYWORD_DEVELOPMENT} = 1;
+#$ENV{PERL_KEYWORD_ZEROGAMES} = 1; # remove after 20/06/21 - also see fixtures2.pl
 }
 
 use strict;
