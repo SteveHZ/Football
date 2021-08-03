@@ -21,8 +21,8 @@ sub calc_goal_expects {
 		$league->{av_away_goals} = 1;
 
 		if (( my $total_games = _get_total_league_games ($league)) > 0 ) {
-			$league->{av_home_goals} = _format ( _get_home_goals ($league) / $total_games );
-			$league->{av_away_goals} = _format ( _get_away_goals ($league) / $total_games );
+			$league->{av_home_goals} = _get_home_goals ($league) / $total_games;
+			$league->{av_away_goals} = _get_away_goals ($league) / $total_games;
 			for my $team ( $league->{team_list}->@* ) {
 				$teams->{$team} = $self->calc_team_expects ($league, $team);
 			}
@@ -161,6 +161,12 @@ sub calc_goal_diffs {
 
 #	private methods
 
+sub _format {
+	return sprintf "%.02f", shift;
+#	my $value = shift;
+#	return sprintf "%.02f", $value;
+}
+
 sub _get_average {
 	my ($value, $list) = @_;
 	my $elems = scalar @$list;
@@ -174,11 +180,6 @@ sub get_average {
 	return _get_average @_;
 }
 
-sub _format {
-	my $value = shift;
-	return sprintf "%.02f", $value;
-}
-
 sub _get_home_goals {
 	my $league = shift;
 	my $total = 0;
@@ -186,7 +187,7 @@ sub _get_home_goals {
 	for my $team ( $league->{team_list}->@* ) {
 		$total += $league->home_for ($team);
 	}
-	return $total;
+	return _format ($total);
 }
 
 sub _get_away_goals {
@@ -196,7 +197,7 @@ sub _get_away_goals {
 	for my $team ( $league->{team_list}->@* ) {
 		$total += $league->away_for ($team);
 	}
-	return $total;
+	return _format ($total);
 }
 
 sub _get_total_league_games {

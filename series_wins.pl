@@ -23,8 +23,8 @@ for my $series (@series_list) {
 	print_array ($series);
 	
 	for my $wins (@wins_list) {
-		my $first_win_idx  = @$wins [0] - 1;
-		my $second_win_idx = @$wins [1] - 1;
+		my $first_win_idx  = @$wins[0] - 1;
+		my $second_win_idx = @$wins[1] - 1;
 
 		my $first_win  = @$series [$first_win_idx];
 		my $second_win = @$series [$second_win_idx];

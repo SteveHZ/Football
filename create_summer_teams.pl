@@ -4,9 +4,6 @@
 #	To edit names from Football Data CSV files, use Euro::Rename or Football::Fetch_Amend for UK teams
 #	To edit names from BBC fixtures files use Football::Fixtures_Globals, Football::Fixtures_Model
 
-#  Updated all leagues for 2021 except Brazilian 27/02/21
-#  MLS - Austin Utd first home game 20/6/21
-
 use strict;
 use warnings;
 

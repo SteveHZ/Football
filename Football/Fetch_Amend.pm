@@ -10,13 +10,13 @@ sub get_uk_hash {
 	return {
 		'E0' => [
 			sub { $_[0] =~ s/Man United/Man Utd/g },
-			sub { $_[0] =~ s/Sheffield United/Sheff Utd/g },
 		],
 		'E1' => [
-			sub { $_[0] =~ s/Sheffield Weds/Sheff Wed/g },
+			sub { $_[0] =~ s/Sheffield United/Sheff Utd/g },
 			sub { $_[0] =~ s/Nott'm Forest/Notts Forest/g },
 		],
 		'E2' => [
+			sub { $_[0] =~ s/Sheffield Weds/Sheff Wed/g },
 			sub { $_[0] =~ s/Milton.*Dons/MK Dons/g },
 		],
 		'EC' => [
@@ -46,15 +46,6 @@ sub amend_summer {
 	$self->amend_teams (get_summer_hash (), $path);
 }
 
-sub amend_array {
-	my ($self, $lines, $rx_array) = @_;
-	for my $line (@$lines) {
-		for my $rx ($rx_array->@*) {
-			$rx->($line);
-		}
-	}
-}
-
 sub amend_teams {
 	my ($self, $replace, $path) = @_;
 
@@ -69,6 +60,15 @@ sub amend_teams {
 
 		write_file ($file, $lines);
 		unlink $temp_file;
+	}
+}
+
+sub amend_array {
+	my ($self, $lines, $rx_array) = @_;
+	for my $line (@$lines) {
+		for my $rx ($rx_array->@*) {
+			$rx->($line);
+		}
 	}
 }
 
