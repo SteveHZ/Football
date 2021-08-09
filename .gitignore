@@ -23,7 +23,7 @@ v3.pl
 *.xlsx
 *.ods*
 *.json
-*.log
+football.log
 .precomp
 /.precomp
 goal_expect_test.pl
