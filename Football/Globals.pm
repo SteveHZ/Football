@@ -35,6 +35,8 @@ our @EXPORT = qw(
 	$max_skellam
 	$min_skellam
 	$csv_fields
+	$reports_folder
+	$dropbox_folder
 );
 
 %EXPORT_TAGS = ( all => \@EXPORT );
@@ -165,6 +167,9 @@ our $reports_seasons = {
 	'Scots League One' 	=> $scottish,
 	'Scots League Two' 	=> $scottish,
 };
+
+our $reports_folder = 'C:/Mine/perl/Football/reports';
+our $dropbox_folder = 'C:/Users/Steve/Dropbox/Football';
 
 =pod
 

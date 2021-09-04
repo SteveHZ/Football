@@ -4,7 +4,7 @@
 
 BEGIN {
 #$ENV{PERL_KEYWORD_DEVELOPMENT} = 1;
-#$ENV{PERL_KEYWORD_ZEROGAMES} = 1; # remove after 20/06/21 - also see fixtures2.pl
+$ENV{PERL_KEYWORD_ZEROGAMES} = 1;
 }
 
 use strict;

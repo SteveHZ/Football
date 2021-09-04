@@ -25,10 +25,10 @@ my $data = read_json ($json_file);
 my $teams = read_json ($teams_file)->{'Premier League'};
 
 for my $row ($data->{elements}) {
-#   error in Fantasy Football files 2020
     for my $player (@$row) {
-        if    ( $player->{team} ==  9 )  { $player->{team} = 10; }
-        elsif ( $player->{team} == 10 )  { $player->{team} =  9; }
+#		error in Fantasy Football files 2020 (Leeds and Leicester)
+       if    ( $player->{team} ==  9 )  { $player->{team} = 10; }
+       elsif ( $player->{team} == 10 )  { $player->{team} =  9; }
 
         push @players, {
             name => "$player->{first_name} $player->{second_name}",

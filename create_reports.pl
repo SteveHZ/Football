@@ -22,7 +22,6 @@ my $leagues = \@league_names;
 my $league_size = \@league_size;
 
 my $fav_seasons = [ 2010..$reports_season ];
-my $h2h_start = $reports_season - 5; # last six seasons
 
 my $head2head = Football::Reports::Head2Head->new (
 	leagues => $leagues,

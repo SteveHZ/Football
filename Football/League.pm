@@ -107,7 +107,7 @@ sub update_teams {
 	my $home_team = $game->{home_team};
 	my $away_team = $game->{away_team};
 	my ($home_result, $away_result) = get_result ($game->{home_score}, $game->{away_score});
-	$log->debug ("$home_team v $away_team");
+#	$log->debug ("$home_team v $away_team");
 
 	$teams->{$home_team}->add ( update_home ($game, $home_result));
 	$teams->{$away_team}->add ( update_away ($game, $away_result));

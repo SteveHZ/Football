@@ -1,6 +1,7 @@
 package Football::Spreadsheets::Fantasy;
 
 use utf8;
+use Football::Globals qw ($dropbox_folder);
 
 use Moo;
 use namespace::clean;
@@ -10,7 +11,7 @@ with 'Roles::Spreadsheet';
 
 sub BUILD {
 	my ($self, $args) = @_;
-	$self->{filename} = "C:/Mine/perl/Football/reports/fantasy.xlsx";
+	$self->{filename} = "$dropbox_folder/fantasy.xlsx";
     $self->{sheets} = $args->{sheets};
 }
 
@@ -45,7 +46,7 @@ sub do_header {
 
     $worksheet->set_column ('H:I',  8, $self->{format} );
 	$worksheet->set_column ('J:J',  2, $self->{blank_text_format} );
-	$worksheet->set_column ('K:K', 50, $self->{format} );
+	$worksheet->set_column ('K:K', 50, $self->{blank_text_format} );
 }
 
 sub write {
@@ -65,7 +66,7 @@ sub write {
                 { $player->{points_per_game} => $self->{float_format} },
 				{ $player->{ict_index_rank_type} => $self->{format} },
 				{ $player->{ict_index_rank} => $self->{format} },
-				{ $player->{news} => $self->{format} },
+				{ $player->{news} => $self->{blank_text_format} },
             ];
             $self->write_row ($worksheet, $row, $row_data);
 			$row ++;

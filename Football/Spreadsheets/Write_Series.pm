@@ -42,7 +42,9 @@ sub get_row_data {
 	return [
 		{ $data[0] => $self->{format} },       		# League
 		{ $data[1] => $self->{format} },         	# Team Name
-		{ $data[2] => $self->{float_format} },    	# Percentage
+		{ $data[2] => $self->{float_format} },    	# Stake
+		{ $data[3] => $self->{float_format} },    	# Return
+		{ $data[4] => $self->{float_format} },    	# Percentage
 	];
 }
 
@@ -54,7 +56,9 @@ sub do_header {
 
 	$worksheet->write ('A1', 'League', $format);
 	$worksheet->write ('B1', 'Team', $format);
-	$worksheet->write ('C1', 'Percent', $format);
+	$worksheet->write ('C1', 'Stake', $format);
+	$worksheet->write ('D1', 'Return', $format);
+	$worksheet->write ('E1', 'Percent', $format);
 }
 
 =cut

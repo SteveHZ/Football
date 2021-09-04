@@ -2,6 +2,7 @@
 
 use MyHeader;
 use MyLib qw (read_file);
+use Football::Globals qw($dropbox_folder);
 use Football::Spreadsheets::Write_Returns;
 use Football::Spreadsheets::Write_Streaks;
 
@@ -13,8 +14,8 @@ my $returns_rx = qr/
     \d+\.?\d+?          # Percentage Return
 /x;
 
-my $returns_filename = "C:/Mine/perl/Football/reports/returns.xlsx";
-my $streaks_filename = "C:/Mine/perl/Football/reports/streaks.xlsx";
+my $returns_filename = "$dropbox_folder/returns.xlsx";
+my $streaks_filename = "$dropbox_folder/streaks.xlsx";
 
 my @files = (
     {

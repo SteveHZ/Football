@@ -9,8 +9,8 @@ extends 'Football::Spreadsheets::Match_Odds_View';
 
 sub create_sheet {
 	my $self = shift;
-	my $path = 'C:/Mine/perl/Football/reports/Euro/';
-	$self->{filename} = $path.'match_odds.xlsx';
+	my $path = 'C:/Users/Steve/Dropbox/Football/';
+	$self->{filename} = $path.'Match Odds Euro.xlsx';
 }
 
 1;

@@ -1,5 +1,6 @@
 package Football::Spreadsheets::Match_Odds_View;
 
+use Football::Globals qw($dropbox_folder);
 use List::MoreUtils qw(each_arrayref);
 use List::Util qw (any);
 
@@ -47,8 +48,7 @@ sub BUILD {
 
 sub create_sheet {
 	my $self = shift;
-	my $path = 'C:/Mine/perl/Football/reports/';
-	$self->{filename} = $path.'match_odds.xlsx';
+	$self->{filename} = "$dropbox_folder/Match Odds UK.xlsx";
 }
 
 after 'BUILD' => sub {
