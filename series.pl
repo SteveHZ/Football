@@ -2,6 +2,7 @@
 
 use MyHeader;
 use MyLib qw (read_file);
+use Football::Globals qw($dropbox_folder);
 use Football::Spreadsheets::Write_Series;
 
 my @series_name = qw(s6 s23 stoffo);
@@ -34,7 +35,7 @@ for my $series (@series_name) {
 		}
 	}
 
-	my $xlsx_filename = "C:/Users/Steve/Dropbox/Football/series $series.xlsx";
+	my $xlsx_filename = "$dropbox_folder/series $series.xlsx";
 #	my $xlsx_filename = "c:/mine/perl/Football/reports/series $series.xlsx";
 	print "\nWriting $xlsx_filename...";
 

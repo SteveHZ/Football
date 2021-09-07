@@ -50,6 +50,7 @@ sub get_home_win {
 	for my $i (1..$self->{max_calc}) {
 		$total += $results->{$i};
 	}
+	return 0 if $total == 0;
 	return 1 / $total;
 }
 
@@ -61,12 +62,14 @@ sub get_away_win {
 	for my $i ($self->{min_calc}..-1) {
 		$total += $results->{$i};
 	}
+	return 0 if $total == 0;
 	return 1 / $total;
 }
 
 sub get_draw {
 	my ($self, $results) = @_;
 	return 0 unless defined $results->{0};
+	return 0 if $results->{0} == 0;
 	return 1 / $results->{0};
 }
 

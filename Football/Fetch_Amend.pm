@@ -21,6 +21,10 @@ sub get_uk_hash {
 		],
 		'EC' => [
 			sub { $_[0] =~ s/Kin.*nn/Kings Lynn/g },
+			sub { $_[0] =~ s/Dag & Red/Dag and Red/g }, # errors in EC data file 2021-22
+			sub { $_[0] =~ s/FC Halifax/Halifax/g },
+			sub { $_[0] =~ s/Notts Co(?!unty),/Notts County,/g },
+			sub { $_[0] =~ s/Dover(?! A),/Dover Athletic,/g },
 		],
 	};
 }
@@ -54,12 +58,12 @@ sub amend_teams {
 		my $temp_file = "$path/$league-temp.csv";
 
 		print "\nRewriting $file...";
-		copy $file, $temp_file;
+#		copy $file, $temp_file;
 		my $lines = read_file ($temp_file);
 		$self->amend_array ($lines, $teams_rx);
 
 		write_file ($file, $lines);
-		unlink $temp_file;
+#		unlink $temp_file;
 	}
 }
 

@@ -1,5 +1,6 @@
 package Football::Spreadsheets::Favourites;
 
+use Football::Globals qw( $season );
 use Moo;
 use namespace::clean;
 
@@ -111,7 +112,8 @@ sub current {
 
 # end used by favourites.pm from create_reports.pl
 
-# used by predict.pl
+#	used by predict.pl
+#	Need to delete data from C:/Mine/Football/data/favourites_history.json at the start of each season !!!
 
 sub do_favourites {
 	my ($self, $hash) = @_;
@@ -183,6 +185,7 @@ sub do_header {
 	$worksheet->write ($row, $col, 'Profit', $format);
 }
 
+#	Delete data from C:/Mine/Football/data/favourites_history.json at the start of each season !!!
 sub write_row {
 	my ($self, $worksheet, $hashref, $row) = @_;
 	my $col = 1;

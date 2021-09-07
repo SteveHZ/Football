@@ -9,6 +9,7 @@ use Football::Fetch_Amend;
 
 use File::Fetch;
 
+#=begin comment
 my $id = 'mmz4281';
 my $dir = 'C:/Mine/perl/Football/data';
 my $euro_dir = 'C:/Mine/perl/Football/data/Euro';
@@ -36,6 +37,9 @@ my $url = "https://www.football-data.co.uk/$id/$season_years/Latest_Results.xlsx
 my $ff = File::Fetch->new (uri => $url);
 my $euro_file = $ff->fetch (to => $dir) or die $ff->error;
 print "\n\nDownloading $euro_file...";
+
+#=end comment
+#=cut
 
 # Amend team names
 

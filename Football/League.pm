@@ -9,7 +9,7 @@ use Football::HomeTable;
 use Football::AwayTable;
 
 use Football::Team;
-use MyKeyword qw(DEVELOPMENT);
+#use MyKeyword qw(DEVELOPMENT);
 
 use Moo;
 use namespace::clean;
@@ -22,9 +22,12 @@ has 'auto_build' => ( is => 'ro', default => 1);	# for backtest.pl
 
 #	other object data
 has 'teams' => ( is => 'ro', default => sub { {} }, );
-has 'table' => (is => 'ro', default => sub { {} }, handles => [ qw( position played won lost drawn for against points ) ]);
-has 'home_table' => ( is => 'ro', default => sub { {} }, handles => [ qw( home_position home_played home_won home_lost home_drawn home_for home_against home_points ) ]);
-has 'away_table' => ( is => 'ro', default => sub { {} }, handles => [ qw( away_position away_played away_won away_lost away _drawn away_for away_against away_points ) ]);
+has 'table' => (is => 'ro', default => sub { {} },
+	handles => [ qw( position played won lost drawn for against points ) ]);
+has 'home_table' => ( is => 'ro', default => sub { {} },
+	handles => [ qw( home_position home_played home_won home_lost home_drawn home_for home_against home_points ) ]);
+has 'away_table' => ( is => 'ro', default => sub { {} },
+	handles => [ qw( away_position away_played away_won away_lost away _drawn away_for away_against away_points ) ]);
 
 has 'homes' => ( is => 'ro', default => sub { {} }, );
 has 'aways' => ( is => 'ro', default => sub { {} }, );

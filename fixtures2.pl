@@ -7,7 +7,7 @@ use List::Util qw(any);
 use Football::Fixtures_Globals qw( football_rename rugby_rename );
 
 my @remove_teams = (
-	'Harrogate',
+	'Solihull Moors', # 14/09/21
 );
 
 my @paths = (
