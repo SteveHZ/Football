@@ -58,12 +58,12 @@ sub amend_teams {
 		my $temp_file = "$path/$league-temp.csv";
 
 		print "\nRewriting $file...";
-#		copy $file, $temp_file;
+		copy $file, $temp_file;
 		my $lines = read_file ($temp_file);
 		$self->amend_array ($lines, $teams_rx);
 
 		write_file ($file, $lines);
-#		unlink $temp_file;
+		unlink $temp_file;
 	}
 }
 

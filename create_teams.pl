@@ -10,8 +10,8 @@
 #	in Football::Fixtures_Globals, and in Football::Fetch_Amend
 #	Also need to check Football::Fetch_Amend before the start of each season for promotion/relegation
 
-# 	Scots leagues done 15/06/21
-#	English leagues done 03/07/21 - script not run yet
+# 	IMPORTANT !!!
+# 	See Football::Favourites::Model re start of next season !!!
 
 use strict;
 use warnings;

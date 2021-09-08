@@ -120,6 +120,7 @@ sub do_favourites {
 	my $year = $hash->{year};
 	my $worksheet = $self->add_worksheet ($year);
 
+
 	do_header ($worksheet, $self->{bold_format});
 	print "\n";
 	my $row = 4;

@@ -67,7 +67,6 @@ $view->do_head2head ( $model->do_head2head ( $stats->{by_league} ) );
 $view->do_recent_draws ( $model->do_recent_draws ( $stats->{by_league} ) );
 
 if ($model->model_name eq 'UK') {
-#	Delete data from C:/Mine/Football/data/favourites_history.json at the start of each season !!!
 	my $favourites = Football::Favourites::Controller->new (
 		season => $season,
 		update => $options->{update},
@@ -148,7 +147,11 @@ Football predictions
  Once no messages appear for any teams, disable pragma here and in Goal Expect Model,
  and remove teams from remove_teams array.
 
- Also, delete data from C:/Mine/Football/data/favourites_history.json at the start of each season !!!
+=head1 FAVOURITES MODEL
+
+ 08/09/21 : 
+ Football::Favourites::Model SHOULD (fingers crossed for 2022 !!) delete data from
+ C:/Mine/Football/data/favourites_history.json at the start of each season !!!
 
 =head1 AUTHOR
 

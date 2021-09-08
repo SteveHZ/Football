@@ -3,6 +3,10 @@ package Football::Favourites::Model;
 use Football::Favourites::Data_Model;
 use Football::Globals qw( @league_names @csv_leagues );
 use List::MoreUtils qw(each_array);
+use File::Copy qw(copy);
+
+use Football::Globals qw($last_season);
+use MyLib qw(prompt);
 
 use Moo;
 use namespace::clean;
@@ -14,6 +18,7 @@ has 'json_file' => ( is => 'ro' );
 my $path = 'C:/Mine/perl/Football/data/';
 my $fav_path = 'C:/Mine/perl/Football/data/favourites/';
 my $uk_file = $path.'favourites_history.json';
+#my $uk_file = $path.'favourites_history_testing.json';
 my $euro_file = $path.'euro_favourites_history.json';
 
 my $update_favourites = 1;
@@ -45,7 +50,7 @@ sub do_favourites {
 	}
 	return {
 		data => $self->hash (),
-		history => $self->history (),
+		history => $self->history ($year),
 		leagues => \@league_names,
 		year => $year,
 	};
@@ -61,7 +66,9 @@ sub setup {
 }
 
 sub history {
-	my $self = shift;
+	my ($self, $year) = @_;
+	$self->check_history ($year);
+	
 	if ($self->{update}) {
 		push $self->{history}->@*, $self->{hash};
 		$self->write_json ($self->{json_file}, $self->{history});
@@ -94,6 +101,50 @@ sub update {
 			}
 		}
 	}
+}
+
+=begin comment
+
+Written 07-08/09/21 to try and avoid having loads of errors at the start of a season because $year has been updated in Football::Globals
+but data/favourites_history.json still has references to the previous season ,which in the past have been manually copied to a backup file,
+though only after having to investigate why the errors were occuring AGAIN !!!.
+This section should copy last season's data to a back-up file then start again from an empty array $self->{history}.
+This appears to work in testing, but would recommend manual backups first for 2022-23 season, then let it run through
+to check it works correctly. 
+
+=end comment
+=cut
+
+sub check_history {
+	my ($self, $year) = @_;
+
+	unless (defined $self->{history}->@[0]->{'Premier League'}->{$year}) {
+		print "\nIMPORTANT : 08/09/21 - This APPEARS to work correctly but would recommend pressing NO first and creating manual back-ups";
+		print "\n See Football::Favourites::Model check_history";
+		my $yn = prompt ("\nDelete data for last season from $self->{json_file} and create back-up for $last_season ?", "> ");
+		if ($yn eq 'n') {
+			die "\nPlease delete data manually from history file : $self->{json_file}\n";
+		} else {
+			$self->do_backup_file ();
+			$self->{history} = [];
+		}
+	}
+}
+
+sub do_backup_file {
+	my $self = shift;
+
+	my $bak_file = _get_bak_filename ($self->{json_file}, $last_season);
+	print "\nWriting $bak_file...";
+	unlink $bak_file if -e $bak_file;
+	copy ($self->{json_file}, $bak_file);
+}
+
+sub _get_bak_filename {
+	my ($file, $year) = @_;
+	
+	my ($filename, $ext) = split '\.', $file;
+	return sprintf "$filename %d.json", $year; # back up file for previous season
 }
 
 =pod
