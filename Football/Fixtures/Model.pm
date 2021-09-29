@@ -134,12 +134,15 @@ sub as_dmy {
 sub get_week {
 	my ($self, $args) = @_;
 	my $days = $args->{days};
-	my $start_date = $args->{include_today} ^ 1;
-#	0 includes today, 1 will start from tomorrow
-#	Default value to include today is 1 , hence exclusive OR $today to start from day 0
 
 	my @week = ();
 	my $today = localtime;
+
+#	Assuming days = 4, count from 0 to 3 if include_today = 'y',
+#	or from 1 to 4 if include_today = 'n'
+
+	my $start_date = ($args->{include_today} eq 'y')  ? 0 : 1;
+	$days-- if $start_date == 0;
 
 	for my $day_count ($start_date..$days) {
 		my $day = $today + ($day_count * ONE_DAY);
@@ -194,6 +197,7 @@ sub do_initial_chars {
 	$$dataref =~ s/VfB //g;  # German
 	$$dataref =~ s/VfL //g;
 	$$dataref =~ s/1\. //g;
+	$$dataref =~ s/SpVgg //g;
 	$$dataref =~ s/1899 //g;
 	$$dataref =~ s/KuPS/KUPS/g; # Finnish
 	$$dataref =~ s/RoPS //g;

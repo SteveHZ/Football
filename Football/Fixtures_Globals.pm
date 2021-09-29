@@ -223,6 +223,8 @@ Athletic Bilbao,Ath Bilbao
 Atletico Madrid,Ath Madrid
 Real Valladolid,Valladolid
 Real Betis,Betis
+Arminia Bielefeld,Bielefeld
+Cádiz,Cadiz
 
 #	German
 Hertha Berlin,Hertha
@@ -235,8 +237,11 @@ Borussia Dortmund,Dortmund
 Eintracht Frankfurt,Ein Frankfurt
 FC Augsburg,Augsburg
 FC Union Berlin,Union Berlin
-#SC Freiburg,Freiburg
+SC Freiburg,Freiburg
 #RB Leipzig,Leipzig
+VfL Bochum 1848,Bochum
+SpVgg Greuther Furth,Greuther Furth
+Bochum48,Bochum
 
 #	Italian
 SPAL,Spal

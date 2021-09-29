@@ -14,17 +14,25 @@ my $returns_rx = qr/
     \d+\.?\d+?          # Percentage Return
 /x;
 
-my $returns_filename = "$dropbox_folder/returns.xlsx";
-my $streaks_filename = "$dropbox_folder/streaks.xlsx";
+my $country;
+if (! defined $ARGV[0]) {
+	$country = "UK";
+} else {
+	$country = "Summer" if $ARGV[0] eq '-s';
+	$country = "Euro" if $ARGV[0] eq '-e';
+}
+
+my $returns_filename = "$dropbox_folder/returns $country.xlsx";
+my $streaks_filename = "$dropbox_folder/streaks $country.xlsx";
 
 my @files = (
     {
-        in_file => "C:/Mine/lisp/data/returns.csv",
+        in_file => "C:/Mine/lisp/data/returns $country.csv",
         out_file => $returns_filename,
         writer => Football::Spreadsheets::Write_Returns->new (filename => $returns_filename),
     },
     {
-        in_file => "C:/Mine/lisp/data/streaks.csv",
+        in_file => "C:/Mine/lisp/data/streaks $country.csv",
         out_file => $streaks_filename,
         writer => Football::Spreadsheets::Write_Streaks->new (filename => $streaks_filename),
     },

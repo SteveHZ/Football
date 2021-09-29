@@ -21,15 +21,22 @@ sub get_uk_hash {
 		],
 		'EC' => [
 			sub { $_[0] =~ s/Kin.*nn/Kings Lynn/g },
-			sub { $_[0] =~ s/Dag & Red/Dag and Red/g }, # errors in EC data file 2021-22
-			sub { $_[0] =~ s/FC Halifax/Halifax/g },
-			sub { $_[0] =~ s/Notts Co(?!unty),/Notts County,/g },
-			sub { $_[0] =~ s/Dover(?! A),/Dover Athletic,/g },
+#			sub { $_[0] =~ s/Dag & Red/Dag and Red/g }, # errors in EC data file 2021-22
+#			sub { $_[0] =~ s/FC Halifax/Halifax/g },
+#			sub { $_[0] =~ s/Notts Co(?!unty),/Notts County,/g },
+#			sub { $_[0] =~ s/Dover(?! A),/Dover Athletic,/g },
 		],
 	};
 }
 
-sub get_euro_hash { return {}; }
+sub get_euro_hash {
+	return {
+		'D1' => [
+			sub { $_[0] =~ s/M'gladbach/Mgladbach/g },
+		],
+	};
+}
+
 sub get_summer_hash { return {}; }
 
 sub amend_uk {

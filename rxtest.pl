@@ -1,3 +1,6 @@
+use strict;
+use warnings;
+
 my $line1 = "Dover,2,1,H,3.5";
 my $line2 = "Dover Athletic,1,3,A,4.4";
 
@@ -26,3 +29,4 @@ test2($line4);
 
 print "\nline 3 = $line3";
 print "\nline 4 = $line4";
+

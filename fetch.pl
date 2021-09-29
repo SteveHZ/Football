@@ -46,6 +46,7 @@ print "\n\nDownloading $euro_file...";
 unless (defined $ARGV[0] && $ARGV[0] eq '-n') {
 	my $amend = Football::Fetch_Amend->new ();
 	$amend->amend_uk ();
+	$amend->amend_euro ();
 }
 
 =pod

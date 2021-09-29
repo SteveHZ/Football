@@ -9,10 +9,7 @@ BEGIN { $ENV{PERL_KEYWORD_DELETEALL} = 1;}
 
 use strict;
 use warnings;
-use v5.10;
 use Term::Choose qw(choose);
-#use Getopt::Long qw(GetOptions);
-#use utf8;
 
 use MyKeyword qw(PRODUCTION DELETEALL);
 use Football::Fixtures::Model;
@@ -28,7 +25,6 @@ sub do_football {
 	my $view = Football::Fixtures::View->new ();
 
 	my $args = get_args ();
-#	my $args = get_cmdline ();
 	my $week = $model->get_week ($args);
 	my $all_games = {};
 
@@ -54,30 +50,14 @@ sub do_football {
 	}
 }
 
-sub get_cmdline {
-    my $days = 7;
-	my $today = 0;
-
-	Getopt::Long::Configure ("bundling");
-	GetOptions (
-        "days|d=i"=> \$days,
-		"today|t=i" => \$today,
-	) or die "\nUsage : perl fixtures.pl -d7 -t1 \n[d = days t = today ]\nt1 will include today, default is 0\n";
-
-	return {
-		days => $days,
-		include_today => $today,
-	};
-}
-
 sub get_args {
 	my $days = choose (
         [ qw ( 1 2 3 4 5 6 7 ) ],
-        { prompt => 'How many days ?' }
+        { prompt => 'How many days ?' },
     );
     my $today = choose (
     	[ qw ( n y ) ],
-        { prompt => 'Include today ?', index => 1 }
+        { prompt => 'Include today ?' },
     );
     return {
 		days => $days,
@@ -93,11 +73,9 @@ sub get_args {
 
 =head1 SYNOPSIS
 
- perl fixtures.pl -d7 -t0
- Default options : days 7 today 0 (do NOT include todays fixtures),
- Use -today 1 to include todays fixtures
- To download 3 days INCLUDING today, use -d2 -t1
-
+ perl fixtures.pl
+ Choose number of days, then whether to include today's fixtures as the first day
+  
 =head1 DESCRIPTION
 
  Scrapes BBC Sport website for future fixtures
