@@ -6,14 +6,14 @@ use List::MoreUtils qw(each_array);
 
 #use Test2::V0;
 #plan 2;
-use Test::More tests => 7;
+use Test::More tests => 6;
 use Test::Deep;
 
 use lib "C:/Mine/perl/Football";
 use Football::Football_Data_Model;
 
 my $test_path = 'C:/Mine/perl/Football/t/test data';
-my $test_file = "$test_path/E0.csv";
+my $test_file = "$test_path/E0 2017.csv";
 my $csv_data_model = Football::Football_Data_Model->new ();
 my $dbi_data_model = Football::Football_Data_Model->new (connect => 'dbi', path => $test_path);
 
@@ -53,6 +53,7 @@ subtest 'update' => sub {
 	};
 	cmp_deeply ($games, array_each ($games_rx), "$test_file - all games match expected format");
 };
+
 #=head
 subtest 'read_csv' => sub {
 	plan tests => 6;
@@ -78,7 +79,7 @@ subtest 'read_csv' => sub {
 subtest 'dbi' => sub {
 	plan tests => 4;
 
-	my $results = $dbi_data_model->do_query ("SELECT * FROM E0 WHERE HOMETEAM = 'Stoke' AND FTHG > FTAG");
+	my $results = $dbi_data_model->do_query ("SELECT * FROM 'E0 2017' WHERE HOMETEAM = 'Stoke' AND FTHG > FTAG");
 
 	is (@$results[0]->{date}, '19/08/17', 'date');
 	is (@$results[1]->{awayteam}, 'Southampton', 'away team');
@@ -86,6 +87,8 @@ subtest 'dbi' => sub {
 	is (@$results[3]->{ftag}, '1', 'away score');
 };
 
+=begin comment
+No longer needed due to Football::Fetch_Amend
 subtest 'remove apostrophes' => sub {
 	plan tests => 1;
 	my $test_file2 = "$test_path/E1.csv";
@@ -98,6 +101,8 @@ subtest 'remove apostrophes' => sub {
 	}
 	is ($check, 1, "removed apostrophes from $test_file2 ok");
 };
+=end comment
+=cut
 
 subtest 'get_csv_cols' => sub {
 	my @files = (

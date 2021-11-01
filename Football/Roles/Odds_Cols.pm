@@ -10,7 +10,6 @@ sub get_odds_cols {
 	my $odds_col = firstidx { $_ eq $search_for }
 		( ref ($data) eq "ARRAY" )
 			? $data->[0]->@*		#	xlsx
-#			? @{ $data->[0] }		#	xlsx
 			: split (',', $data);	#	csv
 
 	return ($odds_col...$odds_col + 2);
@@ -21,6 +20,7 @@ sub get_euro_odds_cols {
 	return get_odds_cols ($data, "AvgH");
 }
 
+#	Tests for this are in t/Favourites_Data_Model.t
 sub get_over_under_cols {
 	my ($data, $year) = @_;
 	my @header = split (',', $data);

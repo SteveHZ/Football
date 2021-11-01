@@ -9,7 +9,7 @@ use Football::Fetch_Amend;
 
 use File::Fetch;
 
-#=begin comment
+#=begin comment # keep this line (and end comment) in for testing
 my $id = 'mmz4281';
 my $dir = 'C:/Mine/perl/Football/data';
 my $euro_dir = 'C:/Mine/perl/Football/data/Euro';

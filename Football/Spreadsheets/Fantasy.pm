@@ -32,9 +32,10 @@ sub do_header {
     $worksheet->write ('D1', 'Price', $format);
     $worksheet->write ('E1', 'Total Points', $format);
     $worksheet->write ('F1', 'Points per Game', $format);
+	$worksheet->write ('G1', 'Minutes', $format);
 
-	$worksheet->merge_range ('H1:I1', 'Ranking', $format);
-	$worksheet->write ('K1', 'News', $format);
+	$worksheet->merge_range ('I1:J1', 'Ranking', $format);
+	$worksheet->write ('L1', 'News', $format);
 	
 	$worksheet->set_column ('A:A', 35, $self->{format} );
     $worksheet->set_column ('B:B', 20, $self->{format} );
@@ -42,11 +43,12 @@ sub do_header {
 
     $worksheet->set_column ('D:E', 10, $self->{format} );
     $worksheet->set_column ('F:F', 15, $self->{format} );
-	$worksheet->set_column ('G:G',  2, $self->{blank_text_format} );
+    $worksheet->set_column ('G:G', 10, $self->{format} );
+	$worksheet->set_column ('H:H',  2, $self->{blank_text_format} );
 
-    $worksheet->set_column ('H:I',  8, $self->{format} );
-	$worksheet->set_column ('J:J',  2, $self->{blank_text_format} );
-	$worksheet->set_column ('K:K', 50, $self->{blank_text_format} );
+    $worksheet->set_column ('I:J',  8, $self->{format} );
+	$worksheet->set_column ('K:K',  2, $self->{blank_text_format} );
+	$worksheet->set_column ('L:L', 50, $self->{blank_text_format} );
 }
 
 sub write {
@@ -54,7 +56,7 @@ sub write {
     for my $position ( $self->{sheets}->@* ) {
         my $worksheet = $self->add_worksheet ($position);
     	$self->do_header ($worksheet, $self->{bold_format});
-		$self->blank_columns ( [ qw (2 6 9)]);
+		$self->blank_columns ( [ qw (2 7 10)]);
 
         my $row = 2;
         for my $player ( $sorted->{$position}->@* ) {
@@ -64,6 +66,7 @@ sub write {
                 { $player->{price} => $self->{format} },
                 { $player->{total_points} => $self->{float_format} },
                 { $player->{points_per_game} => $self->{float_format} },
+				{ $player->{minutes} => $self->{format} },
 				{ $player->{ict_index_rank_type} => $self->{format} },
 				{ $player->{ict_index_rank} => $self->{format} },
 				{ $player->{news} => $self->{blank_text_format} },

@@ -1,5 +1,9 @@
 #   fantasy.pl 01/12/18
 
+#	Nothing in fantasy.json to show games started
+#	but could use minutes to show a different points per game ??
+#	still doesnt really show how well a player does per starts though
+
 use MyHeader;
 use MyJSON qw(read_json);
 use Savings qw(fmt);
@@ -35,6 +39,7 @@ for my $row ($data->{elements}) {
             team => @$teams [ $player->{team} - 1 ],
             total_points => $player->{total_points},
 			points_per_game => $player->{points_per_game},
+			minutes => $player->{minutes},
 			position => $positions [ $player->{element_type} -1 ],
             selected_by => $player->{selected_by_percent},
             price => fmt ( $player->{now_cost} / 10, $price_format ),
@@ -49,7 +54,7 @@ my $sorted = {};
 for my $position (@positions) {
     say "\n".uc $position." :";
     $sorted->{$position} = sort_by_position (\@players, $position);
-    say "$_->{name} $_->{team} $_->{position} $_->{price} $_->{total_points} $_->{points_per_game} $_->{news}"
+    say "$_->{name} $_->{team} $_->{position} $_->{price} $_->{total_points} $_->{points_per_game} $_->{minutes} $_->{news}"
 	   for $sorted->{$position}->@*;
 }
 
@@ -59,7 +64,7 @@ $view->write ($sorted);
 sub sort_by_position {
     my ($players, $position) = @_;
     return [
-        sort { $b->{total_points} <=> $a->{total_points} }
+        sort { $b->{total_points} <=> $a->{total_points} or $b->{minutes} <=> $a->{minutes} }
         grep { $_->{points_per_game} >= 3 }
         grep { $_->{position} eq $position }
         @$players

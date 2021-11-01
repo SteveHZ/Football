@@ -3,7 +3,7 @@
 BEGIN { $ENV{PERL_KEYWORD_TESTING} = 1; } # for Fixtures_Model:transform_hash
 
 use Test2::V0;
-plan 7;
+plan 6;
 
 use lib "C:/Mine/perl/Football";
 use Football::Fixtures::Model;
@@ -50,9 +50,11 @@ subtest 'transform_hash' => sub {
     is ($files->{E0}, 'uk', 'uk ok');
 	is ($files->{NOR}, 'summer', 'summer ok');
     isnt ($files->{EC}, 'summer', 'EC not summer ok');
-    is ($files->{WL}, 'euro', 'euro ok');
+    is ($files->{I1}, 'euro', 'euro ok');
 };
 
+=begin comment
+No longer supported
 subtest 'postponed chars' => sub {
 	plan 1;
     my $filename = "C:/Mine/perl/Football/t/test data/fixtures/fixtures 2019-10-12 MATCH POSTPONED INTERNATIONAL CALL UPS2.txt";
@@ -65,6 +67,8 @@ subtest 'postponed chars' => sub {
 # is(1,1,'dummy');
     unlike ($games->{uk}->[2], qr/POxford/, 'postponed chars removed');
 };
+=end comment
+=cut
 
 subtest 'get_week' => sub {
 	plan 1;

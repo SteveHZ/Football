@@ -192,19 +192,22 @@ sub do_initial_chars {
 	$$dataref =~ s/ SC//g;
 	$$dataref =~ s/SC //g;
 	$$dataref =~ s/AC //g;
-	$$dataref =~ s/ \d\d//g; #04,05,08,96
 	$$dataref =~ s/SPAL/SPAl/g;
+
+	$$dataref =~ s/ \d{4}//g; # Bochum 1848 
+	$$dataref =~ s/\d{4} //g; # 1899 Hoffenheim
+	$$dataref =~ s/ \d{2}//g; #04,05,08,96
+
 	$$dataref =~ s/VfB //g;  # German
 	$$dataref =~ s/VfL //g;
 	$$dataref =~ s/1\. //g;
 	$$dataref =~ s/SpVgg //g;
-	$$dataref =~ s/1899 //g;
 	$$dataref =~ s/KuPS/KUPS/g; # Finnish
 	$$dataref =~ s/RoPS //g;
 	$$dataref =~ s/ fB/ fb/g;
 	$$dataref =~ s/KTP/KTp/g;
 	$$dataref =~ s/\// /g; # Norwegian (Bodo/Glimt)
-	$$dataref =~ s/jyskE/jyske/g; # Danish
+#	$$dataref =~ s/jyskE/jyske/g; # Danish
 	$$dataref =~ s/ BoIS//g; # Varbergs
 	$$dataref =~ s/ AIF//g; # Mjallby
 }

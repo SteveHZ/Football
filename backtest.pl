@@ -71,7 +71,7 @@ sub get_query {
                 }
             },
         },
-    {
+		{
             query => "recent_home_expect + 2 < recent_away_expect",
             callback => sub {
                 my ($row, $league, $data) = @_;
@@ -81,7 +81,7 @@ sub get_query {
                 }
             },
         },
-    {
+		{
             query => "season_draw <= 2 and season_draw < season_home_win and season_draw < season_away_win",
             callback => sub {
                 my ($row, $league, $data) = @_;

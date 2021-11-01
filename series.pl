@@ -18,6 +18,7 @@ if (! defined $ARGV[0]) {
 } else {
 	$country = "Summer" if $ARGV[0] eq '-s';
 	$country = "Euro" if $ARGV[0] eq '-e';
+	die "\nDied with invalid argument '$ARGV[0]'" if (! defined $country);
 }
 
 for my $series (@series_name) {
@@ -41,4 +42,4 @@ for my $series (@series_name) {
 	$writer->write ($hash);
 }
 
-print "\nDone";
+print "\nDone\n";

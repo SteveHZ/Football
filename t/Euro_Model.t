@@ -22,6 +22,7 @@ subtest 'constructor' => sub {
 subtest 'get_league_idx' => sub {
 	plan 3;
 	is ($model->get_league_idx ('German'), 0, 'German idx 0');
+	is ($model->get_league_idx ('Spanish'), 1, 'Spanish idx 1');
 	is ($model->get_league_idx ('Italian'), 2, 'Italian idx 2');
-	is ($model->get_league_idx ('N Irish'), 4, 'N Irish idx 4');
+#	is ($model->get_league_idx ('N Irish'), 4, 'N Irish idx 4'); # no longer supported 13/10/21
 };

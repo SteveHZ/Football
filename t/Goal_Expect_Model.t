@@ -46,12 +46,12 @@ subtest 'goal_expect' => sub {
 	is ($teams->{Stoke}->{av_away_against}, 2.17, 'av away against');
 
 	is ($teams->{Stoke}->{expect_home_for}, '0.90', 'expect home for');
-	is ($teams->{Stoke}->{expect_home_against}, 1.61, 'expect home against');
-	is ($teams->{Stoke}->{expect_away_for}, 1.03, 'expect away for');
-	is ($teams->{Stoke}->{expect_away_against}, 1.47, 'expect away against');
+	is ($teams->{Stoke}->{expect_home_against}, '1.60', 'expect home against');
+	is ($teams->{Stoke}->{expect_away_for}, 1.02, 'expect away for');
+	is ($teams->{Stoke}->{expect_away_against}, 1.46, 'expect away against');
 
-	is ($teams->{Stoke}->{last_six_for}, 10, 'last_six for');
-	is ($teams->{Stoke}->{last_six_against}, 14, 'last_six against');
-	is ($teams->{Stoke}->{av_last_six_for}, 1.66666666666667, 'av last_six for');
-	is ($teams->{Stoke}->{av_last_six_against}, 2.33333333333333, 'av last_six against');
+	is ($teams->{Stoke}->{av_home_last_six_for}, 1.33, 'av_home_last_six_for');
+	is ($teams->{Stoke}->{av_home_last_six_against}, 1.83, 'av_home_last_six_against');
+	is ($teams->{Stoke}->{av_away_last_six_for}, 1.17, 'av_away_last_six_for');
+	is ($teams->{Stoke}->{av_away_last_six_against}, 1.83, 'av_away_last_six_against');
 };

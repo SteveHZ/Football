@@ -289,8 +289,8 @@ Manly Warringah Sea Eagles,Manly Sea Eagles
 END_RUGBY_TEAMS
 
 The FA Women's Championship,X
-Cymru Premier,WL
-Irish Premiership,NI
+#Cymru Premier,WL
+#Irish Premiership,NI
 Premier League,E0
 Championship,E1
 League One,E2
@@ -308,7 +308,7 @@ United States Major League Soccer,MLS
 German Bundesliga,D1
 Italian Serie A,I1
 Spanish La Liga,SP1
-Australian A-League,AUS
+#Australian A-League,AUS
 
 Cup,X
 The FA,X
