@@ -5,7 +5,6 @@ package Football::Model;
 #	v2.06 Moo 01/10/16	v2.07 with Football::Shared_Model 18-19/01/17
 #	v2.08 refactored 19-21/12/18, v2.09 Mu 07/05/19
 
-#use List::MoreUtils qw(each_array);
 use Syntax::Keyword::Gather;
 
 use lib 'C:/Mine/perl/Football';

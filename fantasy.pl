@@ -1,9 +1,5 @@
 #   fantasy.pl 01/12/18
 
-#	Nothing in fantasy.json to show games started
-#	but could use minutes to show a different points per game ??
-#	still doesnt really show how well a player does per starts though
-
 use MyHeader;
 use MyJSON qw(read_json);
 use Savings qw(fmt);

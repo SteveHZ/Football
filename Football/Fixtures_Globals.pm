@@ -288,9 +288,6 @@ Canterbury Bankstown Bulldogs,Canterbury Bulldogs
 Manly Warringah Sea Eagles,Manly Sea Eagles
 END_RUGBY_TEAMS
 
-The FA Women's Championship,X
-#Cymru Premier,WL
-#Irish Premiership,NI
 Premier League,E0
 Championship,E1
 League One,E2
@@ -314,6 +311,9 @@ Cup,X
 The FA,X
 FA Cup,X
 EFL,X
+The FA Women's Championship,X
+Cymru Premier,X
+Irish Premiership,X
 Spanish Copa del Rey,X
 Italian Coppa Italia,X
 #Trophy,X
