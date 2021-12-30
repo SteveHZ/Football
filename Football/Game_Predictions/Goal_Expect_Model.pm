@@ -12,6 +12,56 @@ sub BUILD {
 	$self->{end_msg} = "\nEnable ZEROGAMES pragma in predict.pl and add team name to remove_teams array in fixtures2.pl\nAlso amend calculate_homes and calculate_aways subs in Goal_Expect_Model !!\n";
 }
 
+#	private methods
+
+my sub _format {
+	return sprintf "%.02f", shift;
+}
+
+my sub _get_average {
+	my ($value, $list) = @_;
+	my $elems = scalar @$list;
+	return 0 if $elems == 0;
+	return _format ( $value / $elems );
+}
+
+# wrapper for testing
+sub get_average {
+	my $self = shift;
+	return _get_average @_;
+}
+
+my sub _get_home_goals {
+	my $league = shift;
+	my $total = 0;
+
+	for my $team ( $league->{team_list}->@* ) {
+		$total += $league->home_for ($team);
+	}
+	return _format ($total);
+}
+
+my sub _get_away_goals {
+	my $league = shift;
+	my $total = 0;
+
+	for my $team ( $league->{team_list}->@* ) {
+		$total += $league->away_for ($team);
+	}
+	return _format ($total);
+}
+my sub _get_total_league_games {
+	my $league = shift;
+	my $total = 0;
+
+	for my $team ( $league->{team_list}->@* ) {
+		$total += $league->home_played ($team);
+	}
+	return $total;
+}
+
+#	public methods
+
 sub calc_goal_expects {
 	my $self = shift;
 	my $teams = {};
@@ -158,57 +208,6 @@ sub calc_goal_diffs {
 	$game->{away_last_six_goal_diff} = _get_average ($away_last_six_gd, $league->get_last_six ($away));
 	$game->{last_six_goal_diff} = _format ( $game->{home_last_six_goal_diff} - $game->{away_last_six_goal_diff} );
 };
-
-#	private methods
-
-sub _format {
-	return sprintf "%.02f", shift;
-#	my $value = shift;
-#	return sprintf "%.02f", $value;
-}
-
-sub _get_average {
-	my ($value, $list) = @_;
-	my $elems = scalar @$list;
-	return 0 if $elems == 0;
-	return _format ( $value / $elems );
-}
-
-# wrapper for testing
-sub get_average {
-	my $self = shift;
-	return _get_average @_;
-}
-
-sub _get_home_goals {
-	my $league = shift;
-	my $total = 0;
-
-	for my $team ( $league->{team_list}->@* ) {
-		$total += $league->home_for ($team);
-	}
-	return _format ($total);
-}
-
-sub _get_away_goals {
-	my $league = shift;
-	my $total = 0;
-
-	for my $team ( $league->{team_list}->@* ) {
-		$total += $league->away_for ($team);
-	}
-	return _format ($total);
-}
-
-sub _get_total_league_games {
-	my $league = shift;
-	my $total = 0;
-
-	for my $team ( $league->{team_list}->@* ) {
-		$total += $league->home_played ($team);
-	}
-	return $total;
-}
 
 =pod
 

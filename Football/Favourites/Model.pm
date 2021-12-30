@@ -121,7 +121,7 @@ sub check_history {
 	unless (defined $self->{history}->@[0]->{'Premier League'}->{$year}) {
 		print "\nIMPORTANT : 08/09/21 - This APPEARS to work correctly but would recommend choosing NO first and creating manual back-ups";
 		print "\njust to be on the safe side - see Football::Favourites::Model::check_history";
-		my $yn = prompt ("\nDelete data for last season from $self->{json_file} and create back-up for $last_season ? (y/n) ", "> ");
+		my $yn = prompt ("\nDelete data for last season from $self->{json_file} and create back-up for $last_season ? (y/n to quit) ", "> ");
 		if ($yn eq 'n') {
 			die "\nPlease delete data manually from history file : $self->{json_file}\n";
 		} else {

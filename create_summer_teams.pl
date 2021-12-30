@@ -4,6 +4,8 @@
 #	To edit names from Football Data CSV files, use Euro::Rename or Football::Fetch_Amend for UK teams
 #	To edit names from BBC fixtures files use Football::Fixtures_Globals, Football::Fixtures_Model
 
+# Teams for 2022 : Halmstads (prob relegated), Sligo Rovers
+
 use strict;
 use warnings;
 
@@ -23,11 +25,11 @@ my $leagues = {
         'Drogheda',
         'Dundalk',
         'Finn Harps',
-        'Longford',
+#        'Longford',
         'Shamrock Rvs',
         'Sligo Rvs',
         'St Patricks',
-        'Waterford',
+#        'Waterford',
 	],
     'USA League' => [
         'Atlanta United',
@@ -65,14 +67,14 @@ my $leagues = {
         'Elfsborg',
         'Goteborg',
         'Hacken',
-        'Halmstads',
+#       'Halmstads',
         'Hammarby',
         'Kalmar',
         'Malmo',
         'Mjallby',
         'Norrkoping',
-        'Orebro',
-        'Ostersunds',
+#        'Orebro',
+#        'Ostersunds',
         'Sirius',
         'Varbergs',
 	],
@@ -101,7 +103,7 @@ my $leagues = {
         'Honka',
         'Ilves',
         'Inter Turku',
-        'KTP',
+ #       'KTP',
         'KuPS Kuopio',
         'Lahti',
         'Mariehamn',

@@ -2,6 +2,7 @@ package Football::Game_Predictions::Controller;
 
 use Football::Game_Predictions::Model;
 use Football::Game_Predictions::Recent_Model;
+
 use Football::Game_Predictions::Views::UK;
 use Football::Game_Predictions::Views::Euro;
 use Football::Game_Predictions::Views::Summer;
@@ -50,8 +51,7 @@ sub do_predict_models {
         skellam => $model->calc_skellam_dist (),
         over_under => $model->calc_over_under (),
     };
-#   also used by Football::Game_Predictions::Views::UK;
-    $sorted->{data} = $model->save_expect_data ( $sorted->{expect}, $self->{model_name} ); # for combine.pl
+    $sorted->{data} = $model->save_expect_data ( $sorted->{expect}, $self->{model_name} );
 
 	return ($teams, $sorted);
 }
