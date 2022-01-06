@@ -31,7 +31,6 @@ my $mine = read_json ('C:/Mine/perl/Football/data/match odds.json');
 my $odds = $model->collate_data ($mine, $fdata);
 my $value = $model->calc_data ($odds);
 
-print "\nWriting C:/Mine/perl/Football/reports/value.xlsx...";
 $view->view ($value);
 
 =pod

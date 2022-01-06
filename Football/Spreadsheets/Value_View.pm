@@ -45,12 +45,14 @@ sub BUILD {
 
 sub create_sheet {
 	my $self = shift;
-	my $path = 'C:/Mine/perl/Football/reports/';
-	$self->{filename} = $path.'value.xlsx';
+	$self->{path} = "C:/Users/Steve/Dropbox/Football";
+	$self->{filename} = "$self->{path}/value.xlsx";
 }
 
 sub view {
 	my ($self, $sorted) = @_;
+	print "\nWriting $self->{path}/value.xlsx...";
+
 	my $iterator = each_arrayref ($self->{sheet_names}, $self->{sorted_by});
 	while (my ($sheet_name, $sorted_by) = $iterator->() ) {
 		my $worksheet = $self->add_worksheet ($sheet_name);

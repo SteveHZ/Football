@@ -76,7 +76,7 @@ sub get_home_win {
         } grep {
             $_->{home_win} < 2.30               #   are we interested ?
             && defined $_->{fdata}              #   do we have football-data info ?
-            && $_->{fdata}->{b365h} ne ''    #   -------------""----------------
+            && $_->{fdata}->{b365h} ne ''       #   -------------""----------------
             && $_->{home_win} * $self->{overround} < $_->{fdata}->{b365h}
         } @$mine
     ];
