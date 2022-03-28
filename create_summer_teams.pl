@@ -4,7 +4,7 @@
 #	To edit names from Football Data CSV files, use Euro::Rename or Football::Fetch_Amend for UK teams
 #	To edit names from BBC fixtures files use Football::Fixtures_Globals, Football::Fixtures_Model
 
-# Teams for 2022 : Halmstads (prob relegated), Sligo Rovers
+#	All leagues done 14/02/22
 
 use strict;
 use warnings;
@@ -25,11 +25,11 @@ my $leagues = {
         'Drogheda',
         'Dundalk',
         'Finn Harps',
-#        'Longford',
         'Shamrock Rvs',
         'Sligo Rvs',
         'St Patricks',
-#        'Waterford',
+		'Shelbourne',
+		'UCD',
 	],
     'USA League' => [
         'Atlanta United',
@@ -59,6 +59,7 @@ my $leagues = {
         'Sporting Kansas',
         'Toronto FC',
         'Vancouver',
+		'Charlotte',
 	],
     'Swedish League' => [
         'AIK',
@@ -67,34 +68,34 @@ my $leagues = {
         'Elfsborg',
         'Goteborg',
         'Hacken',
-#       'Halmstads',
         'Hammarby',
         'Kalmar',
         'Malmo',
         'Mjallby',
         'Norrkoping',
-#        'Orebro',
-#        'Ostersunds',
         'Sirius',
         'Varbergs',
+		'Helsingborgs',
+		'Varnamo',
+		'Sundsvall',
 	],
     'Norwegian League' => [
         'Bodo Glimt',
-        'Brann',
         'Haugesund',
         'Kristiansund',
         'Lillestrom',
-        'Mjondalen',
         'Molde',
         'Odd',
         'Rosenborg',
         'Sandefjord',
         'Sarpsborg',
-        'Stabaek',
         'Stromsgodset',
         'Tromso',
         'Valerenga',
         'Viking',
+		'HamKam',
+		'Aalesunds',
+		'Jerv',
 	],
     'Finnish League' => [
         'HIFK Helsinki',
@@ -103,12 +104,12 @@ my $leagues = {
         'Honka',
         'Ilves',
         'Inter Turku',
- #       'KTP',
         'KuPS Kuopio',
         'Lahti',
         'Mariehamn',
         'Oulu',
         'SJK',
+		'VPS',
 	],
 };
 

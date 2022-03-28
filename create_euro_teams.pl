@@ -46,6 +46,13 @@ my $leagues = {
 #       'Warrenpoint',
 #		'Portadown',
 #    ],
+
+## 20/01/22
+## Went wrong with Greuther Furth	Mainz (05)
+## (1899) Hoffenheim	Borussia Dortmund
+##
+## => Greuther Furth	14:30	Mainz99 Hoffenheim	Borussia Dortmund
+
     'German' => [
         'Augsburg',
         'Bayern Munich',

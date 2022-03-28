@@ -15,11 +15,11 @@ with 'Roles::MyJSON';
 has 'hash' => ( is => 'ro' );
 has 'json_file' => ( is => 'ro' );
 
-my $path = 'C:/Mine/perl/Football/data/';
-my $fav_path = 'C:/Mine/perl/Football/data/favourites/';
-my $uk_file = $path.'favourites_history.json';
-#my $uk_file = $path.'favourites_history_testing.json';
-my $euro_file = $path.'euro_favourites_history.json';
+my $path = 'C:/Mine/perl/Football/data';
+my $fav_path = 'C:/Mine/perl/Football/data/favourites';
+
+my $uk_file = "$path/favourites_history.json";
+my $euro_file = "$path/euro_favourites_history.json";
 
 my $update_favourites = 1;
 
@@ -41,8 +41,8 @@ sub do_favourites {
 	my $iterator = each_array ( @league_names, @csv_leagues );
 
 	while ( my ($league, $csv_league) = $iterator->() ) {
-		my $file_from = $path.$csv_league.'.csv';
-		my $file_to = $fav_path.$league.'/'.$year.'.csv';
+		my $file_from = "$path/$csv_league.csv";
+		my $file_to = "$fav_path/$league/$year.csv";
 
 		my $data = $data_model->update_current ($file_from, $year);
 		$data_model->write_current ($file_to, $data);
@@ -105,7 +105,7 @@ sub update {
 
 =begin comment
 
-Written 07-08/09/21 to try and avoid having loads of errors at the start of a season because $year has been updated in Football::Globals
+Written 07-08/09/21 to hopefully avoid having loads of errors at the start of a season because $year has been updated in Football::Globals
 but data/favourites_history.json still has references to the previous season ,which in the past have been manually copied to a backup file,
 though only after having to investigate why the errors were occuring AGAIN !!!.
 This section should copy last season's data to a back-up file then start again from an empty $self->{history} array.
@@ -144,7 +144,7 @@ sub get_backup_filename {
 	my ($self, $backup_season) = @_;
 
 	my ($filename, $ext) = split '\.', $self->{json_file};
-	return "$filename $$backup_season\.json";
+	return "$filename $backup_season\.json";
 }
 
 =pod
