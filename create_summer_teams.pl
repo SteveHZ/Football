@@ -46,7 +46,7 @@ my $leagues = {
         'Los Angeles FC',
         'Minnesota',
         'Montreal',
-        'Nashville',
+        'Nashville', # 1st home game 01/05/22
         'New England Rev',
         'New York City',
         'New York RB',

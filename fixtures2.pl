@@ -48,7 +48,8 @@ for my $path (@paths) {
 				next if any { $data[2] eq $_ } @remove_teams;
 				next if any { $data[3] eq $_ } @remove_teams;
 			}
-			print $fh_out $data[0].','.$data[1].','.$data[2].','.$data[3]."\n";
+			print $fh_out "$data[0],$data[1],$data[2],$data[3]\n";
+#			print $fh_out $data[0].','.$data[1].','.$data[2].','.$data[3]."\n";
 		}
 		close $fh_in;
 		close $fh_out;

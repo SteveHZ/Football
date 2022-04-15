@@ -12,8 +12,10 @@ use Moo;
 use namespace::clean;
 
 my $valid_types = sub { qr/season|recent/ };
-has 'type' => (is => 'ro', required => 1,
-    isa => sub { die "Invalid type : $_[0]" unless $_[0] =~ $valid_types->() },
+has 'type' => (	is => 'ro',
+				required => 1,
+#				default => 'season',
+				isa => sub { die "Invalid type : $_[0]" unless $_[0] =~ $valid_types->() },
 );
 
 has 'leagues' => (is => 'ro', required => 1);

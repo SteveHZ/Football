@@ -11,7 +11,8 @@ use Moo;
 use namespace::clean;
 
 has 'max' => (is => 'ro', default => 5);
-has 'weighted' => (is => 'ro', default => 0);
+has 'stats' => (is => 'rw');
+#has 'weighted' => (is => 'ro', default => 0);
 
 sub BUILD {
 	my ($self, $args) = @_;
@@ -37,24 +38,47 @@ sub calc_odds {
 	};
 }
 
-#	use Football::Game_Predictions::MyPoisson ( pure perl version )
 sub calc {
 	my ($self, $home_expect, $away_expect) = @_;
 	state $p = Football::Game_Predictions::MyPoisson->new ();
-	state $p_func = $p->get_calc_func ($self->{weighted});
-	my %cache_p;
-
-	for my $home_score (0..$self->{max}) {
-		my $home_p = $p_func->($p, $home_expect, $home_score);
-		for my $away_score (0..$self->{max}) {
-			unless (exists $cache_p{$away_score}) {
-				$cache_p{$away_score} = $p_func->($p, $away_expect, $away_score);
-			}
-			$self->{stats}[$home_score][$away_score] = $p->poisson_result ($home_p, $cache_p{$away_score});
-		}
-	}
+	$self->{stats} = $p->calc_game ($home_expect, $away_expect);
 	return $self->{stats};
 }
+
+#  API for testing
+
+sub do_poisson {
+	my ($self, $home_expect, $away_expect) = @_;
+	my $stats = $self->calc ($home_expect, $away_expect);
+	$self->show_poisson ($stats);
+}
+
+sub show_poisson {
+	my ($self, $stats) = @_;
+	print "\n";
+	for my $home (0...$self->{max}) {
+		for my $away (0...$self->{max}) {
+			printf "%6.3f", @$stats [$home]->[$away];
+		}
+		print "\n";
+	}
+}
+
+sub show_odds {
+	my ($self, $home_expect, $away_expect) = @_;
+	$self->calc ($home_expect, $away_expect);
+	
+	printf "\nHome Win       : %5.2f", $self->home_win_odds ();
+	printf "\nDraw           : %5.2f", $self->draw_odds ();
+	printf "\nAway Win       : %5.2f", $self->away_win_odds ();
+	printf "\nBoth Sides Yes : %5.2f", $self->both_sides_yes_odds ();
+	printf "\nBoth Sides No  : %5.2f", $self->both_sides_no_odds ();
+	printf "\nOver 2.5       : %5.2f", $self->over_2pt5_odds ();
+	printf "\nUnder 2.5      : %5.2f", $self->under_2pt5_odds ();
+	printf "\nHome Double    : %5.2f", $self->home_double_odds ();
+	printf "\nAway Double    : %5.2f", $self->away_double_odds ();
+}
+# end API for testing
 
 sub sort_sheets {
 	my ($self, $fixtures) = @_;
@@ -67,11 +91,14 @@ sub sort_sheets {
 
 sub sort_by_sheet_name {
 	my ($self, $games, $sorted_by) = @_;
-	my $select = ($sorted_by =~ /.*_2pt5$/) ? 'last_six' : 'season';
+#	my $select = ($sorted_by =~ /.*_2pt5$/) ? 'last_six' : 'season';
 	return [
 		sort {
-			$a->{odds}->{$select}->{$sorted_by}
-			<=> $b->{odds}->{$select}->{$sorted_by}
+			$a->{odds}->{season}->{$sorted_by}
+			<=> $b->{odds}->{season}->{$sorted_by}
+
+#			$a->{odds}->{$select}->{$sorted_by}
+#			<=> $b->{odds}->{$select}->{$sorted_by}
 		} @$games
 	];
 }
@@ -272,6 +299,26 @@ sub get_match_odds {
 
 =head
 
+#	use Football::Game_Predictions::MyPoisson ( pure perl version )
+#	This needs changing so that calcs and cache are in MyPoisson::calc_game which should
+#	then call MyPoisson::calc
+sub calc {
+	my ($self, $home_expect, $away_expect) = @_;
+	state $p = Football::Game_Predictions::MyPoisson->new ();
+	my %cache_p;
+
+	for my $home_score (0..$self->{max}) {
+		my $home_p = $p->poisson ($home_expect, $home_score);
+		for my $away_score (0..$self->{max}) {
+			unless (exists $cache_p{$away_score}) {
+				$cache_p{$away_score} = $p->poisson ($away_expect, $away_score);
+			}
+			$self->{stats}[$home_score][$away_score] = $p->poisson_result ($home_p, $cache_p{$away_score});
+		}
+	}
+	return $self->{stats};
+}
+
 #use Football::Game_Predictions::Poisson; # uses Math::CDF::ppois
 sub calc_odds {
 	my ($self, $home_expect, $away_expect) = @_;
@@ -304,6 +351,24 @@ sub schwartz_sort {
 					  $_->{away_win} )
 		] } @$games
 	];
+}
+
+#	use Football::Game_Predictions::MyPoisson ( pure perl version )
+sub calc {
+	my ($self, $home_expect, $away_expect) = @_;
+	state $p_func = $p->get_calc_func ($self->{weighted});
+	my %cache_p;
+
+	for my $home_score (0..$self->{max}) {
+		my $home_p = $p_func->($p, $home_expect, $home_score);
+		for my $away_score (0..$self->{max}) {
+			unless (exists $cache_p{$away_score}) {
+				$cache_p{$away_score} = $p_func->($p, $away_expect, $away_score);
+			}
+			$self->{stats}[$home_score][$away_score] = $p->poisson_result ($home_p, $cache_p{$away_score});
+		}
+	}
+	return $self->{stats};
 }
 
 =cut

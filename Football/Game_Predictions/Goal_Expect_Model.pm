@@ -50,6 +50,7 @@ my sub _get_away_goals {
 	}
 	return _format ($total);
 }
+
 my sub _get_total_league_games {
 	my $league = shift;
 	my $total = 0;

@@ -163,8 +163,8 @@ sub hwd_rows {
 sub over_under_rows {
 	my ($self, $game) = @_;
 	return
-		{ $game->{odds}->{last_six}->{over_2pt5} => $self->{float_format} },
-		{ $game->{odds}->{last_six}->{under_2pt5} => $self->{float_format} },
+		{ $game->{odds}->{season}->{over_2pt5} => $self->{float_format} },
+		{ $game->{odds}->{season}->{under_2pt5} => $self->{float_format} },
 }
 
 sub double_rows {

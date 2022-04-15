@@ -9,10 +9,13 @@ use MyMath qw(power factorial);
 use Moo;
 use namespace::clean;
 
+has 'max' => (is => 'ro', default => 5);
+has 'stats' => (is => 'rw');
+
 sub BUILD {
 	my $self = shift;
+#	$self->{stats} = [];
 	$self->{euler} = 2.71828;
-	$self->{weighted} = [ 1.05,0.99,0.99,0.99,0.99,0.99,0.98,0.96,0.95,0.95,0.95 ];
 }
 
 sub poisson_result {
@@ -27,6 +30,28 @@ sub poisson {
 			factorial ($score);
 }
 
+# API for testing
+
+sub calc_game {
+	my ($self, $home_expect, $away_expect) = @_;
+	my %cache_p;
+
+	for my $home_score (0..$self->{max}) {
+		my $home_p = $self->poisson ($home_expect, $home_score);
+		for my $away_score (0..$self->{max}) {
+			unless (exists $cache_p{$away_score}) {
+				$cache_p{$away_score} = $self->poisson ($away_expect, $away_score);
+			}
+			$self->{stats}[$home_score][$away_score] = $self->poisson_result ($home_p, $cache_p{$away_score});
+		}
+	}
+	return $self->{stats};
+}
+
+=begin comment
+
+$self->{weighted} = [ 1.05,0.99,0.99,0.99,0.99,0.99,0.98,0.96,0.95,0.95,0.95 ];
+
 sub poisson_weighted {
 	my ($self, $expect, $score) = @_;
 	return	$self->poisson ($expect, $score) *
@@ -39,6 +64,9 @@ sub get_calc_func {
 		? sub { my $self = shift; $self->poisson (@_); }
 		: sub { my $self = shift; $self->poisson_weighted (@_); };
 }
+
+=end comment
+=cut
 
 =pod
 

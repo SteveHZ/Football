@@ -36,7 +36,8 @@ ro 'model_name', default => 'uk';
 with 'Roles::MyJSON',
 'Football::Roles::Quick_Model',
 'Football::Roles::Shared_Model',
-'Football::Roles::Football_IO_Role';
+'Football::Roles::Football_IO_Role',
+'Football::Roles::Expect_Data',;
 
 sub BUILD {
 	my $self = shift;

@@ -1,6 +1,7 @@
 package Football::Roles::Quick_Model;
 
 use Football::Game_Predictions::Controller;
+use Football::Game_Predictions::Model;
 use MyJSON qw(read_json);
 
 use Moo::Role;
@@ -9,13 +10,15 @@ sub quick_predict {
 	my $self = shift;
 	my ($data, $stats) = $self->quick_build ();
 
-	my $predict = Football::Game_Predictions::Controller->new (
+	$self->{predict} = Football::Game_Predictions::Controller->new (
 		fixtures => $stats->{by_match},
 		leagues => $self->leagues,
 		model_name => $self->model_name,
+		type => 'season',
 	);
-	my ($teams, $sorted) = $predict->do_predict_models ($data->{by_match}, $self->leagues);
-	return ($teams, $sorted);
+	my ($teams, $sorted) = $self->{predict}->do_predict_models ($data->{by_match}, $self->leagues);
+	$self->{sorted} = $sorted;
+	return ($teams, $sorted, $stats);
 }
 
 sub quick_build {
@@ -46,6 +49,16 @@ sub build_data {
 		aways => $self->do_aways ($leagues),
 		last_six => $self->do_last_six ($leagues),
 	};
+}
+
+sub get_game_predictions_model {
+	my $self = shift;
+	my $gpm = Football::Game_Predictions::Model->new (
+		fixtures => $self->{predict}->{fixtures},
+		leagues => $self->{predict}->{leagues},
+		expect_model => $self->{sorted}->{expect},
+	);
+	return $gpm;
 }
 
 =pod

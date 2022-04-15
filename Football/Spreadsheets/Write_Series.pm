@@ -18,6 +18,7 @@ sub BUILD {
 		"Overs", "Home Overs", "Away Overs",
 		"Unders", "Home Unders", "Away Unders",
 		"Over Unders", "Under Overs",
+		"L6 Over Unders", "L6 Under Overs"
    ];
 }
 

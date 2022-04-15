@@ -6,7 +6,7 @@ use MyKeyword qw(TESTING);
 
 use Exporter 'import';
 
-use vars qw (@EXPORT_OK %EXPORT_TAGS);
+use vars qw(@EXPORT_OK %EXPORT_TAGS);
 
 our @EXPORT = qw(
 	$season
@@ -45,7 +45,7 @@ sub new { return bless {}, shift; }
 
 our $season = 2021;
 our $euro_season = 2021;
-our $summer_season = 2021;
+our $summer_season = 2022;
 
 our $next_season = $season + 1;
 our $season_years = ($season-2000).($next_season-2000);

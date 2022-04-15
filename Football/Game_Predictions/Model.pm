@@ -48,7 +48,8 @@ sub sort_expect_data {
 
 sub calc_match_odds {
 	my ($self, $model_name) = @_;
-	my $odds = Football::Game_Predictions::Match_Odds->new (max => 5, weighted => 0);
+	my $odds = Football::Game_Predictions::Match_Odds->new (max => 5);
+#	my $odds = Football::Game_Predictions::Match_Odds->new (max => 5, weighted => 0);
 
 	for my $game ( $self->{fixtures}->@* ) {
 		$game->{odds} = $self->get_odds ($odds, $game);

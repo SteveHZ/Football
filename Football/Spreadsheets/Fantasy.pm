@@ -75,6 +75,7 @@ sub write {
 			$row ++;
         }
     }
+	print "\nFinished writing $self->{filename}...\n";
 }
 
 1;

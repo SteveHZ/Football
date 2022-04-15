@@ -36,7 +36,7 @@ while (my ($league, $file) = $iterator->()) {
 	my $out_file = "$summer_dir/$file.csv";
 
 	my $games = $data_model->read_data ($in_file);
-	my @data = grep { $_->{year} =~ $summer_season } @$games;
+	my @data = grep { $_->{year} eq $summer_season } @$games;
 
 	print "\nWriting $out_file...";
 	$data_model->write_csv ($out_file, \@data);

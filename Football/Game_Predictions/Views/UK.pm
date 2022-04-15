@@ -3,6 +3,7 @@ package Football::Game_Predictions::Views::UK;
 use Football::Spreadsheets::Goal_Expect_View;
 use Football::Spreadsheets::Goal_Diffs_View;
 use Football::Spreadsheets::Match_Odds_View;
+use Football::Spreadsheets::Recent_Match_Odds_View;
 use Football::Spreadsheets::Over_Under_View;
 use Football::Spreadsheets::Skellam_Dist_View;
 
@@ -20,6 +21,7 @@ sub create_sheets {
 	$self->{xlsx_goal_expect} = Football::Spreadsheets::Goal_Expect_View->new ();
 	$self->{xlsx_goal_diffs} = Football::Spreadsheets::Goal_Diffs_View->new ();
 	$self->{xlsx_match_odds} = Football::Spreadsheets::Match_Odds_View->new ();
+	$self->{xlsx_recent_match_odds} = Football::Spreadsheets::Recent_Match_Odds_View->new ();
 	$self->{xlsx_over_under} = Football::Spreadsheets::Over_Under_View->new ();
 	$self->{xlsx_skellam} = Football::Spreadsheets::Skellam_Dist_View->new ();
 }
@@ -35,6 +37,7 @@ sub do_match_odds {
 	my ($self, $sorted) = @_;
 
 	$self->{xlsx_match_odds}->view ($sorted->{match_odds});
+	$self->{xlsx_recent_match_odds}->view ($sorted->{match_odds});
 	$self->{xlsx_skellam}->view ($sorted->{skellam});
 }
 

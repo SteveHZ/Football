@@ -5,7 +5,7 @@ use MyLib qw (read_file);
 use Football::Globals qw($dropbox_folder);
 use Football::Spreadsheets::Write_Series;
 
-my @series_name = qw(s6 s23 stoffo);
+my @series_name = qw(s1 s2 s3 stoffo);
 my $series_rx = qr/
     \w{2,3}\,   # League ID,
     [\w\h]+\,   # Team,

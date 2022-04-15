@@ -1,0 +1,79 @@
+ EC  : Dover Athletic v Maidenhead        3.55    2.84    2.73   |   4.62    1.28
+ E3  : Rochdale v Walsall                 2.11    3.11    4.91   |   3.99    1.33
+ E1  : Middlesbrough v Hull               2.31    3.06    4.15   |   3.90    1.34
+ E1  : Sheff Utd v Bournemouth            2.63    3.01    3.47   |   3.87    1.35
+ E3  : Northampton v Bradford             2.08    3.19    4.88   |   3.74    1.37
+ E3  : Carlisle v Exeter                  5.91    3.34    1.88   |   3.65    1.38
+ E2  : Doncaster v Crewe                  2.79    3.09    3.15   |   3.56    1.39
+ E1  : Millwall v Barnsley                1.58    3.80    9.74   |   3.52    1.40
+ E1  : West Brom v Stoke                  1.97    3.33    5.20   |   3.44    1.41
+ EC  : Halifax v Woking                   1.78    3.52    6.51   |   3.39    1.42
+ E1  : Swansea v Derby                    1.88    3.43    5.66   |   3.34    1.43
+ E0  : Arsenal v Brighton                 2.07    3.32    4.63   |   3.28    1.44
+ E0  : Southampton v Chelsea              7.09    3.64    1.71   |   3.27    1.44
+ E2  : Shrewsbury v Ipswich               3.17    3.19    2.70   |   3.26    1.44
+ E3  : Port Vale v Oldham                 1.65    3.78    7.71   |   3.16    1.46
+ EC  : Wealdstone v Chesterfield          6.20    3.59    1.79   |   3.15    1.46
+ E3  : Colchester v Stevenage             1.96    3.45    5.02   |   3.11    1.47
+ EC  : Aldershot v Boreham Wood           7.85    3.84    1.63   |   3.09    1.48
+ SC2 : Montrose v Airdrie Utd             4.31    3.39    2.11   |   3.03    1.49
+ E3  : Scunthorpe v Mansfield             6.39    3.72    1.74   |   2.97    1.51
+ E2  : Cheltenham v Portsmouth            3.14    3.32    2.63   |   2.92    1.52
+ E0  : Norwich v Burnley                  5.27    3.59    1.88   |   2.91    1.52
+ E0  : Newcastle v Wolves                 5.31    3.61    1.87   |   2.89    1.53
+ E3  : Crawley Town v Barrow              2.57    3.35    3.20   |   2.85    1.54
+ EC  : Kings Lynn v Yeovil                6.84    3.88    1.68   |   2.81    1.55
+ SC0 : Dundee United v Dundee             1.97    3.59    4.69   |   2.76    1.57
+ SC1 : Raith Rvs v Morton                 2.41    3.42    3.41   |   2.74    1.57
+ SC3 : Elgin v Stenhousemuir              2.85    3.39    2.82   |   2.73    1.58
+ SC0 : Celtic v St Johnstone              1.19    6.95   62.89   |   2.72    1.58
+ SC1 : Ayr v Inverness C                  5.59    3.79    1.80   |   2.67    1.60
+ SC0 : Hearts v Hibernian                 1.61    4.12    7.32   |   2.59    1.63
+ E3  : Tranmere v Bristol Rvs             2.02    3.65    4.32   |   2.56    1.64
+ SC1 : Hamilton v Arbroath                7.45    4.21    1.59   |   2.52    1.66
+ SC0 : Livingston v Motherwell            2.42    3.53    3.30   |   2.51    1.66
+ E3  : Sutton v Leyton Orient             1.95    3.74    4.55   |   2.48    1.68
+ E0  : Brentford v West Ham               4.25    3.74    2.01   |   2.41    1.71
+ SC1 : Queen of Sth v Partick             4.98    3.87    1.85   |   2.40    1.72
+ SC3 : Kelty Hearts v Stirling            1.46    4.71    9.85   |   2.39    1.72
+ EC  : Weymouth v Grimsby                 5.41    3.98    1.77   |   2.37    1.73
+ SC0 : St Mirren v Rangers                8.19    4.58    1.52   |   2.27    1.78
+ EC  : Bromley v Dag and Red              2.47    3.67    3.09   |   2.26    1.79
+ E1  : Huddersfield v Luton               2.71    3.66    2.79   |   2.26    1.79
+ E3  : Forest Green v Hartlepool          1.43    4.96   10.31   |   2.25    1.80
+ EC  : Stockport v Southend               1.46    4.89    9.22   |   2.17    1.85
+ SC2 : Alloa v Clyde                      2.72    3.75    2.73   |   2.13    1.89
+ SC3 : Edinburgh City v Forfar            4.89    4.10    1.81   |   2.12    1.89
+ SC1 : Kilmarnock v Dunfermline           1.42    5.14    9.80   |   2.07    1.93
+ E3  : Swindon v Newport County           2.24    3.88    3.37   |   2.04    1.96
+ E2  : Rotherham v Charlton               1.65    4.43    5.90   |   2.02    1.98
+ E2  : Gillingham v Wycombe              16.74    6.36    1.28   |   2.01    1.99
+ EC  : Barnet v Solihull                  5.72    4.40    1.67   |   2.01    1.99
+ E2  : Lincoln v Wigan                   11.43    5.55    1.37   |   2.00    2.00
+ E1  : Blackburn v Blackpool              2.00    4.04    3.96   |   1.98    2.02
+ E2  : Fleetwood Town v Accrington        1.58    4.67    6.61   |   1.96    2.04
+ SC3 : Albion Rvs v Stranraer             3.09    3.98    2.36   |   1.89    2.12
+ E3  : Salford v Harrogate                2.00    4.12    3.88   |   1.89    2.13
+ E2  : Bolton v Sheff Wed                 1.96    4.17    4.00   |   1.87    2.16
+ SC3 : Annan Athletic v Cowdenbeath       1.34    5.93   11.76   |   1.86    2.17
+ E1  : Preston v QPR                      2.58    4.00    2.77   |   1.84    2.18
+ EC  : Torquay v Notts County             2.75    4.03    2.58   |   1.81    2.23
+ E2  : Cambridge v Morecambe              1.72    4.51    5.07   |   1.80    2.25
+ E1  : Notts Forest v Birmingham          1.72    4.54    5.07   |   1.78    2.28
+ SC0 : Aberdeen v Ross County             1.76    4.50    4.78   |   1.76    2.31
+ SC2 : Falkirk v Cove Rangers             5.47    4.69    1.66   |   1.75    2.33
+ E0  : Leicester v Crystal Palace         2.10    4.22    3.49   |   1.74    2.36
+ E2  : AFC Wimbledon v MK Dons            8.70    5.57    1.42   |   1.72    2.38
+ E0  : Man City v Liverpool               2.30    4.19    3.06   |   1.70    2.44
+ EC  : Wrexham v Eastleigh                1.20    8.18   21.20   |   1.67    2.48
+ E0  : Aston Villa v Tottenham            2.78    4.24    2.47   |   1.64    2.57
+ E1  : Bristol City v Peterboro           1.39    5.87    8.99   |   1.63    2.58
+ SC2 : Dumbarton v Peterhead              2.89    4.31    2.37   |   1.60    2.67
+ E0  : Everton v Man Utd                  3.28    4.37    2.14   |   1.60    2.68
+ E2  : Burton v Plymouth                  3.37    4.44    2.09   |   1.57    2.76
+ E1  : Fulham v Coventry                  1.32    6.75   10.71   |   1.50    3.00
+ SC2 : Queens Park v East Fife            1.17    9.86   22.73   |   1.44    3.26
+ E2  : Oxford v Sunderland                1.63    5.37    4.95   |   1.37    3.73
+ E0  : Watford v Leeds                    3.24    4.82    2.07   |   1.36    3.78
+ E1  : Reading v Cardiff                  3.11    5.01    2.09   |   1.28    4.56
+T
