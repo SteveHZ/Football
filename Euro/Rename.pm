@@ -43,8 +43,10 @@ our $euro_teams = {
 #	Norwegian
 	'Bodo/Glimt' => 'Bodo Glimt',
 	'Sarpsborg 08' => 'Sarpsborg',
-
-#	Finnish
+	'Ham-Kam' => 'HamKam',
+	'Aalesund' =>'Aalesunds',
+	
+ #	Finnish
 	'HJK' => 'HJK Helsinki',
 	'TPS' => 'TPS Turku',
 	'VPS' => 'VPS Vaasa',
@@ -57,7 +59,7 @@ our $euro_teams = {
 	'Minnesota United' => 'Minnesota',
 	'FC Cincinnati' => 'Cincinnati',
 	'Atlanta Utd' => 'Atlanta United',
-	'Club de Foot Montreal' => 'Montreal',
+	'CF Montreal' => 'Montreal',
 	'Nashville SC' => 'Nashville',
 	'New England Revolution' => 'New England Rev',
 	'Philadelphia Union' => 'Philadelphia',

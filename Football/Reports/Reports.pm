@@ -4,7 +4,6 @@ package Football::Reports::Reports;
 #	v2 12-13/04/16, 02/05/16
 #	Mouse version 05/05/16
 
-
 use MyLib qw(unique);
 use Football::Utils qw(_get_all_teams);
 use Football::Table;

@@ -7,8 +7,10 @@ use List::Util qw(any);
 use Football::Fixtures_Globals qw( football_rename rugby_rename );
 
 my @remove_teams = (
-#	'Solihull', # 14/09/21
+	'Nashville', # 01/05/22
 );
+# Once array is empty, remove ZEROGAMES pragma in predict.pl
+# then amend calculate_homes and calculate_aways subs in Goal_Expect_Model.pm
 
 my @paths = (
 	{
@@ -49,7 +51,6 @@ for my $path (@paths) {
 				next if any { $data[3] eq $_ } @remove_teams;
 			}
 			print $fh_out "$data[0],$data[1],$data[2],$data[3]\n";
-#			print $fh_out $data[0].','.$data[1].','.$data[2].','.$data[3]."\n";
 		}
 		close $fh_in;
 		close $fh_out;

@@ -5,6 +5,7 @@ use Football::Game_Predictions::Model;
 use MyJSON qw(read_json);
 
 use Moo::Role;
+#use Data::Dumper;
 
 sub quick_predict {
 	my $self = shift;
@@ -24,8 +25,9 @@ sub quick_predict {
 sub quick_build {
 	my $self = shift;
 	my $data = $self->build_data ();
-	my $stats = $self->do_fixtures ($self->get_fixtures ());
 
+	my $stats = $self->do_fixtures ($self->get_fixtures ());
+	
 	$self->do_recent_goal_difference ($stats->{by_league}, $self->leagues);
 	$self->do_goal_difference ($stats->{by_league}, $self->leagues);
 	$self->do_league_places ($stats->{by_league}, $self->leagues);
@@ -61,6 +63,36 @@ sub get_game_predictions_model {
 	return $gpm;
 }
 
+# For calculating individual matches with game_odds.pl
+
+sub quick_predict2 {
+	my ($self, $fixtures) = @_;
+	my ($data, $stats) = $self->quick_build2 ($fixtures);
+
+	$self->{predict} = Football::Game_Predictions::Controller->new (
+		fixtures => $stats->{by_match},
+		leagues => $self->leagues,
+		model_name => $self->model_name,
+		type => 'season',
+	);
+	my ($teams, $sorted) = $self->{predict}->do_predict_models ($data->{by_match}, $self->leagues);
+	$self->{sorted} = $sorted;
+	return ($teams, $sorted, $stats);
+}
+
+sub quick_build2 {
+	my ($self, $fixtures) = @_;
+	my $data = $self->build_data ();
+	my $stats = $self->do_fixtures ($fixtures);
+
+	$self->do_recent_goal_difference ($stats->{by_league}, $self->leagues);
+	$self->do_goal_difference ($stats->{by_league}, $self->leagues);
+	$self->do_league_places ($stats->{by_league}, $self->leagues);
+	$self->do_head2head ($stats->{by_league} );
+	$self->do_recent_draws ($stats->{by_league} );
+	return ($data, $stats);
+}
+
 =pod
 
 =head1 NAME
@@ -70,6 +102,7 @@ Football::Roles::Quick_Model.pm
 =head1 SYNOPSIS
 
 Role used by Model.pm to enable quicker data building for writing tests.
+Also used by game_odds.pl
 
 =head1 DESCRIPTION
 

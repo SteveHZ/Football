@@ -33,6 +33,10 @@ sub goal_diffs_rule {
 	my ($self, $results) = @_;
 
 	my $total_games = sum @$results;
+#use Data::Dumper;
+#print Dumper $results;
+#print Dumper "\ntotal games = $total_games";
+#<STDIN>;
 	return '** 0 **' if $total_games == 0; # unrecognised goal diff
 
 	my $home = round ((@$results[0] / $total_games) * 100); # home win percentage

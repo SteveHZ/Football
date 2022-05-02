@@ -9,11 +9,10 @@ sub _format {
 }
 
 sub get_game_expect {
-	my ($stats, $home_team) = @_;
+	my ($self, $stats, $query) = @_;
+	my $home_team = $query->[0]->{home_team};
 	for my $game ($stats->{by_match}->@*) {
-		if ($game->{home_team} eq $home_team) {
-			return $game;
-		}
+		return $game if $game->{home_team} eq $home_team;
 	}
 	die "\nTeam $home_team not found !!!";
 }

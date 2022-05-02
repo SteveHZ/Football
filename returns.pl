@@ -31,11 +31,11 @@ my @files = (
         out_file => $returns_filename,
         writer => Football::Spreadsheets::Write_Returns->new (filename => $returns_filename),
     },
-    {
-        in_file => "C:/Mine/lisp/data/streaks $country.csv",
-        out_file => $streaks_filename,
-        writer => Football::Spreadsheets::Write_Streaks->new (filename => $streaks_filename),
-    },
+#    {
+#        in_file => "C:/Mine/lisp/data/streaks $country.csv",
+#        out_file => $streaks_filename,
+#        writer => Football::Spreadsheets::Write_Streaks->new (filename => $streaks_filename),
+#    },
 );
 
 sub build_hash {

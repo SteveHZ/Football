@@ -14,7 +14,7 @@ has 'stats' => (is => 'rw');
 
 sub BUILD {
 	my $self = shift;
-#	$self->{stats} = [];
+	$self->{stats} = [];
 	$self->{euler} = 2.71828;
 }
 
@@ -29,8 +29,6 @@ sub poisson {
 	 		power ($self->{euler}, $expect * -1) /
 			factorial ($score);
 }
-
-# API for testing
 
 sub calc_game {
 	my ($self, $home_expect, $away_expect) = @_;

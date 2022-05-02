@@ -110,7 +110,7 @@ sub update_teams {
 	my $home_team = $game->{home_team};
 	my $away_team = $game->{away_team};
 	DEVELOPMENT {
-		$log->debug ("$home_team v $away_team");
+		$log->debug ("$game->{date} : $home_team v $away_team");
 	}
 	my ($home_result, $away_result) = get_result ($game->{home_score}, $game->{away_score});
 

@@ -42,6 +42,11 @@ sub do_predictions {
     $self->do_predict_views ($teams, $sorted);
 }
 
+sub calc_goal_expect {
+	my $self = shift;
+	my $model = $self->{model};
+	return $model->calc_goal_expect ();
+}
 sub do_predict_models {
 	my $self = shift;
     my $model = $self->{model};

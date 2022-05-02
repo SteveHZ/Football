@@ -58,7 +58,7 @@ sub show_poisson {
 	print "\n";
 	for my $home (0...$self->{max}) {
 		for my $away (0...$self->{max}) {
-			printf "%6.3f", @$stats [$home]->[$away];
+			printf "%7.3f", @$stats [$home]->[$away];
 		}
 		print "\n";
 	}
@@ -66,17 +66,17 @@ sub show_poisson {
 
 sub show_odds {
 	my ($self, $home_expect, $away_expect) = @_;
-	$self->calc ($home_expect, $away_expect);
+	my $ds = $self->calc_odds ($home_expect, $away_expect);
 	
-	printf "\nHome Win       : %5.2f", $self->home_win_odds ();
-	printf "\nDraw           : %5.2f", $self->draw_odds ();
-	printf "\nAway Win       : %5.2f", $self->away_win_odds ();
-	printf "\nBoth Sides Yes : %5.2f", $self->both_sides_yes_odds ();
-	printf "\nBoth Sides No  : %5.2f", $self->both_sides_no_odds ();
-	printf "\nOver 2.5       : %5.2f", $self->over_2pt5_odds ();
-	printf "\nUnder 2.5      : %5.2f", $self->under_2pt5_odds ();
-	printf "\nHome Double    : %5.2f", $self->home_double_odds ();
-	printf "\nAway Double    : %5.2f", $self->away_double_odds ();
+	printf "\nHome Win       : %5.2f = %5.2f%%", $ds->{home_win}, 100 / $ds->{home_win};
+	printf "\nDraw           : %5.2f = %5.2f%%", $ds->{draw}, 100 / $ds->{draw};
+	printf "\nAway Win       : %5.2f = %5.2f%%", $ds->{away_win}, 100 / $ds->{away_win};
+	printf "\nBoth Sides Yes : %5.2f = %5.2f%%", $ds->{both_sides_yes}, 100 / $ds->{both_sides_yes};
+	printf "\nBoth Sides No  : %5.2f = %5.2f%%", $ds->{both_sides_no}, 100 / $ds->{both_sides_no};
+	printf "\nOver 2.5       : %5.2f = %5.2f%%", $ds->{over_2pt5}, 100 / $ds->{over_2pt5};
+	printf "\nUnder 2.5      : %5.2f = %5.2f%%", $ds->{under_2pt5}, 100 / $ds->{under_2pt5};
+	printf "\nHome Double    : %5.2f = %5.2f%%", $ds->{home_double}, 100 / $ds->{home_double};
+	printf "\nAway Double    : %5.2f = %5.2f%%", $ds->{away_double}, 100 / $ds->{away_double};
 }
 # end API for testing
 
@@ -130,7 +130,8 @@ sub home_win_odds {
 
 	my $stats = $self->home_win ();
 	return 0 if $stats == 0;
-	return nearest (0.01, 100 / $stats);
+	return 100 / $stats;
+#	return nearest (0.01, 100 / $stats);
 }
 
 sub away_win {
@@ -149,7 +150,8 @@ sub away_win_odds {
 	my $self = shift;
 	my $stats = $self->away_win ();
 	return 0 if $stats == 0;
-	return nearest (0.01, 100 / $stats);
+	return 100 / $stats;
+#	return nearest (0.01, 100 / $stats);
 }
 
 sub draw {
@@ -167,7 +169,8 @@ sub draw_odds {
 
     my $stats = $self->draw ();
     return 0 if $stats == 0;
-    return nearest (0.01, 100 / $stats);
+	return 100 / $stats;
+#    return nearest (0.01, 100 / $stats);
 }
 
 sub both_sides_yes {
@@ -187,7 +190,8 @@ sub both_sides_yes_odds {
 
 	my $stats = $self->both_sides_yes ();
 	return 0 if $stats == 0;
-	return nearest (0.01, 100 / $stats);
+	return 100 / $stats;
+#	return nearest (0.01, 100 / $stats);
 }
 
 sub both_sides_no {
@@ -207,7 +211,8 @@ sub both_sides_no_odds {
 
 	my $stats = $self->both_sides_no ();
 	return 0 if $stats == 0;
-	return nearest (0.01, 100 / $stats);
+	return 100 / $stats;
+#	return nearest (0.01, 100 / $stats);
 }
 
 sub over_2pt5 {
@@ -229,7 +234,8 @@ sub over_2pt5_odds {
 
 	my $stats = $self->over_2pt5 ();
 	return 0 if $stats == 0;
-	return nearest (0.01, 100 / $stats);
+	return 100 / $stats;
+#	return nearest (0.01, 100 / $stats);
 }
 
 sub under_2pt5 {
@@ -251,7 +257,8 @@ sub under_2pt5_odds {
 
 	my $stats = $self->under_2pt5 ();
 	return 0 if $stats == 0;
-	return nearest (0.01, 100 / $stats);
+	return 100 / $stats;
+#	return nearest (0.01, 100 / $stats);
 }
 
 sub home_double_odds {
@@ -259,7 +266,8 @@ sub home_double_odds {
 
 	my $stats = $self->home_win () + $self->draw ();
 	return 0 if $stats == 0;
-	return nearest (0.01, 100 / $stats);
+	return 100 / $stats;
+#	return nearest (0.01, 100 / $stats);
 }
 
 sub away_double_odds {
@@ -267,7 +275,8 @@ sub away_double_odds {
 
 	my $stats = $self->away_win () + $self->draw ();
 	return 0 if $stats == 0;
-	return nearest (0.01, 100 / $stats);
+	return 100 / $stats;
+#	return nearest (0.01, 100 / $stats);
 }
 
 #	used to write out data to then read from value.pl
@@ -289,8 +298,8 @@ sub get_match_odds {
 			draw => $_->{odds}->{season}->{draw},
 			both_sides_yes => $_->{odds}->{season}->{both_sides_yes},
 			both_sides_no => $_->{odds}->{season}->{both_sides_no},
-			over_2pt5 => $_->{odds}->{last_six}->{over_2pt5},
-			under_2pt5 => $_->{odds}->{last_six}->{under_2pt5},
+			over_2pt5 => $_->{odds}->{season}->{over_2pt5},
+			under_2pt5 => $_->{odds}->{season}->{under_2pt5},
 			home_double => $_->{odds}->{season}->{home_double},
 			away_double => $_->{odds}->{season}->{away_double},
 		} } @$sorted

@@ -86,6 +86,7 @@ Philadelphia Union,Philadelphia
 San Jose Earthquakes,San Jose
 New York Red Bulls,New York RB
 Sporting Kansas City,Sporting Kansas
+Charlotte FC,Charlotte
 
 #	English
 Brighton & Hove Albion,Brighton
@@ -204,7 +205,8 @@ Warrenpoint Town,Warrenpoint
 Helsingborgs,Helsingborg
 
 #	Norwegian
-Aalesunds,Aalesund
+#Aalesunds,Aalesund
+Ham,HamKam
 
 #	Finnish
 AC Oulu,Oulu
@@ -298,9 +300,9 @@ Scottish Championship,SC1
 Scottish League One,SC2
 Scottish League Two,SC3
 Irish Premier Division,ROI
-#Norwegian Eliteserien,NOR
-#Swedish Allsvenskan,SWE
-#Finnish Veikkausliiga,FIN
+Norwegian Eliteserien,NOR
+Swedish Allsvenskan,SWE
+Finnish Veikkausliiga,FIN
 United States Major League Soccer,MLS
 German Bundesliga,D1
 Italian Serie A,I1
