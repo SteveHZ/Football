@@ -1,6 +1,6 @@
 package Football::Spreadsheets::Match_Odds_View;
 
-use Football::Globals qw($dropbox_folder);
+use Football::Globals qw($cloud_folder);
 use List::MoreUtils qw(each_arrayref);
 use List::Util qw (any);
 
@@ -48,7 +48,7 @@ sub BUILD {
 
 sub create_sheet {
 	my $self = shift;
-	$self->{filename} = "$dropbox_folder/Match Odds UK.xlsx";
+	$self->{filename} = "$cloud_folder/Match Odds UK.xlsx";
 }
 
 after 'BUILD' => sub {
@@ -83,8 +83,8 @@ sub view {
 		print ' Both Sides No : '. $game->{odds}->{season}->{both_sides_no};
 		print ' Home Double : '. $game->{odds}->{season}->{home_double};
 		print ' Away Double : '. $game->{odds}->{season}->{away_double};
-		print ' Over 2.5 : '. $game->{odds}->{last_six}->{over_2pt5};
-		print ' Under 2.5 : '. $game->{odds}->{last_six}->{under_2pt5};
+		print ' Over 2.5 : '. $game->{odds}->{season}->{over_2pt5};
+		print ' Under 2.5 : '. $game->{odds}->{season}->{under_2pt5};
 	}
 	$self->do_match_odds ($fixtures);
 }
@@ -144,6 +144,7 @@ sub get_bsts_rows {
 	];
 }
 
+#	Can be overridden by child classes
 sub match_rows {
 	my ($self, $game) = @_;
 	return
@@ -152,6 +153,7 @@ sub match_rows {
 		{ $game->{away_team} => $self->get_format ( $game->{expected_goal_diff} ) },
 }
 
+#	Can be overridden by child classes
 sub hwd_rows {
 	my ($self, $game) = @_;
 	return
@@ -160,6 +162,7 @@ sub hwd_rows {
 		{ $game->{odds}->{season}->{away_win} => $self->{float_format} },
 }
 
+#	Can be overridden by child classes
 sub over_under_rows {
 	my ($self, $game) = @_;
 	return
@@ -167,6 +170,7 @@ sub over_under_rows {
 		{ $game->{odds}->{season}->{under_2pt5} => $self->{float_format} },
 }
 
+#	Can be overridden by child classes
 sub double_rows {
 	my ($self, $game) = @_;
 	return
@@ -174,6 +178,7 @@ sub double_rows {
 		{ $game->{odds}->{season}->{away_double} => $self->{float_format} },
 }
 
+#	Can be overridden by child classes
 sub bsts_rows {
 	my ($self, $game) = @_;
 	return

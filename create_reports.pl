@@ -4,6 +4,13 @@
 #	v2 10-13/04/16, 02/05/16
 #	v2.1 27/05/17
 
+#	Before running create_reports.pl
+#	Change Football::Globals::$season to NEXT year (ie At the end of 2021-2022 season, change $season to 2022)
+#	perl archive_csv.pl
+#	perl amend_hostorical.pl
+#	perl create_reports.pl
+
+
 use strict;
 use warnings;
 
@@ -51,6 +58,12 @@ create_reports.pl
 =head1 SYNOPSIS
 
 perl create_reports.pl
+
+ Before running create_reports.pl,
+ Change Football::Globals::$season to NEXT year (ie At the end of 2021-2022 season, change $season to 2022)
+ perl archive_csv.pl
+ perl amend_hostorical.pl
+ perl create_reports.pl
 
 =head1 DESCRIPTION
 

@@ -36,15 +36,15 @@ our @EXPORT = qw(
 	$min_skellam
 	$csv_fields
 	$reports_folder
-	$dropbox_folder
+	$cloud_folder
 );
 
 %EXPORT_TAGS = ( all => \@EXPORT );
 
 sub new { return bless {}, shift; }
 
-our $season = 2021;
-our $euro_season = 2021;
+our $season = 2022;
+our $euro_season = 2022;
 our $summer_season = 2022;
 
 our $next_season = $season + 1;
@@ -173,7 +173,7 @@ our $reports_seasons = {
 };
 
 our $reports_folder = 'C:/Mine/perl/Football/reports';
-our $dropbox_folder = 'C:/Users/Steve/Dropbox/Football';
+our $cloud_folder = 'C:/Users/Steve/OneDrive/Football';
 
 =pod
 

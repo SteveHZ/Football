@@ -7,7 +7,7 @@ use List::Util qw(any);
 use Football::Fixtures_Globals qw( football_rename rugby_rename );
 
 my @remove_teams = (
-	'Nashville', # 01/05/22
+#	'Nashville', # 01/05/22
 );
 # Once array is empty, remove ZEROGAMES pragma in predict.pl
 # then amend calculate_homes and calculate_aways subs in Goal_Expect_Model.pm

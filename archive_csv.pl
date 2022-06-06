@@ -6,7 +6,8 @@
 
 #   Ensure that $reports_season is updated in Football::Globals first !!! ($season -> NEXT season)
 #   then run perl fetch.pl -n to fetch original csv sheets
-#   Run perl amend_historical.pl afterwards, before perl create_reports.
+#	Run this script to write to Football Data Files folder
+#   then run perl amend_historical.pl afterwards, before perl create_reports.
 
 use MyHeader;
 
@@ -15,7 +16,7 @@ use List::MoreUtils qw(each_array);
 use Football::Globals qw(@league_names @csv_leagues @euro_lgs @euro_csv_lgs $reports_season);
 
 my $from_path = 'C:/Mine/perl/Football/data';
-my $to_path = "$from_path/historical";
+my $to_path = "$from_path/Football data files";
 
 my $iterator = each_array (@csv_leagues, @league_names);
 copy_files ($iterator);

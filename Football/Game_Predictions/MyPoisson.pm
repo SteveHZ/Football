@@ -15,7 +15,7 @@ has 'stats' => (is => 'rw');
 sub BUILD {
 	my $self = shift;
 	$self->{stats} = [];
-	$self->{euler} = 2.71828;
+	$self->{euler} = exp 1; # 2.71828;
 }
 
 sub poisson_result {

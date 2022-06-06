@@ -139,9 +139,10 @@ sub show_info {
 
 sub total_wins {
 	my ($team, $games) = @_;
-	return reduce { $a + $b }
-		   map { is_win ($team, $_) }
-		   @$games;
+	return
+		reduce { $a + $b }
+		map { is_win ($team, $_) }
+		@$games;
 }
 
 sub is_win {
@@ -157,7 +158,8 @@ sub total_return {
 		h => $data->{column}.'h',
 		a => $data->{column}.'a'
 	};
-	return sprintf "%.2f",
+	return 
+		sprintf "%.2f",
 		reduce { $a + $b }
 		map { calc_return ($team, $_, $odds_cols) }
 		@$games;
@@ -172,18 +174,20 @@ sub calc_return {
 
 sub do_overs {
 	my ($team, $games) = @_;
-	my $overs = reduce { $a + $b }
-				map { is_over ($team, $_) }
-				@$games;
+	my $overs =
+		reduce { $a + $b }
+		map { is_over ($team, $_) }
+		@$games;
 	return percentage ($overs, scalar @$games);
 }
 
 sub do_last_six_overs {
 	my ($team, $games, $num_games) = @_;
 	my $offset = min (6, $num_games);
-	my $overs = reduce { $a + $b }
-				map { is_over ($team, $_) }
-				splice @$games, $offset * -1;
+	my $overs =
+		reduce { $a + $b }
+		map { is_over ($team, $_) }
+		splice @$games, $offset * -1;
 	return percentage ($overs, $offset);
 }
 

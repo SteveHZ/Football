@@ -206,7 +206,6 @@ Helsingborgs,Helsingborg
 
 #	Norwegian
 #Aalesunds,Aalesund
-Ham,HamKam
 
 #	Finnish
 AC Oulu,Oulu

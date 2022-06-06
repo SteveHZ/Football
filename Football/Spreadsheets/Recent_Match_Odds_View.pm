@@ -1,6 +1,6 @@
 package Football::Spreadsheets::Recent_Match_Odds_View;
 
-use Football::Globals qw($dropbox_folder);
+use Football::Globals qw($cloud_folder);
 
 use Moo;
 use namespace::clean;
@@ -9,7 +9,7 @@ extends 'Football::Spreadsheets::Match_Odds_View';
 
 sub create_sheet {
 	my $self = shift;
-	$self->{filename} = "$dropbox_folder/Recent Match Odds UK.xlsx";
+	$self->{filename} = "$cloud_folder/Recent Match Odds UK.xlsx";
 }
 
 sub match_rows {

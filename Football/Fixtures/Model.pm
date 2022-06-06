@@ -206,6 +206,7 @@ sub do_initial_chars {
 	$$dataref =~ s/RoPS //g;
 	$$dataref =~ s/ fB/ fb/g;
 	$$dataref =~ s/KTP/KTp/g;
+	$$dataref =~ s/HamKam/Hamkam/g;
 	$$dataref =~ s/\// /g; # Norwegian (Bodo/Glimt)
 #	$$dataref =~ s/jyskE/jyske/g; # Danish
 	$$dataref =~ s/ BoIS//g; # Varbergs
@@ -224,6 +225,7 @@ sub revert {
 	$$dataref =~ s/SPAl/SPAL/g;
 	$$dataref =~ s/UCd/UCD/g;
 	$$dataref =~ s/KTp/KTP/g;
+	$$dataref =~ s/Hamkam/HamKam/g;
 }
 
 #   transform a hash from key => value 'one-to-many' relationship

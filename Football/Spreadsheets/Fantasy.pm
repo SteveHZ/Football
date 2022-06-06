@@ -1,7 +1,7 @@
 package Football::Spreadsheets::Fantasy;
 
 use utf8;
-use Football::Globals qw ($dropbox_folder);
+use Football::Globals qw ($cloud_folder);
 
 use Moo;
 use namespace::clean;
@@ -11,7 +11,7 @@ with 'Roles::Spreadsheet';
 
 sub BUILD {
 	my ($self, $args) = @_;
-	$self->{filename} = "$dropbox_folder/fantasy.xlsx";
+	$self->{filename} = "$cloud_folder/fantasy.xlsx";
     $self->{sheets} = $args->{sheets};
 }
 

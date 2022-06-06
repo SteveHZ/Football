@@ -130,8 +130,7 @@ sub home_win_odds {
 
 	my $stats = $self->home_win ();
 	return 0 if $stats == 0;
-	return 100 / $stats;
-#	return nearest (0.01, 100 / $stats);
+	return nearest (0.01, 100 / $stats);
 }
 
 sub away_win {
@@ -150,8 +149,7 @@ sub away_win_odds {
 	my $self = shift;
 	my $stats = $self->away_win ();
 	return 0 if $stats == 0;
-	return 100 / $stats;
-#	return nearest (0.01, 100 / $stats);
+	return nearest (0.01, 100 / $stats);
 }
 
 sub draw {
@@ -169,8 +167,7 @@ sub draw_odds {
 
     my $stats = $self->draw ();
     return 0 if $stats == 0;
-	return 100 / $stats;
-#    return nearest (0.01, 100 / $stats);
+    return nearest (0.01, 100 / $stats);
 }
 
 sub both_sides_yes {
@@ -190,8 +187,7 @@ sub both_sides_yes_odds {
 
 	my $stats = $self->both_sides_yes ();
 	return 0 if $stats == 0;
-	return 100 / $stats;
-#	return nearest (0.01, 100 / $stats);
+	return nearest (0.01, 100 / $stats);
 }
 
 sub both_sides_no {
@@ -211,8 +207,7 @@ sub both_sides_no_odds {
 
 	my $stats = $self->both_sides_no ();
 	return 0 if $stats == 0;
-	return 100 / $stats;
-#	return nearest (0.01, 100 / $stats);
+	return nearest (0.01, 100 / $stats);
 }
 
 sub over_2pt5 {
@@ -234,8 +229,7 @@ sub over_2pt5_odds {
 
 	my $stats = $self->over_2pt5 ();
 	return 0 if $stats == 0;
-	return 100 / $stats;
-#	return nearest (0.01, 100 / $stats);
+	return nearest (0.01, 100 / $stats);
 }
 
 sub under_2pt5 {
@@ -257,8 +251,7 @@ sub under_2pt5_odds {
 
 	my $stats = $self->under_2pt5 ();
 	return 0 if $stats == 0;
-	return 100 / $stats;
-#	return nearest (0.01, 100 / $stats);
+	return nearest (0.01, 100 / $stats);
 }
 
 sub home_double_odds {
@@ -266,8 +259,7 @@ sub home_double_odds {
 
 	my $stats = $self->home_win () + $self->draw ();
 	return 0 if $stats == 0;
-	return 100 / $stats;
-#	return nearest (0.01, 100 / $stats);
+	return nearest (0.01, 100 / $stats);
 }
 
 sub away_double_odds {
@@ -275,8 +267,7 @@ sub away_double_odds {
 
 	my $stats = $self->away_win () + $self->draw ();
 	return 0 if $stats == 0;
-	return 100 / $stats;
-#	return nearest (0.01, 100 / $stats);
+	return nearest (0.01, 100 / $stats);
 }
 
 #	used to write out data to then read from value.pl

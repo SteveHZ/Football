@@ -48,6 +48,7 @@ sub get_game_info {
 	my $league_idx = prompt ('Enter League ', ':'); 
 	my $home = prompt ('Enter Home Team ', ':'); 
 	my $away = prompt ('Enter Away Team ', ':'); 
+
 	return [ {
 		league_idx => $league_idx,
 		league => $league_names [$league_idx],

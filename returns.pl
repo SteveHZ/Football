@@ -2,7 +2,7 @@
 
 use MyHeader;
 use MyLib qw (read_file);
-use Football::Globals qw($dropbox_folder);
+use Football::Globals qw($cloud_folder);
 use Football::Spreadsheets::Write_Returns;
 use Football::Spreadsheets::Write_Streaks;
 
@@ -22,8 +22,8 @@ if (! defined $ARGV[0]) {
 	$country = "Euro" if $ARGV[0] eq '-e';
 }
 
-my $returns_filename = "$dropbox_folder/returns $country.xlsx";
-my $streaks_filename = "$dropbox_folder/streaks $country.xlsx";
+my $returns_filename = "$cloud_folder/returns $country.xlsx";
+my $streaks_filename = "$cloud_folder/streaks $country.xlsx";
 
 my @files = (
     {
