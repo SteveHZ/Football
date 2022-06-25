@@ -21,11 +21,11 @@ if (! defined $ARGV[0]) {
 	die "\nDied with invalid argument '$ARGV[0]'" if (! defined $country);
 }
 
-for my $series (@series_name) {
-	my $lines = read_file ("c:/mine/lisp/data/series $series $country.csv");
+sub build_hash {
+	my $lines = shift;
 	my $hash = {};
 	my $key = "";
-
+	
 	for my $line (@$lines) {
 		chomp $line;
 		if ($line !~ $series_rx) {
@@ -34,6 +34,12 @@ for my $series (@series_name) {
 			push $hash->{$key}->@*, $line;
 		}
 	}
+	return $hash;
+}
+
+for my $series (@series_name) {
+	my $lines = read_file ("c:/mine/lisp/data/series $series $country.csv");
+	my $hash = build_hash ($lines);
 
 	my $xlsx_filename = "$cloud_folder/series $series $country.xlsx";
 	print "\nWriting $xlsx_filename...";

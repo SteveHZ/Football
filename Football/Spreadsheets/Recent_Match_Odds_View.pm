@@ -12,6 +12,14 @@ sub create_sheet {
 	$self->{filename} = "$cloud_folder/Recent Match Odds UK.xlsx";
 }
 
+#	Season Match Odds have already been written out by Football::Spreadsheets::Match_Odds_View::view,
+#	Could also write out Recent Match Odds, but no need
+
+sub view {
+	my ($self, $fixtures) = @_;
+	$self->do_match_odds ($fixtures);
+}
+
 sub match_rows {
 	my ($self, $game) = @_;
 	return

@@ -1,6 +1,6 @@
 package Football::Spreadsheets::Match_Odds_View;
 
-use Football::Globals qw($cloud_folder);
+use Football::Globals qw($cloud_folder @csv_leagues);
 use List::MoreUtils qw(each_arrayref);
 use List::Util qw (any);
 
@@ -75,7 +75,8 @@ after 'BUILD' => sub {
 sub view {
 	my ($self, $fixtures) = @_;
 	for my $game ( $fixtures->{home_win}->@* ) {
-		print "\n\n$game->{home_team} v $game->{away_team}";
+		print "\n\n".$self->get_league ($game->{league_idx})." : ";
+		print "$game->{home_team} v $game->{away_team}";
 		print "\nHome Win : ".$game->{odds}->{season}->{home_win};
 		print ' Draw : '. $game->{odds}->{season}->{draw};
 		print ' Away Win : '. $game->{odds}->{season}->{away_win};
@@ -87,6 +88,11 @@ sub view {
 		print ' Under 2.5 : '. $game->{odds}->{season}->{under_2pt5};
 	}
 	$self->do_match_odds ($fixtures);
+}
+
+sub get_league {
+	my ($self, $league_idx) = @_;
+	return $csv_leagues [$league_idx];
 }
 
 sub do_match_odds {
