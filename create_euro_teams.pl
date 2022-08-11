@@ -1,9 +1,12 @@
 #	create_euro_teams.pl 26/06/16
 
 #	This file is for team names to be used within predict.pl
-#	To edit names from Football Data CSV files, use Euro::Rename
+#	To edit names from Football Data CSV files, create an anonymous sub in Football::Fetch_Amend
 #	To edit names from BBC fixtures files use Football::Fixtures_Globals
 
+#	DEPRECATED 10/08/22 : To edit names from Football Data CSV files, use Euro::Rename
+
+# 	German done 03/08/22
 
 use strict;
 use warnings;
@@ -18,51 +21,14 @@ my $path = 'C:/Mine/perl/Football/data/Euro/';
 my $json_file = $path.'teams.json';
 
 my $leagues = {
-#	'Welsh' => [
-#       'Aberystwyth',
-#		'Bala Town',
-#		'Barry Town',
-#		'Caernarfon Town',
-#		'Cardiff MU',
-#       'Cefn Druids',
-#       'Connahs Quay',
-#       'Newtown',
-#       'Penybont',
-#       'TNS',
-#		'Flint',
-#		'Haverfordwest',
-#    ],
-#    'N Irish' => [
-#       'Ballymena',
-#       'Carrick Rangers',
-#       'Cliftonville',
-#       'Coleraine',
-#       'Crusaders',
-#       'Dungannon',
-#       'Glenavon',
-#       'Glentoran',
-#    	'Larne',
-#       'Linfield',
-#       'Warrenpoint',
-#		'Portadown',
-#    ],
-
-## 20/01/22
-## Went wrong with Greuther Furth	Mainz (05)
-## (1899) Hoffenheim	Borussia Dortmund
-##
-## => Greuther Furth	14:30	Mainz99 Hoffenheim	Borussia Dortmund
-
     'German' => [
         'Augsburg',
         'Bayern Munich',
-		'Bielefeld',
 		'Bochum',
         'Dortmund',
         'Ein Frankfurt',
         'FC Koln',
 		'Freiburg',
-		'Greuther Furth',
         'Hertha',
         'Hoffenheim',
         'Leverkusen',
@@ -72,6 +38,8 @@ my $leagues = {
 		'Stuttgart',
         'Union Berlin',
         'Wolfsburg',
+		'Schalke',
+		'Werder Bremen',
     ],
     'Spanish' => [
         'Alaves',
@@ -117,19 +85,6 @@ my $leagues = {
 		'Verona',
 		'Venezia',
     ],
-#	'Australian' => [
-#		'Adelaide United',
-#		'Brisbane Roar',
-#		'Central Coast Mariners',
-#		'Melbourne City',
-#		'Melbourne Victory',
-#		'Newcastle Jets',
-#		'Perth Glory',
-#		'Sydney FC',
-#		'Wellington Phoenix',
-#		'Western Sydney Wdrs',
-#		'Western United',
-#	],
 };
 
 print "\nWriting $json_file...";
@@ -174,6 +129,35 @@ $tt2->write_file ();
 print " Done";
 
 =head
+'Welsh' => [
+    'Aberystwyth',
+	'Bala Town',
+	'Barry Town',
+	'Caernarfon Town',
+	'Cardiff MU',
+    'Cefn Druids',
+    'Connahs Quay',
+    'Newtown',
+    'Penybont',
+    'TNS',
+	'Flint',
+	'Haverfordwest',
+],
+'N Irish' => [
+    'Ballymena',
+    'Carrick Rangers',
+    'Cliftonville',
+    'Coleraine',
+    'Crusaders',
+    'Dungannon',
+    'Glenavon',
+    'Glentoran',
+  	'Larne',
+    'Linfield',
+    'Warrenpoint',
+	'Portadown',
+],
+
 'German 2' => [
 	'Bochum',
 	'Bielefeld',
@@ -212,4 +196,25 @@ print " Done";
 	'St Truiden',
 	'Gent',
 ],
+
+'Australian' => [
+	'Adelaide United',
+	'Brisbane Roar',
+	'Central Coast Mariners',
+	'Melbourne City',
+	'Melbourne Victory',
+	'Newcastle Jets',
+	'Perth Glory',
+	'Sydney FC',
+	'Wellington Phoenix',
+	'Western Sydney Wdrs',
+	'Western United',
+],
+
+## 20/01/22
+## Went wrong with Greuther Furth	Mainz (05)
+## (1899) Hoffenheim	Borussia Dortmund
+##
+## => Greuther Furth	14:30	Mainz99 Hoffenheim	Borussia Dortmund
+
 =cut

@@ -5,7 +5,6 @@ use Football::Game_Predictions::Model;
 use MyJSON qw(read_json);
 
 use Moo::Role;
-#use Data::Dumper;
 
 sub quick_predict {
 	my $self = shift;

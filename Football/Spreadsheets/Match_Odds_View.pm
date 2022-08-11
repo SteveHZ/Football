@@ -16,28 +16,29 @@ sub BUILD {
 	$self->{sheet_names} = ['Home Win', 'Draw', 'Away Win', 'Over 2.5', 'Under 2.5', 'Home Double', 'Away Double', 'BSTS Yes', 'BSTS No'];
 	$self->{sorted_by} = ['home_win', 'draw', 'away_win', 'over_2pt5', 'under_2pt5', 'home_double', 'away_double', 'both_sides_yes', 'both_sides_no'];
 
-	$self->{dispatch} = {
-		home_win		=> sub { my $self = shift; $self->get_1x2_rows (@_) },
-		draw			=> sub { my $self = shift; $self->get_1x2_rows (@_) },
-		away_win		=> sub { my $self = shift; $self->get_1x2_rows (@_) },
-		over_2pt5		=> sub { my $self = shift; $self->get_over_under_rows (@_) },
-		under_2pt5		=> sub { my $self = shift; $self->get_over_under_rows (@_) },
-		home_double		=> sub { my $self = shift; $self->get_double_chance_rows (@_) },
-		away_double		=> sub { my $self = shift; $self->get_double_chance_rows (@_) },
-		both_sides_yes	=> sub { my $self = shift; $self->get_bsts_rows (@_) },
-		both_sides_no	=> sub { my $self = shift; $self->get_bsts_rows (@_) },
+	$self->{dispatch} = { # $self, $game
+		home_win		=> sub { $_[0]->get_1x2_rows ($_[1]) },
+		draw			=> sub { $_[0]->get_1x2_rows ($_[1]) },
+		away_win		=> sub { $_[0]->get_1x2_rows ($_[1]) },
+		over_2pt5		=> sub { $_[0]->get_over_under_rows ($_[1]) },
+		under_2pt5		=> sub { $_[0]->get_over_under_rows ($_[1]) },
+		home_double		=> sub { $_[0]->get_double_chance_rows ($_[1]) },
+		away_double		=> sub { $_[0]->get_double_chance_rows ($_[1]) },
+		both_sides_yes	=> sub { $_[0]->get_bsts_rows ($_[1]) },
+		both_sides_no	=> sub { $_[0]->get_bsts_rows ($_[1]) },
 	};
 
-	$self->{headers} = {
-		home_win	=> sub { my $self = shift; $self->do_1x2_header (@_) },
-		draw		=> sub { my $self = shift; $self->do_1x2_header (@_) },
-		away_win	=> sub { my $self = shift; $self->do_1x2_header (@_) },
-		over_2pt5	=> sub { my $self = shift; $self->do_over_under_header (@_) },
-		under_2pt5	=> sub { my $self = shift; $self->do_over_under_header (@_) },
-		home_double	=> sub { my $self = shift; $self->do_double_chance_header (@_) },
-		away_double	=> sub { my $self = shift; $self->do_double_chance_header (@_) },
-		both_sides_yes	=> sub { my $self = shift; $self->do_bsts_header (@_) },
-		both_sides_no	=> sub { my $self = shift; $self->do_bsts_header (@_) },
+# recent match odds are sorted by season match odds home win !!
+	$self->{headers} = { # $self, $worksheet, $format
+		home_win	=> sub { $_[0]->do_1x2_header ($_[1], $_[2]) },
+		draw		=> sub { $_[0]->do_1x2_header ($_[1], $_[2]) },
+		away_win	=> sub { $_[0]->do_1x2_header ($_[1], $_[2]) },
+		over_2pt5	=> sub { $_[0]->do_over_under_header ($_[1], $_[2]) },
+		under_2pt5	=> sub { $_[0]->do_over_under_header ($_[1], $_[2]) },
+		home_double	=> sub { $_[0]->do_double_chance_header ($_[1], $_[2]) },
+		away_double	=> sub { $_[0]->do_double_chance_header ($_[1], $_[2]) },
+		both_sides_yes	=> sub { $_[0]->do_bsts_header ($_[1], $_[2]) },
+		both_sides_no	=> sub { $_[0]->do_bsts_header ($_[1], $_[2]) },
 	};
 
     $self->{blank_cols} = {
@@ -75,8 +76,8 @@ after 'BUILD' => sub {
 sub view {
 	my ($self, $fixtures) = @_;
 	for my $game ( $fixtures->{home_win}->@* ) {
-		print "\n\n".$self->get_league ($game->{league_idx})." : ";
-		print "$game->{home_team} v $game->{away_team}";
+		print "\n\n".$self->get_csv_league ($game->{league_idx});
+		print " : $game->{home_team} v $game->{away_team}";
 		print "\nHome Win : ".$game->{odds}->{season}->{home_win};
 		print ' Draw : '. $game->{odds}->{season}->{draw};
 		print ' Away Win : '. $game->{odds}->{season}->{away_win};
@@ -90,7 +91,7 @@ sub view {
 	$self->do_match_odds ($fixtures);
 }
 
-sub get_league {
+sub get_csv_league {
 	my ($self, $league_idx) = @_;
 	return $csv_leagues [$league_idx];
 }
@@ -105,7 +106,7 @@ sub do_match_odds {
 
 		my $row = 2;
 		for my $game ($fixtures->{$sorted_by}->@*) {
-			my $row_data = $self->{dispatch}->{$sorted_by}->($self, $game, $row + 1);
+			my $row_data = $self->{dispatch}->{$sorted_by}->($self, $game); # , $row + 1
 			$self->write_row ($worksheet, $row, $row_data);
 			$row ++;
 		}
@@ -295,5 +296,32 @@ sub do_bsts_header {
 	$worksheet->autofilter( 'A1:A100' );
 	$worksheet->freeze_panes (1,0);
 }
+
+=begin comment
+	$self->{dispatch} = {
+		home_win		=> sub { my $self = shift; $self->get_1x2_rows (@_) },
+		draw			=> sub { my $self = shift; $self->get_1x2_rows (@_) },
+		away_win		=> sub { my $self = shift; $self->get_1x2_rows (@_) },
+		over_2pt5		=> sub { my $self = shift; $self->get_over_under_rows (@_) },
+		under_2pt5		=> sub { my $self = shift; $self->get_over_under_rows (@_) },
+		home_double		=> sub { my $self = shift; $self->get_double_chance_rows (@_) },
+		away_double		=> sub { my $self = shift; $self->get_double_chance_rows (@_) },
+		both_sides_yes	=> sub { my $self = shift; $self->get_bsts_rows (@_) },
+		both_sides_no	=> sub { my $self = shift; $self->get_bsts_rows (@_) },
+	};
+
+	$self->{headers} = {
+		home_win	=> sub { my $self = shift; $self->do_1x2_header (@_) },
+		draw		=> sub { my $self = shift; $self->do_1x2_header (@_) },
+		away_win	=> sub { my $self = shift; $self->do_1x2_header (@_) },
+		over_2pt5	=> sub { my $self = shift; $self->do_over_under_header (@_) },
+		under_2pt5	=> sub { my $self = shift; $self->do_over_under_header (@_) },
+		home_double	=> sub { my $self = shift; $self->do_double_chance_header (@_) },
+		away_double	=> sub { my $self = shift; $self->do_double_chance_header (@_) },
+		both_sides_yes	=> sub { my $self = shift; $self->do_bsts_header (@_) },
+		both_sides_no	=> sub { my $self = shift; $self->do_bsts_header (@_) },
+	};
+=end comment
+=cut
 
 1;

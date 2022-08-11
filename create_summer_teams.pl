@@ -4,6 +4,8 @@
 #	To edit names from Football Data CSV files, use Euro::Rename or Football::Fetch_Amend for UK teams
 #	To edit names from BBC fixtures files use Football::Fixtures_Globals, Football::Fixtures_Model
 
+#	DEPRECATED 10/08/22 : To edit names from Football Data CSV files, use Euro::Rename
+
 use strict;
 use warnings;
 

@@ -3,6 +3,9 @@ package Euro::Rename;
 #	Euro::Rename.pm 20/07/17, 13/03/18
 #	Amend downloaded team names from football-data or odds-portal
 
+#	DEPRECATED, only used for old stand-alone scripts,
+#	Not used in any current scripts 10/08/22 - keot for historical team names
+
 use strict;
 use warnings;
 use utf8;
@@ -14,7 +17,8 @@ our @EXPORT = qw( $euro_teams );
 @EXPORT_OK  = qw( check_rename );
 %EXPORT_TAGS = (all => [ @EXPORT, @EXPORT_OK ]);
 
-sub new { return bless {}, shift; }
+#sub new { return bless {}, shift; }
+sub new { print "\n\n\n*****In Euro::Rename ****";<STDIN>;return bless {}, shift; }
 
 our $euro_teams = {
 #	Welsh

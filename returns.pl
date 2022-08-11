@@ -23,7 +23,7 @@ if (! defined $ARGV[0]) {
 }
 
 my $returns_filename = "$cloud_folder/returns $country.xlsx";
-my $streaks_filename = "$cloud_folder/streaks $country.xlsx";
+#my $streaks_filename = "$cloud_folder/streaks $country.xlsx";
 
 my @files = (
     {

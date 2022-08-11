@@ -13,8 +13,7 @@ sub create_sheet {
 }
 
 #	Season Match Odds have already been written out by Football::Spreadsheets::Match_Odds_View::view,
-#	Could also write out Recent Match Odds, but no need
-
+#	Could also write out Recent Match Odds here, but don't want to write out a second set of odds when running predict.pl
 sub view {
 	my ($self, $fixtures) = @_;
 	$self->do_match_odds ($fixtures);

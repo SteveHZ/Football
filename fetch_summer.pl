@@ -10,8 +10,10 @@ use List::MoreUtils qw(each_arrayref);
 use lib 'C:/Mine/perl/Football';
 use Summer::Summer_Data_Model;
 use Football::Globals qw( $summer_season @summer_fetch_leagues @summer_csv_leagues);
+use Football::Fetch_Amend;
 
 my $data_model = Summer::Summer_Data_Model->new ();
+
 my $summer_dir = 'C:/Mine/perl/Football/data/Summer';
 my $summer_download_dir = 'C:/Mine/perl/Football/data/Summer/download';
 my $fetch_leagues = \@summer_fetch_leagues;
@@ -26,9 +28,9 @@ for my $league (@$fetch_leagues) {
 }
 print "\n";
 
-# As the football-data summer files go back to 2012, save the full file in a seperate directory,
-# then grep the full file for the current season and save to the correct directory, using the same name.
-# Saving the full file in the same directory caused problems when it came to delete the full file using the same names.
+#	As the football-data summer files go back to 2012, save the full file in a temporary directory,
+# 	then grep the full file for the current season and save to the correct directory, using the same name.
+# 	Saving the full file in the same directory caused problems when it came to delete the full file using the same names.
 
 my $iterator = each_arrayref ($fetch_leagues, $csv_leagues);
 while (my ($league, $file) = $iterator->()) {
@@ -43,6 +45,13 @@ while (my ($league, $file) = $iterator->()) {
 	unlink $in_file;
 }
 
+# 	Amend team names
+
+my $amend = Football::Fetch_Amend->new ();
+unless (defined $ARGV[0] && $ARGV[0] eq '-n') {
+	$amend->amend_summer ();
+}
+
 =pod
 
 =head1 NAME
@@ -52,10 +61,12 @@ Football/fetch_summer.pl
 =head1 SYNOPSIS
 
 perl fetch_summer.pl
+perl fetch_summer.pl -n to download without amendment
 
 =head1 DESCRIPTION
 
 Stand-alone script to download csv files for summer leagues from wwww.football-data.co.uk
+Run perl fetch_summer.pl -n to download files without amendment
 
 =head1 AUTHOR
 

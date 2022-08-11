@@ -156,7 +156,9 @@ print "\n";
 
 https://en.wikipedia.org/wiki/Poisson_distribution
 
-María Dolores Ugarte and colleagues report that the average number of goals in a World Cup soccer match is approximately 2.5 and the Poisson model is appropriate.[15] Because the average event rate is 2.5 goals per match, λ = 2.5.
+María Dolores Ugarte and colleagues report that the average number of goals in a World Cup soccer match
+is approximately 2.5 and the Poisson model is appropriate.[15]
+Because the average event rate is 2.5 goals per match, λ = 2.5.
 #=end comment
 #=cut
 

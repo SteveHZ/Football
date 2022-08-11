@@ -14,7 +14,7 @@ sub create_sheet {
 	$self->{filename} = "$cloud_folder/Match Odds Euro.xlsx";
 }
 
-sub get_league {
+sub get_csv_league {
 	my ($self, $league_idx) = @_;
 	return $euro_csv_leagues [$league_idx];
 }

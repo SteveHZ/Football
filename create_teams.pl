@@ -1,8 +1,6 @@
-
 #	create_teams.pl 28/03/16
 
 #	This file is for team names to be used within predict.pl
-##	To edit names from Football Data CSV files, use Euro::Rename (INCORRECT / OUTDATED ???)
 #	To edit names from Football Data CSV files, create an anonymous sub in Football::Fetch_Amend
 #	To edit names from BBC fixtures files use Football::Fixtures_Globals
 
@@ -10,12 +8,16 @@
 #	in Football::Fixtures_Globals, and in Football::Fetch_Amend
 #	Also need to check Football::Fetch_Amend before the start of each season for promotion/relegation
 
+#	DEPRECATED 10/08/22 : To edit names from Football Data CSV files, use Euro::Rename
+
 # 	IMPORTANT !!!
 # 	See Football::Favourites::Model re start of next season !!!
 
 #	All leagues done 16/06/22
 #	Ran script and pasted in sorted teams 18/06/22, Lisp file not created so need to run again at start of season
-#	Look out for 4 new National League teams and Bonnyrigg Rose in Scotland
+# 	Checked new team names and re-ran full script 09/08/22
+
+# 	TO DO : Change AFC Wimbledon -> Wimbledon and Inverness C to Inverness across all files !!
 
 use strict;
 use warnings;
@@ -138,12 +140,12 @@ my $leagues = {
         'Bromley',
         'Chesterfield',
         'Dag and Red',
-        'Dorking Wdrs',
+        'Dorking',
         'Eastleigh',
         'Gateshead',
         'Halifax',
         'Maidenhead',
-        'Maidstone Utd',
+        'Maidstone',
         'Notts County',
         'Oldham',
         'Scunthorpe',

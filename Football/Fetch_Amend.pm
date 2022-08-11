@@ -10,23 +10,14 @@ sub get_uk_hash {
 	return {
 		'E0' => [
 			sub { $_[0] =~ s/Man United/Man Utd/g },
+			sub { $_[0] =~ s/Nott'm Forest/Notts Forest/g },
 		],
 		'E1' => [
 			sub { $_[0] =~ s/Sheffield United/Sheff Utd/g },
-			sub { $_[0] =~ s/Nott'm Forest/Notts Forest/g },
 		],
 		'E2' => [
 			sub { $_[0] =~ s/Sheffield Weds/Sheff Wed/g },
 			sub { $_[0] =~ s/Milton.*Dons/MK Dons/g },
-		],
-		'EC' => [
-# "Lynn," needed because of 29/01/22 Boreham Wood v Kings Lynn REF - S Yianni - regex is greedy !!
-			sub { $_[0] =~ s/King.*Lynn,/Kings Lynn,/g },
-
-#			sub { $_[0] =~ s/Dag & Red/Dag and Red/g }, # errors in EC data file 2021-22
-#			sub { $_[0] =~ s/FC Halifax/Halifax/g },
-#			sub { $_[0] =~ s/Notts Co(?!unty),/Notts County,/g },
-#			sub { $_[0] =~ s/Dover(?! A),/Dover Athletic,/g },
 		],
 	};
 }
@@ -39,7 +30,13 @@ sub get_euro_hash {
 	};
 }
 
-sub get_summer_hash { return {}; }
+sub get_summer_hash {
+	return {
+		'SWE' => [
+			sub { $_[0] =~ s/Varberg,/Varbergs,/g }, # errors in datafile 2022
+		],
+	};
+}
 
 sub amend_uk {
 	my $self = shift;
@@ -60,17 +57,17 @@ sub amend_summer {
 }
 
 sub amend_teams {
-	my ($self, $replace, $path) = @_;
+	my ($self, $replace_hash, $path) = @_;
 
-	while (my ($league, $teams_rx) = each $replace->%*) {
+	while (my ($league, $teams_rx) = each $replace_hash->%*) {
 		my $file = "$path/$league.csv";
 		my $temp_file = "$path/$league-temp.csv";
 
 		print "\nRewriting $file...";
 		copy $file, $temp_file;
+
 		my $lines = read_file ($temp_file);
 		$self->amend_array ($lines, $teams_rx);
-
 		write_file ($file, $lines);
 		unlink $temp_file;
 	}
@@ -84,6 +81,16 @@ sub amend_array {
 		}
 	}
 }
+
+#		'EC' => [
+## "Lynn," needed because of 29/01/22 Boreham Wood v Kings Lynn REF - S Yianni - regex is greedy !!
+#			sub { $_[0] =~ s/King.*Lynn,/Kings Lynn,/g },
+
+#			sub { $_[0] =~ s/Dag & Red/Dag and Red/g }, # errors in EC data file 2021-22
+#			sub { $_[0] =~ s/FC Halifax/Halifax/g },
+#			sub { $_[0] =~ s/Notts Co(?!unty),/Notts County,/g },
+#			sub { $_[0] =~ s/Dover(?! A),/Dover Athletic,/g },
+#		],
 
 =pod
 

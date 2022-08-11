@@ -60,6 +60,7 @@ Football/fetch.pl
 =head1 SYNOPSIS
 
 perl fetch.pl
+perl fetch_summer.pl -n to download without amendment
 
 =head1 DESCRIPTION
 

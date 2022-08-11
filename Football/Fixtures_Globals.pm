@@ -61,10 +61,10 @@ sub _rename {
 __DATA__
 #	Irish
 St Patrick's Athletic,St Patricks
-Longford Town,Longford
 Sligo Rovers,Sligo Rvs
 Shamrock Rovers,Shamrock Rvs
 Drogheda United,Drogheda
+#Longford Town,Longford
 
 #	American
 Chicago Fire FC,Chicago Fire
@@ -148,7 +148,7 @@ Coventry City,Coventry
 Wycombe Wanderers,Wycombe
 Swindon Town,Swindon
 Yeovil Town,Yeovil
-AFC Fylde,Fylde
+#AFC Fylde,Fylde
 FC Halifax Town,Halifax
 Dagenham & Redbridge,Dag and Red
 Maidstone United,Maidstone
@@ -156,7 +156,8 @@ Hartlepool United,Hartlepool
 Harrogate Town,Harrogate
 Solihull Moors,Solihull
 Aldershot Town,Aldershot
-Macclesfield Town,Macclesfield
+Dorking Wanderers, Dorking
+#Macclesfield Town,Macclesfield
 Tranmere Rovers,Tranmere
 Ebbsfleet United,Ebbsfleet
 Maidenhead United,Maidenhead
@@ -164,7 +165,7 @@ Sutton United,Sutton
 Salford City,Salford
 Stockport County,Stockport
 Torquay United,Torquay
-King's Lynn Town,Kings Lynn
+#King's Lynn Town,Kings Lynn
 
 #	Scottish
 Partick Thistle,Partick
