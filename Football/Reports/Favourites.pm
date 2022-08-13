@@ -10,12 +10,12 @@ use Football::Favourites::Data_Model;
 use Moo;
 use namespace::clean;
 
-my $path = 'C:/Mine/perl/Football/data/favourites/';
+my $path = 'C:/Mine/perl/Football/data/favourites';
 
 sub BUILD {
 	my ($self, $args) = @_;
-	my $model = Football::Favourites::Model->new (filename => "uk");
-	my $view = Football::Favourites::View->new (state => "previous");
+	my $model = Football::Favourites::Model->new (filename => 'uk');
+	my $view = Football::Favourites::View->new (state => 'previous');
 	do_previous ($model, $view, $args->{leagues}, $args->{seasons});
 }
 
@@ -25,7 +25,7 @@ sub do_previous {
 
 	for my $league (@$leagues) {
 		for my $year (@$seasons) {
-			my $file = $path.$league.'/'.$year.'.csv';
+			my $file = "$path/$league/$year.csv";
 			my $data = $data_model->update ($file);
 			$model->update ($league, $year, $data);
 		}

@@ -22,8 +22,8 @@ sub BUILD {
 }
 
 sub get_json_file {
-	my $path = 'C:/Mine/perl/Football/data/';
-	return $path.'homes_aways_draws.json';
+	my $path = 'C:/Mine/perl/Football/data';
+	return "$path/homes_aways_draws.json";
 }
 
 sub setup {
@@ -50,7 +50,7 @@ sub update {
 sub write_report {
 	my ($self, $leagues) = @_;
 
-	my $writer = Football::Spreadsheets::Reports->new (report => "Homes Aways Draws");
+	my $writer = Football::Spreadsheets::Reports->new (report => 'Homes Aways Draws');
 	$writer->do_homeawaydraws ($self->{hash}, $leagues);
 }
 

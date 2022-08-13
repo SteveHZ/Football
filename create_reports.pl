@@ -21,8 +21,8 @@ use Football::Reports::Reports;
 use Football::Globals qw( @league_names @league_size $reports_season $reports_seasons );
 use MyJSON qw(read_json);
 
-my $path = 'C:/Mine/perl/Football/data/';
-my $teams_file = $path.'teams.json';
+my $path = 'C:/Mine/perl/Football/data';
+my $teams_file = "$path/teams.json";
 
 my $teams = read_json ($teams_file);
 my $leagues = \@league_names;

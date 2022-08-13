@@ -67,6 +67,7 @@ $view->do_head2head ( $model->do_head2head ( $stats->{by_league} ) );
 $view->do_recent_draws ( $model->do_recent_draws ( $stats->{by_league} ) );
 
 if ($model->model_name eq 'UK') {
+die;
 	my $favourites = Football::Favourites::Controller->new (
 		season => $season,
 		update => $options->{update},

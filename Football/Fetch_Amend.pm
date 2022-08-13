@@ -19,6 +19,15 @@ sub get_uk_hash {
 			sub { $_[0] =~ s/Sheffield Weds/Sheff Wed/g },
 			sub { $_[0] =~ s/Milton.*Dons/MK Dons/g },
 		],
+		'E3' => [
+			sub { $_[0] =~ s/AFC Wimbledon/Wimbledon/g },
+		],
+		'SC1' => [
+			sub { $_[0] =~ s/Inverness C/Inverness/g },
+		],
+		'SC2' => [
+			sub { $_[0] =~ s/FC Edinburgh/Edinburgh/g },
+		]
 	};
 }
 

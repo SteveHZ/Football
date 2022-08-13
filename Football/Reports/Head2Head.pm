@@ -24,15 +24,15 @@ sub BUILD {
 		$self->{hash} = $self->create ( $args->{leagues}, $args->{league_size},
 										$args->{all_teams}, $args->{seasons} );
 	} else {
-		die "Problem creating Head2Head object !!";
+		die 'Problem creating Head2Head object !!';
 	}
 }
 
 sub get_paths {
 	my $self = shift;
-	$self->{path} = 'C:/Mine/perl/Football/data/';
-	$self->{historical_path} = 'C:/Mine/perl/Football/data/historical/';
-	$self->{h2h_file} = $self->{path}.'head2head.json';
+	$self->{path} = 'C:/Mine/perl/Football/data';
+	$self->{historical_path} = 'C:/Mine/perl/Football/data/historical';
+	$self->{h2h_file} = "$self->{path}/head2head.json";
 }
 
 sub fetch {
@@ -57,7 +57,7 @@ sub csv_to_json {
 	while ( my ($league, $size) = $iterator->() ) {
 		for my $season ( $seasons->{$league}->@* ) {
 			print "\nCSV to JSON - Updating $league - $season...";
-			$csv_file = $self->{historical_path}.$league.'/'.$season.".csv";
+			$csv_file = "$self->{historical_path}/$league/$season.csv";
 			my $week = 0;
 			my $games = $data_model->read_csv ($csv_file);
 
@@ -73,7 +73,7 @@ sub csv_to_json {
 				}
 				$game->{week} = $week;
 			}
-			$json_file = $self->{historical_path}.$league.'/'.$season.'.json';
+			$json_file = "$self->{historical_path}/$league/$season.json";
 			$self->write_json ($json_file, $games);
 		}
 	}

@@ -143,6 +143,7 @@ Milton Keynes Dons,MK Dons
 Lincoln City,Lincoln
 Exeter City,Exeter
 Mansfield Town,Mansfield
+AFC Wimbledon,Wimbledon
 Accrington Stanley,Accrington
 Coventry City,Coventry
 Wycombe Wanderers,Wycombe
@@ -173,7 +174,7 @@ Hamilton Academical,Hamilton
 Heart of Midlothian,Hearts
 Queen of the South,Queen of Sth
 Brechin City,Brechin
-Inverness Caledonian Thistle,Inverness C
+Inverness Caledonian Thistle,Inverness
 Greenock Morton,Morton
 Alloa Athletic,Alloa
 Ayr United,Ayr
@@ -185,6 +186,7 @@ Forfar Athletic,Forfar
 Berwick Rangers,Berwick
 Elgin City,Elgin
 Stirling Albion,Stirling
+FC Edinburgh,Edinburgh
 
 #	Welsh
 Llandudno FC,Llandudno

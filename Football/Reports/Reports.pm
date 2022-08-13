@@ -22,7 +22,7 @@ has 'goal_diff' => ( is => 'ro');
 has 'league_places' => ( is => 'ro');
 has 'home_away_draws' => ( is => 'ro');
 
-my $historical_path = 'C:/Mine/perl/Football/data/historical/';
+my $historical_path = 'C:/Mine/perl/Football/data/historical';
 
 sub BUILD {
 	my ($self, $args) = @_;
@@ -55,7 +55,7 @@ sub run {
 		for my $season ( $seasons->{$league}->@* ) {
 			print "\nReports - Updating $league - $season...";
 
-			my $json_file = $historical_path.$league.'/'.$season.'.json';
+			my $json_file = "$historical_path/$league/$season.json";
 			my $games = $self->read_json ($json_file);
 			my $season_teams = get_all_teams ($games);
 			my $table = Football::Table->new (
@@ -88,7 +88,7 @@ sub run {
 
 sub get_all_teams {
 	my $games = shift;
-	return _get_all_teams ($games, "home_team");
+	return _get_all_teams ($games, 'home_team');
 }
 
 1;

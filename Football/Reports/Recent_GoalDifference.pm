@@ -22,8 +22,8 @@ sub BUILD {
 }
 
 sub get_json_file {
-	my $path = 'C:/Mine/perl/Football/data/';
-	return $path.'recent_goal_diff.json';
+	my $path = 'C:/Mine/perl/Football/data';
+	return "$path/recent_goal_diff.json";
 }
 
 sub get_minmax {
@@ -61,7 +61,7 @@ sub write_report {
 	my ($self, $leagues) = @_;
 
 	my $writer = Football::Spreadsheets::Reports->new (
-		report => "Recent Goal Difference",
+		report => 'Recent Goal Difference',
 		size => $self->{max},
 	);
 	$writer->do_recent_goal_diff ($self->{hash}, $leagues);

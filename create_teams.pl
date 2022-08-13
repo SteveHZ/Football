@@ -15,9 +15,7 @@
 
 #	All leagues done 16/06/22
 #	Ran script and pasted in sorted teams 18/06/22, Lisp file not created so need to run again at start of season
-# 	Checked new team names and re-ran full script 09/08/22
-
-# 	TO DO : Change AFC Wimbledon -> Wimbledon and Inverness C to Inverness across all files !!
+# 	Checked new team names and re-ran full script 13/08/22
 
 use strict;
 use warnings;
@@ -28,8 +26,8 @@ use MyLib qw(sort_HoA);
 use Football::Globals qw(@league_names @csv_leagues);
 use List::MoreUtils qw(each_array);
 
-my $path = 'C:/Mine/perl/Football/data/';
-my $json_file = $path.'teams.json';
+my $path = 'C:/Mine/perl/Football/data';
+my $json_file = "$path/teams.json";
 
 my $leagues = {
     'Premier League' => [
@@ -107,7 +105,6 @@ my $leagues = {
         'Wycombe',
     ],
     'League Two' => [
-        'AFC Wimbledon',
         'Barrow',
         'Bradford',
         'Carlisle',
@@ -131,6 +128,7 @@ my $leagues = {
         'Swindon',
         'Tranmere',
         'Walsall',
+        'Wimbledon',
     ],
     'Conference' => [
         'Aldershot',
@@ -178,7 +176,7 @@ my $leagues = {
         'Cove Rangers',
         'Dundee',
         'Hamilton',
-        'Inverness C',
+        'Inverness',
         'Morton',
         'Partick',
         'Queens Park',
@@ -189,7 +187,7 @@ my $leagues = {
         'Alloa',
         'Clyde',
         'Dunfermline',
-        'Edinburgh City',
+        'Edinburgh',
         'Falkirk',
         'Kelty Hearts',
         'Montrose',
@@ -207,7 +205,7 @@ my $leagues = {
         'Stenhousemuir',
         'Stirling',
         'Stranraer',
-	],
+    ],
 };
 
 print "\nWriting $json_file...";
@@ -219,8 +217,8 @@ print " Done";
 
 my $out_file = 'data/teams/uk_teams.pl';
 my $tt = MyTemplate->new (
-    template => 'Template/create_new_teams.tt',
     filename => $out_file,
+    template => 'Template/create_new_teams.tt',
     data => {
         leagues => \@league_names,
         sorted => $sorted,
@@ -234,7 +232,7 @@ print " Done";
 # Write all data out as a lisp list
 
 my $lisp_hash = {};
-my $out_dir = "c:/mine/lisp/data";
+my $out_dir = 'C:/Mine/lisp/data';
 
 my $iterator = each_array (@league_names, @csv_leagues);
 while (my ($league, $csv) = $iterator->()) {
@@ -243,8 +241,8 @@ while (my ($league, $csv) = $iterator->()) {
 
 print "\nWriting data to $out_dir/uk-teams.dat...";
 my $tt2 = MyTemplate->new (
-    template => "template/write_lisp_teams.tt",
     filename => "$out_dir/uk-teams.dat",
+    template => 'Template/write_lisp_teams.tt',
     data => $lisp_hash,
 );
 $tt2->write_file ();

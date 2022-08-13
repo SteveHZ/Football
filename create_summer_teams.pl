@@ -15,8 +15,8 @@ use MyLib qw(sort_HoA);
 use Football::Globals qw(@summer_leagues @summer_csv_leagues);
 use List::MoreUtils qw(each_array);
 
-my $path = 'C:/Mine/perl/Football/data/Summer/';
-my $json_file = $path.'teams.json';
+my $path = 'C:/Mine/perl/Football/data/Summer';
+my $json_file = "$path/teams.json";
 
 my $leagues = {
     'Irish League' => [
@@ -137,7 +137,7 @@ print " Done";
 # Write all data out as a lisp list
 
 my $lisp_hash = {};
-my $out_dir = "c:/mine/lisp/data";
+my $out_dir = 'C:/Mine/lisp/data';
 
 my $iterator = each_array (@summer_leagues, @summer_csv_leagues);
 while (my ($league, $csv) = $iterator->()) {
@@ -147,7 +147,7 @@ while (my ($league, $csv) = $iterator->()) {
 print "\nWriting data to $out_dir/summer-teams.dat...";
 my $tt2 = MyTemplate->new (
     filename => "$out_dir/summer-teams.dat",
-    template => "template/write_lisp_teams.tt",
+    template => 'Template/write_lisp_teams.tt',
     data => $lisp_hash,
 );
 $tt2->write_file ();

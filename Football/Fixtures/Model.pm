@@ -225,7 +225,6 @@ sub revert {
 	$$dataref =~ s/SPAl/SPAL/g;
 	$$dataref =~ s/UCd/UCD/g;
 	$$dataref =~ s/KTp/KTP/g;
-	
 	$$dataref =~ s/Hamkam/HamKam/g;
 }
 
