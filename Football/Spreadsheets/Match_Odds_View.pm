@@ -75,7 +75,7 @@ after 'BUILD' => sub {
 
 sub view {
 	my ($self, $fixtures) = @_;
-	for my $game ( $fixtures->{home_win}->@* ) {
+	for my $game ( $fixtures->{over_2pt5}->@* ) {
 		print "\n\n".$self->get_csv_league ($game->{league_idx});
 		print " : $game->{home_team} v $game->{away_team}";
 		print "\nHome Win : ".$game->{odds}->{season}->{home_win};

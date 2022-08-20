@@ -44,7 +44,6 @@ for my $week (0..$num_weeks - 1) {
 		my $end = $start + $num_games->{$league}[$week] - 1;
 
 		push $games->{$league}->@*, $data->{$league}->@[$start..$end]);
-#		push ( @{ $games->{$league} }, @{ $data->{$league} }[$start..$end]);
 		$idxs->{$league} += $num_games->{$league}[$week];
 		$fav_model->update ($league, $year, $games->{$league} );
 	}

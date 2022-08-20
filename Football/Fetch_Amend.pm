@@ -22,6 +22,9 @@ sub get_uk_hash {
 		'E3' => [
 			sub { $_[0] =~ s/AFC Wimbledon/Wimbledon/g },
 		],
+		'EC' => [
+			sub { $_[0] =~ s/York/York City/g },
+		],
 		'SC1' => [
 			sub { $_[0] =~ s/Inverness C/Inverness/g },
 		],
@@ -114,7 +117,7 @@ sub amend_array {
 =head1 DESCRIPTION
 
  Use functions amend_uk, amend_euro or amend_summer
- to amend team names for the respective files.
+ to amend Football Data team names for the respective files.
 
 =head1 AUTHOR
 

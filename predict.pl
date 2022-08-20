@@ -3,8 +3,8 @@
 #	v3.10 06/05/19 v3.20 13/03/21
 
 BEGIN {
-$ENV{PERL_KEYWORD_DEVELOPMENT} = 1;
-#$ENV{PERL_KEYWORD_ZEROGAMES} = 1;
+#$ENV{PERL_KEYWORD_DEVELOPMENT} = 1;
+$ENV{PERL_KEYWORD_ZEROGAMES} = 1;
 }
 
 use strict;
@@ -67,7 +67,6 @@ $view->do_head2head ( $model->do_head2head ( $stats->{by_league} ) );
 $view->do_recent_draws ( $model->do_recent_draws ( $stats->{by_league} ) );
 
 if ($model->model_name eq 'UK') {
-die;
 	my $favourites = Football::Favourites::Controller->new (
 		season => $season,
 		update => $options->{update},
@@ -147,12 +146,6 @@ Football predictions
  Also add ZEROGAMES teams to remove_teams array in fixtures2.pl
  Once no messages appear for any teams, disable pragma here and in Goal Expect Model,
  and remove teams from remove_teams array.
-
-=head1 FAVOURITES MODEL
-
- 08/09/21 : 
- Football::Favourites::Model SHOULD (fingers crossed for 2022 !!) delete data from
- C:/Mine/Football/data/favourites_history.json at the start of each season !!!
 
 =head1 AUTHOR
 

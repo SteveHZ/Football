@@ -174,6 +174,7 @@ our $reports_seasons = {
 
 our $reports_folder = 'C:/Mine/perl/Football/reports';
 our $cloud_folder = 'C:/Users/Steve/OneDrive/Football';
+#our $cloud_folder = 'C:/Users/Steve/Dropbox/Football';
 
 =pod
 

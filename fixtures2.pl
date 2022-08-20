@@ -8,11 +8,10 @@ use Football::Fixtures_Globals qw( football_rename );
 #use Football::Fixtures_Globals qw( football_rename rugby_rename );
 
 my @remove_teams = (
-#	'Rotherham', # 16/08/22
-#	'Coventry', # 20/08/22 ??
+	'Coventry', # 20/08/22 ??
 );
 # Once array is empty, remove ZEROGAMES pragma in predict.pl
-# then amend calculate_homes and calculate_aways subs in Goal_Expect_Model.pm
+## then amend calculate_homes and calculate_aways subs in Goal_Expect_Model.pm
 
 my @paths = (
 	{

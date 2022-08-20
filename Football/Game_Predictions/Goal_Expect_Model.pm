@@ -9,7 +9,11 @@ has 'fixtures' 	=> (is => 'ro', default => sub { [] } );
 
 sub BUILD {
 	my $self = shift;
-	$self->{end_msg} = "\nEnable ZEROGAMES pragma in predict.pl and add team name to remove_teams array in fixtures2.pl\nAlso amend calculate_homes and calculate_aways subs in Goal_Expect_Model !!\n";
+	$self->{end_msg} = 
+		"\n*********************************************************************************************
+		\nEnable ZEROGAMES pragma in predict.pl and add team name to remove_teams array in fixtures2.pl
+		\n*********************************************************************************************\n";
+#		\nAlso amend calculate_homes and calculate_aways subs in Goal_Expect_Model !!
 }
 
 #	private methods
@@ -107,10 +111,11 @@ sub calculate_homes {
 	my ($self, $team_hash, $league, $team) = @_;
 	my $played = $league->get_home_played ($team);
 
-	die "\n\n***ZERO HOME GAMES for $team".$self->{end_msg} if $played == 0;
-#	ZEROGAMES { if ($played == 0) {
-#		$played = 1; print "\nZero home games : $team"; <STDIN>;
-#	} }
+	ZEROGAMES { if ($played == 0) {
+		$played = 1; print "\nZero home games : $team"; <STDIN>;
+	} } else {
+		die "\n\n***ZERO HOME GAMES for $team $self->{end_msg}" if $played == 0;
+	}
 
 	$team_hash->{home_for} 			= $league->get_home_for ($team);
 	$team_hash->{home_against} 		= $league->get_home_against ($team);
@@ -122,10 +127,11 @@ sub calculate_aways {
 	my ($self, $team_hash, $league, $team) = @_;
 	my $played = $league->get_away_played ($team);
 
-	die "\n\n***ZERO AWAY GAMES for $team".$self->{end_msg} if $played == 0;
-#	ZEROGAMES { if ($played == 0) {
-#		 $played = 1; print "\nZero away games : $team"; <STDIN>;
-#	 } }
+	ZEROGAMES { if ($played == 0) {
+		 $played = 1; print "\nZero away games : $team"; <STDIN>;
+	} } else {
+		die "\n\n***ZERO AWAY GAMES for $team $self->{end_msg}" if $played == 0;
+	}
 
 	$team_hash->{away_for} 			= $league->get_away_for ($team);
 	$team_hash->{away_against} 		= $league->get_away_against ($team);
@@ -210,6 +216,36 @@ sub calc_goal_diffs {
 	$game->{away_last_six_goal_diff} = _get_average ($away_last_six_gd, $league->get_last_six ($away));
 	$game->{last_six_goal_diff} = _format ( $game->{home_last_six_goal_diff} - $game->{away_last_six_goal_diff} );
 };
+
+#sub calculate_homes {
+#	my ($self, $team_hash, $league, $team) = @_;
+#	my $played = $league->get_home_played ($team);
+
+##	die "\n\n***ZERO HOME GAMES for $team".$self->{end_msg} if $played == 0;
+#	ZEROGAMES { if ($played == 0) {
+#		$played = 1; print "\nZero home games : $team"; <STDIN>;
+#	} }
+
+#	$team_hash->{home_for} 			= $league->get_home_for ($team);
+#	$team_hash->{home_against} 		= $league->get_home_against ($team);
+#	$team_hash->{av_home_for} 		= _format ( $team_hash->{home_for} / $played );
+#	$team_hash->{av_home_against} 	= _format ( $team_hash->{home_against} / $played );
+#}
+
+#sub calculate_aways {
+#	my ($self, $team_hash, $league, $team) = @_;
+#	my $played = $league->get_away_played ($team);
+
+##	die "\n\n***ZERO AWAY GAMES for $team".$self->{end_msg} if $played == 0;
+#	ZEROGAMES { if ($played == 0) {
+#		 $played = 1; print "\nZero away games : $team"; <STDIN>;
+#	 } }
+
+#	$team_hash->{away_for} 			= $league->get_away_for ($team);
+#	$team_hash->{away_against} 		= $league->get_away_against ($team);
+#	$team_hash->{av_away_for} 		= _format ( $team_hash->{away_for} / $played );
+#	$team_hash->{av_away_against} 	= _format ( $team_hash->{away_against} / $played );
+#}
 
 =pod
 

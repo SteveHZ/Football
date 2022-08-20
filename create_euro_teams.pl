@@ -6,7 +6,7 @@
 
 #	DEPRECATED 10/08/22 : To edit names from Football Data CSV files, use Euro::Rename
 
-# 	German done 03/08/22
+# 	All leagues done 16/08/22, script run
 
 use strict;
 use warnings;
@@ -42,7 +42,6 @@ my $leagues = {
 		'Werder Bremen',
     ],
     'Spanish' => [
-        'Alaves',
         'Ath Bilbao',
         'Ath Madrid',
         'Barcelona',
@@ -52,8 +51,6 @@ my $leagues = {
 		'Elche',
         'Espanol',
         'Getafe',
-        'Granada',
-        'Levante',
         'Mallorca',
         'Osasuna',
         'Real Madrid',
@@ -62,14 +59,15 @@ my $leagues = {
 		'Valencia',
 		'Vallecano',
 		'Villarreal',
+		'Valladolid',
+		'Almeria',
+		'Girona',
     ],
     'Italian' => [
         'Atalanta',
         'Bologna',
-        'Cagliari',
 		'Empoli',
         'Fiorentina',
-        'Genoa',
         'Inter',
         'Juventus',
         'Lazio',
@@ -82,8 +80,10 @@ my $leagues = {
 		'Spezia',
         'Torino',
         'Udinese',
+		'Lecce',
+		'Monza',
 		'Verona',
-		'Venezia',
+		'Cremonese',
     ],
 };
 

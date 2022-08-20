@@ -157,7 +157,7 @@ Hartlepool United,Hartlepool
 Harrogate Town,Harrogate
 Solihull Moors,Solihull
 Aldershot Town,Aldershot
-Dorking Wanderers, Dorking
+Dorking Wanderers,Dorking
 #Macclesfield Town,Macclesfield
 Tranmere Rovers,Tranmere
 Ebbsfleet United,Ebbsfleet
@@ -189,20 +189,20 @@ Stirling Albion,Stirling
 FC Edinburgh,Edinburgh
 
 #	Welsh
-Llandudno FC,Llandudno
-Llanelli Town,Llanelli
-Aberystwyth Town,Aberystwyth
-Connah's Quay Nomads,Connahs Quay
-The New Saints,TNS
-Airbus UK Broughton,Airbus
-Barry Town United,Barry Town
+#Llandudno FC,Llandudno
+#Llanelli Town,Llanelli
+#Aberystwyth Town,Aberystwyth
+#Connah's Quay Nomads,Connahs Quay
+#The New Saints,TNS
+#Airbus UK Broughton,Airbus
+#Barry Town United,Barry Town
 
 #	N Irish
-Ballymena United,Ballymena
-Dungannon Swifts,Dungannon
-Institute FC,Institute
-Newry City AFC,Newry City
-Warrenpoint Town,Warrenpoint
+#Ballymena United,Ballymena
+#Dungannon Swifts,Dungannon
+#Institute FC,Institute
+#Newry City AFC,Newry City
+#Warrenpoint Town,Warrenpoint
 
 #	Swedish
 Helsingborgs,Helsingborg
@@ -227,7 +227,6 @@ Athletic Bilbao,Ath Bilbao
 Atletico Madrid,Ath Madrid
 Real Valladolid,Valladolid
 Real Betis,Betis
-Arminia Bielefeld,Bielefeld
 Cádiz,Cadiz
 
 #	German
@@ -242,54 +241,55 @@ Eintracht Frankfurt,Ein Frankfurt
 FC Augsburg,Augsburg
 FC Union Berlin,Union Berlin
 SC Freiburg,Freiburg
-#RB Leipzig,Leipzig
 VfL Bochum 1848,Bochum
-SpVgg Greuther Furth,Greuther Furth
 Bochum48,Bochum
+#RB Leipzig,Leipzig
+#SpVgg Greuther Furth,Greuther Furth
+#Arminia Bielefeld,Bielefeld
 
 #	Italian
-SPAL,Spal
 Inter Milan,Inter
-Milan,Milan
+AC Milan,Milan
+#SPAL,Spal
 
 #	Australian
-Melbourne City FC,Melbourne City
-Brisbane Roar FC,Brisbane Roar
-Western United FC,Western United
-Western Sydney Wanderers FC,Western Sydney Wdrs
+#Melbourne City FC,Melbourne City
+#Brisbane Roar FC,Brisbane Roar
+#Western United FC,Western United
+#Western Sydney Wanderers FC,Western Sydney Wdrs
 END_FOOTBALL_TEAMS
 
 #	Rugby League
-Castleford,Castleford Tigers
-Wakefield,Wakefield Trinity
-Wigan,Wigan Warriors
-Leeds,Leeds Rhinos
-Hudd'sfld,Huddersfield
-Salford,Salford Red Devils
-Warrington,Warrington Wolves
-Catalans,Catalans Dragons
-Widnes,Widnes Vikings
-Dewsbury,Dewsbury Rams
-Rochdale,Rochdale Hornets
-Toulouse,Toulouse Olympique
-London,London Broncos
-Featherstone,Featherstone Rovers
-Leigh,Leigh Centurions
-Toronto,Toronto Wolfpack
-Barrow,Barrow Raiders
-York,York City Knights
-Coventry,Coventry Bears
-Hunslet,Hunslet Hawks
-Keighley,Keighley Cougars
-Crusaders,North Wales Crusaders
-Raiders,West Wales Raiders
-Workington,Workington Town
-Newcastle,Newcastle Thunder
-Bradford,Bradford Bulls
-Cronulla Sutherland Sharks,Cronulla Sharks
-St George Illawarra Dragons,St.George Illawarra
-Canterbury Bankstown Bulldogs,Canterbury Bulldogs
-Manly Warringah Sea Eagles,Manly Sea Eagles
+#Castleford,Castleford Tigers
+#Wakefield,Wakefield Trinity
+#Wigan,Wigan Warriors
+#Leeds,Leeds Rhinos
+#Hudd'sfld,Huddersfield
+#Salford,Salford Red Devils
+#Warrington,Warrington Wolves
+#Catalans,Catalans Dragons
+#Widnes,Widnes Vikings
+#Dewsbury,Dewsbury Rams
+#Rochdale,Rochdale Hornets
+#Toulouse,Toulouse Olympique
+#London,London Broncos
+#Featherstone,Featherstone Rovers
+#Leigh,Leigh Centurions
+#Toronto,Toronto Wolfpack
+#Barrow,Barrow Raiders
+#York,York City Knights
+#Coventry,Coventry Bears
+#Hunslet,Hunslet Hawks
+#Keighley,Keighley Cougars
+#Crusaders,North Wales Crusaders
+#Raiders,West Wales Raiders
+#Workington,Workington Town
+#Newcastle,Newcastle Thunder
+#Bradford,Bradford Bulls
+#Cronulla Sutherland Sharks,Cronulla Sharks
+#St George Illawarra Dragons,St.George Illawarra
+#Canterbury Bankstown Bulldogs,Canterbury Bulldogs
+#Manly Warringah Sea Eagles,Manly Sea Eagles
 END_RUGBY_TEAMS
 
 Premier League,E0
@@ -349,24 +349,24 @@ Asian,X
 UEFA,Xs
 END_FOOTBALL_LEAGUES
 
-Betfred Super League,SL
-Betfred Championship,CH
-Betfred League One,L1
-Australian National Rugby League Telstra Premiership,NRL
-National Conference Premier,X
-National Conference Division 1,X
-National Conference Division 2,X
-Conference Premier Division,X
-Conference Division One,X
-Conference Division Two,X
-Coral Challenge Cup,X
-League 1,L1
-Qualifiers,M8
-Shield,SH
-Australian,AL
-Round,X
-Quarter,X
-Semi,X
+#Betfred Super League,SL
+#Betfred Championship,CH
+#Betfred League One,L1
+#Australian National Rugby League Telstra Premiership,NRL
+#National Conference Premier,X
+#National Conference Division 1,X
+#National Conference Division 2,X
+#Conference Premier Division,X
+#Conference Division One,X
+#Conference Division Two,X
+#Coral Challenge Cup,X
+#League 1,L1
+#Qualifiers,M8
+#Shield,SH
+#Australian,AL
+#Round,X
+#Quarter,X
+#Semi,X
 END_RUGBY_LEAGUES
 
 =pod

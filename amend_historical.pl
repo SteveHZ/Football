@@ -1,6 +1,6 @@
 # amend_historical.pl 08-10/03/21
 
-# Run perl archive_csv.pl to copy original historical data to to 'Football Data files' folder
+# Run perl archive_csv.pl to copy original historical data to 'Football Data files' folder
 # then use this script to amend team names as per Football::Fetch_Amend
 
 use strict;

@@ -111,7 +111,7 @@ though only after having to investigate why the errors were occuring AGAIN !!!.
 This section should copy last season's data to a back-up file then start again from an empty $self->{history} array.
 This appears to work in testing, but would recommend manual backups first for 2022-23 season, then let it run through
 to check it works correctly. 
-
+Worked OK August 2022
 =end comment
 =cut
 
@@ -119,8 +119,8 @@ sub check_history {
 	my ($self, $year) = @_;
 
 	unless (defined $self->{history}->@[0]->{'Premier League'}->{$year}) {
-		print "\nIMPORTANT : 08/09/21 - This APPEARS to work correctly but would recommend choosing NO first and creating manual back-ups";
-		print "\nJust to be on the safe side - see Football::Favourites::Model::check_history";
+#		print "\nIMPORTANT : 08/09/21 - This APPEARS to work correctly but would recommend choosing NO first and creating manual back-ups";
+#		print "\nJust to be on the safe side - see Football::Favourites::Model::check_history";
 		my $yn = prompt ("\nDelete data for last season from $self->{json_file} and create back-up for $last_season ? (y/n to quit) ", "> ");
 		if ($yn eq 'n') {
 			die "\nPlease delete data manually from history file : $self->{json_file}\n";
