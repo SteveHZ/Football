@@ -10,7 +10,7 @@ use MyLib qw(prompt);
 
 use Moo;
 use namespace::clean;
-with 'Roles::MyJSON';
+with 'Roles::MyJSON'; # read_json
 
 has 'hash' => ( is => 'ro' );
 has 'json_file' => ( is => 'ro' );

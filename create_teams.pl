@@ -10,13 +10,6 @@
 
 #	DEPRECATED 10/08/22 : To edit names from Football Data CSV files, use Euro::Rename
 
-# 	IMPORTANT !!!
-# 	See Football::Favourites::Model re start of next season !!!
-
-#	All leagues done 16/06/22
-#	Ran script and pasted in sorted teams 18/06/22, Lisp file not created so need to run again at start of season
-# 	Checked new team names and re-ran full script 13/08/22
-
 use strict;
 use warnings;
 
@@ -154,7 +147,7 @@ my $leagues = {
         'Woking',
         'Wrexham',
         'Yeovil',
-        'York City',
+        'York',
     ],
     'Scots Premier' => [
         'Aberdeen',

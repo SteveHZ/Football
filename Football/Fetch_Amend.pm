@@ -22,9 +22,6 @@ sub get_uk_hash {
 		'E3' => [
 			sub { $_[0] =~ s/AFC Wimbledon/Wimbledon/g },
 		],
-		'EC' => [
-			sub { $_[0] =~ s/York/York City/g },
-		],
 		'SC1' => [
 			sub { $_[0] =~ s/Inverness C/Inverness/g },
 		],
@@ -38,6 +35,10 @@ sub get_euro_hash {
 	return {
 		'D1' => [
 			sub { $_[0] =~ s/M'gladbach/Mgladbach/g },
+			sub { $_[0] =~ s/Schalke 04/Schalke/g },
+		],
+		'F1' => [
+			sub { $_[0] =~ s/Paris SG/PSG/g },
 		],
 	};
 }

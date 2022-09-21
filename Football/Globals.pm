@@ -101,9 +101,9 @@ our @euro_csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 D1 D2 SP1 SP2 I1 I2 F
 
 # for max_profit.pl, db.pl and fetch.pl
 
-our @euro_lgs = ('German', 'Spanish', 'Italian');
-our @euro_csv_lgs = qw( D1 SP1 I1);
-our @euro_fetch_lgs = qw( D1 SP1 I1);
+our @euro_lgs = ('German', 'Spanish', 'Italian', 'French');
+our @euro_csv_lgs = qw( D1 SP1 I1 F1);
+our @euro_fetch_lgs = qw( D1 SP1 I1 F1);
 
 #our @euro_lgs = ('German', 'Spanish', 'Italian', 'Welsh', 'N Irish');
 #our @euro_csv_lgs = qw( D1 SP1 I1 WL NI);

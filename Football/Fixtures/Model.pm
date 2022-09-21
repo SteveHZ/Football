@@ -159,6 +159,7 @@ sub do_foreign_chars {
 	$$dataref =~ s/$_/a/g for (qw(ä å));
 	$$dataref =~ s/$_/o/g for (qw(ö ø));
 	$$dataref =~ s/é/e/g;
+	$$dataref =~ s/í/i/g;
 	$$dataref =~ s/Ú/e/g; # for test
 	$$dataref =~ s/Ö/O/g;
 	$$dataref =~ s/ü/u/g;

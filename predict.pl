@@ -4,7 +4,7 @@
 
 BEGIN {
 #$ENV{PERL_KEYWORD_DEVELOPMENT} = 1;
-$ENV{PERL_KEYWORD_ZEROGAMES} = 1;
+#$ENV{PERL_KEYWORD_ZEROGAMES} = 1;
 }
 
 use strict;
@@ -23,8 +23,9 @@ use Summer::View;
 use Football::Favourites::Controller;
 use Football::Game_Predictions::Controller;
 
-use MyKeyword qw(ZEROGAMES);
+use MyKeyword qw(ZEROGAMES DEVELOPMENT);
 ZEROGAMES { print "\nZEROGAMES pragma in place !!"; <STDIN>; }
+DEVELOPMENT { print "\nLogging activated !!"; <STDIN>; }
 
 use Log::Log4perl;
 Log::Log4perl->init ("log.conf");

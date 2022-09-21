@@ -167,13 +167,14 @@ Salford City,Salford
 Stockport County,Stockport
 Torquay United,Torquay
 #King's Lynn Town,Kings Lynn
+York City,York,
 
 #	Scottish
 Partick Thistle,Partick
 Hamilton Academical,Hamilton
 Heart of Midlothian,Hearts
 Queen of the South,Queen of Sth
-Brechin City,Brechin
+#Brechin City,Brechin
 Inverness Caledonian Thistle,Inverness
 Greenock Morton,Morton
 Alloa Athletic,Alloa
@@ -183,7 +184,7 @@ Airdrieonians,Airdrie Utd
 Raith Rovers,Raith Rvs
 Albion Rovers,Albion Rvs
 Forfar Athletic,Forfar
-Berwick Rangers,Berwick
+#Berwick Rangers,Berwick
 Elgin City,Elgin
 Stirling Albion,Stirling
 FC Edinburgh,Edinburgh
@@ -232,7 +233,7 @@ Cádiz,Cadiz
 #	German
 Hertha Berlin,Hertha
 FC Nuremberg,Nurnberg
-FC Schalke,Schalke 04
+FC Schalke,Schalke
 Mainz 05,Mainz
 Borussia Monchengladbach,Mgladbach
 Bayer Leverkusen,Leverkusen
@@ -251,6 +252,9 @@ Bochum48,Bochum
 Inter Milan,Inter
 AC Milan,Milan
 #SPAL,Spal
+
+#	French
+Paris Saint Germain,PSG
 
 #	Australian
 #Melbourne City FC,Melbourne City
@@ -320,7 +324,8 @@ Cymru Premier,X
 Irish Premiership,X
 Spanish Copa del Rey,X
 Italian Coppa Italia,X
-#Trophy,X
+FA Trophy,X
+Trophy,X
 Women,X
 International,X
 World,X

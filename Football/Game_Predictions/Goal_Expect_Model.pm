@@ -13,7 +13,6 @@ sub BUILD {
 		"\n*********************************************************************************************
 		\nEnable ZEROGAMES pragma in predict.pl and add team name to remove_teams array in fixtures2.pl
 		\n*********************************************************************************************\n";
-#		\nAlso amend calculate_homes and calculate_aways subs in Goal_Expect_Model !!
 }
 
 #	private methods

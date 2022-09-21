@@ -4,14 +4,10 @@ use strict;
 use warnings;
 
 use List::Util qw(any);
-use Football::Fixtures_Globals qw( football_rename );
-#use Football::Fixtures_Globals qw( football_rename rugby_rename );
+use Football::Fixtures_Globals qw( football_rename rugby_rename );
 
-my @remove_teams = (
-	'Coventry', # 20/08/22 ??
-);
+my @remove_teams = ();
 # Once array is empty, remove ZEROGAMES pragma in predict.pl
-## then amend calculate_homes and calculate_aways subs in Goal_Expect_Model.pm
 
 my @paths = (
 	{
@@ -71,8 +67,8 @@ perl fixtures.pl
 
 =head1 DESCRIPTION
 
- Run fixtures to write out 'fixtures_week.csv' then edit as required
- Run fixtures2.pl to write out finished 'fixtures.csv' file
+ Run fixtures.pl to write out 'fixtures_week.csv' then remove unwanted fixtures as required
+ Run fixtures2.pl to write out finished 'fixtures.csv' file with amended team names
 
 =head1 AUTHOR
 

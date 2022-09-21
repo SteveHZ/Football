@@ -1,0 +1,256 @@
+[2022/08/23 19:37:57 DEBUG League.pm 113] - 05/08/2022 : Ein Frankfurt v Bayern Munich
+[2022/08/23 19:37:57 DEBUG League.pm 113] - 06/08/2022 : Augsburg v Freiburg
+[2022/08/23 19:37:57 DEBUG League.pm 113] - 06/08/2022 : Bochum v Mainz
+[2022/08/23 19:37:57 DEBUG League.pm 113] - 06/08/2022 : Mgladbach v Hoffenheim
+[2022/08/23 19:37:57 DEBUG League.pm 113] - 06/08/2022 : Union Berlin v Hertha
+[2022/08/23 19:37:57 DEBUG League.pm 113] - 06/08/2022 : Wolfsburg v Werder Bremen
+[2022/08/23 19:37:57 DEBUG League.pm 113] - 06/08/2022 : Dortmund v Leverkusen
+[2022/08/23 19:37:57 DEBUG League.pm 113] - 07/08/2022 : Stuttgart v RB Leipzig
+[2022/08/23 19:37:57 DEBUG League.pm 113] - 07/08/2022 : FC Koln v Schalke 04
+[2022/08/23 20:25:03 DEBUG League.pm 113] - 05/08/2022 : Ein Frankfurt v Bayern Munich
+[2022/08/23 20:25:03 DEBUG League.pm 113] - 06/08/2022 : Augsburg v Freiburg
+[2022/08/23 20:25:03 DEBUG League.pm 113] - 06/08/2022 : Bochum v Mainz
+[2022/08/23 20:25:03 DEBUG League.pm 113] - 06/08/2022 : Mgladbach v Hoffenheim
+[2022/08/23 20:25:03 DEBUG League.pm 113] - 06/08/2022 : Union Berlin v Hertha
+[2022/08/23 20:25:03 DEBUG League.pm 113] - 06/08/2022 : Wolfsburg v Werder Bremen
+[2022/08/23 20:25:03 DEBUG League.pm 113] - 06/08/2022 : Dortmund v Leverkusen
+[2022/08/23 20:25:03 DEBUG League.pm 113] - 07/08/2022 : Stuttgart v RB Leipzig
+[2022/08/23 20:25:03 DEBUG League.pm 113] - 07/08/2022 : FC Koln v Schalke 04
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 05/08/2022 : Ein Frankfurt v Bayern Munich
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 06/08/2022 : Augsburg v Freiburg
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 06/08/2022 : Bochum v Mainz
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 06/08/2022 : Mgladbach v Hoffenheim
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 06/08/2022 : Union Berlin v Hertha
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 06/08/2022 : Wolfsburg v Werder Bremen
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 06/08/2022 : Dortmund v Leverkusen
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 07/08/2022 : Stuttgart v RB Leipzig
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 07/08/2022 : FC Koln v Schalke
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 12/08/2022 : Freiburg v Dortmund
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 13/08/2022 : Hertha v Ein Frankfurt
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 13/08/2022 : Hoffenheim v Bochum
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 13/08/2022 : Leverkusen v Augsburg
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 13/08/2022 : RB Leipzig v FC Koln
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 13/08/2022 : Werder Bremen v Stuttgart
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 13/08/2022 : Schalke v Mgladbach
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 14/08/2022 : Mainz v Union Berlin
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 14/08/2022 : Bayern Munich v Wolfsburg
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 12/08/2022 : Osasuna v Sevilla
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 13/08/2022 : Celta v Espanol
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 13/08/2022 : Valladolid v Villarreal
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 13/08/2022 : Barcelona v Vallecano
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 14/08/2022 : Cadiz v Sociedad
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 14/08/2022 : Valencia v Girona
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 14/08/2022 : Almeria v Real Madrid
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 13/08/2022 : Milan v Udinese
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 13/08/2022 : Sampdoria v Atalanta
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 13/08/2022 : Lecce v Inter
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 13/08/2022 : Monza v Torino
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 14/08/2022 : Fiorentina v Cremonese
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 14/08/2022 : Lazio v Bologna
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 14/08/2022 : Salernitana v Roma
+[2022/08/23 20:27:53 DEBUG League.pm 113] - 14/08/2022 : Spezia v Empoli
+[2022/08/24 18:19:32 DEBUG League.pm 113] - 05/08/2022 : Ein Frankfurt v Bayern Munich
+[2022/08/24 18:19:32 DEBUG League.pm 113] - 06/08/2022 : Augsburg v Freiburg
+[2022/08/24 18:19:32 DEBUG League.pm 113] - 06/08/2022 : Bochum v Mainz
+[2022/08/24 18:19:32 DEBUG League.pm 113] - 06/08/2022 : M'gladbach v Hoffenheim
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 05/08/2022 : Ein Frankfurt v Bayern Munich
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 06/08/2022 : Augsburg v Freiburg
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 06/08/2022 : Bochum v Mainz
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 06/08/2022 : Mgladbach v Hoffenheim
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 06/08/2022 : Union Berlin v Hertha
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 06/08/2022 : Wolfsburg v Werder Bremen
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 06/08/2022 : Dortmund v Leverkusen
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 07/08/2022 : Stuttgart v RB Leipzig
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 07/08/2022 : FC Koln v Schalke
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 12/08/2022 : Freiburg v Dortmund
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 13/08/2022 : Hertha v Ein Frankfurt
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 13/08/2022 : Hoffenheim v Bochum
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 13/08/2022 : Leverkusen v Augsburg
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 13/08/2022 : RB Leipzig v FC Koln
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 13/08/2022 : Werder Bremen v Stuttgart
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 13/08/2022 : Schalke v Mgladbach
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 14/08/2022 : Mainz v Union Berlin
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 14/08/2022 : Bayern Munich v Wolfsburg
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 19/08/2022 : Mgladbach v Hertha
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 20/08/2022 : Augsburg v Mainz
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 20/08/2022 : Dortmund v Werder Bremen
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 20/08/2022 : Leverkusen v Hoffenheim
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 20/08/2022 : Stuttgart v Freiburg
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 20/08/2022 : Wolfsburg v Schalke
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 20/08/2022 : Union Berlin v RB Leipzig
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 21/08/2022 : Ein Frankfurt v FC Koln
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 21/08/2022 : Bochum v Bayern Munich
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 12/08/2022 : Osasuna v Sevilla
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 13/08/2022 : Celta v Espanol
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 13/08/2022 : Valladolid v Villarreal
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 13/08/2022 : Barcelona v Vallecano
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 14/08/2022 : Cadiz v Sociedad
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 14/08/2022 : Valencia v Girona
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 14/08/2022 : Almeria v Real Madrid
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 15/08/2022 : Ath Bilbao v Mallorca
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 15/08/2022 : Getafe v Ath Madrid
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 15/08/2022 : Betis v Elche
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 19/08/2022 : Espanol v Vallecano
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 19/08/2022 : Sevilla v Valladolid
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 20/08/2022 : Osasuna v Cadiz
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 20/08/2022 : Mallorca v Betis
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 20/08/2022 : Celta v Real Madrid
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 21/08/2022 : Ath Bilbao v Valencia
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 21/08/2022 : Ath Madrid v Villarreal
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 21/08/2022 : Sociedad v Barcelona
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 22/08/2022 : Elche v Almeria
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 22/08/2022 : Girona v Getafe
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 13/08/2022 : Milan v Udinese
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 13/08/2022 : Sampdoria v Atalanta
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 13/08/2022 : Lecce v Inter
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 13/08/2022 : Monza v Torino
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 14/08/2022 : Fiorentina v Cremonese
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 14/08/2022 : Lazio v Bologna
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 14/08/2022 : Salernitana v Roma
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 14/08/2022 : Spezia v Empoli
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 15/08/2022 : Verona v Napoli
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 15/08/2022 : Juventus v Sassuolo
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 20/08/2022 : Torino v Lazio
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 20/08/2022 : Udinese v Salernitana
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 20/08/2022 : Inter v Spezia
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 20/08/2022 : Sassuolo v Lecce
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 21/08/2022 : Empoli v Fiorentina
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 21/08/2022 : Napoli v Monza
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 21/08/2022 : Atalanta v Milan
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 21/08/2022 : Bologna v Verona
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 22/08/2022 : Roma v Cremonese
+[2022/08/24 18:21:14 DEBUG League.pm 113] - 22/08/2022 : Sampdoria v Juventus
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 05/08/2022 : Ein Frankfurt v Bayern Munich
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 06/08/2022 : Augsburg v Freiburg
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 06/08/2022 : Bochum v Mainz
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 06/08/2022 : Mgladbach v Hoffenheim
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 06/08/2022 : Union Berlin v Hertha
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 06/08/2022 : Wolfsburg v Werder Bremen
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 06/08/2022 : Dortmund v Leverkusen
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 07/08/2022 : Stuttgart v RB Leipzig
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 07/08/2022 : FC Koln v Schalke
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 12/08/2022 : Freiburg v Dortmund
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 13/08/2022 : Hertha v Ein Frankfurt
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 13/08/2022 : Hoffenheim v Bochum
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 13/08/2022 : Leverkusen v Augsburg
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 13/08/2022 : RB Leipzig v FC Koln
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 13/08/2022 : Werder Bremen v Stuttgart
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 13/08/2022 : Schalke v Mgladbach
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 14/08/2022 : Mainz v Union Berlin
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 14/08/2022 : Bayern Munich v Wolfsburg
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 19/08/2022 : Mgladbach v Hertha
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 20/08/2022 : Augsburg v Mainz
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 20/08/2022 : Dortmund v Werder Bremen
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 20/08/2022 : Leverkusen v Hoffenheim
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 20/08/2022 : Stuttgart v Freiburg
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 20/08/2022 : Wolfsburg v Schalke
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 20/08/2022 : Union Berlin v RB Leipzig
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 21/08/2022 : Ein Frankfurt v FC Koln
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 21/08/2022 : Bochum v Bayern Munich
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 12/08/2022 : Osasuna v Sevilla
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 13/08/2022 : Celta v Espanol
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 13/08/2022 : Valladolid v Villarreal
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 13/08/2022 : Barcelona v Vallecano
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 14/08/2022 : Cadiz v Sociedad
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 14/08/2022 : Valencia v Girona
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 14/08/2022 : Almeria v Real Madrid
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 15/08/2022 : Ath Bilbao v Mallorca
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 15/08/2022 : Getafe v Ath Madrid
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 15/08/2022 : Betis v Elche
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 19/08/2022 : Espanol v Vallecano
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 19/08/2022 : Sevilla v Valladolid
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 20/08/2022 : Osasuna v Cadiz
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 20/08/2022 : Mallorca v Betis
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 20/08/2022 : Celta v Real Madrid
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 21/08/2022 : Ath Bilbao v Valencia
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 21/08/2022 : Ath Madrid v Villarreal
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 21/08/2022 : Sociedad v Barcelona
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 22/08/2022 : Elche v Almeria
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 22/08/2022 : Girona v Getafe
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 13/08/2022 : Milan v Udinese
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 13/08/2022 : Sampdoria v Atalanta
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 13/08/2022 : Lecce v Inter
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 13/08/2022 : Monza v Torino
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 14/08/2022 : Fiorentina v Cremonese
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 14/08/2022 : Lazio v Bologna
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 14/08/2022 : Salernitana v Roma
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 14/08/2022 : Spezia v Empoli
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 15/08/2022 : Verona v Napoli
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 15/08/2022 : Juventus v Sassuolo
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 20/08/2022 : Torino v Lazio
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 20/08/2022 : Udinese v Salernitana
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 20/08/2022 : Inter v Spezia
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 20/08/2022 : Sassuolo v Lecce
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 21/08/2022 : Empoli v Fiorentina
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 21/08/2022 : Napoli v Monza
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 21/08/2022 : Atalanta v Milan
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 21/08/2022 : Bologna v Verona
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 22/08/2022 : Roma v Cremonese
+[2022/08/24 18:26:03 DEBUG League.pm 113] - 22/08/2022 : Sampdoria v Juventus
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 05/08/2022 : Ein Frankfurt v Bayern Munich
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 06/08/2022 : Augsburg v Freiburg
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 06/08/2022 : Bochum v Mainz
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 06/08/2022 : Mgladbach v Hoffenheim
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 06/08/2022 : Union Berlin v Hertha
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 06/08/2022 : Wolfsburg v Werder Bremen
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 06/08/2022 : Dortmund v Leverkusen
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 07/08/2022 : Stuttgart v RB Leipzig
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 07/08/2022 : FC Koln v Schalke
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 12/08/2022 : Freiburg v Dortmund
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 13/08/2022 : Hertha v Ein Frankfurt
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 13/08/2022 : Hoffenheim v Bochum
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 13/08/2022 : Leverkusen v Augsburg
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 13/08/2022 : RB Leipzig v FC Koln
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 13/08/2022 : Werder Bremen v Stuttgart
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 13/08/2022 : Schalke v Mgladbach
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 14/08/2022 : Mainz v Union Berlin
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 14/08/2022 : Bayern Munich v Wolfsburg
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 19/08/2022 : Mgladbach v Hertha
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 20/08/2022 : Augsburg v Mainz
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 20/08/2022 : Dortmund v Werder Bremen
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 20/08/2022 : Leverkusen v Hoffenheim
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 20/08/2022 : Stuttgart v Freiburg
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 20/08/2022 : Wolfsburg v Schalke
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 20/08/2022 : Union Berlin v RB Leipzig
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 21/08/2022 : Ein Frankfurt v FC Koln
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 21/08/2022 : Bochum v Bayern Munich
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 12/08/2022 : Osasuna v Sevilla
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 13/08/2022 : Celta v Espanol
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 13/08/2022 : Valladolid v Villarreal
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 13/08/2022 : Barcelona v Vallecano
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 14/08/2022 : Cadiz v Sociedad
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 14/08/2022 : Valencia v Girona
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 14/08/2022 : Almeria v Real Madrid
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 15/08/2022 : Ath Bilbao v Mallorca
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 15/08/2022 : Getafe v Ath Madrid
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 15/08/2022 : Betis v Elche
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 19/08/2022 : Espanol v Vallecano
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 19/08/2022 : Sevilla v Valladolid
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 20/08/2022 : Osasuna v Cadiz
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 20/08/2022 : Mallorca v Betis
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 20/08/2022 : Celta v Real Madrid
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 21/08/2022 : Ath Bilbao v Valencia
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 21/08/2022 : Ath Madrid v Villarreal
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 21/08/2022 : Sociedad v Barcelona
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 22/08/2022 : Elche v Almeria
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 22/08/2022 : Girona v Getafe
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 13/08/2022 : Milan v Udinese
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 13/08/2022 : Sampdoria v Atalanta
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 13/08/2022 : Lecce v Inter
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 13/08/2022 : Monza v Torino
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 14/08/2022 : Fiorentina v Cremonese
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 14/08/2022 : Lazio v Bologna
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 14/08/2022 : Salernitana v Roma
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 14/08/2022 : Spezia v Empoli
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 15/08/2022 : Verona v Napoli
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 15/08/2022 : Juventus v Sassuolo
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 20/08/2022 : Torino v Lazio
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 20/08/2022 : Udinese v Salernitana
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 20/08/2022 : Inter v Spezia
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 20/08/2022 : Sassuolo v Lecce
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 21/08/2022 : Empoli v Fiorentina
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 21/08/2022 : Napoli v Monza
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 21/08/2022 : Atalanta v Milan
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 21/08/2022 : Bologna v Verona
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 22/08/2022 : Roma v Cremonese
+[2022/08/24 18:33:01 DEBUG League.pm 113] - 22/08/2022 : Sampdoria v Juventus
