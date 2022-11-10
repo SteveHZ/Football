@@ -136,6 +136,7 @@ Cambridge United,Cambridge
 Cheltenham Town,Cheltenham
 Carlisle United,Carlisle
 Colchester United,Colchester
+Crawley Town,Crawley
 Forest Green Rovers,Forest Green
 Luton Town,Luton
 Grimsby Town,Grimsby
@@ -170,6 +171,7 @@ Torquay United,Torquay
 York City,York,
 
 #	Scottish
+Dundee United,Dundee Utd
 Partick Thistle,Partick
 Hamilton Academical,Hamilton
 Heart of Midlothian,Hearts
@@ -180,7 +182,7 @@ Greenock Morton,Morton
 Alloa Athletic,Alloa
 Ayr United,Ayr
 Queen's Park,Queens Park
-Airdrieonians,Airdrie Utd
+Airdrieonians,Airdrie
 Raith Rovers,Raith Rvs
 Albion Rovers,Albion Rvs
 Forfar Athletic,Forfar
@@ -313,6 +315,7 @@ United States Major League Soccer,MLS
 German Bundesliga,D1
 Italian Serie A,I1
 Spanish La Liga,SP1
+French Ligue 1,F1
 #Australian A-League,AUS
 
 Cup,X
@@ -324,6 +327,7 @@ Cymru Premier,X
 Irish Premiership,X
 Spanish Copa del Rey,X
 Italian Coppa Italia,X
+French Coupe de France,X
 FA Trophy,X
 Trophy,X
 Women,X
@@ -339,7 +343,7 @@ Highland League,X
 Lowland League,X
 Russian Premier League,X
 Swiss,X
-French,X
+#French,X
 Belgian,X
 Brazilian,X
 Danish,X
@@ -351,7 +355,8 @@ Dutch,X
 Austrian,X
 Greek,X
 Asian,X
-UEFA,Xs
+UEFA,X
+Australian A-League,X
 END_FOOTBALL_LEAGUES
 
 #Betfred Super League,SL

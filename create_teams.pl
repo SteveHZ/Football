@@ -102,7 +102,7 @@ my $leagues = {
         'Bradford',
         'Carlisle',
         'Colchester',
-        'Crawley Town',
+        'Crawley',
         'Crewe',
         'Doncaster',
         'Gillingham',
@@ -152,7 +152,7 @@ my $leagues = {
     'Scots Premier' => [
         'Aberdeen',
         'Celtic',
-        'Dundee United',
+        'Dundee Utd',
         'Hearts',
         'Hibernian',
         'Kilmarnock',
@@ -176,7 +176,7 @@ my $leagues = {
         'Raith Rvs',
     ],
     'Scots League One' => [
-        'Airdrie Utd',
+        'Airdrie',
         'Alloa',
         'Clyde',
         'Dunfermline',

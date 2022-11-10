@@ -21,12 +21,17 @@ sub get_uk_hash {
 		],
 		'E3' => [
 			sub { $_[0] =~ s/AFC Wimbledon/Wimbledon/g },
+			sub { $_[0] =~ s/Crawley Town/Crawley/g },
+		],
+		'SC0' => [
+			sub { $_[0] =~ s/Dundee United/Dundee Utd/g },
 		],
 		'SC1' => [
 			sub { $_[0] =~ s/Inverness C/Inverness/g },
 		],
 		'SC2' => [
 			sub { $_[0] =~ s/FC Edinburgh/Edinburgh/g },
+			sub { $_[0] =~ s/Airdrie Utd/Airdrie/g },
 		]
 	};
 }
@@ -95,15 +100,24 @@ sub amend_array {
 	}
 }
 
-#		'EC' => [
-## "Lynn," needed because of 29/01/22 Boreham Wood v Kings Lynn REF - S Yianni - regex is greedy !!
-#			sub { $_[0] =~ s/King.*Lynn,/Kings Lynn,/g },
+=begin comment
+# errors in datafiles
 
-#			sub { $_[0] =~ s/Dag & Red/Dag and Red/g }, # errors in EC data file 2021-22
-#			sub { $_[0] =~ s/FC Halifax/Halifax/g },
-#			sub { $_[0] =~ s/Notts Co(?!unty),/Notts County,/g },
-#			sub { $_[0] =~ s/Dover(?! A),/Dover Athletic,/g },
-#		],
+		'EC' => [
+# "Lynn," needed because of 29/01/22 Boreham Wood v Kings Lynn REF - S Yianni - regex is greedy !!
+			sub { $_[0] =~ s/King.*Lynn,/Kings Lynn,/g },
+
+			sub { $_[0] =~ s/Dag & Red/Dag and Red/g }, # errors in EC data file 2021-22
+			sub { $_[0] =~ s/FC Halifax/Halifax/g },
+			sub { $_[0] =~ s/Notts Co(?!unty),/Notts County,/g },
+			sub { $_[0] =~ s/Dover(?! A),/Dover Athletic,/g },
+		],
+		'EC' => [
+			sub { $_[0] =~ s/York City/York/g }, # errors in datafile 2022
+		],
+
+=end comment
+=cut
 
 =pod
 

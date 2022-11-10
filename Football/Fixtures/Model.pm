@@ -195,9 +195,9 @@ sub do_initial_chars {
 	$$dataref =~ s/AC //g;
 	$$dataref =~ s/SPAL/SPAl/g;
 
-	$$dataref =~ s/ \d{4}//g; # Bochum 1848 
+	$$dataref =~ s/ \d{4}(?!:)//g; # Bochum 1848 but not Schalke 0419:30(time)
 	$$dataref =~ s/\d{4} //g; # 1899 Hoffenheim
-	$$dataref =~ s/ \d{2}//g; #04,05,08,96
+	$$dataref =~ s/ \d{2}//g; # 04,05,08,96
 
 	$$dataref =~ s/VfB //g;  # German
 	$$dataref =~ s/VfL //g;
@@ -217,6 +217,8 @@ sub do_initial_chars {
 sub revert {
 	my ($self, $dataref) = @_;
 	$$dataref =~ s/Serie a/Serie A/g;
+	$$dataref =~ s/French Ligue 1x/French Ligue 1/g;
+
 	$$dataref =~ s/Fc/FC/g;
 	$$dataref =~ s/Afc/AFC/g;
 	$$dataref =~ s/Mu(?!n)/MU/g; # Cardiff MU - but not Bayern Munich

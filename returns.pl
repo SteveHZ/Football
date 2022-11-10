@@ -2,7 +2,7 @@
 
 use MyHeader;
 use MyLib qw (read_file);
-use Football::Globals qw($cloud_folder);
+use Football::Globals qw($reports_folder);
 use Football::Spreadsheets::Write_Returns;
 use Football::Spreadsheets::Write_Streaks;
 
@@ -22,8 +22,8 @@ if (! defined $ARGV[0]) {
 	$country = "Euro" if $ARGV[0] eq '-e';
 }
 
-my $returns_filename = "$cloud_folder/returns $country.xlsx";
-#my $streaks_filename = "$cloud_folder/streaks $country.xlsx";
+my $returns_filename = "$reports_folder/returns $country.xlsx";
+my $streaks_filename = "$reports_folder/streaks $country.xlsx";
 
 my @files = (
     {
@@ -31,11 +31,11 @@ my @files = (
         out_file => $returns_filename,
         writer => Football::Spreadsheets::Write_Returns->new (filename => $returns_filename),
     },
-#    {
-#        in_file => "C:/Mine/lisp/data/streaks $country.csv",
-#        out_file => $streaks_filename,
-#        writer => Football::Spreadsheets::Write_Streaks->new (filename => $streaks_filename),
-#    },
+    {
+        in_file => "C:/Mine/lisp/data/streaks $country.csv",
+        out_file => $streaks_filename,
+        writer => Football::Spreadsheets::Write_Streaks->new (filename => $streaks_filename),
+    },
 );
 
 sub build_hash {

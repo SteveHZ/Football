@@ -192,9 +192,8 @@ sub both_sides_yes_odds {
 
 sub both_sides_no {
 	my $self = shift;
-	my $total = 0;
+	my $total = $self->{stats}[0][0];
 
-	$total += $self->{stats}[0][0];
 	for my $score (1..$self->{max}) {
 		$total += $self->{stats}[$score][0];
 		$total += $self->{stats}[0][$score];

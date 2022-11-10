@@ -86,6 +86,7 @@ our @csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 );
 our @fixtures_csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 );
 our @league_size = qw( 20 24 24 24 23 12 10 10 10 ); # clubs in each league
 
+=begin comment
 # for euro.pl
 
 our @euro_leagues = (
@@ -98,6 +99,9 @@ our @euro_leagues = (
 );
 
 our @euro_csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 D1 D2 SP1 SP2 I1 I2 F1 F2 N1 B1 P1 T1 G1 );
+
+=end comment
+=cut
 
 # for max_profit.pl, db.pl and fetch.pl
 
@@ -116,13 +120,13 @@ TESTING { # Do not touch these lines
 	our @summer_csv_leagues = qw(ROI MLS SWE NOR FIN BRZ);
 	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN BRZ);
 } else { # Amend these lines as needed
-	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League' );
-	our @summer_csv_leagues = qw(ROI MLS SWE NOR FIN);
-	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN);
-
 #	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League' );
 #	our @summer_csv_leagues = qw(ROI MLS SWE NOR FIN);
 #	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN);
+
+	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League' );
+	our @summer_csv_leagues = qw(ROI MLS SWE NOR);
+	our @summer_fetch_leagues = qw(IRL USA SWE NOR);
 }
 
 our $csv_fields = {

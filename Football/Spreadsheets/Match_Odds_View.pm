@@ -1,6 +1,6 @@
 package Football::Spreadsheets::Match_Odds_View;
 
-use Football::Globals qw($cloud_folder @csv_leagues);
+use Football::Globals qw($reports_folder @csv_leagues);
 use List::MoreUtils qw(each_arrayref);
 use List::Util qw (any);
 
@@ -49,7 +49,7 @@ sub BUILD {
 
 sub create_sheet {
 	my $self = shift;
-	$self->{filename} = "$cloud_folder/Match Odds UK.xlsx";
+	$self->{filename} = "$reports_folder/Match Odds UK.xlsx";
 }
 
 after 'BUILD' => sub {

@@ -1,6 +1,6 @@
 package Football::Spreadsheets::Recent_Match_Odds_View;
 
-use Football::Globals qw($cloud_folder);
+use Football::Globals qw($reports_folder);
 
 use Moo;
 use namespace::clean;
@@ -9,7 +9,7 @@ extends 'Football::Spreadsheets::Match_Odds_View';
 
 sub create_sheet {
 	my $self = shift;
-	$self->{filename} = "$cloud_folder/Recent Match Odds UK.xlsx";
+	$self->{filename} = "$reports_folder/Recent Match Odds UK.xlsx";
 }
 
 #	Season Match Odds have already been written out by Football::Spreadsheets::Match_Odds_View::view,

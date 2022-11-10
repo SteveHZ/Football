@@ -69,8 +69,6 @@ sub run {
 					$week ++;
 					my $idx = 1;
 					for my $team ($table->sort_table ()->@*) {
-#					my $sorted = $table->sort_table ();
-#					for my $team (@$sorted) {
 						my $name = $team->{team};
 						$teams->{$name}->{position} = $idx ++;
 						$teams->{$name}->{goal_diff} = $table->goal_diff ($name);

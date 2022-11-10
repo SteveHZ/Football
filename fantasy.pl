@@ -42,6 +42,7 @@ for my $row ($data->{elements}) {
 			news => $player->{news},
 			ict_index_rank_type => $player->{ict_index_rank_type},
 			ict_index_rank => $player->{ict_index_rank},
+			value => sprintf "%.2f",( $player->{total_points} / $player->{now_cost} * 100 ), 
         };
     }
 }
@@ -50,7 +51,7 @@ my $sorted = {};
 for my $position (@positions) {
     say "\n".uc $position." :";
     $sorted->{$position} = sort_by_position (\@players, $position);
-    say "$_->{name} $_->{team} $_->{position} $_->{price} $_->{total_points} $_->{points_per_game} $_->{minutes} $_->{news}"
+    say "$_->{name} $_->{team} $_->{position} $_->{price} $_->{total_points} $_->{points_per_game} $_->{minutes} $_->{news} $_->{value}"
 	   for $sorted->{$position}->@*;
 }
 
@@ -61,6 +62,7 @@ sub sort_by_position {
     my ($players, $position) = @_;
     return [
         sort { $b->{total_points} <=> $a->{total_points} or $b->{minutes} <=> $a->{minutes} }
+#		sort { $b->{value} <=> $a->{value} or $b->{total_points} <=> $a->{total_points} }
         grep { $_->{points_per_game} >= 3 }
         grep { $_->{position} eq $position }
         @$players

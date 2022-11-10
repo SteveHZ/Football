@@ -1,0 +1,117 @@
+"$cloud_folder/Match Odds UK.xlsx"
+"$cloud_folder/Recent Match Odds UK.xlsx"
+"$cloud_folder/Match Odds Euro.xlsx"
+"$cloud_folder/Recent Match Odds Euro.xlsx"
+"$cloud_folder/Match Odds Summer.xlsx"
+"$cloud_folder/Recent Match Odds Summer.xlsx"
+"$cloud_folder/fantasy.xlsx"
+
+
+"$cloud_folder/returns UK.xlsx"
+"$cloud_folder/streaks UK.xlsx"
+"$cloud_folder/series s1 UK.xlsx"
+"$cloud_folder/series s2 UK.xlsx"
+"$cloud_folder/series s3 UK.xlsx"
+"$cloud_folder/series stoffo UK.xlsx"
+
+"$cloud_folder/returns Euro.xlsx"
+"$cloud_folder/streaks Euro.xlsx"
+"$cloud_folder/series s1 Euro.xlsx"
+"$cloud_folder/series s2 Euro.xlsx"
+"$cloud_folder/series s3 Euro.xlsx"
+"$cloud_folder/series stoffo Euro.xlsx"
+
+"$cloud_folder/returns Summer.xlsx"
+"$cloud_folder/streaks Summer.xlsx"
+"$cloud_folder/series s1 Summer.xlsx"
+"$cloud_folder/series s2 Summer.xlsx"
+"$cloud_folder/series s2 Summer.xlsx"
+"$cloud_folder/series stoffo Summer.xlsx"
+
+C:\Mine\perl
+> perl find.pl 'c:/mine/perl/football' 'cloud_folder'
+
+/c:/mine/perl/football/returns.pl
+5 : use Football::Globals qw($cloud_folder);
+
+/c:/mine/perl/football/returns.pl
+25 : my $returns_filename = "$cloud_folder/returns $country.xlsx";
+
+/c:/mine/perl/football/returns.pl
+26 : my $streaks_filename = "$cloud_folder/streaks $country.xlsx";
+
+=
+
+/c:/mine/perl/football/series.pl
+5 : use Football::Globals qw($cloud_folder);
+
+/c:/mine/perl/football/series.pl
+44 : my $xlsx_filename = "$cloud_folder/series $series $country.xlsx";
+
+=
+
+/c:/mine/perl/football/Euro/Spreadsheets/Match_Odds_View.pm
+5 : use Football::Globals qw($cloud_folder @euro_csv_lgs);
+
+/c:/mine/perl/football/Euro/Spreadsheets/Match_Odds_View.pm
+14 : self->{filename} = "$cloud_folder/Match Odds Euro.xlsx";
+
+=
+
+/c:/mine/perl/football/Euro/Spreadsheets/Recent_Match_Odds_View.pm
+5 : use Football::Globals qw($cloud_folder);
+
+/c:/mine/perl/football/Euro/Spreadsheets/Recent_Match_Odds_View.pm
+14 : self->{filename} = "$cloud_folder/Recent Match Odds Euro.xlsx";
+
+=
+
+/c:/mine/perl/football/Football/Globals.pm
+39 : cloud_folder
+
+/c:/mine/perl/football/Football/Globals.pm
+180 : our $cloud_folder = 'C:/Users/Steve/OneDrive/Football';
+
+/c:/mine/perl/football/Football/Globals.pm
+181 : our $cloud_folder = 'C:/Users/Steve/Dropbox/Football';
+
+=
+
+/c:/mine/perl/football/Football/Spreadsheets/Fantasy.pm
+4 : use Football::Globals qw ($cloud_folder);
+
+/c:/mine/perl/football/Football/Spreadsheets/Fantasy.pm
+14 : self->{filename} = "$cloud_folder/fantasy.xlsx";
+
+=
+
+/c:/mine/perl/football/Football/Spreadsheets/Match_Odds_View.pm
+3 : use Football::Globals qw($cloud_folder @csv_leagues);
+
+/c:/mine/perl/football/Football/Spreadsheets/Match_Odds_View.pm
+52 : self->{filename} = "$cloud_folder/Match Odds UK.xlsx";
+
+=
+
+/c:/mine/perl/football/Football/Spreadsheets/Recent_Match_Odds_View.pm
+3 : use Football::Globals qw($cloud_folder);
+
+/c:/mine/perl/football/Football/Spreadsheets/Recent_Match_Odds_View.pm
+12 : self->{filename} = "$cloud_folder/Recent Match Odds UK.xlsx";
+
+=
+
+/c:/mine/perl/football/Summer/Spreadsheets/Match_Odds_View.pm
+5 : use Football::Globals qw($cloud_folder @summer_csv_leagues);
+
+/c:/mine/perl/football/Summer/Spreadsheets/Match_Odds_View.pm
+14 : self->{filename} = "$cloud_folder/Match Odds Summer.xlsx";
+
+/c:/mine/perl/football/Summer/Spreadsheets/Recent_Match_Odds_View.pm
+5 : use Football::Globals qw($cloud_folder);
+
+/c:/mine/perl/football/Summer/Spreadsheets/Recent_Match_Odds_View.pm
+14 : self->{filename} = "$cloud_folder/Recent Match Odds Summer.xlsx";
+
+C:\Mine\perl
+>
