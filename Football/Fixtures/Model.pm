@@ -18,6 +18,7 @@ use namespace::clean;
 
 my $str = join '|', keys %football_fixtures_leagues;
 my $leagues = qr/$str/;
+#print Dumper $leagues;<STDIN>;
 
 my $rx = Football::Fixtures::RegX->new ();
 my $time = $rx->time;
@@ -170,6 +171,7 @@ sub do_initial_chars {
 	my ($self, $dataref) = @_;
 	$$dataref =~ s/(Serie|Division) A/$1 a/g;
 	$$dataref =~ s/French Ligue 1/French Ligue 1x/g;
+#	$$dataref =~ s/The FA Women's Championship/Women's/g;
 
 #	Order is important here !
 	$$dataref =~ s/ CF//g; # Inter Miami - remove this first before amending FC !!!
@@ -195,7 +197,7 @@ sub do_initial_chars {
 	$$dataref =~ s/AC //g;
 	$$dataref =~ s/SPAL/SPAl/g;
 
-	$$dataref =~ s/ \d{4}(?!:)//g; # Bochum 1848 but not Schalke 0419:30(time)
+	$$dataref =~ s/ \d{4}(?!:)//g; # match Bochum 1848 but not Schalke 0419:30(time) or Mainz 05...
 	$$dataref =~ s/\d{4} //g; # 1899 Hoffenheim
 	$$dataref =~ s/ \d{2}//g; # 04,05,08,96
 
@@ -218,10 +220,11 @@ sub revert {
 	my ($self, $dataref) = @_;
 	$$dataref =~ s/Serie a/Serie A/g;
 	$$dataref =~ s/French Ligue 1x/French Ligue 1/g;
+#	$$dataref =~ s/FA Women's Championshipx/FA Women's Championship/g;
 
 	$$dataref =~ s/Fc/FC/g;
 	$$dataref =~ s/Afc/AFC/g;
-	$$dataref =~ s/Mu(?!n)/MU/g; # Cardiff MU - but not Bayern Munich
+	$$dataref =~ s/Mu(?!n)/MU/g; # match Cardiff MU - but not Bayern Munich
 	$$dataref =~ s/AIk/AIK/g;
 	$$dataref =~ s/KUPS/KuPS/g;
 	$$dataref =~ s/SJk/SJK/g;

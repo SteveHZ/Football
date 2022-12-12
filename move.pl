@@ -36,6 +36,9 @@ my @files = (
 	{ src => "$reports_folder/series s2 Summer.xlsx", dest => "$cloud_folder/Summer/series s2 Summer.xlsx" },
 	{ src => "$reports_folder/series s3 Summer.xlsx", dest => "$cloud_folder/Summer/series s3 Summer.xlsx" },
 	{ src => "$reports_folder/series stoffo Summer.xlsx", dest => "$cloud_folder/Summer/series stoffo Summer.xlsx" },
+
+	{ src => 'C:/Mine/My Dime List.csv', dest => 'C:/Users/Steve/OneDrive/Documents/My Dime List.csv' },
+
 );
 
 for my $file (@files) {

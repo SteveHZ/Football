@@ -319,10 +319,12 @@ French Ligue 1,F1
 #Australian A-League,AUS
 
 Cup,X
+The FA Women's Championship,X
+The FA Women's Super League,X
+Women,X
 The FA,X
 FA Cup,X
 EFL,X
-The FA Women's Championship,X
 Cymru Premier,X
 Irish Premiership,X
 Spanish Copa del Rey,X
