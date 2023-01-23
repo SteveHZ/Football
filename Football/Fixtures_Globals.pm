@@ -14,6 +14,7 @@ our @EXPORT = qw(
 	%rugby_rename
 	%football_fixtures_leagues
 	%rugby_fixtures_leagues
+	%womens_football_fixtures_leagues
 );
 @EXPORT_OK  = qw( football_rename rugby_rename );
 %EXPORT_TAGS = (all => [ @EXPORT, @EXPORT_OK ]);
@@ -23,6 +24,7 @@ sub new { return bless {}, shift; }
 our %football_rename = ();
 our %rugby_rename = ();
 our %football_fixtures_leagues = ();
+our %womens_football_fixtures_leagues = ();
 our %rugby_fixtures_leagues = ();
 
 my @datarefs = (
@@ -30,6 +32,7 @@ my @datarefs = (
 	{ hashref => \%rugby_rename, end_token => 'END_RUGBY_TEAMS' },
 	{ hashref => \%football_fixtures_leagues, end_token => 'END_FOOTBALL_LEAGUES' },
 	{ hashref => \%rugby_fixtures_leagues, end_token => 'END_RUGBY_LEAGUES' },
+	{ hashref => \%womens_football_fixtures_leagues, end_token => 'END_WOMENS_FOOTBALL_LEAGUES' },
 );
 
 for my $dataref (@datarefs) {
@@ -319,11 +322,9 @@ French Ligue 1,F1
 #Australian A-League,AUS
 
 Cup,X
-The FA Women's Championship,X
-The FA Women's Super League,X
-Women,X
 The FA,X
 FA Cup,X
+Scottish League Cup,X
 EFL,X
 Cymru Premier,X
 Irish Premiership,X
@@ -332,7 +333,7 @@ Italian Coppa Italia,X
 French Coupe de France,X
 FA Trophy,X
 Trophy,X
-Women,X
+#Women,X
 International,X
 World,X
 Euro,X
@@ -380,6 +381,12 @@ END_FOOTBALL_LEAGUES
 #Quarter,X
 #Semi,X
 END_RUGBY_LEAGUES
+
+The FA Women's Super League,X
+The FA Women's Champ,X
+#Women,X
+Scottish Women's Prem,X
+END_WOMENS_FOOTBALL_LEAGUES
 
 =pod
 

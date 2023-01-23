@@ -1,7 +1,7 @@
 package Football::Fixtures::Model;
 
 use Football::Globals qw(@csv_leagues @summer_csv_leagues @euro_csv_lgs);
-use Football::Fixtures_Globals qw(%football_fixtures_leagues %rugby_fixtures_leagues);
+use Football::Fixtures_Globals qw(%football_fixtures_leagues %womens_football_fixtures_leagues);
 use Football::Fixtures::Scraper_Model;
 use Football::Fixtures::RegX;
 use MyDate qw( $month_names );
@@ -17,8 +17,9 @@ use Moo;
 use namespace::clean;
 
 my $str = join '|', keys %football_fixtures_leagues;
+my $wstr = join '|', keys %womens_football_fixtures_leagues;
 my $leagues = qr/$str/;
-#print Dumper $leagues;<STDIN>;
+my $womens_leagues = qr/$wstr/;
 
 my $rx = Football::Fixtures::RegX->new ();
 my $time = $rx->time;
@@ -71,14 +72,19 @@ sub prepare {
 	$$dataref =~ s/All times are UK .*$//g;
 #	$rx->remove_postponed ($dataref);
 
+#	Work-around to ensure that Women's leagues don't get confused with Men's leagues
+	$$dataref =~ s/The FA Women's Championship/The FA Women's Champ/g;
+	$$dataref =~ s/Scottish Women's Premier League 1/Scottish Women's Prem/g;
+
 #	Identify known leagues
+	$$dataref =~ s/($womens_leagues)/\n<LEAGUE>$1/g;
 	$$dataref =~ s/($leagues)/\n<LEAGUE>$1/g;
 
 #	Work-arounds
 	$self->do_initial_chars ($dataref);
 	$self->do_foreign_chars ($dataref);
 
-# print Dumper $dataref;<STDIN>;
+#	print Dumper $dataref;<STDIN>;
 
 #	Find where team names start
 	$$dataref =~ s/($lower)($upper)/$1\n$day $date,$2/g;
@@ -171,7 +177,6 @@ sub do_initial_chars {
 	my ($self, $dataref) = @_;
 	$$dataref =~ s/(Serie|Division) A/$1 a/g;
 	$$dataref =~ s/French Ligue 1/French Ligue 1x/g;
-#	$$dataref =~ s/The FA Women's Championship/Women's/g;
 
 #	Order is important here !
 	$$dataref =~ s/ CF//g; # Inter Miami - remove this first before amending FC !!!
@@ -195,7 +200,7 @@ sub do_initial_chars {
 	$$dataref =~ s/ SC//g;
 	$$dataref =~ s/SC //g;
 	$$dataref =~ s/AC //g;
-	$$dataref =~ s/SPAL/SPAl/g;
+#	$$dataref =~ s/SPAL/SPAl/g;
 
 	$$dataref =~ s/ \d{4}(?!:)//g; # match Bochum 1848 but not Schalke 0419:30(time) or Mainz 05...
 	$$dataref =~ s/\d{4} //g; # 1899 Hoffenheim
@@ -220,7 +225,6 @@ sub revert {
 	my ($self, $dataref) = @_;
 	$$dataref =~ s/Serie a/Serie A/g;
 	$$dataref =~ s/French Ligue 1x/French Ligue 1/g;
-#	$$dataref =~ s/FA Women's Championshipx/FA Women's Championship/g;
 
 	$$dataref =~ s/Fc/FC/g;
 	$$dataref =~ s/Afc/AFC/g;
@@ -228,7 +232,7 @@ sub revert {
 	$$dataref =~ s/AIk/AIK/g;
 	$$dataref =~ s/KUPS/KuPS/g;
 	$$dataref =~ s/SJk/SJK/g;
-	$$dataref =~ s/SPAl/SPAL/g;
+#	$$dataref =~ s/SPAl/SPAL/g;
 	$$dataref =~ s/UCd/UCD/g;
 	$$dataref =~ s/KTp/KTP/g;
 	$$dataref =~ s/Hamkam/HamKam/g;
@@ -241,9 +245,10 @@ sub revert {
 sub _transform_hash {
     my $old_hash = shift;
     my %new_hash = ();
+
     for my $key (keys %$old_hash) {
 		map {
-			$new_hash{$_} = $key
+			$new_hash{$_} = $key;
 		} $old_hash->{$key}->@*;
     }
     return \%new_hash;
