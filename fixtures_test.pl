@@ -9,7 +9,7 @@ use Data::Dumper;
 use Football::FIxtures::Model;
 
 my $day = "Sun";
-my $date = "2023-01-15";
+my $date = "2023-01-29";
 
 my $games = read_file ("C:/Mine/perl/Football/data/Euro/scraped/fixtures $date.txt",
 					  { day => $day, date => $date} );

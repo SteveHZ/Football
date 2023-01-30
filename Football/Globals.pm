@@ -124,9 +124,9 @@ TESTING { # Do not touch these lines
 #	our @summer_csv_leagues = qw(ROI MLS SWE NOR FIN);
 #	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN);
 
-	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League' );
-	our @summer_csv_leagues = qw(ROI MLS SWE NOR);
-	our @summer_fetch_leagues = qw(IRL USA SWE NOR);
+	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League'  );
+	our @summer_csv_leagues = qw(ROI MLS SWE NOR FIN);
+	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN);
 }
 
 our $csv_fields = {
