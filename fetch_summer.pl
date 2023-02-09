@@ -18,13 +18,14 @@ my $summer_dir = 'C:/Mine/perl/Football/data/Summer';
 my $summer_download_dir = 'C:/Mine/perl/Football/data/Summer/download';
 my $fetch_leagues = \@summer_fetch_leagues;
 my $csv_leagues = \@summer_csv_leagues;
+my $sleep_time = 2;
 
 for my $league (@$fetch_leagues) {
 	my $url = "https://www.football-data.co.uk/new/$league.csv";
 	my $ff = File::Fetch->new (uri => $url);
 	my $file = $ff->fetch (to => $summer_download_dir) or die $ff->error;
 	print "\nDownloading $file...";
-	sleep 1;
+	sleep $sleep_time;
 }
 print "\n";
 

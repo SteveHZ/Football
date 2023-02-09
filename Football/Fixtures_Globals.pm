@@ -249,7 +249,6 @@ FC Union Berlin,Union Berlin
 SC Freiburg,Freiburg
 VfL Bochum 1848,Bochum
 Bochum48,Bochum
-#RB Leipzig,Leipzig
 #SpVgg Greuther Furth,Greuther Furth
 #Arminia Bielefeld,Bielefeld
 
@@ -269,6 +268,8 @@ Paris Saint Germain,PSG
 END_FOOTBALL_TEAMS
 
 #	Rugby League
+# This line used in Fixtures_Globals.t - DO NOT UNCOMMENT !!
+Leigh,Leigh Centurions
 #Castleford,Castleford Tigers
 #Wakefield,Wakefield Trinity
 #Wigan,Wigan Warriors
@@ -283,7 +284,6 @@ END_FOOTBALL_TEAMS
 #Toulouse,Toulouse Olympique
 #London,London Broncos
 #Featherstone,Featherstone Rovers
-#Leigh,Leigh Centurions
 #Toronto,Toronto Wolfpack
 #Barrow,Barrow Raiders
 #York,York City Knights
@@ -360,6 +360,7 @@ Greek,X
 Asian,X
 UEFA,X
 Australian A-League,X
+Copa Libertadores,X
 END_FOOTBALL_LEAGUES
 
 #Betfred Super League,SL

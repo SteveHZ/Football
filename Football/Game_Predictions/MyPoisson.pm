@@ -32,15 +32,15 @@ sub poisson {
 
 sub calc_game {
 	my ($self, $home_expect, $away_expect) = @_;
-	my %cache_p;
+	my %away_cache;
 
 	for my $home_score (0..$self->{max}) {
 		my $home_p = $self->poisson ($home_expect, $home_score);
 		for my $away_score (0..$self->{max}) {
-			unless (exists $cache_p{$away_score}) {
-				$cache_p{$away_score} = $self->poisson ($away_expect, $away_score);
+			unless (exists $away_cache{$away_score}) {
+				$away_cache{$away_score} = $self->poisson ($away_expect, $away_score);
 			}
-			$self->{stats}[$home_score][$away_score] = $self->poisson_result ($home_p, $cache_p{$away_score});
+			$self->{stats}[$home_score][$away_score] = $self->poisson_result ($home_p, $away_cache{$away_score});
 		}
 	}
 	return $self->{stats};

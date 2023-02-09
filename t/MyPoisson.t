@@ -3,15 +3,14 @@
 use strict;
 use warnings;
 use Test2::V0;
-plan 4;
-#use Test::More tests => 3;
+plan 3;
 
 use lib 'C:/Mine/perl/Football';
 use Football::Game_Predictions::MyPoisson;
 use Football::Game_Predictions::Match_Odds;
 
-my $p = Football::Game_Predictions::MyPoisson->new ();
-my $game = Football::Game_Predictions::Match_Odds->new ( max => 10, weighted => 0 );
+my $p = Football::Game_Predictions::MyPoisson->new ( max => 10 );
+my $game = Football::Game_Predictions::Match_Odds->new ( max => 10 );
 
 subtest 'constructors' => sub {
 	plan 2;
@@ -19,24 +18,33 @@ subtest 'constructors' => sub {
 	isa_ok ($game, ['Football::Game_Predictions::Match_Odds'], '$game');
 };
 
-my $home_score = 7;
+my $home_score = 2;
 my $away_score = 0;
 my $home_expect = 2.02;
 my $away_expect = 0.53;
 
 subtest 'MyPoisson Test' => sub {
-	plan 2;
+	plan 1;
 
-	my $expect = 2.5;
-	my $score = 4;
-	my $prob =  $p->poisson ($expect, $score);
-	is ($prob, 0.133602110450453, 'poisson 0.133602110450453');
+	my %away_cache;
+	for my $home_goals (0..10) {
+		printf "\n%2d : ", $home_goals;
+		my $home = $p->poisson ($home_expect, $home_goals);
+		for my $away_goals (0..10) {
+			unless (exists ( $away_cache{$away_goals} )) {
+				$away_cache{$away_goals} = $p->poisson ($away_expect, $away_goals);
+			}
+			my $result = $p->poisson_result ($home, $away_cache{$away_goals});
+			print "$result\t";
+		}
+	}
+	print "\n\n";
 
 	my $home = $p->poisson ($home_expect, $home_score);
 	my $away = $p->poisson ($away_expect, $away_score);
 	my $result = $p->poisson_result ($home, $away);
 
-	is ($result, 0.213, 'poisson_result 0.213');
+	is ($result, 15.93, 'poisson_result for 2-0 = 15.93');
 };
 
 subtest 'Match Odds Test' => sub {
@@ -52,6 +60,7 @@ subtest 'Match Odds Test' => sub {
 	is ($game->over_2pt5_odds, 		2.13 , 'Over 2.5 = 2.13');
 };
 
+=begin comment
 subtest 'Weighted' => sub {
 	plan 1;
 	is (1,1,"ok");
@@ -77,3 +86,6 @@ subtest 'Weighted' => sub {
 	}
 	print "\n\n";
 };
+
+=end comment
+=cut

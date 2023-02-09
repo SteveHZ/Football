@@ -40,7 +40,7 @@ sub calc_odds {
 
 sub calc {
 	my ($self, $home_expect, $away_expect) = @_;
-	state $p = Football::Game_Predictions::MyPoisson->new ();
+	state $p = Football::Game_Predictions::MyPoisson->new ( max => $self->{max} );
 	$self->{stats} = $p->calc_game ($home_expect, $away_expect);
 	return $self->{stats};
 }

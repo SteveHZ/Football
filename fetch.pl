@@ -14,6 +14,7 @@ use File::Fetch;
 my $id = 'mmz4281';
 my $dir = 'C:/Mine/perl/Football/data';
 my $euro_dir = 'C:/Mine/perl/Football/data/Euro';
+my $sleep_time = 2;
 
 for my $league (@csv_leagues) {
 #	my $league = "EC";
@@ -22,7 +23,7 @@ for my $league (@csv_leagues) {
 	my $ff = File::Fetch->new (uri => $url);
 	my $file = $ff->fetch (to => $dir) or die $ff->error;
 	print "\nDownloading $file...";
-	sleep 1;
+	sleep $sleep_time;
 }
 
 for my $league (@euro_fetch_lgs) {
@@ -31,7 +32,7 @@ for my $league (@euro_fetch_lgs) {
 	my $ff = File::Fetch->new (uri => $url);
 	my $file = $ff->fetch (to => $euro_dir) or die $ff->error;
 	print "\nDownloading $file...";
-	sleep 1;
+	sleep $sleep_time;
 }
 
 my $url = "https://www.football-data.co.uk/$id/$season_years/Latest_Results.xlsx";
@@ -40,7 +41,7 @@ my $ff = File::Fetch->new (uri => $url);
 my $euro_file = $ff->fetch (to => $dir) or die $ff->error;
 print "\n\nDownloading $euro_file...";
 
-#=end comment
+#=end comment # keep these lines in for testing
 #=cut
 
 # Amend team names

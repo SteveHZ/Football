@@ -35,7 +35,7 @@ sub write {
     print "\n\nWriting $self->{filename}...";
 
     $self->blank_columns ( [ 3 ] );
-    for my $model (@{ $self->models}) {
+    for my $model (@{ $self->models }) {
         my $counter = $model->counter;
         my $sheetname = $model->sheetname;
         my $worksheet = $self->add_worksheet ($sheetname);
