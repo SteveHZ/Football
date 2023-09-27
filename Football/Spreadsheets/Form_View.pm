@@ -27,7 +27,7 @@ sub show {
 		do_header ($worksheet, $self->{bold_format});
 
 		my $row = 2;
-		for my $team (@{ $form->{$list_name} } ) {
+		for my $team ( $form->{$list_name}->@* ) {
 			my $row_data = [
 				{ $team->{league} => $self->{format} },
 				{ $team->{team} => $self->{format} },

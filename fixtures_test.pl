@@ -8,8 +8,13 @@ use Data::Dumper;
 
 use Football::FIxtures::Model;
 
-my $day = "Sun";
-my $date = "2023-01-29";
+#	Need to ensure that both return statements work correctly
+
+#my $day = "Sun"; my $date = "2023-01-29";
+#my $day = "Sat" ; my $date = "2023-03-18";
+#my $day = "Thur" ; my $date = "2023-03-23";
+my $day = "Sat" ; my $date = "2023-03-25";
+
 
 my $games = read_file ("C:/Mine/perl/Football/data/Euro/scraped/fixtures $date.txt",
 					  { day => $day, date => $date} );
@@ -32,4 +37,3 @@ sub read_file {
 		$model->prepare (\$data, $day->{day}, $date)
 	);
 }
-

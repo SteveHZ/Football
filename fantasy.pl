@@ -17,8 +17,12 @@ my @positions = qw(Goalkeeper Defender Midfield Forward);
 my $price_format = "%.1fm";
 #my $price_format = chr(156)."%.1fm";
 
-if (defined $ARGV [0]) {
-    update ($json_file) if $ARGV[0] eq '-u';
+#if (defined $ARGV [0]) {
+#    update ($json_file) if $ARGV[0] eq '-u';
+#}
+
+unless (defined $ARGV [0] && $ARGV [0] eq '-n') {
+	update ($json_file);
 }
 
 my $data = read_json ($json_file);

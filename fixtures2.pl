@@ -7,7 +7,7 @@ use List::Util qw(any);
 use Football::Fixtures_Globals qw( football_rename rugby_rename );
 
 my @remove_teams = ();
-# Once array is empty, remove ZEROGAMES pragma in predict.pl
+# Once array is empty, disable ZEROGAMES pragma in predict.pl
 
 my @paths = (
 	{
@@ -63,12 +63,12 @@ fixtures2.pl
 
 =head1 SYNOPSIS
 
-perl fixtures.pl
+perl fixtures2.pl
 
 =head1 DESCRIPTION
 
- Run fixtures.pl to write out 'fixtures_week.csv' then remove unwanted fixtures as required
- Run fixtures2.pl to write out finished 'fixtures.csv' file with amended team names
+ Run fixtures.pl to write out 'fixtures_week.csv' then remove unwanted fixtures as required.
+ Run fixtures2.pl to write out finished 'fixtures.csv' file with amended team names.
 
 =head1 AUTHOR
 

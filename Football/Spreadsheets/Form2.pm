@@ -33,7 +33,7 @@ sub show {
 		my $row = 2;
 		my $template = Spreadsheets::Template->new (file => $template_path."form.txt");
 
-		for my $team (@{ $form->{$list_name} } ) {
+		for my $team ( $form->{$list_name}->@* ) {
 			my $row_data = $template->map ($team);
 			$self->template_write_row ($worksheet, $row, $row_data);
 			$row ++;

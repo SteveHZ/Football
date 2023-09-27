@@ -6,32 +6,42 @@ use File::Copy qw(copy);
 use Moo;
 use namespace::clean;
 
+sub BUILD {
+	my $self = shift;
+	$self-> {paths} = {
+		'uk'	 => 'C:/Mine/perl/Football/data',
+		'euro' 	 => 'C:/Mine/perl/Football/data/Euro',
+		'summer' => 'C:/Mine/perl/Football/data/Summer',
+	};
+}
+
 sub get_uk_hash {
 	return {
 		'E0' => [
 			sub { $_[0] =~ s/Man United/Man Utd/g },
 			sub { $_[0] =~ s/Nott'm Forest/Notts Forest/g },
-		],
-		'E1' => [
 			sub { $_[0] =~ s/Sheffield United/Sheff Utd/g },
 		],
-		'E2' => [
+		'E1' => [
 			sub { $_[0] =~ s/Sheffield Weds/Sheff Wed/g },
-			sub { $_[0] =~ s/Milton.*Dons/MK Dons/g },
+			sub { $_[0] =~ s/Middlesbrough/Middlesboro/g },
+		],
+		'E2' => [
+			sub { $_[0] =~ s/Fleetwood Town/Fleetwood/g },
 		],
 		'E3' => [
 			sub { $_[0] =~ s/AFC Wimbledon/Wimbledon/g },
 			sub { $_[0] =~ s/Crawley Town/Crawley/g },
-		],
-		'SC0' => [
-			sub { $_[0] =~ s/Dundee United/Dundee Utd/g },
+			sub { $_[0] =~ s/Milton.*Dons/MK Dons/g },
+			sub { $_[0] =~ s/Newport County/Newport/g },
 		],
 		'SC1' => [
+			sub { $_[0] =~ s/Dundee United/Dundee Utd/g },
 			sub { $_[0] =~ s/Inverness C/Inverness/g },
+			sub { $_[0] =~ s/Airdrie Utd/Airdrie/g },
 		],
 		'SC2' => [
-			sub { $_[0] =~ s/FC Edinburgh/Edinburgh/g },
-			sub { $_[0] =~ s/Airdrie Utd/Airdrie/g },
+			sub { $_[0] =~ s/Edinburgh City/Edinburgh/g },
 		]
 	};
 }
@@ -40,7 +50,7 @@ sub get_euro_hash {
 	return {
 		'D1' => [
 			sub { $_[0] =~ s/M'gladbach/Mgladbach/g },
-			sub { $_[0] =~ s/Schalke 04/Schalke/g },
+#			sub { $_[0] =~ s/Schalke 04/Schalke/g },
 		],
 		'F1' => [
 			sub { $_[0] =~ s/Paris SG/PSG/g },
@@ -52,26 +62,28 @@ sub get_summer_hash {
 	return {
 		'SWE' => [
 			sub { $_[0] =~ s/Varberg,/Varbergs,/g }, # errors in datafile 2022
+			sub { $_[0] =~ s/Brommapojkarna/Brommapj/g },
+		],
+		'MLS' => [
+			sub { $_[0] =~ s/Atlanta United/Atlanta Utd/g },
+			sub { $_[0] =~ s/St. Louis/St Louis/g },
 		],
 	};
 }
 
 sub amend_uk {
 	my $self = shift;
-	my $path = "C:/Mine/perl/Football/data";
-	$self->amend_teams (get_uk_hash (), $path);
+	$self->amend_teams (get_uk_hash (), $self->{paths}->{uk} );
 }
 
 sub amend_euro {
 	my $self = shift;
-	my $path = "C:/Mine/perl/Football/data/Euro";
-	$self->amend_teams (get_euro_hash (), $path);
+	$self->amend_teams (get_euro_hash (), $self->{paths}->{euro} );
 }
 
 sub amend_summer {
 	my $self = shift;
-	my $path = "C:/Mine/perl/Football/data/Summer";
-	$self->amend_teams (get_summer_hash (), $path);
+	$self->amend_teams (get_summer_hash (), $self->{paths}->{summer} );
 }
 
 sub amend_teams {
@@ -83,8 +95,8 @@ sub amend_teams {
 
 		print "\nRewriting $file...";
 		copy $file, $temp_file;
-
 		my $lines = read_file ($temp_file);
+
 		$self->amend_array ($lines, $teams_rx);
 		write_file ($file, $lines);
 		unlink $temp_file;

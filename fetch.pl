@@ -9,7 +9,8 @@ use Football::Fetch_Amend;
 
 use File::Fetch;
 
-#=begin comment # keep this line (and end comment) in for testing
+#=begin comment
+# keep the above line (and end comment) in for testing
 
 my $id = 'mmz4281';
 my $dir = 'C:/Mine/perl/Football/data';
@@ -68,7 +69,8 @@ perl fetch_summer.pl -n to download without amendment
 Stand-alone script to download csv files from wwww.football-data.co.uk
 then download and extract Euro zip files.
 
-Run perl fetch.pl -n to download files without amendment
+Run perl fetch.pl -n to download files without amendment at the end of the season,
+then run perl amend_historical.pl to archive
 
 =head1 AUTHOR
 

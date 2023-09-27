@@ -1,10 +1,11 @@
 #	create_summer_teams.pl 26/06/16
 
 #	This file is for team names to be used within predict.pl
-#	To edit names from Football Data CSV files, use Euro::Rename or Football::Fetch_Amend for UK teams
-#	To edit names from BBC fixtures files use Football::Fixtures_Globals, Football::Fixtures_Model
+#	To edit names from Football Data CSV files, use Football::Fetch_Amend
+#	To edit names from BBC fixtures files use Football::Fixtures_Globals, possibly also Football::Fixtures_Model
 
-#	DEPRECATED 10/08/22 : To edit names from Football Data CSV files, use Euro::Rename
+#	DEPRECATED 10/08/22 :
+# 	To edit names from Football Data CSV files, use Euro::Rename
 
 use strict;
 use warnings;
@@ -21,18 +22,18 @@ my $json_file = "$path/teams.json";
 my $leagues = {
     'Irish League' => [
         'Bohemians',
+        'Cork City',
         'Derry City',
         'Drogheda',
         'Dundalk',
-        'Finn Harps',
         'Shamrock Rvs',
         'Shelbourne',
         'Sligo Rvs',
         'St Patricks',
         'UCD',
-    ],
+	],
     'USA League' => [
-        'Atlanta United',
+        'Atlanta Utd',
         'Austin FC',
         'Charlotte',
         'Chicago Fire',
@@ -58,59 +59,60 @@ my $leagues = {
         'San Jose',
         'Seattle Sounders',
         'Sporting Kansas',
+        'St Louis City',
         'Toronto FC',
         'Vancouver',
-    ],
+	],
     'Swedish League' => [
         'AIK',
+        'Brommapj',
         'Degerfors',
         'Djurgardens',
         'Elfsborg',
         'Goteborg',
         'Hacken',
+        'Halmstads',
         'Hammarby',
-        'Helsingborg',
         'Kalmar',
         'Malmo',
         'Mjallby',
         'Norrkoping',
         'Sirius',
-        'Sundsvall',
         'Varbergs',
         'Varnamo',
-    ],
+	],
     'Norwegian League' => [
         'Aalesunds',
         'Bodo Glimt',
+        'Brann',
         'HamKam',
         'Haugesund',
-        'Jerv',
-        'Kristiansund',
         'Lillestrom',
         'Molde',
         'Odd',
         'Rosenborg',
         'Sandefjord',
         'Sarpsborg',
+        'Stabaek',
         'Stromsgodset',
         'Tromso',
         'Valerenga',
         'Viking',
-    ],
+	],
     'Finnish League' => [
-        'HIFK Helsinki',
         'HJK Helsinki',
         'Haka',
         'Honka',
         'Ilves',
         'Inter Turku',
+        'KTP',
         'KuPS Kuopio',
         'Lahti',
         'Mariehamn',
         'Oulu',
         'SJK',
         'VPS Vaasa',
-    ],
+	],
 };
 
 print "\nWriting $json_file...";

@@ -2,7 +2,7 @@
 
 #	This file is for team names to be used within predict.pl
 #	To edit names from Football Data CSV files, create an anonymous sub in Football::Fetch_Amend
-#	To edit names from BBC fixtures files use Football::Fixtures_Globals
+#	To edit names from BBC fixtures files use Football::Fixtures_Globals, possibly also Football::Fixtures_Model
 
 #	To edit team names through whole system, need to amend here,
 #	in Football::Fixtures_Globals, and in Football::Fetch_Amend
@@ -29,18 +29,18 @@ my $leagues = {
         'Bournemouth',
         'Brentford',
         'Brighton',
+        'Burnley',
         'Chelsea',
         'Crystal Palace',
         'Everton',
         'Fulham',
-        'Leeds',
-        'Leicester',
         'Liverpool',
+        'Luton',
         'Man City',
         'Man Utd',
         'Newcastle',
         'Notts Forest',
-        'Southampton',
+        'Sheff Utd',
         'Tottenham',
         'West Ham',
         'Wolves',
@@ -48,80 +48,80 @@ my $leagues = {
     'Championship' => [
         'Birmingham',
         'Blackburn',
-        'Blackpool',
         'Bristol City',
-        'Burnley',
         'Cardiff',
         'Coventry',
         'Huddersfield',
         'Hull',
-        'Luton',
-        'Middlesbrough',
+        'Ipswich',
+        'Leeds',
+        'Leicester',
+        'Middlesboro',
         'Millwall',
         'Norwich',
+        'Plymouth',
         'Preston',
         'QPR',
-        'Reading',
         'Rotherham',
-        'Sheff Utd',
+        'Sheff Wed',
+        'Southampton',
         'Stoke',
         'Sunderland',
         'Swansea',
         'Watford',
         'West Brom',
-        'Wigan',
     ],
     'League One' => [
-        'Accrington',
         'Barnsley',
+        'Blackpool',
         'Bolton',
         'Bristol Rvs',
         'Burton',
         'Cambridge',
+        'Carlisle',
         'Charlton',
         'Cheltenham',
         'Derby',
         'Exeter',
-        'Fleetwood Town',
-        'Forest Green',
-        'Ipswich',
+        'Fleetwood',
+        'Leyton Orient',
         'Lincoln',
-        'MK Dons',
-        'Morecambe',
+        'Northampton',
         'Oxford',
         'Peterboro',
-        'Plymouth',
         'Port Vale',
         'Portsmouth',
-        'Sheff Wed',
+        'Reading',
         'Shrewsbury',
+        'Stevenage',
+        'Wigan',
         'Wycombe',
     ],
     'League Two' => [
+        'Accrington',
         'Barrow',
         'Bradford',
-        'Carlisle',
         'Colchester',
         'Crawley',
         'Crewe',
         'Doncaster',
+        'Forest Green',
         'Gillingham',
         'Grimsby',
         'Harrogate',
-        'Hartlepool',
-        'Leyton Orient',
+        'MK Dons',
         'Mansfield',
-        'Newport County',
-        'Northampton',
-        'Rochdale',
+        'Morecambe',
+        'Newport',
+        'Notts County',
         'Salford',
-        'Stevenage',
         'Stockport',
         'Sutton',
         'Swindon',
         'Tranmere',
         'Walsall',
         'Wimbledon',
+        'Wrexham',
     ],
     'Conference' => [
         'Aldershot',
@@ -133,26 +133,26 @@ my $leagues = {
         'Dag and Red',
         'Dorking',
         'Eastleigh',
+        'Ebbsfleet',
+        'Fylde',
         'Gateshead',
         'Halifax',
+        'Hartlepool',
+        'Kidderminster',
         'Maidenhead',
-        'Maidstone',
-        'Notts County',
         'Oldham',
-        'Scunthorpe',
+        'Oxford City',
+        'Rochdale',
         'Solihull',
         'Southend',
-        'Torquay',
         'Wealdstone',
         'Woking',
-        'Wrexham',
-        'Yeovil',
         'York',
     ],
     'Scots Premier' => [
         'Aberdeen',
         'Celtic',
-        'Dundee Utd',
+        'Dundee',
         'Hearts',
         'Hibernian',
         'Kilmarnock',
@@ -164,11 +164,11 @@ my $leagues = {
         'St Mirren',
     ],
     'Scots Championship' => [
+        'Airdrie',
         'Arbroath',
         'Ayr',
-        'Cove Rangers',
-        'Dundee',
-        'Hamilton',
+        'Dundee Utd',
+        'Dunfermline',
         'Inverness',
         'Morton',
         'Partick',
@@ -176,35 +176,35 @@ my $leagues = {
         'Raith Rvs',
     ],
     'Scots League One' => [
-        'Airdrie',
         'Alloa',
-        'Clyde',
-        'Dunfermline',
+        'Annan Athletic',
+        'Cove Rangers',
         'Edinburgh',
         'Falkirk',
+        'Hamilton',
         'Kelty Hearts',
         'Montrose',
-        'Peterhead',
         'Queen of Sth',
+        'Stirling',
     ],
     'Scots League Two' => [
-        'Albion Rvs',
-        'Annan Athletic',
         'Bonnyrigg Rose',
+        'Clyde',
         'Dumbarton',
         'East Fife',
         'Elgin',
         'Forfar',
+        'Peterhead',
+        'Spartans',
         'Stenhousemuir',
-        'Stirling',
         'Stranraer',
     ],
 };
 
-print "\nWriting $json_file...";
+print "\nWriting $json_file... ";
 my $sorted = sort_HoA ($leagues);
 write_json ($json_file, $sorted);
-print " Done";
+print "Done";
 
 # Write all data out to new sorted data structure to copy back into this file
 
@@ -217,10 +217,10 @@ my $tt = MyTemplate->new (
         sorted => $sorted,
     },
 );
-print "\nWriting new sorted team list to $out_file...";
+print "\nWriting new sorted team list to $out_file... ";
 $tt->write_file ();
 
-print " Done";
+print "Done";
 
 # Write all data out as a lisp list
 
@@ -232,7 +232,7 @@ while (my ($league, $csv) = $iterator->()) {
     $lisp_hash->{$csv} = $sorted->{$league};
 }
 
-print "\nWriting data to $out_dir/uk-teams.dat...";
+print "\nWriting data to $out_dir/uk-teams.dat... ";
 my $tt2 = MyTemplate->new (
     filename => "$out_dir/uk-teams.dat",
     template => 'Template/write_lisp_teams.tt',
@@ -240,7 +240,7 @@ my $tt2 = MyTemplate->new (
 );
 $tt2->write_file ();
 
-print " Done";
+print "Done";
 
 =pod
 

@@ -5,7 +5,7 @@ use Euro::Spreadsheets::Goal_Diffs_View;
 use Euro::Spreadsheets::Match_Odds_View;
 use Euro::Spreadsheets::Recent_Match_Odds_View;
 use Euro::Spreadsheets::Over_Under_View;
-use Euro::Spreadsheets::Skellam_Dist_View;
+#use Euro::Spreadsheets::Skellam_Dist_View;
 
 use Moo;
 use namespace::clean;
@@ -20,7 +20,7 @@ sub create_sheets {
 	$self->{xlsx_match_odds} = Euro::Spreadsheets::Match_Odds_View->new ();
 	$self->{xlsx_recent_match_odds} = Euro::Spreadsheets::Recent_Match_Odds_View->new ();
 	$self->{xlsx_over_under} = Euro::Spreadsheets::Over_Under_View->new ();
-	$self->{xlsx_skellam} = Euro::Spreadsheets::Skellam_Dist_View->new ();
+#	$self->{xlsx_skellam} = Euro::Spreadsheets::Skellam_Dist_View->new ();
 }
 
 =pod

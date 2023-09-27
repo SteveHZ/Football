@@ -1,6 +1,7 @@
 package Football::Spreadsheets::Value_View;
 
 use List::MoreUtils qw(each_arrayref);
+use Football::Globals qw($reports_folder);
 
 use Moo;
 use namespace::clean;
@@ -45,13 +46,12 @@ sub BUILD {
 
 sub create_sheet {
 	my $self = shift;
-	$self->{path} = "C:/Users/Steve/Dropbox/Football";
-	$self->{filename} = "$self->{path}/value.xlsx";
+	$self->{filename} = "$reports_folder/value.xlsx";
 }
 
 sub view {
 	my ($self, $sorted) = @_;
-	print "\nWriting $self->{path}/value.xlsx...";
+	print "\nWriting $reports_folder/value.xlsx...";
 
 	my $iterator = each_arrayref ($self->{sheet_names}, $self->{sorted_by});
 	while (my ($sheet_name, $sorted_by) = $iterator->() ) {
@@ -213,9 +213,9 @@ sub do_double_chance_header {
     $self->blank_columns ($self->{blank_cols}->{double_chance});
 
 	$worksheet->set_column ($_, 20) for (qw (A:A C:C E:E));
-	$worksheet->set_column ($_, 8) for (qw (G:I K:M O:P R:S U:V));
-	$worksheet->set_column ($_, 4) for (qw (F:F J:J N:N Q:Q T:T));
+	$worksheet->set_column ($_, 6) for (qw (F:F Q:Q T:T));
 	$worksheet->set_column ($_, 2.5) for (qw (B:B D:D));
+	$worksheet->set_column ($_, 10) for (qw (O:P R:S U:V));
 
 	$worksheet->write ('A1', 'League', $format);
 	$worksheet->write ('C1', 'Home', $format);
@@ -228,6 +228,7 @@ sub do_double_chance_header {
 
 	$worksheet->autofilter( 'A1:A100' );
 	$worksheet->freeze_panes (1,0);
+	$worksheet->set_column ($_, undef, undef, 1) for (qw (G:N)); # hide columns
 }
 
 1;

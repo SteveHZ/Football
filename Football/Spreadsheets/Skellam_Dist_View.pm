@@ -15,8 +15,7 @@ sub BUILD {
 
 sub create_sheet {
 	my $self = shift;
-	my $path = 'C:/Mine/perl/Football/reports/';
-	$self->{filename} = $path.'skellam.xlsx';
+	$self->{filename} = "C:/Mine/perl/Football/reports/skellam.xlsx";
 }
 
 after 'BUILD' => sub {

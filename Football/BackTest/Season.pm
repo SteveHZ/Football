@@ -74,12 +74,12 @@ sub run_by_season {
         $league->{homes} = $league->do_homes ($league->teams);
         $league->{aways} = $league->do_aways ($league->teams);
         $league->{last_six} = $league->do_last_six ($league->teams);
-        $flag = done_six_games ($game, $league) unless $flag;
+#        $flag = done_six_games ($game, $league) unless $flag;
 
-        if ($flag) {
+#        if ($flag) {
             $datafunc->($game, $league);
             push @data, $game;
-        }
+#       }
         # update the league game by game
         $league->update_teams ($league->teams, $game);
         $league->update_tables ($game);

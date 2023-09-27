@@ -2,9 +2,13 @@
 
 #	This file is for team names to be used within predict.pl
 #	To edit names from Football Data CSV files, create an anonymous sub in Football::Fetch_Amend
-#	To edit names from BBC fixtures files use Football::Fixtures_Globals
+#	To edit names from BBC fixtures files use Football::Fixtures_Globals, possibly also Football::Fixtures_Model
 
-#	DEPRECATED 10/08/22 : To edit names from Football Data CSV files, use Euro::Rename
+#	To edit team names through whole system, need to amend here,
+#	in Football::Fixtures_Globals, and in Football::Fetch_Amend
+#	Also need to check Football::Fetch_Amend before the start of each season for promotion/relegation
+
+#	Euro::Rename WAS previously used to esit Football Data CSV files, DO NOT USE - DEPRECATED 10/08/22
 
 use strict;
 use warnings;
@@ -19,27 +23,28 @@ my $path = 'C:/Mine/perl/Football/data/Euro';
 my $json_file = "$path/teams.json";
 
 my $leagues = {
-    'German' => [
+    'German League' => [
         'Augsburg',
         'Bayern Munich',
         'Bochum',
+        'Darmstadt',
         'Dortmund',
         'Ein Frankfurt',
         'FC Koln',
         'Freiburg',
-        'Hertha',
+        'Heidenheim',
         'Hoffenheim',
         'Leverkusen',
         'Mainz',
         'Mgladbach',
         'RB Leipzig',
-        'Schalke',
         'Stuttgart',
         'Union Berlin',
         'Werder Bremen',
         'Wolfsburg',
-	],
-    'Spanish' => [
+    ],
+    'Spanish League' => [
+        'Alaves',
         'Almeria',
         'Ath Bilbao',
         'Ath Madrid',
@@ -47,26 +52,27 @@ my $leagues = {
         'Betis',
         'Cadiz',
         'Celta',
-        'Elche',
-        'Espanol',
         'Getafe',
         'Girona',
+        'Granada',
+        'Las Palmas',
         'Mallorca',
         'Osasuna',
         'Real Madrid',
         'Sevilla',
         'Sociedad',
         'Valencia',
-        'Valladolid',
         'Vallecano',
         'Villarreal',
-	],
-    'Italian' => [
+    ],
+    'Italian League' => [
         'Atalanta',
         'Bologna',
-        'Cremonese',
+        'Cagliari',
         'Empoli',
         'Fiorentina',
+        'Frosinone',
+        'Genoa',
         'Inter',
         'Juventus',
         'Lazio',
@@ -76,24 +82,21 @@ my $leagues = {
         'Napoli',
         'Roma',
         'Salernitana',
-        'Sampdoria',
         'Sassuolo',
-        'Spezia',
         'Torino',
         'Udinese',
         'Verona',
-	],
-    'French' => [
-        'Ajaccio',
-        'Angers',
-        'Auxerre',
+    ],
+    'French League' => [
         'Brest',
         'Clermont',
+        'Le Havre',
         'Lens',
         'Lille',
         'Lorient',
         'Lyon',
         'Marseille',
+        'Metz',
         'Monaco',
         'Montpellier',
         'Nantes',
@@ -103,8 +106,7 @@ my $leagues = {
         'Rennes',
         'Strasbourg',
         'Toulouse',
-        'Troyes',
-	],
+    ],
 };
 
 print "\nWriting $json_file...";
@@ -149,7 +151,7 @@ $tt2->write_file ();
 print " Done";
 
 =head
-'Welsh' => [
+'Welsh League' => [
     'Aberystwyth',
 	'Bala Town',
 	'Barry Town',
@@ -163,7 +165,7 @@ print " Done";
 	'Flint',
 	'Haverfordwest',
 ],
-'N Irish' => [
+'N Irish League' => [
     'Ballymena',
     'Carrick Rangers',
     'Cliftonville',
@@ -178,7 +180,7 @@ print " Done";
 	'Portadown',
 ],
 
-'German 2' => [
+'German 2 League' => [
 	'Bochum',
 	'Bielefeld',
 	'Darmstadt',
@@ -198,7 +200,7 @@ print " Done";
 	'Heidenheim',
 	'Erzgebirge Aue',
 ],
-'Belgian 1' => [
+'Belgian League' => [
 	'Antwerp',
 	'Anderlecht',
 	'Charleroi',
@@ -217,7 +219,7 @@ print " Done";
 	'Gent',
 ],
 
-'Australian' => [
+'Australian League' => [
 	'Adelaide United',
 	'Brisbane Roar',
 	'Central Coast Mariners',
@@ -230,26 +232,26 @@ print " Done";
 	'Western Sydney Wdrs',
 	'Western United',
 ],
-    'Dutch' => [
-        'AZ Alkmaar',
-        'Ajax',
-        'Cambuur',
-        'Emmen',
-        'Excelsior',
-        'Feyenoord',
-        'Fortuna',
-        'Go Ahead Eagles',
-        'Groningen',
-        'Heerenveen',
-        'NEC',
-        'PSV',
-        'RKC',
-        'Sparta',
-        'Twente',
-        'Utrecht',
-        'Vitesse',
-        'Volendam',
-	],
+'Dutch League' => [
+    'AZ Alkmaar',
+    'Ajax',
+    'Cambuur',
+    'Emmen',
+    'Excelsior',
+    'Feyenoord',
+    'Fortuna',
+    'Go Ahead Eagles',
+    'Groningen',
+    'Heerenveen',
+    'NEC',
+    'PSV',
+    'RKC',
+    'Sparta',
+    'Twente',
+    'Utrecht',
+    'Vitesse',
+    'Volendam',
+],
 
 ## 20/01/22
 ## Went wrong with Greuther Furth	Mainz (05)

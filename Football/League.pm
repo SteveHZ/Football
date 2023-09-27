@@ -9,7 +9,7 @@ use Football::HomeTable;
 use Football::AwayTable;
 
 use Football::Team;
-use MyKeyword qw(DEVELOPMENT); # enables logging, turn on in predict.pl
+use MyKeyword qw(LOGGING); # enables logging, turn on in predict.pl
 
 use Moo;
 use namespace::clean;
@@ -109,7 +109,7 @@ sub update_teams {
 
 	my $home_team = $game->{home_team};
 	my $away_team = $game->{away_team};
-	DEVELOPMENT {
+	LOGGING {
 		$log->debug ("$game->{date} : $home_team v $away_team");
 	}
 	my ($home_result, $away_result) = get_result ($game->{home_score}, $game->{away_score});

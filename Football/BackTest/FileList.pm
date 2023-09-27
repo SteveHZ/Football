@@ -7,6 +7,7 @@ use Moo;
 use namespace::clean;
 
 has 'path' => (is => 'ro', default => 'C:/Mine/perl/Football/data');
+#has 'path' => (is => 'ro', default => 'C:/Mine/perl/Football/data/historical');
 has 'leagues' => (is => 'ro', required => 1);
 has 'csv_leagues' => (is => 'ro', required => 1);
 has 'func' => (is => 'ro');

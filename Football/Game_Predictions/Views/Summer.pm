@@ -5,7 +5,7 @@ use Summer::Spreadsheets::Goal_Diffs_View;
 use Summer::Spreadsheets::Match_Odds_View;
 use Summer::Spreadsheets::Recent_Match_Odds_View;
 use Summer::Spreadsheets::Over_Under_View;
-use Summer::Spreadsheets::Skellam_Dist_View;
+#use Summer::Spreadsheets::Skellam_Dist_View;
 
 use Moo;
 use namespace::clean;
@@ -20,7 +20,7 @@ sub create_sheets {
 	$self->{xlsx_match_odds} = Summer::Spreadsheets::Match_Odds_View->new ();
 	$self->{xlsx_recent_match_odds} = Summer::Spreadsheets::Recent_Match_Odds_View->new ();
 	$self->{xlsx_over_under} = Summer::Spreadsheets::Over_Under_View->new ();
-	$self->{xlsx_skellam} = Summer::Spreadsheets::Skellam_Dist_View->new ();
+#	$self->{xlsx_skellam} = Summer::Spreadsheets::Skellam_Dist_View->new ();
 }
 
 =pod

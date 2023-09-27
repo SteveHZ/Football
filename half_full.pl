@@ -98,8 +98,6 @@ sub sort_results {
 		keys (%$hash)
 	];
 }
-#	my $data_model = Football::Football_Data_Model->new ( full_data => 1 );
-#	my $games = $data_model->update ($path.$league.'/'.$year.'.csv');
 
 =pod
 

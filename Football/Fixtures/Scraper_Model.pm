@@ -27,8 +27,7 @@ sub get_football_pages {
 			print "Done - character length : ".length ($q->text);
             sleep 1;
 		} else {
-#			die "Cannot get a resource from $site: " . Web::Query->last_response()->status_line;
-			print "\nUnable to create object : $site/$date->{date}";
+			die "\n\nSomething went wrong.\nUnable to create object : $site/$date->{date}";
 		}
 	}
 	print "\n";
@@ -52,26 +51,6 @@ sub get_rugby_pages {
 		} else {
 #			die "Cannot get a resource from $site: " . Web::Query->last_response()->status_line;
 			print "\nUnable to create object : $site/$date->{date}";
-		}
-	}
-	print "\n";
-}
-
-sub get_rugby_pagesx {
-	my ($self, $sites, $week) = @_;
-
-	for my $site (@$sites) {
-		my $league = get_league_name ($site);
-		my $q = wq ($site);
-		if ($q) {
-			print "\nDownloading $league";
-			print "\n$league : ";
-			$self->do_rugby_write ($league, $q->text);
-			print "Done - character length : ".length ($q->text);
-            sleep 1;
-		} else {
-#			die "Cannot get a resource from $site: " . Web::Query->last_response()->status_line;
-			print "\nUnable to create object : $site";
 		}
 	}
 	print "\n";

@@ -4,9 +4,10 @@
 #   to football/data/historical/$league name directory
 #   before running create_reports.pl
 
-#   Ensure that $reports_season is updated in Football::Globals first !!! ($season -> NEXT season)
-#   then run perl fetch.pl -n to fetch original csv sheets
-#	Run this script to write to Football Data Files folder
+#   Run perl fetch.pl -n to fetch original csv sheets
+#	Next, ensure that $reports_season is updated in Football::Globals ($season -> NEXT season)
+   
+#	Run this script to write to Football Data Files folder,
 #   then run perl amend_historical.pl afterwards, before perl create_reports.
 
 use MyHeader;

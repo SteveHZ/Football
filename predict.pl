@@ -5,7 +5,7 @@
 #	v3.10 06/05/19 v3.20 13/03/21
 
 BEGIN {
-#$ENV{PERL_KEYWORD_DEVELOPMENT} = 1;
+#$ENV{PERL_KEYWORD_LOGGING} = 1;
 #$ENV{PERL_KEYWORD_ZEROGAMES} = 1;
 }
 
@@ -13,7 +13,6 @@ use strict;
 use warnings;
 use Getopt::Long qw(GetOptions);
 
-use lib 'C:/Mine/perl/Football';
 use Football::Globals qw( $season );
 use Football::Model;
 use Football::View;
@@ -25,12 +24,13 @@ use Summer::View;
 use Football::Favourites::Controller;
 use Football::Game_Predictions::Controller;
 
-use MyKeyword qw(ZEROGAMES DEVELOPMENT);
+use MyKeyword qw(LOGGING ZEROGAMES);
 ZEROGAMES { print "\nZEROGAMES pragma in place !!"; <STDIN>; }
-DEVELOPMENT { print "\nLogging activated !!"; <STDIN>; }
-
-use Log::Log4perl;
-Log::Log4perl->init ("log.conf");
+LOGGING { 
+	use Log::Log4perl;
+	Log::Log4perl->init ("log.conf");
+	print "\nLogging activated !!"; <STDIN>;
+}
 
 my $options = get_cmdline ();
 my ($model, $view) = get_model_and_view ($options);
@@ -145,7 +145,7 @@ Football predictions
 =head1 ZEROGAMES
 
  At the start of a season, if ZEROGAMES pragma is off, the script will die in Goal Expect Model.
- Enable ZEROGAMES in predict.pl and enable ZERGAMES lines in Goal Expect Model.
+ Enable ZEROGAMES in predict.pl and enable ZEROGAMES lines in Goal Expect Model.
  Also add ZEROGAMES teams to remove_teams array in fixtures2.pl
  Once no messages appear for any teams, disable pragma here and in Goal Expect Model,
  and remove teams from remove_teams array.

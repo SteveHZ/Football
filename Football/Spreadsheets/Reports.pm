@@ -22,16 +22,16 @@ sub create_sheet {
 	my ($self, $report) = @_;
 	my $path = $self->get_path ();
 	my $xlsx_files = {
-		'League Places' 		 => $path.'league_places.xlsx',
-		'Goal Difference'		 => $path.'goal_difference.xlsx',
-		'Recent Goal Difference' => $path.'recent_goal_difference.xlsx',
-		'Homes Aways Draws' 	 => $path.'homes_aways_draws.xlsx',
+		'League Places' 		 => "$path/league_places.xlsx",
+		'Goal Difference'		 => "$path/goal_difference.xlsx",
+		'Recent Goal Difference' => "$path/recent_goal_difference.xlsx",
+		'Homes Aways Draws' 	 => "$path/homes_aways_draws.xlsx",
 	};
 	$self->{filename} = $xlsx_files->{$report};
 }
 
 sub get_path {
-	return 'C:/Mine/perl/Football/reports/';
+	return 'C:/Mine/perl/Football/reports';
 }
 
 sub do_league_places {
@@ -125,7 +125,7 @@ sub do_homeawaydraws {
 		do_homeawaydraws_header ($worksheet, $self->{bold_format});
 
 		my $row = 3;
-		my @seasons = sort { $a <=> $b } keys %{ $hash->{$league} };
+		my @seasons = sort { $a <=> $b } keys $hash->{$league}->%*;
 		for my $season (@seasons) {
 			$worksheet->write ($row, 0, $season, $self->{format});
 			$worksheet->write ($row, 2, $hash->{$league}->{$season}->{home_win}, $self->{format});

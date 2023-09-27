@@ -62,35 +62,6 @@ sub _rename {
 }
 
 __DATA__
-#	Irish
-St Patrick's Athletic,St Patricks
-Sligo Rovers,Sligo Rvs
-Shamrock Rovers,Shamrock Rvs
-Drogheda United,Drogheda
-#Longford Town,Longford
-
-#	American
-Chicago Fire FC,Chicago Fire
-Columbus,Columbus Crew
-D.C. United,DC United
-Houston Dynamo FC,Houston Dynamo
-Minnesota United FC,Minnesota
-Atlanta United FC,Atlanta United
-New York City FC,New York City
-Seattle Sounders FC,Seattle Sounders
-Vancouver Whitecaps FC,Vancouver
-Los Angeles Football Club,Los Angeles FC
-FC Cincinnati,Cincinnati
-Orlando City SC,Orlando City
-Inter Miami CF,Inter Miami
-CF Montreal,Montreal
-New England Revolution,New England Rev
-Philadelphia Union,Philadelphia
-San Jose Earthquakes,San Jose
-New York Red Bulls,New York RB
-Sporting Kansas City,Sporting Kansas
-Charlotte FC,Charlotte
-
 #	English
 Brighton & Hove Albion,Brighton
 Manchester City,Man City
@@ -118,6 +89,7 @@ Norwich City,Norwich
 Sheffield Wednesday,Sheff Wed
 Wolverhampton Wanderers,Wolves
 Queens Park Rangers,QPR
+Middlesbrough,Middlesboro
 Derby County,Derby
 Oxford United,Oxford
 Scunthorpe United,Scunthorpe
@@ -140,6 +112,7 @@ Cheltenham Town,Cheltenham
 Carlisle United,Carlisle
 Colchester United,Colchester
 Crawley Town,Crawley
+Fleetwood Town,Fleetwood
 Forest Green Rovers,Forest Green
 Luton Town,Luton
 Grimsby Town,Grimsby
@@ -153,7 +126,8 @@ Coventry City,Coventry
 Wycombe Wanderers,Wycombe
 Swindon Town,Swindon
 Yeovil Town,Yeovil
-#AFC Fylde,Fylde
+Newport County,Newport
+AFC Fylde,Fylde
 FC Halifax Town,Halifax
 Dagenham & Redbridge,Dag and Red
 Maidstone United,Maidstone
@@ -169,9 +143,10 @@ Maidenhead United,Maidenhead
 Sutton United,Sutton
 Salford City,Salford
 Stockport County,Stockport
-Torquay United,Torquay
+#Torquay United,Torquay
 #King's Lynn Town,Kings Lynn
 York City,York,
+Kidderminster Harriers,Kidderminster
 
 #	Scottish
 Dundee United,Dundee Utd
@@ -192,7 +167,38 @@ Forfar Athletic,Forfar
 #Berwick Rangers,Berwick
 Elgin City,Elgin
 Stirling Albion,Stirling
-FC Edinburgh,Edinburgh
+Edinburgh City,Edinburgh
+The Spartans,Spartans
+
+#	Irish
+St Patrick's Athletic,St Patricks
+Sligo Rovers,Sligo Rvs
+Shamrock Rovers,Shamrock Rvs
+Drogheda United,Drogheda
+#Longford Town,Longford
+
+#	American
+Chicago Fire FC,Chicago Fire
+Columbus,Columbus Crew
+D.C. United,DC United
+Houston Dynamo FC,Houston Dynamo
+Minnesota United FC,Minnesota
+Atlanta United,Atlanta Utd
+New York City FC,New York City
+Seattle Sounders FC,Seattle Sounders
+Vancouver Whitecaps FC,Vancouver
+Los Angeles Football Club,Los Angeles FC
+FC Cincinnati,Cincinnati
+Orlando City SC,Orlando City
+Inter Miami CF,Inter Miami
+CF Montreal,Montreal
+New England Revolution,New England Rev
+Philadelphia Union,Philadelphia
+San Jose Earthquakes,San Jose
+New York Red Bulls,New York RB
+Sporting Kansas City,Sporting Kansas
+Charlotte FC,Charlotte
+
 
 #	Welsh
 #Llandudno FC,Llandudno
@@ -212,9 +218,7 @@ FC Edinburgh,Edinburgh
 
 #	Swedish
 Helsingborgs,Helsingborg
-
-#	Norwegian
-#Aalesunds,Aalesund
+Brommapojkarna,Brommapj
 
 #	Finnish
 AC Oulu,Oulu
@@ -223,22 +227,23 @@ AC Oulu,Oulu
 Inter Milan,Inter
 AC Milan,Milan
 Hellas Verona,Verona
+#SPAL,Spal
 
 #	Spanish
 Celta Vigo,Celta
 Rayo Vallecano,Vallecano
 Real Sociedad,Sociedad
-Espanyol,Espanol
+#Espanyol,Espanol
 Athletic Bilbao,Ath Bilbao
 Atletico Madrid,Ath Madrid
-Real Valladolid,Valladolid
+#Real Valladolid,Valladolid
 Real Betis,Betis
 Cádiz,Cadiz
 
 #	German
-Hertha Berlin,Hertha
-FC Nuremberg,Nurnberg
-FC Schalke,Schalke
+#Hertha Berlin,Hertha
+#FC Nuremberg,Nurnberg
+#FC Schalke,Schalke
 Mainz 05,Mainz
 Borussia Monchengladbach,Mgladbach
 Bayer Leverkusen,Leverkusen
@@ -248,14 +253,9 @@ FC Augsburg,Augsburg
 FC Union Berlin,Union Berlin
 SC Freiburg,Freiburg
 VfL Bochum 1848,Bochum
-Bochum48,Bochum
+FC Heidenheim,Heidenheim
 #SpVgg Greuther Furth,Greuther Furth
 #Arminia Bielefeld,Bielefeld
-
-#	Italian
-Inter Milan,Inter
-AC Milan,Milan
-#SPAL,Spal
 
 #	French
 Paris Saint Germain,PSG

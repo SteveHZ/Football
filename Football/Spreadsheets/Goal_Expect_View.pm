@@ -9,8 +9,8 @@ use namespace::clean;
 
 sub create_sheet {
 	my $self = shift;
-	my $path = 'C:/Mine/perl/Football/reports/';
-	$self->{filename} = $path.'goal_expect.xlsx'
+	my $path = 'C:/Mine/perl/Football/reports';
+	$self->{filename} = "$path/goal_expect.xlsx"
 		unless $self->{filename};
 }
 

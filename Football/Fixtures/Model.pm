@@ -75,6 +75,7 @@ sub prepare {
 #	Work-around to ensure that Women's leagues don't get confused with Men's leagues
 	$$dataref =~ s/The FA Women's Championship/The FA Women's Champ/g;
 	$$dataref =~ s/Scottish Women's Premier League( \d)?/Scottish Women's Prem/g; # Premier Lg and Premier Lg 1 ???
+#$$dataref =~ s/Match postponed - International call-ups//g;
 
 #	Identify known leagues
 	$$dataref =~ s/($womens_leagues)/\n<LEAGUE>$1/g;
@@ -202,8 +203,8 @@ sub do_initial_chars {
 	$$dataref =~ s/AC //g;
 #	$$dataref =~ s/SPAL/SPAl/g;
 
-	$$dataref =~ s/ \d{4}(?!:)//g; # match Bochum 1848 but not Schalke 0419:30(time) or Mainz 05...
 	$$dataref =~ s/\d{4} //g; # 1899 Hoffenheim
+	$$dataref =~ s/ \d{4}(?!:)//g; # match Bochum 1848 but not Schalke 0419:30(time) or Mainz 05...
 	$$dataref =~ s/ \d{2}//g; # 04,05,08,96
 
 	$$dataref =~ s/VfB //g;  # German
@@ -219,6 +220,7 @@ sub do_initial_chars {
 #	$$dataref =~ s/jyskE/jyske/g; # Danish
 	$$dataref =~ s/ BoIS//g; # Varbergs
 	$$dataref =~ s/ AIF//g; # Mjallby
+	$$dataref =~ s/St. Louis/St Louis/g;
 }
 
 sub revert {

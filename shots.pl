@@ -46,7 +46,10 @@ for my $team (@$teams) {
 }
 
 my $table = Text::Table->new ('Team','Home Shots','Home Goals','Home Ratio','Away Shots','Away Goals','Away Ratio','HShotsRatio','AShotsRatio');
-for my $team (@$teams) {
+for my $team (sort {
+    $data->{$b}->{home_shots_ratio} <=> $data->{$a}->{home_shots_ratio}
+} @$teams) {
+#for my $team (@$teams) {
     my $home_ratio = _format ($data->{$team}->{home_goals} / $data->{$team}->{home_shots});
     my $away_ratio = _format ($data->{$team}->{away_goals} / $data->{$team}->{away_shots});
 

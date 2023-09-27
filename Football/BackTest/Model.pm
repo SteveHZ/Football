@@ -30,11 +30,11 @@ sub disconnect {
     use Function::Parameters qw(method);
     method do_query (:$league, :$data, :$query, :$callback) {
         my $sql = "SELECT * FROM '$league' WHERE $query";
-        my $sth = $self->{dbh}->prepare ($sql);
+		my $sth = $self->{dbh}->prepare ($sql);
         $sth->execute ();
 
         while (my $row = $sth->fetchrow_hashref) {
-            $data->{stake}->{$league} ++;
+			$data->{stake}->{$league} ++;
             $data->{totals}->{stake} ++;
             $callback->($row, $league, $data);
         }

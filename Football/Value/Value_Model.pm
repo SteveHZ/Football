@@ -1,4 +1,4 @@
-package Football::Value::Model;
+package Football::Value::Value_Model;
 
 use List::MoreUtils qw(each_array);
 use File::Fetch;
@@ -12,7 +12,7 @@ use namespace::clean;
 
 has 'overround' => (is => 'rw', default => 1.05);
 
-sub download_fdata {
+sub download_football_data {
     my $self = shift;
     my $dir = 'C:/Mine/perl/Football/data/value';
     my $url = "https://www.football-data.co.uk/fixtures.csv";
@@ -23,7 +23,7 @@ sub download_fdata {
     return $file;
 }
 
-sub get_fdata {
+sub get_football_data_model {
     my ($self, $csv_file) = @_;
 
     my $data_model = Football::Football_Data_Model->new (
@@ -32,16 +32,16 @@ sub get_fdata {
     );
     my $games = $data_model->read_csv ($csv_file);
 
-    my $fdata = {};
+    my $football_data = {};
     my $iterator = each_array (@league_names, @csv_leagues);
     while (my ($league, $csv) = $iterator->()) {
         my @league_games = grep { $_->{league} eq $csv } @$games;
         for my $game (@league_games) {
             my $home = $game->{home_team};
-            $fdata->{$home} = $game;
+            $football_data->{$home} = $game;
         }
     }
-    return $fdata;
+    return $football_data;
 }
 
 sub collate_data {

@@ -22,11 +22,12 @@ sub calc_goal_expect {
 sub calc_match_odds {
 	my ($self, $game) = @_;
 
-    my $odds = Football::Game_Predictions::Match_Odds->new (weighted => 1);
+    my $odds = Football::Game_Predictions::Match_Odds->new ();
+#    my $odds = Football::Game_Predictions::Match_Odds->new (weighted => 1);
     return $self->get_odds ($odds, $game);
 }
 
-# temporary sub to allow hash to br returned from Match_Odds version
+# temporary sub to allow hash to be returned from Match_Odds version
 sub get_odds {
 	my ($self, $odds, $game) = @_;
 #	return $odds->calc_odds ($game->{home_last_six}, $game->{away_last_six});

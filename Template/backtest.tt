@@ -1,4 +1,4 @@
-Date,Home_Team,Away_Team,Home_Score,Away_Score,Result,Season_Home_Expect,Season_Away_Expect,Season_Home_Win,Season_Draw,Season_Away_Win,Season_Over_2.5,Season_Under_2.5,Recent_Home_Expect,Recent_Away_Expect,Recent_Home_Win,Recent_Draw,Recent_Away_Win,Recent_Over_2.5,Recent_Under_2.5,B365H,B365D,B365A,BB>2.5,BB<2.5
+	Date,Home_Team,Away_Team,Home_Score,Away_Score,Result,Season_Home_Expect,Season_Away_Expect,Season_Home_Win,Season_Draw,Season_Away_Win,Season_Over,Season_Under,Recent_Home_Expect,Recent_Away_Expect,Recent_Home_Win,Recent_Draw,Recent_Away_Win,Recent_Over,Recent_Under,B365H,B365D,B365A,B365Over,B365Under
 [%- FOREACH game IN data %]
 [% game.date %],[% game.home_team %],[% game.away_team %],
 [%- game.home_score %],[% game.away_score %],[% game.result %],

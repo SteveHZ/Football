@@ -55,7 +55,7 @@ sub do_predict_models {
     my $sorted = {
         expect => $model->sort_expect_data (),
         match_odds => $model->calc_match_odds ($self->{model_name}),
-        skellam => $model->calc_skellam_dist (),
+#        skellam => $model->calc_skellam_dist (),
         over_under => $model->calc_over_under (),
     };
     $sorted->{data} = $model->save_expect_data ( $sorted->{expect}, $self->{model_name} );

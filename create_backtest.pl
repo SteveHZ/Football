@@ -1,4 +1,4 @@
-#   create_backtest.pl 02-15/02/20
+#   create_backtest.pl 02-15/02/20, 23/02/23
 
 use MyHeader;
 use MyTemplate;
@@ -9,8 +9,7 @@ use Football::BackTest::Season;
 use Football::BackTest::Season_Predictions;
 use Football::BackTest::Recent_Predictions;
 
-#my $start_year = 2005;  # earlier files don't have all fields
-my $start_year = 2015;  # for testing
+#my $start_year = 2015;  # for testing, earlier files don't have all fields
 
 my $season = Football::BackTest::Season->new (
     callback => sub { do_predicts (@_) },
@@ -19,15 +18,16 @@ my $season = Football::BackTest::Season->new (
 my $file_list = Football::BackTest::FileList->new (
     leagues => \@league_names,
     csv_leagues => \@csv_leagues,
-    path => 'C:/Mine/perl/Football/data/historical',
+    path => 'C:/Mine/perl/Football/data',
     func => sub {
         my $filename = shift;
-        return 1 if $filename =~ /\.csv$/ && substr ($filename, 0, -4) >= $start_year;
+        return 1 if $filename =~ /\.csv$/;
         return 0;
     },
 );
 
-my $files_iterator = $file_list->get_historical_as_iterator;
+my $files_iterator = $file_list->get_current_as_iterator;
+
 while (my $league = $files_iterator->()) {
     my $league_name = $league->{league_name};
     my $my_data = [];
@@ -54,7 +54,7 @@ sub get_predicts {
 
     return {
         season_match_odds => $season_model->calc_match_odds ($game),
-        recent_match_odds => $recent_model->calc_match_odds ($game),
+		recent_match_odds => $recent_model->calc_match_odds ($game),
     };
 }
 
@@ -97,10 +97,11 @@ sub write_data {
     my ($data, $league_name) = @_;
 
     say "\nWriting $league_name...";
-    my $tt = MyTemplate->new (filename => "C:/Mine/perl/Football/data/backtest/$league_name.csv");
-    my $out_fh = $tt->open_file ();
-
-    $tt->process ('Template/backtest.tt', {
-        data => $data,
-    }, $out_fh) or die $tt->error;
+    my $tt = MyTemplate->new (
+		filename => "C:/Mine/perl/Football/data/backtest/$league_name.csv",
+		template => 'Template/backtest.tt',
+		data => $data,
+	);
+    
+	$tt->write_file ();
 }

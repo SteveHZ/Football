@@ -41,7 +41,7 @@ sub BUILD {
 sub create_sheet {
 	my $self = shift;
 	my $path = 'C:/Mine/perl/Football/reports/';
-	$self->{filename} = $path.'over_under.xlsx'
+	$self->{filename} = "$path/over_under.xlsx"
 		unless defined $self->{filename};
 }
 

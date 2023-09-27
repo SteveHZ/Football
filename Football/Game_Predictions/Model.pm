@@ -3,7 +3,7 @@ package Football::Game_Predictions::Model;
 use v5.10; # state
 use Football::Game_Predictions::Goal_Expect_Model;
 use Football::Game_Predictions::Match_Odds;
-use Football::Game_Predictions::Skellam_Dist_Model;
+#use Football::Game_Predictions::Skellam_Dist_Model;
 use Football::Game_Predictions::Over_Under_Model;
 use Football::Globals qw( $default_stats_size );
 use Football::Rules;

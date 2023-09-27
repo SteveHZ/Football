@@ -43,9 +43,9 @@ our @EXPORT = qw(
 
 sub new { return bless {}, shift; }
 
-our $season = 2022;
-our $euro_season = 2022;
-our $summer_season = 2022;
+our $season = 2023;
+our $euro_season = 2023;
+our $summer_season = 2023;
 
 our $next_season = $season + 1;
 our $season_years = ($season-2000).($next_season-2000);
@@ -105,13 +105,10 @@ our @euro_csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 D1 D2 SP1 SP2 I1 I2 F
 
 # for max_profit.pl, db.pl and fetch.pl
 
-our @euro_lgs = ('German', 'Spanish', 'Italian', 'French');
+#our @euro_lgs = ('German', 'Spanish', 'Italian', 'French');
+our @euro_lgs = ('German League', 'Spanish League', 'Italian League', 'French League');
 our @euro_csv_lgs = qw( D1 SP1 I1 F1);
 our @euro_fetch_lgs = qw( D1 SP1 I1 F1);
-
-#our @euro_lgs = ('German', 'Spanish', 'Italian', 'Welsh', 'N Irish');
-#our @euro_csv_lgs = qw( D1 SP1 I1 WL NI);
-#our @euro_fetch_lgs = qw( D1 SP1 I1);
 
 # enable TESTING/else blocks to reduce number of leagues used at start/end of season_data
 # while still ensuring test scripts will pass
@@ -120,9 +117,9 @@ TESTING { # Do not touch these lines
 	our @summer_csv_leagues = qw(ROI MLS SWE NOR FIN BRZ);
 	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN BRZ);
 } else { # Amend these lines as needed
-#	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League' );
-#	our @summer_csv_leagues = qw(ROI MLS SWE NOR FIN);
-#	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN);
+#	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Finnish League' );
+#	our @summer_csv_leagues = qw(ROI MLS SWE FIN);
+#	our @summer_fetch_leagues = qw(IRL USA SWE FIN);
 
 	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League'  );
 	our @summer_csv_leagues = qw(ROI MLS SWE NOR FIN);
@@ -149,11 +146,11 @@ our $csv_fields = {
 	home_shots => 'HS',
 	away_shots => 'AS',
 # Australian
-	aus_home_team => 'Home Team',
-	aus_away_team => 'Away Team',
-	round => 'Round Number',
-	location => 'Location',
-	score => 'Result',
+#	aus_home_team => 'Home Team',
+#	aus_away_team => 'Away Team',
+#	round => 'Round Number',
+#	location => 'Location',
+#	score => 'Result',
 };
 
 # for create_reports.pl and amend_historical.pl

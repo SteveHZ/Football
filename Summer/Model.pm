@@ -46,7 +46,6 @@ sub update {
 		}
 	}
 	$self->write_json ($self->{season_data}, $games);
-	print "\nWriting data...";
 	return $games;
 }
 

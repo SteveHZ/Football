@@ -5,7 +5,7 @@ use strict;
 use warnings;
 
 use File::Fetch;
-use List::MoreUtils qw(each_arrayref);
+use List::MoreUtils qw(each_array);
 
 use lib 'C:/Mine/perl/Football';
 use Summer::Summer_Data_Model;
@@ -16,11 +16,9 @@ my $data_model = Summer::Summer_Data_Model->new ();
 
 my $summer_dir = 'C:/Mine/perl/Football/data/Summer';
 my $summer_download_dir = 'C:/Mine/perl/Football/data/Summer/download';
-my $fetch_leagues = \@summer_fetch_leagues;
-my $csv_leagues = \@summer_csv_leagues;
 my $sleep_time = 2;
 
-for my $league (@$fetch_leagues) {
+for my $league (@summer_fetch_leagues) {
 	my $url = "https://www.football-data.co.uk/new/$league.csv";
 	my $ff = File::Fetch->new (uri => $url);
 	my $file = $ff->fetch (to => $summer_download_dir) or die $ff->error;
@@ -33,7 +31,7 @@ print "\n";
 # 	then grep the full file for the current season and save to the correct directory, using the same name.
 # 	Saving the full file in the same directory caused problems when it came to delete the full file using the same names.
 
-my $iterator = each_arrayref ($fetch_leagues, $csv_leagues);
+my $iterator = each_array (@summer_fetch_leagues, @summer_csv_leagues);
 while (my ($league, $file) = $iterator->()) {
 	my $in_file = "$summer_download_dir/$league.csv";
 	my $out_file = "$summer_dir/$file.csv";
