@@ -1,29 +1,28 @@
-#!	C:/Strawberry/perl/bin
-
 #	form.pl 21-26/11/16, 30/06/17, 01/09/17
 
 use strict;
 use warnings;
 
-use lib 'C:/Mine/perl/Football';
 use Football::Model;
-use Football::Form_Model;
 use Euro::Model;
 use Summer::Model;
+use Football::Form_Model;
+
 use List::MoreUtils qw(each_arrayref);
 
-my @models = (
+my $models = [
 	Football::Model->new (),
 	Euro::Model->new (),
 	Summer::Model->new (),
-);
-my @filenames = (
+];
+
+my $filenames = [
 	'form.xlsx',
 	'Euro/form.xlsx',
-	'Summer/form.xlsx'
-);
+	'Summer/form.xlsx',
+];
 
-my $iterator = each_arrayref (\@models, \@filenames);
+my $iterator = each_arrayref ($models, $filenames);
 while (my ($model, $filename) = $iterator->()) {
 	my $games = $model->read_games ();
 	my $leagues = $model->build_leagues ($games);

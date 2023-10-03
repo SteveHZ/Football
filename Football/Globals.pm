@@ -78,30 +78,9 @@ our @fixtures_leagues = (
 	'Scots League Two',
 );
 
-#our @csv_leagues = qw( E0 E1 E2 E3 EC SC0 );
-#our @fixtures_csv_leagues = qw( E0 E1 E2 E3 EC SC0 );
-#our @league_size = qw( 20 24 24 24 23 12 ); # clubs in each league
-
 our @csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 );
 our @fixtures_csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 );
-our @league_size = qw( 20 24 24 24 23 12 10 10 10 ); # clubs in each league
-
-=begin comment
-# for euro.pl
-
-our @euro_leagues = (
-	'English Premier League', 'English Championship', 'English League One', 'English League Two', 'English Conference',
-	'Scots Premier League', 'Scots Championship', 'Scots League One', 'Scots League Two',
-	'German League One', 'German League Two', 'Spanish League One', 'Spanish League Two',
-	'Italian League One', 'Italian League Two', 'French League One', 'French League Two',
-	'Dutch League One', 'Belgian League One', 'Portuguese League One', 'Turkish League One',
-	'Greek League One',
-);
-
-our @euro_csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 D1 D2 SP1 SP2 I1 I2 F1 F2 N1 B1 P1 T1 G1 );
-
-=end comment
-=cut
+our @league_size = qw( 20 24 24 24 24 12 10 10 10 ); # clubs in each league
 
 # for max_profit.pl, db.pl and fetch.pl
 
@@ -116,7 +95,7 @@ TESTING { # Do not touch these lines
 	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League', 'Brazilian League');
 	our @summer_csv_leagues = qw(ROI MLS SWE NOR FIN BRZ);
 	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN BRZ);
-} else { # Amend these lines as needed
+} else { # Amend these lines as needed at the start of a season
 #	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Finnish League' );
 #	our @summer_csv_leagues = qw(ROI MLS SWE FIN);
 #	our @summer_fetch_leagues = qw(IRL USA SWE FIN);
@@ -145,12 +124,6 @@ our $csv_fields = {
 	av_under => 'BbAv<2.5',
 	home_shots => 'HS',
 	away_shots => 'AS',
-# Australian
-#	aus_home_team => 'Home Team',
-#	aus_away_team => 'Away Team',
-#	round => 'Round Number',
-#	location => 'Location',
-#	score => 'Result',
 };
 
 # for create_reports.pl and amend_historical.pl
@@ -159,7 +132,9 @@ my $english = [ 1995..$reports_season ];
 my $conference = [ 2005..$reports_season ];
 my $scottish = [ 2000..$reports_season ];
 my $fav_seasons = [ 2010..$reports_season ];
+
 my $h2h_start = $reports_season - 5; # last six seasons
+my $h2h_seasons = [ $h2h_start..$reports_season];
 
 our $reports_seasons = {
 	'Premier League'	=> $english,
@@ -171,11 +146,37 @@ our $reports_seasons = {
 	'Scots Championship'=> $scottish,
 	'Scots League One' 	=> $scottish,
 	'Scots League Two' 	=> $scottish,
+	'h2h_seasons'		=> $h2h_seasons,
 };
 
 our $reports_folder = 'C:/Mine/perl/Football/reports';
 our $cloud_folder = 'C:/Users/Steve/OneDrive/Football';
 #our $cloud_folder = 'C:/Users/Steve/Dropbox/Football';
+
+=begin comment
+# for euro.pl
+
+our @euro_leagues = (
+	'English Premier League', 'English Championship', 'English League One', 'English League Two', 'English Conference',
+	'Scots Premier League', 'Scots Championship', 'Scots League One', 'Scots League Two',
+	'German League One', 'German League Two', 'Spanish League One', 'Spanish League Two',
+	'Italian League One', 'Italian League Two', 'French League One', 'French League Two',
+	'Dutch League One', 'Belgian League One', 'Portuguese League One', 'Turkish League One',
+	'Greek League One',
+);
+
+our @euro_csv_leagues = qw( E0 E1 E2 E3 EC SC0 SC1 SC2 SC3 D1 D2 SP1 SP2 I1 I2 F1 F2 N1 B1 P1 T1 G1 );
+
+#csv_fields
+# Australian
+#	aus_home_team => 'Home Team',
+#	aus_away_team => 'Away Team',
+#	round => 'Round Number',
+#	location => 'Location',
+#	score => 'Result',
+
+=end comment
+=cut
 
 =pod
 

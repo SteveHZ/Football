@@ -67,6 +67,10 @@ sub get_summer_hash {
 		'MLS' => [
 			sub { $_[0] =~ s/Atlanta United/Atlanta Utd/g },
 			sub { $_[0] =~ s/St. Louis/St Louis/g },
+			sub { $_[0] =~ s/Toronto FC/Toronto/g },
+			sub { $_[0] =~ s/Austin FC/Austin/g },
+			sub { $_[0] =~ s/Los Angeles FC/Los Angeles/g },
+#			sub { $_[0] =~ s/FC Dallas/Dallas/g },
 		],
 	};
 }

@@ -7,7 +7,7 @@
 #	Before running create_reports.pl
 #	Change Football::Globals::$season to NEXT year (ie At the end of 2021-2022 season, change $season to 2022)
 #	perl archive_csv.pl
-#	perl amend_hostorical.pl
+#	perl amend_historical.pl
 #	perl create_reports.pl
 
 

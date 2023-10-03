@@ -34,7 +34,7 @@ my $leagues = {
 	],
     'USA League' => [
         'Atlanta Utd',
-        'Austin FC',
+        'Austin',
         'Charlotte',
         'Chicago Fire',
         'Cincinnati',
@@ -45,7 +45,7 @@ my $leagues = {
         'Houston Dynamo',
         'Inter Miami',
         'LA Galaxy',
-        'Los Angeles FC',
+        'Los Angeles',
         'Minnesota',
         'Montreal',
         'Nashville',
@@ -60,7 +60,7 @@ my $leagues = {
         'Seattle Sounders',
         'Sporting Kansas',
         'St Louis City',
-        'Toronto FC',
+        'Toronto',
         'Vancouver',
 	],
     'Swedish League' => [

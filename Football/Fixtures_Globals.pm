@@ -187,7 +187,7 @@ Atlanta United,Atlanta Utd
 New York City FC,New York City
 Seattle Sounders FC,Seattle Sounders
 Vancouver Whitecaps FC,Vancouver
-Los Angeles Football Club,Los Angeles FC
+Los Angeles Football Club,Los Angeles
 FC Cincinnati,Cincinnati
 Orlando City SC,Orlando City
 Inter Miami CF,Inter Miami
@@ -198,7 +198,8 @@ San Jose Earthquakes,San Jose
 New York Red Bulls,New York RB
 Sporting Kansas City,Sporting Kansas
 Charlotte FC,Charlotte
-
+Austin FC,Austin
+Toronto FC,Toronto
 
 #	Welsh
 #Llandudno FC,Llandudno

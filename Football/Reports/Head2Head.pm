@@ -106,7 +106,7 @@ sub build_head2head {
 	for my $league (@$leagues) {
 		for my $season ( $seasons->{h2h_seasons}->@* ) {
 			print "\nHead To Head - Updating $league - $season...";
-			my $json_file = $self->{historical_path}.$league.'/'.$season.'.json';
+			my $json_file = "$self->{historical_path}/$league/$season.json";
 			my $games = $self->read_json ($json_file);
 
 			for my $game (@$games) {
