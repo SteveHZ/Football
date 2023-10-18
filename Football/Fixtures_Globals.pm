@@ -220,6 +220,9 @@ Toronto FC,Toronto
 #	Swedish
 Helsingborgs,Helsingborg
 Brommapojkarna,Brommapj
+Halmstad,Halmstads
+Djurgarden,Djurgardens
+Varberg,Varbergs
 
 #	Finnish
 AC Oulu,Oulu
@@ -362,6 +365,7 @@ Asian,X
 UEFA,X
 Australian A-League,X
 Copa Libertadores,X
+Saudi Professional League,X
 END_FOOTBALL_LEAGUES
 
 #Betfred Super League,SL

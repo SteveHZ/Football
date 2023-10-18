@@ -92,12 +92,14 @@ sub update {
 				} else {
 					$hashref->{fav_winnings} += $game->{away_odds};
 				}
-			} else {
+			} elsif ($game->{away_odds} > $game->{home_odds}) { # ensure that we ignore games where home and away odds are the same
 				if ($game->{result} eq 'A'){
 					$hashref->{under_winnings} += $game->{away_odds};
 				} else {
 					$hashref->{fav_winnings} += $game->{home_odds};
 				}
+			} else {
+				$hashref->{stake} --; # no bet if home and away odds are equal
 			}
 		}
 	}

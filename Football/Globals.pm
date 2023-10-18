@@ -84,7 +84,6 @@ our @league_size = qw( 20 24 24 24 24 12 10 10 10 ); # clubs in each league
 
 # for max_profit.pl, db.pl and fetch.pl
 
-#our @euro_lgs = ('German', 'Spanish', 'Italian', 'French');
 our @euro_lgs = ('German League', 'Spanish League', 'Italian League', 'French League');
 our @euro_csv_lgs = qw( D1 SP1 I1 F1);
 our @euro_fetch_lgs = qw( D1 SP1 I1 F1);

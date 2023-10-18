@@ -20,9 +20,9 @@ subtest 'constructor' => sub {
 
 # Shared Model
 subtest 'get_league_idx' => sub {
-	plan 3;
-	is ($model->get_league_idx ('German'), 0, 'German idx 0');
-	is ($model->get_league_idx ('Spanish'), 1, 'Spanish idx 1');
-	is ($model->get_league_idx ('Italian'), 2, 'Italian idx 2');
-#	is ($model->get_league_idx ('N Irish'), 4, 'N Irish idx 4'); # no longer supported 13/10/21
+	plan 4;
+	is ($model->get_league_idx ('German League'), 0, 'German idx 0');
+	is ($model->get_league_idx ('Spanish League'), 1, 'Spanish idx 1');
+	is ($model->get_league_idx ('Italian League'), 2, 'Italian idx 2');
+	is ($model->get_league_idx ('French League'), 3, 'French idx 3');
 };
