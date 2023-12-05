@@ -337,7 +337,6 @@ Italian Coppa Italia,X
 French Coupe de France,X
 FA Trophy,X
 Trophy,X
-#Women,X
 International,X
 World,X
 Euro,X
@@ -366,6 +365,9 @@ UEFA,X
 Australian A-League,X
 Copa Libertadores,X
 Saudi Professional League,X
+Women,X
+Women's Super League,X
+Women's Championship,X
 END_FOOTBALL_LEAGUES
 
 #Betfred Super League,SL
@@ -390,8 +392,8 @@ END_RUGBY_LEAGUES
 
 The FA Women's Super League,X
 The FA Women's Champ,X
-#Women,X
 Scottish Women's Prem,X
+#Women,X
 END_WOMENS_FOOTBALL_LEAGUES
 
 =pod

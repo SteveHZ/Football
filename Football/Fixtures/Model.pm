@@ -75,7 +75,8 @@ sub prepare {
 #	Work-around to ensure that Women's leagues don't get confused with Men's leagues
 	$$dataref =~ s/The FA Women's Championship/The FA Women's Champ/g;
 	$$dataref =~ s/Scottish Women's Premier League( \d)?/Scottish Women's Prem/g; # Premier Lg and Premier Lg 1 ???
-#$$dataref =~ s/Match postponed - International call-ups//g;
+
+#	$$dataref =~ s/Match postponed - International call-ups//g;
 
 #	Identify known leagues
 	$$dataref =~ s/($womens_leagues)/\n<LEAGUE>$1/g;

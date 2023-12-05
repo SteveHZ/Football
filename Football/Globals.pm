@@ -94,14 +94,15 @@ TESTING { # Do not touch these lines
 	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League', 'Brazilian League');
 	our @summer_csv_leagues = qw(ROI MLS SWE NOR FIN BRZ);
 	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN BRZ);
-} else { # Amend these lines as needed at the start of a season
-#	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Finnish League' );
-#	our @summer_csv_leagues = qw(ROI MLS SWE FIN);
-#	our @summer_fetch_leagues = qw(IRL USA SWE FIN);
+} else { # Amend these lines as required at the start or end of a season
+	our @summer_leagues = ( 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League' );
+	our @summer_csv_leagues = qw(MLS SWE NOR FIN);
+	our @summer_fetch_leagues = qw(USA SWE NOR FIN);
 
-	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League'  );
-	our @summer_csv_leagues = qw(ROI MLS SWE NOR FIN);
-	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN);
+#	Use these lines for the majority of the season
+#	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League'  );
+#	our @summer_csv_leagues = qw(ROI MLS SWE NOR FIN);
+#	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN);
 }
 
 our $csv_fields = {

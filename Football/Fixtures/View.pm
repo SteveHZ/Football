@@ -11,8 +11,7 @@ sub write_csv {
 		my $filename = $fname."_$key.csv";
 		print "\nWriting $filename...";
 		open my $fh, '>', $filename or die "Can't open $filename";
-		for my $game (@{$games->{$key}}) {
-#			next if $game =~ /<DATE>/; # for rugby ??
+		for my $game ( $games->{$key}->@* ) {
 			print $fh $game."\n";
 		}
 		close $fh;
