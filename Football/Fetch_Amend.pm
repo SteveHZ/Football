@@ -50,6 +50,7 @@ sub get_euro_hash {
 	return {
 		'D1' => [
 			sub { $_[0] =~ s/M'gladbach/Mgladbach/g },
+			sub { $_[0] =~ s/Ein Frankfurt/Frankfurt/g },
 #			sub { $_[0] =~ s/Schalke 04/Schalke/g },
 		],
 		'F1' => [

@@ -252,7 +252,7 @@ Mainz 05,Mainz
 Borussia Monchengladbach,Mgladbach
 Bayer Leverkusen,Leverkusen
 Borussia Dortmund,Dortmund
-Eintracht Frankfurt,Ein Frankfurt
+Eintracht Frankfurt,Frankfurt
 FC Augsburg,Augsburg
 FC Union Berlin,Union Berlin
 SC Freiburg,Freiburg

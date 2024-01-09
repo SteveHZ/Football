@@ -8,7 +8,7 @@
 #	in Football::Fixtures_Globals, and in Football::Fetch_Amend
 #	Also need to check Football::Fetch_Amend before the start of each season for promotion/relegation
 
-#	Euro::Rename WAS previously used to esit Football Data CSV files, DO NOT USE - DEPRECATED 10/08/22
+#	Euro::Rename WAS previously used to edit Football Data CSV files, DO NOT USE - DEPRECATED 10/08/22
 
 use strict;
 use warnings;
@@ -29,7 +29,7 @@ my $leagues = {
         'Bochum',
         'Darmstadt',
         'Dortmund',
-        'Ein Frankfurt',
+        'Frankfurt',
         'FC Koln',
         'Freiburg',
         'Heidenheim',

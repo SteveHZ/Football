@@ -92,8 +92,8 @@ sub sort_by_sheet_name {
 	my ($self, $games, $sorted_by) = @_;
 	return [
 		sort {
-			$a->{odds}->{season}->{$sorted_by}
-			<=> $b->{odds}->{season}->{$sorted_by}
+			$b->{odds}->{season}->{$sorted_by}
+			<=> $a->{odds}->{season}->{$sorted_by}
 		} @$games
 	];
 }

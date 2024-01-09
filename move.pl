@@ -40,7 +40,6 @@ my @files = (
 	{ src => "$reports_folder/series stoffo Summer.xlsx", dest => "$cloud_folder/Summer/series stoffo Summer.xlsx" },
 
 	{ src => 'C:/Mine/My Dime List.csv', dest => 'C:/Users/Steve/OneDrive/Documents/My Dime List.csv' },
-
 );
 
 for my $file (@files) {
@@ -52,15 +51,15 @@ for my $file (@files) {
 
 =head1 NAME
 
-backup_docs.pl
+move.pl
 
 =head1 SYNOPSIS
 
-perl backup_docs.pl
+perl move.pl
 
 =head1 DESCRIPTION
 
-Back up all document files
+Copy all football report files to my One Drive folder
 
 =head1 AUTHOR
 
