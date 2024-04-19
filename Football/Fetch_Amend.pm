@@ -64,6 +64,7 @@ sub get_summer_hash {
 		'SWE' => [
 			sub { $_[0] =~ s/Varberg,/Varbergs,/g }, # errors in datafile 2022
 			sub { $_[0] =~ s/Brommapojkarna/Brommapj/g },
+			sub { $_[0] =~ s/Vasteras SK/Vasteras/g },
 		],
 		'MLS' => [
 			sub { $_[0] =~ s/Atlanta United/Atlanta Utd/g },
@@ -72,6 +73,9 @@ sub get_summer_hash {
 			sub { $_[0] =~ s/Austin FC/Austin/g },
 			sub { $_[0] =~ s/Los Angeles FC/Los Angeles/g },
 #			sub { $_[0] =~ s/FC Dallas/Dallas/g },
+		],
+		'FIN' => [
+			sub { $_[0] =~ s/Ekenas/EIF/g },
 		],
 	};
 }

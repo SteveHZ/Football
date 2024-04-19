@@ -56,7 +56,7 @@ sub do_counts {
 sub do_count {
     my ($self, $data, $n) = @_;
 
-# can all this be done simpler with a dispatch table ??
+# could all this be done simpler with a dispatch table ??
     $self->{home_away}->{$n}->{from} ++ if $self->{expect_model}->home_away_game ($data, $n);
     $self->{home_away}->{$n}->{wins} ++ if $self->{expect_model}->home_away_win ($data, $n);
     $self->{last_six}->{$n}->{from} ++ if $self->{expect_model}->last_six_game ($data, $n);

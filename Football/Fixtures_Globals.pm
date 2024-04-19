@@ -162,7 +162,7 @@ Ayr United,Ayr
 Queen's Park,Queens Park
 Airdrieonians,Airdrie
 Raith Rovers,Raith Rvs
-Albion Rovers,Albion Rvs
+#Albion Rovers,Albion Rvs
 Forfar Athletic,Forfar
 #Berwick Rangers,Berwick
 Elgin City,Elgin
@@ -175,6 +175,7 @@ St Patrick's Athletic,St Patricks
 Sligo Rovers,Sligo Rvs
 Shamrock Rovers,Shamrock Rvs
 Drogheda United,Drogheda
+Galway United FC,Galway
 #Longford Town,Longford
 
 #	American

@@ -186,6 +186,8 @@ sub do_initial_chars {
 	$$dataref =~ s/AFC/Afc/g;
 	$$dataref =~ s/SJK/SJk/g;
 	$$dataref =~ s/AIK/AIk/g;
+	$$dataref =~ s/EIF/EIf/g;
+	$$dataref =~ s/GAIS/GAIs/g;
 	$$dataref =~ s/MU/Mu/g;  # Welsh
 	$$dataref =~ s/UCD/UCd/g; # Irish
 	$$dataref =~ s/(?<!H)IFK //g;  # Swedish - DON'T match with HIFK, only IFK
@@ -239,6 +241,8 @@ sub revert {
 	$$dataref =~ s/UCd/UCD/g;
 	$$dataref =~ s/KTp/KTP/g;
 	$$dataref =~ s/Hamkam/HamKam/g;
+	$$dataref =~ s/EIf/EIF/g;
+	$$dataref =~ s/GAIs/GAIS/g;
 }
 
 #   transform a hash from key => value 'one-to-many' relationship

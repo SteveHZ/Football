@@ -6,7 +6,17 @@ use warnings;
 use List::Util qw(any);
 use Football::Fixtures_Globals qw( football_rename rugby_rename );
 
-my @remove_teams = ();
+my @remove_teams = (
+#	"Montreal", # Home 14/04
+	"Sandefjord", # Home 21/04
+	"Tromso", # Away 21/04
+	"EIF", # Home 21/04
+	"Haka", # Away 20/04
+	"Ilves", # Away 19/04
+	"Lahti", # Home 20/04
+ 	"Mariehamn", # Away 20/04
+	"Oulu", # Home 27/04
+);
 # Once array is empty, disable ZEROGAMES pragma in predict.pl
 
 my @paths = (

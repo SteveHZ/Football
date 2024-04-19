@@ -4,10 +4,10 @@ use strict;
 use warnings;
 
 use File::Copy;
-use Football::Globals qw($reports_folder $cloud_folder);
+use Football::Globals qw($reports_folder $cloud_folder $season);
 
 my @files = (
-#	{ src => "$reports_folder/Summer 2023.xlsx", dest => "$cloud_folder/Summer 2023.xlsx" },
+	{ src => "$reports_folder/Summer $season.xlsx", dest => "$cloud_folder/Summer $season.xlsx" },
 	{ src => "$reports_folder/Match Odds UK.xlsx", dest => "$cloud_folder/Match Odds UK.xlsx" },
 	{ src => "$reports_folder/Recent Match Odds UK.xlsx", dest => "$cloud_folder/Recent Match Odds UK.xlsx" },
 	{ src => "$reports_folder/Match Odds Euro.xlsx", dest => "$cloud_folder/Euro/Match Odds Euro.xlsx" },
@@ -21,22 +21,22 @@ my @files = (
 	{ src => "$reports_folder/returns UK.xlsx", dest => "$cloud_folder/returns UK.xlsx" },
 	{ src => "$reports_folder/streaks UK.xlsx", dest => "$cloud_folder/streaks UK.xlsx" },
 	{ src => "$reports_folder/series s1 UK.xlsx", dest => "$cloud_folder/series s1 UK.xlsx" },
-	{ src => "$reports_folder/series s2 UK.xlsx", dest => "$cloud_folder/series s2 UK.xlsx" },
-	{ src => "$reports_folder/series s3 UK.xlsx", dest => "$cloud_folder/series s3 UK.xlsx" },
+	{ src => "$reports_folder/series s246 UK.xlsx", dest => "$cloud_folder/series s246 UK.xlsx" },
+	{ src => "$reports_folder/series s369 UK.xlsx", dest => "$cloud_folder/series s369 UK.xlsx" },
 	{ src => "$reports_folder/series stoffo UK.xlsx", dest => "$cloud_folder/series stoffo UK.xlsx" },
 
 	{ src => "$reports_folder/returns Euro.xlsx", dest => "$cloud_folder/Euro/returns Euro.xlsx" },
 	{ src => "$reports_folder/streaks Euro.xlsx", dest => "$cloud_folder/Euro/streaks Euro.xlsx" },
 	{ src => "$reports_folder/series s1 Euro.xlsx", dest => "$cloud_folder/Euro/series s1 Euro.xlsx" },
-	{ src => "$reports_folder/series s2 Euro.xlsx", dest => "$cloud_folder/Euro/series s2 Euro.xlsx" },
-	{ src => "$reports_folder/series s3 Euro.xlsx", dest => "$cloud_folder/Euro/series s3 Euro.xlsx" },
+	{ src => "$reports_folder/series s246 Euro.xlsx", dest => "$cloud_folder/Euro/series s246 Euro.xlsx" },
+	{ src => "$reports_folder/series s369 Euro.xlsx", dest => "$cloud_folder/Euro/series s369 Euro.xlsx" },
 	{ src => "$reports_folder/series stoffo Euro.xlsx", dest => "$cloud_folder/Euro/series stoffo Euro.xlsx" },
 
 	{ src => "$reports_folder/returns Summer.xlsx", dest => "$cloud_folder/Summer/returns Summer.xlsx" },
 	{ src => "$reports_folder/streaks Summer.xlsx", dest => "$cloud_folder/Summer/streaks Summer.xlsx" },
 	{ src => "$reports_folder/series s1 Summer.xlsx", dest => "$cloud_folder/Summer/series s1 Summer.xlsx" },
-	{ src => "$reports_folder/series s2 Summer.xlsx", dest => "$cloud_folder/Summer/series s2 Summer.xlsx" },
-	{ src => "$reports_folder/series s3 Summer.xlsx", dest => "$cloud_folder/Summer/series s3 Summer.xlsx" },
+	{ src => "$reports_folder/series s246 Summer.xlsx", dest => "$cloud_folder/Summer/series s246 Summer.xlsx" },
+	{ src => "$reports_folder/series s369 Summer.xlsx", dest => "$cloud_folder/Summer/series s369 Summer.xlsx" },
 	{ src => "$reports_folder/series stoffo Summer.xlsx", dest => "$cloud_folder/Summer/series stoffo Summer.xlsx" },
 
 	{ src => 'C:/Mine/My Dime List.csv', dest => 'C:/Users/Steve/OneDrive/Documents/My Dime List.csv' },

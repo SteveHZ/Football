@@ -1,11 +1,11 @@
 # series.pl 18-24/10/20
 
 use MyHeader;
-use MyLib qw (read_file);
+use MyLib qw(read_file);
 use Football::Globals qw($reports_folder);
 use Football::Spreadsheets::Write_Series;
 
-my @series_name = qw(s1 s2 s3 stoffo);
+my @series_name = qw(s1 s246 s369 stoffo);
 my $series_rx = qr/
     \w{2,3}\,   # League ID,
     [\w\h]+\,   # Team,

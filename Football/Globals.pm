@@ -45,7 +45,7 @@ sub new { return bless {}, shift; }
 
 our $season = 2023;
 our $euro_season = 2023;
-our $summer_season = 2023;
+our $summer_season = 2024;
 
 our $next_season = $season + 1;
 our $season_years = ($season-2000).($next_season-2000);
@@ -91,13 +91,13 @@ our @euro_fetch_lgs = qw( D1 SP1 I1 F1);
 # enable TESTING/else blocks to reduce number of leagues used at start/end of season_data
 # while still ensuring test scripts will pass
 TESTING { # Do not touch these lines
-	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League', 'Brazilian League');
-	our @summer_csv_leagues = qw(ROI MLS SWE NOR FIN BRZ);
-	our @summer_fetch_leagues = qw(IRL USA SWE NOR FIN BRZ);
+	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League' );
+	our @summer_csv_leagues = qw(ROI MLS SWE NOR);
+	our @summer_fetch_leagues = qw(IRL USA SWE NOR);
 } else { # Amend these lines as required at the start or end of a season
-	our @summer_leagues = ( 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League' );
-	our @summer_csv_leagues = qw(MLS SWE NOR FIN);
-	our @summer_fetch_leagues = qw(USA SWE NOR FIN);
+	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League' );
+	our @summer_csv_leagues = qw(ROI MLS SWE NOR);
+	our @summer_fetch_leagues = qw(IRL USA SWE NOR);
 
 #	Use these lines for the majority of the season
 #	our @summer_leagues = ('Irish League', 'USA League', 'Swedish League', 'Norwegian League', 'Finnish League'  );

@@ -4,8 +4,9 @@
 #	To edit names from Football Data CSV files, use Football::Fetch_Amend
 #	To edit names from BBC fixtures files use Football::Fixtures_Globals, possibly also Football::Fixtures_Model
 
-#	DEPRECATED 10/08/22 :
-# 	To edit names from Football Data CSV files, use Euro::Rename
+#	DEPRECATED 10/08/22 : To edit names from Football Data CSV files, use Euro::Rename
+
+# 	Teams updated 11/02/24 - need to be careful with Vasteras (Sweden)
 
 use strict;
 use warnings;
@@ -22,15 +23,15 @@ my $json_file = "$path/teams.json";
 my $leagues = {
     'Irish League' => [
         'Bohemians',
-        'Cork City',
-        'Derry City',
+		'Derry City',
         'Drogheda',
         'Dundalk',
         'Shamrock Rvs',
         'Shelbourne',
         'Sligo Rvs',
         'St Patricks',
-        'UCD',
+		'Galway',
+		'Waterford',
 	],
     'USA League' => [
         'Atlanta Utd',
@@ -65,8 +66,7 @@ my $leagues = {
 	],
     'Swedish League' => [
         'AIK',
-        'Brommapj',
-        'Degerfors',
+		'Brommapj',
         'Djurgardens',
         'Elfsborg',
         'Goteborg',
@@ -78,12 +78,12 @@ my $leagues = {
         'Mjallby',
         'Norrkoping',
         'Sirius',
-        'Varbergs',
         'Varnamo',
+		'Vasteras',
+		'GAIS',
 	],
     'Norwegian League' => [
-        'Aalesunds',
-        'Bodo Glimt',
+		'Bodo Glimt',
         'Brann',
         'HamKam',
         'Haugesund',
@@ -93,25 +93,26 @@ my $leagues = {
         'Rosenborg',
         'Sandefjord',
         'Sarpsborg',
-        'Stabaek',
         'Stromsgodset',
         'Tromso',
-        'Valerenga',
         'Viking',
+		'Fredrikstad',
+		'KFUM Oslo',
+		'Kristiansund',
 	],
     'Finnish League' => [
         'HJK Helsinki',
         'Haka',
-        'Honka',
         'Ilves',
         'Inter Turku',
-        'KTP',
         'KuPS Kuopio',
         'Lahti',
         'Mariehamn',
         'Oulu',
         'SJK',
         'VPS Vaasa',
+		'Gnistan',
+		'EIF',
 	],
 };
 
