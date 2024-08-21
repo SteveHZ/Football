@@ -136,17 +136,19 @@ Harrogate Town,Harrogate
 Solihull Moors,Solihull
 Aldershot Town,Aldershot
 Dorking Wanderers,Dorking
-#Macclesfield Town,Macclesfield
 Tranmere Rovers,Tranmere
 Ebbsfleet United,Ebbsfleet
 Maidenhead United,Maidenhead
 Sutton United,Sutton
 Salford City,Salford
 Stockport County,Stockport
+York City,York,
+Boston United,Boston
+Braintree Town,Braintree
 #Torquay United,Torquay
 #King's Lynn Town,Kings Lynn
-York City,York,
-Kidderminster Harriers,Kidderminster
+#Kidderminster Harriers,Kidderminster
+#Macclesfield Town,Macclesfield
 
 #	Scottish
 Dundee United,Dundee Utd
@@ -154,21 +156,24 @@ Partick Thistle,Partick
 Hamilton Academical,Hamilton
 Heart of Midlothian,Hearts
 Queen of the South,Queen of Sth
-#Brechin City,Brechin
-Inverness Caledonian Thistle,Inverness
+Inverness CT,Inverness
 Greenock Morton,Morton
 Alloa Athletic,Alloa
 Ayr United,Ayr
 Queen's Park,Queens Park
 Airdrieonians,Airdrie
 Raith Rovers,Raith Rvs
-#Albion Rovers,Albion Rvs
 Forfar Athletic,Forfar
-#Berwick Rangers,Berwick
 Elgin City,Elgin
 Stirling Albion,Stirling
 Edinburgh City,Edinburgh
 The Spartans,Spartans
+Dunfermline Athletic,Dunfermline
+St. Johnstone,St Johnstone
+St. Mirren,St Mirren
+#Berwick Rangers,Berwick
+#Brechin City,Brechin
+#Albion Rovers,Albion Rvs
 
 #	Irish
 St Patrick's Athletic,St Patricks
@@ -202,7 +207,7 @@ Charlotte FC,Charlotte
 Austin FC,Austin
 Toronto FC,Toronto
 
-#	Welsh
+ #	Welsh
 #Llandudno FC,Llandudno
 #Llanelli Town,Llanelli
 #Aberystwyth Town,Aberystwyth
@@ -218,6 +223,9 @@ Toronto FC,Toronto
 #Newry City AFC,Newry City
 #Warrenpoint Town,Warrenpoint
 
+#	Irish
+Galway United,Galway
+
 #	Swedish
 Helsingborgs,Helsingborg
 Brommapojkarna,Brommapj
@@ -227,30 +235,32 @@ Varberg,Varbergs
 
 #	Finnish
 AC Oulu,Oulu
+#HJK,HJK Helsinki
+
+#	Norwegian
+Bodo   Glimt,Bodo Glimt
 
 #	Italian
-Inter Milan,Inter
+Internazionale,Inter
 AC Milan,Milan
 Hellas Verona,Verona
 #SPAL,Spal
 
 #	Spanish
-Celta Vigo,Celta
+Celta de Vigo,Celta
 Rayo Vallecano,Vallecano
 Real Sociedad,Sociedad
 #Espanyol,Espanol
-Athletic Bilbao,Ath Bilbao
+Athletic Club,Ath Bilbao
 Atletico Madrid,Ath Madrid
-#Real Valladolid,Valladolid
 Real Betis,Betis
 Cádiz,Cadiz
+Deportivo Alaves,Alaves
+#Real Valladolid,Valladolid
 
 #	German
-#Hertha Berlin,Hertha
-#FC Nuremberg,Nurnberg
-#FC Schalke,Schalke
 Mainz 05,Mainz
-Borussia Monchengladbach,Mgladbach
+Borussia M'gladbach,Mgladbach
 Bayer Leverkusen,Leverkusen
 Borussia Dortmund,Dortmund
 Eintracht Frankfurt,Frankfurt
@@ -259,11 +269,19 @@ FC Union Berlin,Union Berlin
 SC Freiburg,Freiburg
 VfL Bochum 1848,Bochum
 FC Heidenheim,Heidenheim
+Bayern Munchen,Bayern Munich
+#Hertha Berlin,Hertha
+#FC Nuremberg,Nurnberg
+#FC Schalke,Schalke
 #SpVgg Greuther Furth,Greuther Furth
 #Arminia Bielefeld,Bielefeld
 
 #	French
 Paris Saint Germain,PSG
+Olympique Lyonnais,Lyon
+Olympique Marseille,Marseille
+Angers SCO,Angers
+Saint-Etienne,St Etienne
 
 #	Australian
 #Melbourne City FC,Melbourne City
@@ -274,7 +292,31 @@ END_FOOTBALL_TEAMS
 
 #	Rugby League
 # This line used in Fixtures_Globals.t - DO NOT UNCOMMENT !!
-Leigh,Leigh Centurions
+Huddersfield Giants,Huddersfield
+Hull FC,Hull
+Bradford Bulls,Bradford
+York Knights,York
+Batley Bulldogs,Batley
+Hurricanes,Midlands
+Crusaders,Nth Wales
+
+Melbourne Storm,Melbourne
+Penrith Panthers,Penrith
+Sydney Roosters,Sydney
+Cronulla Sharks,Cronulla
+Canterbury Bulldogs,Canterbury
+North Queensland Cowboys,Nth Queens
+Manley Sea Eagles,Manly
+St. George Illawarra Dragons,St George
+Canberra Raiders,Canberra
+Gold Coast Titans,Gold Coast
+Newcastle Knights,Newcastle
+South Sydney Rabbitohs,Sth Sydney
+Parramatta Eels,Parramatta
+Wests Tigers,Wests
+
+
+#Leigh,Leigh Centurions
 #Castleford,Castleford Tigers
 #Wakefield,Wakefield Trinity
 #Wigan,Wigan Warriors
@@ -315,11 +357,10 @@ Scottish Premiership,SC0
 Scottish Championship,SC1
 Scottish League One,SC2
 Scottish League Two,SC3
-Irish Premier Division,ROI
+Irish Premier League,ROI
 Norwegian Eliteserien,NOR
 Swedish Allsvenskan,SWE
 Finnish Veikkausliiga,FIN
-United States Major League Soccer,MLS
 German Bundesliga,D1
 Italian Serie A,I1
 Spanish La Liga,SP1
@@ -332,9 +373,11 @@ FA Cup,X
 Scottish League Cup,X
 EFL,X
 Cymru Premier,X
+Welsh Premier League,X
 Irish Premiership,X
 Spanish Copa del Rey,X
 Italian Coppa Italia,X
+Coppa Italia,X
 French Coupe de France,X
 FA Trophy,X
 Trophy,X
@@ -349,7 +392,8 @@ Round,X
 Highland League,X
 Lowland League,X
 Russian Premier League,X
-Swiss,X
+Credit Suisse Super League,X
+Polish Ekstraklasa,X
 #French,X
 Belgian,X
 Brazilian,X
@@ -363,18 +407,21 @@ Austrian,X
 Greek,X
 Asian,X
 UEFA,X
+US Major League Soccer,X
 Australian A-League,X
 Copa Libertadores,X
+CONMEBOL Libertadores,X
 Saudi Professional League,X
+Saudi League,X
 Women,X
 Women's Super League,X
 Women's Championship,X
 END_FOOTBALL_LEAGUES
 
-#Betfred Super League,SL
-#Betfred Championship,CH
-#Betfred League One,L1
-#Australian National Rugby League Telstra Premiership,NRL
+Betfred Super League,SL
+Betfred Championship,CH
+Betfred League One,L1
+Australian National Rugby League Telstra Premiership,NRL
 #National Conference Premier,X
 #National Conference Division 1,X
 #National Conference Division 2,X

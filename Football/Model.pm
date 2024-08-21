@@ -3,9 +3,7 @@ package Football::Model;
 #	Football::Model.pm 03/02/16 - 14/03/16
 # 	v2.0 23-28/03/16, v2.01 Mouse 04/05/16, v2.02 Football_Data_Model 27/05/16 v2.03 26-27/07/16
 #	v2.06 Moo 01/10/16	v2.07 with Football::Shared_Model 18-19/01/17
-#	v2.08 refactored 19-21/12/18, v2.09 Mu 07/05/19
-
-use Syntax::Keyword::Gather;
+#	v2.08 refactored 19-21/12/18, v2.09 Mu 07/05/19, amended back to Moo 18/07/24
 
 use lib 'C:/Mine/perl/Football';
 use Football::League;
@@ -16,22 +14,24 @@ use Football::Reports::Head2Head;
 use Football::Globals qw( @league_names @csv_leagues );
 use MyKeyword qw(TESTING); # for model.t
 
-use Mu;
+use Syntax::Keyword::Gather;
+
+use Moo;
 use namespace::clean;
 
-# pre-declare these with default values to use Shared_Model role
-ro 'league_names', default => sub { \@league_names };
-ro 'csv_leagues', default => sub { \@csv_leagues };
-ro 'leagues', default => sub { [] };
-ro 'season_data', default => '';
-ro 'test_season_data', default => '';
-ro 'fixtures', default => sub { [] };
+has 'league_names' => (is => 'ro', default => sub { \@league_names} );
+has 'csv_leagues' => (is => 'ro', default => sub { \@csv_leagues} );
+has 'leagues' => (is => 'ro', default => sub { [] } );
+has 'fixtures' => (is => 'ro', default => sub { [] } );
+
+has 'season_data' => (is =>'ro', default => '');
+has 'test_season_data' => (is =>'ro', default => '');
 
 # pre-declare these with default values to use Football_IO role
-ro 'path', default => '';
-rw 'fixtures_file', default => '';
-ro 'test_fixtures_file', default => '';
-ro 'model_name', default => 'uk';
+has 'path' => (is =>'ro', default => '');
+has 'fixtures_file' => (is =>'rw', default => '');
+has 'test_fixtures_file' => (is =>'ro', default => '');
+has 'model_name' => (is =>'ro', default => 'uk');
 
 with 'Roles::MyJSON',
 'Football::Roles::Quick_Model',
@@ -156,6 +156,7 @@ sub do_head2head {
 	return $fixtures;
 }
 
+
 sub do_recent_draws {
 	my ($self, $fixtures) = @_;
 
@@ -177,6 +178,31 @@ sub do_recent_draws {
     	}
 	];
 }
+
+=begin comment
+sub do_recent_draws {
+	my ($self, $fixtures) = @_;
+	my @temp = ();
+	
+	for my $league (@$fixtures) {
+		for my $game ($league->{games}-> @*) {
+			push @temp, {
+				league => $league->{league},
+				game => $game,
+			}
+		}
+	}
+	
+	return [
+		sort {
+			$b->{game}->{draws} <=> $a->{game}->{draws}
+			or $b->{game}->{home_draws} <=> $a->{game}->{home_draws}
+			or $a->{game}->{home_team} cmp $b->{game}->{home_team}
+		} @temp
+	];
+}
+=end comment
+=cut
 
 =pod
 

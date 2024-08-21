@@ -39,12 +39,12 @@ sub get_pages {
 }
 
 sub get_league_hash {
-TESTING {
+	TESTING {
 	return {
 		uk 		=> \@csv_leagues,
 		euro 	=> \@euro_csv_lgs,
 		summer 	=> \@summer_csv_leagues,
-}};
+	}};
 	return {
 		uk      => \@csv_leagues,
 		euro    => \@euro_csv_lgs,
@@ -76,8 +76,6 @@ sub prepare {
 	$$dataref =~ s/The FA Women's Championship/The FA Women's Champ/g;
 	$$dataref =~ s/Scottish Women's Premier League( \d)?/Scottish Women's Prem/g; # Premier Lg and Premier Lg 1 ???
 
-#	$$dataref =~ s/Match postponed - International call-ups//g;
-
 #	Identify known leagues
 	$$dataref =~ s/($womens_leagues)/\n<LEAGUE>$1/g;
 	$$dataref =~ s/($leagues)/\n<LEAGUE>$1/g;
@@ -86,11 +84,8 @@ sub prepare {
 	$self->do_initial_chars ($dataref);
 	$self->do_foreign_chars ($dataref);
 
-#	print Dumper $dataref;<STDIN>;
-
 #	Find where team names start
 	$$dataref =~ s/($lower)($upper)/$1\n$day $date,$2/g;
-#	$rx->remove_postponed_chars ($dataref);
 
 #	Undo SOME workarounds
 	$self->revert ($dataref);
@@ -107,6 +102,7 @@ sub after_prepare {
 	my $files = $self->{files};
 	my $fixed_lines = {};
 	my $csv_league = '';
+	my ($game, $ko_time);
 
 	for my $line (@$lines) {
 		if ($line =~ /^<LEAGUE>(.*)$/) {
@@ -114,9 +110,16 @@ sub after_prepare {
 				$football_fixtures_leagues{$1} : 'X';
 		}
 		next if $csv_league eq 'X';
-		if ($line =~ /\d:\d/) { # valid lines will have a time eg 15:00
-			$line =~ s/($dm_date),(.*),($time),(.*)/$1 $3,$csv_league,$2,$4/;
-			push $fixed_lines->{ $files->{$csv_league} }->@*, $line;
+
+		if ($line =~ /.*versus.*/) {
+			$line =~ s/(.*) versus (.*) kick.*/$1,$2/;
+			$game = $line;
+		} elsif ($line =~ $time) {
+			$line =~ s/.*($time).*/$1/;
+			$ko_time = $line;
+
+			$game =~ s/($dm_date),(.*)/$1 $ko_time,$csv_league,$2/;
+			push $fixed_lines->{ $files->{$csv_league} }->@*, $game;
 		}
 	}
 	return $fixed_lines;
@@ -165,14 +168,16 @@ sub get_week {
 
 sub do_foreign_chars {
 	my ($self, $dataref) = @_;
+
 	$$dataref =~ s/$_/a/g for (qw(ä å));
 	$$dataref =~ s/$_/o/g for (qw(ö ø));
 	$$dataref =~ s/é/e/g;
 	$$dataref =~ s/í/i/g;
-	$$dataref =~ s/Ú/e/g; # for test
-	$$dataref =~ s/Ö/O/g;
-	$$dataref =~ s/ü/u/g;
+	$$dataref =~ s/Ú/e/g; # for test	
+	$$dataref =~ s/ü/u/g;	
 	$$dataref =~ s/æ/ae/g;
+	$$dataref =~ s/Ö/O/g;
+	$$dataref =~ s/É/E/g; # St Etienne	
 }
 
 sub do_initial_chars {
@@ -185,8 +190,12 @@ sub do_initial_chars {
 	$$dataref =~ s/FC/Fc/g;
 	$$dataref =~ s/AFC/Afc/g;
 	$$dataref =~ s/SJK/SJk/g;
+	$$dataref =~ s/HJK/HJk/g;
 	$$dataref =~ s/AIK/AIk/g;
 	$$dataref =~ s/EIF/EIf/g;
+	$$dataref =~ s/VPS/VPs/g;
+	$$dataref =~ s/KuPS/KUPs/g;
+	$$dataref =~ s/KFUM/KFUm/g;
 	$$dataref =~ s/GAIS/GAIs/g;
 	$$dataref =~ s/MU/Mu/g;  # Welsh
 	$$dataref =~ s/UCD/UCd/g; # Irish
@@ -201,6 +210,7 @@ sub do_initial_chars {
 	$$dataref =~ s/ SK//g;
 	$$dataref =~ s/BK //g;
 	$$dataref =~ s/ BK//g;
+	$$dataref =~ s/ SCO//g;
 	$$dataref =~ s/ SC//g;
 	$$dataref =~ s/SC //g;
 	$$dataref =~ s/AC //g;
@@ -214,14 +224,12 @@ sub do_initial_chars {
 	$$dataref =~ s/VfL //g;
 	$$dataref =~ s/1\. //g;
 	$$dataref =~ s/SpVgg //g;
-	$$dataref =~ s/KuPS/KUPS/g; # Finnish
 	$$dataref =~ s/RoPS //g;
 	$$dataref =~ s/ fB/ fb/g;
-	$$dataref =~ s/KTP/KTp/g;
+#	$$dataref =~ s/KTP/KTp/g;
 	$$dataref =~ s/HamKam/Hamkam/g;
 	$$dataref =~ s/\// /g; # Norwegian (Bodo/Glimt)
-#	$$dataref =~ s/jyskE/jyske/g; # Danish
-	$$dataref =~ s/ BoIS//g; # Varbergs
+#	$$dataref =~ s/ BoIS//g; # Varbergs
 	$$dataref =~ s/ AIF//g; # Mjallby
 	$$dataref =~ s/St. Louis/St Louis/g;
 }
@@ -235,14 +243,26 @@ sub revert {
 	$$dataref =~ s/Afc/AFC/g;
 	$$dataref =~ s/Mu(?!n)/MU/g; # match Cardiff MU - but not Bayern Munich
 	$$dataref =~ s/AIk/AIK/g;
-	$$dataref =~ s/KUPS/KuPS/g;
 	$$dataref =~ s/SJk/SJK/g;
+	$$dataref =~ s/HJk/HJK/g;
 #	$$dataref =~ s/SPAl/SPAL/g;
-	$$dataref =~ s/UCd/UCD/g;
-	$$dataref =~ s/KTp/KTP/g;
+#	$$dataref =~ s/UCd/UCD/g;
+#	$$dataref =~ s/KTp/KTP/g;
 	$$dataref =~ s/Hamkam/HamKam/g;
 	$$dataref =~ s/EIf/EIF/g;
 	$$dataref =~ s/GAIs/GAIS/g;
+	$$dataref =~ s/VPs/VPS/g;
+	$$dataref =~ s/KUPs/KuPS/g;
+	$$dataref =~ s/KFUm/KFUM/g;
+
+#	Remove repeated team names in new website 2024
+	$$dataref =~ s/HJKHJKHJK//;
+	$$dataref =~ s/Inverness CTInverness CT//;
+	$$dataref =~ s/KuPSKuPSKuPS//;
+	$$dataref =~ s/KFUMKFUMKFUM//;
+	$$dataref =~ s/VPSVPSVPS//;
+	$$dataref =~ s/KFUMKFUMKFUM//;
+	$$dataref =~ s/PSGPSGPSGc//;
 }
 
 #   transform a hash from key => value 'one-to-many' relationship
@@ -267,6 +287,26 @@ sub transform_hash {
 		my ($self, $hash) = @_;
 		return _transform_hash ($hash);
 	}
+}
+
+sub after_prepare_old {
+	my ($self, $lines) = @_;
+	my $files = $self->{files};
+	my $fixed_lines = {};
+	my $csv_league = '';
+
+	for my $line (@$lines) {
+		if ($line =~ /^<LEAGUE>(.*)$/) {
+			$csv_league = (exists $football_fixtures_leagues{$1} ) ?
+				$football_fixtures_leagues{$1} : 'X';
+		}
+		next if $csv_league eq 'X';
+		if ($line =~ /\d:\d/) { # valid lines will have a time eg 15:00
+			$line =~ s/($dm_date),(.*),($time),(.*)/$1 $3,$csv_league,$2,$4/;
+			push $fixed_lines->{ $files->{$csv_league} }->@*, $line;
+		}
+	}
+	return $fixed_lines;
 }
 
 =pod

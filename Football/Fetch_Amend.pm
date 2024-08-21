@@ -51,7 +51,7 @@ sub get_euro_hash {
 		'D1' => [
 			sub { $_[0] =~ s/M'gladbach/Mgladbach/g },
 			sub { $_[0] =~ s/Ein Frankfurt/Frankfurt/g },
-#			sub { $_[0] =~ s/Schalke 04/Schalke/g },
+			sub { $_[0] =~ s/FC Koln/Koln/g },
 		],
 		'F1' => [
 			sub { $_[0] =~ s/Paris SG/PSG/g },
@@ -76,6 +76,12 @@ sub get_summer_hash {
 		],
 		'FIN' => [
 			sub { $_[0] =~ s/Ekenas/EIF/g },
+			sub { $_[0] =~ s/HJK Helsinki/HJK/g },
+			sub { $_[0] =~ s/VPS Vaasa/VPS/g },
+			sub { $_[0] =~ s/KuPS Kuopio/KuPS/g },
+		],
+		'NOR' => [
+			sub { $_[0] =~ s/KFUM Oslo/KFUM/g },
 		],
 	};
 }

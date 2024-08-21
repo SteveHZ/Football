@@ -7,7 +7,6 @@ use File::Copy;
 use Football::Globals qw($reports_folder $cloud_folder $season);
 
 my @files = (
-	{ src => "$reports_folder/Summer $season.xlsx", dest => "$cloud_folder/Summer $season.xlsx" },
 	{ src => "$reports_folder/Match Odds UK.xlsx", dest => "$cloud_folder/Match Odds UK.xlsx" },
 	{ src => "$reports_folder/Recent Match Odds UK.xlsx", dest => "$cloud_folder/Recent Match Odds UK.xlsx" },
 	{ src => "$reports_folder/Match Odds Euro.xlsx", dest => "$cloud_folder/Euro/Match Odds Euro.xlsx" },

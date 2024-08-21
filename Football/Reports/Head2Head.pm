@@ -1,6 +1,6 @@
 package Football::Reports::Head2Head;
 
-# 	Football::Head2Head.pm 21/02/16
+# 	Football::Reports::Head2Head.pm 21/02/16
 #	v1.1 07/05/17
 
 use List::MoreUtils qw(each_arrayref);
@@ -51,6 +51,7 @@ sub create {
 sub csv_to_json {
 	my ($self, $leagues, $league_size, $seasons) = @_;
 	my ($csv_file, $json_file, $week_counter);
+
 	my $data_model = Football::Football_Data_Model->new ();
 	my $iterator = each_arrayref ($leagues, $league_size);
 
@@ -115,8 +116,8 @@ sub build_head2head {
 				my $result = $self->get_result ($game->{home_score}, $game->{away_score});
 				if (exists ($teams->{$league}->{$home_team}) &&
 					exists ($teams->{$league}->{$away_team} )) {
-					$idx = $season - $seasons->{h2h_seasons}->@[0];
-					$teams->{$league}->{$home_team}->{$away_team}->[$idx] = $result;
+						$idx = $season - $seasons->{h2h_seasons}->@[0];
+						$teams->{$league}->{$home_team}->{$away_team}->[$idx] = $result;
 				}
 			}
 		}

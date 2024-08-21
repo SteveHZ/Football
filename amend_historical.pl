@@ -3,13 +3,18 @@
 # Run perl archive_csv.pl to copy original historical data to 'Football Data files' folder
 # then use this script to amend team names as per Football::Fetch_Amend
 
+# 10/06/24
+# Accidentally deleted old data files at some point, but do not need to rewrite historical data every time,
+# only need to amend the most recent season. No real reason for this as current files are already amended.
+
+
 use strict;
 use warnings;
 use Time::HiRes qw (usleep);
 
 use Football::Fetch_Amend;
 use MyLib qw(read_file write_file);
-use Football::Globals qw( @league_names @league_size $reports_seasons);
+use Football::Globals qw( @league_names @league_size $reports_season); # $reports_seasons
 
 sub transform_hoa_to_array {
 	my $hash = shift;
@@ -30,12 +35,13 @@ my $rx_array = transform_hoa_to_array ($rx_hash);
 for my $league (@league_names) {
 	mkdir "C:/Mine/perl/Football/data/historical/$league"
 		unless -d "C:/Mine/perl/Football/data/historical/$league";
+
 	my $in_path = "C:/Mine/perl/Football/data/Football data files/$league";
 	my $out_path = "C:/Mine/perl/Football/data/historical/$league";
 
-	for my $season ($reports_seasons->{$league}->@*) {
-		my $in_file = "$in_path/$season.csv";
-		my $out_file = "$out_path/$season.csv";
+#	for my $season ($reports_seasons->{$league}->@*) {
+		my $in_file = "$in_path/$reports_season.csv";
+		my $out_file = "$out_path/$reports_season.csv";
 
 		print "\nReading $in_file";
 		my $lines = read_file ($in_file);
@@ -44,7 +50,7 @@ for my $league (@league_names) {
 		print "\nWriting $out_file";
 		write_file ($out_file, $lines);
 		usleep 500000; # 0.5 seconds, to avoid buffer problems
-	}
+#	}
 }
 
 =pod

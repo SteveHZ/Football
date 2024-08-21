@@ -93,7 +93,7 @@ sub _get_unique_leagues {
 #	wrapper for testing
 sub get_unique_leagues {
 	TESTNG {
-		shift; # shift $self from @_first
+		shift; # shift $self from @_ first
 		return _get_unique_leagues (shift);
 	}
 }

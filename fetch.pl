@@ -1,4 +1,3 @@
-#	fetch.pl 19-20/01/18, 27/02/21
 
 use strict;
 use warnings;

@@ -43,15 +43,20 @@ sub get_odds_cols {
 
 	my $odds_col = firstidx { $_ eq $search_for }
 		( ref ($data) eq "ARRAY" )
-			? @{ $data->[0] }		#	xlsx
+			? @{ $data->[0] }		#	xlsx replace this with $data->[0]->@* when testing below
 			: split (',', $data);	#	csv
 
 	return ($odds_col...$odds_col + 2);
 }
 
+# Summer Football Data cols amended 30/07/24, will they be amended for Euro or not, or even UK ?
+# might need seperate subs and amend in summer data model
+# E1 stll as AvgH
+
 sub get_euro_odds_cols {
 	my $data = shift;
-	return get_odds_cols ($data, "AvgH");
+	return get_odds_cols ($data, "AvgCH");
+#	return get_odds_cols ($data, "AvgH");
 }
 
 sub get_over_under_cols {

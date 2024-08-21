@@ -7,9 +7,8 @@
 #	Before running create_reports.pl
 #	Change Football::Globals::$season to NEXT year (ie At the end of 2021-2022 season, change $season to 2022)
 #	perl archive_csv.pl
-#	perl amend_historical.pl
+#	NO NEED FOR THIS ANYMORE 10/06/24 perl amend_historical.pl
 #	perl create_reports.pl
-
 
 use strict;
 use warnings;
@@ -47,6 +46,7 @@ my $reports = Football::Reports::Reports->new (
 	league_size => $league_size,
 	seasons => $reports_seasons,
 );
+
 $reports->run ($leagues, $reports_seasons);
 
 =pod

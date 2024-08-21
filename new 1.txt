@@ -1,0 +1,102 @@
+c:\Mine\perl\Football>perl predict.pl -su
+
+Updating Irish League...
+Updating USA League...
+Updating Swedish League...
+Updating Norwegian League...
+Updating Finnish League...
+
+Writing data...
+Writing data for Irish League...Done
+Writing data for USA League...Done
+Writing data for Swedish League...Done
+Writing data for Norwegian League...Done
+Writing data for Finnish League...Done
+
+Writing fixtures...
+
+3 Norwegian League Sandefjord v HamKam
+3 Norwegian League Lillestrom v KFUM
+0 Irish League Derry City v Drogheda
+0 Irish League Dundalk v Waterford
+0 Irish League Shelbourne v Galway
+0 Irish League Sligo Rvs v Shamrock Rvs
+0 Irish League St Patricks v Bohemians
+4 Finnish League Inter Turku v VPS
+4 Finnish League Oulu v KuPS
+3 Norwegian League Brann v Stromsgodset
+3 Norwegian League Sarpsborg v Bodo Glimt
+3 Norwegian League Odd v Kristiansund
+3 Norwegian League Tromso v Molde
+4 Finnish League SJK v Haka
+4 Finnish League Lahti v Ilves
+1 USA League New York City v Orlando City
+4 Finnish League Gnistan v EIF
+4 Finnish League Mariehamn v HJK
+3 Norwegian League Viking v Rosenborg
+1 USA League Atlanta Utd v Toronto
+1 USA League Montreal v Philadelphia
+1 USA League New England v Columbus Crew
+1 USA League New York RB v DC United
+1 USA League Dallas v Cincinnati
+1 USA League Houston Dynamo v Charlotte
+1 USA League Nashville v Inter Miami
+1 USA League Los Angeles v Colorado Rapids
+1 USA League Portland Timbers v Minnesota United
+1 USA League San Jose v LA Galaxy
+1 USA League Seattle Sounders v Chicago Fire
+1 USA League Vancouver Whitecaps v St Louis City
+1 USA League Sporting Kansas v Austin
+Use of uninitialized value in addition (+) at C:/Mine/perl/Football/Football/Roles/Shared_Model.pm line 155.
+Use of uninitialized value in addition (+) at C:/Mine/perl/Football/Football/Roles/Shared_Model.pm line 155.
+Use of uninitialized value in addition (+) at C:/Mine/perl/Football/Football/Roles/Shared_Model.pm line 155.
+Use of uninitialized value in addition (+) at C:/Mine/perl/Football/Football/Roles/Shared_Model.pm line 155.
+
+
+Writing home/away predictions...
+
+Irish League :
+ W D W D W W    Derry City         v Drogheda           L L D L L L  14-1  11-1
+ D W D W D W    Dundalk            v Waterford          W D W W L L  12-10  10-9
+ D W D W L W    Shelbourne         v Galway             D D W W L L  11-8  15-10
+ D D L W L W    Sligo Rvs          v Shamrock Rvs       W D D L W L   8-8   7-7
+ W L L W L W    St Patricks        v Bohemians          W W L L W L   9-9   8-4
+USA League :
+ L L L L L D    Atlanta Utd        v Toronto            L W L D D L   1-5   8-2
+Use of uninitialized value in printf at C:/Mine/perl/Football/Football/View.pm line 158.
+Use of uninitialized value in printf at C:/Mine/perl/Football/Football/View.pm line 159.
+        Dallas             v Cincinnati         L W W W W W   0-15   0-12
+ W L D D W D    Houston Dynamo     v Charlotte          L L W L W W   9-9   9-11
+ D W W W W W    Los Angeles        v Colorado Rapids    L W L L L W  16-6  16-10
+ L L D W D D    Montreal           v Philadelphia       W D D W D L   6-9   7-3
+ D W W D L W    Nashville          v Inter Miami        W W W D W W  11-16  11-13
+Use of uninitialized value in printf at C:/Mine/perl/Football/Football/View.pm line 158.
+Use of uninitialized value in printf at C:/Mine/perl/Football/Football/View.pm line 159.
+        New England        v Columbus Crew      D W W W W L   0-13   0-15
+ W W L W W L    New York City      v Orlando City       D W W D L D  12-9   9-5
+ D W W W D W    New York RB        v DC United          D L W L L L  14-4  11-2
+Use of uninitialized value in printf at C:/Mine/perl/Football/Football/View.pm line 158.
+Use of uninitialized value in printf at C:/Mine/perl/Football/Football/View.pm line 159.
+ D L W W D W    Portland Timbers   v Minnesota United    11-0  14-0
+ L W L D L L    San Jose           v LA Galaxy          L D D D L W   4-6   1-15
+ L D D D W W    Seattle Sounders   v Chicago Fire       L D L D W L   9-5  11-8
+ L D L L W L    Sporting Kansas    v Austin             D L D L L W   4-5   3-5
+Use of uninitialized value in printf at C:/Mine/perl/Football/Football/View.pm line 158.
+Use of uninitialized value in printf at C:/Mine/perl/Football/Football/View.pm line 159.
+        Vancouver Whitecaps v St Louis City      L D D L D L   0-3   0-3
+Norwegian League :
+ W W W W L W    Brann              v Stromsgodset       L W W L L W  15-9  13-7
+ L L D L L      Lillestrom         v KFUM               D W W W D   1-11   6-9
+ L D D L L W    Odd                v Kristiansund       W L D L L L   5-4   5-4
+ L W W L        Sandefjord         v HamKam             L L D D W L   6-5   5-8
+ L L W L L      Sarpsborg          v Bodo Glimt         W W W W L W   3-15   6-11
+ L L W W W L    Tromso             v Molde              W D L W W   9-10  10-8
+ W D D W L W    Viking             v Rosenborg          L W L D L  11-4  13-5
+Finnish League :
+ W L L D W L    Gnistan            v EIF                L L L D L L   7-1   5-4
+ D D W L W L    Inter Turku        v VPS                W W L W W D   8-13   7-9
+ D L W L L D    Lahti              v Ilves              L W W D D W   5-11   3-9
+ W D L W D D    Mariehamn          v HJK                L D D W L W   9-8   9-13
+ L D D W D      Oulu               v KuPS               W D D W W L   6-11   6-12
+ W D D W L W    SJK                v Haka               D W L L W  11-7  10-10
+Usage: List::MoreUtils::XS::each_arrayref(\@;\@\@...) at C:/Mine/perl/Football/Football/Spreadsheets/Predictions.pm line 42.
